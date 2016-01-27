@@ -1,0 +1,33 @@
+.page-landing {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 90px;
+
+  .grid-block + .grid-block {
+    margin-top: 30px;
+  }
+
+  .h1,
+  .h2 {
+    font-weight: $weight-light;
+    margin: 15px 0;
+  }
+
+  .ol,
+  .ul,
+  .p {
+    margin-bottom: 9px;
+  }
+
+  .ol,
+  .ul {
+    list-style-type: circle;
+  }
+
+  .hr {
+    background: rgba($black,.1);
+    border: 0;
+    height: 1px;
+    margin: 30px 0;
+  }
+}
