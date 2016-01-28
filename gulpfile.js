@@ -5,6 +5,7 @@ var fileinclude = require('gulp-file-include'); // html
 var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
 var imagemin = require('gulp-imagemin'); // image optimizer
+var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 
 // file locations
 var src = 'src/';
@@ -58,6 +59,12 @@ gulp.task('imagemin', function () {
       title: 'imagemin'
     }))
     .pipe(gulp.dest(imgDist));
+});
+
+// gh pages
+gulp.task('deploy', function() {
+  return gulp.src(dist + '**/*')
+    .pipe(ghPages());
 });
 
 // watch task
