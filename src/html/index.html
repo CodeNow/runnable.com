@@ -10,14 +10,21 @@
     <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
     <link rel="stylesheet" href="styles/index.css">
 
-  <body>
-    <main class="grid-block grid-container vertical page-landing">
+  <body class="page-landing">
+    <header class="grid-block shrink header">
+      <div class="grid-block grid-container">
+        <a class="grid-block">
+          <img class="img" src="images/runnable-logo-gray.svg" height="36" width="192">
+        </a>
+        <a href="https://api.runnable.io/auth/github?redirect=https://runnable.io/?auth" class="grid-block btn btn-sm green shrink">Sign In</a>
+      </div>
+    </header>
+    <main class="grid-block grid-container vertical main">
       <article class="article">
         <h1 class="h1">Make your dev team more <strong>Awesome</strong></h1>
         <p class="p">Runnable gives <strong>every developer their own sandbox</strong>. We’re talking a full-stack environment that’s always up-to-date and ready to test E2E.
 
-        <h2 class="h2">Here’s how it works</h2>
-        <p class="p">We don’t get in the way of your team’s workflow.
+        <h3 class="h3">We don’t get in the way of your team’s workflow.</h3>
         <ol class="ol">
           <li class="li">When a dev creates a branch, they get a new sandbox.
           <li class="li">When a dev pushes to a branch, the sandbox updates.
@@ -81,9 +88,10 @@
       <article class="article">
         <h1 class="h1">Let’s get going</h1>
         <p class="p">Connect with Github and configure your sandbox <strong>once</strong>. Every time you create a branch we build a new sandbox that updates on every push you make.</p>
-        <button class="btn btn-md green">Connect with Github</button>
+        <a href="https://api.runnable.io/auth/github?redirect=https://runnable.io/?auth" class="btn btn-md green">Connect with Github</a>
         <div>
-          <small class="small">We never modify your source code.</small>
+          <small class="small"> We never modify your source code.</small>
         </div>
+        <p class="p">🖖
       </article>
     </main>
