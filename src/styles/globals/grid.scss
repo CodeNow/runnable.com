@@ -27,11 +27,11 @@
   }
 
   &.align-justify {
-    justify-content: align-justify; // space between blocks is even
+    justify-content: space-between; // space between blocks is even
   }
 
   &.align-spaced {
-    justify-content: align-spaced; // space around blocks is even
+    justify-content: space-around; // space around blocks is even
   }
 
   // amount of blocks allowed within a parent
