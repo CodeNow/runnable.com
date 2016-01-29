@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var runSequence = require('run-sequence'); // sequence of tasks
 var debug = require('gulp-debug'); // debug
-var newer = require('gulp-newer'); // file changes
+var del = require('del'); // delete dist
+var newer = require('gulp-newer'); // checks for file changes
 var fileinclude = require('gulp-file-include'); // html
 var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
@@ -19,6 +21,11 @@ var dist = './dist/';
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
 var imgDist = dist + 'images/';
+
+// delete dist
+gulp.task('clean', function() {
+  return del.sync('dist');
+});
 
 // html files
 gulp.task('fileinclude', function() {
@@ -67,9 +74,10 @@ gulp.task('deploy', function() {
     .pipe(ghPages());
 });
 
-// watch task
-gulp.task('default', ['fileinclude', 'sass', 'imagemin'], function() {
-    gulp.watch(htmlDir, ['fileinclude']);
-    gulp.watch(sassDir, ['sass']);
-    gulp.watch(imgDir, ['imagemin']);
+// watches by default
+gulp.task('default', function(cb) {
+  runSequence('clean', ['fileinclude', 'sass', 'imagemin'], cb);
+  gulp.watch(htmlDir, ['fileinclude']);
+  gulp.watch(sassDir, ['sass']);
+  gulp.watch(imgDir, ['imagemin']);
 });
