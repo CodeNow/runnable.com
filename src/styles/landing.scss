@@ -67,3 +67,29 @@
     margin: 30px 0;
   }
 }
+
+.article-quick-start {
+
+  .p {
+    margin-bottom: 30px;
+  }
+
+  .a {
+    filter: grayscale(100%);
+    opacity: .5;
+
+    &:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    + .a {
+      margin-left: 15px;
+    }
+  }
+
+  .img {
+    height: 45px;
+    width: 45px;
+  }
+}

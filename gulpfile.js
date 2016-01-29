@@ -44,13 +44,13 @@ gulp.task('fileinclude', function() {
 gulp.task('sass', function() {
   gulp.src(sassSrc)
     .pipe(sass({
-        errLogToConsole: true
+      errLogToConsole: true
     }))
     .on('error', function(err){
       console.log(err.message);
     })
     .pipe(autoprefixer({
-        browsers: ['last 2 versions']
+      browsers: ['last 2 versions']
     }))
     .pipe(gulp.dest(sassDist));
 });
@@ -60,7 +60,7 @@ gulp.task('imagemin', function () {
   return gulp.src(imgDir)
     .pipe(newer(imgDist))
     .pipe(imagemin({
-        svgoPlugins: [{removeViewBox: false}]
+      svgoPlugins: [{removeViewBox: false}]
     }))
     .pipe(debug({
       title: 'imagemin'
