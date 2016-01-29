@@ -31,6 +31,10 @@
   .main {
     padding-bottom: 150px;
     padding-top: 150px;
+
+    @include media(sm) {
+      padding-top: 90px;
+    }
   }
 
   .h1,
@@ -45,6 +49,10 @@
 
     &.display {
       font-size: 60px;
+
+      @include media(sm) {
+        font-size: 45px;
+      }
     }
   }
 
@@ -96,5 +104,33 @@
   .img {
     height: 45px;
     width: 45px;
+  }
+}
+
+.form-hook-up {
+
+  .input-group-vertical {
+    padding-right: 6px;
+
+    @include media(sm) {
+      min-width: 100%;
+      padding-right: 0;
+
+      &:first-child {
+        padding-bottom: 12px;
+      }
+    }
+
+    + .input-group-vertical {
+      padding-left: 6px;
+
+      @include media(sm) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 12px;
   }
 }

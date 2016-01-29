@@ -88,10 +88,22 @@
 
       <article class="article">
         <h1 class="h1">Let’s get going</h1>
-        <p class="p">Runnable was made for teams that use GitHub.<br>Tell us about your team and we’ll hook it up with 30-days free.
-        <div>
-          <a href="https://api.runnable.io/auth/github?redirect=https://runnable.io/?auth" class="btn btn-md green">Connect with Github</a>
-        </div>
+        <p class="p">Runnable was made for teams that use GitHub.<br>Tell us about your team and we’ll hook it up with 30 days free.
+        <form class="form form-hook-up">
+          <div class="grid-block grid-2">
+            <div class="grid-block input-group-vertical">
+              <label class="label" for="email">Email</label>
+              <input class="input input-md input-validate" id="email" type="email" required>
+            </div>
+            <div class="grid-block input-group-vertical">
+              <label class="label" for="name">Github Organization</label>
+              <input class="input input-md input-validate" id="name" required>
+            </div>
+          </div>
+          <div class="grid-block">
+            <button class="btn btn-md green">Hook me up with 30 days!</button>
+          </div>
+        </form>
       </article>
 
       <hr class="hr">

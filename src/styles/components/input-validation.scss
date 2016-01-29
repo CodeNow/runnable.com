@@ -1,0 +1,13 @@
+// .input-validate
+.input-validate,
+.btn-validate {
+  transition: none;
+
+  &:required:valid {
+    border-color: $green;
+  }
+
+  &:focus:required:invalid {
+    border-color: $red;
+  }
+}
