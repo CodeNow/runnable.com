@@ -82,6 +82,24 @@
 
 .article-quick-start {
 
+  > .grid-block {
+    flex-wrap: wrap;
+
+    @media (min-width: $screen-sm) {
+      > .grid-block {
+        flex: 0 0 (100% / 8);
+        max-width: (100% / 8);
+      }
+    }
+
+    @include media(sm) {
+      > .grid-block {
+        flex: 0 0 (100% / 4);
+        max-width: (100% / 4);
+      }
+    }
+  }
+
   .p {
     margin-bottom: 30px;
   }
@@ -94,10 +112,6 @@
     &:hover {
       filter: grayscale(0);
       opacity: 1;
-    }
-
-    + .a {
-      margin-left: 6px;
     }
   }
 
@@ -113,6 +127,7 @@
     padding-right: 6px;
 
     @include media(sm) {
+      flex-basis: 100%; // need to be specific for safari
       min-width: 100%;
       padding-right: 0;
 
