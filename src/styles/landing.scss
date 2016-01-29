@@ -42,6 +42,10 @@
 
   .h1 {
     margin: 21px 0;
+
+    &.display {
+      font-size: 60px;
+    }
   }
 
   .h2,
