@@ -13,7 +13,7 @@ var htmlDir = src + 'html/**/*.html';
 var htmlSrc = src + 'html/index.html';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
-var imgDir = src + 'images/**/*.*';
+var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 
 var dist = './dist/';
 var htmlDist = dist;
@@ -68,7 +68,7 @@ gulp.task('deploy', function() {
 });
 
 // watch task
-gulp.task('default', ['fileinclude', 'sass'], function() {
+gulp.task('default', ['fileinclude', 'sass', 'imagemin'], function() {
     gulp.watch(htmlDir, ['fileinclude']);
     gulp.watch(sassDir, ['sass']);
     gulp.watch(imgDir, ['imagemin']);
