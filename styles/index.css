@@ -846,3 +846,21 @@ body {
   border: 0;
   height: 1px;
   margin: 30px 0; }
+
+.article-quick-start .p {
+  margin-bottom: 30px; }
+
+.article-quick-start .a {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  opacity: .5; }
+  .article-quick-start .a:hover {
+    -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+    opacity: 1; }
+  .article-quick-start .a + .a {
+    margin-left: 15px; }
+
+.article-quick-start .img {
+  height: 45px;
+  width: 45px; }
