@@ -35,6 +35,27 @@
   }
 }
 
+.grid-content {
+  display: flex;
+  flex: 1 1 auto;
+
+  &.shrink {
+    flex: 0 0 auto;
+  }
+
+  + .grid-content {
+    margin-left: 15px;
+  }
+}
+
+.vertical .grid-content {
+  margin-left: 0;
+
+  + .grid-content {
+    margin-top: 15px;
+  }
+}
+
 // amount of blocks allowed within a parent
 %grid-2,
 %grid-3,
