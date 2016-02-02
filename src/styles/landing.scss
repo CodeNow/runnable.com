@@ -133,17 +133,5 @@
         padding-bottom: 12px;
       }
     }
-
-    + .input-group-vertical {
-      padding-left: 12px;
-
-      @include media(sm) {
-        padding-left: 0;
-      }
-    }
-  }
-
-  .btn {
-    margin-top: 12px;
   }
 }

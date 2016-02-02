@@ -1,4 +1,5 @@
-.grid-block {
+.grid-block,
+.grid-content {
   align-items: stretch;
   display: flex;
   flex: 1 1 auto;
@@ -35,6 +36,7 @@
   }
 }
 
+// horizontal grid
 .grid-content {
   display: flex;
   flex: 1 1 auto;
@@ -45,16 +47,29 @@
 
   + .grid-content {
     margin-left: 15px;
+
+    @include media(sm) {
+      margin-left: 0;
+    }
   }
 }
 
-.vertical .grid-content {
-  margin-left: 0;
+// vertical grid
+.vertical {
 
-  + .grid-content {
+  > .grid-content {
+    margin-left: 0;
+
+    + .grid-content {
+      margin-top: 15px;
+    }
+  }
+
+  > .grid-block + .grid-block {
     margin-top: 15px;
   }
 }
+
 
 // amount of blocks allowed within a parent
 %grid-2,
