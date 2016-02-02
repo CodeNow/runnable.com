@@ -344,7 +344,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.1;
   margin: 0; }
 
@@ -488,8 +488,8 @@ body {
   font-family: system, -apple-system, "Helvetica Neue", sans-serif;
   -webkit-font-feature-settings: 'kern';
           font-feature-settings: 'kern';
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 19px;
+  font-weight: 300;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
@@ -1076,12 +1076,6 @@ input[type="radio"] {
   @media (max-width: 768px) {
     .page-landing .main {
       padding-top: 90px; } }
-
-.page-landing .h1,
-.page-landing .h2,
-.page-landing .h3,
-.page-landing .p {
-  font-weight: 300; }
 
 .page-landing .h1 {
   margin: 21px 0; }
