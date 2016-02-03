@@ -16,11 +16,13 @@ var htmlSrc = src + 'html/index.html';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
+var favIconSrc = src + 'html/favicon.png';
 
 var dist = './dist/';
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
 var imgDist = dist + 'images/';
+var favIconDist = dist;
 
 // delete dist
 gulp.task('clean', function() {
@@ -68,6 +70,16 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest(imgDist));
 });
 
+// favicon
+gulp.task('favicon', function () {
+  return gulp.src(favIconSrc)
+    .pipe(imagemin())
+    .pipe(debug({
+      title: 'favicon'
+    }))
+    .pipe(gulp.dest(favIconDist));
+});
+
 // gh pages
 gulp.task('deploy', function() {
   return gulp.src(dist + '**/*')
@@ -76,7 +88,7 @@ gulp.task('deploy', function() {
 
 // watches by default
 gulp.task('default', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'imagemin'], cb);
+  runSequence('clean', ['fileinclude', 'sass', 'imagemin', 'favicon'], cb);
   gulp.watch(htmlDir, ['fileinclude']);
   gulp.watch(sassDir, ['sass']);
   gulp.watch(imgDir, ['imagemin']);
