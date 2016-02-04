@@ -15,6 +15,10 @@
     display: table;
     font-size: 60px;
     margin: 0 auto;
+
+    @include media(xs) {
+      font-size: 45px;
+    }
   }
 
   .text-awesome {
@@ -22,11 +26,21 @@
     fill: $purple-light;
     margin: 15px auto;
     max-width: 450px;
+
+    @include media(xs) {
+      margin: 6px auto;
+      max-width: 300px;
+    }
   }
 
   .p {
     font-size: 21px;
     margin: 0 auto;
     max-width: 450px;
+
+    @include media(xs) {
+      font-size: 18px;
+      max-width: 330px;
+    }
   }
 }

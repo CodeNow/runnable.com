@@ -3,7 +3,27 @@
   .grid-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 780px;
+    width: 100%;
+
+    @media (min-width: $screen-xxs) {
+      max-width: $screen-xxs - 90px;
+      width: $screen-xxs - 90px;
+    }
+
+    @media (min-width: $screen-xs) {
+      max-width: $screen-xs - 90px;
+      width: $screen-xs - 90px;
+    }
+
+    @media (min-width: $screen-sm) {
+      max-width: $screen-sm - 90px;
+      width: $screen-sm - 90px;
+    }
+
+    @media (min-width: $screen-md) {
+      max-width: $screen-md - 90px;
+      width: $screen-md - 90px;
+    }
   }
 
   > .grid-block + .grid-block {
@@ -64,6 +84,11 @@
 
 .article-workflow {
   margin-top: -21px;
+
+  .ol {
+    margin: 0 auto;
+    max-width: 600px;
+  }
 }
 
 .article-quick-start {
