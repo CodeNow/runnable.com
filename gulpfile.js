@@ -26,7 +26,7 @@ var favIconDist = dist;
 
 // delete dist
 gulp.task('clean', function() {
-  return del.sync('dist');
+  del.sync('dist');
 });
 
 // html files
@@ -59,7 +59,7 @@ gulp.task('sass', function() {
 
 // images
 gulp.task('imagemin', function () {
-  return gulp.src(imgDir)
+  gulp.src(imgDir)
     .pipe(newer(imgDist))
     .pipe(imagemin({
       svgoPlugins: [{removeViewBox: false}]
@@ -72,7 +72,7 @@ gulp.task('imagemin', function () {
 
 // favicon
 gulp.task('favicon', function () {
-  return gulp.src(favIconSrc)
+  gulp.src(favIconSrc)
     .pipe(imagemin())
     .pipe(debug({
       title: 'favicon'
@@ -82,7 +82,7 @@ gulp.task('favicon', function () {
 
 // gh pages
 gulp.task('deploy', function() {
-  return gulp.src(dist + '**/*')
+  gulp.src(dist + '**/*')
     .pipe(ghPages());
 });
 

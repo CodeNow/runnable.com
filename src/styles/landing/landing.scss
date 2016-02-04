@@ -15,8 +15,8 @@
   }
 
   .header {
-    background: linear-gradient($white, rgba($white,.95));
-    border-bottom: 1px solid rgba($black,.1);
+    background: linear-gradient($purple-light, rgba($purple-light,.95));
+    border-bottom: 2px solid $purple;
     left: 0;
     position: fixed;
     right: 0;
@@ -30,23 +30,10 @@
 
   .main {
     padding-bottom: 150px;
-    padding-top: 150px;
-
-    @include media(sm) {
-      padding-top: 90px;
-    }
   }
 
   .h1 {
     margin: 21px 0;
-
-    &.display {
-      font-size: 60px;
-
-      @include media(sm) {
-        font-size: 45px;
-      }
-    }
   }
 
   .h2,

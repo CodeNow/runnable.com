@@ -1,0 +1,32 @@
+.hero {
+  background: url(../images/confetti.png);
+  background-size: 1728px 648px;
+  border-bottom: 1px solid rgba($black,.1);
+  color: $purple-faded;
+  padding: 180px 0 150px;
+
+  .h1,
+  .text-awesome,
+  .p {
+    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 70%);
+  }
+
+  .h1 {
+    display: table;
+    font-size: 60px;
+    margin: 0 auto;
+  }
+
+  .text-awesome {
+    display: block;
+    fill: $purple-light;
+    margin: 15px auto;
+    max-width: 450px;
+  }
+
+  .p {
+    font-size: 21px;
+    margin: 0 auto;
+    max-width: 450px;
+  }
+}
