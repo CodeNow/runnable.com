@@ -1052,6 +1052,9 @@ input[type="radio"] {
   margin-left: auto;
   margin-right: auto;
   width: 100%; }
+  @media (max-width: 400px) {
+    .page-landing .grid-container {
+      padding: 0 30px; } }
   @media (min-width: 400px) {
     .page-landing .grid-container {
       max-width: 310px;
@@ -1079,9 +1082,17 @@ input[type="radio"] {
   position: fixed;
   right: 0;
   top: 0; }
+  @media (max-width: 400px) {
+    .page-landing .header .btn {
+      display: none; } }
   .page-landing .header .grid-container {
     padding-bottom: 18px;
     padding-top: 27px; }
+    @media (max-width: 400px) {
+      .page-landing .header .grid-container {
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center; } }
 
 .page-landing .main {
   padding-bottom: 150px; }
