@@ -5,6 +5,10 @@
     margin-right: auto;
     width: 100%;
 
+    @include media(xxs) {
+      padding: 0 30px;
+    }
+
     @media (min-width: $screen-xxs) {
       max-width: $screen-xxs - 90px;
       width: $screen-xxs - 90px;
@@ -38,9 +42,19 @@
     right: 0;
     top: 0;
 
+    @include media(xxs) {
+      .btn {
+        display: none;
+      }
+    }
+
     .grid-container {
       padding-bottom: 18px;
       padding-top: 27px;
+
+      @include media(xxs) {
+        justify-content: center;
+      }
     }
   }
 

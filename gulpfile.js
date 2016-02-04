@@ -44,7 +44,7 @@ gulp.task('fileinclude', function() {
 
 // sass
 gulp.task('sass', function() {
-  return gulp.src(sassSrc)
+  gulp.src(sassSrc)
     .pipe(sass({
       errLogToConsole: true
     }))
