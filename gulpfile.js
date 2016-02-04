@@ -26,7 +26,7 @@ var favIconDist = dist;
 
 // delete dist
 gulp.task('clean', function() {
-  del.sync('dist');
+  return del.sync('dist');
 });
 
 // html files
@@ -44,7 +44,7 @@ gulp.task('fileinclude', function() {
 
 // sass
 gulp.task('sass', function() {
-  gulp.src(sassSrc)
+  return gulp.src(sassSrc)
     .pipe(sass({
       errLogToConsole: true
     }))
@@ -58,38 +58,50 @@ gulp.task('sass', function() {
 });
 
 // images
-gulp.task('imagemin', function () {
-  gulp.src(imgDir)
+gulp.task('images', function () {
+  return gulp.src(imgDir)
     .pipe(newer(imgDist))
-    .pipe(imagemin({
-      svgoPlugins: [{removeViewBox: false}]
-    }))
     .pipe(debug({
-      title: 'imagemin'
+      title: 'images'
     }))
     .pipe(gulp.dest(imgDist));
 });
 
 // favicon
 gulp.task('favicon', function () {
-  gulp.src(favIconSrc)
-    .pipe(imagemin())
+  return gulp.src(favIconSrc)
     .pipe(debug({
       title: 'favicon'
     }))
     .pipe(gulp.dest(favIconDist));
 });
 
+
+// imagemin
+gulp.task('imagemin', function() {
+  return gulp.src(imgDir)
+    .pipe(imagemin())
+    .pipe(debug({
+      title: 'imagemin'
+    }))
+    .pipe(gulp.dest(imgDist));
+});
+
 // gh pages
-gulp.task('deploy', function() {
-  gulp.src(dist + '**/*')
+gulp.task('ghPages', function() {
+  return gulp.src(dist + '**/*')
     .pipe(ghPages());
+});
+
+// deploy
+gulp.task('deploy', function(cb) {
+  runSequence('clean', ['fileinclude', 'sass', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
 });
 
 // watches by default
 gulp.task('default', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'imagemin', 'favicon'], cb);
+  runSequence('clean', ['fileinclude', 'sass', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, ['fileinclude']);
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(imgDir, ['imagemin']);
+  gulp.watch(imgDir, ['images']);
 });
