@@ -10,23 +10,31 @@
     }
 
     @media (min-width: $screen-xxs) {
-      max-width: $screen-xxs - 90px;
-      width: $screen-xxs - 90px;
+      max-width: inherit;
+      width: inherit;
     }
 
     @media (min-width: $screen-xs) {
-      max-width: $screen-xs - 90px;
-      width: $screen-xs - 90px;
+      max-width: $screen-xs - 30px;
+      width: $screen-xs - 30px;
     }
 
     @media (min-width: $screen-sm) {
-      max-width: $screen-sm - 90px;
-      width: $screen-sm - 90px;
+      max-width: $screen-sm - 30px;
+      width: $screen-sm - 30px;
     }
 
     @media (min-width: $screen-md) {
-      max-width: $screen-md - 90px;
-      width: $screen-md - 90px;
+      max-width: $screen-md - 30px;
+      width: $screen-md - 30px;
+    }
+  }
+
+  .br-xs {
+    display: none;
+
+    @include media(xs) {
+      display: block;
     }
   }
 
@@ -65,6 +73,10 @@
   .h2,
   .h3 {
     margin: 15px 0;
+
+    @include media(xxs) {
+      line-height: 1.4;
+    }
   }
 
   .ol,
@@ -76,14 +88,16 @@
   .ol,
   .ul {
     list-style-type: circle;
+    margin: 0;
+    padding-left: 21px;
   }
 
   .hr {
     background: rgba($black,.1);
     border: 0;
     height: 1px;
-    margin-bottom: 90px;
-    margin-top: 90px;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
 
   .img-centered {
@@ -97,14 +111,27 @@
   }
 }
 
+.article {
+  padding: 90px 0;
+  position: relative;
+
+  @include media(sm) {
+    padding: 60px 0;
+  }
+}
+
 .well {
   background: $gray-lighterest;
   border: 1px solid $gray-lighter;
   border-radius: $input-border-radius;
   color: $gray;
   display: table;
-  margin: 0 auto 150px;
+  margin: 0 auto 90px;
   padding: 6px 15px;
+
+  @include media(sm) {
+    margin-bottom: 30px;
+  }
 
   .btn {
     margin-left: 6px;

@@ -22,7 +22,7 @@ var favIconSrc = src + 'html/favicon.png';
 var dist = './dist/';
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
-var jsDist = dist + 'js/'
+var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
 var favIconDist = dist;
 
