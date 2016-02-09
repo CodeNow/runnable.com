@@ -7,7 +7,7 @@
     border-color: $green;
   }
 
-  &:focus:required:invalid {
+  &:focus:invalid {
     border-color: $red;
   }
 }
