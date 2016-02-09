@@ -451,6 +451,9 @@ a {
 .text-purple {
   color: #71438f; }
 
+.text-white {
+  color: #fff; }
+
 .block-quote {
   border-left: 3px solid;
   display: block;
@@ -1277,9 +1280,8 @@ input[type="radio"] {
         -webkit-justify-content: center;
             -ms-flex-pack: center;
                 justify-content: center; } }
-
-.page-landing .main {
-  padding-bottom: 150px; }
+  .page-landing .header .text-white {
+    line-height: 36px; }
 
 .page-landing .h1 {
   margin: 21px 0; }
@@ -1321,6 +1323,18 @@ input[type="radio"] {
     .form-hook-up .input-group-vertical:first-child {
       padding-bottom: 12px; } }
 
+.well {
+  background: #f0f0f0;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  color: #888;
+  display: table;
+  margin: 0 auto 150px;
+  padding: 6px 15px; }
+  .well .btn {
+    margin-left: 6px;
+    top: -2px; }
+
 .hero {
   background: url(../images/confetti.png);
   background-size: 1728px 648px;
@@ -1330,7 +1344,7 @@ input[type="radio"] {
   .hero .h1,
   .hero .text-awesome,
   .hero .p {
-    background: radial-gradient(ellipse at center, #fff 60%, rgba(255, 255, 255, 0) 70%); }
+    background: radial-gradient(ellipse at center, #fff 60%, rgba(255, 255, 255, 0) 75%); }
   .hero .h1 {
     display: table;
     font-size: 60px;
@@ -1349,12 +1363,33 @@ input[type="radio"] {
         max-width: 300px; } }
   .hero .p {
     font-size: 21px;
-    margin: 15px auto 0;
-    max-width: 450px; }
+    margin: 0 auto;
+    max-width: 450px;
+    padding-top: 15px; }
     @media (max-width: 600px) {
       .hero .p {
         font-size: 18px;
         max-width: 330px; } }
+
+.footer {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto 150px;
+  max-width: 600px; }
+  .footer .img {
+    -webkit-flex: 0 0 36px;
+        -ms-flex: 0 0 36px;
+            flex: 0 0 36px;
+    margin: 0 30px; }
+  .footer .link {
+    color: #bbb;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 15px;
+    text-decoration: none; }
+    .footer .link:hover, .footer .link:active {
+      color: #888; }
 
 .article-workflow {
   background: linear-gradient(#834fab, #71438f);
@@ -1474,34 +1509,16 @@ input[type="radio"] {
     background: #f2b029; }
 
 .article-quick-start > .grid-block {
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap; }
-  @media (min-width: 768px) {
-    .article-quick-start > .grid-block > .grid-block {
-      -webkit-flex: 0 0 12.5%;
-          -ms-flex: 0 0 12.5%;
-              flex: 0 0 12.5%;
-      max-width: 12.5%; } }
-  @media (max-width: 768px) {
-    .article-quick-start > .grid-block > .grid-block {
-      -webkit-flex: 0 0 25%;
-          -ms-flex: 0 0 25%;
-              flex: 0 0 25%;
-      max-width: 25%; } }
+  margin: 0 auto;
+  max-width: 600px; }
 
-.article-quick-start .p {
-  margin-bottom: 30px; }
+.article-quick-start .btn {
+  display: table;
+  margin: 0 auto 60px; }
 
 .article-quick-start .a {
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
-  opacity: .5;
+  margin-bottom: 30px;
   padding: 9px; }
-  .article-quick-start .a:hover {
-    -webkit-filter: grayscale(0);
-            filter: grayscale(0);
-    opacity: 1; }
 
 .article-quick-start .img {
   height: 45px;
