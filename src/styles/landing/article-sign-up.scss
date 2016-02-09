@@ -7,7 +7,24 @@
   padding: 60px 90px;
 
   &.submitted {
+
+    .hide {
+      display: block;
+    }
+
+    .show {
+      display: none;
+    }
+  }
+
+  // runnabear-jumping
+  .hide {
     display: none;
+    max-width: 100%;
+  }
+
+  .h1.hide {
+    margin-bottom: 0;
   }
 
   .input-group-vertical {
