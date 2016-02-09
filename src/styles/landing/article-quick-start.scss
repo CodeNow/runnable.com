@@ -1,36 +1,18 @@
 .article-quick-start {
 
   > .grid-block {
-    flex-wrap: wrap;
-
-    @media (min-width: $screen-sm) {
-      > .grid-block {
-        flex: 0 0 (100% / 8);
-        max-width: (100% / 8);
-      }
-    }
-
-    @include media(sm) {
-      > .grid-block {
-        flex: 0 0 (100% / 4);
-        max-width: (100% / 4);
-      }
-    }
+    margin: 0 auto;
+    max-width: 600px;
   }
 
-  .p {
-    margin-bottom: 30px;
+  .btn {
+    display: table;
+    margin: 0 auto 60px;
   }
 
   .a {
-    filter: grayscale(100%);
-    opacity: .5;
+    margin-bottom: 30px;
     padding: 9px;
-
-    &:hover {
-      filter: grayscale(0);
-      opacity: 1;
-    }
   }
 
   .img {
