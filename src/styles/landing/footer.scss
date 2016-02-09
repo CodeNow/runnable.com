@@ -1,0 +1,23 @@
+.footer {
+  align-items: center;
+  margin: 0 auto 150px;
+  max-width: 600px;
+
+  .img {
+    flex: 0 0 36px;
+    margin: 0 30px;
+  }
+
+  .link {
+    color: $gray-light;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 15px;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      color: $gray;
+    }
+  }
+}
