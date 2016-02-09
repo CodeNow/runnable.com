@@ -3,16 +3,21 @@
   color: $white;
   display: block;
   overflow: hidden;
-  padding: 90px 0 120px;
+  padding: 120px 0 165px;
   position: relative;
 
+  .grid-container {
+    float: right;
+    width: 60%;
+  }
+
   .img {
-    height: 2400px;
+    height: 2700px;
     position: absolute;
     right: 50%;
-    top: -990px;
-    transform: translateX(60%);
-    width: 2400px;
+    top: 50%;
+    transform: translate(38%, -50%);
+    width: 2700px;
   }
 
   @media (max-width: $screen-md) {
