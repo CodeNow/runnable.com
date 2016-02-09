@@ -1,12 +1,13 @@
 .article-sign-up {
   background: $gray-lighterest;
-  border: 6px solid $gray-lightest;
+  border: 6px solid $gray-lighter;
   border-radius: $input-border-radius-lg;
-  margin: 90px auto; // matches padding on .article
+  box-shadow: 0 3px 15px rgba($black,.1);
+  margin: -450px auto 90px;
   max-width: 600px;
   padding: 60px;
 
-  @include media(xxs) {
+  @include media(xs) {
     border-left: 0;
     border-radius: 0;
     border-right: 0;

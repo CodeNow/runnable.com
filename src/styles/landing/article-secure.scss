@@ -1,55 +1,52 @@
 .article-secure {
-  background-color: $purple-dark;
+  background: linear-gradient($purple-darker 0%, $purple-dark 50%, rgba($purple-dark,.9) 100%);
   color: $white;
   display: block;
   overflow: hidden;
-  padding: 120px 0 165px;
+  padding: 180px 0 600px;
   position: relative;
 
-  .grid-container {
-    float: right;
-    width: 60%;
+  @include media(xs) {
+    padding: 180px 0;
   }
+
+  .grid-container {
+    position: relative;
+    width: 720px;
+
+    @include media(xs) {
+      padding: 0;
+      width: 370px;
+    }
+  }
+
+  .text-wrapper {
+    margin-left: 240px;
+    position: relative;
+    z-index: 1;
+
+    @include media(xs) {
+      margin: 0;
+      padding: 0 30px;
+      top: 75px;
+    }
+  }
+
 
   .img {
-    height: 2700px;
+    left: -1225px;
     position: absolute;
-    right: 50%;
-    top: 50%;
-    transform: translate(38%, -50%);
-    width: 2700px;
-  }
+    top: 115px;
+    transform: translate3d(0,-50%,0);
+    z-index: 0;
 
-  @media (max-width: $screen-md) {
-
-    .grid-container {
-      padding-right: 210px;
-    }
-  }
-
-  @media (max-width: $screen-sm) {
-
-    .grid-container {
-      padding-right: 120px;
-    }
-
-    .img {
-      transform: translateX(1400px);
-    }
-  }
-
-  @media (max-width: $screen-xs) {
-    padding: 180px 0 90px;
-
-    .grid-container {
-      padding-right: 0;
-    }
-
-    .img {
-      height: 1500px;
-      top: -625px;
-      transform: translateX(50%);
-      width: 1500px;
+    @include media(xs) {
+      height: auto;
+      left: -50%;
+      right: 0;
+      top: -150%;
+      transform: translate3d(0,0,0);
+      width: 200%;
     }
   }
 }
