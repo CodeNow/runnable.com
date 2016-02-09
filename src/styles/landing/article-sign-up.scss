@@ -2,9 +2,9 @@
   background: $gray-lighterest;
   border: 6px solid $gray-lightest;
   border-radius: $input-border-radius-lg;
-  margin: 150px auto;
+  margin: 90px auto; // matches padding on .article
   max-width: 600px;
-  padding: 60px 90px;
+  padding: 60px;
 
   &.submitted {
 

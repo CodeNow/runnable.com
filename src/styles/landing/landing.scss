@@ -76,14 +76,16 @@
   .ol,
   .ul {
     list-style-type: circle;
+    margin: 0;
+    padding-left: 21px;
   }
 
   .hr {
     background: rgba($black,.1);
     border: 0;
     height: 1px;
-    margin-bottom: 90px;
-    margin-top: 90px;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
 
   .img-centered {
@@ -97,13 +99,18 @@
   }
 }
 
+.article {
+  padding: 90px 0;
+  position: relative;
+}
+
 .well {
   background: $gray-lighterest;
   border: 1px solid $gray-lighter;
   border-radius: $input-border-radius;
   color: $gray;
   display: table;
-  margin: 0 auto 150px;
+  margin: 0 auto 90px;
   padding: 6px 15px;
 
   .btn {
