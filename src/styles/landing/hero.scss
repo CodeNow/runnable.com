@@ -8,7 +8,7 @@
   .h1,
   .text-awesome,
   .p {
-    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 70%);
+    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 75%);
   }
 
   .h1 {
@@ -35,8 +35,9 @@
 
   .p {
     font-size: 21px;
-    margin: 15px auto 0;
+    margin: 0 auto;
     max-width: 450px;
+    padding-top: 15px;
 
     @include media(xs) {
       font-size: 18px;
