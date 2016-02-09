@@ -111,3 +111,18 @@
     }
   }
 }
+
+.well {
+  background: $gray-lightest;
+  border: 1px solid $gray-lighter;
+  border-radius: $input-border-radius;
+  color: $gray;
+  display: table;
+  margin: 0 auto 150px;
+  padding: 6px 15px;
+
+  .btn {
+    margin-left: 6px;
+    top: -2px;
+  }
+}
