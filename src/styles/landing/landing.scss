@@ -35,13 +35,8 @@
   }
 
   .header {
-    background: linear-gradient($purple-light, rgba($purple-light,.95));
+    background: $purple-light;
     border-bottom: 2px solid $purple;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 10;
 
     @include media(xxs) {
       .btn {
@@ -87,8 +82,8 @@
     background: rgba($black,.1);
     border: 0;
     height: 1px;
-    margin-bottom: 60px;
-    margin-top: 60px;
+    margin-bottom: 90px;
+    margin-top: 90px;
   }
 
   .img-centered {
