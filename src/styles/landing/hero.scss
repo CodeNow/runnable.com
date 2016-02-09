@@ -5,6 +5,10 @@
   color: $purple-faded;
   padding: 120px 0;
 
+  @include media(xxs) {
+    padding-top: 60px;
+  }
+
   .h1,
   .text-awesome,
   .p {

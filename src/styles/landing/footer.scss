@@ -3,9 +3,18 @@
   margin: 0 auto 150px;
   max-width: 600px;
 
+  @include media(sm) {
+    flex-flow: column;
+  }
+
   .img {
     flex: 0 0 36px;
     margin: 0 30px;
+
+    @include media(sm) {
+      margin: 15px 0;
+      order: 1;
+    }
   }
 
   .link {
@@ -14,6 +23,11 @@
     line-height: 24px;
     margin: 0 15px;
     text-decoration: none;
+
+    @include media(sm) {
+      margin: 6px 0;
+      order: 2;
+    }
 
     &:hover,
     &:active {
