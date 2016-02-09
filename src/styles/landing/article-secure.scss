@@ -1,0 +1,50 @@
+.article-secure {
+  background-color: $purple-dark;
+  color: $white;
+  display: block;
+  overflow: hidden;
+  padding: 90px 0 120px;
+  position: relative;
+
+  .img {
+    height: 2400px;
+    position: absolute;
+    right: 50%;
+    top: -990px;
+    transform: translateX(60%);
+    width: 2400px;
+  }
+
+  @media (max-width: $screen-md) {
+
+    .grid-container {
+      padding-right: 210px;
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+
+    .grid-container {
+      padding-right: 120px;
+    }
+
+    .img {
+      transform: translateX(1400px);
+    }
+  }
+
+  @media (max-width: $screen-xs) {
+    padding: 180px 0 90px;
+
+    .grid-container {
+      padding-right: 0;
+    }
+
+    .img {
+      height: 1500px;
+      top: -625px;
+      transform: translateX(50%);
+      width: 1500px;
+    }
+  }
+}
