@@ -1499,6 +1499,48 @@ input[type="radio"] {
             animation: always-sharing 3s 1.5s infinite linear;
     background: #f2b029; }
 
+.article-environment .img {
+  padding-left: 60px; }
+
+.article-secure {
+  background-color: #402754;
+  color: #fff;
+  display: block;
+  overflow: hidden;
+  padding: 90px 0 120px;
+  position: relative; }
+  .article-secure .grid-container {
+    float: right;
+    width: 60%; }
+  .article-secure .img {
+    height: 2700px;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    -webkit-transform: translate(38%, -50%);
+            transform: translate(38%, -50%);
+    width: 2700px; }
+  @media (max-width: 1024px) {
+    .article-secure .grid-container {
+      padding-right: 210px; } }
+  @media (max-width: 768px) {
+    .article-secure .grid-container {
+      padding-right: 120px; }
+    .article-secure .img {
+      -webkit-transform: translateX(1400px);
+              transform: translateX(1400px); } }
+  @media (max-width: 600px) {
+    .article-secure {
+      padding: 180px 0 90px; }
+      .article-secure .grid-container {
+        padding-right: 0; }
+      .article-secure .img {
+        height: 1500px;
+        top: -625px;
+        -webkit-transform: translateX(50%);
+                transform: translateX(50%);
+        width: 1500px; } }
+
 .article-sign-up {
   background: #f7f7f7;
   border: 6px solid #f0f0f0;
