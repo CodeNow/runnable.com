@@ -1235,8 +1235,8 @@ input[type="radio"] {
   .input-validate:required:valid,
   .btn-validate:required:valid {
     border-color: #3ccb5a; }
-  .input-validate:focus:required:invalid,
-  .btn-validate:focus:required:invalid {
+  .input-validate:focus:invalid,
+  .btn-validate:focus:invalid {
     border-color: #f25058; }
 
 .page-landing .grid-container {
@@ -1314,17 +1314,8 @@ input[type="radio"] {
       height: auto;
       max-width: 100%; } }
 
-@media (max-width: 768px) {
-  .form-hook-up .input-group-vertical {
-    -webkit-flex-basis: 100%;
-        -ms-flex-preferred-size: 100%;
-            flex-basis: 100%;
-    min-width: 100%; }
-    .form-hook-up .input-group-vertical:first-child {
-      padding-bottom: 12px; } }
-
 .well {
-  background: #f0f0f0;
+  background: #f7f7f7;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   color: #888;
@@ -1508,9 +1499,32 @@ input[type="radio"] {
             animation: always-sharing 3s 1.5s infinite linear;
     background: #f2b029; }
 
+.article-sign-up {
+  background: #f7f7f7;
+  border: 6px solid #f0f0f0;
+  border-radius: 6px;
+  margin: 150px auto;
+  max-width: 600px;
+  padding: 60px 90px; }
+  .article-sign-up.submitted {
+    display: none; }
+  .article-sign-up .input-group-vertical {
+    margin-top: 15px; }
+    @media (max-width: 768px) {
+      .article-sign-up .input-group-vertical {
+        -webkit-flex-basis: 100%;
+            -ms-flex-preferred-size: 100%;
+                flex-basis: 100%;
+        min-width: 100%; }
+        .article-sign-up .input-group-vertical:first-child {
+          padding-bottom: 12px; } }
+
 .article-quick-start > .grid-block {
   margin: 0 auto;
   max-width: 600px; }
+
+.article-quick-start .h2 {
+  margin-bottom: 6px; }
 
 .article-quick-start .btn {
   display: table;
