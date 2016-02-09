@@ -1506,8 +1506,15 @@ input[type="radio"] {
   margin: 150px auto;
   max-width: 600px;
   padding: 60px 90px; }
-  .article-sign-up.submitted {
+  .article-sign-up.submitted .hide {
+    display: block; }
+  .article-sign-up.submitted .show {
     display: none; }
+  .article-sign-up .hide {
+    display: none;
+    max-width: 100%; }
+  .article-sign-up .h1.hide {
+    margin-bottom: 0; }
   .article-sign-up .input-group-vertical {
     margin-top: 15px; }
     @media (max-width: 768px) {
