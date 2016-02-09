@@ -1,5 +1,7 @@
 .article-secure {
-  background: linear-gradient($purple-darker 0%, $purple-dark 50%, rgba($purple-dark,.9) 100%);
+  background: linear-gradient($purple, $purple-light);
+  border-bottom: 3px solid $purple;
+  border-top: 3px solid $purple;
   color: $white;
   display: block;
   overflow: hidden;

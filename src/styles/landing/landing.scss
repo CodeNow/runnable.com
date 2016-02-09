@@ -44,7 +44,7 @@
 
   .header {
     background: $purple-light;
-    border-bottom: 2px solid $purple;
+    border-bottom: 3px solid $purple;
 
     @include media(xxs) {
       .btn {
