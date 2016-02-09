@@ -1,0 +1,43 @@
+.article-sign-up {
+  background: $gray-lighterest;
+  border: 6px solid $gray-lightest;
+  border-radius: $input-border-radius-lg;
+  margin: 150px auto;
+  max-width: 600px;
+  padding: 60px 90px;
+
+  &.submitted {
+
+    .hide {
+      display: block;
+    }
+
+    .show {
+      display: none;
+    }
+  }
+
+  // runnabear-jumping
+  .hide {
+    display: none;
+    max-width: 100%;
+  }
+
+  .h1.hide {
+    margin-bottom: 0;
+  }
+
+  .input-group-vertical {
+    margin-top: 15px;
+
+    @include media(sm) {
+      flex-basis: 100%; // need to be specific for safari
+      min-width: 100%;
+
+      &:first-child {
+        padding-bottom: 12px;
+      }
+    }
+  }
+}
+
