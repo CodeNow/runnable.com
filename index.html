@@ -7,11 +7,11 @@
     <title>Make your dev team more AWESOME — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles/index.css">
 
-    <script src="js/index.js" defer></script>
+    <!-- Hidden for now, form submit takes user to mailchimp -->
+    <!-- <script src="js/index.js" defer></script> -->
 
   <body class="page-landing">
 
@@ -130,16 +130,18 @@
   <p class="p text-center show">Runnable was made for teams that use GitHub.
     <br class="hidden-xs">Tell us about your team to get started. They’ll be
     <br class="hidden-xs">even more awesome for the next 30 days (free)!
-  <form class="grid-block vertical form form-sign-up show">
+  <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
     <div class="grid-content input-group-vertical">
-      <label class="label" for="email">Your Email</label>
-      <input class="input input-md input-validate" id="email" type="email" required>
+      <label class="label" for="mce-GH_ORG">Your Email</label>
+      <input class="input input-md input-validate" id="mce-EMAIL" name="EMAIL" type="email" required>
     </div>
     <div class="grid-content input-group-vertical">
-      <label class="label" for="name">Github Organization</label>
-      <input class="input input-md input-validate" id="name" required>
+      <label class="label" for="mce-GH_ORG">Github Organization</label>
+      <input class="input input-md input-validate" id="mce-GH_ORG" name="GH_ORG" required>
     </div>
-    <button class="grid-content btn btn-md green">Ship It!</button>
+    <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
   </form>
 
   <!-- submitted state -->
@@ -147,6 +149,7 @@
   <h1 class="h1 text-center hide">You did it.</h1>
   <p class="p text-center hide">We’ll be in touch soon!
 </article>
+
       <article class="article article-quick-start">
   <div class="grid-container">
     <h2 class="h2 text-center">We've got you covered
