@@ -19,6 +19,7 @@
 
     @include media(md) {
       margin: 45px auto;
+      padding-left: 0;
     }
 
     @include media(sm) {
