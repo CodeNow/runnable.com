@@ -8,6 +8,7 @@ var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
 var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
+var handlebars = require('gulp-compile-handlebars');
 
 // file locations
 var src = 'src/';
@@ -37,6 +38,22 @@ gulp.task('fileinclude', function() {
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
+    }))
+    .pipe(handlebars({
+      // We include this for when we use this in Runnable Angular
+      apiHost: 'api-staging-codenow.runnableapp.com',
+      env: 'staging',
+      commitHash: 'NOT_VALID',
+      commitTime: 'NOT_VALID'
+    }, {
+      helpers : {
+        if_eq: function(a, b, opts) {
+          if(a == b) // Or === depending on your needs
+              return opts.fn(this);
+          else
+              return opts.inverse(this);
+        }
+      }
     }))
     .on('error', function(err){
       console.log(err.message);
