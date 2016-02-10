@@ -1423,6 +1423,8 @@ input[type="radio"] {
 
 .page-landing > .grid-block + .grid-block {
   margin-top: 30px; }
+  .page-landing > .grid-block + .grid-block.main {
+    margin-top: 0; }
 
 .page-landing .header {
   background: #834fab;
@@ -1520,6 +1522,12 @@ input[type="radio"] {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: #866f98;
   padding: 120px 0; }
+  @media (max-width: 1024px) {
+    .hero {
+      background-size: 1296px 486px; } }
+  @media (max-width: 600px) {
+    .hero {
+      background-size: 864px 324px; } }
   @media (max-width: 400px) {
     .hero {
       padding-top: 60px; } }
@@ -1558,7 +1566,7 @@ input[type="radio"] {
     text-decoration: none; }
   .hero .img {
     position: relative;
-    top: 1px; }
+    top: 2px; }
 
 .footer {
   -webkit-align-items: center;
