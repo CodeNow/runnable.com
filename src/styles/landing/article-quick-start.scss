@@ -1,5 +1,9 @@
 .article-quick-start {
 
+  @include media(xs) {
+    padding-bottom: 0;
+  }
+
   .grid-4 {
     margin: 0 auto;
     max-width: 600px;
