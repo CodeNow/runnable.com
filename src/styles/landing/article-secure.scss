@@ -44,11 +44,11 @@
 
     @include media(xs) {
       height: auto;
-      left: -50%;
+      left: -250%;
       right: 0;
-      top: -150%;
+      top: -475%;
       transform: translate3d(0,0,0);
-      width: 200%;
+      width: 600%;
     }
   }
 }
