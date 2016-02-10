@@ -90,6 +90,7 @@
     @include media(xs) {
       margin-left: 30px;
       margin-right: 30px;
+      max-width: calc(100% - 60px);
     }
   }
 
@@ -126,8 +127,17 @@
     margin-bottom: 30px;
   }
 
+  @include media(xs) {
+    font-size: 16px;
+    padding: 6px 9px;
+  }
+
   .btn {
     margin-left: 6px;
     top: -2px;
+
+    @include media(xs) {
+      top: 0;
+    }
   }
 }

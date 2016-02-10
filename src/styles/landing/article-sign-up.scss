@@ -37,10 +37,10 @@
   }
 
   .input-group-vertical {
+    flex: 0 0 auto;
     margin-top: 15px;
 
     @include media(sm) {
-      flex-basis: 100%; // need to be specific for safari
       min-width: 100%;
 
       &:first-child {
