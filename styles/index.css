@@ -1780,7 +1780,8 @@ input[type="radio"] {
     padding-left: 30px; }
     @media (max-width: 1024px) {
       .article-environment .img {
-        margin: 45px auto; } }
+        margin: 45px auto;
+        padding-left: 0; } }
     @media (max-width: 768px) {
       .article-environment .img {
         max-width: 210px; } }
