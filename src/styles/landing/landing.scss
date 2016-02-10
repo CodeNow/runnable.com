@@ -27,14 +27,6 @@
     }
   }
 
-  .br-xs {
-    display: none;
-
-    @include media(xs) {
-      display: block;
-    }
-  }
-
   > .grid-block + .grid-block {
     margin-top: 30px;
   }
