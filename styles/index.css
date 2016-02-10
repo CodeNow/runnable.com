@@ -1537,19 +1537,19 @@ input[type="radio"] {
     background: radial-gradient(ellipse at center, #fff 60%, rgba(255, 255, 255, 0) 75%); }
   .hero .h1 {
     display: table;
-    font-size: 60px;
+    font-size: 54px;
     margin: 0 auto; }
     @media (max-width: 600px) {
       .hero .h1 {
-        font-size: 45px; } }
+        font-size: 42px; } }
   .hero .text-awesome {
     display: block;
     fill: #834fab;
     margin: 15px auto;
-    max-width: 450px; }
+    max-width: 390px; }
     @media (max-width: 600px) {
       .hero .text-awesome {
-        margin: 6px auto;
+        margin: 9px auto 15px;
         max-width: 300px; } }
   .hero .p {
     font-size: 21px;
@@ -1559,7 +1559,8 @@ input[type="radio"] {
     @media (max-width: 600px) {
       .hero .p {
         font-size: 18px;
-        max-width: 330px; } }
+        max-width: 330px;
+        padding-top: 9px; } }
   .hero .link {
     display: inline-block;
     margin-top: 15px;
