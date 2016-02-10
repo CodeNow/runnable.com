@@ -1488,6 +1488,9 @@ input[type="radio"] {
   @media (max-width: 768px) {
     .article {
       padding: 60px 0; } }
+  @media (max-width: 400px) {
+    .article {
+      padding: 60px 30px; } }
 
 .well {
   background: #f7f7f7;
@@ -1630,7 +1633,7 @@ input[type="radio"] {
         margin: 60px; } }
     @media (max-width: 400px) {
       .article-always .grid-container > .grid-block {
-        margin: 60px 30px; } }
+        margin: 30px 0; } }
   .article-always .grid-block {
     overflow: visible; }
   .article-always .h1 {
