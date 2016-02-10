@@ -5,6 +5,14 @@
   color: $purple-faded;
   padding: 120px 0;
 
+  @include media(md) {
+    background-size: 1296px 486px;
+  }
+
+  @include media(xs) {
+    background-size: 864px 324px;
+  }
+
   @include media(xxs) {
     padding-top: 60px;
   }
@@ -57,6 +65,6 @@
 
   .img {
     position: relative;
-    top: 1px;
+    top: 2px;
   }
 }
