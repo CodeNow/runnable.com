@@ -22,6 +22,8 @@ var favIconSrc = src + 'html/favicon.png';
 
 var dist = './dist/';
 var htmlDist = dist;
+var hbsDist = dist + 'handlebars';
+var hbsSrc = hbsDist + '/*';
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
@@ -34,11 +36,19 @@ gulp.task('clean', function() {
 
 // html files
 gulp.task('fileinclude', function() {
-  gulp.src([htmlSrc])
+  return gulp.src([htmlSrc])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
+    .on('error', function(err){
+      console.log(err.message);
+    })
+    .pipe(gulp.dest(hbsDist));
+});
+
+gulp.task('handlebars', function() {
+  return gulp.src([hbsSrc])
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
       apiHost: 'api-staging-codenow.runnableapp.com',
@@ -63,7 +73,7 @@ gulp.task('fileinclude', function() {
 
 // sass
 gulp.task('sass', function() {
-  gulp.src(sassSrc)
+  return gulp.src(sassSrc)
     .pipe(sass({
       errLogToConsole: true
     }))
@@ -124,13 +134,18 @@ gulp.task('ghPages', function() {
 
 // deploy
 gulp.task('deploy', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'javascript', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
+  runSequence('clean', ['html', 'sass', 'javascript', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
+});
+
+// HTML + Handlebars
+gulp.task('html', function(cb) {
+  runSequence('fileinclude', 'handlebars', cb);
 });
 
 // watches by default
 gulp.task('default', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'javascript', 'images', 'favicon'], cb);
-  gulp.watch(htmlDir, ['fileinclude']);
+  runSequence('clean', ['html', 'sass', 'javascript', 'images', 'favicon'], cb);
+  gulp.watch(htmlDir, ['html']);
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);
