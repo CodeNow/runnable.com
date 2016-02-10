@@ -1,41 +1,36 @@
 .article-environment {
-  background-color: #F8F5FC;
-  border-top: 3px solid #EAE5F2;
-  color: #202040;
+  background-color: $purple-light-faded;
+  border-top: 3px solid $purple-lightest;
+  color: $purple-faded;
+  padding-bottom: 120px;
+
+  .h1 {
+    margin-top: 0;
+  }
 
   .img {
     padding-left: 60px;
-  }
 
-  @media (max-width: $screen-md) {
-
-    .img {
+    @media (max-width: $screen-md) {
       padding-left: 0;
     }
-  }
 
-  @media (max-width: $screen-sm) {
-
-    .img {
-      padding-left: 30px;
+    @media (max-width: $screen-sm) {
       align-self: flex-start;
-    }
-  }
-
-  @media (max-width: $screen-xs) {
-
-    .grid-block {
-      flex-direction: column-reverse;
-      padding: 0 90px;
-    }
-
-    .img {
       padding-left: 30px;
+    }
+
+    @media (max-width: $screen-xs) {
       display: block;
       flex: 1 1 auto;
-      width: 75%;
       margin-bottom: 15px;
       padding-left: 0;
+      width: 75%;
+
+      .grid-block {
+        flex-direction: column-reverse;
+        padding: 0 90px;
+      }
     }
   }
 }
