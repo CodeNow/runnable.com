@@ -1,6 +1,41 @@
 .article-environment {
+  background-color: #F8F5FC;
+  border-top: 3px solid #EAE5F2;
+  color: #202040;
 
   .img {
     padding-left: 60px;
+  }
+
+  @media (max-width: $screen-md) {
+
+    .img {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+
+    .img {
+      padding-left: 30px;
+      align-self: flex-start;
+    }
+  }
+
+  @media (max-width: $screen-xs) {
+
+    .grid-block {
+      flex-direction: column-reverse;
+      padding: 0 90px;
+    }
+
+    .img {
+      padding-left: 30px;
+      display: block;
+      flex: 1 1 auto;
+      width: 75%;
+      margin-bottom: 15px;
+      padding-left: 0;
+    }
   }
 }
