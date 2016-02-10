@@ -1,14 +1,29 @@
 .article-workflow {
-  margin-top: -21px;
+  background: linear-gradient($purple-light, $purple);
+  border-bottom: 3px solid $purple;
+  border-top: 3px solid $purple;
+  color: $white;
+  padding-bottom: 120px;
 
   .h1 {
-    margin-bottom: 15px;
+    margin-bottom: 9px;
+    margin-top: 24px;
   }
 
-  .ol {
-    list-style: none;
+  .p {
+    font-size: 21px;
     margin: 0 auto;
-    max-width: 600px;
-    padding: 0;
+    max-width: 690px;
+
+    @include media(xs) {
+      font-size: 18px;
+    }
+  }
+
+  .img {
+    bottom: -50px;
+    left: 0;
+    position: absolute;
+    right: 0;
   }
 }

@@ -5,28 +5,33 @@
     margin-right: auto;
     width: 100%;
 
-    @include media(xxs) {
-      padding: 0 30px;
-    }
-
     @media (min-width: $screen-xxs) {
-      max-width: $screen-xxs - 90px;
-      width: $screen-xxs - 90px;
+      max-width: inherit;
+      padding: 0 30px;
+      width: inherit;
     }
 
     @media (min-width: $screen-xs) {
-      max-width: $screen-xs - 90px;
-      width: $screen-xs - 90px;
+      max-width: $screen-xs - 30px;
+      width: $screen-xs - 30px;
     }
 
     @media (min-width: $screen-sm) {
-      max-width: $screen-sm - 90px;
-      width: $screen-sm - 90px;
+      max-width: $screen-sm - 30px;
+      width: $screen-sm - 30px;
     }
 
     @media (min-width: $screen-md) {
-      max-width: $screen-md - 90px;
-      width: $screen-md - 90px;
+      max-width: $screen-md - 30px;
+      width: $screen-md - 30px;
+    }
+  }
+
+  .br-xs {
+    display: none;
+
+    @include media(xs) {
+      display: block;
     }
   }
 
@@ -35,13 +40,8 @@
   }
 
   .header {
-    background: linear-gradient($purple-light, rgba($purple-light,.95));
-    border-bottom: 2px solid $purple;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 10;
+    background: $purple-light;
+    border-bottom: 3px solid $purple;
 
     @include media(xxs) {
       .btn {
@@ -50,17 +50,16 @@
     }
 
     .grid-container {
-      padding-bottom: 18px;
-      padding-top: 27px;
+      padding: 27px 30px 18px;
 
       @include media(xxs) {
         justify-content: center;
       }
     }
-  }
 
-  .main {
-    padding-bottom: 150px;
+    .text-white {
+      line-height: $input-sm;
+    }
   }
 
   .h1 {
@@ -70,6 +69,10 @@
   .h2,
   .h3 {
     margin: 15px 0;
+
+    @include media(xxs) {
+      line-height: 1.4;
+    }
   }
 
   .ol,
@@ -81,14 +84,21 @@
   .ol,
   .ul {
     list-style-type: circle;
+    margin: 0;
+    padding-left: 21px;
   }
 
   .hr {
     background: rgba($black,.1);
     border: 0;
     height: 1px;
-    margin-bottom: 60px;
-    margin-top: 60px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    @include media(xs) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
   }
 
   .img-centered {
@@ -102,17 +112,30 @@
   }
 }
 
-.form-hook-up {
+.article {
+  padding: 90px 0;
+  position: relative;
 
-  .input-group-vertical {
+  @include media(sm) {
+    padding: 60px 0;
+  }
+}
 
-    @include media(sm) {
-      flex-basis: 100%; // need to be specific for safari
-      min-width: 100%;
+.well {
+  background: $gray-lighterest;
+  border: 1px solid $gray-lighter;
+  border-radius: $input-border-radius;
+  color: $gray;
+  display: table;
+  margin: 0 auto 90px;
+  padding: 6px 15px;
 
-      &:first-child {
-        padding-bottom: 12px;
-      }
-    }
+  @include media(sm) {
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    margin-left: 6px;
+    top: -2px;
   }
 }

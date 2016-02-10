@@ -1,0 +1,54 @@
+.article-secure {
+  background: linear-gradient($purple, $purple-light);
+  border-bottom: 3px solid $purple;
+  border-top: 3px solid $purple;
+  color: $white;
+  display: block;
+  overflow: hidden;
+  padding: 180px 0 600px;
+  position: relative;
+
+  @include media(xs) {
+    padding: 180px 0;
+  }
+
+  .grid-container {
+    position: relative;
+    width: 780px;
+
+    @include media(xs) {
+      padding: 0;
+      width: 370px;
+    }
+  }
+
+  .text-wrapper {
+    margin-left: 240px;
+    position: relative;
+    z-index: 1;
+
+    @include media(xs) {
+      margin: 0;
+      padding: 0 30px;
+      top: 75px;
+    }
+  }
+
+
+  .img {
+    left: -1225px;
+    position: absolute;
+    top: 115px;
+    transform: translate3d(0,-50%,0);
+    z-index: 0;
+
+    @include media(xs) {
+      height: auto;
+      left: -50%;
+      right: 0;
+      top: -150%;
+      transform: translate3d(0,0,0);
+      width: 200%;
+    }
+  }
+}

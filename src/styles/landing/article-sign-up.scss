@@ -1,0 +1,52 @@
+.article-sign-up {
+  background: $gray-lighterest;
+  border: 6px solid $gray-lighter;
+  border-radius: $input-border-radius-lg;
+  box-shadow: 0 3px 15px rgba($black,.1);
+  margin: -450px auto 90px;
+  max-width: 600px;
+  padding: 60px;
+
+  @include media(xs) {
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+    margin: 0;
+    padding: 30px 30px 45px;
+  }
+
+  &.submitted {
+
+    .hide {
+      display: block;
+    }
+
+    .show {
+      display: none;
+    }
+  }
+
+  // runnabear-jumping
+  .hide {
+    display: none;
+    max-width: 100%;
+  }
+
+  .h1.hide {
+    margin-bottom: 0;
+  }
+
+  .input-group-vertical {
+    margin-top: 15px;
+
+    @include media(sm) {
+      flex-basis: 100%; // need to be specific for safari
+      min-width: 100%;
+
+      &:first-child {
+        padding-bottom: 12px;
+      }
+    }
+  }
+}
+

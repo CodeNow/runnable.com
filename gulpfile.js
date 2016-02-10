@@ -15,12 +15,14 @@ var htmlDir = src + 'html/**/*.html';
 var htmlSrc = src + 'html/index.html';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
+var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 
 var dist = './dist/';
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
+var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
 var favIconDist = dist;
 
@@ -55,6 +57,16 @@ gulp.task('sass', function() {
       browsers: ['last 2 versions']
     }))
     .pipe(gulp.dest(sassDist));
+});
+
+// javascript
+gulp.task('javascript', function () {
+  return gulp.src(jsDir)
+    .pipe(newer(jsDist))
+    .pipe(debug({
+      title: 'javascript'
+    }))
+    .pipe(gulp.dest(jsDist));
 });
 
 // images
@@ -95,13 +107,14 @@ gulp.task('ghPages', function() {
 
 // deploy
 gulp.task('deploy', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
+  runSequence('clean', ['fileinclude', 'sass', 'javascript', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
 });
 
 // watches by default
 gulp.task('default', function(cb) {
-  runSequence('clean', ['fileinclude', 'sass', 'images', 'favicon'], cb);
+  runSequence('clean', ['fileinclude', 'sass', 'javascript', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, ['fileinclude']);
   gulp.watch(sassDir, ['sass']);
+  gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);
 });

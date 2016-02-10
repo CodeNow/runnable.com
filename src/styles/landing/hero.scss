@@ -3,12 +3,16 @@
   background-size: 1728px 648px;
   border-bottom: 1px solid rgba($black,.1);
   color: $purple-faded;
-  padding: 180px 0 150px;
+  padding: 120px 0;
+
+  @include media(xxs) {
+    padding-top: 60px;
+  }
 
   .h1,
   .text-awesome,
   .p {
-    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 70%);
+    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 75%);
   }
 
   .h1 {
@@ -37,10 +41,23 @@
     font-size: 21px;
     margin: 0 auto;
     max-width: 450px;
+    padding-top: 15px;
 
     @include media(xs) {
       font-size: 18px;
       max-width: 330px;
     }
+  }
+
+  .link {
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    text-decoration: none;
+  }
+
+  .img {
+    position: relative;
+    top: 4px;
   }
 }

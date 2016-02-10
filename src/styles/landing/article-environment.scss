@@ -1,0 +1,36 @@
+.article-environment {
+  background-color: $purple-light-faded;
+  border-top: 3px solid $purple-lightest;
+  color: $purple-faded;
+  padding-bottom: 120px;
+
+  .h1 {
+    margin-top: 0;
+  }
+
+  .img {
+    padding-left: 60px;
+
+    @media (max-width: $screen-md) {
+      padding-left: 0;
+    }
+
+    @media (max-width: $screen-sm) {
+      align-self: flex-start;
+      padding-left: 30px;
+    }
+
+    @media (max-width: $screen-xs) {
+      display: block;
+      flex: 1 1 auto;
+      margin-bottom: 15px;
+      padding-left: 0;
+      width: 75%;
+
+      .grid-block {
+        flex-direction: column-reverse;
+        padding: 0 90px;
+      }
+    }
+  }
+}
