@@ -9,28 +9,24 @@
   }
 
   .img {
-    padding-left: 60px;
-
-    @media (max-width: $screen-md) {
-      padding-left: 0;
-    }
+    height: auto;
+    padding-left: 30px;
 
     @media (max-width: $screen-sm) {
-      align-self: flex-start;
-      padding-left: 30px;
+      width: 540px;
     }
 
     @media (max-width: $screen-xs) {
-      display: block;
-      flex: 1 1 auto;
-      margin-bottom: 15px;
-      padding-left: 0;
-      width: 75%;
+      margin: 0 auto 45px;
+      max-width: 100%;
+      width: 300px;
+    }
+  }
 
-      .grid-block {
-        flex-direction: column-reverse;
-        padding: 0 90px;
-      }
+  .grid-block {
+
+    @media (max-width: $screen-xs) {
+      flex-direction: column-reverse;
     }
   }
 }
