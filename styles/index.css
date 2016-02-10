@@ -1547,6 +1547,14 @@ input[type="radio"] {
       .hero .p {
         font-size: 18px;
         max-width: 330px; } }
+  .hero .link {
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    text-decoration: none; }
+  .hero .img {
+    position: relative;
+    top: 4px; }
 
 .footer {
   -webkit-align-items: center;
@@ -1745,35 +1753,37 @@ input[type="radio"] {
     background: #f2b029; }
 
 .article-environment {
-  background-color: #F8F5FC;
-  border-top: 3px solid #EAE5F2;
-  color: #202040; }
+  background-color: #f8f5fc;
+  border-top: 3px solid #eee1f7;
+  color: #866f98;
+  padding-bottom: 120px; }
+  .article-environment .h1 {
+    margin-top: 0; }
   .article-environment .img {
     padding-left: 60px; }
-  @media (max-width: 1024px) {
-    .article-environment .img {
-      padding-left: 0; } }
-  @media (max-width: 768px) {
-    .article-environment .img {
-      padding-left: 30px;
-      -webkit-align-self: flex-start;
-          -ms-flex-item-align: start;
-              align-self: flex-start; } }
-  @media (max-width: 600px) {
-    .article-environment .grid-block {
-      -webkit-flex-direction: column-reverse;
-          -ms-flex-direction: column-reverse;
-              flex-direction: column-reverse;
-      padding: 0 90px; }
-    .article-environment .img {
-      padding-left: 30px;
-      display: block;
-      -webkit-flex: 1 1 auto;
-          -ms-flex: 1 1 auto;
-              flex: 1 1 auto;
-      width: 75%;
-      margin-bottom: 15px;
-      padding-left: 0; } }
+    @media (max-width: 1024px) {
+      .article-environment .img {
+        padding-left: 0; } }
+    @media (max-width: 768px) {
+      .article-environment .img {
+        -webkit-align-self: flex-start;
+            -ms-flex-item-align: start;
+                align-self: flex-start;
+        padding-left: 30px; } }
+    @media (max-width: 600px) {
+      .article-environment .img {
+        display: block;
+        -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+        margin-bottom: 15px;
+        padding-left: 0;
+        width: 75%; }
+        .article-environment .img .grid-block {
+          -webkit-flex-direction: column-reverse;
+              -ms-flex-direction: column-reverse;
+                  flex-direction: column-reverse;
+          padding: 0 90px; } }
 
 .article-secure {
   background: linear-gradient(#71438f, #834fab);
