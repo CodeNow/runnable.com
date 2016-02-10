@@ -48,4 +48,16 @@
       max-width: 330px;
     }
   }
+
+  .link {
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    text-decoration: none;
+  }
+
+  .img {
+    position: relative;
+    top: 4px;
+  }
 }
