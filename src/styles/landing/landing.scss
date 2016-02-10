@@ -112,6 +112,10 @@
   @include media(sm) {
     padding: 60px 0;
   }
+
+  @include media(xxs) {
+    padding: 60px 30px;
+  }
 }
 
 .well {
