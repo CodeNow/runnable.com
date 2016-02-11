@@ -87,18 +87,18 @@
           hideUnauthorizedModal: whitelisted
         };
 
-        $http.get('{{{ apiHost }}}/users/me', {
-          withCredentials: true
-        })
-          .then(function (user) {
-            var org;
-            try {
-              org = user.data.userOptions.uiState.previousLocation.org;
-            } catch (e) {
-              org = user.data.accounts.github.username;
-            }
-            $window.location = '/' + org;
-          });
+      $http.get('{{{ apiHost }}}/users/me', {
+        withCredentials: true
+      })
+        .then(function (user) {
+          var org;
+          try {
+            org = user.data.userOptions.uiState.previousLocation.org;
+          } catch (e) {
+            org = user.data.accounts.github.username;
+          }
+          $window.location = '/' + org;
+        });
      });
     </script>
 

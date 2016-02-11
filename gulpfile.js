@@ -30,7 +30,6 @@ var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
 var favIconDist = dist;
 
-
 // delete dist
 gulp.task('clean', function() {
   return del.sync('dist');
