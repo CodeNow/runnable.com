@@ -16,7 +16,7 @@
     <script type="text/javascript">
         window._trackJs = {
           token: 'ea5e26c7ec2d486e9c66bcf4fefa0f4b',
-          version: "#{locals.version}",
+          version: "{{{version}}}",
           application: "production",
           network: { error: false },
           onError: function (payload, error) {
@@ -83,7 +83,7 @@
           hideUnauthorizedModal: whitelisted
         };
 
-        $http.get('#{locals.apiHost}/users/me', {
+        $http.get('{{{ apiHost }}}/users/me', {
           withCredentials: true
         })
           .then(function (user) {
@@ -98,7 +98,12 @@
       });
     </script>
 
-  <body class="page-landing">
+  <body
+    class="page-landing"
+    ng-app = "homeApp"
+    ng-class = "{'modal-open': !data.hideUnauthorizedModal}"
+    ng-controller = "MainCtrl"
+  >
 
     <header class="grid-block shrink header">
       <div class="grid-block grid-container align-justify">
