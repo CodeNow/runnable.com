@@ -102,12 +102,7 @@
      });
     </script>
 
-  <body
-    class="page-landing"
-    ng-app = "homeApp"
-    ng-class = "{'modal-open': !data.hideUnauthorizedModal}"
-    ng-controller = "MainCtrl"
-  >
+  <body class="page-landing" ng-app = "homeApp" ng-class = "{'modal-open': !data.hideUnauthorizedModal}" ng-controller = "MainCtrl">
 
     <header class="grid-block shrink header">
       <div class="grid-block grid-container align-justify">
@@ -122,13 +117,13 @@
     </header>
 
     <main class="grid-block vertical main">
-      @@include('articles/hero.html')
-      @@include('articles/workflow.html')
-      @@include('articles/always.html')
-      @@include('articles/environment.html')
-      @@include('articles/secure.html')
-      @@include('articles/signup.html')
-      @@include('articles/quickstart.html')
+      @@include('articles/hero.hbs')
+      @@include('articles/workflow.hbs')
+      @@include('articles/always.hbs')
+      @@include('articles/environment.hbs')
+      @@include('articles/secure.hbs')
+      @@include('articles/signup.hbs')
+      @@include('articles/quickstart.hbs')
     </main>
 
     <hr class="hr grid-container">
