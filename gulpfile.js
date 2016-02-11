@@ -56,12 +56,12 @@ gulp.task('handlebars', function() {
       commitHash: 'NOT_VALID',
       commitTime: 'NOT_VALID'
     }, {
-      helpers : {
+      helpers: {
         if_eq: function(a, b, opts) {
           if(a == b) // Or === depending on your needs
-              return opts.fn(this);
+            return opts.fn(this);
           else
-              return opts.inverse(this);
+            return opts.inverse(this);
         }
       }
     }))
