@@ -142,7 +142,7 @@ gulp.task('deploy', function(cb) {
 // watches by default
 gulp.task('default', function(cb) {
   runSequence('clean', 'fileinclude', 'handlebars', ['sass', 'javascript', 'images', 'favicon'], cb);
-  gulp.watch(htmlDir, runSequence('fileinclude', 'handlebars'));
+  gulp.watch(htmlDir, function(){runSequence('fileinclude', 'handlebars');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);

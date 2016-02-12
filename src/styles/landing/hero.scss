@@ -18,54 +18,42 @@
   }
 
   .h1,
-  .text-awesome,
   .p {
     background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 75%);
   }
 
-  .h1 {
-    display: table;
-    font-size: 54px;
-    margin: 0 auto;
-
-    @include media(xs) {
-      font-size: 42px;
-    }
-  }
-
-  .text-awesome {
-    display: block;
-    fill: $purple-light;
-    margin: 15px auto;
-    max-width: 390px;
-
-    @include media(xs) {
-      margin: 9px auto 15px;
-      max-width: 300px;
-    }
-  }
-
   .p {
     font-size: 21px;
-    margin: 0 auto;
-    max-width: 450px;
-    padding-top: 15px;
+    margin: 9px auto 0;
+    max-width: 600px;
 
     @include media(xs) {
       font-size: 18px;
       max-width: 330px;
-      padding-top: 9px;
     }
   }
 
   .link {
-    display: inline-block;
-    margin-top: 15px;
+    background: rgba($white,.5);
+    border: 1px solid currentColor;
+    border-radius: $input-border-radius;
+    display: table;
+    font-size: 16px;
+    margin: 30px auto 0;
+    padding: 6px 12px;
     text-decoration: none;
+
+    &:hover {
+      background: rgba($purple-faded,.05);
+    }
+
+    &:active {
+      background: rgba($purple-faded,.1);
+    }
   }
 
   .img {
     position: relative;
-    top: 2px;
+    top: 3px;
   }
 }
