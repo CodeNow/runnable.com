@@ -1,12 +1,7 @@
 .article-environment {
   background-color: $purple-light-faded;
-  border-top: 3px solid $purple-lightest;
-  color: $purple-dark;
-  padding-bottom: 120px;
-
-  @include media(md) {
-    padding-bottom: 60px;
-  }
+  color: $purple-light;
+  margin-top: 90px;
 
   .h1 {
     margin-top: 0;
@@ -14,13 +9,12 @@
 
   .img {
     height: auto;
+    left: 0;
+    margin: 0 auto;
     max-width: 300px;
-    padding-left: 30px;
-
-    @include media(md) {
-      margin: 45px auto;
-      padding-left: 0;
-    }
+    position: absolute;
+    right: 0;
+    top: -90px;
 
     @include media(sm) {
       max-width: 210px;
@@ -28,9 +22,7 @@
   }
 
   .grid-block {
-
-    @include media(md) {
-      flex-direction: column;
-    }
+    margin-top: 60px;
+    max-width: 570px;
   }
 }
