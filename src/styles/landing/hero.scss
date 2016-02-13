@@ -3,7 +3,7 @@
   background-size: 1728px 648px;
   border-bottom: 1px solid rgba($black,.1);
   color: $purple-faded;
-  padding: 120px 0;
+  padding: 150px 0;
 
   @include media(md) {
     background-size: 1296px 486px;
@@ -43,22 +43,13 @@
   }
 
   .link {
-    background: rgba($white,.5);
-    border: 1px solid currentColor;
+    background: $purple-light;
     border-radius: $input-border-radius;
+    color: $white;
     display: table;
-    font-size: 16px;
     margin: 30px auto 0;
     padding: 6px 12px;
     text-decoration: none;
-
-    &:hover {
-      background: rgba($purple-faded,.05);
-    }
-
-    &:active {
-      background: rgba($purple-faded,.1);
-    }
   }
 
   .img {
