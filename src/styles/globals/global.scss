@@ -128,7 +128,7 @@ body {
 }
 
 @include media(sm) {
-  .visibile-sm {
+  .hidden-sm {
     display: none;
   }
 }

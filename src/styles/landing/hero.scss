@@ -3,8 +3,16 @@
   color: $white;
   padding: 230px 0 150px;
 
+  @include media(sm) {
+    padding-top: 210px;
+  }
+
+  @include media(xs) {
+    padding: 200px 0 150px;
+  }
+
   @include media(xxs) {
-    padding-top: 140px;
+    padding-top: 170px;
   }
 
   &::after {
@@ -26,21 +34,29 @@
     @include media(sm) {
       font-size: 45px;
     }
+
+    @include media(xs) {
+      font-size: 39px;
+    }
+
+    @include media(xxs) {
+      font-size: 36px;
+    }
   }
 
   .h1,
   .p {
     display: table;
     margin: 0 auto;
+    padding: 0 30px;
   }
 
   .p {
     font-size: 21px;
     margin-top: 9px;
 
-    @include media(xs) {
+    @include media(sm) {
       font-size: 18px;
-      max-width: 330px;
     }
   }
 

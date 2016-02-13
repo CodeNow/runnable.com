@@ -17,7 +17,8 @@
     top: -90px;
 
     @include media(sm) {
-      max-width: 210px;
+      max-width: 240px;
+      top: -75px;
     }
   }
 
