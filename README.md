@@ -6,3 +6,7 @@
 
 ## Deploy
 1. `gulp deploy`
+
+## Tagging
+1. `npm version [type]`
+2. `git push origin [version]`
