@@ -23,8 +23,9 @@ var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 
-var htmlDist = dist + 'index.html';
-var hbsDist = dist;
+var htmlDist = dist;
+var hbsDist = dist + 'handlebars/';
+var hbsSrc = hbsDist + '/*';
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
@@ -45,12 +46,11 @@ gulp.task('fileinclude', function() {
     .on('error', function(err){
       console.log(err.message);
     })
-    .pipe(rename('index.html'))
-    .pipe(gulp.dest(dist));
+    .pipe(gulp.dest(hbsDist));
 });
 
 gulp.task('handlebars', function() {
-  return gulp.src([htmlDist])
+  return gulp.src([hbsSrc])
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
       apiHost: 'api-staging-codenow.runnableapp.com',
@@ -70,7 +70,8 @@ gulp.task('handlebars', function() {
     .on('error', function(err){
       console.log(err.message);
     })
-    .pipe(gulp.dest(hbsDist));
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest(htmlDist));
 });
 
 // sass
