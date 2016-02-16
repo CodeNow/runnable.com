@@ -36,8 +36,11 @@
   }
 
   .header {
-    background: $purple-light;
-    border-bottom: 3px solid $purple;
+    background: linear-gradient($purple-light, rgba($purple-light,0));
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 10;
 
     @include media(xxs) {
       .btn {
@@ -136,8 +139,14 @@
   }
 
   @include media(xs) {
+    display: table;
     font-size: 16px;
     padding: 6px 9px;
+    text-align: center;
+  }
+
+  @media (max-width: 320px) {
+    margin: 0 15px;
   }
 
   .btn {

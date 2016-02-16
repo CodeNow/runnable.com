@@ -1,70 +1,93 @@
 .hero {
-  background: url(../images/confetti.png);
-  background-size: 1728px 648px;
-  border-bottom: 1px solid rgba($black,.1);
-  color: $purple-faded;
-  padding: 120px 0;
+  background: linear-gradient($purple-light, $purple);
+  color: $white;
+  padding: 230px 0 150px;
 
-  @include media(md) {
-    background-size: 1296px 486px;
+  @include media(sm) {
+    padding-top: 210px;
   }
 
   @include media(xs) {
-    background-size: 864px 324px;
+    padding: 200px 0 150px;
   }
 
   @include media(xxs) {
-    padding-top: 60px;
+    padding: 150px 0 120px;
   }
 
-  .h1,
-  .text-awesome,
-  .p {
-    background: radial-gradient(ellipse at center, $white 60%, rgba($white,0) 75%);
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
   .h1 {
-    display: table;
     font-size: 54px;
-    margin: 0 auto;
 
-    @include media(xs) {
-      font-size: 42px;
+    @include media(sm) {
+      font-size: 39px;
+      max-width: 630px;
+    }
+
+    @include media(xxs) {
+      font-size: 36px;
+      max-width: 540px;
     }
   }
 
-  .text-awesome {
-    display: block;
-    fill: $purple-light;
-    margin: 15px auto;
-    max-width: 390px;
-
-    @include media(xs) {
-      margin: 9px auto 15px;
-      max-width: 300px;
-    }
+  .h1,
+  .p {
+    display: table;
+    margin: 0 auto;
+    padding: 0 30px;
   }
 
   .p {
     font-size: 21px;
-    margin: 0 auto;
-    max-width: 450px;
-    padding-top: 15px;
+    margin-top: 9px;
+
+    @include media(sm) {
+      max-width: 600px;
+    }
 
     @include media(xs) {
       font-size: 18px;
-      max-width: 330px;
-      padding-top: 9px;
+      max-width: 510px;
+    }
+
+    @media (max-width: 430px) {
+      max-width: 400px;
     }
   }
 
   .link {
-    display: inline-block;
-    margin-top: 15px;
+    background: rgba($white,.1);
+    border: 1px solid rgba($white,.3);
+    border-radius: $input-border-radius-lg;
+    color: $white;
+    display: table;
+    margin: 30px auto 0;
+    padding: 6px 12px;
     text-decoration: none;
+
+    &:hover {
+      border-color: rgba($white,.5);
+    }
+
+    &:active {
+      border-color: rgba($white,.75);
+    }
   }
 
   .img {
+    opacity: .9;
     position: relative;
     top: 2px;
   }
