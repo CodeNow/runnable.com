@@ -17,6 +17,7 @@
     width: 780px;
 
     @include media(xs) {
+      max-width: 100%;
       padding: 0;
       width: 370px;
     }
@@ -46,8 +47,7 @@
       height: auto;
       left: -250%;
       right: 0;
-      top: -475%;
-      transform: translate3d(0,0,0);
+      top: -5%;
       width: 600%;
     }
   }
