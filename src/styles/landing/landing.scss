@@ -145,7 +145,7 @@
     text-align: center;
   }
 
-  @include media(xxs) {
+  @media (max-width: 320px) {
     margin: 0 15px;
   }
 
