@@ -139,8 +139,10 @@
   }
 
   @include media(xs) {
+    display: table;
     font-size: 16px;
     padding: 6px 9px;
+    text-align: center;
   }
 
   .btn {
