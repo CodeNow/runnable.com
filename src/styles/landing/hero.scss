@@ -12,7 +12,7 @@
   }
 
   @include media(xxs) {
-    padding-top: 170px;
+    padding: 150px 0 120px;
   }
 
   &::after {
@@ -33,14 +33,16 @@
 
     @include media(sm) {
       font-size: 45px;
+      max-width: 630px;
     }
 
     @include media(xs) {
-      font-size: 39px;
+      font-size: 36px;
+      max-width: 540px;
     }
 
-    @include media(xxs) {
-      font-size: 36px;
+    @media (max-width: 465px) {
+      font-size: 30px;
     }
   }
 
@@ -56,7 +58,16 @@
     margin-top: 9px;
 
     @include media(sm) {
+      max-width: 600px;
+    }
+
+    @include media(xs) {
       font-size: 18px;
+      max-width: 510px;
+    }
+
+    @media (max-width: 430px) {
+      max-width: 400px;
     }
   }
 
