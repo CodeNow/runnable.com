@@ -32,17 +32,13 @@
     font-size: 54px;
 
     @include media(sm) {
-      font-size: 45px;
+      font-size: 39px;
       max-width: 630px;
     }
 
-    @include media(xs) {
+    @include media(xxs) {
       font-size: 36px;
       max-width: 540px;
-    }
-
-    @media (max-width: 465px) {
-      font-size: 30px;
     }
   }
 
