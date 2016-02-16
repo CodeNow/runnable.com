@@ -542,7 +542,7 @@ body {
     display: inherit; } }
 
 @media (max-width: 768px) {
-  .visibile-sm {
+  .visible-sm {
     display: inherit; } }
 
 @media (max-width: 1024px) {
@@ -1510,8 +1510,13 @@ input[type="radio"] {
       margin-bottom: 30px; } }
   @media (max-width: 600px) {
     .well {
+      display: table;
       font-size: 16px;
-      padding: 6px 9px; } }
+      padding: 6px 9px;
+      text-align: center; } }
+  @media (max-width: 320px) {
+    .well {
+      margin: 0 15px; } }
   .well .btn {
     margin-left: 6px;
     top: -2px; }
@@ -1531,7 +1536,7 @@ input[type="radio"] {
       padding: 200px 0 150px; } }
   @media (max-width: 400px) {
     .hero {
-      padding-top: 170px; } }
+      padding: 150px 0 120px; } }
   .hero::after {
     background: url(../images/confetti.png);
     background-size: 864px 324px;
@@ -1547,13 +1552,12 @@ input[type="radio"] {
     font-size: 54px; }
     @media (max-width: 768px) {
       .hero .h1 {
-        font-size: 45px; } }
-    @media (max-width: 600px) {
-      .hero .h1 {
-        font-size: 39px; } }
+        font-size: 39px;
+        max-width: 630px; } }
     @media (max-width: 400px) {
       .hero .h1 {
-        font-size: 36px; } }
+        font-size: 36px;
+        max-width: 540px; } }
   .hero .h1,
   .hero .p {
     display: table;
@@ -1564,7 +1568,14 @@ input[type="radio"] {
     margin-top: 9px; }
     @media (max-width: 768px) {
       .hero .p {
-        font-size: 18px; } }
+        max-width: 600px; } }
+    @media (max-width: 600px) {
+      .hero .p {
+        font-size: 18px;
+        max-width: 510px; } }
+    @media (max-width: 430px) {
+      .hero .p {
+        max-width: 400px; } }
   .hero .link {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1643,6 +1654,11 @@ input[type="radio"] {
 .article-always .h1 {
   margin-bottom: 60px;
   margin-top: 0; }
+  @media (max-width: 600px) {
+    .article-always .h1 {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px; } }
 
 .article-always .h3 {
   margin-bottom: 3px;
@@ -1687,10 +1703,13 @@ input[type="radio"] {
     width: 780px; }
     @media (max-width: 600px) {
       .article-secure .grid-container {
+        max-width: 100%;
         padding: 0;
         width: 370px; } }
+  .article-secure .h1 {
+    margin-top: 6px; }
   .article-secure .text-wrapper {
-    margin-left: 240px;
+    margin-left: 210px;
     position: relative;
     z-index: 1; }
     @media (max-width: 600px) {
@@ -1710,9 +1729,7 @@ input[type="radio"] {
         height: auto;
         left: -250%;
         right: 0;
-        top: -475%;
-        -webkit-transform: translate3d(0, 0, 0);
-                transform: translate3d(0, 0, 0);
+        top: -5%;
         width: 600%; } }
 
 .article-sign-up {
