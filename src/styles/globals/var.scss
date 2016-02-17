@@ -13,10 +13,10 @@ $weight-light: 300;
 $black: #000;
 $white: #fff;
 
-$gray-lighterest: #f7f7f7;
-$gray-lightest: #f0f0f0;
-$gray-lighter: #dbdbdb;
-$gray-light: #bbb;
+$gray-lighterest: #fafafa;
+$gray-lightest: #f3f3f3;
+$gray-lighter: #e6e6e6;
+$gray-light: #ccc;
 $gray: #888;
 $gray-dark: #555;
 $gray-darker: #222;
@@ -56,6 +56,8 @@ $red: #f25058;
 $red-light: #ef737f;
 $red-lighter: #fde6e9;
 $red-dark: #e62932; // desaturate(darken($red,10),7);
+
+$red-faded: #be424d;
 
 $blue: #0ca6f2; // previously #2ab0f6;
 $blue-light: #8bd5f9; // previously #86cff6;

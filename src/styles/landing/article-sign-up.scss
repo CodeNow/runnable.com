@@ -26,6 +26,25 @@
     }
   }
 
+  .well {
+    background: desaturate($red,10%);
+    border: 2px solid $red-faded;
+    border-radius: $input-border-radius-lg;
+    color: $white;
+    font-weight: $weight-normal;
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 15px 6px 15px 72px;
+    position: relative;
+
+    .img {
+      left: 15px;
+      position: absolute;
+      top: -30px;
+    }
+  }
+
   // runnabear-jumping
   .hide {
     display: none;
