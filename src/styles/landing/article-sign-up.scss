@@ -38,10 +38,18 @@
     padding: 15px 6px 15px 72px;
     position: relative;
 
+    @include media(xxs) {
+      font-size: 15px;
+    }
+
     .img {
       left: 15px;
       position: absolute;
       top: -30px;
+
+      @include media(xxs) {
+        top: -18px;
+      }
     }
   }
 

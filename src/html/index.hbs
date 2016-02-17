@@ -14,30 +14,7 @@
     @@include('staging.hbs')
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script>
-      var whitelisted = window.location.search !== '?whitelist=false';
-      var app = angular.module('homeApp', []);
-      app.controller('MainCtrl', function ($scope, $window, $http) {
-        $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect=' + $window.location.protocol + '//' + $window.location.host + '/?auth';
-        $scope.data = {
-          embedActive: false,
-          hideUnauthorizedModal: whitelisted
-        };
-
-      $http.get('{{{apiHost}}}/users/me', {
-        withCredentials: true
-      })
-        .then(function (user) {
-          var org;
-          try {
-            org = user.data.userOptions.uiState.previousLocation.org;
-          } catch (e) {
-            org = user.data.accounts.github.username;
-          }
-          $window.location = '/' + org;
-        });
-     });
-    </script>
+    <script src="js/index.js"></script>
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl">
 
