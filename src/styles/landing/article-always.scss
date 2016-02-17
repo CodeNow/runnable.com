@@ -1,155 +1,45 @@
 .article-always {
-  padding-top: 150px;
 
-  .img.visible-xs {
+  .img {
+    display: block;
     margin: 0 auto;
   }
 
-  .grid-container > .grid-block {
-    margin-top: 15px;
-
-    @include media(xs) {
-      flex-flow: column;
-      margin: 60px;
-    }
+  .grid-container {
 
     @include media(xxs) {
-      margin: 30px 0;
+      padding: 0;
     }
-  }
 
-  .grid-block {
-    overflow: visible;
+    > .grid-block {
+      border-left: 3px solid $gray-lighter;
+      margin: 45px auto;
+      max-width: 570px;
+      padding-left: 30px;
+
+      @include media(xs) {
+        margin: 60px 0;
+      }
+
+      @include media(xxs) {
+        margin: 30px 0;
+      }
+    }
   }
 
   .h1 {
     margin-bottom: 60px;
+    margin-top: 0;
 
     @include media(xs) {
-      margin: 0;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 400px;
     }
   }
 
   .h3 {
     margin-bottom: 3px;
-  }
-}
-
-.figure {
-  flex: 0 0 200px;
-  height: 140px;
-  margin: 15px 90px 0;
-  overflow: visible;
-  position: relative;
-
-  @include media(md) {
-    flex: 0 0 150px;
-    margin: 15px 60px 0 0;
-  }
-
-  @include media(xs) {
-    display: none;
-  }
-}
-
-.always-integrating {
-  align-self: flex-end;
-  background: url(../images/always-integrating-bg.svg) no-repeat center center;
-
-  @include media(xs) {
-    align-self: center;
-    width: 150px;
-  }
-
-  .img {
-    bottom: -12px;
-    height: 76px;
-    left: 0;
-    margin: 0 auto;
-    position: absolute;
-    right: 0;
-    transform-origin: 50% 100%;
-    width: 100px;
-
-    @include media(md) {
-      bottom: -6px;
-      height: 57px;
-      width: 75px;
-    }
-
-    &:first-child {
-      animation: always-integrating-boom 1.5s infinite ease-in;
-
-      @include media(md) {
-        animation: always-integrating-boom-md 1.5s infinite ease-in;
-      }
-    }
-
-    &:last-child {
-      animation: always-integrating-down 1.5s infinite ease-in forwards;
-      opacity: 0;
-      top: 0;
-
-      @include media(md) {
-        animation: always-integrating-down-md 1.5s infinite ease-in;
-        top: 33px;
-      }
-    }
-  }
-}
-
-.always-testing {
-
-  &::after,
-  .img {
-    border-radius: 50%;
-    display: block;
-    height: 76px;
-    left: 0;
-    margin: 31px auto;
-    padding: 15px;
-    position: absolute;
-    right: 0;
-    width: 76px;
-  }
-
-  &::after {
-    background: $white;
-    content: '';
-    z-index: 2;
-  }
-
-  .img {
-    animation: always-testing 3s infinite ease-in;
-    background: $green;
-    border: 6px solid $gray-dark;
-    z-index: 3;
-  }
-}
-
-.always-sharing .img {
-  border: 5px solid $gray-dark;
-  border-radius: 3px;
-  height: 60px;
-  left: 0;
-  margin: 31px auto;
-  opacity: 0;
-  padding: 6px;
-  position: absolute;
-  right: 0;
-  top: -50px;
-  transform: translate3d(0,-100%,0);
-  transform-origin: 50% 0;
-  width: 60px;
-  z-index: 1;
-
-  &:first-child {
-    animation: always-sharing 3s infinite linear;
-    background: lighten($purple-light,10%);
-  }
-
-  &:last-child {
-    animation: always-sharing 3s 1.5s infinite linear;
-    background: lighten($orange-dark,10%);
+    margin-top: 0;
   }
 }
