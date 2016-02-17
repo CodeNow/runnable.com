@@ -1,7 +1,8 @@
 .popover-trigger {
   position: relative;
 
-  &:hover .popover {
+  &:hover .popover,
+  &:active .popover {
     opacity: 1;
     transform: scale3d(1,1,1) translate3d(-50%,0,0);
   }
