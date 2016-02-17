@@ -1401,7 +1401,8 @@ input[type="radio"] {
 
 .popover-trigger {
   position: relative; }
-  .popover-trigger:hover .popover {
+  .popover-trigger:hover .popover,
+  .popover-trigger:active .popover {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1) translate3d(-50%, 0, 0);
             transform: scale3d(1, 1, 1) translate3d(-50%, 0, 0); }
@@ -1819,7 +1820,7 @@ input[type="radio"] {
     font-size: 16px;
     line-height: 1.4;
     margin: 0;
-    padding: 15px 6px 15px 72px;
+    padding: 15px 6px 15px 69px;
     position: relative; }
     @media (max-width: 400px) {
       .article-sign-up .well {
