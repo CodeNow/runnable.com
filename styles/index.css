@@ -1401,8 +1401,7 @@ input[type="radio"] {
 
 .popover-trigger {
   position: relative; }
-  .popover-trigger:hover .popover,
-  .popover-trigger:active .popover {
+  .popover-trigger:hover .popover {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1) translate3d(-50%, 0, 0);
             transform: scale3d(1, 1, 1) translate3d(-50%, 0, 0); }
