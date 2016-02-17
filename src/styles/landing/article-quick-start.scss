@@ -11,6 +11,12 @@
 
   .h2 {
     margin-bottom: 6px;
+
+    @include media(xxs) {
+      .visible-sm {
+        display: none;
+      }
+    }
   }
 
   .btn {
@@ -23,8 +29,35 @@
     padding: 9px;
   }
 
+  .underline {
+    border-bottom: 1px dashed currentColor;
+    color: $gray;
+    cursor: pointer;
+    display: table;
+    font-size: 16px;
+    margin: 0 auto;
+  }
+
   .img {
     height: 45px;
     width: 45px;
+  }
+
+  .popover {
+    color: $gray-dark;
+    padding: 30px;
+    text-align: left;
+
+    .list {
+      font-size: 16px;
+      list-style-type: circle;
+      padding-left: 18px;
+      white-space: nowrap;
+      width: 300px;
+    }
+
+    .list-item + .list-item {
+      margin-top: 9px;
+    }
   }
 }
