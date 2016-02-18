@@ -19,6 +19,12 @@
     }
   }
 
+  .p .visible-xs {
+    @include media(xxs) {
+      display: none;
+    }
+  }
+
   .btn {
     display: table;
     margin: 0 auto 60px;
