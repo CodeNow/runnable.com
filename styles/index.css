@@ -1876,6 +1876,10 @@ input[type="radio"] {
     .article-quick-start .h2 .visible-sm {
       display: none; } }
 
+@media (max-width: 400px) {
+  .article-quick-start .p .visible-xs {
+    display: none; } }
+
 .article-quick-start .btn {
   display: table;
   margin: 0 auto 60px; }
