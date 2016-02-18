@@ -118,7 +118,6 @@ gulp.task('favicon', function () {
     .pipe(gulp.dest(favIconDist));
 });
 
-
 // imagemin
 gulp.task('imagemin', function() {
   return gulp.src(imgDir)
