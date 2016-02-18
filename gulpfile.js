@@ -6,6 +6,7 @@ var newer = require('gulp-newer'); // checks for file changes
 var fileinclude = require('gulp-file-include'); // html
 var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
+var uglify = require('gulp-uglify'); // uglify
 var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
@@ -89,12 +90,36 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(sassDist));
 });
 
+gulp.task('sassCompressed', function() {
+  return gulp.src(sassSrc)
+    .pipe(sass({
+      errLogToConsole: true,
+      outputStyle: 'compressed'
+    }))
+    .on('error', function(err){
+      console.log(err.message);
+    })
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions']
+    }))
+    .pipe(gulp.dest(sassDist));
+});
+
 // javascript
 gulp.task('javascript', function () {
   return gulp.src(jsDir)
     .pipe(newer(jsDist))
     .pipe(debug({
       title: 'javascript'
+    }))
+    .pipe(gulp.dest(jsDist));
+});
+
+gulp.task('jsCompressed', function() {
+  return gulp.src(jsDir)
+    .pipe(uglify())
+    .pipe(debug({
+      title: 'jsCompressed'
     }))
     .pipe(gulp.dest(jsDist));
 });
@@ -120,7 +145,7 @@ gulp.task('favicon', function () {
 
 // imagemin
 gulp.task('imagemin', function() {
-  return gulp.src(imgDir)
+  return gulp.src(imgDist + '/**/*.+(png|jpg|gif|svg)')
     .pipe(imagemin())
     .pipe(debug({
       title: 'imagemin'
@@ -128,18 +153,23 @@ gulp.task('imagemin', function() {
     .pipe(gulp.dest(imgDist));
 });
 
-// gh pages
+// deploy /dist to gh pages
 gulp.task('ghPages', function() {
   return gulp.src(dist + '**/*')
     .pipe(ghPages());
 });
 
-// deploy
-gulp.task('deploy', function(cb) {
-  runSequence('clean', 'fileinclude', 'handlebars', ['sass', 'javascript', 'images', 'favicon'], 'imagemin', 'ghPages', cb);
+// build and optimize
+gulp.task('build', function(cb) {
+  runSequence('clean', 'fileinclude' ,'handlebars', ['sassCompressed', 'jsCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
-// watches by default
+// build and deploy to gh pages
+gulp.task('deploy', function(cb) {
+  runSequence('build', 'ghPages', cb);
+});
+
+// build and watch
 gulp.task('default', function(cb) {
   runSequence('clean', 'fileinclude', 'handlebars', ['sass', 'javascript', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, function(){runSequence('fileinclude', 'handlebars');});
