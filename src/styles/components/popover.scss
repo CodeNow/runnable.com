@@ -42,7 +42,7 @@
 
   &.top {
     bottom: calc(100% + 12px);
-    box-shadow: 0 -1px 3px rgba($black,.1);
+    box-shadow: 0 1px 3px rgba($black,.1);
     transform-origin: 0 100%;
 
     &::after {

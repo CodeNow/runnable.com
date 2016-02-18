@@ -53,6 +53,23 @@
     }
   }
 
+  .form {
+    overflow: visible;
+  }
+
+  .popover-trigger {
+    cursor: pointer;
+    margin-left: 3px;
+    top: -1px;
+  }
+
+  .popover {
+    color: $gray;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 280px;
+  }
+
   // runnabear-jumping
   .hide {
     display: none;
@@ -66,6 +83,7 @@
   .input-group-vertical {
     flex: 0 0 auto;
     margin-top: 15px;
+    overflow: visible;
 
     @include media(sm) {
       min-width: 100%;
