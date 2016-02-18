@@ -32,14 +32,25 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   var inputEmail = document.getElementById('mce-EMAIL');
   var inputOrg = document.getElementById('mce-GH_ORG');
 
+  function markInvalid(e) {
+    var thisForm = e.target.getElementsByTagName('input');
+
+    for (i = 0; i < thisForm.length; i++) {
+      if (!thisForm[i].validity.valid) {
+        thisForm[i].classList.add('invalid');
+      }
+    }
+  }
+
   function makeDirty(e){
-    e.target.classList.remove('pristine');
+    e.target.classList.remove('pristine', 'invalid');
   }
 
   function formSubmit(e){
     if (formSignUp.checkValidity()) {
       // articleSignUp.classList.add('submitted');
     } else {
+      markInvalid(e);
       e.preventDefault();
     }
   }
