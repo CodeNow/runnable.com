@@ -3,11 +3,7 @@
 .btn-validate {
   transition: none;
 
-  &:required:valid {
-    border-color: $green;
-  }
-
-  &:focus:invalid {
+  &:not(.pristine):invalid {
     border-color: $red;
   }
 }
