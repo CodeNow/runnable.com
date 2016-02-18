@@ -117,7 +117,9 @@ gulp.task('javascript', function () {
 
 gulp.task('jsCompressed', function() {
   return gulp.src(jsDir)
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: false
+    }))
     .pipe(debug({
       title: 'jsCompressed'
     }))
