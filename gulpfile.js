@@ -39,7 +39,7 @@ gulp.task('clean', function() {
 
 // html files
 gulp.task('fileinclude', function() {
-  return gulp.src([htmlSrc])
+  return gulp.src(htmlSrc)
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -50,8 +50,9 @@ gulp.task('fileinclude', function() {
     .pipe(gulp.dest(hbsDist));
 });
 
-gulp.task('handlebars', function() {
-  return gulp.src([hbsSrc])
+// hbs files
+gulp.task('handlebarsHtml', function() {
+  return gulp.src(hbsSrc)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
       apiHost: 'api-staging-codenow.runnableapp.com',
@@ -73,6 +74,30 @@ gulp.task('handlebars', function() {
     })
     .pipe(rename('index.html'))
     .pipe(gulp.dest(htmlDist));
+});
+
+gulp.task('handlebarsJs', function() {
+  return gulp.src(jsDir)
+    .pipe(handlebars({
+      // We include this for when we use this in Runnable Angular
+      apiHost: 'api-staging-codenow.runnableapp.com',
+      env: 'staging',
+      commitHash: 'NOT_VALID',
+      commitTime: 'NOT_VALID'
+    }, {
+      helpers: {
+        if_eq: function(a, b, opts) {
+          if(a == b) // Or === depending on your needs
+            return opts.fn(this);
+          else
+            return opts.inverse(this);
+        }
+      }
+    }))
+    .on('error', function(err){
+      console.log(err.message);
+    })
+    .pipe(gulp.dest(jsDist));
 });
 
 // sass
@@ -116,13 +141,14 @@ gulp.task('javascript', function () {
 });
 
 gulp.task('jsCompressed', function() {
-  return gulp.src(jsDir)
+  return gulp.src(jsDist + 'index.js')
     .pipe(uglify({
       mangle: false
     }))
     .pipe(debug({
       title: 'jsCompressed'
     }))
+    .pipe(rename('index.js'))
     .pipe(gulp.dest(jsDist));
 });
 
@@ -155,6 +181,11 @@ gulp.task('imagemin', function() {
     .pipe(gulp.dest(imgDist));
 });
 
+// build hbs files
+gulp.task('hbs', function() {
+  runSequence('handlebarsJs', 'handlebarsHtml');
+});
+
 // deploy /dist to gh pages
 gulp.task('ghPages', function() {
   return gulp.src(dist + '**/*')
@@ -163,7 +194,7 @@ gulp.task('ghPages', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('clean', 'fileinclude' ,'handlebars', ['sassCompressed', 'jsCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('clean', 'fileinclude', 'hbs', ['sassCompressed', 'jsCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -173,8 +204,8 @@ gulp.task('deploy', function(cb) {
 
 // build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'fileinclude', 'handlebars', ['sass', 'javascript', 'images', 'favicon'], cb);
-  gulp.watch(htmlDir, function(){runSequence('fileinclude', 'handlebars');});
+  runSequence('clean', 'fileinclude', 'hbs', ['sass', 'images', 'favicon'], cb);
+  gulp.watch(htmlDir, function(){runSequence('fileinclude', 'hbs');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);
