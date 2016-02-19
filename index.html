@@ -28,7 +28,7 @@
 var app = angular.module('homeApp', []);
 
 app.controller('MainCtrl', function ($scope, $window, $http) {
-  $scope.loginUrl = '//api-staging-codenow.runnableapp.com/auth/github?redirect=' + $window.location.protocol + '//' + $window.location.host + '/?auth';
+  $scope.loginUrl = 'https://api-staging-codenow.runnableapp.com/auth/github?redirect=' + $window.location.protocol + '//' + $window.location.host + '/?auth';
   $scope.data = {
     embedActive: false,
     hideUnauthorizedModal: whitelisted
@@ -39,7 +39,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     location.hash = '#sign-up';
   }
 
-  $http.get('//api-staging-codenow.runnableapp.com/users/me', {
+  $http.get('https://api-staging-codenow.runnableapp.com/users/me', {
     withCredentials: true
   })
     .then(function (user) {
