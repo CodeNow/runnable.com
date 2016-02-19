@@ -6,7 +6,6 @@ var newer = require('gulp-newer'); // checks for file changes
 var fileinclude = require('gulp-file-include'); // html
 var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
-var uglify = require('gulp-uglify'); // uglify
 var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
@@ -38,8 +37,8 @@ gulp.task('clean', function() {
 });
 
 // html files
-gulp.task('fileinclude', function() {
-  return gulp.src([htmlSrc])
+gulp.task('html', function() {
+  return gulp.src(htmlSrc)
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -50,11 +49,12 @@ gulp.task('fileinclude', function() {
     .pipe(gulp.dest(hbsDist));
 });
 
-gulp.task('handlebars', function() {
-  return gulp.src([hbsSrc])
+// hbs files
+gulp.task('hbs', function() {
+  return gulp.src(hbsSrc)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiHost: 'api-staging-codenow.runnableapp.com',
+      apiHost: 'https://api-staging-codenow.runnableapp.com',
       env: 'staging',
       commitHash: 'NOT_VALID',
       commitTime: 'NOT_VALID'
@@ -115,17 +115,6 @@ gulp.task('javascript', function () {
     .pipe(gulp.dest(jsDist));
 });
 
-gulp.task('jsCompressed', function() {
-  return gulp.src(jsDir)
-    .pipe(uglify({
-      mangle: false
-    }))
-    .pipe(debug({
-      title: 'jsCompressed'
-    }))
-    .pipe(gulp.dest(jsDist));
-});
-
 // images
 gulp.task('images', function () {
   return gulp.src(imgDir)
@@ -163,7 +152,7 @@ gulp.task('ghPages', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('clean', 'fileinclude' ,'handlebars', ['sassCompressed', 'jsCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -173,8 +162,8 @@ gulp.task('deploy', function(cb) {
 
 // build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'fileinclude', 'handlebars', ['sass', 'javascript', 'images', 'favicon'], cb);
-  gulp.watch(htmlDir, function(){runSequence('fileinclude', 'handlebars');});
+  runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
+  gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);
