@@ -11,6 +11,12 @@
   }
 
   .grid-container {
+
+    @include media(md) {
+      max-width: none;
+      width: auto;
+    }
+
     @include media(xxs) {
       padding: 0;
     }
@@ -27,12 +33,32 @@
     }
   }
 
+  .card-container {
+    @include media(sm) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
   .card {
     background: $gray-lighterest;
     border: 4px solid $gray-lightest;
     border-radius: $input-border-radius-lg;
     margin: 0 15px;
-    padding: 60px 30px;
+    padding: 60px 60px 45px;
+
+    @include media(md) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    @include media(sm) {
+      flex: 0 0 auto;
+
+      + .card {
+        margin-top: 60px;
+      }
+    }
 
     .img {
       margin-bottom: 30px;
@@ -46,8 +72,8 @@
   }
 
   .p {
-    margin-bottom: 30px;
-    padding: 0 60px;
+    margin: 0 auto 30px;
+    max-width: 290px;
   }
 
   .ul {
@@ -67,7 +93,15 @@
 
     .p {
       margin: 0 auto;
-      max-width: 750px;
+      max-width: 570px;
+
+      @include media(sm) {
+        max-width: 420px;
+      }
+
+      @include media(xs) {
+        max-width: 330px;
+      }
     }
   }
 }
