@@ -60,6 +60,11 @@
       }
     }
 
+    @include media(xxs) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
     .img {
       margin-bottom: 30px;
       margin-top: -84px;
@@ -101,6 +106,10 @@
 
       @include media(xs) {
         max-width: 330px;
+      }
+
+      @include media(xxs) {
+        max-width: 290px;
       }
     }
   }
