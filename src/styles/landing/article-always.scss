@@ -48,8 +48,7 @@
     padding: 60px 60px 45px;
 
     @include media(md) {
-      padding-left: 30px;
-      padding-right: 30px;
+      padding: 60px 30px 30px;
     }
 
     @include media(sm) {
@@ -101,11 +100,11 @@
       max-width: 570px;
 
       @include media(sm) {
-        max-width: 420px;
+        max-width: 426px;
       }
 
       @include media(xs) {
-        max-width: 330px;
+        max-width: 336px;
       }
 
       @include media(xxs) {
