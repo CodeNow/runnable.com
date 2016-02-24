@@ -10,6 +10,7 @@ var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
+var awspublish = require('gulp-awspublish');
 
 // file locations
 var src = 'src/';
@@ -150,6 +151,38 @@ gulp.task('ghPages', function() {
     .pipe(ghPages());
 });
 
+gulp.task('publish', function() {
+  // create a new publisher using S3 options
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+  var publisher = awspublish.create({
+    Bucket: 'runnable.io',
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY
+  });
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
+  };
+
+  return  gulp.src(dist + '**/*')
+    // gzip, Set Content-Encoding headers and add .gz extension
+    .pipe(awspublish.gzip({ ext: '.gz' }))
+
+    // publisher will add Content-Length, Content-Type and headers specified above
+    // If not specified it will set x-amz-acl to public-read by default
+    .pipe(publisher.publish(headers))
+
+    // Delete files in the bucket that aren't in the local folder
+    .pipe(publisher.sync())
+
+    // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // print upload updates to console
+    .pipe(awspublish.reporter());
+});
+
 // build and optimize
 gulp.task('build', function(cb) {
   runSequence('clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
@@ -158,6 +191,10 @@ gulp.task('build', function(cb) {
 // build and deploy to gh pages
 gulp.task('deploy', function(cb) {
   runSequence('build', 'ghPages', cb);
+});
+
+gulp.task('deploy:prod', function(cb) {
+  runSequence('build', 'publish', cb);
 });
 
 // build and watch
