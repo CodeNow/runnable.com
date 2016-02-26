@@ -169,7 +169,7 @@ gulp.task('ghPages', function() {
     .pipe(ghPages());
 });
 
-gulp.task('publish', function() {
+gulp.task('s3', function() {
   // create a new publisher using S3 options
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
   var publisher = awspublish.create({
@@ -209,12 +209,13 @@ gulp.task('build', function(cb) {
 });
 
 // build and deploy to gh pages
-gulp.task('deploy', function(cb) {
+gulp.task('deploy:gh', function(cb) {
   runSequence('build', 'ghPages', cb);
 });
 
-gulp.task('deploy:prod', function(cb) {
-  runSequence('build', 'publish', cb);
+// build and deploy to amazon s3
+gulp.task('deploy:s3', function(cb) {
+  runSequence('build', 's3', cb);
 });
 
 // build and watch

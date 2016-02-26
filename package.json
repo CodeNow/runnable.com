@@ -29,6 +29,6 @@
     "url": "https://github.com/CodeNow/runnable.com.git"
   },
   "scripts": {
-    "deploy": "node_modules/.bin/gulp deploy:prod"
+    "deploy": "node_modules/.bin/gulp deploy:s3"
   }
 }
