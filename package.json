@@ -22,7 +22,7 @@
   },
   "engine": {
     "node": "4.2.2",
-    "npm": "2.14.7"
+    "npm": "3.7.5"
   },
   "repository": {
     "type": "git",

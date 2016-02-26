@@ -72,7 +72,7 @@ gulp.task('hbs', function() {
   return gulp.src(hbsSrc)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiHost: process.env.API_HOST,
+      apiUrl: process.env.API_URL,
       env: process.env.NODE_ENV,
       commitHash: commitHash,
       commitTime: commitTime,
@@ -172,13 +172,17 @@ gulp.task('ghPages', function() {
 gulp.task('publish', function() {
   // create a new publisher using S3 options
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
-  var publisher = awspublish.create({
+  var awsConfig = {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
     params: {
       Bucket: process.env.AWS_BUCKET
     }
-  });
+  };
+
+  console.log('AWS Config', awsConfig);
+
+  var publisher = awspublish.create(awsConfig);
 
   // define custom headers
   var headers = {

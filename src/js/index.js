@@ -2,7 +2,7 @@ var whitelisted = window.location.search !== '?whitelist=false';
 var app = angular.module('homeApp', []);
 
 app.controller('MainCtrl', function ($scope, $window, $http) {
-  $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect={{{angularUrl}}}/?auth';
+  $scope.loginUrl = '{{{apiUrl}}}/auth/github?redirect={{{angularUrl}}}/?auth';
   $scope.data = {
     embedActive: false,
     hideUnauthorizedModal: whitelisted
@@ -13,7 +13,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     location.hash = '#sign-up';
   }
 
-  $http.get('{{{apiHost}}}/users/me', {
+  $http.get('{{{apiUrl}}}/users/me', {
     withCredentials: true
   })
     .then(function (user) {
