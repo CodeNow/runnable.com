@@ -76,7 +76,7 @@ gulp.task('hbs', function() {
       env: process.env.NODE_ENV,
       commitHash: commitHash,
       commitTime: commitTime,
-      angularHost: process.env.ANGULAR_HOST
+      angularUrl: process.env.ANGULAR_URL
     }, {
       helpers: {
         if_eq: function(a, b, opts) {

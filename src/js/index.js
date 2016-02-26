@@ -2,7 +2,7 @@ var whitelisted = window.location.search !== '?whitelist=false';
 var app = angular.module('homeApp', []);
 
 app.controller('MainCtrl', function ($scope, $window, $http) {
-  $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect={{{angularHost}}}/?auth';
+  $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect={{{angularUrl}}}/?auth';
   $scope.data = {
     embedActive: false,
     hideUnauthorizedModal: whitelisted
@@ -28,7 +28,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
         prevInstance = user.data.userOptions.uiState.previousLocation.instance;
       } catch (e) {
       }
-      var newURL = '{{{angularHost}}}/' + org;
+      var newURL = '{{{angularUrl}}}/' + org;
       if (prevInstance) {
         newURL += '/' + prevInstance
       }
