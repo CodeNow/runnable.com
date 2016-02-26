@@ -172,17 +172,13 @@ gulp.task('ghPages', function() {
 gulp.task('publish', function() {
   // create a new publisher using S3 options
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
-  var awsConfig = {
+  var publisher = awspublish.create({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
     params: {
       Bucket: process.env.AWS_BUCKET
     }
-  };
-
-  console.log('AWS Config', awsConfig);
-
-  var publisher = awspublish.create(awsConfig);
+  });
 
   // define custom headers
   var headers = {
