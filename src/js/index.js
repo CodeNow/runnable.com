@@ -2,7 +2,7 @@ var whitelisted = window.location.search !== '?whitelist=false';
 var app = angular.module('homeApp', []);
 
 app.controller('MainCtrl', function ($scope, $window, $http) {
-  $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect=' + $window.location.protocol + '//' + $window.location.host + '/?auth';
+  $scope.loginUrl = '{{{apiHost}}}/auth/github?redirect={{{angularHost}}}/?auth';
   $scope.data = {
     embedActive: false,
     hideUnauthorizedModal: whitelisted
@@ -23,7 +23,16 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
       } catch (e) {
         org = user.data.accounts.github.username;
       }
-      $window.location = '/' + org;
+      var prevInstance;
+      try {
+        prevInstance = user.data.userOptions.uiState.previousLocation.instance;
+      } catch (e) {
+      }
+      var newURL = '{{{angularHost}}}/' + org;
+      if (prevInstance) {
+        newURL += '/' + prevInstance
+      }
+      $window.location = newURL;
     });
 
   // confirming form submit

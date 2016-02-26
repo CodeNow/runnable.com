@@ -11,6 +11,7 @@ var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
 var awspublish = require('gulp-awspublish');
+var exec = require('child_process').exec;
 
 // file locations
 var src = 'src/';
@@ -50,15 +51,32 @@ gulp.task('html', function() {
     .pipe(gulp.dest(hbsDist));
 });
 
+var commitTime;
+gulp.task('getCommitTime', function (cb) {
+  exec('git log -1 --format=%cd', {cwd: __dirname}, function (err, stdout, stderr) {
+    commitTime = stdout.split('\n').join('');
+    cb();
+  });
+});
+
+var commitHash;
+gulp.task('getCommitHash', function (cb) {
+  exec('git rev-parse HEAD', {cwd: __dirname}, function (err, stdout, stderr) {
+    commitHash = stdout.split('\n').join('');
+    cb();
+  })
+});
+
 // hbs files
 gulp.task('hbs', function() {
   return gulp.src(hbsSrc)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiHost: 'https://api-staging-codenow.runnableapp.com',
-      env: 'staging',
-      commitHash: 'NOT_VALID',
-      commitTime: 'NOT_VALID'
+      apiHost: process.env.API_HOST,
+      env: process.env.NODE_ENV,
+      commitHash: commitHash,
+      commitTime: commitTime,
+      angularHost: process.env.ANGULAR_HOST
     }, {
       helpers: {
         if_eq: function(a, b, opts) {
@@ -158,7 +176,7 @@ gulp.task('publish', function() {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
     params: {
-      Bucket: 'corporate.runnable.io'
+      Bucket: process.env.AWS_BUCKET
     }
   });
 
@@ -187,7 +205,7 @@ gulp.task('publish', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
