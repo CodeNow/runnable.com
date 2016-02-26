@@ -10,6 +10,8 @@ var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
+var awspublish = require('gulp-awspublish');
+var exec = require('child_process').exec;
 
 // file locations
 var src = 'src/';
@@ -49,15 +51,32 @@ gulp.task('html', function() {
     .pipe(gulp.dest(hbsDist));
 });
 
+var commitTime;
+gulp.task('getCommitTime', function (cb) {
+  exec('git log -1 --format=%cd', {cwd: __dirname}, function (err, stdout, stderr) {
+    commitTime = stdout.split('\n').join('');
+    cb();
+  });
+});
+
+var commitHash;
+gulp.task('getCommitHash', function (cb) {
+  exec('git rev-parse HEAD', {cwd: __dirname}, function (err, stdout, stderr) {
+    commitHash = stdout.split('\n').join('');
+    cb();
+  })
+});
+
 // hbs files
 gulp.task('hbs', function() {
   return gulp.src(hbsSrc)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiHost: 'https://api-staging-codenow.runnableapp.com',
-      env: 'staging',
-      commitHash: 'NOT_VALID',
-      commitTime: 'NOT_VALID'
+      apiUrl: process.env.API_URL,
+      env: process.env.NODE_ENV,
+      commitHash: commitHash,
+      commitTime: commitTime,
+      angularUrl: process.env.ANGULAR_URL
     }, {
       helpers: {
         if_eq: function(a, b, opts) {
@@ -150,14 +169,53 @@ gulp.task('ghPages', function() {
     .pipe(ghPages());
 });
 
+gulp.task('s3', function() {
+  // create a new publisher using S3 options
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+  var publisher = awspublish.create({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    params: {
+      Bucket: process.env.AWS_BUCKET
+    }
+  });
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
+  };
+
+  return  gulp.src(dist + '**/*')
+    // gzip, Set Content-Encoding headers
+    .pipe(awspublish.gzip())
+
+    // publisher will add Content-Length, Content-Type and headers specified above
+    // If not specified it will set x-amz-acl to public-read by default
+    .pipe(publisher.publish(headers))
+
+    // Delete files in the bucket that aren't in the local folder
+    .pipe(publisher.sync())
+
+    // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // print upload updates to console
+    .pipe(awspublish.reporter());
+});
+
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
-gulp.task('deploy', function(cb) {
+gulp.task('deploy:gh', function(cb) {
   runSequence('build', 'ghPages', cb);
+});
+
+// build and deploy to amazon s3
+gulp.task('deploy:s3', function(cb) {
+  runSequence('build', 's3', cb);
 });
 
 // build and watch
