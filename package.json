@@ -21,6 +21,10 @@
     "gulp-gh-pages": "^0.5.4",
     "gulp-newer": "~0.5.1"
   },
+  "engine": {
+    "node": "4.2.2",
+    "npm": "2.14.7"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/CodeNow/runnable.com.git"
