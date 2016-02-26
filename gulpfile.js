@@ -158,7 +158,7 @@ gulp.task('publish', function() {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
     params: {
-      Bucket: 'runnable.io'
+      Bucket: 'corporate.runnable.io'
     }
   });
 
