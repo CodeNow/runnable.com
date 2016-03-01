@@ -225,6 +225,6 @@ gulp.task('default', function(cb) {
   runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, ['javascript']);
+  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'javascript');});
   gulp.watch(imgDir, ['images']);
 });

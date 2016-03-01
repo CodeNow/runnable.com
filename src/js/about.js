@@ -35,37 +35,18 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
       $window.location = newURL;
     });
 
-  // confirming form submit
-  // var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
-  var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-  var inputEmail = document.getElementById('mce-EMAIL');
-  var inputOrg = document.getElementById('mce-GH_ORG');
+  // flipping cards on the about page
+  var teamCard = document.getElementsByClassName('team-card');
 
-  function markInvalid(e) {
-    var thisForm = e.target.getElementsByTagName('input');
-
-    for (i = 0; i < thisForm.length; i++) {
-      if (!thisForm[i].validity.valid) {
-        thisForm[i].classList.add('invalid');
-      }
-    }
-  }
-
-  function makeDirty(e){
-    e.target.classList.remove('pristine', 'invalid');
-  }
-
-  function formSubmit(e){
-    if (formSignUp.checkValidity()) {
-      // articleSignUp.classList.add('submitted');
-    } else {
-      markInvalid(e);
-      e.preventDefault();
-    }
+  function flipCard(e) {
+    var thisCard = e.target.parentElement.parentElement;
+    thisCard.classList.toggle('flip');
   }
 
   window.onload = function(){
-    formSignUp.addEventListener('change', makeDirty);
-    formSignUp.addEventListener('submit', formSubmit);
+    var imgFlip = document.getElementsByClassName('img-rounded');
+    for(i = 0; i < imgFlip.length; i++) {
+      imgFlip[i].addEventListener('click', flipCard, false);
+    }
   };
 });
