@@ -1,0 +1,29 @@
+.header {
+  background: linear-gradient($purple-light, rgba($purple-light,0));
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+
+  @include media(xxs) {
+    .btn {
+      display: none;
+    }
+  }
+
+  .grid-container {
+    padding: 27px 30px 18px;
+
+    @include media(xxs) {
+      justify-content: center;
+    }
+  }
+
+  .text-white {
+    line-height: $input-sm;
+  }
+
+  .img-overflow {
+    height: $input-sm;
+  }
+}
