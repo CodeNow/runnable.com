@@ -8,8 +8,16 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     hideUnauthorizedModal: whitelisted
   };
 
+  if (!window.fbq) {
+    // Stub fbq
+    window.fbq = function () {}
+  }
+
   // scroll to
   if (!whitelisted) {
+    fbq('track', 'ViewContent', {
+      action: 'notWhitelisted'
+    });
     location.hash = '#sign-up';
   }
 
@@ -36,15 +44,12 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     });
 
   // confirming form submit
-  // var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
   var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-  var inputEmail = document.getElementById('mce-EMAIL');
-  var inputOrg = document.getElementById('mce-GH_ORG');
 
   function markInvalid(e) {
     var thisForm = e.target.getElementsByTagName('input');
 
-    for (i = 0; i < thisForm.length; i++) {
+    for (var i = 0; i < thisForm.length; i++) {
       if (!thisForm[i].validity.valid) {
         thisForm[i].classList.add('invalid');
       }
@@ -57,7 +62,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
   function formSubmit(e){
     if (formSignUp.checkValidity()) {
-      // articleSignUp.classList.add('submitted');
+      fbq('track', 'Lead');
     } else {
       markInvalid(e);
       e.preventDefault();
