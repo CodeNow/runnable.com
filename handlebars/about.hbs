@@ -120,43 +120,22 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
       }
       var newURL = '{{{angularUrl}}}/' + org;
       if (prevInstance) {
-        newURL += '/' + prevInstance
+        newURL += '/' + prevInstance;
       }
       $window.location = newURL;
     });
 
-  // confirming form submit
-  // var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
-  var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-  var inputEmail = document.getElementById('mce-EMAIL');
-  var inputOrg = document.getElementById('mce-GH_ORG');
-
-  function markInvalid(e) {
-    var thisForm = e.target.getElementsByTagName('input');
-
-    for (i = 0; i < thisForm.length; i++) {
-      if (!thisForm[i].validity.valid) {
-        thisForm[i].classList.add('invalid');
-      }
-    }
-  }
-
-  function makeDirty(e){
-    e.target.classList.remove('pristine', 'invalid');
-  }
-
-  function formSubmit(e){
-    if (formSignUp.checkValidity()) {
-      // articleSignUp.classList.add('submitted');
-    } else {
-      markInvalid(e);
-      e.preventDefault();
-    }
+  // flipping cards on the about page
+  function flipCard(e) {
+    e.target.parentElement.parentElement.classList.toggle('flip');
   }
 
   window.onload = function(){
-    formSignUp.addEventListener('change', makeDirty);
-    formSignUp.addEventListener('submit', formSubmit);
+    var imgFlip = document.getElementsByClassName('img-rounded');
+
+    for(i = 0; i < imgFlip.length; i++) {
+      imgFlip[i].addEventListener('click', flipCard, false);
+    }
   };
 });
 
@@ -177,9 +156,19 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     <div class="grid-block shrink">
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong">Sign In</a>
       <a href="#sign-up" class="grid-content btn btn-sm green">Sign Up</a>
+      <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
+        <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
+        <div class="popover bottom">
+          <div class="list text-left">
+            <a href="about.html" class="list-item">About</a>
+            <a href="//support.runnable.com" target="_blank" class="list-item">Support</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
 
     <main class="grid-block vertical main about">
       <article class="article hero">
@@ -187,57 +176,76 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
         <p class="p text-center">When you push a commit, they fax it to a server.
         <div class="grid-block grid-container">
           <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Yash Kumar">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Yash Kumar">
             <figcaption class="grid-block vertical figcaption text-center">
               <strong class="strong">Yash Kumar</strong>
               <small class="small">CEO</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-youtube.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Sundip Patel">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Sundip Patel</strong>
-              <small class="small">Product Manager</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
+                <a class="link-social" href="https://www.facebook.com/groups/1648763188671180/" target="_blank">
                   <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
                 </a>
               </div>
             </figcaption>
           </figure>
           <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Raful Rana">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Sundip Patel">
             <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Raful Rana</strong>
+              <strong class="strong">Sundip Patel</strong>
               <small class="small">Product Manager</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-dribbble.svg" height="15" width="15">
+                <a class="link-social" href="https://www.linkedin.com/in/sundippatel" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
+                </a>
+                <a class="link-social" href="https://twitter.com/sundippatel" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+                </a>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="grid-block team-card vertical">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Raful Rana">
+            <figcaption class="grid-block vertical figcaption text-center">
+              <strong class="strong">Praful Rana</strong>
+              <small class="small">Product Manager</small>
+              <div class="grid-block align-center">
+                <a class="link-social link-github" href="http://github.com/prafulrana" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                </a>
+                <a class="link-social" href="https://in.linkedin.com/in/prafulrana" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
                 </a>
               </div>
             </figcaption>
           </figure>
         </div>
         <div class="grid-block grid-container">
-          <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Tony Li">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Tony Li</strong>
-              <small class="small">Designer</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
+          <figure class="grid-block team-card">
+            <div class="grid-block vertical align-center team-card-a">
+              <img class="grid-block shrink img" src="images/team/tony.jpg" alt="Tony Li">
+              <img class="img img-rounded" src="images/team/luna-rounded.png" height="66" width="66" alt="luna">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Tony Li</strong>
+                <small class="small">Designer</small>
+                <div class="grid-block align-center">
+                  <a class="link-social link-github" href="https://github.com/runnabro" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                  </a>
+                </div>
+              </figcaption>
+            </div>
+            <div class="grid-block vertical align-center team-card-b">
+              <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna">
+              <img class="img img-rounded" src="images/team/tony-rounded.png" height="66" width="66" alt="Tony Li">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Luna</strong>
+                <small class="small">Beagle & Pointer</small>
+                <div class="grid-block align-center">
+                  <a class="link-social link-instagram" href="https://www.instagram.com/lunagrams/" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-instagram.svg" height="15" width="15">
+                  </a>
+                </div>
+              </figcaption>
+            </div>
           </figure>
           <figure class="grid-block team-card vertical">
             <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel">
@@ -245,37 +253,51 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
               <strong class="strong">Anand Patel</strong>
               <small class="small">Engineer</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-instagram.svg" height="15" width="15">
+                <a class="link-social" href="https://soundcloud.com/dj-faze" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-soundcloud.png" height="15" width="15">
+                </a>
+                <a class="link-social" href="https://twitter.com/anandAKAdjfaze" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
                 </a>
               </div>
             </figcaption>
           </figure>
           <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Bryan Kendall">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Bryan Kendall">
             <figcaption class="grid-block vertical figcaption text-center">
               <strong class="strong">Bryan Kendall</strong>
               <small class="small">Engineer</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
+                <a class="link-social link-github" href="https://github.com/bkendall" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
                 </a>
               </div>
             </figcaption>
           </figure>
         </div>
         <div class="grid-block grid-container">
-          <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Nathan Meyers</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
+          <figure class="grid-block team-card">
+            <div class="grid-block vertical align-center team-card-a">
+              <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers">
+              <img class="img img-rounded" src="images/team/doobie-rounded.png" height="66" width="66" alt="doobie">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Nathan Meyers</strong>
+                <small class="small">Engineer</small>
+              </figcaption>
+            </div>
+            <div class="grid-block vertical align-center team-card-b">
+              <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie">
+              <img class="img img-rounded" src="images/team/nathanmeyers-rounded.png" height="66" width="66" alt="Nathan Meyers">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Doobie</strong>
+                <small class="small">Beagle</small>
+                <div class="grid-block align-center">
+                  <a class="link-social" href="https://www.facebook.com/DoobyToo?fref=ts" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
+                  </a>
+                </div>
+              </figcaption>
+            </div>
           </figure>
           <figure class="grid-block team-card vertical">
             <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov">
@@ -283,8 +305,11 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
               <strong class="strong">Anton Podviaznikov</strong>
               <small class="small">Engineer</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
+                <a class="link-social link-github" href="https://github.com/podviaznikov" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                </a>
+                <a class="link-social" href="https://twitter.com/podviaznikov" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
                 </a>
               </div>
             </figcaption>
@@ -294,11 +319,6 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
             <figcaption class="grid-block vertical figcaption text-center">
               <strong class="strong">Forrest Junod</strong>
               <small class="small">VP Engineering</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-                </a>
-              </div>
             </figcaption>
           </figure>
         </div>
@@ -309,7 +329,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
               <strong class="strong">Ryan Richards</strong>
               <small class="small">Engineer</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
+                <a class="link-social link-github" href="https://github.com/rsandor" target="_blank">
                   <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
                 </a>
               </div>
@@ -321,57 +341,88 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
               <strong class="strong">Ryan Kahn</strong>
               <small class="small">Engineer</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
+                <a class="link-social link-github" href="https://github.com/myztiq" target="_blank">
                   <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                </a>
+                <a class="link-social" href="https://twitter.com/myztiq" target="_blank">
+                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+                </a>
+                <a class="link-social" href="http://ryan-kahn.com/" target="_blank">
+                  👾
                 </a>
               </div>
             </figcaption>
           </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Taylor Dolan</strong>
-              <small class="small">Designer</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
+          <figure class="grid-block team-card">
+            <div class="grid-block vertical align-center team-card-a">
+              <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
+              <img class="img img-rounded" src="images/team/robot-rounded.png" height="66" width="66" alt="Robot">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Taylor Dolan</strong>
+                <small class="small">Designer</small>
+                <div class="grid-block align-center">
+                  <a class="link-social" href="https://twitter.com/taylordolan" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+                  </a>
+                </div>
+              </figcaption>
+            </div>
+            <div class="grid-block vertical align-center team-card-b">
+              <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot">
+              <img class="img img-rounded" src="images/team/taylordolan-rounded.png" height="66" width="66" alt="Taylor Dolan">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Robot</strong>
+                <small class="small">Boston Terrier</small>
+              </figcaption>
+            </div>
           </figure>
         </div>
         <div class="grid-block grid-container">
-          <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Jorge Silva">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Jorge Silva</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
+          <figure class="grid-block team-card">
+            <div class="grid-block vertical align-center team-card-a">
+              <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Jorge Silva">
+              <img class="img img-rounded" src="images/team/magesticmaury-rounded.png" height="66" width="66" alt="Magestic Maury">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Jorge Silva</strong>
+                <small class="small">Engineer</small>
+                <div class="grid-block align-center">
+                  <a class="link-social link-github" href="https://github.com/thejsj" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                  </a>
+                  <a class="link-social" href="https://twitter.com/thejsj" target="_blank">
+                    <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+                  </a>
+                </div>
+              </figcaption>
+            </div>
+            <div class="grid-block vertical align-center team-card-b">
+              <img class="grid-block shrink img" src="images/team/magesticmaury.jpg" alt="Magestic Maury">
+              <img class="img img-rounded" src="images/no-runnabear-rounded.svg" height="66" width="66" alt="Jorge Silva">
+              <figcaption class="grid-block vertical figcaption text-center">
+                <strong class="strong">Magestic Maury</strong>
+                <small class="small">Plant</small>
+              </figcaption>
+            </div>
           </figure>
           <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Chris Neill">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Chris Neill">
             <figcaption class="grid-block vertical figcaption text-center">
               <strong class="strong">Chris Neill</strong>
               <small class="small">Lead DevOps</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+                <a class="link-social" href="http://www.chowbacca.com" target="_blank">
+                  🍕
                 </a>
               </div>
             </figcaption>
           </figure>
           <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img empty" src="images/no-runnabear.svg" alt="Anurag Kaushik">
+            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Anurag Kaushik">
             <figcaption class="grid-block vertical figcaption text-center">
               <strong class="strong">Anurag Kaushik</strong>
               <small class="small">DevOps</small>
               <div class="grid-block align-center">
-                <a class="link-social" href="#" target="_blank">
+                <a class="link-social link-github" href="https://github.com/kaushikanurag" target="_blank">
                   <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
                 </a>
               </div>
