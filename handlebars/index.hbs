@@ -171,6 +171,9 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
+  <symbol id="icons-external" viewBox="0 0 15 15"><path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/></symbol>
+</svg>
     <header class="grid-block shrink header">
   <div class="grid-block grid-container align-justify">
     <a href="https://runnable.com" class="grid-content shrink">
@@ -184,7 +187,16 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
         <div class="popover bottom">
           <div class="list text-left">
             <a href="about.html" class="list-item">About</a>
-            <a href="//support.runnable.com" target="_blank" class="list-item">Support</a>
+            <a href="mailto:info@runnable.com" target="_blank" class="list-item">Email
+              <svg class="icons">
+                <use xlink:href="#icons-external">
+              </svg>
+            </a>
+            <a href="https://runnable.zendesk.com/hc/en-us" target="_blank" class="list-item">Support
+              <svg class="icons">
+                <use xlink:href="#icons-external">
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -362,17 +374,18 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 </article>
     </main>
 
-    <hr class="hr grid-container">
-
     <div class="grid-block well">
       Wanna see our last project?
       <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
     </div>
 
-    <footer class="grid-block footer align-spaced">
+    <hr class="hr grid-container">
+
+<footer class="grid-block footer align-spaced">
+  <img class="img" src="images/runnabear-hello.png">
+  <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Support</a>
-  <img src="images/runnabot-head.png" class="img" height="36" width="36">
   <a ng-href="\{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
   <a href="#sign-up" class="btn btn-xs link strong">Sign Up</a>
 </footer>

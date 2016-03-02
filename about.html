@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Full-stack environments for your GitHub branches — Runnable</title>
+    <title>About Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -69,12 +69,15 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     </script>
 
     <!--
-      Commit Hash: fdd8921892b7a8037d2429d5b3fe3e8807c90b01
-      Commit Time: Tue Mar 1 21:58:10 2016 -0800
+      Commit Hash: 339f947ce7ee1d90b9e2da79e27b4e04a107744b
+      Commit Time: Wed Mar 2 14:00:46 2016 -0800
     -->
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
+  <symbol id="icons-external" viewBox="0 0 15 15"><path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/></symbol>
+</svg>
     <header class="grid-block shrink header">
   <div class="grid-block grid-container align-justify">
     <a href="https://runnable.com" class="grid-content shrink">
@@ -88,7 +91,16 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
         <div class="popover bottom">
           <div class="list text-left">
             <a href="about.html" class="list-item">About</a>
-            <a href="//support.runnable.com" target="_blank" class="list-item">Support</a>
+            <a href="mailto:info@runnable.com" target="_blank" class="list-item">Email
+              <svg class="icons">
+                <use xlink:href="#icons-external">
+              </svg>
+            </a>
+            <a href="https://runnable.zendesk.com/hc/en-us" target="_blank" class="list-item">Support
+              <svg class="icons">
+                <use xlink:href="#icons-external">
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -99,270 +111,277 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
     <main class="grid-block vertical main about">
       <article class="article hero">
-        <h1 class="h1 text-center">Team Runnable</h1>
-        <p class="p text-center">When you push a commit, they fax it to a server.
-        <div class="grid-block grid-container">
-          <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Yash Kumar">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Yash Kumar</strong>
-              <small class="small">CEO</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="https://www.facebook.com/groups/1648763188671180/" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Sundip Patel">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Sundip Patel</strong>
-              <small class="small">Product Manager</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="https://www.linkedin.com/in/sundippatel" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="https://twitter.com/sundippatel" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Raful Rana">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Praful Rana</strong>
-              <small class="small">Product Manager</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="http://github.com/prafulrana" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="https://in.linkedin.com/in/prafulrana" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
+  <h1 class="h1 text-center">Team Runnable</h1>
+  <p class="p text-center">When you push a commit, they fax it to a server.
+  <div class="grid-block grid-container align-center team-grid">
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Yash Kumar">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Yash Kumar</strong>
+        <small class="small">CEO</small>
+        <div class="grid-block align-center">
+          <a class="link-social" href="https://www.facebook.com/groups/1648763188671180/" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
+          </a>
         </div>
-        <div class="grid-block grid-container">
-          <figure class="grid-block team-card">
-            <div class="grid-block vertical align-center team-card-a">
-              <img class="grid-block shrink img" src="images/team/tony.jpg" alt="Tony Li">
-              <img class="img img-rounded" src="images/team/luna-rounded.png" height="66" width="66" alt="luna">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Tony Li</strong>
-                <small class="small">Designer</small>
-                <div class="grid-block align-center">
-                  <a class="link-social link-github" href="https://github.com/runnabro" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                  </a>
-                </div>
-              </figcaption>
-            </div>
-            <div class="grid-block vertical align-center team-card-b">
-              <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna">
-              <img class="img img-rounded" src="images/team/tony-rounded.png" height="66" width="66" alt="Tony Li">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Luna</strong>
-                <small class="small">Beagle & Pointer</small>
-                <div class="grid-block align-center">
-                  <a class="link-social link-instagram" href="https://www.instagram.com/lunagrams/" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-instagram.svg" height="15" width="15">
-                  </a>
-                </div>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Anand Patel</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="https://soundcloud.com/dj-faze" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-soundcloud.png" height="15" width="15">
-                </a>
-                <a class="link-social" href="https://twitter.com/anandAKAdjfaze" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Bryan Kendall">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Bryan Kendall</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="https://github.com/bkendall" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Sundip Patel">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Sundip Patel</strong>
+        <small class="small">Product Manager</small>
+        <div class="grid-block align-center">
+          <a class="link-social" href="https://www.linkedin.com/in/sundippatel" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
+          </a>
+          <a class="link-social" href="https://twitter.com/sundippatel" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+          </a>
         </div>
-        <div class="grid-block grid-container">
-          <figure class="grid-block team-card">
-            <div class="grid-block vertical align-center team-card-a">
-              <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers">
-              <img class="img img-rounded" src="images/team/doobie-rounded.png" height="66" width="66" alt="doobie">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Nathan Meyers</strong>
-                <small class="small">Engineer</small>
-              </figcaption>
-            </div>
-            <div class="grid-block vertical align-center team-card-b">
-              <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie">
-              <img class="img img-rounded" src="images/team/nathanmeyers-rounded.png" height="66" width="66" alt="Nathan Meyers">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Doobie</strong>
-                <small class="small">Beagle</small>
-                <div class="grid-block align-center">
-                  <a class="link-social" href="https://www.facebook.com/DoobyToo?fref=ts" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
-                  </a>
-                </div>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Anton Podviaznikov</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="https://github.com/podviaznikov" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="https://twitter.com/podviaznikov" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/team/forrestjunod.jpg" alt="Forrest Junod">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Forrest Junod</strong>
-              <small class="small">VP Engineering</small>
-            </figcaption>
-          </figure>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Raful Rana">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Praful Rana</strong>
+        <small class="small">Product Manager</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="http://github.com/prafulrana" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
+          <a class="link-social" href="https://in.linkedin.com/in/prafulrana" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
+          </a>
         </div>
-        <div class="grid-block grid-container">
-          <figure class="grid-block team-card vertical align-center">
-            <img class="grid-block shrink img" src="images/team/ryanrichards.jpg" height="215" width="300" alt="Ryan Richards">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Ryan Richards</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="https://github.com/rsandor" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/team/ryankahn.jpg" height="215" width="300" alt="Ryan Kahn">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Ryan Kahn</strong>
-              <small class="small">Engineer</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="https://github.com/myztiq" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="https://twitter.com/myztiq" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                </a>
-                <a class="link-social" href="http://ryan-kahn.com/" target="_blank">
-                  👾
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card">
-            <div class="grid-block vertical align-center team-card-a">
-              <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
-              <img class="img img-rounded" src="images/team/robot-rounded.png" height="66" width="66" alt="Robot">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Taylor Dolan</strong>
-                <small class="small">Designer</small>
-                <div class="grid-block align-center">
-                  <a class="link-social" href="https://twitter.com/taylordolan" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                  </a>
-                </div>
-              </figcaption>
-            </div>
-            <div class="grid-block vertical align-center team-card-b">
-              <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot">
-              <img class="img img-rounded" src="images/team/taylordolan-rounded.png" height="66" width="66" alt="Taylor Dolan">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Robot</strong>
-                <small class="small">Boston Terrier</small>
-              </figcaption>
-            </div>
-          </figure>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card">
+      <div class="grid-block vertical align-center team-card-a">
+        <img class="grid-block shrink img" src="images/team/tony.jpg" alt="Tony Li">
+        <img class="img img-rounded" src="images/team/luna-rounded.png" height="66" width="66" alt="luna">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Tony Li</strong>
+          <small class="small">Designer</small>
+          <div class="grid-block align-center">
+            <a class="link-social link-github" href="https://github.com/runnabro" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+            </a>
+          </div>
+        </figcaption>
+      </div>
+      <div class="grid-block vertical align-center team-card-b">
+        <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna">
+        <img class="img img-rounded" src="images/team/tony-rounded.png" height="66" width="66" alt="Tony Li">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Luna</strong>
+          <small class="small">Beagle & Pointer</small>
+          <div class="grid-block align-center">
+            <a class="link-social link-instagram" href="https://www.instagram.com/lunagrams/" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-instagram.svg" height="15" width="15">
+            </a>
+          </div>
+        </figcaption>
+      </div>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Anand Patel</strong>
+        <small class="small">Engineer</small>
+        <div class="grid-block align-center">
+          <a class="link-social" href="https://soundcloud.com/dj-faze" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-soundcloud.png" height="15" width="15">
+          </a>
+          <a class="link-social" href="https://twitter.com/anandAKAdjfaze" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+          </a>
         </div>
-        <div class="grid-block grid-container">
-          <figure class="grid-block team-card">
-            <div class="grid-block vertical align-center team-card-a">
-              <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Jorge Silva">
-              <img class="img img-rounded" src="images/team/magesticmaury-rounded.png" height="66" width="66" alt="Magestic Maury">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Jorge Silva</strong>
-                <small class="small">Engineer</small>
-                <div class="grid-block align-center">
-                  <a class="link-social link-github" href="https://github.com/thejsj" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                  </a>
-                  <a class="link-social" href="https://twitter.com/thejsj" target="_blank">
-                    <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-                  </a>
-                </div>
-              </figcaption>
-            </div>
-            <div class="grid-block vertical align-center team-card-b">
-              <img class="grid-block shrink img" src="images/team/magesticmaury.jpg" alt="Magestic Maury">
-              <img class="img img-rounded" src="images/no-runnabear-rounded.svg" height="66" width="66" alt="Jorge Silva">
-              <figcaption class="grid-block vertical figcaption text-center">
-                <strong class="strong">Magestic Maury</strong>
-                <small class="small">Plant</small>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Chris Neill">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Chris Neill</strong>
-              <small class="small">Lead DevOps</small>
-              <div class="grid-block align-center">
-                <a class="link-social" href="http://www.chowbacca.com" target="_blank">
-                  🍕
-                </a>
-              </div>
-            </figcaption>
-          </figure>
-          <figure class="grid-block team-card vertical">
-            <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Anurag Kaushik">
-            <figcaption class="grid-block vertical figcaption text-center">
-              <strong class="strong">Anurag Kaushik</strong>
-              <small class="small">DevOps</small>
-              <div class="grid-block align-center">
-                <a class="link-social link-github" href="https://github.com/kaushikanurag" target="_blank">
-                  <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-                </a>
-              </div>
-            </figcaption>
-          </figure>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Bryan Kendall">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Bryan Kendall</strong>
+        <small class="small">Engineer</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="https://github.com/bkendall" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
         </div>
-      </article>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card">
+      <div class="grid-block vertical align-center team-card-a">
+        <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers">
+        <img class="img img-rounded" src="images/team/doobie-rounded.png" height="66" width="66" alt="doobie">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Nathan Meyers</strong>
+          <small class="small">Engineer</small>
+        </figcaption>
+      </div>
+      <div class="grid-block vertical align-center team-card-b">
+        <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie">
+        <img class="img img-rounded" src="images/team/nathanmeyers-rounded.png" height="66" width="66" alt="Nathan Meyers">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Doobie</strong>
+          <small class="small">Beagle</small>
+          <div class="grid-block align-center">
+            <a class="link-social" href="https://www.facebook.com/DoobyToo?fref=ts" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
+            </a>
+          </div>
+        </figcaption>
+      </div>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Anton Podviaznikov</strong>
+        <small class="small">Engineer</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="https://github.com/podviaznikov" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
+          <a class="link-social" href="https://twitter.com/podviaznikov" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+          </a>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/team/forrestjunod.jpg" alt="Forrest Junod">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Forrest Junod</strong>
+        <small class="small">VP Engineering</small>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical align-center">
+      <img class="grid-block shrink img" src="images/team/ryanrichards.jpg" height="215" width="300" alt="Ryan Richards">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Ryan Richards</strong>
+        <small class="small">Engineer</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="https://github.com/rsandor" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/team/ryankahn.jpg" height="215" width="300" alt="Ryan Kahn">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Ryan Kahn</strong>
+        <small class="small">Engineer</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="https://github.com/myztiq" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
+          <a class="link-social" href="https://twitter.com/myztiq" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+          </a>
+          <a class="link-social" href="http://ryan-kahn.com/" target="_blank">
+            👾
+          </a>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card">
+      <div class="grid-block vertical align-center team-card-a">
+        <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
+        <img class="img img-rounded" src="images/team/robot-rounded.png" height="66" width="66" alt="Robot">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Taylor Dolan</strong>
+          <small class="small">Designer</small>
+          <div class="grid-block align-center">
+            <a class="link-social" href="https://twitter.com/taylordolan" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+            </a>
+          </div>
+        </figcaption>
+      </div>
+      <div class="grid-block vertical align-center team-card-b">
+        <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot">
+        <img class="img img-rounded" src="images/team/taylordolan-rounded.png" height="66" width="66" alt="Taylor Dolan">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Robot</strong>
+          <small class="small">Boston Terrier</small>
+        </figcaption>
+      </div>
+    </figure>
+    <figure class="grid-block team-card">
+      <div class="grid-block vertical align-center team-card-a">
+        <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Jorge Silva">
+        <img class="img img-rounded" src="images/team/magesticmaury-rounded.png" height="66" width="66" alt="Magestic Maury">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Jorge Silva</strong>
+          <small class="small">Engineer</small>
+          <div class="grid-block align-center">
+            <a class="link-social link-github" href="https://github.com/thejsj" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+            </a>
+            <a class="link-social" href="https://twitter.com/thejsj" target="_blank">
+              <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
+            </a>
+          </div>
+        </figcaption>
+      </div>
+      <div class="grid-block vertical align-center team-card-b">
+        <img class="grid-block shrink img" src="images/team/magesticmaury.jpg" alt="Magestic Maury">
+        <img class="img img-rounded" src="images/no-runnabear-rounded.svg" height="66" width="66" alt="Jorge Silva">
+        <figcaption class="grid-block vertical figcaption text-center">
+          <strong class="strong">Magestic Maury</strong>
+          <small class="small">Plant</small>
+        </figcaption>
+      </div>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Chris Neill">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Chris Neill</strong>
+        <small class="small">Lead DevOps</small>
+        <div class="grid-block align-center">
+          <a class="link-social" href="http://www.chowbacca.com" target="_blank">
+            🍕
+          </a>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="grid-block team-card vertical">
+      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Anurag Kaushik">
+      <figcaption class="grid-block vertical figcaption text-center">
+        <strong class="strong">Anurag Kaushik</strong>
+        <small class="small">DevOps</small>
+        <div class="grid-block align-center">
+          <a class="link-social link-github" href="https://github.com/kaushikanurag" target="_blank">
+            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
+          </a>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</article>
+      <article class="article article-location">
+  <div class="grid-container grid-block vertical">
+    <figure class="rounded-map">
+      <img src="images/runnable-map.jpg" class="img">
+    </figure>
+    <address class="map-address text-center">
+      <strong>Runnable</strong>
+      <br>1481 Folsom St.
+      <br>San Francisco, CA
+    </address>
+  </div>
+</article>
     </main>
 
-    <footer class="grid-block footer align-spaced">
+    <hr class="hr grid-container">
+
+<footer class="grid-block footer align-spaced">
+  <img class="img" src="images/runnabear-hello.png">
+  <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Support</a>
-  <img src="images/runnabot-head.png" class="img" height="36" width="36">
   <a ng-href="{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
   <a href="#sign-up" class="btn btn-xs link strong">Sign Up</a>
 </footer>
