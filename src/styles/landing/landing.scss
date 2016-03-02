@@ -109,10 +109,6 @@
 
   &.grid-block {
 
-    @include media(sm) {
-      margin-bottom: 30px;
-    }
-
     @include media(xs) {
       display: table;
       font-size: 16px;
