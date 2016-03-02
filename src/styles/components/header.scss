@@ -36,6 +36,7 @@
 
   .popover-trigger {
     opacity: .75;
+    transition: opacity .15s;
 
     &:hover,
     &:focus {

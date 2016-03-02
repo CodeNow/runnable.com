@@ -1,14 +1,17 @@
-.about .hero .p {
-  margin-bottom: 30px;
+.about .grid-container {
+  flex-wrap: wrap;
+  padding: 15px 0;
 }
 
 .team-card {
+  box-shadow: 0 2px 9px rgba($black,.15);
   color: $white;
   height: 300px;
   margin: 15px;
   max-width: 300px;
   overflow: visible;
   perspective: 1000px;
+  width: 300px;
   z-index: 1;
 
   &.flip {
@@ -24,7 +27,9 @@
 
   .img {
     border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
-    flex: 0 0 215px;
+    flex: 1 1;
+    height: auto;
+    width: 100%;
 
     + .figcaption {
       margin-top: 0;
@@ -35,9 +40,11 @@
     border: 3px solid $gray-lightest;
     border-radius: 50%;
     cursor: pointer;
+    height: 60px;
     position: absolute;
     right: 15px;
     top: 15px;
+    width: 60px;
 
     &:hover,
     &:active {
@@ -85,7 +92,7 @@
 .team-card-a,
 .team-card-b {
   backface-visibility: hidden;
-  box-shadow: 0 1px 4px rgba($black,.1);
+  height: 100%;
   overflow: hidden;
   position: absolute;
   transform-origin: 50% 250%;
