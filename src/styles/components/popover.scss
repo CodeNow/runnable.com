@@ -1,9 +1,20 @@
 .popover-trigger {
+  overflow: visible;
   position: relative;
 
-  &:hover .popover {
+  &.hover:hover .popover,
+  &.click:focus .popover {
     opacity: 1;
     transform: scale3d(1,1,1) translate3d(-50%,0,0);
+    transition: all .15s ease-in-out;
+  }
+
+  &.click {
+    outline: 0;
+
+    .popover {
+      pointer-events: auto;
+    }
   }
 }
 
@@ -18,7 +29,7 @@
   pointer-events: none;
   position: absolute;
   transform: scale3d(.2,.2,1) translate3d(-50%,0,0);
-  transition: all .15s ease-in-out;
+  transition: all .15s .1s ease-in-out;
 
   &.bottom {
     box-shadow: 0 1px 3px rgba($black,.1);

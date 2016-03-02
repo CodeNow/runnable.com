@@ -64,7 +64,9 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     }
   }
 
+  // events
   window.onload = function(){
+    // sign up form
     formSignUp.addEventListener('change', makeDirty);
     formSignUp.addEventListener('submit', formSubmit);
   };
