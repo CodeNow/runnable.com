@@ -54,7 +54,7 @@
     flex: 0 0 85px;
     font-size: 18px;
     line-height: 1.4;
-    padding: 12px 0 0;
+    padding: 9px 0 0;
   }
 
   .small {
@@ -65,8 +65,14 @@
     display: flex;
     filter: grayscale(1);
     flex: 0 0 16px;
+    font-size: 15px;
+    line-height: 1;
     margin: 2px 4px;
-    opacity: .3;
+
+    &.link-github,
+    &.link-instagram {
+      opacity: .5;
+    }
 
     &:hover,
     &:active {

@@ -36,15 +36,13 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     });
 
   // flipping cards on the about page
-  var teamCard = document.getElementsByClassName('team-card');
-
   function flipCard(e) {
-    var thisCard = e.target.parentElement.parentElement;
-    thisCard.classList.toggle('flip');
+    e.target.parentElement.parentElement.classList.toggle('flip');
   }
 
   window.onload = function(){
     var imgFlip = document.getElementsByClassName('img-rounded');
+
     for(i = 0; i < imgFlip.length; i++) {
       imgFlip[i].addEventListener('click', flipCard, false);
     }
