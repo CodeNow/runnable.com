@@ -43,7 +43,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
       $window.location = newURL;
     });
 
-  // confirming form submit
+  // form submit
   var formSignUp = document.getElementsByClassName('form-sign-up')[0];
 
   function markInvalid(e) {
@@ -69,8 +69,26 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     }
   }
 
+  // flipping cards
+  function flipCard(e) {
+    e.target.parentElement.parentElement.classList.toggle('flip');
+  }
+
+  // events
   window.onload = function(){
-    formSignUp.addEventListener('change', makeDirty);
-    formSignUp.addEventListener('submit', formSubmit);
+    if (formSignUp) {
+      //sign up form
+      formSignUp.addEventListener('change', makeDirty);
+      formSignUp.addEventListener('submit', formSubmit);
+    }
+
+    // flipping cards
+    var imgFlip = document.getElementsByClassName('img-rounded');
+
+    if (imgFlip) {
+      for (var i = 0; i < imgFlip.length; i++) {
+        imgFlip[i].addEventListener('click', flipCard, false);
+      }
+    }
   };
 });
