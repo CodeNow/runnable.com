@@ -2,19 +2,21 @@
   align-items: center;
   margin: 0 auto 150px;
   max-width: 600px;
+  overflow: visible;
+  position: relative;
 
   @include media(sm) {
     flex-flow: column;
   }
 
   .img {
-    flex: 0 0 36px;
-    margin: 0 30px;
-
-    @include media(sm) {
-      margin: 15px 0;
-      order: 1;
-    }
+    height: 85px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: -108px;
+    width: 150px;
   }
 
   .link {

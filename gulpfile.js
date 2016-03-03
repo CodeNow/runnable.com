@@ -18,7 +18,7 @@ var src = 'src/';
 var dist = './dist/';
 
 var htmlDir = src + 'html/**/*.hbs';
-var htmlSrc = src + 'html/index.hbs';
+var htmlSrc = src + 'html/*.hbs';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
 var jsDir = src + 'js/**/*.**';
@@ -64,7 +64,7 @@ gulp.task('getCommitHash', function (cb) {
   exec('git rev-parse HEAD', {cwd: __dirname}, function (err, stdout, stderr) {
     commitHash = stdout.split('\n').join('');
     cb();
-  })
+  });
 });
 
 // hbs files
@@ -90,7 +90,9 @@ gulp.task('hbs', function() {
     .on('error', function(err){
       console.log(err.message);
     })
-    .pipe(rename('index.html'))
+    .pipe(rename({
+      extname: ".html"
+    }))
     .pipe(gulp.dest(htmlDist));
 });
 
@@ -223,6 +225,6 @@ gulp.task('default', function(cb) {
   runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, ['javascript']);
+  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'javascript');});
   gulp.watch(imgDir, ['images']);
 });

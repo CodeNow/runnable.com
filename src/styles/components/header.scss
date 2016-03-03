@@ -1,0 +1,74 @@
+.header {
+  background: linear-gradient($purple-light, rgba($purple-light,0));
+  left: 0;
+  overflow: visible;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+
+  @include media(xxs) {
+    .btn {
+      display: none;
+    }
+  }
+
+  .grid-container {
+    padding: 27px 30px 18px;
+
+    @include media(xxs) {
+      justify-content: center;
+    }
+  }
+
+  .text-white {
+    line-height: $input-sm;
+  }
+
+  // popover specific
+  .grid-block {
+    overflow: visible;
+
+    // popover parent
+    &.shrink {
+      position: relative;
+    }
+  }
+
+  .popover-trigger {
+    opacity: .75;
+    transition: opacity .15s;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    .img-overflow {
+      height: $input-sm;
+    }
+  }
+
+  .popover {
+    cursor: default;
+  }
+
+  .list {
+    padding: 0;
+  }
+
+  .list-item {
+    cursor: pointer;
+    display: block;
+
+    &:hover {
+      color: $purple-light;
+    }
+
+    .icons {
+      height: 12px;
+      margin-left: 3px;
+      opacity: .5;
+      width: 12px;
+    }
+  }
+}

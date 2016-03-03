@@ -34,32 +34,6 @@
     }
   }
 
-  .header {
-    background: linear-gradient($purple-light, rgba($purple-light,0));
-    left: 0;
-    position: absolute;
-    right: 0;
-    z-index: 10;
-
-    @include media(xxs) {
-      .btn {
-        display: none;
-      }
-    }
-
-    .grid-container {
-      padding: 27px 30px 18px;
-
-      @include media(xxs) {
-        justify-content: center;
-      }
-    }
-
-    .text-white {
-      line-height: $input-sm;
-    }
-  }
-
   .h1 {
     margin: 21px 0;
   }
@@ -130,14 +104,10 @@
   border-radius: $input-border-radius;
   color: $gray;
   display: table;
-  margin: 0 auto 90px;
+  margin: 0 auto 120px;
   padding: 6px 15px;
 
   &.grid-block {
-
-    @include media(sm) {
-      margin-bottom: 30px;
-    }
 
     @include media(xs) {
       display: table;
