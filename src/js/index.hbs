@@ -19,7 +19,7 @@
       fbq('track', 'ViewContent', {
         action: 'notWhitelisted'
       });
-      location.hash = '#sign-up';
+      location.hash = '#sign-up-modal';
     }
 
     $http.get('{{{apiUrl}}}/users/me', {
@@ -46,6 +46,7 @@
 
     // form submit
     var formSignUp = document.getElementsByClassName('form-sign-up')[0];
+    var modalSignUp = document.getElementsByClassName('modal-sign-up')[0];
 
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
@@ -62,7 +63,7 @@
     }
 
     function formSubmit(e){
-      if (formSignUp.checkValidity()) {
+      if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
         markInvalid(e);
@@ -81,6 +82,8 @@
         //sign up form
         formSignUp.addEventListener('change', makeDirty);
         formSignUp.addEventListener('submit', formSubmit);
+        modalSignUp.addEventListener('change', makeDirty);
+        modalSignUp.addEventListener('submit', formSubmit);
       }
 
       // flipping cards

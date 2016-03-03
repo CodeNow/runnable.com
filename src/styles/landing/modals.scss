@@ -1,0 +1,44 @@
+// scss-lint:disable IdSelector
+.modal-backdrop {
+  background: rgba($white,.98);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.modal-backdrop#sign-up-modal {
+  display: none;
+
+  &:target {
+    display: block;
+  }
+
+  .article-sign-up {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    margin: 30px auto;
+  }
+
+  .icons-close {
+    cursor: pointer;
+    height: 30px;
+    opacity: .25;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 30px;
+
+    &:hover {
+      opacity: .5;
+    }
+
+    &:active {
+      opacity: .75;
+    }
+  }
+}
+// scss-lint:enable IdSelector
