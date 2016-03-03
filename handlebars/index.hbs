@@ -131,9 +131,6 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       });
 
     // form submit
-    var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-    var modalSignUp = document.getElementsByClassName('modal-sign-up')[0];
-
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
 
@@ -164,12 +161,14 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // events
     window.onload = function(){
+      var formSignUp = document.getElementsByClassName('form-sign-up');
+
       if (formSignUp) {
         //sign up form
-        formSignUp.addEventListener('change', makeDirty);
-        formSignUp.addEventListener('submit', formSubmit);
-        modalSignUp.addEventListener('change', makeDirty);
-        modalSignUp.addEventListener('submit', formSubmit);
+        for (var i = 0; i < formSignUp.length; i++) {
+          formSignUp[i].addEventListener('change', makeDirty);
+          formSignUp[i].addEventListener('submit', formSubmit);
+        }
       }
 
       // flipping cards
@@ -412,7 +411,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Documentation</a>
   <a ng-href="\{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
-  <a href="#sign-up" class="btn btn-xs link strong">Sign Up</a>
+  <a href="#sign-up-modal" class="btn btn-xs link strong">Sign Up</a>
 </footer>
 
     <div class="modal-backdrop" id="sign-up-modal">
@@ -430,7 +429,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     <h1 class="h1 text-center show">Let’s get going.</h1>
     <p class="p text-center show">Runnable was made for teams that use GitHub.
       <br class="hidden-xs">Tell us about your team to get access and 30 days free.
-    <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form modal-sign-up show">
+    <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
       <div class="grid-content input-group-vertical">
