@@ -76,6 +76,14 @@
       color: $purple-light;
     }
 
+    &.visible-xs {
+      display: none;
+
+      @include media(xs) {
+        display: block;
+      }
+    }
+
     .icons {
       height: 12px;
       margin-left: 3px;
