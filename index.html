@@ -12,88 +12,103 @@
 
 
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     <script>
-      var whitelisted = window.location.search !== '?whitelist=false';
-var app = angular.module('homeApp', []);
+  var whitelisted = window.location.search !== '?whitelist=false';
+  var app = angular.module('homeApp', []);
 
-app.controller('MainCtrl', function ($scope, $window, $http) {
-  $scope.loginUrl = '/auth/github?redirect=/?auth';
-  $scope.data = {
-    embedActive: false,
-    hideUnauthorizedModal: whitelisted
-  };
+  app.controller('MainCtrl', function ($scope, $window, $http) {
+    $scope.loginUrl = '/auth/github?redirect=/?auth';
+    $scope.data = {
+      embedActive: false,
+      hideUnauthorizedModal: whitelisted
+    };
 
-  // scroll to
-  if (!whitelisted) {
-    location.hash = '#sign-up';
-  }
+    if (!window.fbq) {
+      // Stub fbq
+      window.fbq = function () {}
+    }
 
-  $http.get('/users/me', {
-    withCredentials: true
-  })
-    .then(function (user) {
-      var org;
-      try {
-        org = user.data.userOptions.uiState.previousLocation.org;
-      } catch (e) {
-        org = user.data.accounts.github.username;
-      }
-      var prevInstance;
-      try {
-        prevInstance = user.data.userOptions.uiState.previousLocation.instance;
-      } catch (e) {
-      }
-      var newURL = '/' + org;
-      if (prevInstance) {
-        newURL += '/' + prevInstance;
-      }
-      $window.location = newURL;
-    });
+    // scroll to
+    if (!whitelisted) {
+      fbq('track', 'ViewContent', {
+        action: 'notWhitelisted'
+      });
+      location.hash = '#sign-up';
+    }
 
-  // confirming form submit
-  // var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
-  var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-  var inputEmail = document.getElementById('mce-EMAIL');
-  var inputOrg = document.getElementById('mce-GH_ORG');
+    $http.get('/users/me', {
+      withCredentials: true
+    })
+      .then(function (user) {
+        var org;
+        try {
+          org = user.data.userOptions.uiState.previousLocation.org;
+        } catch (e) {
+          org = user.data.accounts.github.username;
+        }
+        var prevInstance;
+        try {
+          prevInstance = user.data.userOptions.uiState.previousLocation.instance;
+        } catch (e) {
+        }
+        var newURL = '/' + org;
+        if (prevInstance) {
+          newURL += '/' + prevInstance
+        }
+        $window.location = newURL;
+      });
 
-  function markInvalid(e) {
-    var thisForm = e.target.getElementsByTagName('input');
+    // form submit
+    var formSignUp = document.getElementsByClassName('form-sign-up')[0];
 
-    for (i = 0; i < thisForm.length; i++) {
-      if (!thisForm[i].validity.valid) {
-        thisForm[i].classList.add('invalid');
+    function markInvalid(e) {
+      var thisForm = e.target.getElementsByTagName('input');
+
+      for (var i = 0; i < thisForm.length; i++) {
+        if (!thisForm[i].validity.valid) {
+          thisForm[i].classList.add('invalid');
+        }
       }
     }
-  }
 
-  function makeDirty(e){
-    e.target.classList.remove('pristine', 'invalid');
-  }
-
-  function formSubmit(e){
-    if (formSignUp.checkValidity()) {
-      // articleSignUp.classList.add('submitted');
-    } else {
-      markInvalid(e);
-      e.preventDefault();
+    function makeDirty(e){
+      e.target.classList.remove('pristine', 'invalid');
     }
-  }
 
-  // events
-  window.onload = function(){
-    // sign up form
-    formSignUp.addEventListener('change', makeDirty);
-    formSignUp.addEventListener('submit', formSubmit);
-  };
-});
+    function formSubmit(e){
+      if (formSignUp.checkValidity()) {
+        fbq('track', 'Lead');
+      } else {
+        markInvalid(e);
+        e.preventDefault();
+      }
+    }
 
-    </script>
+    // flipping cards
+    function flipCard(e) {
+      e.target.parentElement.parentElement.classList.toggle('flip');
+    }
+
+    // events
+    window.onload = function(){
+      //sign up form
+      formSignUp.addEventListener('change', makeDirty);
+      formSignUp.addEventListener('submit', formSubmit);
+
+      // flipping cards
+      var imgFlip = document.getElementsByClassName('img-rounded');
+
+      for(i = 0; i < imgFlip.length; i++) {
+        imgFlip[i].addEventListener('click', flipCard, false);
+      }
+    };
+  });
+</script>
 
     <!--
-      Commit Hash: 69745e3d0d112ff63a8af2da562f2253f24ad427
-      Commit Time: Wed Mar 2 14:15:54 2016 -0800
+      Commit Hash: 1494c8278092b2c9be83ac1863fce7193cc9b180
+      Commit Time: Wed Mar 2 16:25:57 2016 -0800
     -->
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
@@ -119,7 +134,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
                 <use xlink:href="#icons-external">
               </svg>
             </a>
-            <a href="https://runnable.zendesk.com/hc/en-us" target="_blank" class="list-item">Support
+            <a href="https://runnable.zendesk.com/hc/en-us" target="_blank" class="list-item">Documentation
               <svg class="icons">
                 <use xlink:href="#icons-external">
               </svg>
@@ -202,7 +217,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     <div class="text-wrapper">
       <h1 class="h1">Secure by design.</h1>
       <ul class="ul">
-        <li class="li"><strong class="strong">Single-tenacy</strong> means your code is isolated from others.
+        <li class="li"><strong class="strong">Single-tenancy</strong> means your code is isolated from others.
         <li class="li">We don’t store your source code!
         <li class="li">We’re regularly audited by a leading security firm.
       </ul>
@@ -290,7 +305,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
           <ul class="list grid-block vertical">
             <li class="list-item">MySQL
             <li class="list-item">Nginx
-            <li class="list-item">PostreSQL
+            <li class="list-item">PostgreSQL
             <li class="list-item">RabbitMQ
             <li class="list-item">Redis
             <li class="list-item">RethinkDB
@@ -312,7 +327,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   <img class="img" src="images/runnabear-hello.png">
   <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
-  <a href="http://support.runnable.io" class="btn btn-xs link strong">Support</a>
+  <a href="http://support.runnable.io" class="btn btn-xs link strong">Documentation</a>
   <a ng-href="{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
   <a href="#sign-up" class="btn btn-xs link strong">Sign Up</a>
 </footer>
