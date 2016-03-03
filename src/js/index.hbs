@@ -44,7 +44,7 @@
         $window.location = newURL;
       });
 
-    // confirming form submit
+    // form submit
     var formSignUp = document.getElementsByClassName('form-sign-up')[0];
 
     function markInvalid(e) {
@@ -70,9 +70,23 @@
       }
     }
 
+    // flipping cards
+    function flipCard(e) {
+      e.target.parentElement.parentElement.classList.toggle('flip');
+    }
+
+    // events
     window.onload = function(){
+      //sign up form
       formSignUp.addEventListener('change', makeDirty);
       formSignUp.addEventListener('submit', formSubmit);
+
+      // flipping cards
+      var imgFlip = document.getElementsByClassName('img-rounded');
+
+      for(i = 0; i < imgFlip.length; i++) {
+        imgFlip[i].addEventListener('click', flipCard, false);
+      }
     };
   });
 </script>
