@@ -28,6 +28,12 @@
     opacity: .75;
     transition: opacity .15s;
 
+    @include media(xs) {
+      &.click:focus .popover {
+        transform: scale3d(1,1,1);
+      }
+    }
+
     &:hover,
     &:focus {
       opacity: 1;
@@ -40,6 +46,22 @@
 
   .popover {
     cursor: default;
+
+    @include media(xs) {
+      left: auto;
+      right: 6px;
+      transform: scale3d(.2,.2,1);
+
+      &.bottom {
+        transform-origin: 100% 0;
+
+        &::before,
+        &::after {
+          left: auto;
+          right: 10px;
+        }
+      }
+    }
   }
 
   .list {
