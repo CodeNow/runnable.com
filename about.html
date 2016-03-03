@@ -92,23 +92,27 @@
 
     // events
     window.onload = function(){
-      //sign up form
-      formSignUp.addEventListener('change', makeDirty);
-      formSignUp.addEventListener('submit', formSubmit);
+      if (formSignUp) {
+        //sign up form
+        formSignUp.addEventListener('change', makeDirty);
+        formSignUp.addEventListener('submit', formSubmit);
+      }
 
       // flipping cards
       var imgFlip = document.getElementsByClassName('img-rounded');
 
-      for(i = 0; i < imgFlip.length; i++) {
-        imgFlip[i].addEventListener('click', flipCard, false);
+      if (imgFlip) {
+        for (var i = 0; i < imgFlip.length; i++) {
+          imgFlip[i].addEventListener('click', flipCard, false);
+        }
       }
     };
   });
 </script>
 
     <!--
-      Commit Hash: 1494c8278092b2c9be83ac1863fce7193cc9b180
-      Commit Time: Wed Mar 2 16:25:57 2016 -0800
+      Commit Hash: 69073cc29967e9a46c4e4357e10b0cdd4db4c5c6
+      Commit Time: Wed Mar 2 16:31:36 2016 -0800
     -->
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>

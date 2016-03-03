@@ -163,15 +163,19 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // events
     window.onload = function(){
-      //sign up form
-      formSignUp.addEventListener('change', makeDirty);
-      formSignUp.addEventListener('submit', formSubmit);
+      if (formSignUp) {
+        //sign up form
+        formSignUp.addEventListener('change', makeDirty);
+        formSignUp.addEventListener('submit', formSubmit);
+      }
 
       // flipping cards
       var imgFlip = document.getElementsByClassName('img-rounded');
 
-      for(i = 0; i < imgFlip.length; i++) {
-        imgFlip[i].addEventListener('click', flipCard, false);
+      if (imgFlip) {
+        for (var i = 0; i < imgFlip.length; i++) {
+          imgFlip[i].addEventListener('click', flipCard, false);
+        }
       }
     };
   });
