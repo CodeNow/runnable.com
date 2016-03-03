@@ -34,7 +34,7 @@
       fbq('track', 'ViewContent', {
         action: 'notWhitelisted'
       });
-      location.hash = '#sign-up';
+      location.hash = '#sign-up-modal';
     }
 
     $http.get('/users/me', {
@@ -61,6 +61,7 @@
 
     // form submit
     var formSignUp = document.getElementsByClassName('form-sign-up')[0];
+    var modalSignUp = document.getElementsByClassName('modal-sign-up')[0];
 
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
@@ -77,7 +78,7 @@
     }
 
     function formSubmit(e){
-      if (formSignUp.checkValidity()) {
+      if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
         markInvalid(e);
@@ -96,6 +97,8 @@
         //sign up form
         formSignUp.addEventListener('change', makeDirty);
         formSignUp.addEventListener('submit', formSubmit);
+        modalSignUp.addEventListener('change', makeDirty);
+        modalSignUp.addEventListener('submit', formSubmit);
       }
 
       // flipping cards
@@ -111,14 +114,19 @@
 </script>
 
     <!--
-      Commit Hash: 69073cc29967e9a46c4e4357e10b0cdd4db4c5c6
-      Commit Time: Wed Mar 2 16:31:36 2016 -0800
+      Commit Hash: 16cbe836a570065f1885796512a084c05ed580cc
+      Commit Time: Wed Mar 2 19:33:06 2016 -0800
     -->
 
   <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
-  <symbol id="icons-external" viewBox="0 0 15 15"><path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/></symbol>
+  <symbol id="icons-close" view="0 0 30 30">
+    <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
+  </symbol>
+  <symbol id="icons-external" viewBox="0 0 15 15">
+    <path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/>
+  </symbol>
 </svg>
     <header class="grid-block shrink header">
   <div class="grid-block grid-container align-justify">
@@ -127,7 +135,7 @@
     </a>
     <div class="grid-block shrink">
       <a ng-href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong">Sign In</a>
-      <a href="#sign-up" class="grid-content btn btn-sm green">Sign Up</a>
+      <a href="#sign-up-modal" class="grid-content btn btn-sm green">Sign Up</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
@@ -354,7 +362,7 @@
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
         <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Jorge Silva">
-        <img class="img img-rounded" src="images/team/magesticmaury-rounded.png" height="66" width="66" alt="Magestic Maury">
+        <img class="img img-rounded" src="images/team/majesticmaury-rounded.png" height="66" width="66" alt="Majestic Maury">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Jorge Silva</strong>
           <small class="small">Engineer</small>
@@ -369,10 +377,10 @@
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/magesticmaury.jpg" alt="Magestic Maury">
+        <img class="grid-block shrink img" src="images/team/majesticmaury.jpg" alt="Majestic Maury">
         <img class="img img-rounded" src="images/no-runnabear-rounded.svg" height="66" width="66" alt="Jorge Silva">
         <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="strong">Magestic Maury</strong>
+          <strong class="strong">Majestic Maury</strong>
           <small class="small">Plant</small>
         </figcaption>
       </div>
@@ -427,4 +435,44 @@
   <a ng-href="{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
   <a href="#sign-up" class="btn btn-xs link strong">Sign Up</a>
 </footer>
+
+    <div class="modal-backdrop" id="sign-up-modal">
+  <article class="article article-sign-up modal">
+    <a href="#">
+      <svg class="icons icons-close">
+        <use xlink:href="#icons-close">
+      </svg>
+    </a>
+    <div class="well" ng-if="!data.hideUnauthorizedModal">
+      <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+      Your organization doesn’t have access to Runnable…yet. Fill out this form and we’ll get in touch soon!
+    </div>
+    <!-- initial state -->
+    <h1 class="h1 text-center show">Let’s get going.</h1>
+    <p class="p text-center show">Runnable was made for teams that use GitHub.
+      <br class="hidden-xs">Tell us about your team to get access and 30 days free.
+    <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form modal-sign-up show">
+      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
+      <div class="grid-content input-group-vertical">
+        <label class="label" for="mce-GH_ORG">Your Email</label>
+        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
+      </div>
+      <div class="grid-content input-group-vertical">
+        <label class="label" for="mce-GH_ORG">GitHub Organization
+          <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
+            <div class="popover top text-center">We’re sending invitations to users that are a part of an organization on GitHub.</div>
+          </small>
+        </label>
+        <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
+      </div>
+      <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
+    </form>
+
+    <!-- submitted state -->
+    <img class="img hide" src="images/runnabear-jumping.png">
+    <h1 class="h1 text-center hide">You did it.</h1>
+    <p class="p text-center hide">We’ll be in touch soon!
+  </article>
+</div>
 
