@@ -45,9 +45,6 @@
       });
 
     // form submit
-    var formSignUp = document.getElementsByClassName('form-sign-up')[0];
-    var modalSignUp = document.getElementsByClassName('modal-sign-up')[0];
-
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
 
@@ -78,12 +75,14 @@
 
     // events
     window.onload = function(){
+      var formSignUp = document.getElementsByClassName('form-sign-up');
+
       if (formSignUp) {
         //sign up form
-        formSignUp.addEventListener('change', makeDirty);
-        formSignUp.addEventListener('submit', formSubmit);
-        modalSignUp.addEventListener('change', makeDirty);
-        modalSignUp.addEventListener('submit', formSubmit);
+        for (var i = 0; i < formSignUp.length; i++) {
+          formSignUp[i].addEventListener('change', makeDirty);
+          formSignUp[i].addEventListener('submit', formSubmit);
+        }
       }
 
       // flipping cards
