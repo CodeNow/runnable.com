@@ -57,7 +57,7 @@ gulp.task('getCommitHash', function (cb) {
   exec('git rev-parse HEAD', {cwd: __dirname}, function (err, stdout, stderr) {
     locals.commitHash = stdout.split('\n').join('');
     cb();
-  })
+  });
 });
 
 

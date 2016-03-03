@@ -22,7 +22,9 @@
 
 // components
 @import "components/buttons";
+@import "components/header";
 @import "components/keyframes";
+@import "components/icons";
 @import "components/inputs";
 @import "components/input-group-vertical";
 @import "components/input-validation";
@@ -38,3 +40,7 @@
 @import "landing/article-secure";
 @import "landing/article-sign-up";
 @import "landing/article-quick-start";
+
+// about specific
+@import "about/hero";
+@import "about/article-location";
