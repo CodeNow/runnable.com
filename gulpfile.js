@@ -3,31 +3,29 @@ var runSequence = require('run-sequence'); // sequence of tasks
 var debug = require('gulp-debug'); // debug
 var del = require('del'); // delete dist
 var newer = require('gulp-newer'); // checks for file changes
-var fileinclude = require('gulp-file-include'); // html
 var sass = require('gulp-sass'); // sass
 var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
 var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
-var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
 var awspublish = require('gulp-awspublish');
 var exec = require('child_process').exec;
+var jade = require('gulp-jade');
+var replace = require('gulp-replace');
 
 // file locations
 var src = 'src/';
 var dist = './dist/';
 
-var htmlDir = src + 'html/**/*.hbs';
-var htmlSrc = src + 'html/*.hbs';
+var htmlDir = src + 'html/**';
+var jadeSrc = src + 'html/index.jade';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
 var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 
-var htmlDist = dist;
-var hbsDist = dist + 'handlebars/';
-var hbsSrc = hbsDist + '/*';
+var jadeDist = dist;
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
@@ -38,62 +36,55 @@ gulp.task('clean', function() {
   return del.sync('dist');
 });
 
-// html files
-gulp.task('html', function() {
-  return gulp.src(htmlSrc)
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .on('error', function(err){
-      console.log(err.message);
-    })
-    .pipe(gulp.dest(hbsDist));
-});
 
-var commitTime;
+var locals = {
+  // We include this for when we use this in Runnable Angular
+  apiUrl: process.env.API_URL || 'https://runnable-api-staging-codenow.runnableapp.com',
+  env: process.env.NODE_ENV || 'development',
+  commitHash: null,
+  commitTime: null,
+  angularUrl: process.env.ANGULAR_URL || 'https://runnable-angular-staging-codenow.runnableapp.com'
+};
+
 gulp.task('getCommitTime', function (cb) {
   exec('git log -1 --format=%cd', {cwd: __dirname}, function (err, stdout, stderr) {
-    commitTime = stdout.split('\n').join('');
+    locals.commitTime = stdout.split('\n').join('');
     cb();
   });
 });
 
-var commitHash;
 gulp.task('getCommitHash', function (cb) {
   exec('git rev-parse HEAD', {cwd: __dirname}, function (err, stdout, stderr) {
-    commitHash = stdout.split('\n').join('');
+    locals.commitHash = stdout.split('\n').join('');
     cb();
   });
 });
 
-// hbs files
-gulp.task('hbs', function() {
-  return gulp.src(hbsSrc)
-    .pipe(handlebars({
-      // We include this for when we use this in Runnable Angular
-      apiUrl: process.env.API_URL,
-      env: process.env.NODE_ENV,
-      commitHash: commitHash,
-      commitTime: commitTime,
-      angularUrl: process.env.ANGULAR_URL
-    }, {
-      helpers: {
-        if_eq: function(a, b, opts) {
-          if(a == b) // Or === depending on your needs
-            return opts.fn(this);
-          else
-            return opts.inverse(this);
-        }
-      }
+
+// jade files
+gulp.task('jade', function() {
+  return gulp.src(jadeSrc)
+    .pipe(jade({
+      locals: locals
     }))
     .on('error', function(err){
       console.log(err.message);
     })
-    .pipe(rename({
-      extname: ".html"
-    }))
-    .pipe(gulp.dest(htmlDist));
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest(jadeDist));
+});
+
+// Replace occurrences in JS
+gulp.task('javascript', function() {
+  var src = gulp.src(jsDir)
+    .pipe(newer(jsDist))
+    .pipe(debug({
+      title: 'javascript'
+    }));
+  Object.keys(locals).forEach(function (key) {
+    src = src.pipe(replace('{{{' + key + '}}}', locals[key]))
+  });
+  return src.pipe(gulp.dest(jsDist));
 });
 
 // sass
@@ -124,16 +115,6 @@ gulp.task('sassCompressed', function() {
       browsers: ['last 2 versions']
     }))
     .pipe(gulp.dest(sassDist));
-});
-
-// javascript
-gulp.task('javascript', function () {
-  return gulp.src(jsDir)
-    .pipe(newer(jsDist))
-    .pipe(debug({
-      title: 'javascript'
-    }))
-    .pipe(gulp.dest(jsDist));
 });
 
 // images
@@ -207,7 +188,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'jade', 'javascript', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -222,9 +203,9 @@ gulp.task('deploy:s3', function(cb) {
 
 // build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
-  gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
+  runSequence('clean', 'jade', 'javascript', ['sass', 'images', 'favicon'], cb);
+  gulp.watch(htmlDir, function(){runSequence('jade');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'javascript');});
+  gulp.watch(jsDir, ['javascript']);
   gulp.watch(imgDir, ['images']);
 });
