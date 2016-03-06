@@ -36,11 +36,11 @@
 @import "landing/footer";
 @import "landing/modals";
 
-@import "landing/article-always";
-@import "landing/article-environment";
-@import "landing/article-secure";
-@import "landing/article-sign-up";
-@import "landing/article-quick-start";
+@import "features/article-always";
+@import "features/article-environment";
+@import "features/article-secure";
+@import "features/article-sign-up";
+@import "features/article-quick-start";
 
 // about specific
 @import "about/hero";

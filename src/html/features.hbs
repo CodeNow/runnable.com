@@ -38,15 +38,12 @@
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      <article class="article hero">
-        <h1 class="h1 text-center">On-demand integration environments.</h1>
-        <p class="p text-center">So your team can test and integrate their code as often as needed.</p>
-        <a href="https://www.youtube.com/watch?v=Zlm9E_Miar8" class="link" target="_blank">Watch the video
-          <img src="images/play.svg" class="img" height="18" width="18">
-        </a>
-      </article>
-
-      {{!-- @@include('articles/signup.hbs') --}}
+      @@include('articles/hero.hbs')
+      @@include('articles/always.hbs')
+      @@include('articles/environment.hbs')
+      @@include('articles/secure.hbs')
+      @@include('articles/signup.hbs')
+      @@include('articles/quickstart.hbs')
     </main>
 
     <div class="grid-block well">
