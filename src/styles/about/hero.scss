@@ -72,9 +72,14 @@
     display: flex;
     filter: grayscale(1);
     flex: 0 0 16px;
-    font-size: 15px;
-    line-height: 1;
+    font-size: 13px;
+    line-height: 15px;
     margin: 2px 4px;
+
+    @include retina() {
+      font-size: 16px;
+      line-height: 16px;
+    }
 
     &.link-github,
     &.link-instagram {
