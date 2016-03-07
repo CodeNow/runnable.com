@@ -91,38 +91,4 @@
       top: 2px;
     }
   }
-
-  .video {
-    align-items: center;
-    background: #f2edf5;
-    border: 6px solid rgba($purple-dark,.1);
-    border-radius: $input-border-radius-lg;
-    box-shadow: 0 2px 9px rgba($black,.15);
-    display: flex;
-    height: 315px;
-    justify-content: center;
-    margin: 30px auto 0;
-    position: relative;
-    width: 560px;
-    z-index: 1;
-
-    .link {
-      background: #a989bd;
-      border: 1px solid #a989bd;
-      border-radius: $input-sm;
-      margin-top: 0;
-
-      &:hover {
-        background: darken(#a989bd,5%);
-      }
-
-      &:active {
-        background: darken(#a989bd,10%);
-      }
-    }
-  }
-}
-
-.hero-video {
-  padding-bottom: 0;
 }

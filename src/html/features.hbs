@@ -32,18 +32,18 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('components/icons.hbs')
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('articles/hero.hbs')
-      @@include('articles/always.hbs')
-      @@include('articles/environment.hbs')
-      @@include('articles/secure.hbs')
-      @@include('articles/signup.hbs')
-      @@include('articles/quickstart.hbs')
+      @@include('html/features/hero.hbs')
+      @@include('html/features/always.hbs')
+      @@include('html/features/environment.hbs')
+      @@include('html/features/secure.hbs')
+      @@include('html/features/signup.hbs')
+      @@include('html/features/quickstart.hbs')
     </main>
 
     <div class="grid-block well">
