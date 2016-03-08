@@ -1,3 +1,7 @@
+.page-video .main {
+  overflow: visible;
+}
+
 // scss-lint:disable IdSelector
 #video {
 
@@ -9,17 +13,15 @@
       display: block;
     }
 
-    ~ .video-hero {
-      height: 890px;
+    ~ .video-hero .video-img,
+    ~ .video-hero .video-link {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale3d(1.5,1.5,1);
+    }
 
-      .video-img {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .video-link {
-        display: none;
-      }
+    ~ .article-more {
+      transform: translate3d(0,589px,0);
     }
   }
 }
@@ -32,33 +34,13 @@
   display: none;
   height: 30px;
   position: absolute;
-  right: 9px;
-  top: 90px;
+  right: 15px;
+  top: 96px;
   width: 30px;
   z-index: 2;
 
   &:hover,
   &:active {
     background: rgba($black,.3);
-  }
-}
-
-.article-more {
-  background: $white;
-  border-top: 1px solid rgba($black,.1);
-  margin-bottom: 90px;
-  padding-top: 60px;
-  z-index: 1;
-
-  .h1 {
-    font-size: 27px;
-    line-height: 1.3;
-    margin: 0 auto 6px;
-    max-width: 510px;
-  }
-
-  .gray {
-    display: table;
-    margin: 15px auto 0;
   }
 }

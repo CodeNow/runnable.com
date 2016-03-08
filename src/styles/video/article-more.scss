@@ -1,0 +1,22 @@
+.article-more {
+  background: $white;
+  border-top: 1px solid rgba($black,.1);
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 60px;
+  transition: transform .3s ease-in-out;
+  z-index: 1;
+
+  .h1 {
+    font-size: 27px;
+    line-height: 1.3;
+    margin: 0 auto 6px;
+    max-width: 510px;
+  }
+
+  // features button
+  .gray {
+    display: table;
+    margin: 15px auto 210px;
+  }
+}

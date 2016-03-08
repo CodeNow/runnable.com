@@ -1,7 +1,6 @@
 .video-hero {
   height: 300px;
   padding: 0;
-  transition: height .3s ease-in-out;
 
   &:hover .video-img {
     opacity: .6;
@@ -20,14 +19,15 @@
 }
 
 .video-img {
-  border-left: 1px solid rgba($white,.2);
-  border-right: 1px solid rgba($white,.2);
+  border-left: 1px solid rgba($black,.5);
+  border-right: 1px solid rgba($black,.5);
   box-shadow: 0 0 15px rgba($black,.5);
   display: block;
   margin: 0 auto;
   opacity: .5;
   position: relative;
-  transition: opacity .3s ease-in-out;
+  transform-origin: 50% 0%;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   width: 750px;
   z-index: 1;
 }
@@ -39,6 +39,8 @@
   margin: 0 auto;
   position: absolute;
   right: 0;
+  transform-origin: 50% 0%;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   width: 230px;
   z-index: 10;
 
@@ -57,7 +59,7 @@
   position: absolute;
   right: 0;
   top: 81px;
-  transition: opacity .15s ease-in-out;
+  transition: opacity .3s ease-in-out;
   width: 1440px;
   z-index: 1;
 
