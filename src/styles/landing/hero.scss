@@ -1,7 +1,7 @@
 .hero {
   background: linear-gradient($purple-light, $purple);
   color: $white;
-  padding: 230px 0 150px;
+  padding: 150px 0;
 
   @include media(sm) {
     padding-top: 210px;
@@ -26,18 +26,15 @@
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 0;
   }
 
   .h1 {
-    font-size: 54px;
-
     @include media(sm) {
-      font-size: 39px;
       max-width: 630px;
     }
 
     @include media(xxs) {
-      font-size: 36px;
       max-width: 540px;
     }
   }
@@ -68,7 +65,7 @@
   }
 
   .link {
-    background: rgba($white,.1);
+    background: rgba($white,.2);
     border: 1px solid rgba($white,.3);
     border-radius: $input-border-radius-lg;
     color: $white;

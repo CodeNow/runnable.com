@@ -44,10 +44,24 @@
         $window.location = newURL;
       });
 
+    // start video
+    var video = document.getElementsByTagName('video')[0];
+
+    if (window.location.hash === '#video') {
+      startVideo();
+    }
+
+    function startVideo() {
+      video.play();
+    }
+
+    function pauseVideo() {
+      video.pause();
+    }
+
     // form submit
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
-
       for (var i = 0; i < thisForm.length; i++) {
         if (!thisForm[i].validity.valid) {
           thisForm[i].classList.add('invalid');
@@ -75,10 +89,21 @@
 
     // events
     window.onload = function(){
-      var formSignUp = document.getElementsByClassName('form-sign-up');
+      // video
+      var videoPause = document.getElementsByClassName('video-pause');
+      var videoStart = document.getElementsByClassName('video-link')[0];
+      if (videoStart) {
+        videoStart.addEventListener('click', startVideo);
+      }
+      if (videoPause) {
+        for (var i = 0; i < video.length; i++) {
+          video[i].addEventListener('click', pauseVideo);
+        }
+      }
 
+      //sign up form
+      var formSignUp = document.getElementsByClassName('form-sign-up');
       if (formSignUp) {
-        //sign up form
         for (var i = 0; i < formSignUp.length; i++) {
           formSignUp[i].addEventListener('change', makeDirty);
           formSignUp[i].addEventListener('submit', formSubmit);
@@ -87,7 +112,6 @@
 
       // flipping cards
       var imgFlip = document.getElementsByClassName('img-rounded');
-
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
           imgFlip[i].addEventListener('click', flipCard, false);

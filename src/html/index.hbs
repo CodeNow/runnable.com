@@ -38,58 +38,21 @@
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      <article class="article hero hero-video">
-        <h1 class="h1 text-center">On-demand integration environments.</h1>
-        <p class="p text-center">So your team can test and integrate their code as often as needed.</p>
-        <video class="video" controls src="https://dl.dropboxusercontent.com/s/1ceafflwq3agzwx/Introduction%20to%20Runnable.mp4">
-          <a href="https://www.youtube.com/watch?v=Zlm9E_Miar8" class="link" target="_blank">Watch the video
-            <img src="images/play.svg" class="img" height="18" width="18">
-          </a>
-        </video>
-      </article>
-
-      <article class="article article-more">
-        {{!-- <a class="btn btn-sm green">Learn More</a> --}}
-      </article>
-
-      <article class="article article-sign-up video-sign-up" id="sign-up">
-        <div class="well" ng-if="!data.hideUnauthorizedModal">
-          <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-          Your organization doesn’t have access to Runnable…yet. Fill out this form and we’ll get in touch soon!
-        </div>
-        <!-- initial state -->
-        <h1 class="h1 text-center show">Let’s get going.</h1>
-        <p class="p text-center show">Runnable was made for teams that use GitHub.
-          <br class="hidden-xs">Tell us about your team to get access and 30 days free.
-        <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
-          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
-          <div class="grid-content input-group-vertical">
-            <label class="label" for="mce-GH_ORG">Your Email</label>
-            <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
-          </div>
-          <div class="grid-content input-group-vertical">
-            <label class="label" for="mce-GH_ORG">GitHub Organization
-              <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-                <div class="popover top text-center">We’re sending invitations to users that are a part of an organization on GitHub.</div>
-              </small>
-            </label>
-            <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
-          </div>
-          <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
-        </form>
-
-        <!-- submitted state -->
-        <img class="img hide" src="images/runnabear-jumping.png">
-        <h1 class="h1 text-center hide">You did it.</h1>
-        <p class="p text-center hide">We’ll be in touch soon!
-      </article>
+      @@include('html/video/video.hbs')
+      @@include('html/video/video-hero.hbs')
+      @@include('html/video/article-more.hbs')
     </main>
+
+    @@include('components/footer.hbs')
 
     <div class="grid-block well">
       Wanna see our last project?
-      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
+      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets
+        <svg class="icons">
+          <use xlink:href="#icons-external">
+        </svg>
+      </a>
     </div>
 
-    @@include('components/footer.hbs')
     @@include('components/signup-modal.hbs')
+
