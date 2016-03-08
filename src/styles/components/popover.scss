@@ -30,6 +30,7 @@
   position: absolute;
   transform: scale3d(.2,.2,1) translate3d(-50%,0,0);
   transition: all .15s .1s ease-in-out;
+  z-index: 100;
 
   &.bottom {
     box-shadow: 0 1px 3px rgba($black,.1);
