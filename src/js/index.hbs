@@ -46,6 +46,7 @@
 
     // start video
     var video = document.getElementsByTagName('video')[0];
+    var article = document.getElementsByClassName('article-more')[0];
 
     if (window.location.hash === '#video') {
       startVideo();
@@ -55,11 +56,20 @@
       video.scrollIntoView({behavior: 'smooth'});
       video.classList.add('playing');
       video.play();
+      pushVideo();
+      window.addEventListener('resize', pushVideo);
     }
 
     function pauseVideo() {
       video.classList.remove('playing');
       video.pause();
+      article.style.transform = null;
+      window.removeEventListener('resize', pushVideo);
+    }
+
+    function pushVideo() {
+      var articleOffset = video.offsetHeight - 220;
+      article.style.transform = 'translate3d(0,' + articleOffset + 'px,0)';
     }
 
     // form submit
@@ -99,8 +109,6 @@
         for (var i = 0; i < videoStart.length; i++) {
           videoStart[i].addEventListener('click', startVideo);
         }
-      }
-      if (videoPause) {
         for (var i = 0; i < videoPause.length; i++) {
           videoPause[i].addEventListener('click', pauseVideo);
         }
