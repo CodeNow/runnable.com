@@ -59,10 +59,37 @@
         $window.location = newURL;
       });
 
+    // start video
+    var video = document.getElementsByTagName('video')[0];
+    var article = document.getElementsByClassName('article-more')[0];
+
+    if (window.location.hash === '#video') {
+      startVideo();
+    }
+
+    function startVideo() {
+      video.scrollIntoView({behavior: 'smooth'});
+      video.classList.add('playing');
+      video.play();
+      pushVideo();
+      window.addEventListener('resize', pushVideo);
+    }
+
+    function pauseVideo() {
+      video.classList.remove('playing');
+      video.pause();
+      article.style.transform = null;
+      window.removeEventListener('resize', pushVideo);
+    }
+
+    function pushVideo() {
+      var articleOffset = video.offsetHeight - 220;
+      article.style.transform = 'translate3d(0,' + articleOffset + 'px,0)';
+    }
+
     // form submit
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
-
       for (var i = 0; i < thisForm.length; i++) {
         if (!thisForm[i].validity.valid) {
           thisForm[i].classList.add('invalid');
@@ -90,10 +117,21 @@
 
     // events
     window.onload = function(){
-      var formSignUp = document.getElementsByClassName('form-sign-up');
+      // video
+      var videoPause = document.getElementsByClassName('video-pause');
+      var videoStart = document.getElementsByClassName('video-start');
+      if (videoStart) {
+        for (var i = 0; i < videoStart.length; i++) {
+          videoStart[i].addEventListener('click', startVideo);
+        }
+        for (var i = 0; i < videoPause.length; i++) {
+          videoPause[i].addEventListener('click', pauseVideo);
+        }
+      }
 
+      //sign up form
+      var formSignUp = document.getElementsByClassName('form-sign-up');
       if (formSignUp) {
-        //sign up form
         for (var i = 0; i < formSignUp.length; i++) {
           formSignUp[i].addEventListener('change', makeDirty);
           formSignUp[i].addEventListener('submit', formSubmit);
@@ -102,7 +140,6 @@
 
       // flipping cards
       var imgFlip = document.getElementsByClassName('img-rounded');
-
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
           imgFlip[i].addEventListener('click', flipCard, false);
@@ -113,11 +150,11 @@
 </script>
 
     <!--
-      Commit Hash: a63dc4e91ddf1a0957a1e45769c368e0cfcbf174
-      Commit Time: Wed Mar 2 20:03:26 2016 -0800
+      Commit Hash: 3e8fe73745a255ecfaf1faf679716cb76d9dc366
+      Commit Time: Mon Mar 7 20:00:57 2016 -0800
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
@@ -139,6 +176,7 @@
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
+            <a href="features.html" class="list-item">Features</a>
             <a href="about.html" class="list-item">About</a>
             <a ng-href="{{loginUrl}}" class="list-item visible-xs">Sign In</a>
             <a href="#sign-up-modal" class="list-item visible-xs">Sign Up</a>
@@ -161,189 +199,51 @@
 
 
     <main class="grid-block vertical main">
-      <article class="article hero">
-  <h1 class="h1 text-center">Full-stack
-    <br class="visible-xxs"> environments
-    <br class="hidden-xs"> for your GitHub branches.
-  </h1>
-  <p class="p text-center">When you create a branch, you get a new sandbox environment.
-    <br class="hidden-sm">When you push changes to that branch, your sandbox updates.
-  </p>
-  <a href="https://www.youtube.com/watch?v=Zlm9E_Miar8" class="link" target="_blank">Watch the video
-    <img src="images/play.svg" class="img" height="18" width="18">
+      <video id="video" class="video-embed" controls preload="none" poster="images/no-runnabear-loading.svg" src="https://dl.dropboxusercontent.com/s/aj2v9nmk9ykguql/RunnableAnimaticEpipheo002-3.mp4"></video>
+<button class="btn btn-icon video-pause" title="Paws">
+  <svg class="icons icons-close ">
+    <use xlink:href="#icons-close">
+  </svg>
+</button>
+
+      <article class="article hero video-hero">
+  <button class="btn btn-lg green video-link video-start">Watch the Video
+    <img src="images/play.svg" class="img" height="21" width="21">
+  </button>
+  <a class="video-img-wrapper video-start">
+    <img class="video-img" src="images/video-still.jpg">
   </a>
 </article>
 
-      <article class="article grid-block vertical article-always">
-  <div class="grid-container">
-    <img src="images/always.gif" class="img" height="150" width="150">
-    <h1 class="h1 text-center">Work in smaller & more
-      <br class="hidden-xs">frequent iterations.
-    </h1>
+      <article class="article article-more">
+  <h1 class="h1 text-center">Runnable creates <strong class="strong">on-demand integration environments</strong>, so your team can test and integrate their code as often as needed.</h1>
+  <a class="btn btn-sm gray" href="features.html">Take a Tour</a>
 
-    <div class="grid-block card-container">
-      <div class="grid-block vertical card">
-        <img src="images/always-integrating.svg" class="img" height="120" width="120">
-        <h3 class="h3 strong text-center">Always integrating.</h3>
-        <p class="p text-center">Code like a boss, ’cause bosses don’t wait for integration!</p>
-        <ul class="ul">
-          <li class="li">No waiting for <strong class="strong">environments</strong>.
-          <li class="li">No waiting for <strong class="strong">code to build</strong>.
-          <li class="li">No waiting for <strong class="strong">your team to build</strong>.
-        </ul>
-      </div>
-
-      <div class="grid-block vertical card">
-        <img src="images/always-testing.svg" class="img" height="120" width="120">
-        <h3 class="h3 strong text-center">Always testing.</h3>
-        <p class="p text-center">Test like a bigger boss, one that gets the bigger picture!</p>
-        <ul class="ul">
-          <li class="li">Test <strong class="strong">integrations</strong> before code complete.
-          <li class="li">Test <strong class="strong">E2E</strong>—where it matters the most.
-        </ul>
-      </div>
-    </div>
-    <div class="grid-block vertical always-sharing">
-      <img src="images/always-sharing.gif" class="img" height="90" width="90">
-      <h3 class="h3 strong text-center">Always sharing.</h3>
-      <p class="p text-center">Share with your <strong class="strong">actual</strong> boss, or whoever you need to! Collaborate more frequently when all your code is running in one place. Shoot a link to PMs, QA, or beta-testers—it’s that simple.
-    </div>
-  </div>
-</article>
-
-      <article class="article article-environment">
-  <img class="img grid-content" src="images/environment.svg" width="500" height="250">
-  <div class="grid-container grid-block vertical">
-    <h1 class="h1">Not just any environment.</h1>
-    <p class="p">We’re active in the Docker community. Our expertise is built in our product and support.
-    <ul class="ul">
-      <li class="li">Our builds are <strong class="strong">fast!</strong>
-      <li class="li">We maintain performance under heavy workloads.
-      <li class="li">Use your own terminal with our CLI.
-    </ul>
-  </div>
-</article>
-
-      <article class="article article-secure">
-  <div class="grid-container clearfix">
-    <img class="img" src="images/secure-lock.svg" height="2700" width="2700">
-    <div class="text-wrapper">
-      <h1 class="h1">Secure by design.</h1>
-      <ul class="ul">
-        <li class="li"><strong class="strong">Single-tenancy</strong> means your code is isolated from others.
-        <li class="li">We don’t store your source code!
-        <li class="li">We’re regularly audited by a leading security firm.
-      </ul>
-    </div>
-  </div>
-</article>
-      <article class="article article-sign-up" id="sign-up">
-  <div class="well" ng-if="!data.hideUnauthorizedModal">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    Your organization doesn’t have access to Runnable…yet. Fill out this form and we’ll get in touch soon!
-  </div>
-  <!-- initial state -->
-  <h1 class="h1 text-center show">Let’s get going.</h1>
-  <p class="p text-center show">Runnable was made for teams that use GitHub.
-    <br class="hidden-xs">Tell us about your team to get access and 30 days free.
-  <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="mce-GH_ORG">Your Email</label>
-      <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
-    </div>
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="mce-GH_ORG">GitHub Organization
-        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-          <div class="popover top text-center">We’re sending invitations to users that are a part of an organization on GitHub.</div>
-        </small>
-      </label>
-      <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
-    </div>
-    <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
-  </form>
-
-  <!-- submitted state -->
-  <img class="img hide" src="images/runnabear-jumping.png">
-  <h1 class="h1 text-center hide">You did it.</h1>
-  <p class="p text-center hide">We’ll be in touch soon!
-</article>
-
-      <article class="article article-quick-start">
-  <div class="grid-container">
-    <h2 class="h2 text-center">We’ve got you covered
-      <br class="visible-sm">from C++ to Rails.
-    </h2>
-    <p class="p text-center">Check out our documentation for
-      <br class="visible-xs">help on getting started.</p>
-    <a href="http://support.runnable.io" class="btn btn-sm gray">View Documentation</a>
-    <div class="grid-block grid-4">
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-c++.svg" class="img" height="100" width="100" alt="C++">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-go.png" class="img" height="100" width="100" alt="Go">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-java.svg" class="img" height="100" width="100" alt="Java">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-node.js.svg" class="img" height="100" width="100" alt="node.js">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-php.svg" class="img" height="100" width="100" alt="php">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-python.svg" class="img" height="100" width="100" alt="Python">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-ruby.svg" class="img" height="100" width="100" alt="Ruby">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-rails.svg" class="img" height="100" width="100" alt="Ruby on Rails">
-      </a>
-    </div>
-    <div class="text-center underline popover-trigger hover">View Supported Services
-      <div class="popover top">
-        <div class="grid-block grid-2">
-          <ul class="list grid-block vertical">
-            <li class="list-item">Cassandra
-            <li class="list-item">Consul
-            <li class="list-item">ElasticSearch
-            <li class="list-item">HBase
-            <li class="list-item">Memcached
-            <li class="list-item">MongoDB
-          </ul>
-          <ul class="list grid-block vertical">
-            <li class="list-item">MySQL
-            <li class="list-item">Nginx
-            <li class="list-item">PostgreSQL
-            <li class="list-item">RabbitMQ
-            <li class="list-item">Redis
-            <li class="list-item">RethinkDB
-          </ul>
-      </div>
-    </div>
-  </div>
-</article>
-    </main>
-
-    <div class="grid-block well">
-      Wanna see our last project?
-      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
-    </div>
-
-    <hr class="hr grid-container">
+  <hr class="hr grid-container">
 
 <footer class="grid-block footer align-spaced">
   <img class="img" src="images/runnabear-hello.png">
+  <a href="features.html" class="btn btn-xs link strong">Features</a>
   <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Documentation</a>
   <a ng-href="{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
   <a href="#sign-up-modal" class="btn btn-xs link strong">Sign Up</a>
 </footer>
+
+
+  <div class="grid-block well">
+    Wanna see our last project?
+    <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets
+      <svg class="icons">
+        <use xlink:href="#icons-external">
+      </svg>
+    </a>
+  </div>
+</article>
+
+    </main>
+
 
     <div class="modal-backdrop" id="sign-up-modal">
   <article class="article article-sign-up modal">
@@ -384,4 +284,5 @@
     <p class="p text-center hide">We’ll be in touch soon!
   </article>
 </div>
+
 

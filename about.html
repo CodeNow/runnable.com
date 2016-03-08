@@ -59,10 +59,37 @@
         $window.location = newURL;
       });
 
+    // start video
+    var video = document.getElementsByTagName('video')[0];
+    var article = document.getElementsByClassName('article-more')[0];
+
+    if (window.location.hash === '#video') {
+      startVideo();
+    }
+
+    function startVideo() {
+      video.scrollIntoView({behavior: 'smooth'});
+      video.classList.add('playing');
+      video.play();
+      pushVideo();
+      window.addEventListener('resize', pushVideo);
+    }
+
+    function pauseVideo() {
+      video.classList.remove('playing');
+      video.pause();
+      article.style.transform = null;
+      window.removeEventListener('resize', pushVideo);
+    }
+
+    function pushVideo() {
+      var articleOffset = video.offsetHeight - 220;
+      article.style.transform = 'translate3d(0,' + articleOffset + 'px,0)';
+    }
+
     // form submit
     function markInvalid(e) {
       var thisForm = e.target.getElementsByTagName('input');
-
       for (var i = 0; i < thisForm.length; i++) {
         if (!thisForm[i].validity.valid) {
           thisForm[i].classList.add('invalid');
@@ -90,10 +117,21 @@
 
     // events
     window.onload = function(){
-      var formSignUp = document.getElementsByClassName('form-sign-up');
+      // video
+      var videoPause = document.getElementsByClassName('video-pause');
+      var videoStart = document.getElementsByClassName('video-start');
+      if (videoStart) {
+        for (var i = 0; i < videoStart.length; i++) {
+          videoStart[i].addEventListener('click', startVideo);
+        }
+        for (var i = 0; i < videoPause.length; i++) {
+          videoPause[i].addEventListener('click', pauseVideo);
+        }
+      }
 
+      //sign up form
+      var formSignUp = document.getElementsByClassName('form-sign-up');
       if (formSignUp) {
-        //sign up form
         for (var i = 0; i < formSignUp.length; i++) {
           formSignUp[i].addEventListener('change', makeDirty);
           formSignUp[i].addEventListener('submit', formSubmit);
@@ -102,7 +140,6 @@
 
       // flipping cards
       var imgFlip = document.getElementsByClassName('img-rounded');
-
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
           imgFlip[i].addEventListener('click', flipCard, false);
@@ -113,11 +150,11 @@
 </script>
 
     <!--
-      Commit Hash: a63dc4e91ddf1a0957a1e45769c368e0cfcbf174
-      Commit Time: Wed Mar 2 20:03:26 2016 -0800
+      Commit Hash: 3e8fe73745a255ecfaf1faf679716cb76d9dc366
+      Commit Time: Mon Mar 7 20:00:57 2016 -0800
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
@@ -139,6 +176,7 @@
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
+            <a href="features.html" class="list-item">Features</a>
             <a href="about.html" class="list-item">About</a>
             <a ng-href="{{loginUrl}}" class="list-item visible-xs">Sign In</a>
             <a href="#sign-up-modal" class="list-item visible-xs">Sign Up</a>
@@ -430,6 +468,7 @@
 
 <footer class="grid-block footer align-spaced">
   <img class="img" src="images/runnabear-hello.png">
+  <a href="features.html" class="btn btn-xs link strong">Features</a>
   <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Documentation</a>
