@@ -3,17 +3,22 @@
   background: rgba($white,.98);
   bottom: 0;
   left: 0;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;
+  transform: scale3d(1.2,1.2,1);
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   z-index: 100;
 }
 
 .modal-backdrop#sign-up-modal {
-  display: none;
 
   &:target {
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale3d(1,1,1);
   }
 
   .article-sign-up {
