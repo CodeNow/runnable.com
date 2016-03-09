@@ -160,20 +160,28 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // form submit
     function markInvalid(e) {
-      var theseInputs = e.target.getElementsByTagName('input');
-      for (var i = 0; i < theseInputs.length; i++) {
-        if (!theseInputs[i].validity.valid) {
-          theseInputs[i].classList.add('invalid');
+      if (e.target.tagName == 'INPUT') {
+        // for invalid event
+        var theseInputs = e.target.classList.add('invalid');;
+      } else {
+        // for change event
+        var theseInputs = e.target.getElementsByTagName('input');
+        for (var i = 0; i < theseInputs.length; i++) {
+          if (!theseInputs[i].validity.valid) {
+            theseInputs[i].classList.add('invalid');
+          }
         }
       }
     }
 
     function shakeForm(e) {
-      var thisModal = e.target.parentElement;
+      var thisModal = e.target;
+      // get modal element
+      while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
       thisModal.classList.add('shake');
       thisModal.addEventListener('animationend', function(){
         thisModal.classList.remove('shake');
-        thisModal.removeEventListener('animationend');
+        thisModal.removeEventListener('animationend', function(){});
       });
     }
 
@@ -181,19 +189,25 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       e.target.classList.remove('pristine', 'invalid');
     }
 
+    function formInvalid(e) {
+      markInvalid(e);
+      shakeForm(e);
+    }
+
     function formSubmit(e){
       if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
-        shakeForm(e);
-        markInvalid(e);
         e.preventDefault();
       }
     }
 
     // flipping cards
     function flipCard(e) {
-      e.target.parentElement.parentElement.classList.toggle('flip');
+      var thisCard = e.target;
+      // get card element
+      while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+      thisCard.classList.toggle('flip');
     }
 
     // events
@@ -218,6 +232,11 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
         for (var i = 0; i < formSignUp.length; i++) {
           formSignUp[i].addEventListener('change', makeDirty);
           formSignUp[i].addEventListener('submit', formSubmit);
+
+          var theseInputs = formSignUp[i].getElementsByTagName('input');
+          for (var i = 0; i < theseInputs.length; i++) {
+            theseInputs[i].addEventListener('invalid', formInvalid);
+          }
         }
       }
 
@@ -255,23 +274,19 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     </a>
     <div class="grid-block shrink">
       <a href="https://runnable.zendesk.com/hc/en-us" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
+      <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Tour</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Sign In</a>
-      <a href="#sign-up-modal" class="grid-content btn btn-sm green hidden-xs">Sign Up</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
             <a ng-href="\{{loginUrl}}" class="list-item-a visible-xs">Sign In</a>
-            <a href="#sign-up-modal" class="list-item-a visible-xs">Sign Up</a>
-            <a class="list-item divider visible-xs"></a>
-            <a href="features.html" class="list-item-a">Features</a>
+            <a href="#sign-up-modal" class="list-item-a">Sign Up</a>
+            <a class="list-item divider"></a>
+            <a href="https://runnable.zendesk.com/hc/en-us" class="list-item-a visible-sm">Documentation</a>
+            <a href="features.html" class="list-item-a visible-xs">Tour</a>
             <a href="about.html" class="list-item-a">About</a>
             <a href="mailto:info@runnable.com" target="_blank" class="list-item-a">Email
-              <svg class="icons">
-                <use xlink:href="#icons-external">
-              </svg>
-            </a>
-            <a href="https://runnable.zendesk.com/hc/en-us" target="_blank" class="list-item-a visible-sm">Documentation
               <svg class="icons">
                 <use xlink:href="#icons-external">
               </svg>
@@ -307,13 +322,11 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   <p class="p text-center">We’re tightly integrated with your developer
     <br>workflow to help you Lorem Ipsum.
   </p>
-  <a class="btn btn-lg gray" href="features.html">Take a Tour</a>
+  <div class="grid-block align-center">
+    <a class="grid-content shrink btn btn-lg green" href="features.html">Take a Tour</a>
+    <a class="grid-content shrink btn btn-lg gray" href="#sign-up-modal">Sign Up</a>
+  </div>
 
-  <div class="sign-up-box">
-  <img class="img" src="images/runnabear-hello.png">
-  <p class="p text-center">Ready to get started? Tell us about your Github organization and we’ll get started!</p>
-  <a href="#sign-up-modal" class="btn btn-sm green">Sign Up</a>
-</div>
   <hr class="hr grid-container">
 
 <footer class="grid-block footer align-spaced">
@@ -338,7 +351,6 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 </article>
 
     </main>
-
 
     <div class="modal-backdrop" id="sign-up-modal">
   <article class="article article-sign-up modal">

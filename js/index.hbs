@@ -74,20 +74,28 @@
 
     // form submit
     function markInvalid(e) {
-      var theseInputs = e.target.getElementsByTagName('input');
-      for (var i = 0; i < theseInputs.length; i++) {
-        if (!theseInputs[i].validity.valid) {
-          theseInputs[i].classList.add('invalid');
+      if (e.target.tagName == 'INPUT') {
+        // for invalid event
+        var theseInputs = e.target.classList.add('invalid');;
+      } else {
+        // for change event
+        var theseInputs = e.target.getElementsByTagName('input');
+        for (var i = 0; i < theseInputs.length; i++) {
+          if (!theseInputs[i].validity.valid) {
+            theseInputs[i].classList.add('invalid');
+          }
         }
       }
     }
 
     function shakeForm(e) {
-      var thisModal = e.target.parentElement;
+      var thisModal = e.target;
+      // get modal element
+      while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
       thisModal.classList.add('shake');
       thisModal.addEventListener('animationend', function(){
         thisModal.classList.remove('shake');
-        thisModal.removeEventListener('animationend');
+        thisModal.removeEventListener('animationend', function(){});
       });
     }
 
@@ -95,19 +103,25 @@
       e.target.classList.remove('pristine', 'invalid');
     }
 
+    function formInvalid(e) {
+      markInvalid(e);
+      shakeForm(e);
+    }
+
     function formSubmit(e){
       if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
-        shakeForm(e);
-        markInvalid(e);
         e.preventDefault();
       }
     }
 
     // flipping cards
     function flipCard(e) {
-      e.target.parentElement.parentElement.classList.toggle('flip');
+      var thisCard = e.target;
+      // get card element
+      while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+      thisCard.classList.toggle('flip');
     }
 
     // events
@@ -132,6 +146,11 @@
         for (var i = 0; i < formSignUp.length; i++) {
           formSignUp[i].addEventListener('change', makeDirty);
           formSignUp[i].addEventListener('submit', formSubmit);
+
+          var theseInputs = formSignUp[i].getElementsByTagName('input');
+          for (var i = 0; i < theseInputs.length; i++) {
+            theseInputs[i].addEventListener('invalid', formInvalid);
+          }
         }
       }
 
