@@ -128,14 +128,16 @@
     // events
     window.onload = function(){
       // video
-      var videoPause = document.getElementsByClassName('video-pause');
       var videoStart = document.getElementsByClassName('video-start');
+      var videoPause = document.getElementsByClassName('video-pause');
       if (videoStart) {
         for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click touchstart', startVideo);
+          videoStart[i].addEventListener('click', startVideo);
+          videoStart[i].addEventListener('touchstart', startVideo);
         }
         for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click touchstart', pauseVideo);
+          videoPause[i].addEventListener('click', pauseVideo);
+          videoStart[i].addEventListener('touchstart', startVideo);
         }
       }
 
@@ -152,7 +154,8 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click touchstart', flipCard, false);
+          imgFlip[i].addEventListener('click', flipCard);
+          imgFlip[i].addEventListener('touchstart', flipCard);
         }
       }
     };
@@ -160,11 +163,11 @@
 </script>
 
     <!--
-      Commit Hash: 84e164d63528ff551bb948aa656fdf29105c3e3a
-      Commit Time: Tue Mar 8 20:29:42 2016 -0800
+      Commit Hash: b098f6c23f4ca4b5ce24417dab8b7a30ac10b574
+      Commit Time: Tue Mar 8 20:45:45 2016 -0800
     -->
 
-  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl">
+  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
@@ -221,7 +224,7 @@
       <article class="article hero video-hero">
   <h1 class="h1 text-center">Runnable creates <strong class="strong">on-demand integration environments</strong>, so your team can test and integrate their code as often as needed.</h1>
   <a class="video-img-wrapper video-start">
-    <button class="btn btn-lg green video-link video-start">Watch the Video
+    <button class="btn btn-lg green video-link">Watch the Video
       <img src="images/play.svg" class="img" height="21" width="21">
     </button>
     <img class="video-img" src="images/video-still.jpg">
