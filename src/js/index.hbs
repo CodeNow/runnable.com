@@ -113,14 +113,16 @@
     // events
     window.onload = function(){
       // video
-      var videoPause = document.getElementsByClassName('video-pause');
       var videoStart = document.getElementsByClassName('video-start');
+      var videoPause = document.getElementsByClassName('video-pause');
       if (videoStart) {
         for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click touchstart', startVideo);
+          videoStart[i].addEventListener('click', startVideo);
+          videoStart[i].addEventListener('touchstart', startVideo);
         }
         for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click touchstart', pauseVideo);
+          videoPause[i].addEventListener('click', pauseVideo);
+          videoStart[i].addEventListener('touchstart', startVideo);
         }
       }
 
@@ -137,7 +139,8 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click touchstart', flipCard, false);
+          imgFlip[i].addEventListener('click', flipCard);
+          imgFlip[i].addEventListener('touchstart', flipCard);
         }
       }
     };
