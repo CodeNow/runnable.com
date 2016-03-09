@@ -25,20 +25,10 @@
 
   .icons-close {
     cursor: pointer;
-    height: 30px;
-    opacity: .25;
     position: absolute;
     right: 15px;
     top: 15px;
     width: 30px;
-
-    &:hover {
-      opacity: .5;
-    }
-
-    &:active {
-      opacity: .75;
-    }
   }
 }
 // scss-lint:enable IdSelector

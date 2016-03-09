@@ -5,3 +5,22 @@
 .icons {
   fill: currentColor;
 }
+
+.icons-close {
+  background: rgba($black,.15);
+  border-radius: $input-border-radius;
+  color: rgba($white,.5);
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+
+  &:hover,
+  &:active {
+    background: rgba($black,.3);
+  }
+
+  .icons {
+    height: 100%;
+    width: 100%;
+  }
+}

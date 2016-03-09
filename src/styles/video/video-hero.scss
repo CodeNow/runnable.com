@@ -107,25 +107,9 @@
 
 // pause button
 .video-pause {
-  background: rgba($black,.15);
-  border-radius: $input-border-radius;
-  color: rgba($white,.5);
-  cursor: pointer;
   display: none;
-  height: 30px;
   position: absolute;
   right: 15px;
   top: 315px;
-  width: 30px;
   z-index: 2;
-
-  &:hover,
-  &:active {
-    background: rgba($black,.3);
-  }
-
-  .icons {
-    height: 100%;
-    width: 100%;
-  }
 }
