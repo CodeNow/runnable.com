@@ -87,7 +87,7 @@
       thisModal.classList.add('shake');
       thisModal.addEventListener('animationend', function(){
         thisModal.classList.remove('shake');
-        thisModal.removeEventListener('animationend');
+        thisModal.removeEventListener('animationend', function(){});
       });
     }
 
