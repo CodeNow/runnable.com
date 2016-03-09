@@ -89,12 +89,21 @@
 
     // form submit
     function markInvalid(e) {
-      var thisForm = e.target.getElementsByTagName('input');
-      for (var i = 0; i < thisForm.length; i++) {
-        if (!thisForm[i].validity.valid) {
-          thisForm[i].classList.add('invalid');
+      var theseInputs = e.target.getElementsByTagName('input');
+      for (var i = 0; i < theseInputs.length; i++) {
+        if (!theseInputs[i].validity.valid) {
+          theseInputs[i].classList.add('invalid');
         }
       }
+    }
+
+    function shakeForm(e) {
+      var thisModal = e.target.parentElement;
+      thisModal.classList.add('shake');
+      thisModal.addEventListener('animationend', function(){
+        thisModal.classList.remove('shake');
+        thisModal.removeEventListener('animationend');
+      });
     }
 
     function makeDirty(e){
@@ -105,6 +114,7 @@
       if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
+        shakeForm(e);
         markInvalid(e);
         e.preventDefault();
       }
@@ -122,10 +132,10 @@
       var videoStart = document.getElementsByClassName('video-start');
       if (videoStart) {
         for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', startVideo);
+          videoStart[i].addEventListener('click touchstart', startVideo);
         }
         for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click', pauseVideo);
+          videoPause[i].addEventListener('click touchstart', pauseVideo);
         }
       }
 
@@ -142,7 +152,7 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard, false);
+          imgFlip[i].addEventListener('click touchstart', flipCard, false);
         }
       }
     };
@@ -150,8 +160,8 @@
 </script>
 
     <!--
-      Commit Hash: 45ed0966e6a0f0fdb80ad0cde514ee08ecdab419
-      Commit Time: Tue Mar 8 20:07:00 2016 -0800
+      Commit Hash: 3889d01f85d7a87e0534e638abdeed1fe6b34344
+      Commit Time: Tue Mar 8 20:27:06 2016 -0800
     -->
 
   <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
@@ -388,8 +398,8 @@
 
     <div class="modal-backdrop" id="sign-up-modal">
   <article class="article article-sign-up modal">
-    <a href="#">
-      <svg class="icons icons-close">
+    <a href="#" class="icons-close">
+      <svg class="icons">
         <use xlink:href="#icons-close">
       </svg>
     </a>

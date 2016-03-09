@@ -74,12 +74,21 @@
 
     // form submit
     function markInvalid(e) {
-      var thisForm = e.target.getElementsByTagName('input');
-      for (var i = 0; i < thisForm.length; i++) {
-        if (!thisForm[i].validity.valid) {
-          thisForm[i].classList.add('invalid');
+      var theseInputs = e.target.getElementsByTagName('input');
+      for (var i = 0; i < theseInputs.length; i++) {
+        if (!theseInputs[i].validity.valid) {
+          theseInputs[i].classList.add('invalid');
         }
       }
+    }
+
+    function shakeForm(e) {
+      var thisModal = e.target.parentElement;
+      thisModal.classList.add('shake');
+      thisModal.addEventListener('animationend', function(){
+        thisModal.classList.remove('shake');
+        thisModal.removeEventListener('animationend');
+      });
     }
 
     function makeDirty(e){
@@ -90,6 +99,7 @@
       if (e.target.checkValidity()) {
         fbq('track', 'Lead');
       } else {
+        shakeForm(e);
         markInvalid(e);
         e.preventDefault();
       }
@@ -107,10 +117,10 @@
       var videoStart = document.getElementsByClassName('video-start');
       if (videoStart) {
         for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', startVideo);
+          videoStart[i].addEventListener('click touchstart', startVideo);
         }
         for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click', pauseVideo);
+          videoPause[i].addEventListener('click touchstart', pauseVideo);
         }
       }
 
@@ -127,7 +137,7 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard, false);
+          imgFlip[i].addEventListener('click touchstart', flipCard, false);
         }
       }
     };
