@@ -9,14 +9,17 @@
 .icons-close {
   background: rgba($black,.15);
   border-radius: $input-border-radius;
-  color: rgba($white,.5);
+  color: rgba($white,.75);
   cursor: pointer;
   height: 30px;
   width: 30px;
 
-  &:hover,
+  &:hover {
+    background: rgba($black,.2);
+  }
+
   &:active {
-    background: rgba($black,.3);
+    background: rgba($black,.25);
   }
 
   .icons {

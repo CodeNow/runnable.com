@@ -12,9 +12,12 @@
   }
 
   // features button
-  .gray {
-    display: table;
-    margin: 15px auto 210px;
+  > .grid-block {
+    margin: 15px auto 150px;
+
+    .btn + .btn {
+      margin-left: 15px;
+    }
   }
 
   .footer {
