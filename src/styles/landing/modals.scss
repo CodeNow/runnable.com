@@ -27,6 +27,10 @@
     box-shadow: none;
     margin: 30px auto;
 
+    @include media(xxs) {
+      margin: 0 auto;
+    }
+
     &.shake {
       animation: shake .25s ease-in-out;
     }

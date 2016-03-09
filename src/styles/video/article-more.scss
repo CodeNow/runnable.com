@@ -9,13 +9,33 @@
 
   .h3 {
     margin-bottom: 3px;
+
+    @include media(xs) {
+      line-height: 1.4;
+      margin: 0 auto 6px;
+      max-width: 240px;
+    }
+  }
+
+  .p {
+    margin: 0 auto;
+    max-width: 450px;
+
+    @include media(xs) {
+      font-size: 16px;
+      max-width: 300px;
+    }
   }
 
   // features button
   > .grid-block {
     margin: 15px auto 150px;
 
-    .btn + .btn {
+    @include media(xs) {
+      margin-bottom: 90px;
+    }
+
+    .green + .gray {
       margin-left: 15px;
     }
   }

@@ -1,14 +1,31 @@
 .video-hero {
   height: 600px;
 
+  @include media(sm) {
+    height: 562px;
+  }
+
+  @include media(xs) {
+    height: 446px;
+  }
+
   .h1 {
     font-size: 27px;
     line-height: 1.3;
     margin: 0 auto 6px;
     max-width: 630px;
     position: relative;
-    text-shadow: 0 0 6px rgba($black,.3);
     z-index: 1;
+
+    @include media(sm) {
+      font-size: 24px;
+      max-width: 570px;
+    }
+
+    @include media(xs) {
+      font-size: 21px;
+      max-width: 450px;
+    }
   }
 }
 
@@ -29,6 +46,16 @@
   transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   width: 608px;
   z-index: 2;
+
+  @include media(sm) {
+    height: 304px;
+    width: 540px;
+  }
+
+  @include media(xs) {
+    height: 208px;
+    width: 370px;
+  }
 }
 
 .video-img {
