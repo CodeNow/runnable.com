@@ -132,7 +132,7 @@
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
           imgFlip[i].addEventListener('click', flipCard);
-          imgFlip[i].addEventListener('touchstart', flipCard);
+          imgFlip[i].addEventListener('touchend', flipCard);
         }
       }
     };
@@ -140,8 +140,8 @@
 </script>
 
     <!--
-      Commit Hash: b62eaab3733487269e804dc937e1ae545daf4957
-      Commit Time: Wed Mar 9 18:11:46 2016 -0800
+      Commit Hash: e582d8fe4c084460df972390f8d6e03ff0c45324
+      Commit Time: Wed Mar 9 18:15:40 2016 -0800
     -->
 
   <body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>

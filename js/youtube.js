@@ -31,11 +31,11 @@ function onPlayerReady(event) {
   if (videoStart) {
     for (var i = 0; i < videoStart.length; i++) {
       videoStart[i].addEventListener('click', playVideo);
-      videoStart[i].addEventListener('touchstart', playVideo);
+      videoStart[i].addEventListener('touchend', playVideo);
     }
     for (var i = 0; i < videoPause.length; i++) {
       videoPause[i].addEventListener('click', pauseVideo);
-      videoPause[i].addEventListener('touchstart', pauseVideo);
+      videoPause[i].addEventListener('touchend', pauseVideo);
     }
   }
 }
