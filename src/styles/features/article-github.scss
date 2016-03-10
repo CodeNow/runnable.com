@@ -5,7 +5,6 @@
   }
 
   .h2 {
-    color: $gray-dark;
     font-weight: 500;
     margin: 90px 0 60px;
     max-width: 660px;
@@ -32,41 +31,41 @@
   }
 
   .hr {
-    display: block;
     margin: 0 auto;
-    width: calc(100% - 360px);
   }
 
-  .environments {
+  // environments section
+  .section-environments {
 
     .img {
-      left: 27.083%;
+      left: 27%;
     }
 
     .gradient {
       background: linear-gradient(to right, rgba($white,0), rgba($white,1), rgba($white,1));
       right: 0;
     }
+
+    .hr {
+      width: 75%;
+    }
   }
 
-  .auto-deploy {
+  // auto-deploy section
+  .section-updates .gradient {
+    background: linear-gradient(to left, rgba($white,0), rgba($white,1), rgba($white,1));
+    left: 0;
+  }
 
-    .img {
+  // img.updates-terminal
+  .updates-terminal {
+    left: 12.5%;
+    z-index: 2;
+  }
 
-      &:first-child {
-        left: 12.5%;
-        z-index: 2;
-      }
-
-      &:last-child {
-        right: 12.5%;
-        top: 29px;
-      }
-    }
-
-    .gradient {
-      background: linear-gradient(to left, rgba($white,0), rgba($white,1), rgba($white,1));
-      left: 0;
-    }
+  // img.updates-runnable
+  .updates-runnable {
+    right: 12.5%;
+    top: 29px;
   }
 }
