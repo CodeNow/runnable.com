@@ -35,7 +35,7 @@ function onPlayerReady(event) {
     }
   }
 
-  if (window.location.hash = '#player') {
+  if (window.location.hash === '#player') {
     playVideo();
   }
 }

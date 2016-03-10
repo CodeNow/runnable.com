@@ -14,11 +14,6 @@
   transition: opacity .3s ease-in-out;
   z-index: 1;
 
-  @include media(xs) {
-    max-height: none;
-    object-fit: cover;
-  }
-
   &:focus {
     outline: 0;
   }
