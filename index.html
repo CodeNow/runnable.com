@@ -59,34 +59,6 @@
         $window.location = newURL;
       });
 
-    // start video
-    var video = document.getElementsByTagName('video')[0];
-    var article = document.getElementsByClassName('article-more')[0];
-
-    if (window.location.hash === '#video') {
-      startVideo();
-    }
-
-    function startVideo() {
-      video.scrollIntoView({behavior: 'smooth'});
-      video.classList.add('playing');
-      video.play();
-      pushVideo();
-      window.addEventListener('resize', pushVideo);
-    }
-
-    function pauseVideo() {
-      video.classList.remove('playing');
-      video.pause();
-      article.style.transform = null;
-      window.removeEventListener('resize', pushVideo);
-    }
-
-    function pushVideo() {
-      var articleOffset = video.offsetHeight - 301;
-      article.style.transform = 'translate3d(0,' + articleOffset + 'px,0)';
-    }
-
     // form submit
     function markInvalid(e) {
       if (e.target.tagName == 'INPUT') {
@@ -142,18 +114,18 @@
     // events
     window.onload = function(){
       // video
-      var videoStart = document.getElementsByClassName('video-start');
-      var videoPause = document.getElementsByClassName('video-pause');
-      if (videoStart) {
-        for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', startVideo);
-          videoStart[i].addEventListener('touchstart', startVideo);
-        }
-        for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click', pauseVideo);
-          videoStart[i].addEventListener('touchstart', startVideo);
-        }
-      }
+      // var videoStart = document.getElementsByClassName('video-start');
+      // var videoPause = document.getElementsByClassName('video-pause');
+      // if (videoStart) {
+      //   for (var i = 0; i < videoStart.length; i++) {
+      //     videoStart[i].addEventListener('click', startVideo);
+      //     videoStart[i].addEventListener('touchstart', startVideo);
+      //   }
+      //   for (var i = 0; i < videoPause.length; i++) {
+      //     videoPause[i].addEventListener('click', pauseVideo);
+      //     videoStart[i].addEventListener('touchstart', startVideo);
+      //   }
+      // }
 
       //sign up form
       var formSignUp = document.getElementsByClassName('form-sign-up');
@@ -181,9 +153,65 @@
   });
 </script>
 
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+      function startVideo() {
+        player.startVideo();
+      }
+
+      var videoStart = document.getElementsByClassName('video-start');
+      var videoPause = document.getElementsByClassName('video-pause');
+      if (videoStart) {
+        for (var i = 0; i < videoStart.length; i++) {
+          videoStart[i].addEventListener('click', startVideo);
+          videoStart[i].addEventListener('touchstart', startVideo);
+        }
+        // for (var i = 0; i < videoPause.length; i++) {
+        //   videoPause[i].addEventListener('click', pauseVideo);
+        //   videoStart[i].addEventListener('touchstart', startVideo);
+        // }
+      }
+    </script>
+
     <!--
-      Commit Hash: 650fb77ad731dede2d90740beae7f6bffcd775ac
-      Commit Time: Wed Mar 9 14:15:04 2016 -0800
+      Commit Hash: db1dbcfd5c88f08c85c619947afc20fc8cdb3d51
+      Commit Time: Wed Mar 9 16:01:04 2016 -0800
     -->
 
   <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
@@ -229,16 +257,16 @@
 
 
     <main class="grid-block vertical main">
-      <video id="video" class="video-embed" controls preload="none" poster="images/no-runnabear-loading.svg" src="https://dl.dropbox.com/s/hpx7jkzi7xhwj8r/RunnableEpipheo_Draft01c.mp4"></video>
-<button class="btn btn-icon video-pause" title="Paws">
-  <svg class="icons icons-close ">
+<iframe id="player" class="video-embed" src="https://www.youtube-nocookie.com/embed/mBR-_5dXH4w?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3&enablejsapi=1&origin=https://runnable.io" frameborder="0" allowfullscreen></iframe>
+<a href="#" class="btn btn-icon video-pause" title="Paws">
+  <svg class="icons icons-close">
     <use xlink:href="#icons-close">
   </svg>
-</button>
+</a>
 
       <article class="article hero video-hero">
   <h1 class="h1 text-center">Runnable creates <strong class="strong">on-demand integration environments</strong>, so your team can test and integrate their code as often as needed.</h1>
-  <a class="video-img-wrapper video-start">
+  <a href="#player" class="video-img-wrapper video-start">
     <button class="btn btn-lg green video-link">Watch the Video
       <img src="images/play.svg" class="img" height="21" width="21">
     </button>

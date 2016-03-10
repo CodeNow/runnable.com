@@ -130,34 +130,6 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
         $window.location = newURL;
       });
 
-    // start video
-    var video = document.getElementsByTagName('video')[0];
-    var article = document.getElementsByClassName('article-more')[0];
-
-    if (window.location.hash === '#video') {
-      startVideo();
-    }
-
-    function startVideo() {
-      video.scrollIntoView({behavior: 'smooth'});
-      video.classList.add('playing');
-      video.play();
-      pushVideo();
-      window.addEventListener('resize', pushVideo);
-    }
-
-    function pauseVideo() {
-      video.classList.remove('playing');
-      video.pause();
-      article.style.transform = null;
-      window.removeEventListener('resize', pushVideo);
-    }
-
-    function pushVideo() {
-      var articleOffset = video.offsetHeight - 301;
-      article.style.transform = 'translate3d(0,' + articleOffset + 'px,0)';
-    }
-
     // form submit
     function markInvalid(e) {
       if (e.target.tagName == 'INPUT') {
@@ -213,18 +185,18 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     // events
     window.onload = function(){
       // video
-      var videoStart = document.getElementsByClassName('video-start');
-      var videoPause = document.getElementsByClassName('video-pause');
-      if (videoStart) {
-        for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', startVideo);
-          videoStart[i].addEventListener('touchstart', startVideo);
-        }
-        for (var i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click', pauseVideo);
-          videoStart[i].addEventListener('touchstart', startVideo);
-        }
-      }
+      // var videoStart = document.getElementsByClassName('video-start');
+      // var videoPause = document.getElementsByClassName('video-pause');
+      // if (videoStart) {
+      //   for (var i = 0; i < videoStart.length; i++) {
+      //     videoStart[i].addEventListener('click', startVideo);
+      //     videoStart[i].addEventListener('touchstart', startVideo);
+      //   }
+      //   for (var i = 0; i < videoPause.length; i++) {
+      //     videoPause[i].addEventListener('click', pauseVideo);
+      //     videoStart[i].addEventListener('touchstart', startVideo);
+      //   }
+      // }
 
       //sign up form
       var formSignUp = document.getElementsByClassName('form-sign-up');
