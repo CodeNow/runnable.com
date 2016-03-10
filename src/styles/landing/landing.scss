@@ -122,6 +122,7 @@
   }
 
   .btn {
+    border-width: 1px;
     margin-left: 6px;
 
     @include media(xs) {

@@ -6,7 +6,11 @@
   }
 
   @include media(xs) {
-    height: 446px;
+    height: 418px;
+  }
+
+  @include media(xxs) {
+    height: 376px;
   }
 
   .h1 {
@@ -26,6 +30,10 @@
     @include media(xs) {
       font-size: 36px;
       max-width: 450px;
+    }
+
+    @include media(xxs) {
+      font-size: 30px;
     }
   }
 }
@@ -52,8 +60,13 @@
   }
 
   @include media(xs) {
-    height: 208px;
-    width: 370px;
+    height: 180px;
+    width: 320px;
+  }
+
+  @include media(xxs) {
+    height: 153px;
+    width: 272px;
   }
 }
 
@@ -83,6 +96,11 @@
   transform-origin: 50% 0%;
   width: 230px;
   z-index: 9;
+
+  @include media(xxxs) {
+    bottom: -$input-sm / 2;
+    top: auto;
+  }
 
   &:hover ~ .video-img {
     opacity: .9;

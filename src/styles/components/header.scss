@@ -6,6 +6,18 @@
   right: 0;
   z-index: 10;
 
+  @include media(xxxs) {
+    .logo {
+      align-items: center;
+      flex: 0 0 150px;
+    }
+
+    .img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .grid-container {
     padding: 27px 30px 18px;
   }
