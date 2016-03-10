@@ -184,20 +184,6 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // events
     window.onload = function(){
-      // video
-      // var videoStart = document.getElementsByClassName('video-start');
-      // var videoPause = document.getElementsByClassName('video-pause');
-      // if (videoStart) {
-      //   for (var i = 0; i < videoStart.length; i++) {
-      //     videoStart[i].addEventListener('click', startVideo);
-      //     videoStart[i].addEventListener('touchstart', startVideo);
-      //   }
-      //   for (var i = 0; i < videoPause.length; i++) {
-      //     videoPause[i].addEventListener('click', pauseVideo);
-      //     videoStart[i].addEventListener('touchstart', startVideo);
-      //   }
-      // }
-
       //sign up form
       var formSignUp = document.getElementsByClassName('form-sign-up');
       if (formSignUp) {
@@ -224,61 +210,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   });
 </script>
 
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-      function startVideo() {
-        player.startVideo();
-      }
-
-      var videoStart = document.getElementsByClassName('video-start');
-      var videoPause = document.getElementsByClassName('video-pause');
-      if (videoStart) {
-        for (var i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', startVideo);
-          videoStart[i].addEventListener('touchstart', startVideo);
-        }
-        // for (var i = 0; i < videoPause.length; i++) {
-        //   videoPause[i].addEventListener('click', pauseVideo);
-        //   videoStart[i].addEventListener('touchstart', startVideo);
-        // }
-      }
-    </script>
+    <script src="js/youtube.js"></script>
 
     <!--
       Commit Hash: {{{commitHash}}}
@@ -330,26 +262,24 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     <main class="grid-block vertical main">
       {{!-- <video id="video" class="video-embed" controls preload="none" poster="images/no-runnabear-loading.svg" src="https://dl.dropbox.com/s/hpx7jkzi7xhwj8r/RunnableEpipheo_Draft01c.mp4"></video> --}}
 <iframe id="player" class="video-embed" src="https://www.youtube-nocookie.com/embed/mBR-_5dXH4w?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-<a href="#" class="btn btn-icon video-pause" title="Paws">
+<button class="btn btn-icon video-pause" title="Paws">
   <svg class="icons icons-close">
     <use xlink:href="#icons-close">
   </svg>
-</a>
+</button>
 
       <article class="article hero video-hero">
-  <h1 class="h1 text-center">Runnable creates <strong class="strong">on-demand integration environments</strong>, so your team can test and integrate their code as often as needed.</h1>
-  <a href="#player" class="video-img-wrapper video-start">
+  <h1 class="h1 text-center">Your team has<br>a staging problem.</h1>
+  <div class="video-img-wrapper video-start">
     <button class="btn btn-lg green video-link">Watch the Video
       <img src="images/play.svg" class="img" height="21" width="21">
     </button>
     <img class="video-img" src="images/video-still.jpg">
-  </a>
+  </div>
 </article>
 
       <article class="article article-more">
-  <h3 class="h3 text-center">Discover more about how we help teams.</h3>
-  <p class="p text-center">We’re tightly integrated with your developer workflow to help you Lorem Ipsum.
-  </p>
+  <h3 class="h3 text-center">Runnable creates <strong class="strong">on-demand integration environments</strong>, so your team can test and integrate their code as often as needed.</h3>
   <div class="grid-block align-center">
     <a class="grid-content shrink btn btn-lg green" href="features.html">Take a Tour</a>
     <a class="grid-content shrink btn btn-lg gray" href="#sign-up-modal">Sign Up</a>
