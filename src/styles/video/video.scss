@@ -18,7 +18,7 @@
     outline: 0;
   }
 
-  &:target {
+  &.playing {
     height: 100vh;
     opacity: 1;
     pointer-events: auto;

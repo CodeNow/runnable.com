@@ -14,10 +14,14 @@ function onYouTubeIframeAPIReady() {
 }
 
 function playVideo() {
+  document.body.classList.add('modal-open');
+  document.getElementById('player').classList.add('playing');
   player.playVideo();
 }
 
 function pauseVideo() {
+  document.body.classList.remove('modal-open');
+  document.getElementById('player').classList.remove('playing');
   player.pauseVideo();
 }
 
@@ -34,9 +38,4 @@ function onPlayerReady(event) {
       videoPause[i].addEventListener('touchstart', pauseVideo);
     }
   }
-
-  if (window.location.hash === '#player') {
-    playVideo();
-  }
 }
-
