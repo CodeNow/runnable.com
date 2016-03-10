@@ -1,115 +1,72 @@
-.article-always {
-  padding-bottom: 150px;
-
-  .img {
-    display: block;
-    margin: 0 auto;
-  }
+.article-github {
 
   .grid-block {
-    overflow: visible;
+    align-items: center;
   }
 
-  .grid-container {
-
-    @include media(md) {
-      max-width: none;
-      width: auto;
-    }
-
-    @include media(xxs) {
-      padding: 0;
-    }
+  .h2 {
+    color: $gray-dark;
+    font-weight: 500;
+    margin: 90px 0 60px;
+    max-width: 660px;
+    text-align: center;
   }
 
-  .h1 {
-    margin-bottom: 90px;
-    margin-top: 0;
-
-    @include media(xs) {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 400px;
-    }
+  .figure {
+    height: 420px;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
   }
 
-  .card-container {
-    @include media(sm) {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+  .img {
+    position: absolute;
   }
 
-  .card {
-    background: $gray-lighterest;
-    border: 4px solid $gray-lightest;
-    border-radius: $input-border-radius-lg;
-    margin: 0 15px;
-    padding: 60px 60px 45px;
+  .gradient {
+    height: 100%;
+    position: absolute;
+    width: 41.666%;
+    z-index: 1;
+  }
 
-    @include media(md) {
-      padding: 60px 30px 30px;
-    }
+  .hr {
+    display: block;
+    margin: 0 auto;
+    width: calc(100% - 360px);
+  }
 
-    @include media(sm) {
-      flex: 0 0 auto;
-
-      + .card {
-        margin-top: 60px;
-      }
-    }
-
-    @include media(xxs) {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
+  .environments {
 
     .img {
-      margin-bottom: 30px;
-      margin-top: -84px;
+      left: 27.083%;
+    }
+
+    .gradient {
+      background: linear-gradient(to right, rgba($white,0), rgba($white,1), rgba($white,1));
+      right: 0;
     }
   }
 
-  .h3 {
-    margin-bottom: 6px;
-    margin-top: 0;
-  }
+  .auto-deploy {
 
-  .p {
-    margin: 0 auto 30px;
-    max-width: 290px;
-  }
+    .img {
 
-  .ul {
-    display: table;
-    font-size: 16px;
-    list-style-type: none;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .li + .li {
-    margin-top: 3px;
-  }
-
-  .always-sharing {
-    margin-top: 30px;
-
-    .p {
-      margin: 0 auto;
-      max-width: 570px;
-
-      @include media(sm) {
-        max-width: 426px;
+      &:first-child {
+        left: 12.5%;
+        z-index: 2;
       }
 
-      @include media(xs) {
-        max-width: 336px;
+      &:last-child {
+        right: 12.5%;
+        top: 29px;
       }
+    }
 
-      @include media(xxs) {
-        max-width: 290px;
-      }
+    .gradient {
+      background: linear-gradient(to left, rgba($white,0), rgba($white,1), rgba($white,1));
+      left: 0;
     }
   }
 }
