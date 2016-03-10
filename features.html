@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Full-stack environments for your GitHub branches — Runnable</title>
+    <title>Parallel environments for parallel development. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -140,8 +140,8 @@
 </script>
 
     <!--
-      Commit Hash: e582d8fe4c084460df972390f8d6e03ff0c45324
-      Commit Time: Wed Mar 9 18:15:40 2016 -0800
+      Commit Hash: 9e952494acb0e90eb2c15332465d7ed5903141fa
+      Commit Time: Wed Mar 9 19:14:34 2016 -0800
     -->
 
   <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
@@ -161,7 +161,7 @@
     </a>
     <div class="grid-block shrink">
       <a href="https://runnable.zendesk.com/hc/en-us" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
-      <a ng-href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Tour</a>
+      <a ng-href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Features</a>
       <a ng-href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Sign In</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
@@ -171,7 +171,7 @@
             <a href="#sign-up-modal" class="list-item-a">Sign Up</a>
             <a class="list-item divider"></a>
             <a href="https://runnable.zendesk.com/hc/en-us" class="list-item-a visible-sm">Documentation</a>
-            <a href="features.html" class="list-item-a visible-xs">Tour</a>
+            <a href="features.html" class="list-item-a visible-xs">Features</a>
             <a href="about.html" class="list-item-a">About</a>
             <a href="mailto:info@runnable.com" target="_blank" class="list-item-a">Email
               <svg class="icons">
@@ -194,10 +194,6 @@
   </h1>
   <p class="p text-center">When you create a branch, you get a new sandbox environment.
     <br class="hidden-sm">When you push changes to that branch, your sandbox updates.
-  </p>
-  <a href="https://www.youtube.com/watch?v=Zlm9E_Miar8" class="link" target="_blank">Watch the video
-    <img src="images/play.svg" class="img" height="18" width="18">
-  </a>
 </article>
 
       <article class="article grid-block vertical article-always">
@@ -263,102 +259,7 @@
     </div>
   </div>
 </article>
-      <article class="article article-sign-up" id="sign-up">
-  <div class="well" ng-if="!data.hideUnauthorizedModal">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    Your organization doesn’t have access to Runnable…yet. Fill out this form and we’ll get in touch soon!
-  </div>
-  <!-- initial state -->
-  <h1 class="h1 text-center show">Let’s get going.</h1>
-  <p class="p text-center show">Runnable was made for teams that use GitHub.
-    <br class="hidden-xs">Tell us about your team to get access and 30 days free.
-  <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="mce-GH_ORG">Your Email</label>
-      <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
-    </div>
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="mce-GH_ORG">GitHub Organization
-        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-          <div class="popover top text-center">We’re sending invitations to users that are a part of an organization on GitHub.</div>
-        </small>
-      </label>
-      <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
-    </div>
-    <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
-  </form>
-
-  <!-- submitted state -->
-  <img class="img hide" src="images/runnabear-jumping.png">
-  <h1 class="h1 text-center hide">You did it.</h1>
-  <p class="p text-center hide">We’ll be in touch soon!
-</article>
-
-      <article class="article article-quick-start">
-  <div class="grid-container">
-    <h2 class="h2 text-center">We’ve got you covered
-      <br class="visible-sm">from C++ to Rails.
-    </h2>
-    <p class="p text-center">Check out our documentation for
-      <br class="visible-xs">help on getting started.</p>
-    <a href="http://support.runnable.io" class="btn btn-sm gray">View Documentation</a>
-    <div class="grid-block grid-4">
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-c++.svg" class="img" height="100" width="100" alt="C++">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-go.png" class="img" height="100" width="100" alt="Go">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-java.svg" class="img" height="100" width="100" alt="Java">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-node.js.svg" class="img" height="100" width="100" alt="node.js">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-php.svg" class="img" height="100" width="100" alt="php">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-python.svg" class="img" height="100" width="100" alt="Python">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-ruby.svg" class="img" height="100" width="100" alt="Ruby">
-      </a>
-      <a class="a grid-block align-center">
-        <img src="images/logos/logo-rails.svg" class="img" height="100" width="100" alt="Ruby on Rails">
-      </a>
-    </div>
-    <div class="text-center underline popover-trigger hover">View Supported Services
-      <div class="popover top">
-        <div class="grid-block grid-2">
-          <ul class="list grid-block vertical">
-            <li class="list-item">Cassandra
-            <li class="list-item">Consul
-            <li class="list-item">ElasticSearch
-            <li class="list-item">HBase
-            <li class="list-item">Memcached
-            <li class="list-item">MongoDB
-          </ul>
-          <ul class="list grid-block vertical">
-            <li class="list-item">MySQL
-            <li class="list-item">Nginx
-            <li class="list-item">PostgreSQL
-            <li class="list-item">RabbitMQ
-            <li class="list-item">Redis
-            <li class="list-item">RethinkDB
-          </ul>
-      </div>
-    </div>
-  </div>
-</article>
     </main>
-
-    <div class="grid-block well">
-      Wanna see our last project?
-      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
-    </div>
 
     <hr class="hr grid-container">
 
