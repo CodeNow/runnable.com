@@ -56,29 +56,4 @@
       max-width: 400px;
     }
   }
-
-  .link {
-    background: rgba($white,.2);
-    border: 1px solid rgba($white,.3);
-    border-radius: $input-border-radius-lg;
-    color: $white;
-    display: table;
-    margin: 30px auto 0;
-    padding: 6px 12px;
-    text-decoration: none;
-
-    &:hover {
-      border-color: rgba($white,.5);
-    }
-
-    &:active {
-      border-color: rgba($white,.75);
-    }
-
-    .img {
-      opacity: .9;
-      position: relative;
-      top: 2px;
-    }
-  }
 }

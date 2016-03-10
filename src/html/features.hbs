@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Full-stack environments for your GitHub branches — Runnable</title>
+    <title>Parallel environments for parallel development. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -38,18 +38,11 @@
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('html/features/hero.hbs')
-      @@include('html/features/always.hbs')
-      @@include('html/features/environment.hbs')
-      @@include('html/features/secure.hbs')
-      @@include('html/features/signup.hbs')
-      @@include('html/features/quickstart.hbs')
+      @@include('html/features/features-hero.hbs')
+      @@include('html/features/github.hbs')
+      @@include('html/features/use-cases.hbs')
+      @@include('html/features/bonus.hbs')
     </main>
-
-    <div class="grid-block well">
-      Wanna see our last project?
-      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
-    </div>
 
     @@include('components/footer.hbs')
     @@include('components/signup-modal.hbs')
