@@ -14,12 +14,12 @@
   z-index: 0;
 
   &.playing {
-    height: 100vh;
+    height: 100%;
     opacity: 1;
     pointer-events: auto;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
     z-index: $z-modal;
 
     ~ .video-pause {
