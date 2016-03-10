@@ -19,7 +19,7 @@
     @include media(xs) {
       font-size: 21px;
       margin-top: 0;
-      max-width: 420px;
+      max-width: 360px;
     }
 
     @include media(xxxs) {
@@ -45,14 +45,14 @@
       margin-bottom: 90px;
     }
 
-    @include media(xxxs) {
+    @include media(xxs) {
       flex-flow: column nowrap;
     }
 
     .green + .gray {
       margin-left: 15px;
 
-      @include media(xxxs) {
+      @include media(xxs) {
         margin-left: 0;
         margin-top: 15px;
       }
