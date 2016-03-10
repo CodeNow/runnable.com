@@ -30,11 +30,9 @@
 }
 
 .video-img-wrapper {
-  background: $purple-dark;
-  border: 1px solid $purple-dark;
-  border-bottom-color: lighten($purple-dark,20%);
+  background: $purple;
+  border: 1px solid darken($purple,5%);
   border-radius: $input-border-radius-lg;
-  border-top-color: $purple-darker;
   box-shadow: 0 0 15px rgba($black,.3);
   display: table;
   height: 342px;
@@ -80,7 +78,7 @@
   margin: 0 auto;
   position: absolute;
   right: 0;
-  top: 45%;
+  top: 58%;
   transform-origin: 50% 0%;
   width: 230px;
   z-index: 9;
