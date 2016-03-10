@@ -6,13 +6,24 @@
   padding-top: 60px;
   z-index: 1;
 
+  @include media(xs) {
+    padding-top: 45px;
+  }
+
   .h3 {
-    margin-bottom: 3px;
+    font-size: 24px;
+    line-height: 1.3;
+    margin: 21px auto;
+    max-width: 510px;
+
+    @include media(sm) {
+      max-width: 510px;
+    }
 
     @include media(xs) {
-      line-height: 1.4;
-      margin: 0 auto 6px;
-      max-width: 240px;
+      font-size: 21px;
+      margin-top: 0;
+      max-width: 450px;
     }
   }
 
