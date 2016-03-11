@@ -43,7 +43,6 @@
   border: 1px solid darken($purple,5%);
   border-radius: $input-border-radius-lg;
   box-shadow: 0 0 15px rgba($black,.3);
-  display: table;
   height: 342px;
   left: 0;
   margin: auto;
@@ -81,6 +80,10 @@
   transform-origin: 50% 0%;
   width: 100%;
 
+  @include media(xxs) {
+    pointer-events: none;
+  }
+
   &:hover {
     opacity: .9;
   }
@@ -96,6 +99,10 @@
   transform-origin: 50% 0%;
   width: 230px;
   z-index: 9;
+
+  @include media(xxs) {
+    pointer-events: none;
+  }
 
   @include media(xxxs) {
     bottom: -$input-sm / 2;
