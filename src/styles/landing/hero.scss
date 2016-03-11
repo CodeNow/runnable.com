@@ -1,10 +1,10 @@
 .hero {
   background: linear-gradient($purple-light, $purple);
   color: $white;
-  padding: 150px 0;
+  padding: 150px 0 90px;
 
   @include media(xs) {
-    padding: 120px 0;
+    padding-top: 120px;
   }
 
   &::after {
