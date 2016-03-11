@@ -51,8 +51,10 @@
       opacity: 1;
     }
 
-    .img-overflow {
+    .icons-overflow {
       height: $input-sm;
+      pointer-events: none;
+      width: 24px;
     }
   }
 
