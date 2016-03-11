@@ -12,7 +12,7 @@
 .team-card {
   box-shadow: 0 2px 9px rgba($black,.15);
   color: $white;
-  height: 300px;
+  flex: 0 0 300px;
   margin: 15px;
   max-width: 300px;
   overflow: visible;

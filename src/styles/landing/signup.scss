@@ -14,6 +14,12 @@
     width: 330px;
   }
 
+  @include media(xxxs) {
+    font-size: 16px;
+    padding: 21px 15px;
+    width: 270px;
+  }
+
   .img {
     height: 85px;
     left: 0;
@@ -27,6 +33,10 @@
   .btn {
     display: table;
     margin: 9px auto 0;
+
+    @include media(xxxs) {
+      margin-top: 15px;
+    }
   }
 }
 
