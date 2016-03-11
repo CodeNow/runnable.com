@@ -91,6 +91,9 @@
 .list-item-a {
   cursor: pointer;
   display: block;
+  height: $input-sm;
+  line-height: $input-sm;
+  padding: 0 15px 0 6px;
 
   &:hover {
     color: $purple-light;
