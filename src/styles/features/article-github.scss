@@ -17,17 +17,29 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+
+    &.gradient::before {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      width: 41.666%;
+      z-index: 1;
+    }
+
+    &.gradient-right::before {
+      background: linear-gradient(to right, rgba($white,0) 0, rgba($white,1) 50%, rgba($white,1) 100%);
+      right: 0;
+    }
+
+    &.gradient-left::before {
+      background: linear-gradient(to left, rgba($white,0) 0, rgba($white,1) 50%, rgba($white,1) 100%);
+      left: 0;
+    }
   }
 
   .img {
     position: absolute;
-  }
-
-  .gradient {
-    height: 100%;
-    position: absolute;
-    width: 41.666%;
-    z-index: 1;
   }
 
   .hr {
@@ -41,20 +53,9 @@
       left: 27%;
     }
 
-    .gradient {
-      background: linear-gradient(to right, rgba($white,0), rgba($white,1), rgba($white,1));
-      right: 0;
-    }
-
     .hr {
       width: 75%;
     }
-  }
-
-  // auto-deploy section
-  .section-updates .gradient {
-    background: linear-gradient(to left, rgba($white,0), rgba($white,1), rgba($white,1));
-    left: 0;
   }
 
   // img.updates-terminal
