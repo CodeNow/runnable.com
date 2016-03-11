@@ -1,16 +1,16 @@
 .article-github {
-
-  .grid-block {
-    align-items: center;
-  }
+  padding-bottom: 0;
 
   .h2 {
-    margin: 90px 0 60px;
+    max-width: 660px;
+
+    @include media(sm) {
+      max-width: 570px;
+    }
   }
 
   .figure {
     height: 420px;
-    width: 1080px;
   }
 
   .img {
@@ -22,24 +22,50 @@
   }
 
   // environments section
-  .section-environments {
+  .section-environments .img {
+    left: 27%;
+  }
 
-    .img {
-      left: 27%;
+  // updates section
+  .section-updates {
+
+    @include media(md) {
+      .gradient::before {
+        width: 15%;
+        z-index: 3;
+      }
     }
 
-    .hr {
-      width: 75%;
+    .figure {
+      height: 240px;
+
+      @include media(md) {
+        height: 300px;
+      }
     }
   }
 
   .img-terminal {
     left: 0;
     z-index: 2;
+
+    @include media(md) {
+      margin: auto;
+      right: 0;
+      z-index: 1;
+    }
   }
 
   .img-runnable {
+    height: auto;
     right: 0;
     top: 29px;
+    width: 1117px;
+
+    @include media(md) {
+      right: 156px;
+      top: 90px;
+      z-index: 2;
+    }
   }
 }
