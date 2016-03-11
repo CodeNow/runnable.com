@@ -26,17 +26,21 @@ function pauseVideo() {
 }
 
 function onPlayerReady(event) {
-  var videoStart = document.getElementsByClassName('video-start');
-  var videoPause = document.getElementsByClassName('video-pause');
-  if (videoStart) {
-    var i;
-    for (i = 0; i < videoStart.length; i++) {
-      videoStart[i].addEventListener('click', playVideo);
-      videoStart[i].addEventListener('touchend', playVideo);
+  Modernizr.on('videoautoplay', function(result) {
+    if (result) {
+      var videoStart = document.getElementsByClassName('video-start');
+      var videoPause = document.getElementsByClassName('video-pause');
+      if (videoStart) {
+        var i;
+        for (i = 0; i < videoStart.length; i++) {
+          videoStart[i].addEventListener('click', playVideo);
+          videoStart[i].addEventListener('touchend', playVideo);
+        }
+        for (i = 0; i < videoPause.length; i++) {
+          videoPause[i].addEventListener('click', pauseVideo);
+          videoPause[i].addEventListener('touchend', pauseVideo);
+        }
+      }
     }
-    for (i = 0; i < videoPause.length; i++) {
-      videoPause[i].addEventListener('click', pauseVideo);
-      videoPause[i].addEventListener('touchend', pauseVideo);
-    }
-  }
+  });
 }
