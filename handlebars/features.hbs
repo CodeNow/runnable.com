@@ -215,7 +215,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
@@ -269,8 +269,6 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     <br class="visible-xxs"> environments
     <br class="hidden-xs"> for your GitHub branches.
   </h1>
-  <p class="p text-center">When you create a branch, you get a new sandbox environment.
-    <br class="hidden-sm">When you push changes to that branch, your sandbox updates.
 </article>
 
       <article class="article-github">
@@ -284,38 +282,45 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   <div class="grid-block vertical section-updates">
     <h2 class="h2">Updates to branches automatically update environments.</h2>
     <figure class="figure gradient gradient-left">
-      <img class="img updates-terminal" src="images/updates-terminal.png" height="295" width="450">
-      <img class="img updates-runnable" src="images/updates-runnable.png" height="426" width="1214">
+      <img class="img img-terminal" src="images/terminal.png" height="295" width="450">
+      <img class="img img-runnable" src="images/runnable.png" height="426" width="1214">
     </figure>
     <hr class="hr">
   </div>
 </article>
 
-      <article class="article article-environment">
-  <img class="img grid-content" src="images/environment.svg" width="500" height="250">
-  <div class="grid-container grid-block vertical">
-    <h1 class="h1">Not just any environment.</h1>
-    <p class="p">We’re active in the Docker community. Our expertise is built in our product and support.
-    <ul class="ul">
-      <li class="li">Our builds are <strong class="strong">fast!</strong>
-      <li class="li">We maintain performance under heavy workloads.
-      <li class="li">Use your own terminal with our CLI.
-    </ul>
+      <article class="grid-block grid-2 article-use-cases">
+  <div class="grid-block vertical">
+    <h2 class="h2">Automatically test every commit end-to-end.</h2>
+    <p class="p">Integrate and test with every push to GitHub. It’s never been this easy or comprehensive.</p>
+    <figure class="figure">
+      <img class="img" src="images/e2e-testing.png" width="450px" height="319">
+    </figure>
+  </div>
+  <div class="grid-block vertical">
+    <h2 class="h2">Test DB and config changes safely in isolation.</h2>
+    <p class="p">Isolate a branch with copies of all components in seconds (including multi-GB databases).</p>
+    <figure class="figure figure-isolation gradient gradient-right">
+      <img class="img" src="images/isolation.png" width="1200px" height="420">
+    </figure>
+  </div>
+  <div class="grid-block vertical">
+    <h2 class="h2">Share your progress at any time, with anyone.</h2>
+    <p class="p">Keep stakeholders and beta testers, up-to-date with a link that’s always running your latest commit.</p>
+    <figure class="figure">
+      <img class="img" src="images/sharing.png" width="450px" height="319">
+    </figure>
+  </div>
+  <div class="grid-block vertical">
+    <h2 class="h2">Link to changes from the pull request page.</h2>
+    <p class="p">Reduce time spent on reviewing code changes with a live, up-to-date endpoint for every branch.</p>
+    <figure class="figure">
+      <img class="img" src="images/pr-page.png" width="450px" height="307">
+    </figure>
   </div>
 </article>
 
-      <article class="article article-secure">
-  <div class="grid-container clearfix">
-    <img class="img" src="images/secure-lock.svg" height="2700" width="2700">
-    <div class="text-wrapper">
-      <h1 class="h1">Secure by design.</h1>
-      <ul class="ul">
-        <li class="li"><strong class="strong">Single-tenancy</strong> means your code is isolated from others.
-        <li class="li">We don’t store your source code!
-        <li class="li">We’re regularly audited by a leading security firm.
-      </ul>
-    </div>
-  </div>
+      <article class="article">
 </article>
     </main>
 
