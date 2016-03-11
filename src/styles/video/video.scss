@@ -47,7 +47,9 @@
 .mobile-video-embed {
   border-radius: $input-border-radius-lg;
   display: none;
+  height: 100%;
   opacity: 0;
+  width: 100%;
 }
 
 .no-videoautoplay {
