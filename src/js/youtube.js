@@ -29,13 +29,21 @@ function onPlayerReady(event) {
   var videoStart = document.getElementsByClassName('video-start');
   var videoPause = document.getElementsByClassName('video-pause');
   if (videoStart) {
-    for (var i = 0; i < videoStart.length; i++) {
+    var i;
+    for (i = 0; i < videoStart.length; i++) {
       videoStart[i].addEventListener('click', playVideo);
       videoStart[i].addEventListener('touchend', playVideo);
     }
-    for (var i = 0; i < videoPause.length; i++) {
+    for (i = 0; i < videoPause.length; i++) {
       videoPause[i].addEventListener('click', pauseVideo);
       videoPause[i].addEventListener('touchend', pauseVideo);
     }
   }
 }
+
+Modernizr.on('videoautoplay', function(result) {
+  if (!result) {
+    document.getElementById('player').classList.add('hide');
+    document.getElementsByClassName('video-hero')[0].classList.add('mobile-player');
+  }
+});
