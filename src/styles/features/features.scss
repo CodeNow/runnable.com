@@ -1,0 +1,47 @@
+.page-features {
+
+  .h1 {
+    max-width: 720px;
+
+    @include media(sm) {
+      font-size: 36px;
+      max-width: 630px;
+    }
+
+    @include media(xs) {
+      font-size: 33px;
+      max-width: 480px;
+    }
+  }
+
+  .h2 {
+    font-weight: $weight-bold;
+    max-width: 660px;
+    text-align: center;
+  }
+
+  .figure {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gradient::before {
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 30%;
+    z-index: 1;
+  }
+
+  .gradient-right::before {
+    background: linear-gradient(to right, rgba($white,0) 0, rgba($white,1) 50%, rgba($white,1) 100%);
+    right: 0;
+  }
+
+  .gradient-left::before {
+    background: linear-gradient(to left, rgba($white,0) 0, rgba($white,1) 50%, rgba($white,1) 100%);
+    left: 0;
+  }
+}
