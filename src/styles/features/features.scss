@@ -1,7 +1,21 @@
 .page-features {
 
+  .h1 {
+    max-width: 720px;
+
+    @include media(sm) {
+      font-size: 36px;
+      max-width: 630px;
+    }
+
+    @include media(xs) {
+      font-size: 33px;
+      max-width: 480px;
+    }
+  }
+
   .h2 {
-    font-weight: 500;
+    font-weight: $weight-bold;
     max-width: 660px;
     text-align: center;
   }
