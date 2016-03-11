@@ -40,10 +40,3 @@ function onPlayerReady(event) {
     }
   }
 }
-
-Modernizr.on('videoautoplay', function(result) {
-  if (!result) {
-    document.getElementById('player').classList.add('hide');
-    document.getElementsByClassName('video-hero')[0].classList.add('mobile-player');
-  }
-});
