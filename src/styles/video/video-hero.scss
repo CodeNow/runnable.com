@@ -61,6 +61,7 @@
 
   @include media(xs) {
     height: 180px;
+    pointer-events: none;
     width: 320px;
   }
 
@@ -81,6 +82,10 @@
   transform-origin: 50% 0%;
   width: 100%;
 
+  @include media(xxs) {
+    pointer-events: none;
+  }
+
   &:hover {
     opacity: .9;
   }
@@ -96,6 +101,10 @@
   transform-origin: 50% 0%;
   width: 230px;
   z-index: 9;
+
+  @include media(xxs) {
+    pointer-events: none;
+  }
 
   @include media(xxxs) {
     bottom: -$input-sm / 2;
