@@ -45,7 +45,6 @@
 
 // no autoplay
 .mobile-video-embed {
-  border-radius: $input-border-radius-lg;
   display: none;
   height: 100%;
   position: relative;
@@ -56,7 +55,9 @@
 .no-videoautoplay {
 
   .video-img-wrapper {
+    background: none;
     border: 0;
+    border-radius: 0;
   }
 
   .video-embed,
