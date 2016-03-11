@@ -1,3 +1,9 @@
+@include media(sm) {
+  .about-hero .p {
+    max-width: 360px;
+  }
+}
+
 .team-grid {
   flex-wrap: wrap;
   padding: 15px 0;
