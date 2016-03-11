@@ -34,12 +34,6 @@
   }
 }
 
-.mobile-video-embed {
-  border-radius: $input-border-radius-lg;
-  display: none;
-  opacity: 0;
-}
-
 // pause button
 .video-pause {
   display: none;
@@ -47,4 +41,29 @@
   right: 15px;
   top: 15px;
   z-index: $z-modal-close;
+}
+
+// no autoplay
+.mobile-video-embed {
+  border-radius: $input-border-radius-lg;
+  display: none;
+  opacity: 0;
+}
+
+.no-videoautoplay {
+
+  .video-embed {
+    display: none;
+  }
+
+  .video-img,
+  .video-link {
+    pointer-events: none;
+  }
+
+  .mobile-video-embed {
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
 }

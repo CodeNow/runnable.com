@@ -13,20 +13,6 @@
     height: 376px;
   }
 
-  &.mobile-player {
-
-    .video-img,
-    .video-link {
-      pointer-events: none;
-    }
-
-    .mobile-video-embed {
-      display: block;
-      position: relative;
-      z-index: 100;
-    }
-  }
-
   .h1 {
     font-size: 42px;
     font-weight: $weight-bold;
