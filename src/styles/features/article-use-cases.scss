@@ -13,7 +13,6 @@
     }
   }
 
-  .h2,
   .p,
   .figure {
     width: 450px;
@@ -21,14 +20,15 @@
 
   .h2 {
     margin-top: 75px;
+
+    + .p {
+      margin-top: 6px;
+    }
   }
 
   .p {
-    color: $gray;
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 12px;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .figure {
@@ -49,4 +49,25 @@
       width: auto;
     }
   }
+}
+
+// sections
+.section-e2e {
+
+  .h2,
+  .p {
+    max-width: 345px;
+  }
+}
+
+.section-isolation .p {
+  max-width: 330px;
+}
+
+.section-sharing .p {
+  max-width: 390px;
+}
+
+.section-pr .p {
+  max-width: 390px;
 }
