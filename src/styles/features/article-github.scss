@@ -1,12 +1,9 @@
 .article-github {
   padding-bottom: 0;
 
-  .h2 {
-    max-width: 660px;
-
-    @include media(sm) {
-      max-width: 570px;
-    }
+  @include media(xxs) {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .figure {
@@ -19,25 +16,88 @@
 
   .hr {
     margin: 0 auto;
+    max-width: 90vw;
+
+    @include media(xs) {
+      max-width: none;
+    }
   }
 
   // environments section
-  .section-environments .img {
-    left: 27%;
+  .section-environments {
+
+    @include media(xs) {
+      .figure {
+        height: 360px;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    .h2 {
+      max-width: 660px;
+
+      @include media(sm) {
+        max-width: 540px;
+      }
+
+      @include media(xs) {
+        font-size: 27px;
+        max-width: 360px;
+      }
+    }
+
+    .img {
+      left: 27%;
+
+      @include media(md) {
+        left: 20%;
+      }
+
+      @include media(xs) {
+        left: -6px;
+      }
+    }
   }
 
   // updates section
   .section-updates {
 
-    @include media(md) {
-      .gradient::before {
+    .gradient::before {
+
+      @include media(md) {
         width: 15%;
         z-index: 3;
+      }
+
+      @include media(xs) {
+        display: none;
+      }
+    }
+
+    .h2 {
+      max-width: 660px;
+
+      @include media(sm) {
+        max-width: 540px;
+      }
+
+      @include media(xs) {
+        font-size: 27px;
+        max-width: 360px;
       }
     }
 
     .figure {
       height: 240px;
+
+      @media (max-width: 1200px) {
+        margin-left: auto;
+        margin-right: auto;
+        width: 960px;
+      }
 
       @include media(md) {
         height: 300px;
@@ -59,12 +119,20 @@
   .img-runnable {
     height: auto;
     right: 0;
-    top: 29px;
+    top: 30px;
 
     @include media(md) {
-      right: 156px;
+      right: 120px;
       top: 90px;
       z-index: 2;
+    }
+
+    @include media(sm) {
+      right: 30px;
+    }
+
+    @include media(xs) {
+      right: -6px;
     }
   }
 }

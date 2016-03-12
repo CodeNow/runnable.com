@@ -1,5 +1,11 @@
 .page-features {
 
+  @include media(xs) {
+    .hero {
+      padding-bottom: 60px;
+    }
+  }
+
   // special container on this page to line up with images
   .grid-container {
     margin-left: auto;
@@ -32,6 +38,7 @@
 
   .h2 {
     font-weight: $weight-bold;
+    line-height: 1.3;
     margin: 0 auto;
 
     + .figure {
