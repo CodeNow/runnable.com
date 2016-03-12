@@ -1,10 +1,6 @@
 .article-use-cases {
   padding-top: 0;
 
-  .grid-block {
-    padding: 0 90px;
-  }
-
   .grid-2 {
     border-top: 1px solid $gray-lighter;
 
@@ -13,13 +9,12 @@
     }
   }
 
-  .p,
-  .figure {
-    width: 450px;
-  }
-
   .h2 {
     margin-top: 75px;
+
+    @media (max-width: 1280px) {
+      font-size: 30px;
+    }
 
     + .p {
       margin-top: 6px;
@@ -32,21 +27,21 @@
   }
 
   .figure {
-    margin: 60px 0;
+    margin-top: 30px;
+
+    @include media(md) {
+      margin: 30px 30px 0;
+      max-height: 330px;
+    }
   }
 
   .img {
-    display: block;
-    width: 100%;
-  }
+    display: table;
+    margin: 0 auto;
 
-  // overrides
-  .figure-isolation {
-    margin-bottom: 0;
-    width: 100%;
-
-    .img {
-      width: auto;
+    @include media(md) {
+      height: auto;
+      width: 100%;
     }
   }
 }
@@ -54,14 +49,40 @@
 // sections
 .section-e2e {
 
-  .h2,
+  .h2 {
+    max-width: 345px;
+
+    @media (max-width: 1280px) {
+      max-width: 270px;
+    }
+  }
+
   .p {
     max-width: 345px;
   }
 }
 
-.section-isolation .p {
-  max-width: 330px;
+.section-isolation {
+
+  .h2 {
+    max-width: 390px;
+
+    @media (max-width: 1280px) {
+      max-width: 360px;
+    }
+  }
+
+  .img {
+    margin: 0 90px;
+
+    @media (max-width: 1280px) {
+      width: 1200px;
+    }
+  }
+
+  .p {
+    max-width: 360px;
+  }
 }
 
 .section-sharing .p {
