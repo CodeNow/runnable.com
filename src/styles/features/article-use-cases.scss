@@ -24,7 +24,11 @@
         border-bottom: 1px solid $gray-lighter;
         flex: 0 0 auto;
         margin: 0 auto;
-        max-width: none;
+        max-width: 100%;
+      }
+
+      @include media(xxs) {
+        width: 100%;
       }
 
       + .grid-block {
@@ -119,14 +123,6 @@
 }
 
 .section-isolation {
-
-  @include media(sm) {
-    max-width: 100%;
-  }
-
-  @include media(xxs) {
-    width: 100%;
-  }
 
   .h2 {
     max-width: 390px;
