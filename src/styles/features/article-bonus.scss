@@ -1,5 +1,12 @@
 .article-bonus {
+  border-top: 1px solid $gray-lighter;
   margin-bottom: 120px;
+
+  .section {
+    margin: 0 auto;
+    max-width: 1290px;
+    padding: 0 4.651%;
+  }
 
   .img {
     background-color: $gray-lighter; // until icons are added
@@ -25,6 +32,11 @@
   }
 
   @media (max-width: 768px) {
+    border-top: 0;
+
+    .section {
+      max-width: 450px;
+    }
 
     .grid-2 > .grid-block {
       flex: 0 0 100%;
@@ -38,6 +50,17 @@
     .h3,
     .p {
       padding-right: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    .bonus-item {
+      flex-direction: column;
+    }
+
+    .section {
+      padding: 0 30px;
     }
   }
 }

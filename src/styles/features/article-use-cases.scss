@@ -30,8 +30,8 @@
       @include media(xxs) {
         width: 100%;
       }
-      + .grid-block {
 
+      + .grid-block {
         border-left: 1px solid $gray-lighter;
 
         @include media(sm) {
@@ -43,18 +43,6 @@
 
   .h2 {
     margin-top: 75px;
-    @media (max-width: 1280px) {
-
-      font-size: 30px;
-    }
-
-    @include media(md) {
-      font-size: 27px;
-    }
-
-    @include media(xxxs) {
-      font-size: 24px;
-    }
 
     + .p {
       margin-top: 6px;
@@ -83,8 +71,8 @@
 
     @media (max-width: 850px) {
       max-height: 285px;
-
     }
+
     @include media(sm) {
       max-height: none;
       max-width: 450px;
@@ -123,8 +111,8 @@
 
     @include media(md) {
       max-width: 255px;
-
     }
+
     @include media(xxxs) {
       max-width: 225px;
     }

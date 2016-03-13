@@ -1,19 +1,27 @@
 .article-github {
-  padding: 0;
+  padding: 0 45px;
 
   .section {
     align-items: center;
+    margin: 0 auto;
+    max-width: 1260px;
+    padding: 0 45px;
+
+    + .section {
+      border-top: 1px solid $gray-lighter;
+      margin-top: 0; // override
+    }
   }
 
   .h2 {
     max-width: 50%;
     padding: 0 5.555%;
-
   }
 
   .figure {
     height: 360px;
     margin-top: 75px;
+    max-width: 1170px;
     overflow: hidden;
   }
 
@@ -27,11 +35,6 @@
     right: 0;
   }
 
-  .hr {
-    margin: 0 auto;
-    max-width: 100%;
-  }
-
   @media (min-width: 1024px) {
 
     .section-environments {
@@ -40,13 +43,6 @@
 
     .section-updates .h2 {
       text-align: right;
-    }
-  }
-
-  @media (max-width: 1260px) {
-
-    .h2 {
-      font-size: 30px;
     }
   }
 
@@ -69,11 +65,10 @@
   }
 
   @media (max-width: 600px) {
+    padding: 0 30px;
 
-    .h2 {
-      font-size: 24px;
-      margin-top: 45px;
-      max-width: 450px;
+    .section {
+      padding: 0 30px;
     }
 
     .figure {
