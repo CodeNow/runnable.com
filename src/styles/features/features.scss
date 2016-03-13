@@ -12,6 +12,15 @@
     margin-right: auto;
     max-width: 1080px;
     width: 100%;
+
+    @media (max-width: 1260px) {
+      max-width: 100%;
+      padding: 0 90px;
+    }
+
+    @include media(xs) {
+      padding: 0 30px;
+    }
   }
 
   .h1 {
@@ -54,7 +63,7 @@
     display: block;
     height: 100%;
     position: absolute;
-    width: 90px;
+    width: 150px;
     z-index: 1;
   }
 
