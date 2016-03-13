@@ -4,6 +4,10 @@
   .grid-2 {
     border-top: 1px solid $gray-lighter;
 
+    + .grid-2 {
+      border-bottom: 1px solid $gray-lighter;
+    }
+
     > .grid-block + .grid-block {
       border-left: 1px solid $gray-lighter;
     }
