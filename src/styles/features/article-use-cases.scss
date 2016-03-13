@@ -52,6 +52,10 @@
       font-size: 27px;
     }
 
+    @include media(xxxs) {
+      font-size: 24px;
+    }
+
     + .p {
       margin-top: 6px;
     }
@@ -61,6 +65,11 @@
     height: 90px;
     margin-left: auto;
     margin-right: auto;
+
+    @include media(xxxs) {
+      font-size: 16px;
+      height: auto;
+    }
   }
 
   .figure {
@@ -80,6 +89,10 @@
       max-height: none;
       max-width: 450px;
       padding-bottom: 45px;
+    }
+
+    @include media(xxxs) {
+      margin: 15px 0 0;
     }
   }
 
@@ -110,6 +123,10 @@
 
     @include media(md) {
       max-width: 255px;
+    }
+
+    @include media(xxxs) {
+      max-width: 225px;
     }
   }
 
@@ -178,11 +195,20 @@
   }
 }
 
-.section-sharing .p {
-  max-width: 390px;
+.section-sharing {
 
-  @include media(md) {
-    max-width: 300px;
+  @include media(xxxs) {
+    .h2 {
+      max-width: 180px;
+    }
+  }
+
+  .p {
+    max-width: 390px;
+
+    @include media(md) {
+      max-width: 300px;
+    }
   }
 }
 
