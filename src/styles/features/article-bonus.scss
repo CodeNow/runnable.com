@@ -1,0 +1,43 @@
+.article-bonus {
+  padding-top: 0;
+
+  .img {
+    background-color: $gray-lighter; // until icons are added
+    margin: 0 30px 24px 0;
+  }
+
+  .h3,
+  .p {
+    padding-right: 60px;
+  }
+
+  .h3 {
+    font-size: 21px;
+    font-weight: $weight-bold;
+    margin: 0 0 12px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+    .bonus-item {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .grid-2 > .grid-block {
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      + .grid-block {
+        margin-top: 60px;
+      }
+    }
+
+    .h3,
+    .p {
+      padding-right: 0;
+    }
+  }
+}

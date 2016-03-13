@@ -1,10 +1,22 @@
 .header {
-  background: linear-gradient($purple-light, rgba($purple-light,0));
+  background: linear-gradient($purple, rgba($purple,0));
   left: 0;
   overflow: visible;
   position: absolute;
   right: 0;
   z-index: 10;
+
+  @include media(xxxs) {
+    .logo {
+      align-items: center;
+      flex: 0 0 150px;
+    }
+
+    .img {
+      height: 100%;
+      width: 100%;
+    }
+  }
 
   .grid-container {
     padding: 27px 30px 18px;
@@ -41,6 +53,7 @@
 
     .img-overflow {
       height: $input-sm;
+      width: 24px;
     }
   }
 
@@ -68,27 +81,37 @@
     padding: 0;
   }
 
-  .list-item {
-    cursor: pointer;
+  .divider {
+    background: $gray-lighter;
     display: block;
+    height: 1px;
+    margin: 9px -15px;
+  }
+}
 
-    &:hover {
-      color: $purple-light;
+.list-item-a {
+  cursor: pointer;
+  display: block;
+  height: $input-sm;
+  line-height: $input-sm;
+  padding: 0 15px 0 6px;
+
+  &:hover {
+    color: $purple-light;
+  }
+
+  &.visible-xs {
+    display: none;
+
+    @include media(xs) {
+      display: block;
     }
+  }
 
-    &.visible-xs {
-      display: none;
-
-      @include media(xs) {
-        display: block;
-      }
-    }
-
-    .icons {
-      height: 12px;
-      margin-left: 3px;
-      opacity: .5;
-      width: 12px;
-    }
+  .icons {
+    height: 12px;
+    margin-left: 3px;
+    opacity: .5;
+    width: 12px;
   }
 }

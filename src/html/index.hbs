@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Full-stack environments for your GitHub branches — Runnable</title>
+    <title>Your team has a staging problem. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -27,29 +27,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     @@include('../js/index.hbs')
 
+    <script src="js/external/modernizr.js"></script>
+    <script src="js/youtube.js"></script>
+
     <!--
       Commit Hash: {{{commitHash}}}
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('components/icons.hbs')
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('articles/hero.hbs')
-      @@include('articles/always.hbs')
-      @@include('articles/environment.hbs')
-      @@include('articles/secure.hbs')
-      @@include('articles/signup.hbs')
-      @@include('articles/quickstart.hbs')
+      @@include('html/video/video.hbs')
+      @@include('html/video/video-hero.hbs')
+      @@include('html/video/article-more.hbs')
     </main>
 
-    <div class="grid-block well">
-      Wanna see our last project?
-      <a href="http://code.runnable.com" class="btn btn-xs white" target="_blank">CodeSnippets</a>
-    </div>
-
-    @@include('components/footer.hbs')
-    @@include('signup-modal.hbs')
+    @@include('components/signup-modal.hbs')
