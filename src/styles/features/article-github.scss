@@ -1,138 +1,93 @@
 .article-github {
-  padding-bottom: 0;
+  padding: 0;
 
-  @include media(xxs) {
-    padding-left: 0;
-    padding-right: 0;
+  .section {
+    align-items: center;
+  }
+
+  .h2 {
+    max-width: 50%;
+    padding: 0 5.555%;
+
   }
 
   .figure {
-    height: 420px;
+    height: 360px;
+    margin-top: 75px;
+    overflow: hidden;
   }
 
   .img {
+    display: block;
+    flex: 0 0 auto;
     position: absolute;
+  }
+
+  .img-updates {
+    right: 0;
   }
 
   .hr {
     margin: 0 auto;
-    max-width: 90vw;
+    max-width: 100%;
+  }
 
-    @include media(xs) {
-      max-width: none;
+  @media (min-width: 1024px) {
+
+    .section-environments {
+      flex-direction: row-reverse;
+    }
+
+    .section-updates .h2 {
+      text-align: right;
     }
   }
 
-  // environments section
-  .section-environments {
-
-    @include media(xs) {
-      .figure {
-        height: 360px;
-
-        &::before {
-          display: none;
-        }
-      }
-    }
+  @media (max-width: 1260px) {
 
     .h2 {
-      max-width: 660px;
-
-      @include media(sm) {
-        max-width: 540px;
-      }
-
-      @include media(xs) {
-        font-size: 27px;
-        max-width: 360px;
-      }
-    }
-
-    .img {
-      left: 27%;
-
-      @include media(md) {
-        left: 20%;
-      }
-
-      @include media(xs) {
-        left: -6px;
-      }
+      font-size: 30px;
     }
   }
 
-  // updates section
-  .section-updates {
+  @media (max-width: 1024px) {
 
-    .gradient::before {
-
-      @include media(md) {
-        width: 15%;
-        z-index: 3;
-      }
-
-      @include media(xs) {
-        display: none;
-      }
+    .section {
+      flex-direction: column;
     }
 
     .h2 {
-      max-width: 660px;
-
-      @include media(sm) {
-        max-width: 540px;
-      }
-
-      @include media(xs) {
-        font-size: 27px;
-        max-width: 360px;
-      }
+      margin-top: 75px;
+      max-width: 540px;
+      text-align: center;
     }
 
     .figure {
-      height: 240px;
-
-      @media (max-width: 1200px) {
-        margin-left: auto;
-        margin-right: auto;
-        width: 960px;
-      }
-
-      @include media(md) {
-        height: 300px;
-      }
+      margin-top: 45px;
+      width: 100%;
     }
   }
 
-  .img-terminal {
-    left: 0;
-    z-index: 2;
+  @media (max-width: 600px) {
 
-    @include media(md) {
-      margin: auto;
-      right: 0;
-      z-index: 1;
-    }
-  }
-
-  .img-runnable {
-    height: auto;
-    right: 0;
-    top: 30px;
-
-    @include media(md) {
-      right: 120px;
-      top: 90px;
-      z-index: 2;
+    .h2 {
+      font-size: 24px;
+      margin-top: 45px;
+      max-width: 450px;
     }
 
-    @include media(sm) {
-      right: 30px;
+    .figure {
+      height: 270px;
+      margin-top: 30px;
     }
 
-    @include media(xs) {
-      right: -6px;
+    .img {
+      height: 330px;
+      width: auto;
+    }
+
+    .gradient::before {
+      width: 45px;
     }
   }
 }
