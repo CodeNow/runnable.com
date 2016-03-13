@@ -12,6 +12,10 @@
   .h2 {
     margin-top: 75px;
 
+    + .figure {
+      margin-top: 45px;
+    }
+
     @media (max-width: 1280px) {
       font-size: 30px;
     }
