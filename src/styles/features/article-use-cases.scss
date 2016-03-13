@@ -1,11 +1,39 @@
 .article-use-cases {
+  border-top: 1px solid $gray-lighter;
+  margin: 0 auto;
+  max-width: 1600px;
   padding-top: 0;
 
-  .grid-2 {
-    border-top: 1px solid $gray-lighter;
+  @media (max-width: 1600px) {
+    margin: 0;
+  }
 
-    > .grid-block + .grid-block {
-      border-left: 1px solid $gray-lighter;
+  .grid-2 {
+
+    + .grid-2 {
+      border-top: 1px solid $gray-lighter;
+
+      @include media(sm) {
+        border-top: 0;
+      }
+    }
+
+    > .grid-block {
+
+      @include media(sm) {
+        border-bottom: 1px solid $gray-lighter;
+        flex: 0 0 auto;
+        margin: 0 auto;
+        max-width: none;
+      }
+
+      + .grid-block {
+        border-left: 1px solid $gray-lighter;
+
+        @include media(sm) {
+          border-left: 0;
+        }
+      }
     }
   }
 
@@ -16,22 +44,38 @@
       font-size: 30px;
     }
 
+    @include media(md) {
+      font-size: 27px;
+    }
+
     + .p {
       margin-top: 6px;
     }
   }
 
   .p {
+    height: 90px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .figure {
-    margin-top: 30px;
+    margin-top: 45px;
+    max-height: 390px;
 
     @include media(md) {
-      margin: 30px 30px 0;
+      margin: 45px 30px 0;
       max-height: 330px;
+    }
+
+    @media (max-width: 850px) {
+      max-height: 285px;
+    }
+
+    @include media(sm) {
+      max-height: none;
+      max-width: 450px;
+      padding-bottom: 45px;
     }
   }
 
@@ -41,6 +85,10 @@
 
     @include media(md) {
       height: auto;
+      width: 90%;
+    }
+
+    @include media(xs) {
       width: 100%;
     }
   }
@@ -55,20 +103,60 @@
     @media (max-width: 1280px) {
       max-width: 270px;
     }
+
+    @include media(md) {
+      max-width: 255px;
+    }
   }
 
   .p {
     max-width: 345px;
+
+    @include media(md) {
+      max-width: 315px;
+    }
   }
 }
 
 .section-isolation {
+
+  @include media(sm) {
+    max-width: 100%;
+  }
+
+  @include media(xxs) {
+    width: 100%;
+  }
 
   .h2 {
     max-width: 390px;
 
     @media (max-width: 1280px) {
       max-width: 360px;
+    }
+
+    @include media(md) {
+      max-width: 300px;
+    }
+  }
+
+  .figure {
+    @include media(sm) {
+      padding-bottom: 0;
+
+      &::before {
+        width: 20%;
+      }
+    }
+
+    @include media(xs) {
+      margin-left: -30px;
+      margin-right: -30px;
+      overflow: visible;
+
+      &::before {
+        width: 30%;
+      }
     }
   }
 
@@ -78,17 +166,34 @@
     @media (max-width: 1280px) {
       width: 1200px;
     }
+
+    @include media(md) {
+      margin: 0 45px;
+      width: 900px;
+    }
   }
 
   .p {
     max-width: 360px;
+
+    @include media(md) {
+      max-width: 315px;
+    }
   }
 }
 
 .section-sharing .p {
   max-width: 390px;
+
+  @include media(md) {
+    max-width: 300px;
+  }
 }
 
 .section-pr .p {
   max-width: 390px;
+
+  @include media(md) {
+    max-width: 330px;
+  }
 }
