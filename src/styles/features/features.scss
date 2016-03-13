@@ -15,11 +15,13 @@
 
     @media (max-width: 1260px) {
       max-width: 100%;
-      padding: 0 90px;
+      padding-left: 90px;
+      padding-right: 90px;
     }
 
     @include media(xs) {
-      padding: 0 30px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
   }
 
