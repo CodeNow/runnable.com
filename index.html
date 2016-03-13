@@ -105,10 +105,27 @@
 
     // flipping cards
     function flipCard(e) {
+      var eventType = e.type;
       var thisCard = e.target;
-      // get card element
+
+      // set thisCard to parent card element
       while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+      var flipTriggers = thisCard.getElementsByClassName('img-rounded');
+
+      // remove and reset touch events
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].removeEventListener('touchend', flipCard);
+        }
+      }
+
       thisCard.classList.toggle('flip');
+
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].addEventListener('touchend', flipCard);
+        }
+      }
     }
 
     // events
@@ -131,8 +148,8 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard);
-          imgFlip[i].addEventListener('touchstart', flipCard);
+          // imgFlip[i].addEventListener('click', flipCard);
+          imgFlip[i].addEventListener('touchend', flipCard);
         }
       }
     };
@@ -143,8 +160,8 @@
     <script src="js/youtube.js"></script>
 
     <!--
-      Commit Hash: 628212d4d700b834cea0f099c19d4214845aa9fe
-      Commit Time: Sun Mar 13 15:45:59 2016 -0700
+      Commit Hash: 77e9ab63235893fe8d0962c1552f08e2ba8c49c8
+      Commit Time: Sun Mar 13 16:43:47 2016 -0700
     -->
 
   <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>

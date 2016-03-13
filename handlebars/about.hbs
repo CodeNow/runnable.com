@@ -176,10 +176,27 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // flipping cards
     function flipCard(e) {
+      var eventType = e.type;
       var thisCard = e.target;
-      // get card element
+
+      // set thisCard to parent card element
       while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+      var flipTriggers = thisCard.getElementsByClassName('img-rounded');
+
+      // remove and reset touch events
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].removeEventListener('touchend', flipCard);
+        }
+      }
+
       thisCard.classList.toggle('flip');
+
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].addEventListener('touchend', flipCard);
+        }
+      }
     }
 
     // events
@@ -202,8 +219,8 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard);
-          imgFlip[i].addEventListener('touchstart', flipCard);
+          // imgFlip[i].addEventListener('click', flipCard);
+          imgFlip[i].addEventListener('touchend', flipCard);
         }
       }
     };
