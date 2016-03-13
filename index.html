@@ -132,7 +132,7 @@
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
           imgFlip[i].addEventListener('click', flipCard);
-          imgFlip[i].addEventListener('touchend', flipCard);
+          imgFlip[i].addEventListener('touchstart', flipCard);
         }
       }
     };
@@ -143,8 +143,8 @@
     <script src="js/youtube.js"></script>
 
     <!--
-      Commit Hash: dabd788efee25661f57ca5b0443a701b9c6e87df
-      Commit Time: Sun Mar 13 15:44:03 2016 -0700
+      Commit Hash: 628212d4d700b834cea0f099c19d4214845aa9fe
+      Commit Time: Sun Mar 13 15:45:59 2016 -0700
     -->
 
   <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
