@@ -215,7 +215,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
@@ -239,9 +239,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       <a href="features.html" class="grid-content btn btn-sm text-white strong hidden-xs">Features</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Sign In</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
-        <svg class="icons icons-overflow">
-          <use xlink:href="#icons-overflow">
-        </svg>
+        <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
             <a ng-href="\{{loginUrl}}" class="list-item-a visible-xs">Sign In</a>
@@ -265,58 +263,63 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     <main class="grid-block vertical main">
       <article class="article hero">
-  <h1 class="h1 text-center">Full-stack
-    <br class="visible-xxs"> environments
-    <br class="hidden-xs"> for your GitHub branches.
-  </h1>
+  <h1 class="h1 text-center">A sandbox-as-a-service built for your team’s workflow.</h1>
 </article>
 
-      <article class="article-github">
-  <div class="grid-block vertical section-environments">
-    <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
-    <figure class="figure gradient gradient-right">
-      <img class="img" src="images/environments.png" height="426" width="1207">
-    </figure>
-    <hr class="hr">
-  </div>
-  <div class="grid-block vertical section-updates">
-    <h2 class="h2">Updates to branches automatically update environments.</h2>
-    <figure class="figure gradient gradient-left">
-      <img class="img img-terminal" src="images/terminal.png" height="295" width="450">
-      <img class="img img-runnable" src="images/runnable.png" height="426" width="1214">
-    </figure>
-    <hr class="hr">
+      <article class="article article-github">
+  <div class="grid-block grid-container vertical align-center">
+    <section class="grid-block vertical section section-environments">
+      <h2 class="h2 text-center">Every branch across
+        <br class="visible-xs"> every repository runs in a
+        <br class="visible-xs"> full-stack environment.
+      </h2>
+      <figure class="figure gradient gradient-right">
+        <img class="img" src="images/environments.png" height="426" width="1207">
+      </figure>
+      <hr class="hr">
+    </section>
+    <section class="grid-block vertical section section-updates">
+      <h2 class="h2 text-center">Updates to branches automatically update environments.</h2>
+      <figure class="figure gradient gradient-left">
+        <img class="img img-terminal" src="images/terminal.png" height="295" width="450">
+        <img class="img img-runnable" src="images/runnable.png" height="426" width="1214">
+      </figure>
+    </section>
   </div>
 </article>
 
-      <article class="grid-block grid-2 article-use-cases">
-  <div class="grid-block vertical">
-    <h2 class="h2">Automatically test every commit end-to-end.</h2>
-    <p class="p">Integrate and test with every push to GitHub. It’s never been this easy or comprehensive.</p>
-    <figure class="figure">
-      <img class="img" src="images/e2e-testing.png" width="450px" height="319">
-    </figure>
+      <article class="article article-use-cases">
+  <div class="grid-block grid-2">
+    <section class="grid-block vertical section-e2e">
+      <h2 class="h2 text-center">Run integration tests automatically.</h2>
+      <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
+      <figure class="figure">
+        <img class="img" src="images/e2e-testing.png" width="450" height="319">
+      </figure>
+    </section>
+    <section class="grid-block vertical section-isolation">
+      <h2 class="h2 text-center">Test schema changes safely in isolation.</h2>
+      <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
+      <figure class="figure figure-isolation gradient gradient-right">
+        <img class="img img-isolation" src="images/isolation.png" width="1200" height="420">
+      </figure>
+    </section>
   </div>
-  <div class="grid-block vertical">
-    <h2 class="h2">Test DB and config changes safely in isolation.</h2>
-    <p class="p">Isolate a branch with copies of all components in seconds (including multi-GB databases).</p>
-    <figure class="figure figure-isolation gradient gradient-right">
-      <img class="img" src="images/isolation.png" width="1200px" height="420">
-    </figure>
-  </div>
-  <div class="grid-block vertical">
-    <h2 class="h2">Share your progress at any time, with anyone.</h2>
-    <p class="p">Keep stakeholders and beta testers, up-to-date with a link that’s always running your latest commit.</p>
-    <figure class="figure">
-      <img class="img" src="images/sharing.png" width="450px" height="319">
-    </figure>
-  </div>
-  <div class="grid-block vertical">
-    <h2 class="h2">Link to changes from the pull request page.</h2>
-    <p class="p">Reduce time spent on reviewing code changes with a live, up-to-date endpoint for every branch.</p>
-    <figure class="figure">
-      <img class="img" src="images/pr-page.png" width="450px" height="307">
-    </figure>
+  <div class="grid-block grid-2">
+    <section class="grid-block vertical section-sharing">
+      <h2 class="h2 text-center">Quicker feedback loops.</h2>
+      <p class="p text-center">Keep stakeholders updated with a link that’s up-to-date with your latest commit. Also useful for beta-testing.</p>
+      <figure class="figure">
+        <img class="img" src="images/sharing.png" width="450" height="319">
+      </figure>
+    </section>
+    <section class="grid-block vertical section-pr">
+      <h2 class="h2 text-center">Faster code reviews.</h2>
+      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
+      <figure class="figure">
+        <img class="img" src="images/pr-page.png" width="450" height="307">
+      </figure>
+    </section>
   </div>
 </article>
 
@@ -350,7 +353,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
     <!-- initial state -->
     <h1 class="h1 text-center show">Let’s get going.</h1>
     <p class="p text-center show">Runnable was made for teams that use GitHub.
-      <br class="hidden-xs">Tell us about your team to get access and 30 days free.
+      <br class="hidden-xs">Tell us your team’s organization to request access.
     <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
