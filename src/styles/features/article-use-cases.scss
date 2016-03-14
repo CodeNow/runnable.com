@@ -185,8 +185,8 @@
 
 .section-sharing {
 
-  @include media(xxxs) {
-    .h2 {
+  .h2 {
+    @include media(xxxs) {
       max-width: 180px;
     }
   }
