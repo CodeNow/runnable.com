@@ -1,138 +1,153 @@
 .article-github {
   padding-bottom: 0;
+  padding-left: 45px;
+  padding-right: 45px;
 
-  @include media(xxs) {
-    padding-left: 0;
-    padding-right: 0;
+  @include media(xs) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .section {
+
+    @include media(sm) {
+      flex-flow: column nowrap;
+    }
+
+    + .section {
+      border-top: 1px solid $gray-lighter;
+      margin-top: 0; // override
+      padding-top: 60px;
+    }
   }
 
   .figure {
+    flex: 1 1 60%;
     height: 420px;
-  }
 
-  .img {
-    position: absolute;
-  }
-
-  .hr {
-    margin: 0 auto;
-    max-width: 90vw;
-
-    @include media(xs) {
-      max-width: none;
+    @media (max-width: 1280px) {
+      height: 360px;
     }
-  }
-
-  // environments section
-  .section-environments {
-
-    @include media(xs) {
-      .figure {
-        height: 360px;
-
-        &::before {
-          display: none;
-        }
-      }
-    }
-
-    .h2 {
-      max-width: 660px;
-
-      @include media(sm) {
-        max-width: 540px;
-      }
-
-      @include media(xs) {
-        font-size: 27px;
-        max-width: 360px;
-      }
-    }
-
-    .img {
-      left: 27%;
-
-      @include media(md) {
-        left: 20%;
-      }
-
-      @include media(xs) {
-        left: -6px;
-      }
-    }
-  }
-
-  // updates section
-  .section-updates {
-
-    .gradient::before {
-
-      @include media(md) {
-        width: 15%;
-        z-index: 3;
-      }
-
-      @include media(xs) {
-        display: none;
-      }
-    }
-
-    .h2 {
-      max-width: 660px;
-
-      @include media(sm) {
-        max-width: 540px;
-      }
-
-      @include media(xs) {
-        font-size: 27px;
-        max-width: 360px;
-      }
-    }
-
-    .figure {
-      height: 240px;
-
-      @media (max-width: 1200px) {
-        margin-left: auto;
-        margin-right: auto;
-        width: 960px;
-      }
-
-      @include media(md) {
-        height: 300px;
-      }
-    }
-  }
-
-  .img-terminal {
-    left: 0;
-    z-index: 2;
 
     @include media(md) {
-      margin: auto;
-      right: 0;
-      z-index: 1;
+      flex: 1 1 55%;
+      height: 300px;
     }
-  }
 
-  .img-runnable {
-    height: auto;
-    right: 0;
-    top: 30px;
-
-    @include media(md) {
-      right: 120px;
-      top: 90px;
-      z-index: 2;
+    @media (max-width: 900px) {
+      flex: 1 1 50%;
     }
 
     @include media(sm) {
-      right: 30px;
+      flex: 0 0 270px;
+      height: 270px;
+      margin-top: 45px;
+
+      &::before {
+        width: 75px;
+      }
+    }
+  }
+
+  .text-block {
+    flex: 1 1 40%;
+
+    @include media(md) {
+      flex: 1 1 45%;
     }
 
-    @include media(xs) {
-      right: -6px;
+    @media (max-width: 900px) {
+      flex: 1 1 50%;
+    }
+
+    @include media(sm) {
+      flex: 0 0;
+
+      .h2 {
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  }
+
+  .img {
+    display: block;
+    position: absolute;
+
+    @include media(md) {
+      height: auto;
+      width: 900px;
+    }
+
+    @include media(sm) {
+      width: 800px;
+    }
+  }
+}
+
+.section-environments {
+
+  .text-block {
+    order: 1;
+
+    @include media(sm) {
+      order: 0;
+    }
+  }
+
+  .h2 {
+    max-width: 420px;
+    order: 2;
+
+    @media (max-width: 1280px) {
+      margin-left: 30px;
+      max-width: 360px;
+    }
+
+    @include media(md) {
+      max-width: 315px;
+    }
+
+    @include media(xxxs) {
+      max-width: 285px;
+    }
+  }
+
+  .img {
+    margin-left: 30px;
+
+    @include media(sm) {
+      margin-left: 15px;
+    }
+  }
+}
+
+.section-updates {
+
+  .h2 {
+    max-width: 390px;
+    text-align: right;
+
+    @media (max-width: 1280px) {
+      margin-right: 30px;
+      max-width: 360px;
+    }
+
+    @include media(md) {
+      max-width: 300px;
+    }
+
+    @include media(xxxs) {
+      max-width: 270px;
+    }
+  }
+
+  .img {
+    margin-right: 30px;
+    right: 0;
+
+    @include media(sm) {
+      margin-right: 15px;
     }
   }
 }
