@@ -4,12 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Parallel environments for parallel development. — Runnable</title>
+    <title>A sandbox-as-a-service built for your team’s workflow. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles/index.css">
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
@@ -105,10 +104,27 @@
 
     // flipping cards
     function flipCard(e) {
+      var eventType = e.type;
       var thisCard = e.target;
-      // get card element
+
+      // set thisCard to parent card element
       while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+      var flipTriggers = thisCard.getElementsByClassName('img-rounded');
+
+      // remove and reset touch events
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].removeEventListener('touchend', flipCard);
+        }
+      }
+
       thisCard.classList.toggle('flip');
+
+      if (eventType === 'touchend') {
+        for (var i = 0; i < flipTriggers.length; i++) {
+          flipTriggers[i].addEventListener('touchend', flipCard);
+        }
+      }
     }
 
     // events
@@ -131,7 +147,7 @@
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard);
+          // imgFlip[i].addEventListener('click', flipCard);
           imgFlip[i].addEventListener('touchend', flipCard);
         }
       }
@@ -140,8 +156,8 @@
 </script>
 
     <!--
-      Commit Hash: a5e86956c5f2feb11b223fb7e9b1c60fd6043c6d
-      Commit Time: Sun Mar 13 18:16:44 2016 -0700
+      Commit Hash: c7c816a5d70c35f3edd5e71c8693b011d9879ac5
+      Commit Time: Mon Mar 14 16:04:20 2016 -0700
     -->
 
   <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
@@ -174,14 +190,12 @@
             <a ng-href="{{loginUrl}}" class="list-item-a visible-xs">Sign In</a>
             <a href="#sign-up-modal" class="list-item-a">Sign Up</a>
             <a class="list-item divider"></a>
-            <a href="https://runnable.zendesk.com/hc/en-us" class="list-item-a visible-sm">Documentation</a>
             <a href="features.html" class="list-item-a visible-xs">Features</a>
             <a href="about.html" class="list-item-a">About</a>
-            <a href="mailto:info@runnable.com" target="_blank" class="list-item-a">Email
-              <svg class="icons">
-                <use xlink:href="#icons-external">
-              </svg>
-            </a>
+            <a href="#" class="list-item-a">Pricing</a>
+            <a href="#" class="list-item-a">Blog</a>
+            <a href="https://runnable.zendesk.com/hc/en-us" class="list-item-a visible-sm">Documentation</a>
+            <a href="mailto:info@runnable.com" class="list-item-a">Email</a>
           </div>
         </div>
       </div>
@@ -201,7 +215,7 @@
       <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
     </div>
     <figure class="grid-block figure gradient gradient-right">
-      <img class="img" src="images/runnable.png" height="420" width="1080">
+      <img class="img" src="images/runnable.svg" height="420" width="1080">
     </figure>
   </section>
   <section class="section section-updates grid-block">
@@ -209,41 +223,41 @@
       <h2 class="h2">Updates to a branch automatically update the environment.</h2>
     </div>
     <figure class="grid-block figure gradient gradient-left">
-      <img class="img img-updates" src="images/runnable.png" height="420" width="1080">
+      <img class="img img-updates" src="images/updates.svg" height="420" width="1080">
     </figure>
   </section>
 </article>
 
       <article class="article article-use-cases">
   <div class="grid-block grid-2">
+    <section class="grid-block vertical section-sharing">
+      <h2 class="h2 text-center">Simplify development.</h2>
+      <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
+      <figure class="figure">
+        <img class="img" src="images/sharing.png" width="450" height="319">
+      </figure>
+    </section>
+    <section class="grid-block vertical section-pr">
+      <h2 class="h2 text-center">Faster reviews.</h2>
+      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
+      <figure class="figure">
+        <img class="img" src="images/pr-page.svg" width="450" height="315">
+      </figure>
+    </section>
+  </div>
+  <div class="grid-block grid-2">
     <section class="grid-block vertical section-e2e">
       <h2 class="h2 text-center">Run integration tests automatically.</h2>
       <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
       <figure class="figure">
-        <img class="img" src="images/e2e-testing.png" width="450" height="319">
+        <img class="img" src="images/e2e-testing.svg" width="450" height="315">
       </figure>
     </section>
     <section class="grid-block vertical section-isolation">
       <h2 class="h2 text-center">Test schema changes safely in isolation.</h2>
       <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
       <figure class="figure figure-isolation gradient gradient-right">
-        <img class="img img-isolation" src="images/isolation.png" width="1200" height="420">
-      </figure>
-    </section>
-  </div>
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-sharing">
-      <h2 class="h2 text-center">Quicker feedback loops.</h2>
-      <p class="p text-center">Keep stakeholders updated with a link that’s up-to-date with your latest commit. Also useful for beta-testing.</p>
-      <figure class="figure">
-        <img class="img" src="images/sharing.png" width="450" height="319">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-pr">
-      <h2 class="h2 text-center">Faster code reviews.</h2>
-      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
-      <figure class="figure">
-        <img class="img" src="images/pr-page.png" width="450" height="307">
+        <img class="img img-isolation" src="images/isolation.svg" width="1080" height="420">
       </figure>
     </section>
   </div>
@@ -254,15 +268,17 @@
     <div class="grid-block bonus-item">
       <img class="img grid-block shrink" src="" width="60" height="60">
       <div class="grid-block vertical">
-        <h3 class="h3">Ease of Use</h3>
-        <p class="p">Use Runnable CLI to tail logs and debug issues.</p>
+        <h3 class="h3">Flexible</h3>
+        <p class="p">Keep running branches in sync with GitHub, or sync directly from local with our&#32;
+          <a class="link strong" href="#">CLI</a> (also useful for SSH access).
+        </p>
       </div>
     </div>
     <div class="grid-block bonus-item">
       <img class="img grid-block shrink" src="" width="60" height="60">
       <div class="grid-block vertical">
-        <h3 class="h3">Flexibility</h3>
-        <p class="p">Export and Deploy images from our private Docker Registry.</p>
+        <h3 class="h3">Open</h3>
+        <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image export capabilities.</p>
       </div>
     </div>
   </section>
@@ -278,7 +294,9 @@
       <img class="img grid-block shrink" src="" width="60" height="60">
       <div class="grid-block vertical">
         <h3 class="h3">Security</h3>
-        <p class="p">Single-tenant infrastructure per team; Regular security audits.</p>
+        <p class="p">Single-tenant infrastructure per team; regular security audits (by&#32;
+          <a class="link strong" href="https://www.nccgroup.trust/us/">NCC Group</a>).
+        </p>
       </div>
     </div>
   </section>
@@ -295,11 +313,11 @@
 <footer class="grid-block footer align-spaced">
   <a href="features.html" class="btn btn-xs link strong">Features</a>
   <a href="about.html" class="btn btn-xs link strong">About</a>
-  <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
+  <a href="#" class="btn btn-xs link strong">Pricing</a>
   <img class="img" src="images/runnabot-head.png" height="45" width="45">
+  <a href="#" class="btn btn-xs link strong">Blog</a>
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Docs</a>
-  <a ng-href="{{loginUrl}}" class="btn btn-xs link strong">Sign In</a>
-  <a href="#sign-up-modal" class="btn btn-xs link strong">Sign Up</a>
+  <a href="mailto: info@runnable.com" class="btn btn-xs link strong">Email</a>
 </footer>
 
     <div class="modal-backdrop" id="sign-up-modal">
@@ -342,3 +360,24 @@
   </article>
 </div>
 
+
+    <!-- begin olark code -->
+<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+f[z]=function(){
+(a.s=a.s||[]).push(arguments)};var a=f[z]._={
+},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+0:+new Date};a.P=function(u){
+a.p[u]=new Date-a.p[0]};function s(){
+a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+b.contentWindow[g].open()}catch(w){
+c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+<!-- end olark code -->
