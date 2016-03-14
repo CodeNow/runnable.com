@@ -32,15 +32,16 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('components/icons.hbs')
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main about">
-      @@include('articles/team.hbs')
-      @@include('articles/location.hbs')
+      @@include('html/about/team.hbs')
+      @@include('html/about/location.hbs')
     </main>
 
+    @@include('components/signup.hbs')
     @@include('components/footer.hbs')
-    @@include('signup-modal.hbs')
+    @@include('components/signup-modal.hbs')

@@ -207,7 +207,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', 'javascript', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -222,7 +222,7 @@ gulp.task('deploy:s3', function(cb) {
 
 // build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'javascript', ['sass', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'javascript');});

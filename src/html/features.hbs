@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>A sandbox-as-a-service built for your team’s workflow. — Runnable</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles/index.css">
+
+    {{#if_eq env 'production-delta'}}
+      @@include('../js/external/facebook.hbs')
+      @@include('../js/external/trackjs.hbs')
+      <script src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
+      @@include('../js/external/mixpanel-prod.hbs')
+      <script src="https://widget.intercom.io/widget/wqzm3rju"></script>
+      @@include('../js/external/google-analytics.hbs')
+    {{/if_eq}}
+
+    {{#if_eq env 'staging'}}
+      <script src="https://widget.intercom.io/widget/xs5g95pd"></script>
+      @@include('../js/external/mixpanel-staging.hbs')
+    {{/if_eq}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    @@include('../js/index.hbs')
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('components/icons.hbs')
+    @@include('components/header.hbs')
+
+    <main class="grid-block vertical main">
+      @@include('html/features/features-hero.hbs')
+      @@include('html/features/github.hbs')
+      @@include('html/features/use-cases.hbs')
+      @@include('html/features/bonus.hbs')
+    </main>
+
+    @@include('components/signup.hbs')
+    @@include('components/footer.hbs')
+    @@include('components/signup-modal.hbs')

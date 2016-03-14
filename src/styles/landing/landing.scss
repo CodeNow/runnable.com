@@ -61,7 +61,7 @@
   }
 
   .hr {
-    background: rgba($black,.1);
+    background: $gray-lighter;
     border: 0;
     height: 1px;
     margin-bottom: 30px;
@@ -104,14 +104,14 @@
   border-radius: $input-border-radius;
   color: $gray;
   display: table;
+  font-size: 16px;
   margin: 0 auto 120px;
-  padding: 6px 15px;
+  padding: 6px 6px 6px 12px;
 
   &.grid-block {
 
     @include media(xs) {
       display: table;
-      font-size: 16px;
       padding: 6px 9px;
       text-align: center;
     }
@@ -122,11 +122,19 @@
   }
 
   .btn {
+    border-width: 1px;
     margin-left: 6px;
-    top: -2px;
 
     @include media(xs) {
       top: 0;
     }
+  }
+
+  .icons {
+    height: 12px;
+    margin-top: 1px;
+    position: relative;
+    top: 1px;
+    width: 12px;
   }
 }
