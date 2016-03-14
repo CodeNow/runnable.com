@@ -3,86 +3,111 @@
 
   .section {
     align-items: center;
-    margin: 0 auto;
-    max-width: 1260px;
-    padding: 0 45px;
+    margin-top: 60px;
 
     + .section {
       border-top: 1px solid $gray-lighter;
       margin-top: 0; // override
+      padding-top: 60px;
     }
   }
 
-  .h2 {
-    max-width: 50%;
-    padding: 0 5.555%;
+  .text-block {
+    flex: 1 1 40%;
   }
 
   .figure {
-    height: 360px;
-    margin-top: 75px;
-    max-width: 1170px;
-    overflow: hidden;
+    flex: 1 1 60%;
+    height: 420px;
+
+    @media (max-width: 1280px) {
+      height: 360px;
+    }
   }
 
   .img {
     display: block;
-    flex: 0 0 auto;
     position: absolute;
   }
+}
 
-  .img-updates {
-    right: 0;
+.section-environments {
+
+  .text-block {
+    order: 2;
   }
 
-  @media (min-width: 1024px) {
+  .h2 {
+    max-width: 420px;
+    order: 2;
 
-    .section-environments {
-      flex-direction: row-reverse;
-    }
-
-    .section-updates .h2 {
-      text-align: right;
-    }
-  }
-
-  @media (max-width: 1024px) {
-
-    .section {
-      flex-direction: column;
-    }
-
-    .h2 {
-      margin-top: 75px;
-      max-width: 540px;
-      text-align: center;
-    }
-
-    .figure {
-      margin-top: 45px;
-      width: 100%;
+    @media (max-width: 1280px) {
+      margin-left: 30px;
+      max-width: 360px;
     }
   }
 
-  @media (max-width: 600px) {
-    padding: 0 30px;
-
-    .section {
-      padding: 0 30px;
-    }
-
-    .figure {
-      height: 270px;
-      margin-top: 30px;
-    }
-
-    .img {
-      height: 330px;
-      width: auto;
-    }
-
-    .gradient::before {
-      width: 45px;
-    }
+  .img {
+    margin-left: 60px;
   }
 }
+
+.section-updates {
+
+  .h2 {
+    flex: 0 0 435px;
+    max-width: 435px;
+    text-align: right;
+
+    @media (max-width: 1280px) {
+      margin-right: 30px;
+      max-width: 360px;
+    }
+  }
+
+  .img {
+    margin-right: 60px;
+    right: 0;
+  }
+}
+
+  // @media (max-width: 1024px) {
+
+  //   .section {
+  //     flex-direction: column;
+  //   }
+
+  //   .h2 {
+  //     margin-top: 75px;
+  //     max-width: 540px;
+  //     text-align: center;
+  //   }
+
+  //   .figure {
+  //     margin-top: 45px;
+  //     width: 100%;
+  //   }
+  // }
+
+  // @media (max-width: 600px) {
+  //   padding: 0 30px;
+
+  //   .section {
+  //     padding: 0 30px;
+  //   }
+
+  //   .figure {
+  //     height: 270px;
+  //     margin-top: 30px;
+  //   }
+
+  //   .img {
+  //     height: 330px;
+  //     width: auto;
+  //   }
+
+  //   .gradient::before {
+  //     width: 45px;
+  //   }
+  // }
+// }
