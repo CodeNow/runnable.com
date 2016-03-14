@@ -176,27 +176,10 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 
     // flipping cards
     function flipCard(e) {
-      var eventType = e.type;
       var thisCard = e.target;
-
-      // set thisCard to parent card element
+      // get card element
       while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-      var flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-      // remove and reset touch events
-      if (eventType === 'touchend') {
-        for (var i = 0; i < flipTriggers.length; i++) {
-          flipTriggers[i].removeEventListener('touchend', flipCard);
-        }
-      }
-
       thisCard.classList.toggle('flip');
-
-      if (eventType === 'touchend') {
-        for (var i = 0; i < flipTriggers.length; i++) {
-          flipTriggers[i].addEventListener('touchend', flipCard);
-        }
-      }
     }
 
     // events
@@ -219,7 +202,7 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
       var imgFlip = document.getElementsByClassName('img-rounded');
       if (imgFlip) {
         for (var i = 0; i < imgFlip.length; i++) {
-          // imgFlip[i].addEventListener('click', flipCard);
+          imgFlip[i].addEventListener('click', flipCard);
           imgFlip[i].addEventListener('touchend', flipCard);
         }
       }
@@ -283,26 +266,23 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   <h1 class="h1 text-center">A sandbox-as-a-service built for your team’s workflow.</h1>
 </article>
 
-      <article class="article article-github">
-  <div class="grid-block grid-container vertical align-center">
-    <section class="grid-block vertical section section-environments">
-      <h2 class="h2 text-center">Every branch across
-        <br class="visible-xs"> every repository runs in a
-        <br class="visible-xs"> full-stack environment.
-      </h2>
-      <figure class="figure gradient gradient-right">
-        <img class="img" src="images/environments.png" height="426" width="1207">
-      </figure>
-      <hr class="hr">
-    </section>
-    <section class="grid-block vertical section section-updates">
-      <h2 class="h2 text-center">Updates to branches automatically update environments.</h2>
-      <figure class="figure gradient gradient-left">
-        <img class="img img-terminal" src="images/terminal.png" height="295" width="450">
-        <img class="img img-runnable" src="images/runnable.png" height="426" width="1214">
-      </figure>
-    </section>
-  </div>
+      <article class="article article-github grid-container">
+  <section class="section section-environments grid-block">
+    <div class="grid-block text-block vertical align-center">
+      <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
+    </div>
+    <figure class="grid-block figure gradient gradient-right">
+      <img class="img" src="images/runnable.png" height="420" width="1080">
+    </figure>
+  </section>
+  <section class="section section-updates grid-block">
+    <div class="grid-block text-block vertical align-center">
+      <h2 class="h2">Updates to a branch automatically update the environment.</h2>
+    </div>
+    <figure class="grid-block figure gradient gradient-left">
+      <img class="img img-updates" src="images/runnable.png" height="420" width="1080">
+    </figure>
+  </section>
 </article>
 
       <article class="article article-use-cases">
@@ -340,10 +320,47 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
   </div>
 </article>
 
-      <article class="article">
+      <article class="article article-bonus grid-container">
+  <section class="section grid-block grid-2">
+    <div class="grid-block bonus-item">
+      <img class="img grid-block shrink" src="" width="60" height="60">
+      <div class="grid-block vertical">
+        <h3 class="h3">Ease of Use</h3>
+        <p class="p">Use Runnable CLI to tail logs and debug issues.</p>
+      </div>
+    </div>
+    <div class="grid-block bonus-item">
+      <img class="img grid-block shrink" src="" width="60" height="60">
+      <div class="grid-block vertical">
+        <h3 class="h3">Flexibility</h3>
+        <p class="p">Export and Deploy images from our private Docker Registry.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section grid-block grid-2">
+    <div class="grid-block bonus-item">
+      <img class="img grid-block shrink" src="" width="60" height="60">
+      <div class="grid-block vertical">
+        <h3 class="h3">Performance</h3>
+        <p class="p">Dedicated infrastructure that auto-scales based on usage.</p>
+      </div>
+    </div>
+    <div class="grid-block bonus-item">
+      <img class="img grid-block shrink" src="" width="60" height="60">
+      <div class="grid-block vertical">
+        <h3 class="h3">Security</h3>
+        <p class="p">Single-tenant infrastructure per team; Regular security audits.</p>
+      </div>
+    </div>
+  </section>
 </article>
     </main>
 
+    <div class="sign-up-box">
+  <img class="img" src="images/runnabear-hello.png">
+  <p class="p text-center">Ready to get started? Tell us about your Github organization and we’ll get started!</p>
+  <a href="#sign-up-modal" class="btn btn-sm green">Sign Up</a>
+</div>
     <hr class="hr grid-container">
 
 <footer class="grid-block footer align-spaced">
