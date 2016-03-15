@@ -10,42 +10,8 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles/index.css">
 
-    {{#if_eq env 'production-delta'}}
-      <!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','//connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '761302660669573');
-fbq('track', "PageView");</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
-      <!-- google analytics -->
-<script>
-  (function (i, s, o, g, r, a, m) {
-    i["GoogleAnalyticsObject"] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-    m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
-  ga("create", "UA-59677301-1", "auto");
-  ga("send", "pageview");
-</script>
-<!-- end google analytics -->
-    {{/if_eq}}
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script>
+    <script ugly=true>
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
@@ -90,103 +56,109 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
         }
         $window.location = newURL;
       });
-
-    // form submit
-    function markInvalid(e) {
-      if (e.target.tagName == 'INPUT') {
-        // for invalid event
-        var theseInputs = e.target.classList.add('invalid');;
-      } else {
-        // for change event
-        var theseInputs = e.target.getElementsByTagName('input');
-        for (var i = 0; i < theseInputs.length; i++) {
-          if (!theseInputs[i].validity.valid) {
-            theseInputs[i].classList.add('invalid');
-          }
-        }
-      }
-    }
-
-    function shakeForm(e) {
-      var thisModal = e.target;
-      // get modal element
-      while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
-      thisModal.classList.add('shake');
-      thisModal.addEventListener('animationend', function(){
-        thisModal.classList.remove('shake');
-        thisModal.removeEventListener('animationend', function(){});
-      });
-    }
-
-    function makeDirty(e){
-      e.target.classList.remove('pristine', 'invalid');
-    }
-
-    function formInvalid(e) {
-      markInvalid(e);
-      shakeForm(e);
-    }
-
-    function formSubmit(e){
-      if (e.target.checkValidity()) {
-        fbq('track', 'Lead');
-      } else {
-        e.preventDefault();
-      }
-    }
-
-    // flipping cards
-    function flipCard(e) {
-      var eventType = e.type;
-      var thisCard = e.target;
-
-      // set thisCard to parent card element
-      while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-      var flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-      // remove and reset touch events
-      if (eventType === 'touchend') {
-        for (var i = 0; i < flipTriggers.length; i++) {
-          flipTriggers[i].removeEventListener('touchend', flipCard);
-        }
-      }
-
-      thisCard.classList.toggle('flip');
-
-      if (eventType === 'touchend') {
-        for (var i = 0; i < flipTriggers.length; i++) {
-          flipTriggers[i].addEventListener('touchend', flipCard);
-        }
-      }
-    }
-
-    // events
-    window.onload = function(){
-      //sign up form
-      var formSignUp = document.getElementsByClassName('form-sign-up');
-      if (formSignUp) {
-        for (var i = 0; i < formSignUp.length; i++) {
-          formSignUp[i].addEventListener('change', makeDirty);
-          formSignUp[i].addEventListener('submit', formSubmit);
-
-          var theseInputs = formSignUp[i].getElementsByTagName('input');
-          for (var i = 0; i < theseInputs.length; i++) {
-            theseInputs[i].addEventListener('invalid', formInvalid);
-          }
-        }
-      }
-
-      // flipping cards
-      var imgFlip = document.getElementsByClassName('img-rounded');
-      if (imgFlip) {
-        for (var i = 0; i < imgFlip.length; i++) {
-          // imgFlip[i].addEventListener('click', flipCard);
-          imgFlip[i].addEventListener('touchend', flipCard);
-        }
-      }
-    };
   });
 </script>
+    <script>
+      // form submit
+function markInvalid(e) {
+  var theseInputs;
+  if (e.target.tagName == 'INPUT') {
+    // for invalid event
+    theseInputs = e.target.classList.add('invalid');
+  } else {
+    // for change event
+    theseInputs = e.target.getElementsByTagName('input');
+    for (var i = 0; i < theseInputs.length; i++) {
+      if (!theseInputs[i].validity.valid) {
+        theseInputs[i].classList.add('invalid');
+      }
+    }
+  }
+}
+
+function shakeForm(e) {
+  var thisModal = e.target;
+  // get modal element
+  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
+  thisModal.classList.add('shake');
+  thisModal.addEventListener('animationend', function(){
+    thisModal.classList.remove('shake');
+    thisModal.removeEventListener('animationend', function(){});
+  });
+}
+
+function makeDirty(e){
+  e.target.classList.remove('pristine', 'invalid');
+}
+
+function formInvalid(e) {
+  markInvalid(e);
+  shakeForm(e);
+}
+
+function formSubmit(e){
+  if (e.target.checkValidity()) {
+    fbq('track', 'Lead');
+  } else {
+    e.preventDefault();
+  }
+}
+
+// flipping cards
+function flipCard(e) {
+  var i;
+  var eventType = e.type;
+  var thisCard = e.target;
+
+  // set thisCard to parent card element
+  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+  var flipTriggers = thisCard.getElementsByClassName('img-rounded');
+
+  // remove and reset touch events
+  if (eventType === 'touchend') {
+    for (i = 0; i < flipTriggers.length; i++) {
+      flipTriggers[i].removeEventListener('touchend', flipCard);
+    }
+  }
+
+  thisCard.classList.toggle('flip');
+
+  if (eventType === 'touchend') {
+    for (i = 0; i < flipTriggers.length; i++) {
+      flipTriggers[i].addEventListener('touchend', flipCard);
+    }
+  }
+}
+
+// events
+window.onload = function(){
+  var i;
+
+  //sign up form
+  var formSignUp = document.getElementsByClassName('form-sign-up');
+  if (formSignUp) {
+    for (i = 0; i < formSignUp.length; i++) {
+      formSignUp[i].addEventListener('change', makeDirty);
+      formSignUp[i].addEventListener('submit', formSubmit);
+
+      var theseInputs = formSignUp[i].getElementsByTagName('input');
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].addEventListener('invalid', formInvalid);
+      }
+    }
+  }
+
+  // flipping cards
+  var imgFlip = document.getElementsByClassName('img-rounded');
+  if (imgFlip) {
+    for (i = 0; i < imgFlip.length; i++) {
+      imgFlip[i].addEventListener('click', flipCard);
+      imgFlip[i].addEventListener('touchend', flipCard);
+    }
+  }
+};
+
+    </script>
 
     <!--
       Commit Hash: {{{commitHash}}}
@@ -414,3 +386,36 @@ loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure"
 /* custom configuration goes here (www.olark.com/documentation) */
 olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
+
+    {{#if_eq env 'production-delta'}}
+      <script>// Facebook Pixel Code
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '761302660669573');
+fbq('track', "PageView");
+// End Facebook Pixel Code</script>
+      <!-- Facebook Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+      <script>// google analytics
+(function (i, s, o, g, r, a, m) {
+  i["GoogleAnalyticsObject"] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+ga("create", "UA-59677301-1", "auto");
+ga("send", "pageview");
+// end google analytics</script>
+    {{/if_eq}}
