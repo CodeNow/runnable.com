@@ -61,8 +61,8 @@
     <script>function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.target.checkValidity()?fbq("track","Lead"):e.preventDefault()}function flipCard(e){for(var t,n=e.type,a=e.target;(a=a.parentElement)&&!a.classList.contains("team-card"););var i=a.getElementsByClassName("img-rounded");if("touchend"===n)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(a.classList.toggle("flip"),"touchend"===n)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}window.onload=function(){var e,t=document.getElementsByClassName("form-sign-up");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var n=t[e].getElementsByTagName("input");for(e=0;e<n.length;e++)n[e].addEventListener("invalid",formInvalid)}var a=document.getElementsByClassName("img-rounded");if(a)for(e=0;e<a.length;e++)a[e].addEventListener("click",flipCard),a[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: 7438c6b017b56d87639a0d6e13283bd08c0211e4
-      Commit Time: Mon Mar 14 19:15:29 2016 -0700
+      Commit Hash: 2a514e7a66660e8a9f5ed05f7ad807e06e8658e5
+      Commit Time: Tue Mar 15 13:35:50 2016 -0700
     -->
 
   </head><body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -139,7 +139,7 @@
       <h2 class="h2 text-center">Simplify development.</h2>
       <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
       <figure class="figure">
-        <img class="img" src="images/simplify.png" width="450" height="315">
+        <img class="img" src="images/simplify.png" width="450" height="360">
       </figure>
     </section>
     <section class="grid-block vertical section-pr">
@@ -170,39 +170,38 @@
 
       <article class="article article-bonus grid-container">
   <section class="section grid-block grid-2">
-    <div class="grid-block bonus-item">
-      <img class="img grid-block shrink" src="" width="60" height="60">
-      <div class="grid-block vertical">
-        <h3 class="h3">Flexible</h3>
-        <p class="p">Keep running branches in sync with GitHub, or sync directly from local with our&#32;
-          <a class="link strong" href="#">CLI</a> (also useful for SSH access).
-        </p>
-      </div>
+    <div class="grid-block vertical bonus-item">
+      <img class="img grid-block shrink" src="images/icons-flexible.svg" width="60" height="60">
+      <h3 class="h3">Flexible</h3>
+      <p class="p">Keep running branches in sync with GitHub, or sync locally with our&#32;
+        <a class="link strong" href="#">CLI</a> (also useful for&#32;
+        <br class="visible-xxs">SSH access).
+      </p>
     </div>
-    <div class="grid-block bonus-item">
-      <img class="img grid-block shrink" src="" width="60" height="60">
-      <div class="grid-block vertical">
-        <h3 class="h3">Open</h3>
-        <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image export capabilities.</p>
-      </div>
+    <div class="grid-block vertical bonus-item">
+      <img class="img grid-block shrink" src="images/icons-open.svg" width="60" height="60">
+      <h3 class="h3">Open</h3>
+      <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
+        <br class="visible-xxs">export capabilities.
+      </p>
     </div>
   </section>
   <section class="section grid-block grid-2">
-    <div class="grid-block bonus-item">
-      <img class="img grid-block shrink" src="" width="60" height="60">
-      <div class="grid-block vertical">
-        <h3 class="h3">Performance</h3>
-        <p class="p">Dedicated infrastructure that auto-scales based on usage.</p>
-      </div>
+    <div class="grid-block vertical bonus-item">
+      <img class="img grid-block shrink" src="images/icons-performance.svg" width="60" height="60">
+      <h3 class="h3">Performant</h3>
+      <p class="p">Dedicated infrastructure that&#32;
+        <br class="visible-xs">auto-scales based on usage.
+      </p>
     </div>
-    <div class="grid-block bonus-item">
-      <img class="img grid-block shrink" src="" width="60" height="60">
-      <div class="grid-block vertical">
-        <h3 class="h3">Security</h3>
-        <p class="p">Single-tenant infrastructure per team; regular security audits (by&#32;
-          <a class="link strong" href="https://www.nccgroup.trust/us/">NCC Group</a>).
-        </p>
-      </div>
+    <div class="grid-block vertical bonus-item">
+      <img class="img grid-block shrink" src="images/icons-security.svg" width="60" height="60">
+      <h3 class="h3">Secure</h3>
+      <p class="p">Single-tenant infrastructure per&#32;
+        <br class="visible-md hidden-sm"><br class="visible-xs">team—regular security audits&#32;
+        <br class="visible-xs">(by&#32;
+        <br class="visible-md hidden-sm"><a class="link strong" href="https://www.nccgroup.trust/us/">NCC Group</a>).
+      </p>
     </div>
   </section>
 </article>
@@ -213,6 +212,7 @@
   <p class="p text-center">Ready to get started? Tell us about your Github organization and we’ll get started!</p>
   <a href="#sign-up-modal" class="btn btn-sm green">Sign Up</a>
 </div>
+
     <hr class="hr grid-container">
 
 <footer class="grid-block footer align-spaced">
