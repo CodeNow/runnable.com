@@ -3,6 +3,7 @@
   border-radius: 7px 7px 0 0 !important;
   box-shadow: 0 -1px 3px rgba($black,.1);
   font-family: $sans-serif !important;
+  z-index: $z-modal - 1 !important;
 }
 
 .habla_button:hover {
@@ -21,12 +22,18 @@
 #habla_topbar_div {
   animation-name: disabled_animation !important;
   background: $purple-dark !important;
-  font-size: 16px !important;
-  font-weight: $weight-bold !important;
+  font-size: 15px !important;
+  font-weight: $weight-normal !important;
 }
 
-#habla_oplink_a:hover {
-  text-decoration: none !important;
+#habla_oplink_a {
+  opacity: .6 !important;
+
+  &:hover,
+  &:active {
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
 }
 
 .olrk-state-compressed #habla_topbar_div,
