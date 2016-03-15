@@ -1,5 +1,6 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
+  border-bottom: 1px solid $gray-lighter;
   border-radius: 7px 7px 0 0 !important;
   box-shadow: 0 -1px 3px rgba($black,.1);
   font-family: $sans-serif !important;
@@ -19,6 +20,7 @@
 }
 
 #habla_topbar_div {
+  animation: none !important;
   background: $purple-dark !important;
   font-size: 16px !important;
   font-weight: $weight-bold !important;
@@ -33,7 +35,7 @@
   background: $purple-lightest !important;
   border: 1px solid $purple-light !important;
   border-radius: $input-border-radius !important;
-  margin-right: 4px !important;
+  margin-right: 6px !important;
   padding: 2px 0 2px 3px !important;
 }
 
@@ -85,8 +87,8 @@
 
 
 
-.habla_conversation_p_item {
-  color: $gray-darker !important;
+.habla_conversation_p_item.habla_conversation_p_item {
+  color: $gray-dark !important;
   margin-bottom: 6px !important;
 }
 
