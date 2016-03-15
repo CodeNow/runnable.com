@@ -1,66 +1,62 @@
 .article-bonus {
-  border-top: 1px solid $gray-lighter;
   margin-bottom: 120px;
 
-  .section {
-    margin: 0 auto;
-    max-width: 1290px;
-    padding: 0 4.651%;
+  @include media(sm) {
+    padding-top: 90px;
   }
 
-  .img {
-    background-color: $gray-lighter; // until icons are added
-    margin: 0 30px 24px 0;
-  }
-
-  .h3,
-  .p {
-    padding-right: 60px;
-  }
-
-  .h3 {
-    font-size: 21px;
-    font-weight: $weight-bold;
-    margin: 0 0 12px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-
-    .bonus-item {
-      flex-direction: column;
-    }
-  }
-
-  @media (max-width: 768px) {
-    border-top: 0;
-
-    .section {
-      max-width: 450px;
-    }
-
+  @include media(xs) {
     .grid-2 > .grid-block {
       flex: 0 0 100%;
       max-width: 100%;
+      text-align: center;
 
       + .grid-block {
         margin-top: 60px;
       }
     }
+  }
 
-    .h3,
-    .p {
-      padding-right: 0;
+  .section {
+    margin: 0 auto;
+  }
+
+  .img {
+    height: 45px;
+    width: 45px;
+
+    @include media(xs) {
+      margin: 0 auto;
     }
   }
 
-  @media (max-width: 600px) {
+  .h3 {
+    font-size: 21px;
+    font-weight: $weight-bold;
+    margin-bottom: 9px;
+  }
 
-    .bonus-item {
-      flex-direction: column;
+  .p {
+    max-width: 360px;
+
+    @include media(xs) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 300px;
     }
+  }
 
-    .section {
-      padding: 0 30px;
+  .bonus-item {
+    padding: 0 30px;
+
+    @media (min-width: $screen-xs) and (max-width: $screen-sm) {
+      &:first-child {
+        padding-left: 15px;
+      }
+
+      &:last-child {
+        padding-right: 15px;
+      }
     }
   }
 }
