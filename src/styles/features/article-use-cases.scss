@@ -195,6 +195,14 @@
     }
   }
 
+  .figure {
+    margin-bottom: 0;
+
+    @include media(sm) {
+      padding-bottom: 0;
+    }
+  }
+
   .p {
     max-width: 390px;
 
