@@ -58,5 +58,14 @@
         padding-right: 15px;
       }
     }
+
+    @include media(xxxs) {
+      font-size: 16px;
+      padding: 0;
+
+      .br:not(.visible-xxxs) {
+        display: none;
+      }
+    }
   }
 }

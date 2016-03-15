@@ -1,5 +1,5 @@
-
 // responsive utils
+.visible-xxxs,
 .visible-xxs,
 .visible-xs,
 .visible-sm,
@@ -7,6 +7,12 @@
 .visible-lg,
 .visible-xl {
   display: none;
+}
+
+@include media(xxxs) {
+  .visible-xxxs {
+    display: inherit;
+  }
 }
 
 @include media(xxs) {
@@ -45,6 +51,7 @@
   }
 }
 
+.hidden-xxxs,
 .hidden-xxs,
 .hidden-xs,
 .hidden-sm,
@@ -52,6 +59,12 @@
 .hidden-lg,
 .hidden-xl {
   display: inherit;
+}
+
+@include media(xxxs) {
+  .hidden-xxxs {
+    display: none;
+  }
 }
 
 @include media(xxs) {
