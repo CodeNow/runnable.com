@@ -61,8 +61,8 @@
     <script>function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.target.checkValidity()?fbq("track","Lead"):e.preventDefault()}function flipCard(e){for(var t,n=e.type,a=e.target;(a=a.parentElement)&&!a.classList.contains("team-card"););var i=a.getElementsByClassName("img-rounded");if("touchend"===n)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(a.classList.toggle("flip"),"touchend"===n)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}window.onload=function(){var e,t=document.getElementsByClassName("form-sign-up");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var n=t[e].getElementsByTagName("input");for(e=0;e<n.length;e++)n[e].addEventListener("invalid",formInvalid)}var a=document.getElementsByClassName("img-rounded");if(a)for(e=0;e<a.length;e++)a[e].addEventListener("click",flipCard),a[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: 2a514e7a66660e8a9f5ed05f7ad807e06e8658e5
-      Commit Time: Tue Mar 15 13:35:50 2016 -0700
+      Commit Hash: 5f5194105b6b7333ebdc77cd53e4bbab8f029b6d
+      Commit Time: Tue Mar 15 13:46:34 2016 -0700
     -->
 
   </head><body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
