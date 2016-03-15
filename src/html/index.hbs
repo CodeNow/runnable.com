@@ -12,8 +12,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     @@include('../js/index.hbs')
-
-    <script>@@include('../js/youtube.js')</script>
+    <script>
+      @@include('../js/landing.js')
+      @@include('../js/youtube.js')
+    </script>
 
     <!--
       Commit Hash: {{{commitHash}}}
@@ -34,10 +36,10 @@
     @@include('components/signup-modal.hbs')
 
     <script async src="js/external/modernizr.js"></script>
-    @@include('../js/external/olark.hbs')
+    @@include('../js/external/olark.html')
 
     {{#if_eq env 'production-delta'}}
       <script>@@include('../js/external/facebook.js')</script>
-      @@include('../js/external/facebook.hbs')
+      @@include('../js/external/facebook.html')
       <script>@@include('../js/external/google-analytics.js')</script>
     {{/if_eq}}

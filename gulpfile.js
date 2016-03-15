@@ -10,7 +10,7 @@ var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
-var uglify = require('gulp-uglify'); // uglify
+var minifyInline = require('gulp-minify-inline'); // minifier
 var awspublish = require('gulp-awspublish');
 var exec = require('child_process').exec;
 
@@ -137,14 +137,13 @@ gulp.task('js', function () {
     .pipe(gulp.dest(jsDist));
 });
 
-// javascript compressed
-gulp.task('js:build', function () {
-  return gulp.src(src + 'js/**/*.js')
-    .pipe(uglify())
-    .pipe(debug({
-      title: 'js:build'
+// minifier
+gulp.task('minify', function() {
+  gulp.src(dist + '**/*.html')
+    .pipe(minifyInline({
+      jsSelector: 'script[ugly!="true"]'
     }))
-    .pipe(gulp.dest(jsDist));
+    .pipe(gulp.dest(dist));
 });
 
 // images
@@ -218,7 +217,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', 'js:build', ['sass:build', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'minify'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
