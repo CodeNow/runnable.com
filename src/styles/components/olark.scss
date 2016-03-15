@@ -1,6 +1,5 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
-  border-bottom: 1px solid rgba($black,.1) !important;
   border-radius: 7px 7px 0 0 !important;
   box-shadow: 0 -1px 3px rgba($black,.1);
   font-family: $sans-serif !important;
@@ -24,6 +23,20 @@
   background: $purple-dark !important;
   font-size: 16px !important;
   font-weight: $weight-bold !important;
+}
+
+#habla_oplink_a:hover {
+  text-decoration: none !important;
+}
+
+.olrk-state-compressed #habla_topbar_div,
+.olrk-state-compressed #habla_oplink_a {
+  cursor: n-resize !important;
+}
+
+.olrk-state-expanded #habla_topbar_div,
+.olrk-state-expanded #habla_oplink_a {
+  cursor: s-resize !important;
 }
 
 #habla_conversation_div {
@@ -53,6 +66,7 @@
 
 #habla_expanded_div {
   background-color: rgba($white,.98) !important;
+  box-shadow: inset 0 -1px 0 rgba($black,.1) !important;
 }
 
 .habla_button {
@@ -100,7 +114,7 @@
 #habla_pre_chat_phone_input,
 #habla_offline_phone_input,
 #habla_pre_chat_phone_input,
-#habla_wcsend_input {
+#habla_wcsend_input#habla_wcsend_input#habla_wcsend_input {
   background: $gray-lighterest !important;
   border: $input-border solid $gray-lighter !important;
   border-radius: $input-border-radius !important;
