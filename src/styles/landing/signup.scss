@@ -1,22 +1,23 @@
 .sign-up-box {
+  align-items: center;
   background: $gray-lighterest;
   border: 1px solid $gray-lighter;
   border-radius: $input-border-radius-lg;
   color: $gray;
   margin: 0 auto 60px;
-  padding: 30px 30px 15px;
+  overflow: visible;
+  padding: 36px 42px;
   position: relative;
-  width: 420px;
+  width: 390px;
 
   @include media(xs) {
-    margin-bottom: 15px;
-    padding: 21px 30px;
-    width: 330px;
+    padding: 24px 24px;
+    width: 345px;
   }
 
   @include media(xxxs) {
-    font-size: 16px;
-    padding: 21px 15px;
+    flex-direction: column;
+    padding: 21px;
     width: 270px;
   }
 
@@ -29,13 +30,13 @@
     top: -77px;
     width: 150px;
   }
-
-  .btn {
-    display: table;
-    margin: 9px auto 0;
-
+  
+  .p {
+    font-weight: $weight-normal;
+    margin: 0; // override
+    
     @include media(xxxs) {
-      margin-top: 15px;
+      margin-bottom: 12px;
     }
   }
 }
