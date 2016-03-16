@@ -6,19 +6,12 @@
   color: $gray;
   margin: 0 auto 60px;
   overflow: visible;
-  padding: 36px 42px;
+  padding: 21px 30px;
   position: relative;
   width: 390px;
 
-  @include media(xs) {
-    padding: 24px 24px;
-    width: 345px;
-  }
-
-  @include media(xxxs) {
-    flex-direction: column;
-    padding: 21px;
-    width: 270px;
+  @include media(xxs) {
+    width: 330px;
   }
 
   .img {
@@ -30,14 +23,23 @@
     top: -77px;
     width: 150px;
   }
-  
+
   .p {
-    font-weight: $weight-normal;
-    margin: 0; // override
-    
-    @include media(xxxs) {
+    margin-bottom: 0;
+
+    + .p {
       margin-bottom: 12px;
     }
+  }
+
+  .popover-trigger {
+    cursor: pointer;
+  }
+
+  .popover {
+    bottom: 100%;
+    font-size: 15px;
+    width: 270px;
   }
 }
 
