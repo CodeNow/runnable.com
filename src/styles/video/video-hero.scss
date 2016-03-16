@@ -1,0 +1,117 @@
+.video-hero {
+  height: 600px;
+
+  @include media(sm) {
+    height: 562px;
+  }
+
+  @include media(xs) {
+    height: 418px;
+  }
+
+  @include media(xxs) {
+    height: 376px;
+  }
+
+  .h1 {
+    margin: 0 auto 6px;
+    max-width: 510px;
+    position: relative;
+    z-index: 1;
+
+    @include media(sm) {
+      font-size: 39px;
+      max-width: 570px;
+    }
+
+    @include media(xs) {
+      font-size: 36px;
+      max-width: 450px;
+    }
+
+    @include media(xxs) {
+      font-size: 30px;
+    }
+  }
+}
+
+.video-img-wrapper {
+  background: $purple;
+  border: 1px solid darken($purple,5%);
+  border-radius: $input-border-radius-lg;
+  box-shadow: 0 0 15px rgba($black,.3);
+  height: 342px;
+  left: 0;
+  margin: auto;
+  position: relative;
+  right: 0;
+  top: 30px;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+  width: 608px;
+  z-index: 2;
+
+  @include media(sm) {
+    height: 304px;
+    width: 540px;
+  }
+
+  @include media(xs) {
+    height: 180px;
+    width: 320px;
+  }
+
+  @include media(xxs) {
+    height: 153px;
+    width: 272px;
+  }
+}
+
+.video-img {
+  border-radius: $input-border-radius-lg - 1px;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  opacity: .75;
+  position: absolute;
+  top: 0;
+  transform-origin: 50% 0%;
+  width: 100%;
+
+  @include media(xxs) {
+    pointer-events: none;
+  }
+
+  &:hover {
+    opacity: .9;
+  }
+}
+
+.video-link {
+  border-radius: $input-sm;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 58%;
+  transform-origin: 50% 0%;
+  width: 230px;
+  z-index: 9;
+
+  @include media(xxs) {
+    pointer-events: none;
+  }
+
+  @include media(xxxs) {
+    bottom: -$input-sm / 2;
+    top: auto;
+  }
+
+  &:hover ~ .video-img {
+    opacity: .9;
+  }
+
+  .img {
+    position: relative;
+    top: 3px;
+  }
+}

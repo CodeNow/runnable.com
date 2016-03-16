@@ -10,6 +10,7 @@ var imagemin = require('gulp-imagemin'); // image optimizer
 var ghPages = require('gulp-gh-pages'); // deploy to gh pages
 var handlebars = require('gulp-compile-handlebars'); // handlebars
 var rename = require('gulp-rename'); // rename files
+var minifyInline = require('gulp-minify-inline'); // minifier
 var awspublish = require('gulp-awspublish');
 var exec = require('child_process').exec;
 
@@ -111,7 +112,7 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(sassDist));
 });
 
-gulp.task('sassCompressed', function() {
+gulp.task('sass:build', function() {
   return gulp.src(sassSrc)
     .pipe(sass({
       errLogToConsole: true,
@@ -127,13 +128,22 @@ gulp.task('sassCompressed', function() {
 });
 
 // javascript
-gulp.task('javascript', function () {
+gulp.task('js', function () {
   return gulp.src(jsDir)
     .pipe(newer(jsDist))
     .pipe(debug({
-      title: 'javascript'
+      title: 'js'
     }))
     .pipe(gulp.dest(jsDist));
+});
+
+// minifier
+gulp.task('minify', function() {
+  gulp.src(dist + '**/*.html')
+    .pipe(minifyInline({
+      jsSelector: 'script[ugly!="true"]'
+    }))
+    .pipe(gulp.dest(dist));
 });
 
 // images
@@ -207,7 +217,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', ['sassCompressed', 'images', 'favicon'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'minify'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -222,9 +232,9 @@ gulp.task('deploy:s3', function(cb) {
 
 // build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'hbs', ['sass', 'images', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], cb);
   gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'javascript');});
+  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});
   gulp.watch(imgDir, ['images']);
 });

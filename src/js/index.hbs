@@ -1,4 +1,4 @@
-<script>
+<script ugly=true>
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
@@ -43,56 +43,5 @@
         }
         $window.location = newURL;
       });
-
-    // form submit
-    function markInvalid(e) {
-      var thisForm = e.target.getElementsByTagName('input');
-
-      for (var i = 0; i < thisForm.length; i++) {
-        if (!thisForm[i].validity.valid) {
-          thisForm[i].classList.add('invalid');
-        }
-      }
-    }
-
-    function makeDirty(e){
-      e.target.classList.remove('pristine', 'invalid');
-    }
-
-    function formSubmit(e){
-      if (e.target.checkValidity()) {
-        fbq('track', 'Lead');
-      } else {
-        markInvalid(e);
-        e.preventDefault();
-      }
-    }
-
-    // flipping cards
-    function flipCard(e) {
-      e.target.parentElement.parentElement.classList.toggle('flip');
-    }
-
-    // events
-    window.onload = function(){
-      var formSignUp = document.getElementsByClassName('form-sign-up');
-
-      if (formSignUp) {
-        //sign up form
-        for (var i = 0; i < formSignUp.length; i++) {
-          formSignUp[i].addEventListener('change', makeDirty);
-          formSignUp[i].addEventListener('submit', formSubmit);
-        }
-      }
-
-      // flipping cards
-      var imgFlip = document.getElementsByClassName('img-rounded');
-
-      if (imgFlip) {
-        for (var i = 0; i < imgFlip.length; i++) {
-          imgFlip[i].addEventListener('click', flipCard, false);
-        }
-      }
-    };
   });
 </script>

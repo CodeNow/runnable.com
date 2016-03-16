@@ -2,7 +2,7 @@
 // font stack
 // **********
 $monospace: 'Source Code Pro', monospace;
-$sans-serif: system, -apple-system, 'Helvetica Neue', sans-serif;
+$sans-serif: system, -apple-system, 'Helvetica Neue', 'Segoe UI', sans-serif;
 $weight-bold: 500;
 $weight-normal: 400;
 $weight-light: 300;
@@ -68,6 +68,7 @@ $blue-dark: #1e7daf;
 // dimensions
 // **********
 // screen sizes
+$screen-xxxs: 350px;
 $screen-xxs: 400px;
 $screen-xs: 600px;
 $screen-sm: 768px;
@@ -95,3 +96,6 @@ $input-line-height-xs: $input-xs - ($input-border * 2);
 
 $input-xxs: 18px;
 $input-line-height-xxs: $input-xxs - ($input-border * 2);
+
+$z-modal: 100;
+$z-modal-close: 101;
