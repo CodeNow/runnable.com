@@ -87,7 +87,8 @@
 }
 
 // operator bubble
-.habla_conversation_person2 {
+.habla_conversation_person2,
+.olark-composing-message {
   background: $purple-lightest !important;
   border-radius: $input-border-radius !important;
   margin-right: 5px !important;
