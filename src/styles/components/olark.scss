@@ -42,14 +42,25 @@
   }
 }
 
+// minimized
 .olrk-state-compressed #habla_topbar_div,
 .olrk-state-compressed #habla_oplink_a {
   cursor: n-resize !important;
 }
 
+.olrk-state-compressed #habla_sizebutton_a#habla_sizebutton_a {
+  display: none;
+}
+
+// expanded
 .olrk-state-expanded #habla_topbar_div,
 .olrk-state-expanded #habla_oplink_a {
   cursor: s-resize !important;
+}
+
+// closed
+.olrk-state-closed {
+  display: none;
 }
 
 // default text
@@ -133,7 +144,11 @@
   display: none !important;
 }
 
-#habla_closebutton_a#habla_closebutton_a#habla_closebutton_a {
+#habla_closebutton_a#habla_closebutton_a {
+  display: none !important;
+}
+
+#habla_sizebutton_a#habla_sizebutton_a#habla_sizebutton_a {
   background-color: $gray;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHxJREFUeNrsllEKwCAMQ8tO4FG9qUfqFPxdmUYNYwn42byA2tZMkqRA7p7rSUB9ah4IvKnMhOjw0j2ygQZDIZBa2GgZfMZwOXzEeBv8DWA7PAIdgwchzsEfQkDw64vtmXcF1EdI/YbURkRtxdRhRB/H9IWEvpJJ0m90CzAAQVVLjxJoDjEAAAAASUVORK5CYII=') !important;
   border-radius: 16px !important;
@@ -142,10 +157,6 @@
   &:active {
     background-color: $red-light !important;
   }
-}
-
-#habla_sizebutton_a {
-  display: none !important;
 }
 
 
