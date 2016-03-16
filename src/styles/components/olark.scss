@@ -1,7 +1,8 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
-  border-radius: 7px 7px 0 0 !important;
-  box-shadow: 0 -1px 3px rgba($black,.1);
+  border: $input-border solid $purple-lighter !important;
+  border-radius: $input-border-radius-lg $input-border-radius-lg 0 0 !important;
+  box-shadow: 0 -1px 6px rgba($black,.05);
   font-family: $sans-serif !important;
   z-index: $z-modal - 1 !important;
 }
@@ -11,54 +12,91 @@
 }
 
 #habla_panel_div {
-  background-color: transparent !important;
+  background-color: rgba($white,.97) !important;
 }
 
 #habla_both_div {
-  border: 1px solid $purple-dark !important;
-  border-radius: 7px 7px 0 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+#habla_window_div.olrk-fixed-bottom .habla_panel_border,
+#habla_window_div.olrk-fixed-bottom #habla_topbar_div {
+  border-top-left-radius: 3px !important;
+  border-top-right-radius: 3px !important;
 }
 
 #habla_topbar_div {
   animation-name: disabled_animation !important;
-  background: $purple-dark !important;
+  background: none !important;
   font-size: 15px !important;
-  font-weight: $weight-normal !important;
+  font-weight: $weight-bold !important;
 }
 
 #habla_oplink_a {
-  opacity: .6 !important;
+  color: $purple-lighter !important;
 
   &:hover,
   &:active {
-    opacity: 1 !important;
     text-decoration: none !important;
   }
 }
 
+// minimized
 .olrk-state-compressed #habla_topbar_div,
 .olrk-state-compressed #habla_oplink_a {
   cursor: n-resize !important;
 }
 
+.olrk-state-compressed #habla_sizebutton_a#habla_sizebutton_a {
+  display: none;
+}
+
+// expanded
 .olrk-state-expanded #habla_topbar_div,
 .olrk-state-expanded #habla_oplink_a {
   cursor: s-resize !important;
 }
 
+// closed
+.olrk-state-closed {
+  display: none;
+}
+
+// default text
 #habla_conversation_div {
+  border-bottom: 0 !important;
   color: $gray-dark !important;
   font-size: 16px !important;
+  padding-bottom: 6px !important;
 }
 
-.habla_conversation_person2 {
+// default message "documentation"
+#hbl_body_message:only-child {
+  background: $gray-lighterest;
+  border: 1px solid $gray-lighter;
+  border-radius: $input-border-radius;
+  color: $gray;
+  display: flex;
+  flex-direction: column;
+  height: 310px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+// operator bubble
+.habla_conversation_person2,
+.olark-composing-message {
   background: $purple-lightest !important;
-  border: 1px solid $purple-light !important;
   border-radius: $input-border-radius !important;
-  margin-right: 6px !important;
-  padding: 2px 0 2px 3px !important;
+  color: $purple-light !important;
+  margin-right: 5px !important;
+  padding: 2px 1px 3px 5px !important;
 }
 
+// user text
 .hbl_pal_local_fg + .habla_conversation_text_span {
   color: $gray !important;
 }
@@ -68,12 +106,23 @@
 }
 
 #habla_chatform_form {
-  padding: 9px 18px 0 15px !important;
+  padding: 0 18px 0 15px !important;
+}
+
+.hbl_pal_main_bg.hbl_pal_main_bg {
+  background: transparent !important;
+}
+
+// links
+#habla_window_div #habla_panel_div #habla_expanded_div a,
+#habla_window_div #habla_panel_div #habla_conversation_div a {
+  color: $purple-lighter !important;
+  text-decoration: underline;
 }
 
 #habla_expanded_div {
-  background-color: rgba($white,.98) !important;
-  box-shadow: inset 0 -1px 0 rgba($black,.1) !important;
+  background-color: transparent !important;
+  border: 0 !important;
 }
 
 .habla_button {
@@ -94,16 +143,22 @@
 }
 
 #habla_popout_a#habla_popout_a {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATxJREFUeNrEV4sNgyAQReIAjmI3aDdxhHYDO4HdwBGME7hCN9ANdAN616AhRuEiHLwEP0TuvXseKEJoKKUqaKPiB3JUwgR0tCo+WjPzFTW0QjABY2uOFZUwbK9FJBgiRmGoKSIKKFbSDA/YmQGuBoMTvk9XAj1QfIxxarvYbq4JKIlFN+zG/ZH72glZfSHO7cCBElpDycDLAYsrM8UByVBgmPmgHVmgvWzP58zkD1dxSk5yrA/XOJmSPIgAH/JQDjQO8mV3DjsN9breaSds07I45D0SoNdqV8DO5wPmEtDp7tKxyHRcAgbdfbeQzzaXqAJkrGr3mgVc5CQBnOQUAazkp+uAUYQqRMHZeKlfwze6sJsVSxA3iA6coeRyoCfEwJqYgjmQ6rdcGlk8RTysXFP6rVnyzWnq7flPgAEALwwBY+h384sAAAAASUVORK5CYII=') !important;
-}
-
-#habla_closebutton_a {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAOJJREFUeNrUl9ERhCAMRONVQImUYieWQCmWYCkczCROPkRJbmS5ncEPFPYREAgRK+ccSzny+6oekbRKxZbHa9MjF62lBHpJtW/2EEVSYV9pkBTEQYomDAQIYrrUR61cimigxPeMQCNM6ZfI8EjT1fSevjcAiV/tHgg237mP5AHQHZggeto+Anghett0AVghjN/2ARhCaoqWCeDJwDlVNoCWkXexugAaEN4/xQdwAeHaK6Thh9D6qymALkLobwjdiKBbMfQwgh/HM1xIhlzJ5rmUoq7lUyQm2NQMnpyi0/OvAAMAS1QFGWIs0pkAAAAASUVORK5CYII=') !important;
-}
-
-#habla_sizebutton_a {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJxJREFUeNrsl8ENgCAMRb/GAdjMFRjBERzBDZzBiXCTWhKa9OJNiof/EoRw8D84AAUaIpK1FelPzcjw6MQp8Zx+5cauLaET9d8tw8hw274jCCdR4GxSoECy0Kl+6uSkIBDLnTEYClCAAhRYXk6pTbv146xLD9vjdzvAu4ACFKAABWb/VI58lnuBu423wIVb1j2+NBtenI4uzx8BBgDAE1vl83BnfgAAAABJRU5ErkJggg==') !important;
   display: none !important;
+}
+
+#habla_closebutton_a#habla_closebutton_a {
+  display: none !important;
+}
+
+#habla_sizebutton_a#habla_sizebutton_a#habla_sizebutton_a {
+  background-color: $gray;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHxJREFUeNrsllEKwCAMQ8tO4FG9qUfqFPxdmUYNYwn42byA2tZMkqRA7p7rSUB9ah4IvKnMhOjw0j2ygQZDIZBa2GgZfMZwOXzEeBv8DWA7PAIdgwchzsEfQkDw64vtmXcF1EdI/YbURkRtxdRhRB/H9IWEvpJJ0m90CzAAQVVLjxJoDjEAAAAASUVORK5CYII=') !important;
+  border-radius: 16px !important;
+
+  &:hover,
+  &:active {
+    background-color: $red-light !important;
+  }
 }
 
 
@@ -165,4 +220,16 @@
   &::placeholder {
     color: $gray-light;
   }
+}
+
+// chat input
+#habla_wcsend_input {
+  min-height: 45px;
+}
+
+// offline submit button
+#habla_offline_submit_input {
+  font-size: 18px !important;
+  font-weight: $weight-bold;
+  padding: 6px 15px !important;
 }
