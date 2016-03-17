@@ -11,7 +11,13 @@
   width: 390px;
 
   @include media(xxs) {
+    font-size: 16px;
     width: 330px;
+  }
+
+  @include media(xxxs) {
+    padding: 21px 15px;
+    width: 300px;
   }
 
   .img {
@@ -34,6 +40,10 @@
 
   .popover-trigger {
     cursor: pointer;
+
+    @include media(xxs) {
+      font-size: 13px;
+    }
   }
 
   .popover {
