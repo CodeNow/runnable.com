@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>A sandbox-as-a-service built for your team’s workflow. — Runnable</title>
+    <title>A Sandbox-as-a-Service built for your team’s workflow. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -61,8 +61,8 @@
     <script>function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.target.checkValidity()?fbq("track","Lead"):e.preventDefault()}function flipCard(e){for(var t,n=e.type,a=e.target;(a=a.parentElement)&&!a.classList.contains("team-card"););var i=a.getElementsByClassName("img-rounded");if("touchend"===n)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(a.classList.toggle("flip"),"touchend"===n)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}window.onload=function(){var e,t=document.getElementsByClassName("form-sign-up");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var n=t[e].getElementsByTagName("input");for(e=0;e<n.length;e++)n[e].addEventListener("invalid",formInvalid)}var a=document.getElementsByClassName("img-rounded");if(a)for(e=0;e<a.length;e++)a[e].addEventListener("click",flipCard),a[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: e3482881d4c5684ad9562d8e40d74eb7905cad70
-      Commit Time: Tue Mar 15 17:05:43 2016 -0700
+      Commit Hash: 6f620e8de6ae32f51f372208c8861fbc08d8e53e
+      Commit Time: Wed Mar 16 18:10:13 2016 -0700
     -->
 
   </head><body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -111,7 +111,7 @@
 
     <main class="grid-block vertical main">
       <article class="article hero">
-  <h1 class="h1 text-center">A sandbox-as-a-service built for your team’s workflow.</h1>
+  <h1 class="h1 text-center">A Sandbox-as-a-Service built for your team’s workflow.</h1>
 </article>
 
       <article class="article article-github grid-container">
@@ -182,6 +182,7 @@
       <h3 class="h3">Open</h3>
       <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
         <br class="br visible-xs visible-xxxs">export capabilities.
+        <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
       </p>
     </div>
   </section>
@@ -196,18 +197,21 @@
     <div class="grid-block vertical bonus-item">
       <img class="img grid-block shrink" src="images/icons-security.svg" width="60" height="60">
       <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per&#32;
-        <br class="br visible-md hidden-sm">team—regular security audits (by&#32;
-        <br class="br visible-md hidden-sm"><br class="br visible-xxxs"><a class="link strong" href="https://www.nccgroup.trust/us/">NCC Group</a>).
-      </p>
-    </div>
+      <p class="p">Single-tenant infrastructure per team.
+        <br class="br hidden-sm">Third-party security audits.
+    </p></div>
   </section>
 </article>
     </main>
 
-    <div class="sign-up-box grid-block">
+    <div class="sign-up-box grid-block vertical">
   <img class="img" src="images/runnabear-hello.png">
-  <p class="p grid-content">Ready to get started?</p>
+  <p class="p text-center">Runnable is <strong class="strong">free</strong> during our preview.
+    <br>
+  </p>
+  <div class="p text-center underline popover-trigger hover">Infrastructure cost is always included.
+    <div class="popover top text-center">That means you don’t pay extra for server usage (AWS included)!</div>
+  </div>
   <a href="#sign-up-modal" class="btn btn-md green grid-content shrink">Sign Up</a>
 </div>
 

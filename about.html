@@ -61,8 +61,8 @@
     <script>function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.target.checkValidity()?fbq("track","Lead"):e.preventDefault()}function flipCard(e){for(var t,n=e.type,a=e.target;(a=a.parentElement)&&!a.classList.contains("team-card"););var i=a.getElementsByClassName("img-rounded");if("touchend"===n)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(a.classList.toggle("flip"),"touchend"===n)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}window.onload=function(){var e,t=document.getElementsByClassName("form-sign-up");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var n=t[e].getElementsByTagName("input");for(e=0;e<n.length;e++)n[e].addEventListener("invalid",formInvalid)}var a=document.getElementsByClassName("img-rounded");if(a)for(e=0;e<a.length;e++)a[e].addEventListener("click",flipCard),a[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: e3482881d4c5684ad9562d8e40d74eb7905cad70
-      Commit Time: Tue Mar 15 17:05:43 2016 -0700
+      Commit Hash: 6f620e8de6ae32f51f372208c8861fbc08d8e53e
+      Commit Time: Wed Mar 16 18:10:13 2016 -0700
     -->
 
   </head><body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -112,22 +112,17 @@
     <main class="grid-block vertical main about">
       <article class="article hero about-hero">
   <h1 class="h1 text-center">Team Runnable</h1>
-  <p class="p text-center">When you push a commit, they fax it to a server.
+  <p class="p text-center">Working to simplify how teams develop software.
   <div class="grid-block grid-container align-center team-grid">
     <figure class="grid-block team-card vertical">
       <img class="grid-block shrink img" src="images/team/yashkumar.jpg" alt="Yash Kumar">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Yash Kumar</strong>
         <small class="small">CEO</small>
-        <div class="grid-block align-center">
-          <a class="link-social" href="https://www.facebook.com/groups/1648763188671180/" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
-          </a>
-        </div>
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Sundip Patel">
+      <img class="grid-block shrink img" src="images/team/sundippatel.jpg" alt="Sundip Patel">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Sundip Patel</strong>
         <small class="small">Product Manager</small>
@@ -142,7 +137,7 @@
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Raful Rana">
+      <img class="grid-block shrink img" src="images/team/prafulrana.jpg" alt="Raful Rana">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Praful Rana</strong>
         <small class="small">Product Manager</small>
@@ -358,18 +353,6 @@
         </figcaption>
       </div>
     </figure>
-    <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/no-runnabear.svg" alt="Anurag Kaushik">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="strong">Anurag Kaushik</strong>
-        <small class="small">DevOps</small>
-        <div class="grid-block align-center">
-          <a class="link-social link-github" href="https://github.com/kaushikanurag" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
   </div>
 </p></article>
       <article class="article article-location">
@@ -386,9 +369,14 @@
 </article>
     </main>
 
-    <div class="sign-up-box grid-block">
+    <div class="sign-up-box grid-block vertical">
   <img class="img" src="images/runnabear-hello.png">
-  <p class="p grid-content">Ready to get started?</p>
+  <p class="p text-center">Runnable is <strong class="strong">free</strong> during our preview.
+    <br>
+  </p>
+  <div class="p text-center underline popover-trigger hover">Infrastructure cost is always included.
+    <div class="popover top text-center">That means you don’t pay extra for server usage (AWS included)!</div>
+  </div>
   <a href="#sign-up-modal" class="btn btn-md green grid-content shrink">Sign Up</a>
 </div>
 
