@@ -69,6 +69,11 @@
   color: $gray-dark !important;
   font-size: 16px !important;
   padding-bottom: 6px !important;
+
+  // feedback border
+  .habla_conversation_notification.olark-feedback-wrapper {
+    border-radius: $input-border-radius;
+  }
 }
 
 // default message "documentation"
@@ -176,7 +181,8 @@
 #habla_pre_chat_phone_input,
 #habla_offline_phone_input,
 #habla_pre_chat_phone_input,
-#habla_wcsend_input#habla_wcsend_input#habla_wcsend_input {
+#habla_wcsend_input#habla_wcsend_input#habla_wcsend_input,
+.olark-feedback-text {
   background: $gray-lighterest !important;
   border: $input-border solid $gray-lighter !important;
   border-radius: $input-border-radius !important;
@@ -232,4 +238,12 @@
   font-size: 18px !important;
   font-weight: $weight-bold;
   padding: 6px 15px !important;
+}
+
+// submit feedback button ('next')
+.olark-feedback-submit {
+  border-radius: $input-border-radius !important;
+  font-size: 15px !important;
+  font-weight: $weight-bold !important;
+  padding: 4px 6px !important;
 }

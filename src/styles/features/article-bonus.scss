@@ -44,6 +44,13 @@
       margin-right: auto;
       max-width: 300px;
     }
+
+    .small {
+      color: $gray;
+      display: block;
+      font-size: 13px;
+      margin-top: 12px;
+    }
   }
 
   .bonus-item {
@@ -68,4 +75,8 @@
       }
     }
   }
+}
+
+.bonus-secure .p {
+  max-width: 345px;
 }
