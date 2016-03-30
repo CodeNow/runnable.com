@@ -26,6 +26,19 @@
     line-height: $input-sm;
   }
 
+  .btn-white {
+    border: 2px solid rgba($white,.75);
+    line-height: $input-line-height-sm;
+
+    &:hover {
+      background: rgba($white,.1);
+    }
+
+    &:active {
+      background: rgba($white,.2);
+    }
+  }
+
   // popover specific
   .grid-block {
     overflow: visible;
@@ -83,7 +96,6 @@
 
   .divider {
     background: $gray-lighter;
-    display: block;
     height: 1px;
     margin: 9px -15px;
   }
