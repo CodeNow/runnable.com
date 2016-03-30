@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="styles/index.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script ugly=true>
+    <script ugly="true">
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
   app.controller('MainCtrl', function ($scope, $window, $http) {
-    $scope.loginUrl = '{{{apiUrl}}}/auth/github?redirect={{{angularUrl}}}/?auth';
+    $scope.loginUrl = '/auth/github?redirect=/?auth';
     $scope.data = {
       embedActive: false,
       hideUnauthorizedModal: whitelisted
@@ -35,7 +35,7 @@
       location.hash = '#sign-up-modal';
     }
 
-    $http.get('{{{apiUrl}}}/users/me', {
+    $http.get('/users/me', {
       withCredentials: true
     })
       .then(function (user) {
@@ -50,7 +50,7 @@
           prevInstance = user.data.userOptions.uiState.previousLocation.instance;
         } catch (e) {
         }
-        var newURL = '{{{angularUrl}}}/' + org;
+        var newURL = '/' + org;
         if (prevInstance) {
           newURL += '/' + prevInstance
         }
@@ -58,123 +58,23 @@
       });
   });
 </script>
-    <script>
-      // form submit
-function markInvalid(e) {
-  var theseInputs;
-  if (e.target.tagName == 'INPUT') {
-    // for invalid event
-    theseInputs = e.target.classList.add('invalid');
-  } else {
-    // for change event
-    theseInputs = e.target.getElementsByTagName('input');
-    for (var i = 0; i < theseInputs.length; i++) {
-      if (!theseInputs[i].validity.valid) {
-        theseInputs[i].classList.add('invalid');
-      }
-    }
-  }
-}
-
-function shakeForm(e) {
-  var thisModal = e.target;
-  // get modal element
-  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
-  thisModal.classList.add('shake');
-  thisModal.addEventListener('animationend', function(){
-    thisModal.classList.remove('shake');
-    thisModal.removeEventListener('animationend', function(){});
-  });
-}
-
-function makeDirty(e){
-  e.target.classList.remove('pristine', 'invalid');
-}
-
-function formInvalid(e) {
-  markInvalid(e);
-  shakeForm(e);
-}
-
-function formSubmit(e){
-  if (e.target.checkValidity()) {
-    fbq('track', 'Lead');
-  } else {
-    e.preventDefault();
-  }
-}
-
-// flipping cards
-function flipCard(e) {
-  var i;
-  var eventType = e.type;
-  var thisCard = e.target;
-
-  // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-  var flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-  // remove and reset touch events
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].removeEventListener('touchend', flipCard);
-    }
-  }
-
-  thisCard.classList.toggle('flip');
-
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].addEventListener('touchend', flipCard);
-    }
-  }
-}
-
-// events
-window.onload = function(){
-  var i;
-
-  //sign up form
-  var formSignUp = document.getElementsByClassName('form-sign-up');
-  if (formSignUp) {
-    for (i = 0; i < formSignUp.length; i++) {
-      formSignUp[i].addEventListener('change', makeDirty);
-      formSignUp[i].addEventListener('submit', formSubmit);
-
-      var theseInputs = formSignUp[i].getElementsByTagName('input');
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].addEventListener('invalid', formInvalid);
-      }
-    }
-  }
-
-  // flipping cards
-  var imgFlip = document.getElementsByClassName('img-rounded');
-  if (imgFlip) {
-    for (i = 0; i < imgFlip.length; i++) {
-      imgFlip[i].addEventListener('click', flipCard);
-      imgFlip[i].addEventListener('touchend', flipCard);
-    }
-  }
-};
-
-    </script>
+    <script>function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.target.checkValidity()?fbq("track","Lead"):e.preventDefault()}function flipCard(e){for(var t,n=e.type,a=e.target;(a=a.parentElement)&&!a.classList.contains("team-card"););var i=a.getElementsByClassName("img-rounded");if("touchend"===n)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(a.classList.toggle("flip"),"touchend"===n)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}window.onload=function(){var e,t=document.getElementsByClassName("form-sign-up");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var n=t[e].getElementsByTagName("input");for(e=0;e<n.length;e++)n[e].addEventListener("invalid",formInvalid)}var a=document.getElementsByClassName("img-rounded");if(a)for(e=0;e<a.length;e++)a[e].addEventListener("click",flipCard),a[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: {{{commitHash}}}
-      Commit Time: {{{commitTime}}}
+      Commit Hash: b654269e67e5666caa4d3842d66a134f27f32c75
+      Commit Time: Tue Mar 29 17:54:20 2016 -0700
     -->
 
-  <body class="page-landing page-features" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  </head><body class="page-landing page-product" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-close" view="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
   </symbol>
-  <symbol id="icons-external" viewBox="0 0 15 15">
+  <symbol id="icons-external" viewbox="0 0 15 15">
     <path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/>
   </symbol>
-  <symbol id="icons-overflow" viewBox="0 0 18 4.688">
+  <symbol id="icons-overflow" viewbox="0 0 18 4.688">
     <path fill="#fff" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="#fff" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="#fff" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
 </svg>
@@ -185,20 +85,21 @@ window.onload = function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <div class="grid-block shrink">
+      <a href="product.html" class="grid-content btn btn-sm text-white strong hidden-sm">Product</a>
       <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
-      <a href="features.html" class="grid-content btn btn-sm text-white strong hidden-xs">Features</a>
-      <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-xs">Sign In</a>
+      <a ng-href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
+      <a ng-href="#sign-up-modal" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
-            <a ng-href="\{{loginUrl}}" class="list-item-a visible-xs">Sign In</a>
-            <a href="#sign-up-modal" class="list-item-a">Sign Up</a>
-            <a class="list-item divider"></a>
-            <a href="features.html" class="list-item-a visible-xs">Features</a>
+            <a ng-href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
+            <a href="#sign-up-modal" class="list-item-a visible-xs">Sign Up</a>
+            <a class="list-item divider visible-md"></a>
+            <a href="product.html" class="list-item-a visible-sm">Product</a>
             <a href="about.html" class="list-item-a">About</a>
-            <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
             <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
+            <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
             <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="list-item-a">Security</a>
             <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
           </div>
@@ -273,15 +174,16 @@ window.onload = function(){
     <div class="grid-block vertical bonus-item">
       <img class="img grid-block shrink" src="images/icons-flexible.svg" width="60" height="60">
       <h3 class="h3">Flexible</h3>
-      <p class="p">Keep running branches in sync with GitHub, or sync directly from local with our&#32;
-        <a class="link strong" href="https://github.com/runnable/cli">CLI</a> (also useful for SSH access).
+      <p class="p">Sync changes from your local machine and SSH into running containers with
+        <br class="visible-sm hidden-xs">our&#32;
+        <a class="link strong" href="https://github.com/runnable/cli">CLI</a>.
       </p>
     </div>
     <div class="grid-block vertical bonus-item">
       <img class="img grid-block shrink" src="images/icons-open.svg" width="60" height="60">
       <h3 class="h3">Open</h3>
       <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
-        <br class="br visible-xs visible-xxxs">export capabilities.
+        <br class="br visible-xs">export capabilities.
         <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
       </p>
     </div>
@@ -291,15 +193,14 @@ window.onload = function(){
       <img class="img grid-block shrink" src="images/icons-performance.svg" width="60" height="60">
       <h3 class="h3">Performant</h3>
       <p class="p">Dedicated infrastructure that&#32;
-        <br class="br visible-xs visible-xxxs">auto-scales based on usage.
+        <br class="br visible-xs">auto-scales based on usage.
       </p>
     </div>
-    <div class="grid-block vertical bonus-item">
+    <div class="grid-block vertical bonus-item bonus-secure">
       <img class="img grid-block shrink" src="images/icons-security.svg" width="60" height="60">
       <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per team.
-        <br class="br hidden-sm">Third-party security audits.
-    </div>
+      <p class="p">Single-tenant infrastructure per team. Third-party security audits.
+    </p></div>
   </section>
 </article>
     </main>
@@ -318,7 +219,7 @@ window.onload = function(){
     <hr class="hr grid-container">
 
 <footer class="grid-block footer align-spaced">
-  <a href="features.html" class="btn btn-xs link strong">Features</a>
+  <a href="product.html" class="btn btn-xs link strong">Product</a>
   <a href="about.html" class="btn btn-xs link strong">About</a>
   <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="btn btn-xs link strong">Pricing</a>
   <img class="img" src="images/runnabot-head.png" height="45" width="45">
@@ -331,7 +232,7 @@ window.onload = function(){
   <article class="article article-sign-up modal">
     <a href="#" class="icons-close">
       <svg class="icons">
-        <use xlink:href="#icons-close">
+        <use xlink:href="#icons-close"/>
       </svg>
     </a>
     <div class="well" ng-if="!data.hideUnauthorizedModal">
@@ -362,62 +263,14 @@ window.onload = function(){
 
     <!-- submitted state -->
     <img class="img hide" src="images/runnabear-jumping.png">
-    <h1 class="h1 text-center hide">You did it.</h1>
+    </p><h1 class="h1 text-center hide">You did it.</h1>
     <p class="p text-center hide">We’ll be in touch soon!
-  </article>
+  </p></article>
 </div>
 
 
     <!-- begin olark code -->
-<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
-f[z]=function(){
-(a.s=a.s||[]).push(arguments)};var a=f[z]._={
-},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
-f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
-0:+new Date};a.P=function(u){
-a.p[u]=new Date-a.p[0]};function s(){
-a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
-hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
-return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
-b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
-b.contentWindow[g].open()}catch(w){
-c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
-var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
-b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
-loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
-/* custom configuration goes here (www.olark.com/documentation) */
-olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+<script data-cfasync="false" type="text/javascript">window.olark||function(e){var t=window,n=document,o="https:"==t.location.protocol?"https:":"http:",a=e.name,r="load",i=function(){function d(){c.P(r),t[a](r)}t[a]=function(){(c.s=c.s||[]).push(arguments)};for(var c=t[a]._={},l=e.methods.length;l--;)!function(e){t[a][e]=function(){t[a]("call",e,arguments)}}(e.methods[l]);c.l=e.loader,c.i=i,c.p={0:+new Date},c.P=function(e){c.p[e]=new Date-c.p[0]},t.addEventListener?t.addEventListener(r,d,!1):t.attachEvent("on"+r,d);var s=function(){function t(e){return e="head",["<",e,"></",e,"><",r,' onload="var d=',v,";d.getElementsByTagName('head')[0].",l,"(d.",f,"('script')).",m,"='",o,"//",c.l,"'",'"',"></",r,">"].join("")}var r="body",i=n[r];if(!i)return setTimeout(s,100);c.P(1);var d,l="appendChild",f="createElement",m="src",p=n[f]("div"),u=p[l](n[f](a)),h=n[f]("iframe"),v="document",w="domain";p.style.display="none",i.insertBefore(p,i.firstChild).id=a,h.frameBorder="0",h.id=a+"-loader",/MSIE[ ]+6/.test(navigator.userAgent)&&(h.src="javascript:false"),h.allowTransparency="true",u[l](h);try{h.contentWindow[v].open()}catch(y){e[w]=n[w],d="javascript:var d="+v+".open();d.domain='"+n.domain+"';",h[m]=d+"void(0);"}try{var g=h.contentWindow[v];g.write(t()),g.close()}catch(E){h[m]=d+'d.write("'+t().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}c.P(2)};s()};i()}({loader:"static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]}),olark.identify("1268-458-10-2188");</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
 
-    {{#if_eq env 'production-delta'}}
-      <script>// Facebook Pixel Code
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','//connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '761302660669573');
-fbq('track', "PageView");
-// End Facebook Pixel Code</script>
-      <!-- Facebook Pixel Code -->
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
-      <script>// google analytics
-(function (i, s, o, g, r, a, m) {
-  i["GoogleAnalyticsObject"] = r;
-  i[r] = i[r] || function () {
-    (i[r].q = i[r].q || []).push(arguments)
-  }, i[r].l = 1 * new Date();
-  a = s.createElement(o),
-  m = s.getElementsByTagName(o)[0];
-  a.async = 1;
-  a.src = g;
-  m.parentNode.insertBefore(a, m)
-})(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
-ga("create", "UA-59677301-1", "auto");
-ga("send", "pageview");
-// end google analytics</script>
-    {{/if_eq}}
+</body></html>
