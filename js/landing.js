@@ -1,4 +1,16 @@
 // form submit
+function updateLabel(e) {
+  var label = document.getElementsByClassName('label-text')[0];
+  switch (e.target.getAttribute('value')) {
+    case 'Bitbucket':
+      label.innerHTML = 'Bitbucket Team';
+      break;
+    case 'GitHub':
+      label.innerHTML = 'GitHub Organization';
+      break;
+  }
+}
+
 function markInvalid(e) {
   var theseInputs;
   if (e.target.tagName == 'INPUT') {
@@ -83,6 +95,10 @@ window.onload = function(){
       var theseInputs = formSignUp[i].getElementsByTagName('input');
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].addEventListener('invalid', formInvalid);
+
+        if (theseInputs[i].classList.contains('input-radio')) {
+          theseInputs[i].addEventListener('change', updateLabel);
+        }
       }
     }
   }
