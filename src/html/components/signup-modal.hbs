@@ -18,17 +18,6 @@
         <label class="p text-center">Where does your team keep their code?</label>
 
         <div class="grid-block">
-          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
-          <label class="btn btn-lg white radio" for="mce-SCM-1">
-            <svg class="icons">
-              <use xlink:href="#icons-bitbucket">
-            </svg>
-            Bitbucket
-            <svg class="icons">
-              <use xlink:href="#icons-check">
-            </svg>
-          </label>
-
           <input class="input-radio" type="radio" value="GitHub" name="SCM" id="mce-SCM-0" required>
           <label class="btn btn-lg white radio" for="mce-SCM-0">
             <svg class="icons">
@@ -39,12 +28,18 @@
               <use xlink:href="#icons-check">
             </svg>
           </label>
-        </div>
-      </div>
 
-      <div class="grid-content input-group-vertical">
-        <label class="label" for="mce-EMAIL">Your Email</label>
-        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
+          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
+          <label class="btn btn-lg white radio" for="mce-SCM-1">
+            <svg class="icons">
+              <use xlink:href="#icons-bitbucket">
+            </svg>
+            Bitbucket
+            <svg class="icons">
+              <use xlink:href="#icons-check">
+            </svg>
+          </label>
+        </div>
       </div>
 
       <div class="grid-content input-group-vertical input-group-org">
@@ -55,6 +50,11 @@
           </small>
         </label>
         <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
+      </div>
+
+      <div class="grid-content input-group-vertical">
+        <label class="label" for="mce-EMAIL">Your Email</label>
+        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
       </div>
 
       <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>

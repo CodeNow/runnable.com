@@ -2,11 +2,11 @@
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
     case 'GitHub':
       label.innerHTML = 'GitHub Organization';
+      break;
+    case 'Bitbucket':
+      label.innerHTML = 'Bitbucket Team';
       break;
   }
 }
