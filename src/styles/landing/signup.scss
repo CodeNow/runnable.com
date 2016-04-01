@@ -125,16 +125,6 @@
     width: 280px;
   }
 
-  // runnabear-jumping
-  .hide {
-    display: none;
-    max-width: 100%;
-  }
-
-  .h1.hide {
-    margin-bottom: 0;
-  }
-
   .input-group-vertical {
     flex: 0 0 auto;
     margin-top: 15px;
@@ -147,5 +137,73 @@
         padding-bottom: 12px;
       }
     }
+
+    .input-md {
+      border-radius: $input-border-radius-lg;
+    }
+  }
+
+  .radio-group .label {
+    color: $gray;
+    font-size: 14px;
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+  .input-radio {
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+
+    &:checked + .radio,
+    &:checked + .radio:hover {
+      border-color: currentColor;
+      color: $purple-light;
+    }
+
+    &.input + .radio,
+    &.input + .radio:hover {
+      border-color: currentColor;
+      color: $red;
+    }
+  }
+
+  .radio {
+    display: flex;
+    flex: 1 1;
+    height: 90px;
+    justify-content: center;
+    line-height: 86px;
+
+    .icons {
+      height: 100%;
+      margin-right: 9px;
+      width: 24px;
+    }
+
+    &:last-child {
+      margin-left: 15px;
+    }
+  }
+
+  // hide org initially
+  // .input-group-org {
+  //   display: none;
+  // }
+
+  // submit
+  .btn.green {
+    margin-top: 30px;
+  }
+
+
+  // runnabear-jumping
+  .hide {
+    display: none;
+    max-width: 100%;
+  }
+
+  .h1.hide {
+    margin-bottom: 0;
   }
 }
