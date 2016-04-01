@@ -1,5 +1,5 @@
-<div class="modal-backdrop" id="sign-up-modal">
-  <article class="article article-sign-up modal">
+<div class="modal-backdrop" id="sign-up">
+  <article class="article article-sign-up modal show">
     <a href="#" class="icons-close">
       <svg class="icons">
         <use xlink:href="#icons-close">
@@ -10,8 +10,8 @@
       You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!
     </div>
     <!-- initial state -->
-    <h1 class="h1 text-center show strong">Let’s get started.</h1>
-    <form action="//runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=4e5a55ffa6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
+    <h1 class="h1 text-center strong">Let’s get started.</h1>
+    <form action="//runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=4e5a55ffa6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_4e5a55ffa6" tabindex="-1" value=""></div>
       <div class="grid-block vertical radio-group">
@@ -60,9 +60,18 @@
       <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>
     </form>
 
-    <!-- submitted state -->
-    <img class="img hide" src="images/runnabear-jumping.png">
-    <h1 class="h1 text-center hide">You did it.</h1>
-    <p class="p text-center hide">We’ll be in touch soon!
   </article>
+
+  <!-- submitted state -->
+  {{!-- <article class="article article-sign-up modal hide">
+    <img class="img hide" src="images/runnabear-jumping.png">
+    <h1 class="h1 text-center strong">Almost finished…</h1>
+    <p class="p text-center">We just need to confirm your email address. Please click the link in the email we just sent you.
+
+    <div class="grid-content input-group-vertical">
+      <label class="label" for="mce-PROBLEMS">What problems do you want Runnable to solve? </label>
+      <input class="input input-md input-validate pristine"  value="" name="PROBLEMS"id="mce-PROBLEMS">
+    </div>
+  </article> --}}
 </div>
+
