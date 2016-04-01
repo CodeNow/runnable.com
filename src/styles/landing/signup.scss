@@ -155,14 +155,16 @@
     position: absolute;
     visibility: hidden;
 
+    // active state
     &:checked + .radio,
     &:checked + .radio:hover {
       border-color: currentColor;
       color: $purple-light;
     }
 
-    &.input + .radio,
-    &.input + .radio:hover {
+    // except when invalid
+    &.invalid:not(:valid) + .radio,
+    &.invalid:not(:valid) + .radio:hover {
       border-color: currentColor;
       color: $red;
     }
