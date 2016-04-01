@@ -160,6 +160,11 @@
     &:checked + .radio:hover {
       border-color: currentColor;
       color: $purple-light;
+
+      .icons:last-child {
+        background: $green;
+        color: $white;
+      }
     }
 
     // except when invalid
@@ -171,20 +176,37 @@
   }
 
   .radio {
+    align-items: center;
     display: flex;
     flex: 1 1;
     height: 90px;
     justify-content: center;
     line-height: 86px;
+    padding-left: 0;
+    padding-right: 30px;
 
-    .icons {
+    &:last-child {
+      margin-left: 15px;
+    }
+
+    // logo
+    .icons:first-child {
       height: 100%;
       margin-right: 9px;
       width: 24px;
     }
 
-    &:last-child {
-      margin-left: 15px;
+    // check
+    .icons:last-child {
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      color: $gray-lighter;
+      height: 24px;
+      padding: 6px;
+      position: absolute;
+      right: 15px;
+      top: 31px;
+      width: 24px;
     }
   }
 
