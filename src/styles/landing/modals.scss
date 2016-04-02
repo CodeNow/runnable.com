@@ -14,7 +14,8 @@
   z-index: $z-modal;
 }
 
-.modal-backdrop#sign-up {
+.modal-backdrop#sign-up,
+.modal-backdrop#confirm {
 
   &:target {
     opacity: 1;
