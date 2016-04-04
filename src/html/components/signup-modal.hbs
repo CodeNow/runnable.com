@@ -54,7 +54,7 @@
 
       <div class="grid-content input-group-vertical">
         <label class="label" for="mce-EMAIL">Your Email</label>
-        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
+        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
       </div>
 
       <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>
@@ -62,4 +62,3 @@
 
   </article>
 </div>
-
