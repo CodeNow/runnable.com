@@ -2,11 +2,11 @@
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
     case 'GitHub':
       label.innerHTML = 'GitHub Organization';
+      break;
+    case 'Bitbucket':
+      label.innerHTML = 'Bitbucket Team';
       break;
   }
 }
@@ -48,10 +48,33 @@ function formInvalid(e) {
 }
 
 function formSubmit(e){
+  e.preventDefault();
   if (e.target.checkValidity()) {
     fbq('track', 'Lead');
-  } else {
-    e.preventDefault();
+
+    this._form = this.querySelector('form');
+    this._submit = this._form.getAttribute('action');
+    this._input = this._form.querySelector('#mce-EMAIL').value;
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+
+      if (this.readyState == 4) {
+
+        var ChimpResponse = JSON.parse(this.response);
+
+        if(ChimpResponse.result === "success") {
+          // check your inbox
+        } else {
+          // soemthing went wrong
+        }
+      }
+    };
+
+    request.open('POST', this._submit, true);
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    request.send("EMAIL=" + this._input);
   }
 }
 
@@ -81,18 +104,30 @@ function flipCard(e) {
   }
 }
 
+// check scrolling
+function checkScroll() {
+  var dBody = document.body;
+  if (location.hash === '#sign-up' || location.hash === '#confirm') {
+    dBody.classList.add('modal-open');
+  } else {
+    dBody.classList.remove('modal-open');
+  }
+}
+
 // events
 window.onload = function(){
+  window.addEventListener('hashchange', checkScroll);
+
   var i;
 
-  //sign up form
-  var formSignUp = document.getElementsByClassName('form-sign-up');
-  if (formSignUp) {
-    for (i = 0; i < formSignUp.length; i++) {
-      formSignUp[i].addEventListener('change', makeDirty);
-      formSignUp[i].addEventListener('submit', formSubmit);
+  // modal forms
+  var modalForms = document.getElementsByClassName('modal-backdrop');
+  if (modalForms) {
+    for (i = 0; i < modalForms.length; i++) {
+      modalForms[i].addEventListener('change', makeDirty);
+      modalForms[i].addEventListener('submit', formSubmit);
 
-      var theseInputs = formSignUp[i].getElementsByTagName('input');
+      var theseInputs = modalForms[i].getElementsByTagName('input');
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].addEventListener('invalid', formInvalid);
 

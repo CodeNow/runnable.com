@@ -32,7 +32,7 @@
       fbq('track', 'ViewContent', {
         action: 'notWhitelisted'
       });
-      location.hash = '#sign-up-modal';
+      location.hash = '#sign-up';
     }
 
     $http.get('{{{apiUrl}}}/users/me', {
@@ -63,11 +63,11 @@
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
     case 'GitHub':
       label.innerHTML = 'GitHub Organization';
+      break;
+    case 'Bitbucket':
+      label.innerHTML = 'Bitbucket Team';
       break;
   }
 }
@@ -109,10 +109,33 @@ function formInvalid(e) {
 }
 
 function formSubmit(e){
+  e.preventDefault();
   if (e.target.checkValidity()) {
     fbq('track', 'Lead');
-  } else {
-    e.preventDefault();
+
+    this._form = this.querySelector('form');
+    this._submit = this._form.getAttribute('action');
+    this._input = this._form.querySelector('#mce-EMAIL').value;
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function() {
+
+      if (this.readyState == 4) {
+
+        var ChimpResponse = JSON.parse(this.response);
+
+        if(ChimpResponse.result === "success") {
+          // check your inbox
+        } else {
+          // soemthing went wrong
+        }
+      }
+    };
+
+    request.open('POST', this._submit, true);
+    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    request.send("EMAIL=" + this._input);
   }
 }
 
@@ -142,18 +165,30 @@ function flipCard(e) {
   }
 }
 
+// check scrolling
+function checkScroll() {
+  var dBody = document.body;
+  if (location.hash === '#sign-up' || location.hash === '#confirm') {
+    dBody.classList.add('modal-open');
+  } else {
+    dBody.classList.remove('modal-open');
+  }
+}
+
 // events
 window.onload = function(){
+  window.addEventListener('hashchange', checkScroll);
+
   var i;
 
-  //sign up form
-  var formSignUp = document.getElementsByClassName('form-sign-up');
-  if (formSignUp) {
-    for (i = 0; i < formSignUp.length; i++) {
-      formSignUp[i].addEventListener('change', makeDirty);
-      formSignUp[i].addEventListener('submit', formSubmit);
+  // modal forms
+  var modalForms = document.getElementsByClassName('modal-backdrop');
+  if (modalForms) {
+    for (i = 0; i < modalForms.length; i++) {
+      modalForms[i].addEventListener('change', makeDirty);
+      modalForms[i].addEventListener('submit', formSubmit);
 
-      var theseInputs = formSignUp[i].getElementsByTagName('input');
+      var theseInputs = modalForms[i].getElementsByTagName('input');
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].addEventListener('invalid', formInvalid);
 
@@ -213,13 +248,13 @@ window.onload = function(){
       <a href="product.html" class="grid-content btn btn-sm text-white strong hidden-sm">Product</a>
       <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
-      <a ng-href="#sign-up-modal" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
+      <a ng-href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <img class="img-overflow" src="images/icons-overflow.svg" height="24" width="24">
         <div class="popover bottom">
           <div class="list text-left">
             <a ng-href="\{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
-            <a href="#sign-up-modal" class="list-item-a visible-xs">Sign Up</a>
+            <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
             <a class="list-item divider visible-md"></a>
             <a href="product.html" class="list-item-a visible-sm">Product</a>
             <a href="about.html" class="list-item-a">About</a>
@@ -503,7 +538,7 @@ window.onload = function(){
   <div class="p text-center underline popover-trigger hover">Infrastructure cost is always included.
     <div class="popover top text-center">That means you don’t pay extra for server usage (AWS included)!</div>
   </div>
-  <a href="#sign-up-modal" class="btn btn-md green grid-content shrink">Sign Up</a>
+  <a href="#sign-up" class="btn btn-md green grid-content shrink">Sign Up</a>
 </div>
 
     <hr class="hr grid-container">
@@ -518,37 +553,26 @@ window.onload = function(){
   <a href="http://support.runnable.io" class="btn btn-xs link strong">Docs</a>
 </footer>
 
-    <div class="modal-backdrop" id="sign-up-modal">
+    <div class="modal-backdrop" id="sign-up">
+  <a href="#" class="icons-close">
+    <svg class="icons">
+      <use xlink:href="#icons-close">
+    </svg>
+  </a>
   <article class="article article-sign-up modal">
-    <a href="#" class="icons-close">
-      <svg class="icons">
-        <use xlink:href="#icons-close">
-      </svg>
-    </a>
     <div class="well" ng-if="!data.hideUnauthorizedModal">
       <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
       You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!
     </div>
     <!-- initial state -->
-    <h1 class="h1 text-center show strong">Let’s get started.</h1>
-    <form action="//runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=4e5a55ffa6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
+    <h1 class="h1 text-center strong">Let’s get started.</h1>
+    <form action="http://runnable.us5.list-manage.com/subscribe/post-json?u=a67ad168d3259d6b0f4d103df&amp;id=4e5a55ffa6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
       <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_4e5a55ffa6" tabindex="-1" value=""></div>
       <div class="grid-block vertical radio-group">
         <label class="p text-center">Where does your team keep their code?</label>
 
         <div class="grid-block">
-          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
-          <label class="btn btn-lg white radio" for="mce-SCM-1">
-            <svg class="icons">
-              <use xlink:href="#icons-bitbucket">
-            </svg>
-            Bitbucket
-            <svg class="icons">
-              <use xlink:href="#icons-check">
-            </svg>
-          </label>
-
           <input class="input-radio" type="radio" value="GitHub" name="SCM" id="mce-SCM-0" required>
           <label class="btn btn-lg white radio" for="mce-SCM-0">
             <svg class="icons">
@@ -559,12 +583,18 @@ window.onload = function(){
               <use xlink:href="#icons-check">
             </svg>
           </label>
-        </div>
-      </div>
 
-      <div class="grid-content input-group-vertical">
-        <label class="label" for="mce-EMAIL">Your Email</label>
-        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
+          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
+          <label class="btn btn-lg white radio" for="mce-SCM-1">
+            <svg class="icons">
+              <use xlink:href="#icons-bitbucket">
+            </svg>
+            Bitbucket
+            <svg class="icons">
+              <use xlink:href="#icons-check">
+            </svg>
+          </label>
+        </div>
       </div>
 
       <div class="grid-content input-group-vertical input-group-org">
@@ -577,13 +607,14 @@ window.onload = function(){
         <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
       </div>
 
+      <div class="grid-content input-group-vertical">
+        <label class="label" for="mce-EMAIL">Your Email</label>
+        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+      </div>
+
       <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>
     </form>
 
-    <!-- submitted state -->
-    <img class="img hide" src="images/runnabear-jumping.png">
-    <h1 class="h1 text-center hide">You did it.</h1>
-    <p class="p text-center hide">We’ll be in touch soon!
   </article>
 </div>
 

@@ -18,7 +18,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     fbq('track', 'ViewContent', {
       action: 'notWhitelisted'
     });
-    location.hash = '#sign-up-modal';
+    location.hash = '#sign-up';
   }
 
   $http.get('{{{apiUrl}}}/users/me', {
