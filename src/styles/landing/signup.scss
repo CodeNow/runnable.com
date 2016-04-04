@@ -143,14 +143,19 @@
     }
   }
 
-  .radio-group .p {
-    padding-bottom: 10px;
+  .radio-group {
+    position: relative;
+
+    .p {
+      padding-bottom: 10px;
+    }
   }
 
   .input-radio {
+    bottom: 0;
+    opacity: 0;
     pointer-events: none;
     position: absolute;
-    visibility: hidden;
 
     // active state
     &:checked + .radio,
