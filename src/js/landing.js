@@ -98,6 +98,7 @@ function checkScroll() {
 
 // events
 window.onload = function(){
+  checkScroll();
   window.addEventListener('hashchange', checkScroll);
 
   var i;
