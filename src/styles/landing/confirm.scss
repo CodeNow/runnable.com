@@ -16,7 +16,11 @@
     max-width: 420px;
 
     @include media(xs) {
-      font-size: 18px;
+      font-size: 21px;
+    }
+
+    @include media(xxxs) {
+      max-width: 250px;
     }
   }
 
