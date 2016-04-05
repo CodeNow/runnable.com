@@ -1,16 +1,4 @@
 // form submit
-function updateLabel(e) {
-  var label = document.getElementsByClassName('label-text')[0];
-  switch (e.target.getAttribute('value')) {
-    case 'GitHub':
-      label.innerHTML = 'GitHub Organization';
-      break;
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
-  }
-}
-
 function markInvalid(e) {
   var theseInputs;
   if (e.target.tagName == 'INPUT') {
@@ -48,15 +36,10 @@ function formInvalid(e) {
 }
 
 function formSubmit(e){
-  e.preventDefault();
   if (e.target.checkValidity()) {
     fbq('track', 'Lead');
-
-    ga('send', 'event', 'signUp', 'submit', {
-      hitCallback: function() {
-        e.target.submit();
-      }
-    });
+  } else {
+    e.preventDefault();
   }
 }
 
@@ -86,37 +69,20 @@ function flipCard(e) {
   }
 }
 
-// check scrolling
-function checkScroll() {
-  var dBody = document.body;
-  if (location.hash === '#sign-up' || location.hash === '#confirm') {
-    dBody.classList.add('modal-open');
-  } else {
-    dBody.classList.remove('modal-open');
-  }
-}
-
 // events
 window.onload = function(){
-  checkScroll();
-  window.addEventListener('hashchange', checkScroll);
-
   var i;
 
-  // modal forms
-  var modalForms = document.getElementsByClassName('modal-backdrop');
-  if (modalForms) {
-    for (i = 0; i < modalForms.length; i++) {
-      modalForms[i].addEventListener('change', makeDirty);
-      modalForms[i].addEventListener('submit', formSubmit);
+  //sign up form
+  var formSignUp = document.getElementsByClassName('form-sign-up');
+  if (formSignUp) {
+    for (i = 0; i < formSignUp.length; i++) {
+      formSignUp[i].addEventListener('change', makeDirty);
+      formSignUp[i].addEventListener('submit', formSubmit);
 
-      var theseInputs = modalForms[i].getElementsByTagName('input');
+      var theseInputs = formSignUp[i].getElementsByTagName('input');
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].addEventListener('invalid', formInvalid);
-
-        if (theseInputs[i].classList.contains('input-radio')) {
-          theseInputs[i].addEventListener('change', updateLabel);
-        }
       }
     }
   }
