@@ -5,24 +5,4 @@
     margin: 0 auto;
     width: 300px;
   }
-
-  .textarea-group {
-
-    .label {
-      background: $white;
-      border-radius: $input-border-radius $input-border-radius 0 0;
-      left: 2px;
-      padding-left: 8px;
-      padding-top: 4px;
-      right: 2px;
-      top: 2px;
-    }
-  }
-
-  .textarea {
-    font-size: 16px;
-    line-height: 1.4;
-    min-height: 300px;
-    resize: vertical;
-  }
 }
