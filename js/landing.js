@@ -52,29 +52,11 @@ function formSubmit(e){
   if (e.target.checkValidity()) {
     fbq('track', 'Lead');
 
-    this._form = this.querySelector('form');
-    this._submit = this._form.getAttribute('action');
-    this._input = this._form.querySelector('#mce-EMAIL').value;
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function() {
-
-      if (this.readyState == 4) {
-
-        var ChimpResponse = JSON.parse(this.response);
-
-        if(ChimpResponse.result === "success") {
-          // check your inbox
-        } else {
-          // soemthing went wrong
-        }
+    ga('send', 'event', 'signUp', 'submit', {
+      hitCallback: function() {
+        e.target.submit();
       }
-    };
-
-    request.open('POST', this._submit, true);
-    request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    request.send("EMAIL=" + this._input);
+    });
   }
 }
 
@@ -116,6 +98,7 @@ function checkScroll() {
 
 // events
 window.onload = function(){
+  checkScroll();
   window.addEventListener('hashchange', checkScroll);
 
   var i;
