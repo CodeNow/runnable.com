@@ -1,39 +1,64 @@
-<div class="modal-backdrop" id="sign-up-modal">
+<div class="modal-backdrop" id="sign-up">
+  <a href="#" class="icons-close">
+    <svg class="icons">
+      <use xlink:href="#icons-close">
+    </svg>
+  </a>
   <article class="article article-sign-up modal">
-    <a href="#" class="icons-close">
-      <svg class="icons">
-        <use xlink:href="#icons-close">
-      </svg>
-    </a>
     <div class="well" ng-if="!data.hideUnauthorizedModal">
       <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-      Your organization doesn’t have access to Runnable…yet. Fill out this form and we’ll get in touch soon!
+      You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!
     </div>
     <!-- initial state -->
-    <h1 class="h1 text-center show">Let’s get going.</h1>
-    <p class="p text-center show">Runnable was made for teams that use GitHub.
-      <br class="hidden-xs">Tell us your team’s organization to request access.
-    <form action="https://runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up show">
+    <h1 class="h1 text-center strong">Let’s get started.</h1>
+    <form action="//runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_504370029e" tabindex="-1" value=""></div>
-      <div class="grid-content input-group-vertical">
-        <label class="label" for="mce-GH_ORG">Your Email</label>
-        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" required>
+      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_4e5a55ffa6" tabindex="-1" value=""></div>
+      <div class="grid-block vertical radio-group">
+        <label class="p text-center">Where does your team keep their code?</label>
+
+        <div class="grid-block">
+          <input class="input-radio" type="radio" value="GitHub" name="SCM" id="mce-SCM-0" required>
+          <label class="btn btn-lg white radio" for="mce-SCM-0">
+            <svg class="icons">
+              <use xlink:href="#icons-github">
+            </svg>
+            GitHub
+            <svg class="icons">
+              <use xlink:href="#icons-check">
+            </svg>
+          </label>
+
+          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
+          <label class="btn btn-lg white radio" for="mce-SCM-1">
+            <svg class="icons">
+              <use xlink:href="#icons-bitbucket">
+            </svg>
+            Bitbucket
+            <svg class="icons">
+              <use xlink:href="#icons-check">
+            </svg>
+          </label>
+        </div>
       </div>
-      <div class="grid-content input-group-vertical">
-        <label class="label" for="mce-GH_ORG">GitHub Organization
+
+      <div class="grid-content input-group-vertical input-group-org">
+        <label class="label" for="mce-GH_ORG">
+          <span class="label-text">Team Name</span>
           <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-            <div class="popover top text-center">We’re sending invitations to users that are a part of an organization on GitHub.</div>
+            <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
           </small>
         </label>
         <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
       </div>
-      <button id="mc-embedded-subscribe" class="grid-content btn btn-md green">Ship It!</button>
+
+      <div class="grid-content input-group-vertical">
+        <label class="label" for="mce-EMAIL">Your Email</label>
+        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+      </div>
+
+      <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>
     </form>
 
-    <!-- submitted state -->
-    <img class="img hide" src="images/runnabear-jumping.png">
-    <h1 class="h1 text-center hide">You did it.</h1>
-    <p class="p text-center hide">We’ll be in touch soon!
   </article>
 </div>
