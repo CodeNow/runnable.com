@@ -201,6 +201,14 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
+    videoId: 'mBR-_5dXH4w',
+    playerVars: {
+      color: 'white',
+      iv_load_policy: 3,
+      modestbranding: 1,
+      rel: 0,
+      showinfo: 0
+    },
     events: {
       'onReady': onPlayerReady
     }
@@ -301,7 +309,7 @@ function onPlayerReady(event) {
 
 
     <main class="grid-block vertical main">
-      <div id="player" class="video-embed" src="https://www.youtube-nocookie.com/embed/mBR-_5dXH4w?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3&enablejsapi=1&origin=https://www.github.io" frameborder="0" allowfullscreen></div>
+      <div id="player" class="video-embed"></div>
 <button class="btn btn-icon video-pause" title="Paws">
   <svg class="icons icons-close">
     <use xlink:href="#icons-close">
