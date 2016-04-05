@@ -48,10 +48,15 @@ function formInvalid(e) {
 }
 
 function formSubmit(e){
+  e.preventDefault();
   if (e.target.checkValidity()) {
     fbq('track', 'Lead');
-  } else {
-    e.preventDefault();
+
+    ga('send', 'event', 'signUp', 'submit', {
+      hitCallback: function() {
+        e.target.submit();
+      }
+    });
   }
 }
 
