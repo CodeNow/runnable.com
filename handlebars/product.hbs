@@ -118,6 +118,8 @@ function formSubmit(e){
         e.target.submit();
       }
     });
+
+    goog_report_conversion();
   }
 }
 
@@ -384,15 +386,20 @@ window.onload = function(){
     </div>
     <!-- initial state -->
     <h1 class="h1 text-center strong">Let’s get started.</h1>
-    <form action="//runnable.us5.list-manage.com/subscribe/post?u=a67ad168d3259d6b0f4d103df&amp;id=504370029e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
-      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a67ad168d3259d6b0f4d103df_4e5a55ffa6" tabindex="-1" value=""></div>
+    <form action="https://runnable.activehosted.com/proc.php" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
+      <input type="hidden" name="u" value="1">
+      <input type="hidden" name="f" value="1">
+      <input type="hidden" name="s">
+      <input type="hidden" name="c" value="0">
+      <input type="hidden" name="m" value="0">
+      <input type="hidden" name="act" value="sub">
+      <input type="hidden" name="v" value="2">
+
       <div class="grid-block vertical radio-group">
         <label class="p text-center">Where does your team keep their code?</label>
-
         <div class="grid-block">
-          <input class="input-radio" type="radio" value="GitHub" name="SCM" id="mce-SCM-0" required>
-          <label class="btn btn-lg white radio" for="mce-SCM-0">
+          <input class="input-radio" type="radio" value="GitHub" name="field[2]" id="radio-github" required>
+          <label class="btn btn-lg white radio" for="radio-github">
             <svg class="icons">
               <use xlink:href="#icons-github">
             </svg>
@@ -401,9 +408,8 @@ window.onload = function(){
               <use xlink:href="#icons-check">
             </svg>
           </label>
-
-          <input class="input-radio" type="radio" value="Bitbucket" name="SCM" id="mce-SCM-1" required>
-          <label class="btn btn-lg white radio" for="mce-SCM-1">
+          <input class="input-radio" type="radio" value="Bitbucket" name="field[2]" id="radio-bb" required>
+          <label class="btn btn-lg white radio" for="radio-bb">
             <svg class="icons">
               <use xlink:href="#icons-bitbucket">
             </svg>
@@ -416,23 +422,22 @@ window.onload = function(){
       </div>
 
       <div class="grid-content input-group-vertical input-group-org">
-        <label class="label" for="mce-GH_ORG">
+        <label class="label" for="input-organization">
           <span class="label-text">Team Name</span>
           <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
             <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
           </small>
         </label>
-        <input class="input input-md input-validate pristine" id="mce-GH_ORG" name="GH_ORG" required>
+        <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
       </div>
 
       <div class="grid-content input-group-vertical">
-        <label class="label" for="mce-EMAIL">Your Email</label>
-        <input class="input input-md input-validate pristine" id="mce-EMAIL" name="EMAIL" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+        <label class="label" for="input-email">Your Email</label>
+        <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
       </div>
 
-      <button id="mc-embedded-subscribe" class="grid-content btn btn-lg green">Ship It!</button>
+      <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
     </form>
-
   </article>
 </div>
 
@@ -489,4 +494,104 @@ src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
 ga("create", "UA-59677301-1", "auto");
 ga("send", "pageview");
 // end google analytics</script>
+    {{else}}
+      <script>
+        // google analytics
+        (function (i, s, o, g, r, a, m) {
+          i["GoogleAnalyticsObject"] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
+        ga("create", "UA-59677301-1", "auto");
+        ga("send", "pageview");
+        // end google analytics
+      </script>
+    {{/if_eq}}
+
+    <!-- Google Code for Sign Up Conversion Page
+    In your html page, add the snippet and call
+    goog_report_conversion when someone clicks on the
+    chosen link or button. -->
+    <script>
+      /* <![CDATA[ */
+      goog_snippet_vars = function() {
+        var w = window;
+        w.google_conversion_id = 927781586;
+        w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
+        w.google_remarketing_only = false;
+      }
+      // DO NOT CHANGE THE CODE BELOW.
+      goog_report_conversion = function(url) {
+        goog_snippet_vars();
+        window.google_conversion_format = "3";
+        var opt = new Object();
+        opt.onload_callback = function() {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      }
+      var conv_handler = window['google_trackConversion'];
+      if (typeof(conv_handler) == 'function') {
+        conv_handler(opt);
+      }
+    }
+    /* ]]> */
+    </script>
+    {{#if_eq env 'production-delta'}}
+      <script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+      <script>// Facebook Pixel Code
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '761302660669573');
+fbq('track', "PageView");
+// End Facebook Pixel Code</script>
+      <!-- Facebook Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+      <script>// google analytics
+(function (i, s, o, g, r, a, m) {
+  i["GoogleAnalyticsObject"] = r;
+  i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date();
+  a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0];
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m)
+})(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+ga("create", "UA-59677301-1", "auto");
+ga("send", "pageview");
+// end google analytics</script>
+    {{else}}
+      <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
+      <script>
+        // google analytics
+        (function (i, s, o, g, r, a, m) {
+          i["GoogleAnalyticsObject"] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
+        ga("create", "UA-59677301-1", "auto");
+        ga("send", "pageview");
+        // end google analytics
+      </script>
     {{/if_eq}}
