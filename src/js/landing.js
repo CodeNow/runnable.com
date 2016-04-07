@@ -57,6 +57,8 @@ function formSubmit(e){
         e.target.submit();
       }
     });
+
+    goog_report_conversion();
   }
 }
 
