@@ -48,17 +48,42 @@ function formInvalid(e) {
 }
 
 function formSubmit(e){
+  var form = e.target;
   e.preventDefault();
-  if (e.target.checkValidity()) {
+
+  if (form.checkValidity()) {
+    // facebook tracking
     fbq('track', 'Lead');
 
+    // google analytics tracking
     ga('send', 'event', 'signUp', 'submit', {
       hitCallback: function() {
         e.target.submit();
       }
     });
 
+    // adwords conversion tracking
     goog_report_conversion();
+
+    // jsonify form data
+    var scm = document.getElementsByName('scm');
+    var scmName = '';
+
+    for(var i = 0; i < scm.length; i++) {
+      if(scm[i].checked) {
+        scmName = scm[i].value;
+      }
+    }
+
+    var formData = {
+      scm: scmName,
+      organization: form[2].value,
+      email: form[3].value
+    };
+
+    formData = JSON.stringify(formData); // convert to JSON
+
+    console.log(formData);
   }
 }
 
