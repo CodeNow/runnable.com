@@ -61,8 +61,8 @@
     <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){e.preventDefault(),e.target.checkValidity()&&(fbq("track","Lead"),ga("send","event","signUp","submit",{hitCallback:function(){e.target.submit()}}),goog_report_conversion())}function flipCard(e){for(var t,a=e.type,n=e.target;(n=n.parentElement)&&!n.classList.contains("team-card"););var i=n.getElementsByClassName("img-rounded");if("touchend"===a)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(n.classList.toggle("flip"),"touchend"===a)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}function checkScroll(){var e=document.body;"#sign-up"===location.hash||"#confirm"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function onYouTubeIframeAPIReady(){player=new YT.Player("player",{videoId:"mBR-_5dXH4w",playerVars:{color:"white",iv_load_policy:3,modestbranding:1,rel:0,showinfo:0},events:{onReady:onPlayerReady}})}function playVideo(){document.body.classList.add("modal-open"),document.getElementById("player").classList.add("playing"),player.playVideo()}function pauseVideo(){document.body.classList.remove("modal-open"),document.getElementById("player").classList.remove("playing"),player.pauseVideo()}function onPlayerReady(e){Modernizr.on("videoautoplay",function(e){if(e){var t=document.getElementsByClassName("video-start"),a=document.getElementsByClassName("video-pause");if(t){var n;for(n=0;n<t.length;n++)t[n].addEventListener("click",playVideo),t[n].addEventListener("touchend",playVideo);for(n=0;n<a.length;n++)a[n].addEventListener("click",pauseVideo),a[n].addEventListener("touchend",pauseVideo)}}})}window.onload=function(){checkScroll(),window.addEventListener("hashchange",checkScroll);var e,t=document.getElementsByClassName("modal-backdrop");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var a=t[e].getElementsByTagName("input");for(e=0;e<a.length;e++)a[e].addEventListener("invalid",formInvalid),a[e].classList.contains("input-radio")&&a[e].addEventListener("change",updateLabel)}var n=document.getElementsByClassName("img-rounded");if(n)for(e=0;e<n.length;e++)n[e].addEventListener("click",flipCard),n[e].addEventListener("touchend",flipCard)};var tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";var firstScriptTag=document.getElementsByTagName("script")[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var player;</script>
 
     <!--
-      Commit Hash: 2b58b8e7e28a9e9d04d240fb665d78d82142c76c
-      Commit Time: Thu Apr 7 10:34:26 2016 -0700
+      Commit Hash: 07cfdcf7c42e57f9fab8f6ff42250ce7444f8694
+      Commit Time: Fri Apr 8 11:53:57 2016 -0700
     -->
 
   </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -183,7 +183,7 @@
     </div>
     <!-- initial state -->
     <h1 class="h1 text-center strong">Let’s get started.</h1>
-    <form action="https://runnable.activehosted.com/proc.php" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="grid-block vertical form form-sign-up">
+    <form action="https://runnable.activehosted.com/proc.php" method="post" id="_form_1_" class="grid-block vertical form form-sign-up">
       <input type="hidden" name="u" value="1">
       <input type="hidden" name="f" value="1">
       <input type="hidden" name="s">
@@ -239,11 +239,6 @@
 </div>
 
     <div class="modal-backdrop" id="confirm">
-  <a href="#" class="icons-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close"/>
-    </svg>
-  </a>
   <!-- submitted state -->
   <article class="article article-sign-up article-confirm modal">
     <img class="img hide" src="images/runnabear-jumping.png">

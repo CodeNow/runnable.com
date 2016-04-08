@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Please confirm your email. — Runnable</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script ugly="true">
+  var whitelisted = window.location.search !== '?whitelist=false';
+  var app = angular.module('homeApp', []);
+
+  app.controller('MainCtrl', function ($scope, $window, $http) {
+    $scope.loginUrl = '/auth/github?redirect=/?auth';
+    $scope.data = {
+      embedActive: false,
+      hideUnauthorizedModal: whitelisted
+    };
+
+    if (!window.fbq) {
+      // Stub fbq
+      window.fbq = function () {}
+    }
+
+    // scroll to
+    if (!whitelisted) {
+      fbq('track', 'ViewContent', {
+        action: 'notWhitelisted'
+      });
+      location.hash = '#sign-up';
+    }
+
+    $http.get('/users/me', {
+      withCredentials: true
+    })
+      .then(function (user) {
+        var org;
+        try {
+          org = user.data.userOptions.uiState.previousLocation.org;
+        } catch (e) {
+          org = user.data.accounts.github.username;
+        }
+        var prevInstance;
+        try {
+          prevInstance = user.data.userOptions.uiState.previousLocation.instance;
+        } catch (e) {
+        }
+        var newURL = '/' + org;
+        if (prevInstance) {
+          newURL += '/' + prevInstance
+        }
+        $window.location = newURL;
+      });
+  });
+</script>
+
+    <!--
+      Commit Hash: 07cfdcf7c42e57f9fab8f6ff42250ce7444f8694
+      Commit Time: Fri Apr 8 11:53:57 2016 -0700
+    -->
+
+  </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
+
+    <div class="modal-backdrop" id="confirm">
+  <!-- submitted state -->
+  <article class="article article-sign-up article-confirm modal">
+    <img class="img hide" src="images/runnabear-jumping.png">
+    <p class="p text-center">To prevent spam, we also need to confirm your email address by clicking on the link in the email we just sent you.
+    <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
+  </p></article>
+</div>
+
+
+    <!-- Google Code for Sign Up Conversion Page
+    In your html page, add the snippet and call
+    goog_report_conversion when someone clicks on the
+    chosen link or button. -->
+    <script>goog_snippet_vars=function(){var o=window;o.google_conversion_id=927781586,o.google_conversion_label="3G2tCK_GoGUQ0qWzugM",o.google_remarketing_only=!1},goog_report_conversion=function(o){goog_snippet_vars(),window.google_conversion_format="3";var n=new Object;n.onload_callback=function(){"undefined"!=typeof o&&(window.location=o)};var e=window.google_trackConversion;"function"==typeof e&&e(n)};</script>
+      <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
+      <script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","http://www.google-analytics.com/analytics.js","ga"),ga("create","UA-59677301-1","auto"),ga("send","pageview");</script>
+</body></html>
