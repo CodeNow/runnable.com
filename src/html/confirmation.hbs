@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Please confirm your email. — Runnable</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    @@include('../js/index.hbs')
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('components/confirm-modal.hbs')
+
+    <!-- Google Code for Sign Up Conversion Page
+    In your html page, add the snippet and call
+    goog_report_conversion when someone clicks on the
+    chosen link or button. -->
+    <script>
+      /* <![CDATA[ */
+      goog_snippet_vars = function() {
+        var w = window;
+        w.google_conversion_id = 927781586;
+        w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
+        w.google_remarketing_only = false;
+      }
+      // DO NOT CHANGE THE CODE BELOW.
+      goog_report_conversion = function(url) {
+        goog_snippet_vars();
+        window.google_conversion_format = "3";
+        var opt = new Object();
+        opt.onload_callback = function() {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      }
+      var conv_handler = window['google_trackConversion'];
+      if (typeof(conv_handler) == 'function') {
+        conv_handler(opt);
+      }
+    }
+    /* ]]> */
+    </script>
+    {{#if_eq env 'production-delta'}}
+      <script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+      <script>@@include('../js/external/facebook.js')</script>
+      @@include('../js/external/facebook.html')
+      <script>@@include('../js/external/google-analytics.js')</script>
+    {{else}}
+      <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
+      <script>
+        // google analytics
+        (function (i, s, o, g, r, a, m) {
+          i["GoogleAnalyticsObject"] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
+        ga("create", "UA-59677301-1", "auto");
+        ga("send", "pageview");
+        // end google analytics
+      </script>
+    {{/if_eq}}
