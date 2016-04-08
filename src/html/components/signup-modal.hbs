@@ -11,19 +11,11 @@
     </div>
     <!-- initial state -->
     <h1 class="h1 text-center strong">Let’s get started.</h1>
-    <form action="https://runnable.activehosted.com/proc.php" method="post" id="_form_1_" class="grid-block vertical form form-sign-up">
-      <input type="hidden" name="u" value="1">
-      <input type="hidden" name="f" value="1">
-      <input type="hidden" name="s">
-      <input type="hidden" name="c" value="0">
-      <input type="hidden" name="m" value="0">
-      <input type="hidden" name="act" value="sub">
-      <input type="hidden" name="v" value="2">
-
+    <form class="grid-block vertical form form-sign-up">
       <div class="grid-block vertical radio-group">
         <label class="p text-center">Where does your team keep their code?</label>
         <div class="grid-block">
-          <input class="input-radio" type="radio" value="GitHub" name="field[2]" id="radio-github" required>
+          <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
           <label class="btn btn-lg white radio" for="radio-github">
             <svg class="icons">
               <use xlink:href="#icons-github">
@@ -33,7 +25,7 @@
               <use xlink:href="#icons-check">
             </svg>
           </label>
-          <input class="input-radio" type="radio" value="Bitbucket" name="field[2]" id="radio-bb" required>
+          <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
           <label class="btn btn-lg white radio" for="radio-bb">
             <svg class="icons">
               <use xlink:href="#icons-bitbucket">
