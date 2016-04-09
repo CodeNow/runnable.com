@@ -1,18 +1,19 @@
-var gulp = require('gulp');
-var runSequence = require('run-sequence'); // sequence of tasks
-var debug = require('gulp-debug'); // debug
-var del = require('del'); // delete dist
-var newer = require('gulp-newer'); // checks for file changes
-var fileinclude = require('gulp-file-include'); // html
-var sass = require('gulp-sass'); // sass
-var autoprefixer = require('gulp-autoprefixer'); // autoprefixer
-var imagemin = require('gulp-imagemin'); // image optimizer
-var ghPages = require('gulp-gh-pages'); // deploy to gh pages
-var handlebars = require('gulp-compile-handlebars'); // handlebars
-var rename = require('gulp-rename'); // rename files
-var minifyInline = require('gulp-minify-inline'); // minifier
+var autoprefixer = require('gulp-autoprefixer'); // adds vendor prefixes to css properties
 var awspublish = require('gulp-awspublish');
+var debug = require('gulp-debug'); // for debugging gulp
+var del = require('del'); // deletes things
 var exec = require('child_process').exec;
+var fileinclude = require('gulp-file-include');
+var ghPages = require('gulp-gh-pages'); // deploy to github pages
+var gulp = require('gulp');
+var handlebars = require('gulp-compile-handlebars');
+var imagemin = require('gulp-imagemin'); // optimizes images
+var minifyInline = require('gulp-minify-inline'); // minifies inline script tags
+var newer = require('gulp-newer'); // checks for file changes
+var rename = require('gulp-rename'); // rename files
+var runSequence = require('run-sequence'); // sequence of gulp tasks
+var sass = require('gulp-sass');
+var webserver = require('gulp-webserver');
 
 // file locations
 var src = 'src/';
@@ -230,9 +231,15 @@ gulp.task('deploy:s3', function(cb) {
   runSequence('build', 's3', cb);
 });
 
-// build and watch
+// local webserver
+gulp.task('server', function() {
+  gulp.src(dist)
+    .pipe(webserver());
+});
+
+// dev build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], 'server', cb);
   gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});

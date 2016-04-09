@@ -19,6 +19,7 @@
     "gulp-newer": "~0.5.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "~2.0.3",
+    "gulp-webserver": "^0.9.1",
     "run-sequence": "^1.1.5"
   },
   "engine": {
