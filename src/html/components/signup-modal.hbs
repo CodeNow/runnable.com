@@ -5,10 +5,13 @@
     </svg>
   </a>
   <article class="article article-sign-up modal">
-    <div class="well" ng-if="!data.hideUnauthorizedModal">
+
+    <!-- white list errors -->
+    <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
       <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-      You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!
+      <span class="span well-text">You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!</span>
     </div>
+
     <!-- initial state -->
     <h1 class="h1 text-center strong">Let’s get started.</h1>
     <form class="grid-block vertical form form-sign-up">

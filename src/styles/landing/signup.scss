@@ -81,17 +81,22 @@
     }
   }
 
+  // errors
   .well {
+    align-items: center;
     background: desaturate($red,10%);
     border: 2px solid $red-faded;
     border-radius: $input-border-radius-lg;
     color: $white;
+    display: flex;
     font-size: 16px;
     font-weight: $weight-normal;
+    height: 78px;
     line-height: 1.4;
     margin: 0;
     padding: 15px 6px 15px 69px;
     position: relative;
+    width: 100%;
 
     @include media(xxs) {
       font-size: 15px;
