@@ -89,8 +89,9 @@ function formSubmit(e){
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
     xhr.onload = function() {
-      var error = JSON.parse(xhr.responseText);
-      console.log(error.result_message);
+      var response = JSON.parse(xhr.responseText);
+      console.log(response.result_code); // 0 = error; 1 = success
+      console.log(response.result_message);
     };
 
     return false;

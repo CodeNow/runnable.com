@@ -226,6 +226,11 @@ gulp.task('deploy:gh', function(cb) {
   runSequence('build', 'ghPages', cb);
 });
 
+// dev build and deploy to gh pages
+gulp.task('deploy:gh:dev', function(cb) {
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], 'ghPages', cb);
+});
+
 // build and deploy to amazon s3
 gulp.task('deploy:s3', function(cb) {
   runSequence('build', 's3', cb);
