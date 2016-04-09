@@ -86,8 +86,22 @@ function formSubmit(e){
     xhr.send(formData);
     xhr.onload = function() {
       var response = JSON.parse(xhr.responseText);
-      console.log(response.result_code); // 0 = error; 1 = success
+      /* result_codes:
+         -1 = error from sundip
+         0 = error from active campaign
+         1 = success from active campaign
+      */
+
+      console.log(response.result_code);
       console.log(response.result_message);
+
+      // if errors
+      if (response.result_code === -1 || 0) {
+        var errorWell = document.getElementsByClassName('well-error')[0];
+        var errorText = document.getElementsByClassName('well-text')[0];
+        errorWell.innerHTML = response.result_message;
+        errorWell.style = 'display: flex !important';
+      }
     };
   }
 }
