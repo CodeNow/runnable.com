@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/index.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script ugly="true">
+    <script ugly=true>
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
@@ -60,11 +60,11 @@
 </script>
 
     <!--
-      Commit Hash: d891bf28bb3e0913aad7fd458beca5f7e4b7a9ea
-      Commit Time: Fri Apr 8 17:55:47 2016 -0700
+      Commit Hash: 
+      Commit Time: 
     -->
 
-  </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
+  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <div class="modal-backdrop" id="confirm">
   <!-- submitted state -->
@@ -72,7 +72,7 @@
     <img class="img hide" src="images/runnabear-jumping.png">
     <p class="p text-center">To prevent spam, we also need to confirm your email address by clicking on the link in the email we just sent you.
     <a href="https://runnable.com" class="grid-content btn btn-lg gray">Return Home</a>
-  </p></article>
+  </article>
 </div>
 
 
@@ -80,7 +80,46 @@
     In your html page, add the snippet and call
     goog_report_conversion when someone clicks on the
     chosen link or button. -->
-    <script>goog_snippet_vars=function(){var o=window;o.google_conversion_id=927781586,o.google_conversion_label="3G2tCK_GoGUQ0qWzugM",o.google_remarketing_only=!1},goog_report_conversion=function(o){goog_snippet_vars(),window.google_conversion_format="3";var n=new Object;n.onload_callback=function(){"undefined"!=typeof o&&(window.location=o)};var e=window.google_trackConversion;"function"==typeof e&&e(n)};</script>
+    <script>
+      /* <![CDATA[ */
+      goog_snippet_vars = function() {
+        var w = window;
+        w.google_conversion_id = 927781586;
+        w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
+        w.google_remarketing_only = false;
+      }
+      // DO NOT CHANGE THE CODE BELOW.
+      goog_report_conversion = function(url) {
+        goog_snippet_vars();
+        window.google_conversion_format = "3";
+        var opt = new Object();
+        opt.onload_callback = function() {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      }
+      var conv_handler = window['google_trackConversion'];
+      if (typeof(conv_handler) == 'function') {
+        conv_handler(opt);
+      }
+    }
+    /* ]]> */
+    </script>
       <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
-      <script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","http://www.google-analytics.com/analytics.js","ga"),ga("create","UA-59677301-1","auto"),ga("send","pageview");</script>
-</body></html>
+      <script>
+        // google analytics
+        (function (i, s, o, g, r, a, m) {
+          i["GoogleAnalyticsObject"] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
+        ga("create", "UA-59677301-1", "auto");
+        ga("send", "pageview");
+        // end google analytics
+      </script>
