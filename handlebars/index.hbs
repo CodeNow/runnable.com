@@ -144,7 +144,11 @@ function formSubmit(e){
 
     formData = JSON.stringify(formData); // convert to JSON
 
-    console.log(formData);
+    // send form
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
+    xhr.send(formData);
+
   }
 }
 
