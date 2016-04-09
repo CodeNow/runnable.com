@@ -56,11 +56,7 @@ function formSubmit(e){
     fbq('track', 'Lead');
 
     // google analytics tracking
-    ga('send', 'event', 'signUp', 'submit', {
-      hitCallback: function() {
-        e.target.submit();
-      }
-    });
+    ga('send', 'event', 'signUp', 'submit');
 
     // adwords conversion tracking
     goog_report_conversion();
