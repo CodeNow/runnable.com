@@ -127,29 +127,29 @@ function formSubmit(e){
     goog_report_conversion();
 
     // jsonify form data
-    // var scm = document.getElementsByName('scm');
-    // var scmName = '';
+    var scm = document.getElementsByName('scm');
+    var scmName = '';
 
-    // for(var i = 0; i < scm.length; i++) {
-    //   if(scm[i].checked) {
-    //     scmName = scm[i].value;
-    //   }
-    // }
+    for(var i = 0; i < scm.length; i++) {
+      if(scm[i].checked) {
+        scmName = scm[i].value;
+      }
+    }
 
-    // var formData = {
-    //   scm: scmName,
-    //   organization: form[2].value,
-    //   email: form[3].value
-    // };
+    var formData = {
+      scm: scmName,
+      organization: form[2].value,
+      email: form[3].value
+    };
 
-    // formData = JSON.stringify(formData); // convert to JSON
-
-    var formData = new FormData(form);
+    formData = JSON.stringify(formData); // convert to JSON
 
     // send form
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.send(formData);
+
+    return false;
   }
 }
 
