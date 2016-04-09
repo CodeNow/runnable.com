@@ -91,7 +91,6 @@ function formSubmit(e){
     xhr.onload = function() {
       var error = JSON.parse(xhr.responseText);
       console.log(error.result_message);
-      console.log(error.0.result_message);
     };
 
     return false;
