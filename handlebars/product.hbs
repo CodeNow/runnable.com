@@ -161,7 +161,7 @@ function formSubmit(e){
       if (resultCode === -1 || resultCode === 0) {
         var errorWell = document.getElementsByClassName('well-error')[0];
         var errorText = document.getElementsByClassName('well-text')[0];
-        errorWell.innerHTML = response.result_message;
+        errorText.innerHTML = response.result_message;
         errorWell.style = 'display: flex !important';
       }
     };
