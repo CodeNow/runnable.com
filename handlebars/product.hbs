@@ -149,7 +149,9 @@ function formSubmit(e){
     xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
-    alert(xhr.responseText);
+    xhr.onload = function() {
+      alert(xhr.responseText);
+    };
 
     return false;
   }
