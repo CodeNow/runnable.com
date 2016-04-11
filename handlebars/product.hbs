@@ -125,8 +125,6 @@ function formSubmit(e){
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
-    var signUpArticle = document.getElementsByClassName('article-sign-up');
-    var confirmArticle = document.getElementsByClassName('article-confirm');
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -163,8 +161,8 @@ function formSubmit(e){
       }
 
       if (resultCode === 1) {
-        signUpArticle.classList.add('out');
-        confim.classList.add('in');
+        document.getElementsByClassName('article-sign-up')[0].classList.add('out');
+        document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
     };
 
