@@ -14,14 +14,20 @@
       window.fbq = function () {}
     }
 
-    // scroll to
     if (!whitelisted) {
+      // set sign up form error
+      document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
+
+      // open sign up form
+      location.hash = '#sign-up';
+
+      // facebook tracking
       fbq('track', 'ViewContent', {
         action: 'notWhitelisted'
       });
-      location.hash = '#sign-up';
     }
 
+    // redirect
     $http.get('{{{apiUrl}}}/users/me', {
       withCredentials: true
     })
