@@ -53,32 +53,20 @@
   }
 }
 
-.article-sign-up {
-  background: $gray-lighterest;
-  border: 6px solid $gray-lighter;
+.article-form {
   border-radius: $input-border-radius-lg;
-  box-shadow: 0 3px 15px rgba($black,.1);
-  margin: -450px auto 90px;
+  margin: 30px auto;
   max-width: 600px;
   padding: 60px;
 
   @include media(xs) {
-    border-left: 0;
     border-radius: 0;
-    border-right: 0;
     margin: 0;
     padding: 30px 30px 45px;
   }
 
-  &.submitted {
-
-    .hide {
-      display: block;
-    }
-
-    .show {
-      display: none;
-    }
+  @include media(xxs) {
+    margin: 0 auto;
   }
 
   // errors

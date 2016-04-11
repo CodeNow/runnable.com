@@ -12,14 +12,15 @@ function updateLabel(e) {
 }
 
 function markInvalid(e) {
+  var thisTarget = e.target;
   var theseInputs;
   var i;
-  if (e.target.tagName == 'INPUT') {
+  if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    theseInputs = e.target.classList.add('invalid');
+    theseInputs = thisTarget.classList.add('invalid');
   } else {
     // for change event
-    theseInputs = e.target.getElementsByTagName('input');
+    theseInputs = thisTarget.getElementsByTagName('input');
     for (i = 0; i < theseInputs.length; i++) {
       if (!theseInputs[i].validity.valid) {
         theseInputs[i].classList.add('invalid');
@@ -53,12 +54,14 @@ function formSubmit(e){
   e.preventDefault();
 
   if (form.checkValidity()) {
-    // jsonify form data
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+    var signUpArticle = document.getElementsByClassName('article-sign-up');
+    var confirmArticle = document.getElementsByClassName('article-confirm');
 
+    // jsonify form data
     for(var i = 0; i < scm.length; i++) {
       if(scm[i].checked) {
         scmName = scm[i].value;
@@ -87,10 +90,14 @@ function formSubmit(e){
       // 0 = error from active campaign
       // 1 = success from active campaign
 
-      // if errors
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
         activeCampaignValidation(resultCode, resultMessage);
+      }
+
+      if (resultCode === 1) {
+        signUpArticle.classList.add('out');
+        confim.classList.add('in');
       }
     };
 
@@ -135,7 +142,7 @@ function flipCard(e) {
   while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
   flipTriggers = thisCard.getElementsByClassName('img-rounded');
 
-  // remove and reset touch events
+  // remove and reset touch events or they can trigger twice
   if (eventType === 'touchend') {
     for (i = 0; i < flipTriggers.length; i++) {
       flipTriggers[i].removeEventListener('touchend', flipCard);
@@ -154,7 +161,7 @@ function flipCard(e) {
 // check scrolling
 function checkScroll() {
   var dBody = document.body;
-  if (location.hash === '#sign-up' || location.hash === '#confirm') {
+  if (location.hash === '#sign-up') {
     dBody.classList.add('modal-open');
   } else {
     dBody.classList.remove('modal-open');

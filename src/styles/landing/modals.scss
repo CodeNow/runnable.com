@@ -14,28 +14,52 @@
   z-index: $z-modal;
 }
 
-#sign-up,
-#confirm {
+.modal {
+
+  &.shake {
+    animation: shake .25s ease-in-out;
+  }
+
+  > .article {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+
+    &.article-sign-up {
+      z-index: $z-modal + 1;
+    }
+
+    &.article-confirm {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(0,100px,0);
+      z-index: $z-modal;
+    }
+
+    &.out {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(0,-100px,0);
+      z-index: $z-modal;
+    }
+
+    &.in {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate3d(0,0,0);
+      z-index: $z-modal + 1;
+    }
+  }
+}
+
+#sign-up {
 
   &:target {
     opacity: 1;
     pointer-events: auto;
     transform: scale3d(1,1,1);
-  }
-
-  .article-sign-up {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 30px auto;
-
-    @include media(xxs) {
-      margin: 0 auto;
-    }
-
-    &.shake {
-      animation: shake .25s ease-in-out;
-    }
   }
 
   .icons-close {
