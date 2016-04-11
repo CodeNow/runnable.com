@@ -2083,39 +2083,38 @@ input[type="radio"] {
   -webkit-animation: shake .25s ease-in-out;
           animation: shake .25s ease-in-out; }
 
-.modal > .article {
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity .3s ease-in-out, -webkit-transform .3s ease-in-out;
-  transition: opacity .3s ease-in-out, transform .3s ease-in-out; }
-  .modal > .article.article-sign-up {
-    z-index: 101; }
-  .modal > .article.article-confirm {
-    opacity: 0;
-    pointer-events: none;
-    -webkit-transform: translate3d(0, 100px, 0);
-            transform: translate3d(0, 100px, 0);
-    z-index: 100; }
-  .modal > .article.out {
-    opacity: 0;
-    pointer-events: none;
-    -webkit-transform: translate3d(0, -100px, 0);
-            transform: translate3d(0, -100px, 0);
-    z-index: 100; }
-  .modal > .article.in {
-    opacity: 1;
-    pointer-events: auto;
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-    z-index: 101; }
-
 #sign-up:target {
   opacity: 1;
   pointer-events: auto;
   -webkit-transform: scale3d(1, 1, 1);
           transform: scale3d(1, 1, 1); }
+  #sign-up:target .modal > .article {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .3s ease-in-out, -webkit-transform .3s ease-in-out;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out; }
+    #sign-up:target .modal > .article.article-sign-up {
+      z-index: 101; }
+    #sign-up:target .modal > .article.article-confirm {
+      opacity: 0;
+      pointer-events: none;
+      -webkit-transform: translate3d(0, 100px, 0);
+              transform: translate3d(0, 100px, 0);
+      z-index: 100; }
+    #sign-up:target .modal > .article.out {
+      opacity: 0;
+      pointer-events: none;
+      -webkit-transform: translate3d(0, -100px, 0);
+              transform: translate3d(0, -100px, 0);
+      z-index: 100; }
+    #sign-up:target .modal > .article.in {
+      opacity: 1;
+      pointer-events: auto;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+      z-index: 101; }
 
 #sign-up .icons-close {
   cursor: pointer;
