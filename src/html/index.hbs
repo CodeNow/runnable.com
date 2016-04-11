@@ -63,9 +63,7 @@
       }
       /* ]]> */
     </script>
-    {{#if_eq env 'production-delta'}}
-      <script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
-      <script>@@include('../js/external/facebook.js')</script>
-      @@include('../js/external/facebook.html')
-      <script>@@include('../js/external/google-analytics.js')</script>
-    {{/if_eq}}
+    <script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+    <script>@@include('../js/external/facebook.js')</script>
+    @@include('../js/external/facebook.html')
+    <script>@@include('../js/external/google-analytics.js')</script>
