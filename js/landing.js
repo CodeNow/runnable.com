@@ -89,7 +89,7 @@ function formSubmit(e){
 
       // if errors
       if (resultCode === -1 || resultCode === 0) {
-        shakeForm(form.parentElement);
+        shakeForm(e);
         activeCampaignValidation(resultCode, resultMessage);
       }
     };
