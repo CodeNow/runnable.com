@@ -1,4 +1,4 @@
-// form submit
+// sign up form
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
@@ -127,33 +127,6 @@ function activeCampaignValidation(resultCode, resultMessage) {
 
   errorText.innerHTML = resultMessage;
   errorWell.setAttribute('style', 'display: flex !important');
-}
-
-// flipping cards
-function flipCard(e) {
-  var i;
-  var eventType = e.type;
-  var thisCard = e.target;
-  var flipTriggers;
-
-  // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-  flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-  // remove and reset touch events or they can trigger twice
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].removeEventListener('touchend', flipCard);
-    }
-  }
-
-  thisCard.classList.toggle('flip');
-
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].addEventListener('touchend', flipCard);
-    }
-  }
 }
 
 // check scrolling
