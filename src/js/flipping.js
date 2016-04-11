@@ -26,7 +26,7 @@ function flipCard(e) {
 }
 
 // events
-window.onload = function(){
+window.addEventListener('load', function(){
   var i;
   var imgFlip = document.getElementsByClassName('img-rounded');
 
@@ -37,4 +37,4 @@ window.onload = function(){
       imgFlip[i].addEventListener('touchend', flipCard);
     }
   }
-};
+});

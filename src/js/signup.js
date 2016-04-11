@@ -176,7 +176,7 @@ function checkScroll() {
 }
 
 // events
-window.onload = function(){
+window.addEventListener('load', function(){
   var i;
   var modalForms = document.getElementsByClassName('modal-backdrop');
   var imgFlip = document.getElementsByClassName('img-rounded');
@@ -201,12 +201,4 @@ window.onload = function(){
       }
     }
   }
-
-  // flipping cards
-  if (imgFlip) {
-    for (i = 0; i < imgFlip.length; i++) {
-      imgFlip[i].addEventListener('click', flipCard);
-      imgFlip[i].addEventListener('touchend', flipCard);
-    }
-  }
-};
+});
