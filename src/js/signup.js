@@ -75,7 +75,7 @@ function toggleEditing(form, state) {
 function formSubmit(e){
   var form = e.target;
   e.preventDefault();
-  toggleEditing(form, disable); // disables inputs
+  toggleEditing(form, 'disable'); // disables inputs
 
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
@@ -109,7 +109,7 @@ function formSubmit(e){
         activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
       }
 
-      toggleEditing(form, enable); // re-enables form
+      toggleEditing(form, 'enable'); // re-enables form
     };
 
     xhr.onload = function() {
@@ -132,7 +132,7 @@ function formSubmit(e){
         document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
 
-      toggleEditing(form, enable); // re-enables form
+      toggleEditing(form, 'enable'); // re-enables form
     };
 
     // facebook tracking
