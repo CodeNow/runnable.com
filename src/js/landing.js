@@ -82,17 +82,14 @@ function formSubmit(e){
       var resultCode = response.result_code;
       var resultMessage = response.result_message;
 
-      /* result_codes:
-         -1 = error from sundip
-         0 = error from active campaign
-         1 = success from active campaign
-      */
-
-      console.log('precheck: ' + resultCode);
-      console.log('precheck: ' + resultMessage);
+      // result_codes:
+      // -1 = error from sundip
+      // 0 = error from active campaign
+      // 1 = success from active campaign
 
       // if errors
       if (resultCode === -1 || resultCode === 0) {
+        shakeForm(form.parentElement);
         activeCampaignValidation(resultCode, resultMessage);
       }
     };
@@ -109,14 +106,17 @@ function formSubmit(e){
 }
 
 function activeCampaignValidation(resultCode, resultMessage) {
-  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
   var errorWell = document.getElementsByClassName('well-error')[0];
   var errorText = document.getElementsByClassName('well-text')[0];
+  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
 
-  console.log('cropped: ' + firstSentence);
+  // change error text from active campaign
   switch (firstSentence) {
     case 'You selected a list that does not allow duplicates':
-      resultMessage = 'That email has already been signed up!';
+      resultMessage = 'That email has already been used to sign up.';
+      break;
+    case 'Contact Email Address is not valid':
+      resultMessage = 'That email address is not valid.';
       break;
   }
 
@@ -166,6 +166,7 @@ window.onload = function(){
   var i;
   var modalForms = document.getElementsByClassName('modal-backdrop');
   var imgFlip = document.getElementsByClassName('img-rounded');
+  var theseInputs;
 
   checkScroll();
   window.addEventListener('hashchange', checkScroll);
@@ -176,7 +177,7 @@ window.onload = function(){
       modalForms[i].addEventListener('change', makeDirty);
       modalForms[i].addEventListener('submit', formSubmit);
 
-      var theseInputs = modalForms[i].getElementsByTagName('input');
+      theseInputs = modalForms[i].getElementsByTagName('input');
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].addEventListener('invalid', formInvalid);
 
