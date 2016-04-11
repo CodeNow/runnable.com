@@ -14,44 +14,8 @@
   z-index: $z-modal;
 }
 
-.modal {
-
-  &.shake {
-    animation: shake .25s ease-in-out;
-  }
-
-  > .article {
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
-
-    &.article-sign-up {
-      z-index: $z-modal + 1;
-    }
-
-    &.article-confirm {
-      opacity: 0;
-      pointer-events: none;
-      transform: translate3d(0,100px,0);
-      z-index: $z-modal;
-    }
-
-    &.out {
-      opacity: 0;
-      pointer-events: none;
-      transform: translate3d(0,-100px,0);
-      z-index: $z-modal;
-    }
-
-    &.in {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate3d(0,0,0);
-      z-index: $z-modal + 1;
-    }
-  }
+.modal.shake {
+  animation: shake .25s ease-in-out;
 }
 
 #sign-up {
@@ -60,6 +24,39 @@
     opacity: 1;
     pointer-events: auto;
     transform: scale3d(1,1,1);
+
+    .modal > .article {
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+
+      &.article-sign-up {
+        z-index: $z-modal + 1;
+      }
+
+      &.article-confirm {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(0,100px,0);
+        z-index: $z-modal;
+      }
+
+      &.out {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(0,-100px,0);
+        z-index: $z-modal;
+      }
+
+      &.in {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate3d(0,0,0);
+        z-index: $z-modal + 1;
+      }
+    }
   }
 
   .icons-close {
