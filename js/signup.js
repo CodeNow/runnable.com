@@ -75,6 +75,7 @@ function toggleEditing(form) {
 function formSubmit(e){
   var form = e.target;
   e.preventDefault();
+  toggleEditing(form); // disables inputs
 
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
@@ -82,8 +83,6 @@ function formSubmit(e){
     var formData;
     var xhr = new XMLHttpRequest();
 
-    // disables inputs
-    toggleEditing(form);
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -133,9 +132,6 @@ function formSubmit(e){
       }
     };
 
-    // re-enables form
-    toggleEditing(form);
-
     // facebook tracking
     fbq('track', 'Lead');
 
@@ -145,6 +141,8 @@ function formSubmit(e){
     // adwords conversion tracking
     goog_report_conversion();
   }
+
+  toggleEditing(form); // re-enables form
 }
 
 function activeCampaignValidation(resultMessage) {
