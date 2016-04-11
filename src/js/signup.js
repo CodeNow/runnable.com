@@ -49,6 +49,29 @@ function formInvalid(e) {
   shakeForm(e);
 }
 
+function toggleEditing(form) {
+  var i;
+  var theseInputs = form.getElementsByTagName('input');
+  var submitButton = form.getElementsByTagName('button')[0];
+  var spinner = document.getElementsByClassName('spinner-wrapper');
+
+  for (i = 0; i < theseInputs.length; i++) {
+    if (theseInputs[i].disabled) {
+      theseInputs[i].disabled = false;
+    } else {
+      theseInputs[i].disabled = true;
+    }
+  }
+
+  if (spinner.length) {
+    submitButton.disabled = false;
+    spinner[0].parentElement.removeChild(spinner[0]);
+  } else {
+    submitButton.disabled = true;
+    submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+  }
+}
+
 function formSubmit(e){
   var form = e.target;
   e.preventDefault();
@@ -58,6 +81,9 @@ function formSubmit(e){
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+
+    // disables inputs
+    toggleEditing(form);
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -98,6 +124,9 @@ function formSubmit(e){
         document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
     };
+
+    // re-enables form
+    toggleEditing(form);
 
     // facebook tracking
     fbq('track', 'Lead');

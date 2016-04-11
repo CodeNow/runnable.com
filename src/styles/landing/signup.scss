@@ -190,6 +190,24 @@
       border-color: currentColor;
       color: $red;
     }
+
+    // disabled state
+    &[disabled] {
+
+      &:not(:checked), {
+
+        + .radio,
+        + .radio:hover,
+        + .radio:active {
+          border-color: $gray-lighter;
+          color: $gray-dark;
+        }
+      }
+
+      + .radio {
+        cursor: not-allowed;
+      }
+    }
   }
 
   .radio {
@@ -252,5 +270,14 @@
   // submit
   .btn.green {
     margin-top: 30px;
+
+    .spinner-wrapper {
+      height: 100%;
+      padding: 9px;
+      position: absolute;
+      right: 6px;
+      top: 0;
+      width: 39px;
+    }
   }
 }
