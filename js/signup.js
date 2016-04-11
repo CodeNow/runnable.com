@@ -1,4 +1,4 @@
-// form submit
+// sign up form
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
@@ -49,6 +49,29 @@ function formInvalid(e) {
   shakeForm(e);
 }
 
+function toggleEditing(form) {
+  var i;
+  var theseInputs = form.getElementsByTagName('input');
+  var submitButton = form.getElementsByTagName('button')[0];
+  var spinner = document.getElementsByClassName('spinner-wrapper');
+
+  for (i = 0; i < theseInputs.length; i++) {
+    if (theseInputs[i].disabled) {
+      theseInputs[i].disabled = false;
+    } else {
+      theseInputs[i].disabled = true;
+    }
+  }
+
+  if (spinner.length) {
+    submitButton.disabled = false;
+    spinner[0].parentElement.removeChild(spinner[0]);
+  } else {
+    submitButton.disabled = true;
+    submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+  }
+}
+
 function formSubmit(e){
   var form = e.target;
   e.preventDefault();
@@ -58,6 +81,9 @@ function formSubmit(e){
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+
+    // disables inputs
+    toggleEditing(form);
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -78,6 +104,14 @@ function formSubmit(e){
     xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
+
+    xhr.onreadystatechange = function() {
+      if ( xhr.readyState === 4 && xhr.status === 0) {
+        shakeForm(e);
+        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
+      }
+    };
+
     xhr.onload = function() {
       var response = JSON.parse(xhr.responseText);
       var resultCode = response.result_code;
@@ -90,7 +124,7 @@ function formSubmit(e){
 
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
-        activeCampaignValidation(resultCode, resultMessage);
+        activeCampaignValidation(resultMessage);
       }
 
       if (resultCode === 1) {
@@ -98,6 +132,9 @@ function formSubmit(e){
         document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
     };
+
+    // re-enables form
+    toggleEditing(form);
 
     // facebook tracking
     fbq('track', 'Lead');
@@ -110,7 +147,7 @@ function formSubmit(e){
   }
 }
 
-function activeCampaignValidation(resultCode, resultMessage) {
+function activeCampaignValidation(resultMessage) {
   var errorWell = document.getElementsByClassName('well-error')[0];
   var errorText = document.getElementsByClassName('well-text')[0];
   var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
@@ -127,33 +164,6 @@ function activeCampaignValidation(resultCode, resultMessage) {
 
   errorText.innerHTML = resultMessage;
   errorWell.setAttribute('style', 'display: flex !important');
-}
-
-// flipping cards
-function flipCard(e) {
-  var i;
-  var eventType = e.type;
-  var thisCard = e.target;
-  var flipTriggers;
-
-  // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-  flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-  // remove and reset touch events or they can trigger twice
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].removeEventListener('touchend', flipCard);
-    }
-  }
-
-  thisCard.classList.toggle('flip');
-
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].addEventListener('touchend', flipCard);
-    }
-  }
 }
 
 // check scrolling
