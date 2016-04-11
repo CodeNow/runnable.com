@@ -101,7 +101,7 @@ function formSubmit(e){
         var errorWell = document.getElementsByClassName('well-error')[0];
         var errorText = document.getElementsByClassName('well-text')[0];
         errorText.innerHTML = response.result_message;
-        errorWell.style = 'display: flex !important';
+        errorWell.setAttribute('style', 'display: flex !important');
       }
     };
   }
