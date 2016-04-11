@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/index.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script ugly=true>
+    <script ugly="true">
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
@@ -58,213 +58,32 @@
       });
   });
 </script>
-    <script>
-      // form submit
-function updateLabel(e) {
-  var label = document.getElementsByClassName('label-text')[0];
-  switch (e.target.getAttribute('value')) {
-    case 'GitHub':
-      label.innerHTML = 'GitHub Organization';
-      break;
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
-  }
-}
-
-function markInvalid(e) {
-  var theseInputs;
-  if (e.target.tagName == 'INPUT') {
-    // for invalid event
-    theseInputs = e.target.classList.add('invalid');
-  } else {
-    // for change event
-    theseInputs = e.target.getElementsByTagName('input');
-    for (var i = 0; i < theseInputs.length; i++) {
-      if (!theseInputs[i].validity.valid) {
-        theseInputs[i].classList.add('invalid');
-      }
-    }
-  }
-}
-
-function shakeForm(e) {
-  var thisModal = e.target;
-  // get modal element
-  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
-  thisModal.classList.add('shake');
-  thisModal.addEventListener('animationend', function(){
-    thisModal.classList.remove('shake');
-    thisModal.removeEventListener('animationend', function(){});
-  });
-}
-
-function makeDirty(e){
-  e.target.classList.remove('pristine', 'invalid');
-}
-
-function formInvalid(e) {
-  markInvalid(e);
-  shakeForm(e);
-}
-
-function formSubmit(e){
-  var form = e.target;
-  e.preventDefault();
-
-  if (form.checkValidity()) {
-    // facebook tracking
-    fbq('track', 'Lead');
-
-    // google analytics tracking
-    ga('send', 'event', 'signUp', 'submit');
-
-    // adwords conversion tracking
-    goog_report_conversion();
-
-    // jsonify form data
-    var scm = document.getElementsByName('scm');
-    var scmName = '';
-
-    for(var i = 0; i < scm.length; i++) {
-      if(scm[i].checked) {
-        scmName = scm[i].value;
-      }
-    }
-
-    var formData = {
-      scm: scmName,
-      organization: form[2].value,
-      email: form[3].value
-    };
-
-    formData = JSON.stringify(formData); // convert to JSON
-
-    // send form
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(formData);
-    xhr.onload = function() {
-      var response = JSON.parse(xhr.responseText);
-      var resultCode = response.result_code;
-      /* result_codes:
-         -1 = error from sundip
-         0 = error from active campaign
-         1 = success from active campaign
-      */
-
-      console.log(response.result_code);
-      console.log(response.result_message);
-
-      // if errors
-      if (resultCode === -1 || resultCode === 0) {
-        var errorWell = document.getElementsByClassName('well-error')[0];
-        var errorText = document.getElementsByClassName('well-text')[0];
-        errorText.innerHTML = response.result_message;
-        errorWell.style = 'display: flex !important';
-      }
-    };
-  }
-}
-
-// flipping cards
-function flipCard(e) {
-  var i;
-  var eventType = e.type;
-  var thisCard = e.target;
-
-  // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-  var flipTriggers = thisCard.getElementsByClassName('img-rounded');
-
-  // remove and reset touch events
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].removeEventListener('touchend', flipCard);
-    }
-  }
-
-  thisCard.classList.toggle('flip');
-
-  if (eventType === 'touchend') {
-    for (i = 0; i < flipTriggers.length; i++) {
-      flipTriggers[i].addEventListener('touchend', flipCard);
-    }
-  }
-}
-
-// check scrolling
-function checkScroll() {
-  var dBody = document.body;
-  if (location.hash === '#sign-up' || location.hash === '#confirm') {
-    dBody.classList.add('modal-open');
-  } else {
-    dBody.classList.remove('modal-open');
-  }
-}
-
-// events
-window.onload = function(){
-  checkScroll();
-  window.addEventListener('hashchange', checkScroll);
-
-  var i;
-
-  // modal forms
-  var modalForms = document.getElementsByClassName('modal-backdrop');
-  if (modalForms) {
-    for (i = 0; i < modalForms.length; i++) {
-      modalForms[i].addEventListener('change', makeDirty);
-      modalForms[i].addEventListener('submit', formSubmit);
-
-      var theseInputs = modalForms[i].getElementsByTagName('input');
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].addEventListener('invalid', formInvalid);
-
-        if (theseInputs[i].classList.contains('input-radio')) {
-          theseInputs[i].addEventListener('change', updateLabel);
-        }
-      }
-    }
-  }
-
-  // flipping cards
-  var imgFlip = document.getElementsByClassName('img-rounded');
-  if (imgFlip) {
-    for (i = 0; i < imgFlip.length; i++) {
-      imgFlip[i].addEventListener('click', flipCard);
-      imgFlip[i].addEventListener('touchend', flipCard);
-    }
-  }
-};
-
-    </script>
+    <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t;if("INPUT"==e.target.tagName)t=e.target.classList.add("invalid");else{t=e.target.getElementsByTagName("input");for(var a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function formSubmit(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion();for(var a=document.getElementsByName("scm"),n="",i=0;i<a.length;i++)a[i].checked&&(n=a[i].value);var s={scm:n,organization:t[2].value,email:t[3].value};s=JSON.stringify(s);var o=new XMLHttpRequest;o.open("POST","http://marketing-88rbj4hy.cloudapp.net/submit"),o.setRequestHeader("Content-Type","application/json"),o.send(s),o.onload=function(){var e=JSON.parse(o.responseText),t=e.result_code,a=e.result_message;console.log("precheck: "+t),console.log("precheck: "+a),-1!==t&&0!==t||activeCampaignValidation(t,a)}}}function activeCampaignValidation(e,t){var a=document.getElementsByClassName("well-error")[0],n=document.getElementsByClassName("well-text")[0];n.innerHTML=t,a.setAttribute("style","display: flex !important"),console.log("postcheck: "+e),console.log("postcheck: "+t)}function flipCard(e){for(var t,a=e.type,n=e.target;(n=n.parentElement)&&!n.classList.contains("team-card"););var i=n.getElementsByClassName("img-rounded");if("touchend"===a)for(t=0;t<i.length;t++)i[t].removeEventListener("touchend",flipCard);if(n.classList.toggle("flip"),"touchend"===a)for(t=0;t<i.length;t++)i[t].addEventListener("touchend",flipCard)}function checkScroll(){var e=document.body;"#sign-up"===location.hash||"#confirm"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}window.onload=function(){checkScroll(),window.addEventListener("hashchange",checkScroll);var e,t=document.getElementsByClassName("modal-backdrop");if(t)for(e=0;e<t.length;e++){t[e].addEventListener("change",makeDirty),t[e].addEventListener("submit",formSubmit);var a=t[e].getElementsByTagName("input");for(e=0;e<a.length;e++)a[e].addEventListener("invalid",formInvalid),a[e].classList.contains("input-radio")&&a[e].addEventListener("change",updateLabel)}var n=document.getElementsByClassName("img-rounded");if(n)for(e=0;e<n.length;e++)n[e].addEventListener("click",flipCard),n[e].addEventListener("touchend",flipCard)};</script>
 
     <!--
-      Commit Hash: 
-      Commit Time: 
+      Commit Hash: 92aaff8bc162265ac038bd23728a47da60aacf6c
+      Commit Time: Mon Apr 11 12:09:41 2016 -0700
     -->
 
-  <body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  </head><body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
-  <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
-    <path d='M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z', transform='translate(-2.122)'</<path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" transform="translate(-2.122)"/>
+  <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
+    <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" ,="" transform="translate(-2.122)" <="" <path=""/>
   </symbol>
-  <symbol id="icons-check" viewBox='0 0 14.5 10'>
+  <symbol id="icons-check" viewbox="0 0 14.5 10">
     <path d="M7.25,14a1,1,0,0,1-.707-0.293l-4.5-4.5A1,1,0,0,1,3.457,7.793L7.25,11.586l7.293-7.293a1,1,0,0,1,1.414,1.414l-8,8A1,1,0,0,1,7.25,14Z" transform="translate(-1.75 -4)"/>
   </symbol>
-  <symbol id="icons-close" viewBox="0 0 30 30">
+  <symbol id="icons-close" viewbox="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
   </symbol>
-  <symbol id="icons-external" viewBox="0 0 15 15">
+  <symbol id="icons-external" viewbox="0 0 15 15">
     <path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/>
   </symbol>
-  <symbol id="icons-github" viewBox="0 0 24 23.41">
+  <symbol id="icons-github" viewbox="0 0 24 23.41">
     <path d="M24.336,7.791A12.011,12.011,0,0,1,25.52,23.366a12.083,12.083,0,0,1-5.883,4.313A0.686,0.686,0,0,1,19,27.549a0.648,0.648,0,0,1-.187-0.457l0.023-3.281a3.861,3.861,0,0,0-.258-1.395,2.219,2.219,0,0,0-.562-0.832,7.008,7.008,0,0,0,3.738-1.348Q23.41,19.03,23.5,15.655a5.127,5.127,0,0,0-.34-1.782,4.569,4.569,0,0,0-.9-1.43,3.254,3.254,0,0,0,.234-1.078,4.936,4.936,0,0,0-.352-2.109,1.719,1.719,0,0,0-.8.035A7.4,7.4,0,0,0,18.84,10.5a11.493,11.493,0,0,0-6,0,7.4,7.4,0,0,0-2.508-1.207,1.719,1.719,0,0,0-.8-0.035,4.936,4.936,0,0,0-.352,2.109,3.254,3.254,0,0,0,.234,1.078,4.569,4.569,0,0,0-.9,1.43,5.127,5.127,0,0,0-.34,1.782Q8.27,19.03,9.91,20.237a6.976,6.976,0,0,0,3.75,1.348,1.934,1.934,0,0,0-.48.633,3.414,3.414,0,0,0-.293.984,3.316,3.316,0,0,1-1.594.293,2.42,2.42,0,0,1-1.9-1.3,3.234,3.234,0,0,0-.645-0.75,1.767,1.767,0,0,0-1.184-.469q-0.7.023-.527,0.3a1.324,1.324,0,0,0,.551.469,2.583,2.583,0,0,1,.75.82,5.653,5.653,0,0,1,.469.867,2.2,2.2,0,0,0,.984,1.172,4.5,4.5,0,0,0,3.047.258l0.023,2.227a0.648,0.648,0,0,1-.187.457,0.686,0.686,0,0,1-.633.129A12.083,12.083,0,0,1,6.16,23.366,12,12,0,0,1,24.336,7.791Z" transform="translate(-3.84 -4.287)"/>
   </symbol>
-  <symbol id="icons-overflow" viewBox="0 0 18 4.688">
+  <symbol id="icons-overflow" viewbox="0 0 18 4.688">
     <path fill="#fff" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="#fff" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="#fff" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
 </svg>
@@ -545,7 +364,7 @@ window.onload = function(){
       </div>
     </figure>
   </div>
-</article>
+</p></article>
       <article class="article article-location">
   <div class="grid-container grid-block vertical">
     <figure class="rounded-map">
@@ -586,7 +405,7 @@ window.onload = function(){
     <div class="modal-backdrop" id="sign-up">
   <a href="#" class="icons-close">
     <svg class="icons">
-      <use xlink:href="#icons-close">
+      <use xlink:href="#icons-close"/>
     </svg>
   </a>
   <article class="article article-sign-up modal">
@@ -606,21 +425,21 @@ window.onload = function(){
           <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
           <label class="btn btn-lg white radio" for="radio-github">
             <svg class="icons">
-              <use xlink:href="#icons-github">
+              <use xlink:href="#icons-github"/>
             </svg>
             GitHub
             <svg class="icons">
-              <use xlink:href="#icons-check">
+              <use xlink:href="#icons-check"/>
             </svg>
           </label>
           <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
           <label class="btn btn-lg white radio" for="radio-bb">
             <svg class="icons">
-              <use xlink:href="#icons-bitbucket">
+              <use xlink:href="#icons-bitbucket"/>
             </svg>
             Bitbucket
             <svg class="icons">
-              <use xlink:href="#icons-check">
+              <use xlink:href="#icons-check"/>
             </svg>
           </label>
         </div>
@@ -648,88 +467,16 @@ window.onload = function(){
 
 
     <!-- begin olark code -->
-<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
-f[z]=function(){
-(a.s=a.s||[]).push(arguments)};var a=f[z]._={
-},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
-f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
-0:+new Date};a.P=function(u){
-a.p[u]=new Date-a.p[0]};function s(){
-a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
-hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
-return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
-b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
-b.contentWindow[g].open()}catch(w){
-c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
-var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
-b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
-loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
-/* custom configuration goes here (www.olark.com/documentation) */
-olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+<script data-cfasync="false" type="text/javascript">window.olark||function(e){var t=window,n=document,o="https:"==t.location.protocol?"https:":"http:",a=e.name,r="load",i=function(){function d(){c.P(r),t[a](r)}t[a]=function(){(c.s=c.s||[]).push(arguments)};for(var c=t[a]._={},l=e.methods.length;l--;)!function(e){t[a][e]=function(){t[a]("call",e,arguments)}}(e.methods[l]);c.l=e.loader,c.i=i,c.p={0:+new Date},c.P=function(e){c.p[e]=new Date-c.p[0]},t.addEventListener?t.addEventListener(r,d,!1):t.attachEvent("on"+r,d);var s=function(){function t(e){return e="head",["<",e,"></",e,"><",r,' onload="var d=',v,";d.getElementsByTagName('head')[0].",l,"(d.",f,"('script')).",m,"='",o,"//",c.l,"'",'"',"></",r,">"].join("")}var r="body",i=n[r];if(!i)return setTimeout(s,100);c.P(1);var d,l="appendChild",f="createElement",m="src",p=n[f]("div"),u=p[l](n[f](a)),h=n[f]("iframe"),v="document",w="domain";p.style.display="none",i.insertBefore(p,i.firstChild).id=a,h.frameBorder="0",h.id=a+"-loader",/MSIE[ ]+6/.test(navigator.userAgent)&&(h.src="javascript:false"),h.allowTransparency="true",u[l](h);try{h.contentWindow[v].open()}catch(y){e[w]=n[w],d="javascript:var d="+v+".open();d.domain='"+n.domain+"';",h[m]=d+"void(0);"}try{var g=h.contentWindow[v];g.write(t()),g.close()}catch(E){h[m]=d+'d.write("'+t().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}c.P(2)};s()};i()}({loader:"static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]}),olark.identify("1268-458-10-2188");</script><noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
 
-      <script>
-        // google analytics
-        (function (i, s, o, g, r, a, m) {
-          i["GoogleAnalyticsObject"] = r;
-          i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-          }, i[r].l = 1 * new Date();
-          a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m)
-        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
-        ga("create", "UA-59677301-1", "auto");
-        ga("send", "pageview");
-        // end google analytics
-      </script>
+      <script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","http://www.google-analytics.com/analytics.js","ga"),ga("create","UA-59677301-1","auto"),ga("send","pageview");</script>
 
     <!-- Google Code for Sign Up Conversion Page
     In your html page, add the snippet and call
     goog_report_conversion when someone clicks on the
     chosen link or button. -->
-    <script>
-      /* <![CDATA[ */
-      goog_snippet_vars = function() {
-        var w = window;
-        w.google_conversion_id = 927781586;
-        w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
-        w.google_remarketing_only = false;
-      }
-      // DO NOT CHANGE THE CODE BELOW.
-      goog_report_conversion = function(url) {
-        goog_snippet_vars();
-        window.google_conversion_format = "3";
-        var opt = new Object();
-        opt.onload_callback = function() {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      }
-      var conv_handler = window['google_trackConversion'];
-      if (typeof(conv_handler) == 'function') {
-        conv_handler(opt);
-      }
-    }
-    /* ]]> */
-    </script>
+    <script>goog_snippet_vars=function(){var o=window;o.google_conversion_id=927781586,o.google_conversion_label="3G2tCK_GoGUQ0qWzugM",o.google_remarketing_only=!1},goog_report_conversion=function(o){goog_snippet_vars(),window.google_conversion_format="3";var n=new Object;n.onload_callback=function(){"undefined"!=typeof o&&(window.location=o)};var e=window.google_trackConversion;"function"==typeof e&&e(n)};</script>
       <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
-      <script>
-        // google analytics
-        (function (i, s, o, g, r, a, m) {
-          i["GoogleAnalyticsObject"] = r;
-          i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-          }, i[r].l = 1 * new Date();
-          a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m)
-        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
-        ga("create", "UA-59677301-1", "auto");
-        ga("send", "pageview");
-        // end google analytics
-      </script>
+      <script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","http://www.google-analytics.com/analytics.js","ga"),ga("create","UA-59677301-1","auto"),ga("send","pageview");</script>
+</body></html>
