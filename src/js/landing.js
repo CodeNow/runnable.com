@@ -87,24 +87,38 @@ function formSubmit(e){
     xhr.onload = function() {
       var response = JSON.parse(xhr.responseText);
       var resultCode = response.result_code;
+      var resultMessage = response.result_message;
+
       /* result_codes:
          -1 = error from sundip
          0 = error from active campaign
          1 = success from active campaign
       */
 
-      console.log(response.result_code);
-      console.log(response.result_message);
+      console.log('precheck: ' + resultCode);
+      console.log('precheck: ' + resultMessage);
 
       // if errors
       if (resultCode === -1 || resultCode === 0) {
-        var errorWell = document.getElementsByClassName('well-error')[0];
-        var errorText = document.getElementsByClassName('well-text')[0];
-        errorText.innerHTML = response.result_message;
-        errorWell.setAttribute('style', 'display: flex !important');
+        activeCampaignValidation(resultCode, resultMessage);
       }
     };
   }
+}
+
+function activeCampaignValidation(resultCode, resultMessage) {
+  // switch (resultMessage) {
+  //   case '':
+  //     break;
+  // }
+
+  var errorWell = document.getElementsByClassName('well-error')[0];
+  var errorText = document.getElementsByClassName('well-text')[0];
+  errorText.innerHTML = resultMessage;
+  errorWell.setAttribute('style', 'display: flex !important');
+
+  console.log('postcheck: ' + resultCode);
+  console.log('postcheck: ' + resultMessage);
 }
 
 // flipping cards
