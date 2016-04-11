@@ -104,6 +104,14 @@ function formSubmit(e){
     xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
+
+    xhr.onreadystatechange = function() {
+      if ( xhr.readyState === 4 && xhr.status === 0) {
+        shakeForm(e);
+        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
+      }
+    };
+
     xhr.onload = function() {
       var response = JSON.parse(xhr.responseText);
       var resultCode = response.result_code;
@@ -116,7 +124,7 @@ function formSubmit(e){
 
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
-        activeCampaignValidation(resultCode, resultMessage);
+        activeCampaignValidation(resultMessage);
       }
 
       if (resultCode === 1) {
@@ -139,7 +147,7 @@ function formSubmit(e){
   }
 }
 
-function activeCampaignValidation(resultCode, resultMessage) {
+function activeCampaignValidation(resultMessage) {
   var errorWell = document.getElementsByClassName('well-error')[0];
   var errorText = document.getElementsByClassName('well-text')[0];
   var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
