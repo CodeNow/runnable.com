@@ -13,13 +13,14 @@ function updateLabel(e) {
 
 function markInvalid(e) {
   var theseInputs;
+  var i;
   if (e.target.tagName == 'INPUT') {
     // for invalid event
     theseInputs = e.target.classList.add('invalid');
   } else {
     // for change event
     theseInputs = e.target.getElementsByTagName('input');
-    for (var i = 0; i < theseInputs.length; i++) {
+    for (i = 0; i < theseInputs.length; i++) {
       if (!theseInputs[i].validity.valid) {
         theseInputs[i].classList.add('invalid');
       }
@@ -52,18 +53,11 @@ function formSubmit(e){
   e.preventDefault();
 
   if (form.checkValidity()) {
-    // facebook tracking
-    fbq('track', 'Lead');
-
-    // google analytics tracking
-    ga('send', 'event', 'signUp', 'submit');
-
-    // adwords conversion tracking
-    goog_report_conversion();
-
     // jsonify form data
     var scm = document.getElementsByName('scm');
     var scmName = '';
+    var formData;
+    var xhr = new XMLHttpRequest();
 
     for(var i = 0; i < scm.length; i++) {
       if(scm[i].checked) {
@@ -71,7 +65,7 @@ function formSubmit(e){
       }
     }
 
-    var formData = {
+    formData = {
       scm: scmName,
       organization: form[2].value,
       email: form[3].value
@@ -80,7 +74,6 @@ function formSubmit(e){
     formData = JSON.stringify(formData); // convert to JSON
 
     // send form
-    var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
@@ -103,22 +96,32 @@ function formSubmit(e){
         activeCampaignValidation(resultCode, resultMessage);
       }
     };
+
+    // facebook tracking
+    fbq('track', 'Lead');
+
+    // google analytics tracking
+    ga('send', 'event', 'signUp', 'submit');
+
+    // adwords conversion tracking
+    goog_report_conversion();
   }
 }
 
 function activeCampaignValidation(resultCode, resultMessage) {
-  // switch (resultMessage) {
-  //   case '':
-  //     break;
-  // }
-
+  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
   var errorWell = document.getElementsByClassName('well-error')[0];
   var errorText = document.getElementsByClassName('well-text')[0];
+
+  console.log('cropped: ' + firstSentence);
+  switch (firstSentence) {
+    case 'You selected a list that does not allow duplicates':
+      resultMessage = 'That email has already been signed up!';
+      break;
+  }
+
   errorText.innerHTML = resultMessage;
   errorWell.setAttribute('style', 'display: flex !important');
-
-  console.log('postcheck: ' + resultCode);
-  console.log('postcheck: ' + resultMessage);
 }
 
 // flipping cards
@@ -126,10 +129,11 @@ function flipCard(e) {
   var i;
   var eventType = e.type;
   var thisCard = e.target;
+  var flipTriggers;
 
   // set thisCard to parent card element
   while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
-  var flipTriggers = thisCard.getElementsByClassName('img-rounded');
+  flipTriggers = thisCard.getElementsByClassName('img-rounded');
 
   // remove and reset touch events
   if (eventType === 'touchend') {
@@ -159,13 +163,14 @@ function checkScroll() {
 
 // events
 window.onload = function(){
+  var i;
+  var modalForms = document.getElementsByClassName('modal-backdrop');
+  var imgFlip = document.getElementsByClassName('img-rounded');
+
   checkScroll();
   window.addEventListener('hashchange', checkScroll);
 
-  var i;
-
   // modal forms
-  var modalForms = document.getElementsByClassName('modal-backdrop');
   if (modalForms) {
     for (i = 0; i < modalForms.length; i++) {
       modalForms[i].addEventListener('change', makeDirty);
@@ -183,7 +188,6 @@ window.onload = function(){
   }
 
   // flipping cards
-  var imgFlip = document.getElementsByClassName('img-rounded');
   if (imgFlip) {
     for (i = 0; i < imgFlip.length; i++) {
       imgFlip[i].addEventListener('click', flipCard);
