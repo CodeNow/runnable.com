@@ -79,14 +79,15 @@ function updateLabel(e) {
 }
 
 function markInvalid(e) {
+  var thisTarget = e.target;
   var theseInputs;
   var i;
-  if (e.target.tagName == 'INPUT') {
+  if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    theseInputs = e.target.classList.add('invalid');
+    theseInputs = thisTarget.classList.add('invalid');
   } else {
     // for change event
-    theseInputs = e.target.getElementsByTagName('input');
+    theseInputs = thisTarget.getElementsByTagName('input');
     for (i = 0; i < theseInputs.length; i++) {
       if (!theseInputs[i].validity.valid) {
         theseInputs[i].classList.add('invalid');
@@ -120,12 +121,14 @@ function formSubmit(e){
   e.preventDefault();
 
   if (form.checkValidity()) {
-    // jsonify form data
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+    var signUpArticle = document.getElementsByClassName('article-sign-up');
+    var confirmArticle = document.getElementsByClassName('article-confirm');
 
+    // jsonify form data
     for(var i = 0; i < scm.length; i++) {
       if(scm[i].checked) {
         scmName = scm[i].value;
@@ -154,10 +157,14 @@ function formSubmit(e){
       // 0 = error from active campaign
       // 1 = success from active campaign
 
-      // if errors
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
         activeCampaignValidation(resultCode, resultMessage);
+      }
+
+      if (resultCode === 1) {
+        signUpArticle.classList.add('out');
+        confim.classList.add('in');
       }
     };
 
@@ -202,7 +209,7 @@ function flipCard(e) {
   while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
   flipTriggers = thisCard.getElementsByClassName('img-rounded');
 
-  // remove and reset touch events
+  // remove and reset touch events or they can trigger twice
   if (eventType === 'touchend') {
     for (i = 0; i < flipTriggers.length; i++) {
       flipTriggers[i].removeEventListener('touchend', flipCard);
@@ -221,7 +228,7 @@ function flipCard(e) {
 // check scrolling
 function checkScroll() {
   var dBody = document.body;
-  if (location.hash === '#sign-up' || location.hash === '#confirm') {
+  if (location.hash === '#sign-up') {
     dBody.classList.add('modal-open');
   } else {
     dBody.classList.remove('modal-open');
@@ -449,61 +456,70 @@ window.onload = function(){
       <use xlink:href="#icons-close">
     </svg>
   </a>
-  <article class="article article-sign-up modal">
+  <div class="modal">
+    <article class="article article-form article-sign-up">
 
-    <!-- white list errors -->
-    <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
-      <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-      <span class="span well-text"></span>
-    </div>
+      <!-- white list errors -->
+      <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
+        <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+        <span class="span well-text"></span>
+      </div>
 
-    <!-- initial state -->
-    <h1 class="h1 text-center strong">Let’s get started.</h1>
-    <form class="grid-block vertical form form-sign-up">
-      <div class="grid-block vertical radio-group">
-        <label class="p text-center">Where does your team keep their code?</label>
-        <div class="grid-block">
-          <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-          <label class="btn btn-lg white radio" for="radio-github">
-            <svg class="icons">
-              <use xlink:href="#icons-github">
-            </svg>
-            GitHub
-            <svg class="icons">
-              <use xlink:href="#icons-check">
-            </svg>
-          </label>
-          <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-          <label class="btn btn-lg white radio" for="radio-bb">
-            <svg class="icons">
-              <use xlink:href="#icons-bitbucket">
-            </svg>
-            Bitbucket
-            <svg class="icons">
-              <use xlink:href="#icons-check">
-            </svg>
-          </label>
+      <!-- initial state -->
+      <h1 class="h1 text-center strong">Let’s get started.</h1>
+      <form class="grid-block vertical form form-sign-up">
+        <div class="grid-block vertical radio-group">
+          <label class="p text-center">Where does your team keep their code?</label>
+          <div class="grid-block">
+            <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
+            <label class="btn btn-lg white radio" for="radio-github">
+              <svg class="icons">
+                <use xlink:href="#icons-github">
+              </svg>
+              GitHub
+              <svg class="icons">
+                <use xlink:href="#icons-check">
+              </svg>
+            </label>
+            <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
+            <label class="btn btn-lg white radio" for="radio-bb">
+              <svg class="icons">
+                <use xlink:href="#icons-bitbucket">
+              </svg>
+              Bitbucket
+              <svg class="icons">
+                <use xlink:href="#icons-check">
+              </svg>
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div class="grid-content input-group-vertical input-group-org">
-        <label class="label" for="input-organization">
-          <span class="label-text">Team Name</span>
-          <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-            <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-          </small>
-        </label>
-        <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
-      </div>
+        <div class="grid-content input-group-vertical input-group-org">
+          <label class="label" for="input-organization">
+            <span class="label-text">Team Name</span>
+            <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
+              <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
+            </small>
+          </label>
+          <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
+        </div>
 
-      <div class="grid-content input-group-vertical">
-        <label class="label" for="input-email">Your Email</label>
-        <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-      </div>
+        <div class="grid-content input-group-vertical">
+          <label class="label" for="input-email">Your Email</label>
+          <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+        </div>
 
-      <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
-    </form>
-  </article>
+        <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
+      </form>
+    </article>
+    <!-- submitted state -->
+<article class="article article-form article-confirm">
+  <img class="img hide" src="images/runnabear-jumping.png">
+  <h1 class="h1 text-center strong">Thanks, we’ll be in touch soon!</h1>
+  <a href="https://runnable.com" class="grid-content btn btn-lg gray">Return Home</a>
+</article>
+
+  </div>
 </div>
 
 
@@ -546,10 +562,6 @@ olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://ww
         // end google analytics
       </script>
 
-    <!-- Google Code for Sign Up Conversion Page
-    In your html page, add the snippet and call
-    goog_report_conversion when someone clicks on the
-    chosen link or button. -->
     <script>
       /* <![CDATA[ */
       goog_snippet_vars = function() {
@@ -564,32 +576,14 @@ olark.identify('1268-458-10-2188');/*]]>*/</script><noscript><a href="https://ww
         window.google_conversion_format = "3";
         var opt = new Object();
         opt.onload_callback = function() {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        }
+        var conv_handler = window['google_trackConversion'];
+        if (typeof(conv_handler) == 'function') {
+          conv_handler(opt);
         }
       }
-      var conv_handler = window['google_trackConversion'];
-      if (typeof(conv_handler) == 'function') {
-        conv_handler(opt);
-      }
-    }
-    /* ]]> */
+      /* ]]> */
     </script>
-      <script src="http://www.googleadservices.com/pagead/conversion_async.js"></script>
-      <script>
-        // google analytics
-        (function (i, s, o, g, r, a, m) {
-          i["GoogleAnalyticsObject"] = r;
-          i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-          }, i[r].l = 1 * new Date();
-          a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-          a.async = 1;
-          a.src = g;
-          m.parentNode.insertBefore(a, m)
-        })(window, document, "script", "http://www.google-analytics.com/analytics.js", "ga");
-        ga("create", "UA-59677301-1", "auto");
-        ga("send", "pageview");
-        // end google analytics
-      </script>

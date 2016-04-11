@@ -2019,30 +2019,45 @@ input[type="radio"] {
   transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   z-index: 100; }
 
-#sign-up:target,
-#confirm:target {
+.modal.shake {
+  -webkit-animation: shake .25s ease-in-out;
+          animation: shake .25s ease-in-out; }
+
+.modal > .article {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out; }
+  .modal > .article.article-sign-up {
+    z-index: 101; }
+  .modal > .article.article-confirm {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+    z-index: 100; }
+  .modal > .article.out {
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, -100px, 0);
+            transform: translate3d(0, -100px, 0);
+    z-index: 100; }
+  .modal > .article.in {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    z-index: 101; }
+
+#sign-up:target {
   opacity: 1;
   pointer-events: auto;
   -webkit-transform: scale3d(1, 1, 1);
           transform: scale3d(1, 1, 1); }
 
-#sign-up .article-sign-up,
-#confirm .article-sign-up {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  margin: 30px auto; }
-  @media (max-width: 400px) {
-    #sign-up .article-sign-up,
-    #confirm .article-sign-up {
-      margin: 0 auto; } }
-  #sign-up .article-sign-up.shake,
-  #confirm .article-sign-up.shake {
-    -webkit-animation: shake .25s ease-in-out;
-            animation: shake .25s ease-in-out; }
-
-#sign-up .icons-close,
-#confirm .icons-close {
+#sign-up .icons-close {
   cursor: pointer;
   position: absolute;
   right: 15px;
@@ -2127,26 +2142,20 @@ input[type="radio"] {
     font-size: 15px;
     width: 270px; }
 
-.article-sign-up {
-  background: #fafafa;
-  border: 6px solid #e6e6e6;
+.article-form {
   border-radius: 6px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-  margin: -450px auto 90px;
+  margin: 30px auto;
   max-width: 600px;
   padding: 60px; }
   @media (max-width: 600px) {
-    .article-sign-up {
-      border-left: 0;
+    .article-form {
       border-radius: 0;
-      border-right: 0;
       margin: 0;
       padding: 30px 30px 45px; } }
-  .article-sign-up.submitted .hide {
-    display: block; }
-  .article-sign-up.submitted .show {
-    display: none; }
-  .article-sign-up .well {
+  @media (max-width: 400px) {
+    .article-form {
+      margin: 0 auto; } }
+  .article-form .well {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
@@ -2169,76 +2178,76 @@ input[type="radio"] {
     position: relative;
     width: 100%; }
     @media (max-width: 400px) {
-      .article-sign-up .well {
+      .article-form .well {
         font-size: 15px; } }
     @media (max-width: 400px) {
-      .article-sign-up .well {
+      .article-form .well {
         margin-top: 30px; } }
-    .article-sign-up .well .img {
+    .article-form .well .img {
       left: 15px;
       position: absolute;
       top: -30px; }
       @media (max-width: 400px) {
-        .article-sign-up .well .img {
+        .article-form .well .img {
           top: -18px; } }
   @media (max-width: 350px) {
-    .article-sign-up .h1 {
+    .article-form .h1 {
       margin-bottom: 9px; } }
-  .article-sign-up .form {
+  .article-form .form {
     overflow: visible; }
-  .article-sign-up .popover-trigger {
+  .article-form .popover-trigger {
     cursor: pointer;
     margin-left: 3px;
     top: -1px; }
-  .article-sign-up .popover {
+  .article-form .popover {
     color: #888;
     font-size: 14px;
     line-height: 1.4;
     width: 280px; }
-  .article-sign-up .input-group-vertical {
+  .article-form .input-group-vertical {
     -webkit-flex: 0 0 auto;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     margin-top: 15px;
     overflow: visible; }
     @media (max-width: 768px) {
-      .article-sign-up .input-group-vertical {
+      .article-form .input-group-vertical {
         min-width: 100%; }
-        .article-sign-up .input-group-vertical:first-child {
+        .article-form .input-group-vertical:first-child {
           padding-bottom: 12px; } }
-    .article-sign-up .input-group-vertical .input-md {
+    .article-form .input-group-vertical .input-md {
       border-radius: 6px; }
-  .article-sign-up .radio-group {
+  .article-form .radio-group {
     position: relative; }
     @media (max-width: 400px) {
-      .article-sign-up .radio-group > .grid-block {
+      .article-form .radio-group > .grid-block {
         -webkit-flex-flow: column nowrap;
             -ms-flex-flow: column nowrap;
                 flex-flow: column nowrap; } }
-    .article-sign-up .radio-group .p {
+    .article-form .radio-group .p {
       padding-bottom: 10px; }
       @media (max-width: 380px) {
-        .article-sign-up .radio-group .p {
+        .article-form .radio-group .p {
           margin: 0 auto;
           max-width: 210px; } }
-  .article-sign-up .input-radio {
+  .article-form .input-radio {
     bottom: 0;
     opacity: 0;
     pointer-events: none;
     position: absolute; }
-    .article-sign-up .input-radio:checked + .radio,
-    .article-sign-up .input-radio:checked + .radio:hover {
+    .article-form .input-radio:checked + .radio,
+    .article-form .input-radio:checked + .radio:hover {
       border-color: currentColor;
       color: #834fab; }
-      .article-sign-up .input-radio:checked + .radio .icons:last-child,
-      .article-sign-up .input-radio:checked + .radio:hover .icons:last-child {
+      .article-form .input-radio:checked + .radio .icons:last-child,
+      .article-form .input-radio:checked + .radio:hover .icons:last-child {
         background: #3ccb5a;
         color: #fff; }
-    .article-sign-up .input-radio.invalid:not(:valid) + .radio,
-    .article-sign-up .input-radio.invalid:not(:valid) + .radio:hover {
+    .article-form .input-radio.invalid:not(:valid) + .radio,
+    .article-form .input-radio.invalid:not(:valid) + .radio:hover {
       border-color: currentColor;
       color: #f25058; }
-  .article-sign-up .radio {
+  .article-form .radio {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
@@ -2256,26 +2265,26 @@ input[type="radio"] {
     padding-left: 0;
     padding-right: 30px; }
     @media (max-width: 600px) {
-      .article-sign-up .radio {
+      .article-form .radio {
         font-size: 18px; } }
     @media (max-width: 400px) {
-      .article-sign-up .radio {
+      .article-form .radio {
         line-height: 56px;
         max-height: 60px; } }
-    .article-sign-up .radio:last-child {
+    .article-form .radio:last-child {
       margin-left: 15px; }
       @media (max-width: 400px) {
-        .article-sign-up .radio:last-child {
+        .article-form .radio:last-child {
           margin: 15px 0 0; } }
-    .article-sign-up .radio .icons:first-child {
+    .article-form .radio .icons:first-child {
       height: 100%;
       margin-right: 9px;
       width: 24px; }
       @media (max-width: 600px) {
-        .article-sign-up .radio .icons:first-child {
+        .article-form .radio .icons:first-child {
           margin-right: 6px;
           width: 21px; } }
-    .article-sign-up .radio .icons:last-child {
+    .article-form .radio .icons:last-child {
       border: 1px solid currentColor;
       border-radius: 50%;
       color: #e6e6e6;
@@ -2286,16 +2295,10 @@ input[type="radio"] {
       top: 31px;
       width: 24px; }
       @media (max-width: 400px) {
-        .article-sign-up .radio .icons:last-child {
+        .article-form .radio .icons:last-child {
           top: 16px; } }
-  .article-sign-up .btn.green {
+  .article-form .btn.green {
     margin-top: 30px; }
-
-#confirm {
-  opacity: 1;
-  pointer-events: auto;
-  -webkit-transform: scale3d(1, 1, 1);
-          transform: scale3d(1, 1, 1); }
 
 .article-confirm .img {
   display: block;
@@ -2304,17 +2307,6 @@ input[type="radio"] {
   @media (max-width: 600px) {
     .article-confirm .img {
       max-width: 100%; } }
-
-.article-confirm .p {
-  font-size: 24px;
-  margin: 0 auto;
-  max-width: 420px; }
-  @media (max-width: 600px) {
-    .article-confirm .p {
-      font-size: 21px; } }
-  @media (max-width: 350px) {
-    .article-confirm .p {
-      max-width: 250px; } }
 
 .article-confirm .gray {
   display: table;
