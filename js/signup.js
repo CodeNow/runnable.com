@@ -49,40 +49,39 @@ function formInvalid(e) {
   shakeForm(e);
 }
 
-function toggleEditing(form) {
+function toggleEditing(form, state) {
   var i;
   var theseInputs = form.getElementsByTagName('input');
   var submitButton = form.getElementsByTagName('button')[0];
   var spinner = document.getElementsByClassName('spinner-wrapper');
 
-  for (i = 0; i < theseInputs.length; i++) {
-    if (theseInputs[i].disabled) {
-      theseInputs[i].disabled = false;
-    } else {
+  if (state === 'disable') {
+    for (i = 0; i < theseInputs.length; i++) {
       theseInputs[i].disabled = true;
     }
-  }
-
-  if (spinner.length) {
-    submitButton.disabled = false;
-    spinner[0].parentElement.removeChild(spinner[0]);
-  } else {
     submitButton.disabled = true;
     submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+  }
+
+  if (state === 'enable') {
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].disabled = false;
+    }
+    submitButton.disabled = false;
+    spinner[0].parentElement.removeChild(spinner[0]);
   }
 }
 
 function formSubmit(e){
   var form = e.target;
   e.preventDefault();
-  toggleEditing(form); // disables inputs
+  toggleEditing(form, disable); // disables inputs
 
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
-
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -109,6 +108,8 @@ function formSubmit(e){
         shakeForm(e);
         activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
       }
+
+      toggleEditing(form, enable); // re-enables form
     };
 
     xhr.onload = function() {
@@ -130,6 +131,8 @@ function formSubmit(e){
         document.getElementsByClassName('article-sign-up')[0].classList.add('out');
         document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
+
+      toggleEditing(form, enable); // re-enables form
     };
 
     // facebook tracking
@@ -141,8 +144,6 @@ function formSubmit(e){
     // adwords conversion tracking
     goog_report_conversion();
   }
-
-  toggleEditing(form); // re-enables form
 }
 
 function activeCampaignValidation(resultMessage) {
