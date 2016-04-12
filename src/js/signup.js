@@ -110,7 +110,7 @@ function submitSignUp(e) {
     formData = JSON.stringify(formData); // convert to JSON
 
     // send form
-    xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
+    xhr.open('POST', 'https://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
 
