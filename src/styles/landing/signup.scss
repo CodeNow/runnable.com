@@ -69,40 +69,10 @@
     margin: 0 auto;
   }
 
-  // errors
-  .well {
-    align-items: center;
-    background: desaturate($red,10%);
-    border: 2px solid $red-faded;
-    border-radius: $input-border-radius-lg;
-    color: $white;
-    display: flex;
-    font-size: 16px;
-    font-weight: $weight-normal;
-    justify-content: center;
-    line-height: 1.4;
-    margin: 0;
-    min-height: 78px;
-    padding: 15px 69px;
-    position: relative;
-    width: 100%;
-
-    @include media(xxs) {
-      font-size: 14px;
-    }
-
-    .img {
-      left: 15px;
-      position: absolute;
-      top: -30px;
-
-      @include media(xxs) {
-        top: -18px;
-      }
-    }
-  }
-
   .h1 {
+    line-height: 1.1;
+    margin-bottom: 15px;
+
     @include media(xxxs) {
       margin-bottom: 9px;
     }
