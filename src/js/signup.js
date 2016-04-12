@@ -118,7 +118,7 @@ function submitSignUp(e) {
     xhr.onreadystatechange = function() {
       if ( xhr.readyState === 4 && xhr.status === 0) {
         shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
+        activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.');
       }
 
       toggleEditing(form, 'enable'); // re-enables form
