@@ -118,7 +118,7 @@ function submitSignUp(e) {
     xhr.onreadystatechange = function() {
       if ( xhr.readyState === 4 && xhr.status === 0) {
         shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.');
+        activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
       }
 
       toggleEditing(form, 'enable'); // re-enables form
@@ -138,7 +138,7 @@ function submitSignUp(e) {
 
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
-        activeCampaignValidation(resultMessage);
+        activeCampaignValidation(resultMessage, form);
       }
 
       if (resultCode === 1) {
@@ -167,6 +167,8 @@ function submitQuestionnaire(e) {
   if (form.checkValidity()) {
     var formData;
     var xhr = new XMLHttpRequest();
+
+    // WIP: need to get these from submitSignUp()
     var subscriberId;
     var subscriberEmail;
 
@@ -188,7 +190,7 @@ function submitQuestionnaire(e) {
     xhr.onreadystatechange = function() {
       if ( xhr.readyState === 4 && xhr.status === 0) {
         shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
+        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.', form);
       }
 
       toggleEditing(form, 'enable'); // re-enables form
@@ -206,7 +208,7 @@ function submitQuestionnaire(e) {
 
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
-        activeCampaignValidation(resultMessage);
+        activeCampaignValidation(resultMessage, form);
       }
 
       if (resultCode === 1) {
@@ -219,9 +221,10 @@ function submitQuestionnaire(e) {
   }
 }
 
-function activeCampaignValidation(resultMessage) {
-  var errorWell = document.getElementsByClassName('well-error')[0];
-  var errorText = document.getElementsByClassName('well-text')[0];
+function activeCampaignValidation(resultMessage, form) {
+  var thisArticle = form.parentNode;
+  var thisErrorWell = thisArticle.getElementsByClassName('well-error')[0];
+  var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
   var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
 
   // change error text from active campaign
@@ -234,8 +237,8 @@ function activeCampaignValidation(resultMessage) {
       break;
   }
 
-  errorText.innerHTML = resultMessage;
-  errorWell.setAttribute('style', 'display: flex !important');
+  thisErrorText.innerHTML = resultMessage;
+  thisErrorWell.setAttribute('style', 'display: flex !important');
 }
 
 // check scrolling
