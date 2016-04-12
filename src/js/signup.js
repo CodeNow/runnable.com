@@ -86,13 +86,14 @@ function toggleEditing(form, state) {
 function submitSignUp(e) {
   var form = e.target;
   e.preventDefault();
-  toggleEditing(form, 'disable'); // disables inputs
 
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+
+    toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -162,13 +163,14 @@ function submitSignUp(e) {
 function submitQuestionnaire(e) {
   var form = e.target;
   e.preventDefault();
-  toggleEditing(form, 'disable'); // disables inputs
 
   if (form.checkValidity()) {
     var formData;
     var xhr = new XMLHttpRequest();
     var subscriberId;
     var subscriberEmail;
+
+    toggleEditing(form, 'disable'); // disables inputs
 
     formData = {
       subscriberId: subscriberId,
