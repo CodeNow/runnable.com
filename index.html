@@ -64,11 +64,11 @@
       });
   });
 </script>
-    <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("button")[0],s=document.getElementsByClassName("spinner-wrapper");if("disable"===t){for(a=0;a<n.length;a++)n[a].disabled=!0;i.disabled=!0,i.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){for(a=0;a<n.length;a++)n[a].disabled=!1;i.disabled=!1,s[0].parentElement.removeChild(s[0])}}function formSubmit(e){var t=e.target;if(e.preventDefault(),toggleEditing(t,"disable"),t.checkValidity()){for(var a,n=document.getElementsByName("scm"),i="",s=new XMLHttpRequest,o=0;o<n.length;o++)n[o].checked&&(i=n[o].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),s.open("POST","http://marketing-88rbj4hy.cloudapp.net/submit"),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation("An unknown error occured. Please send us an email at support@runnable.com for assistance.")),toggleEditing(t,"enable")},s.onload=function(){var a=JSON.parse(s.responseText),n=a.result_code,i=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i)),1===n&&(document.getElementsByClassName("article-sign-up")[0].classList.add("out"),document.getElementsByClassName("article-confirm")[0].classList.add("in")),toggleEditing(t,"enable")},fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion()}}function activeCampaignValidation(e){var t=document.getElementsByClassName("well-error")[0],a=document.getElementsByClassName("well-text")[0],n=e.substr(0,e.indexOf("."));switch(n){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid."}a.innerHTML=e,t.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function onYouTubeIframeAPIReady(){player=new YT.Player("player",{videoId:"mBR-_5dXH4w",playerVars:{color:"white",iv_load_policy:3,modestbranding:1,rel:0,showinfo:0},events:{onReady:onPlayerReady}})}function playVideo(){document.body.classList.add("modal-open"),document.getElementById("player").classList.add("playing"),player.playVideo()}function pauseVideo(){document.body.classList.remove("modal-open"),document.getElementById("player").classList.remove("playing"),player.pauseVideo()}function onPlayerReady(e){Modernizr.on("videoautoplay",function(e){if(e){var t=document.getElementsByClassName("video-start"),a=document.getElementsByClassName("video-pause");if(t){var n;for(n=0;n<t.length;n++)t[n].addEventListener("click",playVideo),t[n].addEventListener("touchend",playVideo);for(n=0;n<a.length;n++)a[n].addEventListener("click",pauseVideo),a[n].addEventListener("touchend",pauseVideo)}}})}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("modal-backdrop");document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(e=0;e<a.length;e++)for(a[e].addEventListener("change",makeDirty),a[e].addEventListener("submit",formSubmit),t=a[e].getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)});var tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";var firstScriptTag=document.getElementsByTagName("script")[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var player;</script>
+    <script>function updateLabel(e){var a=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":a.innerHTML="GitHub Organization";break;case"Bitbucket":a.innerHTML="Bitbucket Team"}}function markInvalid(e){var a,t,n=e.target;if("INPUT"==n.tagName)a=n.classList.add("invalid");else for(a=n.getElementsByTagName("input"),t=0;t<a.length;t++)a[t].validity.valid||a[t].classList.add("invalid")}function shakeForm(e){for(var a=e.target;(a=a.parentElement)&&!a.classList.contains("modal"););a.classList.add("shake"),a.addEventListener("animationend",function(){a.classList.remove("shake"),a.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,a){var t,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===a){if(n)for(t=0;t<n.length;t++)n[t].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===a){if(n)for(t=0;t<n.length;t++)n[t].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentElement.removeChild(r[0])}}function submitSignUp(e){var a=e.target;if(e.preventDefault(),a.checkValidity()){var t,n=document.getElementsByName("scm"),i="",s=new XMLHttpRequest;toggleEditing(a,"disable");for(var r=0;r<n.length;r++)n[r].checked&&(i=n[r].value);t={scm:i,organization:a[2].value,email:a[3].value},t=JSON.stringify(t),s.open("POST","https://marketing-88rbj4hy.cloudapp.net/submit"),s.setRequestHeader("Content-Type","application/json"),s.send(t),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',a)),toggleEditing(a,"enable")},s.onload=function(){var t=JSON.parse(s.responseText),n=t.result_code,i=t.result_message;t.subscriber_id,t.subscriberEmail;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i,a)),1===n&&(document.getElementsByClassName("article-sign-up")[0].classList.add("out"),document.getElementsByClassName("article-questionnaire")[0].classList.add("in")),toggleEditing(a,"enable")},fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion()}}function submitQuestionnaire(e){var a=e.target;if(e.preventDefault(),a.checkValidity()){var t,n,i,s=new XMLHttpRequest;toggleEditing(a,"disable"),t={subscriberId:n,subscriberEmail:i,questionnaire:a[0].value},t=JSON.stringify(t),s.open("POST","https://marketing-88rbj4hy.cloudapp.net/submit2"),s.setRequestHeader("Content-Type","application/json"),s.send(t),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation("An unknown error occured. Please send us an email at support@runnable.com for assistance.",a)),toggleEditing(a,"enable")},s.onload=function(){var t=JSON.parse(s.responseText),n=t.result_code,i=t.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i,a)),1===n&&(document.getElementsByClassName("article-questionnaire")[0].classList.add("out"),document.getElementsByClassName("article-confirm")[0].classList.add("in")),toggleEditing(a,"enable")}}}function activeCampaignValidation(e,a){var t=a.parentNode,n=t.getElementsByClassName("well-error")[0],i=t.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function onYouTubeIframeAPIReady(){player=new YT.Player("player",{videoId:"mBR-_5dXH4w",playerVars:{color:"white",iv_load_policy:3,modestbranding:1,rel:0,showinfo:0},events:{onReady:onPlayerReady}})}function playVideo(){document.body.classList.add("modal-open"),document.getElementById("player").classList.add("playing"),player.playVideo()}function pauseVideo(){document.body.classList.remove("modal-open"),document.getElementById("player").classList.remove("playing"),player.pauseVideo()}function onPlayerReady(e){Modernizr.on("videoautoplay",function(e){if(e){var a=document.getElementsByClassName("video-start"),t=document.getElementsByClassName("video-pause");if(a){var n;for(n=0;n<a.length;n++)a[n].addEventListener("click",playVideo),a[n].addEventListener("touchend",playVideo);for(n=0;n<t.length;n++)t[n].addEventListener("click",pauseVideo),t[n].addEventListener("touchend",pauseVideo)}}})}window.addEventListener("load",function(){var e,a,t=document.getElementsByClassName("form-sign-up")[0],n=document.getElementsByClassName("form-questionnaire")[0];document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),t)for(t.addEventListener("change",makeDirty),t.addEventListener("submit",submitSignUp),n.addEventListener("change",makeDirty),n.addEventListener("submit",submitQuestionnaire),a=t.getElementsByTagName("input"),e=0;e<a.length;e++)a[e].addEventListener("invalid",formInvalid),a[e].classList.contains("input-radio")&&a[e].addEventListener("change",updateLabel)});var tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";var firstScriptTag=document.getElementsByTagName("script")[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var player;</script>
 
     <!--
-      Commit Hash: 8a8190cae56454e6411300a9bb772fd200287c55
-      Commit Time: Mon Apr 11 16:24:27 2016 -0700
+      Commit Hash: e812b4f4acd06598557df4b8e1bcc2114436d80f
+      Commit Time: Mon Apr 11 19:58:14 2016 -0700
     -->
 
   </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -184,65 +184,80 @@
   </a>
   <div class="modal">
     <article class="article article-form article-sign-up">
+  <!-- white list errors -->
+  <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
+    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+    <span class="span well-text"></span>
+  </div>
 
-      <!-- white list errors -->
-      <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
-        <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-        <span class="span well-text"></span>
+  <!-- initial state -->
+  <h1 class="h1 text-center strong">Let’s get started.</h1>
+  <form class="grid-block vertical form form-sign-up">
+    <div class="grid-block vertical radio-group">
+      <label class="p text-center">Where does your team keep their code?</label>
+      <div class="grid-block">
+        <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
+        <label class="btn btn-lg white radio" for="radio-github">
+          <svg class="icons">
+            <use xlink:href="#icons-github"/>
+          </svg>
+          GitHub
+          <svg class="icons">
+            <use xlink:href="#icons-check"/>
+          </svg>
+        </label>
+        <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
+        <label class="btn btn-lg white radio" for="radio-bb">
+          <svg class="icons">
+            <use xlink:href="#icons-bitbucket"/>
+          </svg>
+          Bitbucket
+          <svg class="icons">
+            <use xlink:href="#icons-check"/>
+          </svg>
+        </label>
       </div>
+    </div>
 
-      <!-- initial state -->
-      <h1 class="h1 text-center strong">Let’s get started.</h1>
-      <form class="grid-block vertical form form-sign-up">
-        <div class="grid-block vertical radio-group">
-          <label class="p text-center">Where does your team keep their code?</label>
-          <div class="grid-block">
-            <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-            <label class="btn btn-lg white radio" for="radio-github">
-              <svg class="icons">
-                <use xlink:href="#icons-github"/>
-              </svg>
-              GitHub
-              <svg class="icons">
-                <use xlink:href="#icons-check"/>
-              </svg>
-            </label>
-            <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-            <label class="btn btn-lg white radio" for="radio-bb">
-              <svg class="icons">
-                <use xlink:href="#icons-bitbucket"/>
-              </svg>
-              Bitbucket
-              <svg class="icons">
-                <use xlink:href="#icons-check"/>
-              </svg>
-            </label>
-          </div>
-        </div>
+    <div class="grid-content input-group-vertical input-group-org">
+      <label class="label" for="input-organization">
+        <span class="label-text">Team Name</span>
+        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
+          <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
+        </small>
+      </label>
+      <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
+    </div>
 
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Team Name</span>
-            <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-              <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-            </small>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
-        </div>
+    <div class="grid-content input-group-vertical">
+      <label class="label" for="input-email">Your Email</label>
+      <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
 
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-email">Your Email</label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-        </div>
+    <button class="grid-content btn btn-lg green">Ship It!</button>
+  </form>
+</article>
 
-        <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
-      </form>
-    </article>
+    <article class="article article-form article-questionnaire">
+  <div class="well well-error">
+    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+    <span class="span well-text"></span>
+  </div>
+
+  <p class="h1 text-center strong">Got it!
+  </p><p class="p text-center">We’re processing your info now. To speed up the verification process, please tell us why you’re interested in using Runnable:
+
+  <form class="grid-block vertical form form-questionnaire">
+    <textarea class="grid-content textarea input-validate pristine" placeholder="📝" id="question-textarea" required></textarea>
+    <button class="grid-content btn btn-lg green">Fire Away</button>
+  </form>
+</p></article>
+
     <!-- submitted state -->
 <article class="article article-form article-confirm">
   <img class="img hide" src="images/runnabear-jumping.png">
-  <h1 class="h1 text-center strong">You did it!</h1>
-  <p class="p text-center">We’ll be in touch soon!
+  <p class="h1 text-center strong">You did it!
+  </p><p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
   <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
 </p></article>
 

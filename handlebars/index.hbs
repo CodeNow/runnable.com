@@ -107,7 +107,7 @@ function shakeForm(e) {
   });
 }
 
-function makeDirty(e){
+function makeDirty(e) {
   e.target.classList.remove('pristine', 'invalid');
 }
 
@@ -119,36 +119,48 @@ function formInvalid(e) {
 function toggleEditing(form, state) {
   var i;
   var theseInputs = form.getElementsByTagName('input');
+  var theseTextareas = form.getElementsByTagName('textarea')[0];
   var submitButton = form.getElementsByTagName('button')[0];
   var spinner = document.getElementsByClassName('spinner-wrapper');
 
   if (state === 'disable') {
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].disabled = true;
+    if (theseInputs) {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].disabled = true;
+      }
+    }
+    if (theseTextareas) {
+      theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
     submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
 
   if (state === 'enable') {
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].disabled = false;
+    if (theseInputs) {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].disabled = false;
+      }
+    }
+    if (theseTextareas) {
+      theseTextareas.disabled = false;
     }
     submitButton.disabled = false;
     spinner[0].parentElement.removeChild(spinner[0]);
   }
 }
 
-function formSubmit(e){
+function submitSignUp(e) {
   var form = e.target;
   e.preventDefault();
-  toggleEditing(form, 'disable'); // disables inputs
 
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
     var xhr = new XMLHttpRequest();
+
+    toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
     for(var i = 0; i < scm.length; i++) {
@@ -166,14 +178,86 @@ function formSubmit(e){
     formData = JSON.stringify(formData); // convert to JSON
 
     // send form
-    xhr.open('POST', 'http://marketing-88rbj4hy.cloudapp.net/submit');
+    xhr.open('POST', 'https://marketing-88rbj4hy.cloudapp.net/submit');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(formData);
 
     xhr.onreadystatechange = function() {
       if ( xhr.readyState === 4 && xhr.status === 0) {
         shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.');
+        activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
+      }
+
+      toggleEditing(form, 'enable'); // re-enables form
+    };
+
+    xhr.onload = function() {
+      var response = JSON.parse(xhr.responseText);
+      var resultCode = response.result_code;
+      var resultMessage = response.result_message;
+      var subscriberId = response.subscriber_id;
+      var subscriberEmail = response.subscriberEmail;
+
+      // result_codes:
+      // -1 = error from sundip
+      // 0 = error from active campaign
+      // 1 = success from active campaign
+
+      if (resultCode === -1 || resultCode === 0) {
+        shakeForm(e);
+        activeCampaignValidation(resultMessage, form);
+      }
+
+      if (resultCode === 1) {
+        document.getElementsByClassName('article-sign-up')[0].classList.add('out');
+        document.getElementsByClassName('article-questionnaire')[0].classList.add('in');
+      }
+
+      toggleEditing(form, 'enable'); // re-enables form
+    };
+
+    // facebook tracking
+    fbq('track', 'Lead');
+
+    // google analytics tracking
+    ga('send', 'event', 'signUp', 'submit');
+
+    // adwords conversion tracking
+    goog_report_conversion();
+  }
+}
+
+function submitQuestionnaire(e) {
+  var form = e.target;
+  e.preventDefault();
+
+  if (form.checkValidity()) {
+    var formData;
+    var xhr = new XMLHttpRequest();
+
+    // WIP: need to get these from submitSignUp()
+    var subscriberId;
+    var subscriberEmail;
+
+    toggleEditing(form, 'disable'); // disables inputs
+
+    formData = {
+      subscriberId: subscriberId,
+      subscriberEmail: subscriberEmail,
+      questionnaire: form[0].value
+    };
+
+    formData = JSON.stringify(formData); // convert to JSON
+
+    // send form
+    xhr.open('POST', 'https://marketing-88rbj4hy.cloudapp.net/submit2');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(formData);
+
+    xhr.onreadystatechange = function() {
+      if ( xhr.readyState === 4 && xhr.status === 0) {
+        shakeForm(e);
+        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.', form);
       }
 
       toggleEditing(form, 'enable'); // re-enables form
@@ -191,31 +275,23 @@ function formSubmit(e){
 
       if (resultCode === -1 || resultCode === 0) {
         shakeForm(e);
-        activeCampaignValidation(resultMessage);
+        activeCampaignValidation(resultMessage, form);
       }
 
       if (resultCode === 1) {
-        document.getElementsByClassName('article-sign-up')[0].classList.add('out');
+        document.getElementsByClassName('article-questionnaire')[0].classList.add('out');
         document.getElementsByClassName('article-confirm')[0].classList.add('in');
       }
 
       toggleEditing(form, 'enable'); // re-enables form
     };
-
-    // facebook tracking
-    fbq('track', 'Lead');
-
-    // google analytics tracking
-    ga('send', 'event', 'signUp', 'submit');
-
-    // adwords conversion tracking
-    goog_report_conversion();
   }
 }
 
-function activeCampaignValidation(resultMessage) {
-  var errorWell = document.getElementsByClassName('well-error')[0];
-  var errorText = document.getElementsByClassName('well-text')[0];
+function activeCampaignValidation(resultMessage, form) {
+  var thisArticle = form.parentNode;
+  var thisErrorWell = thisArticle.getElementsByClassName('well-error')[0];
+  var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
   var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
 
   // change error text from active campaign
@@ -228,8 +304,8 @@ function activeCampaignValidation(resultMessage) {
       break;
   }
 
-  errorText.innerHTML = resultMessage;
-  errorWell.setAttribute('style', 'display: flex !important');
+  thisErrorText.innerHTML = resultMessage;
+  thisErrorWell.setAttribute('style', 'display: flex !important');
 }
 
 // check scrolling
@@ -245,7 +321,8 @@ function checkScroll() {
 // events
 window.addEventListener('load', function(){
   var i;
-  var modalForms = document.getElementsByClassName('modal-backdrop');
+  var signUpForm = document.getElementsByClassName('form-sign-up')[0];
+  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var imgFlip = document.getElementsByClassName('img-rounded');
   var theseInputs;
 
@@ -253,18 +330,18 @@ window.addEventListener('load', function(){
   window.addEventListener('hashchange', checkScroll);
 
   // modal forms
-  if (modalForms) {
-    for (i = 0; i < modalForms.length; i++) {
-      modalForms[i].addEventListener('change', makeDirty);
-      modalForms[i].addEventListener('submit', formSubmit);
+  if (signUpForm) {
+    signUpForm.addEventListener('change', makeDirty);
+    signUpForm.addEventListener('submit', submitSignUp);
+    questionnaireForm.addEventListener('change', makeDirty);
+    questionnaireForm.addEventListener('submit', submitQuestionnaire);
 
-      theseInputs = modalForms[i].getElementsByTagName('input');
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].addEventListener('invalid', formInvalid);
+    theseInputs = signUpForm.getElementsByTagName('input');
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].addEventListener('invalid', formInvalid);
 
-        if (theseInputs[i].classList.contains('input-radio')) {
-          theseInputs[i].addEventListener('change', updateLabel);
-        }
+      if (theseInputs[i].classList.contains('input-radio')) {
+        theseInputs[i].addEventListener('change', updateLabel);
       }
     }
   }
@@ -445,65 +522,80 @@ function onPlayerReady(event) {
   </a>
   <div class="modal">
     <article class="article article-form article-sign-up">
+  <!-- white list errors -->
+  <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
+    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+    <span class="span well-text"></span>
+  </div>
 
-      <!-- white list errors -->
-      <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
-        <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-        <span class="span well-text"></span>
+  <!-- initial state -->
+  <h1 class="h1 text-center strong">Let’s get started.</h1>
+  <form class="grid-block vertical form form-sign-up">
+    <div class="grid-block vertical radio-group">
+      <label class="p text-center">Where does your team keep their code?</label>
+      <div class="grid-block">
+        <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
+        <label class="btn btn-lg white radio" for="radio-github">
+          <svg class="icons">
+            <use xlink:href="#icons-github">
+          </svg>
+          GitHub
+          <svg class="icons">
+            <use xlink:href="#icons-check">
+          </svg>
+        </label>
+        <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
+        <label class="btn btn-lg white radio" for="radio-bb">
+          <svg class="icons">
+            <use xlink:href="#icons-bitbucket">
+          </svg>
+          Bitbucket
+          <svg class="icons">
+            <use xlink:href="#icons-check">
+          </svg>
+        </label>
       </div>
+    </div>
 
-      <!-- initial state -->
-      <h1 class="h1 text-center strong">Let’s get started.</h1>
-      <form class="grid-block vertical form form-sign-up">
-        <div class="grid-block vertical radio-group">
-          <label class="p text-center">Where does your team keep their code?</label>
-          <div class="grid-block">
-            <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-            <label class="btn btn-lg white radio" for="radio-github">
-              <svg class="icons">
-                <use xlink:href="#icons-github">
-              </svg>
-              GitHub
-              <svg class="icons">
-                <use xlink:href="#icons-check">
-              </svg>
-            </label>
-            <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-            <label class="btn btn-lg white radio" for="radio-bb">
-              <svg class="icons">
-                <use xlink:href="#icons-bitbucket">
-              </svg>
-              Bitbucket
-              <svg class="icons">
-                <use xlink:href="#icons-check">
-              </svg>
-            </label>
-          </div>
-        </div>
+    <div class="grid-content input-group-vertical input-group-org">
+      <label class="label" for="input-organization">
+        <span class="label-text">Team Name</span>
+        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
+          <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
+        </small>
+      </label>
+      <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
+    </div>
 
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Team Name</span>
-            <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-              <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-            </small>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
-        </div>
+    <div class="grid-content input-group-vertical">
+      <label class="label" for="input-email">Your Email</label>
+      <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
 
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-email">Your Email</label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-        </div>
+    <button class="grid-content btn btn-lg green">Ship It!</button>
+  </form>
+</article>
 
-        <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
-      </form>
-    </article>
+    <article class="article article-form article-questionnaire">
+  <div class="well well-error">
+    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+    <span class="span well-text"></span>
+  </div>
+
+  <p class="h1 text-center strong">Got it!
+  <p class="p text-center">We’re processing your info now. To speed up the verification process, please tell us why you’re interested in using Runnable:
+
+  <form class="grid-block vertical form form-questionnaire">
+    <textarea class="grid-content textarea input-validate pristine" placeholder="📝" id="question-textarea" required></textarea>
+    <button class="grid-content btn btn-lg green">Fire Away</button>
+  </form>
+</article>
+
     <!-- submitted state -->
 <article class="article article-form article-confirm">
   <img class="img hide" src="images/runnabear-jumping.png">
-  <h1 class="h1 text-center strong">You did it!</h1>
-  <p class="p text-center">We’ll be in touch soon!
+  <p class="h1 text-center strong">You did it!
+  <p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
   <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
 </article>
 
