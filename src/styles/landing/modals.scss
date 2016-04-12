@@ -14,27 +14,63 @@
   z-index: $z-modal;
 }
 
-.modal-backdrop#sign-up,
-.modal-backdrop#confirm {
+.modal {
+
+  &.shake {
+    animation: shake .25s ease-in-out;
+  }
+
+  > .article {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+
+    &.article-sign-up {
+      z-index: $z-modal + 1;
+    }
+
+    &.article-confirm {
+      opacity: 0;
+      transform: translate3d(0,100px,0);
+      z-index: $z-modal;
+    }
+
+    &.out {
+      opacity: 0;
+      transform: translate3d(0,-100px,0);
+      z-index: $z-modal;
+    }
+
+    &.in {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+      z-index: $z-modal + 1;
+    }
+  }
+}
+
+#sign-up {
 
   &:target {
     opacity: 1;
     pointer-events: auto;
     transform: scale3d(1,1,1);
-  }
 
-  .article-sign-up {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 30px auto;
+    .modal > .article {
 
-    @include media(xxs) {
-      margin: 0 auto;
-    }
+      &.article-confirm {
+        pointer-events: none;
+      }
 
-    &.shake {
-      animation: shake .25s ease-in-out;
+      &.out {
+        pointer-events: none;
+      }
+
+      &.in {
+        pointer-events: auto;
+      }
     }
   }
 
@@ -44,7 +80,7 @@
     right: 15px;
     top: 15px;
     width: 30px;
-    z-index: $z-modal;
+    z-index: $z-modal + 2;
   }
 }
 

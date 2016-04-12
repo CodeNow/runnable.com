@@ -53,52 +53,42 @@
   }
 }
 
-.article-sign-up {
-  background: $gray-lighterest;
-  border: 6px solid $gray-lighter;
+.article-form {
   border-radius: $input-border-radius-lg;
-  box-shadow: 0 3px 15px rgba($black,.1);
-  margin: -450px auto 90px;
+  margin: 30px auto;
   max-width: 600px;
   padding: 60px;
 
   @include media(xs) {
-    border-left: 0;
     border-radius: 0;
-    border-right: 0;
     margin: 0;
-    padding: 30px 30px 45px;
+    padding: 60px 30px 45px;
   }
 
-  &.submitted {
-
-    .hide {
-      display: block;
-    }
-
-    .show {
-      display: none;
-    }
+  @include media(xxs) {
+    margin: 0 auto;
   }
 
+  // errors
   .well {
+    align-items: center;
     background: desaturate($red,10%);
     border: 2px solid $red-faded;
     border-radius: $input-border-radius-lg;
     color: $white;
+    display: flex;
     font-size: 16px;
     font-weight: $weight-normal;
+    justify-content: center;
     line-height: 1.4;
     margin: 0;
-    padding: 15px 6px 15px 69px;
+    min-height: 78px;
+    padding: 15px 69px;
     position: relative;
+    width: 100%;
 
     @include media(xxs) {
-      font-size: 15px;
-    }
-
-    @include media(xxs) {
-      margin-top: 30px;
+      font-size: 14px;
     }
 
     .img {
@@ -196,6 +186,24 @@
       border-color: currentColor;
       color: $red;
     }
+
+    // disabled state
+    &[disabled] {
+
+      &:not(:checked), {
+
+        + .radio,
+        + .radio:hover,
+        + .radio:active {
+          border-color: $gray-lighter;
+          color: $gray-dark;
+        }
+      }
+
+      + .radio {
+        cursor: not-allowed;
+      }
+    }
   }
 
   .radio {
@@ -258,5 +266,14 @@
   // submit
   .btn.green {
     margin-top: 30px;
+
+    .spinner-wrapper {
+      height: 100%;
+      padding: 9px;
+      position: absolute;
+      right: 6px;
+      top: 0;
+      width: 39px;
+    }
   }
 }

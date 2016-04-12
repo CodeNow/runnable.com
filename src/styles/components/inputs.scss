@@ -4,9 +4,6 @@ textarea {
   cursor: text;
 
   &[disabled] {
-    background-color: $gray-lighterest;
-    border-color: $gray-lighter;
-    color: $gray-lighter;
     cursor: not-allowed;
   }
 }
