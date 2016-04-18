@@ -219,9 +219,6 @@ function activeCampaignValidation(resultMessage, form) {
     case 'Contact Email Address is not valid':
       resultMessage = 'That email address is not valid.';
       break;
-    case 'Your Organization or Team is invalid':
-      resultMessage = 'We couldn’t find that GitHub organization.';
-      break;
   }
 
   thisErrorText.innerHTML = resultMessage;
