@@ -83,6 +83,66 @@ function toggleEditing(form, state) {
   }
 }
 
+function xhrSubmit(e, form, formData) {
+  var xhr = new XMLHttpRequest();
+  var xhrUrl;
+  var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
+  var articleQuestionnaire = document.getElementsByClassName('article-questionnaire')[0];
+  var articleConfirm = document.getElementsByClassName('article-confirm')[0];
+
+  // determine script to submit to
+  if (form.classList.contains('form-sign-up')) {
+    xhrUrl = 'https://codenow.com/submit';
+  } else if (form.classList.contains('form-questionnaire')) {
+    xhrUrl = 'https://codenow.com/submit2';
+  }
+
+  // send form
+  xhr.open('POST', xhrUrl);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(formData);
+
+  xhr.onreadystatechange = function() {
+    if ( xhr.readyState === 4 && xhr.status === 0) {
+      shakeForm(e);
+      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
+      toggleEditing(form, 'enable'); // re-enables form
+    }
+  };
+
+  xhr.onload = function() {
+    var response = JSON.parse(xhr.responseText);
+    var resultCode = response.result_code;
+    var resultMessage = response.result_message;
+    var subscriberId = response.subscriber_id;
+    var subscriberEmail = response.subscriberEmail;
+
+    // result_codes:
+    // -1 = error from sundip
+    // 0 = error from active campaign
+    // 1 = success from active campaign
+
+    if (resultCode === -1 || resultCode === 0) {
+      shakeForm(e);
+      activeCampaignValidation(resultMessage, form);
+    }
+
+    if (resultCode === 1) {
+      if (!articleSignUp.classList.contains('out')) {
+        // show questionnaire
+        articleSignUp.classList.add('out');
+        articleQuestionnaire.classList.add('in');
+      } else {
+        // else show confirmation
+        articleQuestionnaire.classList.add('out');
+        articleConfirm.classList.add('in');
+      }
+    }
+
+    toggleEditing(form, 'enable'); // re-enables form
+  };
+}
+
 function submitSignUp(e) {
   var form = e.target;
   e.preventDefault();
@@ -91,7 +151,6 @@ function submitSignUp(e) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
-    var xhr = new XMLHttpRequest();
 
     toggleEditing(form, 'disable'); // disables inputs
 
@@ -109,45 +168,7 @@ function submitSignUp(e) {
     };
 
     formData = JSON.stringify(formData); // convert to JSON
-
-    // send form
-    xhr.open('POST', 'https://codenow.com/submit');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(formData);
-
-    xhr.onreadystatechange = function() {
-      if ( xhr.readyState === 4 && xhr.status === 0) {
-        shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
-      }
-
-      toggleEditing(form, 'enable'); // re-enables form
-    };
-
-    xhr.onload = function() {
-      var response = JSON.parse(xhr.responseText);
-      var resultCode = response.result_code;
-      var resultMessage = response.result_message;
-      var subscriberId = response.subscriber_id;
-      var subscriberEmail = response.subscriberEmail;
-
-      // result_codes:
-      // -1 = error from sundip
-      // 0 = error from active campaign
-      // 1 = success from active campaign
-
-      if (resultCode === -1 || resultCode === 0) {
-        shakeForm(e);
-        activeCampaignValidation(resultMessage, form);
-      }
-
-      if (resultCode === 1) {
-        document.getElementsByClassName('article-sign-up')[0].classList.add('out');
-        document.getElementsByClassName('article-questionnaire')[0].classList.add('in');
-      }
-
-      toggleEditing(form, 'enable'); // re-enables form
-    };
+    xhrSubmit(e, form, formData);
 
     // facebook tracking
     fbq('track', 'Lead');
@@ -166,7 +187,6 @@ function submitQuestionnaire(e) {
 
   if (form.checkValidity()) {
     var formData;
-    var xhr = new XMLHttpRequest();
 
     // WIP: need to get these from submitSignUp()
     var subscriberId;
@@ -181,43 +201,7 @@ function submitQuestionnaire(e) {
     };
 
     formData = JSON.stringify(formData); // convert to JSON
-
-    // send form
-    xhr.open('POST', 'https://marketing-88rbj4hy.cloudapp.net/submit2');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(formData);
-
-    xhr.onreadystatechange = function() {
-      if ( xhr.readyState === 4 && xhr.status === 0) {
-        shakeForm(e);
-        activeCampaignValidation('An unknown error occured. Please send us an email at support@runnable.com for assistance.', form);
-      }
-
-      toggleEditing(form, 'enable'); // re-enables form
-    };
-
-    xhr.onload = function() {
-      var response = JSON.parse(xhr.responseText);
-      var resultCode = response.result_code;
-      var resultMessage = response.result_message;
-
-      // result_codes:
-      // -1 = error from sundip
-      // 0 = error from active campaign
-      // 1 = success from active campaign
-
-      if (resultCode === -1 || resultCode === 0) {
-        shakeForm(e);
-        activeCampaignValidation(resultMessage, form);
-      }
-
-      if (resultCode === 1) {
-        document.getElementsByClassName('article-questionnaire')[0].classList.add('out');
-        document.getElementsByClassName('article-confirm')[0].classList.add('in');
-      }
-
-      toggleEditing(form, 'enable'); // re-enables form
-    };
+    xhrSubmit(e, form, formData);
   }
 }
 
@@ -227,13 +211,16 @@ function activeCampaignValidation(resultMessage, form) {
   var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
   var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
 
-  // change error text from active campaign
+  // change error text from active campaign (checks first sentence)
   switch (firstSentence) {
     case 'You selected a list that does not allow duplicates':
       resultMessage = 'That email has already been used to sign up.';
       break;
     case 'Contact Email Address is not valid':
       resultMessage = 'That email address is not valid.';
+      break;
+    case 'Your Organization or Team is invalid':
+      resultMessage = 'We couldn’t find that GitHub organization.';
       break;
   }
 
