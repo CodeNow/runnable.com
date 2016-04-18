@@ -95,7 +95,7 @@ function xhrSubmit(e, form, formData) {
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
   } else if (form.classList.contains('form-questionnaire')) {
-    xhrUrl = 'https://codenow.com/submit2';
+    xhrUrl = 'https://codenow.com/submitreason';
   }
 
   // send form
@@ -115,7 +115,6 @@ function xhrSubmit(e, form, formData) {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
-    var subscriberId = response.subscriber_id;
 
     // result_codes:
     // -1 = error from sundip
@@ -131,7 +130,10 @@ function xhrSubmit(e, form, formData) {
       if (!articleSignUp.classList.contains('out')) {
         // attach events
         questionnaireForm.addEventListener('change', makeDirty);
-        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire(subscriberId));
+        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire({
+          subscriber_id: response.subscriber_id,
+          email: response.email
+        }));
 
         // show questionnaire
         articleSignUp.classList.add('out');
@@ -181,7 +183,7 @@ function submitSignUp(e) {
   }
 }
 
-function setupSubmitQuestionnaire(subscriberId) {
+function setupSubmitQuestionnaire(response) {
   return function (e) {
     var form = e.target;
     e.preventDefault();
@@ -192,8 +194,9 @@ function setupSubmitQuestionnaire(subscriberId) {
       toggleEditing(form, 'disable'); // disables inputs
 
       formData = {
-        subscriberId: subscriberId,
-        questionnaire: form[0].value
+        email: response.email,
+        subscriber_id: response.subscriber_id,
+        reason: form[0].value
       };
 
       formData = JSON.stringify(formData); // convert to JSON
