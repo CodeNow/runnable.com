@@ -86,6 +86,7 @@ function toggleEditing(form, state) {
 function xhrSubmit(e, form, formData) {
   var xhr = new XMLHttpRequest();
   var xhrUrl;
+  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
   var articleQuestionnaire = document.getElementsByClassName('article-questionnaire')[0];
   var articleConfirm = document.getElementsByClassName('article-confirm')[0];
@@ -115,7 +116,6 @@ function xhrSubmit(e, form, formData) {
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
     var subscriberId = response.subscriber_id;
-    var subscriberEmail = response.subscriberEmail;
 
     // result_codes:
     // -1 = error from sundip
@@ -129,9 +129,18 @@ function xhrSubmit(e, form, formData) {
 
     if (resultCode === 1) {
       if (!articleSignUp.classList.contains('out')) {
+        // attach events
+        questionnaireForm.addEventListener('change', makeDirty);
+        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire(subscriberId));
+
         // show questionnaire
         articleSignUp.classList.add('out');
         articleQuestionnaire.classList.add('in');
+
+        // for tracking and conversions
+        fbq('track', 'Lead');
+        ga('send', 'event', 'signUp', 'submit');
+        goog_report_conversion();
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
@@ -169,40 +178,28 @@ function submitSignUp(e) {
 
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
-
-    // facebook tracking
-    fbq('track', 'Lead');
-
-    // google analytics tracking
-    ga('send', 'event', 'signUp', 'submit');
-
-    // adwords conversion tracking
-    goog_report_conversion();
   }
 }
 
-function submitQuestionnaire(e) {
-  var form = e.target;
-  e.preventDefault();
+function setupSubmitQuestionnaire(subscriberId) {
+  return function (e) {
+    var form = e.target;
+    e.preventDefault();
 
-  if (form.checkValidity()) {
-    var formData;
+    if (form.checkValidity()) {
+      var formData;
 
-    // WIP: need to get these from submitSignUp()
-    var subscriberId;
-    var subscriberEmail;
+      toggleEditing(form, 'disable'); // disables inputs
 
-    toggleEditing(form, 'disable'); // disables inputs
+      formData = {
+        subscriberId: subscriberId,
+        questionnaire: form[0].value
+      };
 
-    formData = {
-      subscriberId: subscriberId,
-      subscriberEmail: subscriberEmail,
-      questionnaire: form[0].value
-    };
-
-    formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData);
-  }
+      formData = JSON.stringify(formData); // convert to JSON
+      xhrSubmit(e, form, formData);
+    }
+  };
 }
 
 function activeCampaignValidation(resultMessage, form) {
@@ -253,8 +250,6 @@ window.addEventListener('load', function(){
   if (signUpForm) {
     signUpForm.addEventListener('change', makeDirty);
     signUpForm.addEventListener('submit', submitSignUp);
-    questionnaireForm.addEventListener('change', makeDirty);
-    questionnaireForm.addEventListener('submit', submitQuestionnaire);
 
     theseInputs = signUpForm.getElementsByTagName('input');
     for (i = 0; i < theseInputs.length; i++) {
