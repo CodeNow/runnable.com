@@ -64,11 +64,11 @@
       });
   });
 </script>
-    <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentElement.removeChild(r[0])}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="",s=new XMLHttpRequest;toggleEditing(t,"disable");for(var r=0;r<n.length;r++)n[r].checked&&(i=n[r].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),s.open("POST","https://marketing-88rbj4hy.cloudapp.net/submit"),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t)),toggleEditing(t,"enable")},s.onload=function(){var a=JSON.parse(s.responseText),n=a.result_code,i=a.result_message;a.subscriber_id,a.subscriberEmail;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i,t)),1===n&&(document.getElementsByClassName("article-sign-up")[0].classList.add("out"),document.getElementsByClassName("article-questionnaire")[0].classList.add("in")),toggleEditing(t,"enable")},fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion()}}function submitQuestionnaire(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n,i,s=new XMLHttpRequest;toggleEditing(t,"disable"),a={subscriberId:n,subscriberEmail:i,questionnaire:t[0].value},a=JSON.stringify(a),s.open("POST","https://marketing-88rbj4hy.cloudapp.net/submit2"),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation("An unknown error occured. Please send us an email at support@runnable.com for assistance.",t)),toggleEditing(t,"enable")},s.onload=function(){var a=JSON.parse(s.responseText),n=a.result_code,i=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i,t)),1===n&&(document.getElementsByClassName("article-questionnaire")[0].classList.add("out"),document.getElementsByClassName("article-confirm")[0].classList.add("in")),toggleEditing(t,"enable")}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function flipCard(e){for(var t,a,n=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("team-card"););if(a=i.getElementsByClassName("img-rounded"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("form-sign-up")[0],n=document.getElementsByClassName("form-questionnaire")[0];document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(a.addEventListener("change",makeDirty),a.addEventListener("submit",submitSignUp),n.addEventListener("change",makeDirty),n.addEventListener("submit",submitQuestionnaire),t=a.getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)}),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("img-rounded");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)});</script>
+    <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("button")[0],s=document.getElementsByClassName("spinner-wrapper");if("disable"===t){for(a=0;a<n.length;a++)n[a].disabled=!0;i.disabled=!0,i.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){for(a=0;a<n.length;a++)n[a].disabled=!1;i.disabled=!1,s[0].parentElement.removeChild(s[0])}}function formSubmit(e){var t=e.target;if(e.preventDefault(),toggleEditing(t,"disable"),t.checkValidity()){for(var a,n=document.getElementsByName("scm"),i="",s=new XMLHttpRequest,l=0;l<n.length;l++)n[l].checked&&(i=n[l].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),s.open("POST","https://codenow.com/submit"),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation("An unknown error occured. Please send us an email at support@runnable.com for assistance.")),toggleEditing(t,"enable")},s.onload=function(){var a=JSON.parse(s.responseText),n=a.result_code,i=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(i)),1===n&&(document.getElementsByClassName("article-sign-up")[0].classList.add("out"),document.getElementsByClassName("article-confirm")[0].classList.add("in")),toggleEditing(t,"enable")},fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion()}}function activeCampaignValidation(e){var t=document.getElementsByClassName("well-error")[0],a=document.getElementsByClassName("well-text")[0],n=e.substr(0,e.indexOf("."));switch(n){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid."}a.innerHTML=e,t.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function flipCard(e){for(var t,a,n=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("team-card"););if(a=i.getElementsByClassName("img-rounded"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("modal-backdrop");document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(e=0;e<a.length;e++)for(a[e].addEventListener("change",makeDirty),a[e].addEventListener("submit",formSubmit),t=a[e].getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)}),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("img-rounded");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)});</script>
 
     <!--
-      Commit Hash: e812b4f4acd06598557df4b8e1bcc2114436d80f
-      Commit Time: Mon Apr 11 19:58:14 2016 -0700
+      Commit Hash: 8e0dcf443bab3431f4346c2659ce10465917de06
+      Commit Time: Mon Apr 18 12:33:51 2016 -0700
     -->
 
   </head><body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -416,80 +416,64 @@
   </a>
   <div class="modal">
     <article class="article article-form article-sign-up">
-  <!-- white list errors -->
-  <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
 
-  <!-- initial state -->
-  <h1 class="h1 text-center strong">Let’s get started.</h1>
-  <form class="grid-block vertical form form-sign-up">
-    <div class="grid-block vertical radio-group">
-      <label class="p text-center">Where does your team keep their code?</label>
-      <div class="grid-block">
-        <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-        <label class="btn btn-lg white radio" for="radio-github">
-          <svg class="icons">
-            <use xlink:href="#icons-github"/>
-          </svg>
-          GitHub
-          <svg class="icons">
-            <use xlink:href="#icons-check"/>
-          </svg>
-        </label>
-        <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-        <label class="btn btn-lg white radio" for="radio-bb">
-          <svg class="icons">
-            <use xlink:href="#icons-bitbucket"/>
-          </svg>
-          Bitbucket
-          <svg class="icons">
-            <use xlink:href="#icons-check"/>
-          </svg>
-        </label>
+      <!-- white list errors -->
+      <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
+        <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
+        <span class="span well-text"></span>
       </div>
-    </div>
 
-    <div class="grid-content input-group-vertical input-group-org">
-      <label class="label" for="input-organization">
-        <span class="label-text">Team Name</span>
-        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-          <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-        </small>
-      </label>
-      <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
-    </div>
+      <!-- initial state -->
+      <h1 class="h1 text-center strong">Let’s get started.</h1>
+      <form class="grid-block vertical form form-sign-up">
+        <div class="grid-block vertical radio-group">
+          <label class="p text-center">Where does your team keep their code?</label>
+          <div class="grid-block">
+            <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
+            <label class="btn btn-lg white radio" for="radio-github">
+              <svg class="icons">
+                <use xlink:href="#icons-github"/>
+              </svg>
+              GitHub
+              <svg class="icons">
+                <use xlink:href="#icons-check"/>
+              </svg>
+            </label>
+            <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
+            <label class="btn btn-lg white radio" for="radio-bb">
+              <svg class="icons">
+                <use xlink:href="#icons-bitbucket"/>
+              </svg>
+              Bitbucket
+              <svg class="icons">
+                <use xlink:href="#icons-check"/>
+              </svg>
+            </label>
+          </div>
+        </div>
 
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="input-email">Your Email</label>
-      <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-    </div>
+        <div class="grid-content input-group-vertical input-group-org">
+          <label class="label" for="input-organization">
+            <span class="label-text">Team Name</span>
+            <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
+              <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
+            </small>
+          </label>
+          <input class="input input-md input-validate pristine" id="input-organization" name="organization" required>
+        </div>
 
-    <button class="grid-content btn btn-lg green">Ship It!</button>
-  </form>
-</article>
+        <div class="grid-content input-group-vertical">
+          <label class="label" for="input-email">Your Email</label>
+          <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+        </div>
 
-    <article class="article article-form article-questionnaire">
-  <div class="well well-error">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
-
-  <p class="h1 text-center strong">Got it!
-  </p><p class="p text-center">We’re processing your info now. To speed up the verification process, please tell us why you’re interested in using Runnable:
-
-  <form class="grid-block vertical form form-questionnaire">
-    <textarea class="grid-content textarea input-validate pristine" placeholder="📝" id="question-textarea" required></textarea>
-    <button class="grid-content btn btn-lg green">Fire Away</button>
-  </form>
-</p></article>
-
+        <button id="_form_1_submit" class="grid-content btn btn-lg green">Ship It!</button>
+      </form>
+    </article>
     <!-- submitted state -->
 <article class="article article-form article-confirm">
   <img class="img hide" src="images/runnabear-jumping.png">
-  <p class="h1 text-center strong">You did it!
-  </p><p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
+  <p class="p text-center">To prevent spam, we also need to confirm your email address by clicking on the link in the email we just sent you.
   <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
 </p></article>
 

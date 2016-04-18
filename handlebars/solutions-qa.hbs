@@ -4,12 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>A Sandbox-as-a-Service built for your team’s workflow. — Runnable</title>
-    <meta name="description" content="">
+    <title>Acceptance & Quality Assurance Testing Solutions — Runnable</title>
+    <meta name="description" content="Accelerate QA & UAT with Runnable Test Environments">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles/index.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     <script ugly=true>
   var whitelisted = window.location.search !== '?whitelist=false';
@@ -64,7 +63,8 @@
       });
   });
 </script>
-    <script>// sign up form
+    <script>
+      // sign up form
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
@@ -268,14 +268,15 @@ window.addEventListener('load', function(){
     }
   }
 });
-</script>
+
+    </script>
 
     <!--
       Commit Hash: {{{commitHash}}}
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-product" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-solutions" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
@@ -330,98 +331,26 @@ window.addEventListener('load', function(){
 
 
     <main class="grid-block vertical main">
-      <article class="article hero">
-  <h1 class="h1 text-center">A Sandbox-as-a-Service built for your team’s workflow.</h1>
-</article>
+      <article class="grid-block vertical article hero">
+        <h1 class="grid-content h1 text-center">Accelerate QA & UAT with Automated Test Environment Management</h1>
+        <p class="grid-content p text-center">Runnable gives every developer their own end-to-end environment to test and share changes without waiting for resources or builds.</p>
 
-      <article class="article article-github grid-container">
-  <section class="section section-environments grid-block">
-    <div class="grid-block text-block vertical align-center">
-      <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
-    </div>
-    <figure class="grid-block figure gradient gradient-right">
-      <img class="img" src="images/runnable.svg" height="420" width="1080">
-    </figure>
-  </section>
-  <section class="section section-updates grid-block">
-    <div class="grid-block text-block vertical align-center">
-      <h2 class="h2">Updates to a branch automatically update the environment.</h2>
-    </div>
-    <figure class="grid-block figure gradient gradient-left">
-      <img class="img img-updates" src="images/updates.svg" height="420" width="1080">
-    </figure>
-  </section>
-</article>
+        <div class="grid-block align-center">
+          <a class="grid-content shrink btn btn-lg green" href="#sign-up">Sign Up</a>
+          <a class="grid-content shrink btn btn-lg gray" href="/product.html">Explore Features</a>
+        </div>
+      </article>
 
-      <article class="article article-use-cases">
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-sharing">
-      <h2 class="h2 text-center">Simplify development.</h2>
-      <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
-      <figure class="figure">
-        <img class="img" src="images/simplify.png" width="450" height="360">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-pr">
-      <h2 class="h2 text-center">Faster reviews.</h2>
-      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
-      <figure class="figure">
-        <img class="img" src="images/pr-page.svg" width="450" height="315">
-      </figure>
-    </section>
-  </div>
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-e2e">
-      <h2 class="h2 text-center">Run integration tests automatically.</h2>
-      <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
-      <figure class="figure">
-        <img class="img" src="images/e2e-testing.svg" width="450" height="315">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-isolation">
-      <h2 class="h2 text-center">Test database changes safely in isolation.</h2>
-      <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
-      <figure class="figure figure-isolation gradient gradient-right">
-        <img class="img img-isolation" src="images/isolation.svg" width="1080" height="420">
-      </figure>
-    </section>
-  </div>
-</article>
-
-      <article class="article article-bonus grid-container">
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/icons-flexible.svg" width="60" height="60">
-      <h3 class="h3">Flexible</h3>
-      <p class="p">Sync changes from your local machine and SSH into running containers with
-        <br class="visible-sm hidden-xs">our&#32;
-        <a class="link strong" href="https://github.com/runnable/cli">CLI</a>.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/icons-open.svg" width="60" height="60">
-      <h3 class="h3">Open</h3>
-      <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
-        <br class="br visible-xs">export capabilities.
-        <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
-      </p>
-    </div>
-  </section>
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/icons-performance.svg" width="60" height="60">
-      <h3 class="h3">Performant</h3>
-      <p class="p">Dedicated infrastructure that&#32;
-        <br class="br visible-xs">auto-scales based on usage.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item bonus-secure">
-      <img class="img grid-block shrink" src="images/icons-security.svg" width="60" height="60">
-      <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per team. Third-party security audits.
-    </div>
-  </section>
-</article>
+      <article class="grid-block vertical grid-container article">
+        <h2 class="grid-content h2 align-center strong">Complete full-stack environments</h2>
+        <p class="grid-content p align-center">Test changes end-to-end with the entire stack, including fully-seeded multi-gigabyte databases, alongside unit testing.</p>
+        <hr class="hr">
+        <h2 class="grid-content h2 align-center strong">Simple quality assurance / user acceptance testing</h2>
+        <p class="grid-content p align-center">Share the URL to your QA team, Beta users, PM, boss—anyone at any time. URLs automatically appear on Pull Request pages for quicker code reviews and acceptance testing.</p>
+        <hr class="hr">
+        <h2 class="grid-content h2 align-center strong">Automatic on-demand creation</h2>
+        <p class="grid-content p align-center">A new environment is created for every new branch on every repository. Infrastructure costs are included in our per-developer pricing.</p>
+      </article>
     </main>
 
     <div class="sign-up-box grid-block vertical">
