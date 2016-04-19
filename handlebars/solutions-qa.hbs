@@ -285,6 +285,9 @@ function activeCampaignValidation(resultMessage, form) {
     case 'Contact Email Address is not valid':
       resultMessage = 'That email address is not valid.';
       break;
+    case 'Your Organization or Team is invalid':
+      resultMessage = 'We couldn’t find that organization or team.';
+      break;
   }
 
   thisErrorText.innerHTML = resultMessage;
@@ -485,7 +488,7 @@ window.addEventListener('load', function(){
           <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
         </small>
       </label>
-      <input class="input input-md input-validate pristine" id="input-organization" name="organization" title="Enter a valid organization or team." pattern="^\S+$" required>
+      <input class="input input-md input-validate pristine" id="input-organization" name="organization" title="Enter a valid organization or team." required>
     </div>
 
     <div class="grid-content input-group-vertical">
