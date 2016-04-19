@@ -20,6 +20,39 @@
     animation: shake .25s ease-in-out;
   }
 
+  // errors
+  .well {
+    align-items: center;
+    background: desaturate($red,10%);
+    border: 2px solid $red-faded;
+    border-radius: $input-border-radius-lg;
+    color: $white;
+    display: none;
+    font-size: 16px;
+    font-weight: $weight-normal;
+    justify-content: center;
+    line-height: 1.4;
+    margin: 0;
+    min-height: 78px;
+    padding: 15px 69px;
+    position: relative;
+    width: 100%;
+
+    @include media(xxs) {
+      font-size: 14px;
+    }
+
+    .img {
+      left: 15px;
+      position: absolute;
+      top: -30px;
+
+      @include media(xxs) {
+        top: -18px;
+      }
+    }
+  }
+
   > .article {
     left: 0;
     position: absolute;
@@ -31,15 +64,10 @@
       z-index: $z-modal + 1;
     }
 
+    &.article-questionnaire,
     &.article-confirm {
       opacity: 0;
       transform: translate3d(0,100px,0);
-      z-index: $z-modal;
-    }
-
-    &.out {
-      opacity: 0;
-      transform: translate3d(0,-100px,0);
       z-index: $z-modal;
     }
 
@@ -47,6 +75,12 @@
       opacity: 1;
       transform: translate3d(0,0,0);
       z-index: $z-modal + 1;
+    }
+
+    &.out {
+      opacity: 0;
+      transform: translate3d(0,-100px,0);
+      z-index: $z-modal;
     }
   }
 }

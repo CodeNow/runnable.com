@@ -1,0 +1,17 @@
+.article-questionnaire {
+
+  .textarea {
+    font-size: 16px;
+    margin-top: 15px;
+    max-height: 100vh;
+    min-height: 360px;
+    padding: 9px;
+    resize: vertical;
+  }
+
+  .btn.green {
+    @include media(sm) {
+      margin-top: 18px;
+    }
+  }
+}
