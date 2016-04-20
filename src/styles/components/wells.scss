@@ -1,0 +1,73 @@
+.well {
+  background: $gray-lighterest;
+  border: 1px solid $gray-lighter;
+  border-radius: $input-border-radius;
+  color: $gray;
+  display: table;
+  font-size: 16px;
+  margin: 0 auto 120px;
+  padding: 6px 6px 6px 12px;
+
+  &.grid-block {
+
+    @include media(xs) {
+      display: table;
+      padding: 6px 9px;
+      text-align: center;
+    }
+
+    @media (max-width: 320px) {
+      margin: 0 15px;
+    }
+  }
+
+  .btn {
+    border-width: 1px;
+    margin-left: 6px;
+
+    @include media(xs) {
+      top: 0;
+    }
+  }
+
+  .icons {
+    height: 12px;
+    margin-top: 1px;
+    position: relative;
+    top: 1px;
+    width: 12px;
+  }
+}
+
+.well-anchor {
+  background: $white;
+  border-radius: $input-border-radius-lg;
+  color: $gray-dark;
+  cursor: pointer;
+  display: flex;
+  font-size: 21px;
+  max-width: 660px;
+  padding: 30px;
+
+  &:hover {
+    border-color: $purple-light;
+    box-shadow: inset 0 0 0 1px $purple-light;
+
+    .a {
+      text-decoration: underline;
+    }
+  }
+
+  .img {
+    margin-right: 15px;
+  }
+
+  .p {
+    line-height: 1.4;
+  }
+
+  .a {
+    color: $purple-light;
+    font-size: 14px;
+  }
+}
