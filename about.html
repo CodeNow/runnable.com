@@ -67,8 +67,8 @@
     <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentElement.removeChild(r[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],r=document.getElementsByClassName("article-sign-up")[0],l=document.getElementsByClassName("article-questionnaire")[0],o=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var a=JSON.parse(i.responseText),n=a.result_code,d=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(d,t)),1===n&&(r.classList.contains("out")?(l.classList.add("out"),o.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),r.classList.add("out"),l.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion())),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}function flipCard(e){for(var t,a,n=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("team-card"););if(a=i.getElementsByClassName("img-rounded"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(a.addEventListener("change",makeDirty),a.addEventListener("submit",submitSignUp),t=a.getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)}),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("img-rounded");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)});</script>
 
     <!--
-      Commit Hash: fb078ebddd3bb53893e00731b6205320c6d21eed
-      Commit Time: Tue Apr 19 16:29:20 2016 -0700
+      Commit Hash: bf767859342cd5ada3db8bcb3129bdf25f50168a
+      Commit Time: Tue Apr 19 17:14:22 2016 -0700
     -->
 
   </head><body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -112,11 +112,12 @@
             <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
             <a class="list-item divider visible-md"></a>
             <a href="product.html" class="list-item-a visible-sm">Product</a>
+            <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
             <a href="about.html" class="list-item-a">About</a>
             <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
             <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
             <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="list-item-a">Security</a>
-            <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
+            <a href="privacy.html" class="list-item-a">Privacy</a>
           </div>
         </div>
       </div>
@@ -398,14 +399,17 @@
 
     <hr class="hr grid-container">
 
-<footer class="grid-block footer align-spaced">
-  <a href="product.html" class="btn btn-xs link strong">Product</a>
-  <a href="about.html" class="btn btn-xs link strong">About</a>
-  <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="btn btn-xs link strong">Pricing</a>
-  <img class="img" src="images/runnabot-head.png" height="45" width="45">
-  <a href="http://blog.runnable.com" class="btn btn-xs link strong">Blog</a>
-  <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="btn btn-xs link strong">Security</a>
-  <a href="http://support.runnable.io" class="btn btn-xs link strong">Docs</a>
+<footer class="grid-block vertical footer align-spaced">
+  <div class="grid-block link-wrapper">
+    <a href="product.html" class="btn btn-xs link strong">Product</a>
+    <a href="http://support.runnable.io" class="btn btn-xs link strong">Docs</a>
+    <a href="about.html" class="btn btn-xs link strong">About</a>
+    <a href="http://blog.runnable.com" class="btn btn-xs link strong">Blog</a>
+    <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="btn btn-xs link strong">Pricing</a>
+    <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="btn btn-xs link strong">Security</a>
+    <a href="privacy.html" class="btn btn-xs link strong">Privacy</a>
+  </div>
+  <img class="grid-block img" src="images/runnabot-head.png" height="45" width="45">
 </footer>
 
     <div class="modal-backdrop" id="sign-up">
