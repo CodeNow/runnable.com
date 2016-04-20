@@ -5,8 +5,31 @@
   overflow: visible;
   position: relative;
 
-  @include media(sm) {
-    flex-flow: column;
+  .link-wrapper {
+
+    @include media(sm) {
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .link {
+      color: $gray-light;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0 27px 15px;
+      text-decoration: none;
+
+      @include media(sm) {
+        font-size: 18px;
+        margin: 15px;
+      }
+
+      &:hover,
+      &:active {
+        color: $gray;
+      }
+    }
   }
 
   .img {
@@ -18,25 +41,6 @@
 
     @include media(sm) {
       margin-bottom: 15px;
-    }
-  }
-
-  .link {
-    color: $gray-light;
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0 21px;
-    text-decoration: none;
-
-    @include media(sm) {
-      font-size: 18px;
-      margin: 12px 0;
-      order: 2;
-    }
-
-    &:hover,
-    &:active {
-      color: $gray;
     }
   }
 }
