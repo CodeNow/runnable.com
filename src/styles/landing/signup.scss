@@ -12,29 +12,6 @@
     right: 15px;
     width: 150px;
   }
-
-  .p {
-    margin-bottom: 0;
-
-    + .p {
-      margin-bottom: 12px;
-    }
-  }
-
-  .popover-trigger {
-    color: $gray;
-    cursor: pointer;
-
-    @include media(xxs) {
-      font-size: 13px;
-    }
-  }
-
-  .popover {
-    bottom: 30px;
-    font-size: 15px;
-    width: 270px;
-  }
 }
 
 .article-form {
