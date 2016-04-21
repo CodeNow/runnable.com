@@ -142,7 +142,7 @@ gulp.task('js', function () {
 gulp.task('minify', function() {
   gulp.src(dist + '**/*.html')
     .pipe(minifyInline({
-      jsSelector: 'script[ugly!="true"]'
+      jsSelector: 'script[ugly="true"]'
     }))
     .pipe(gulp.dest(dist));
 });
