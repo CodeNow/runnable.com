@@ -37,8 +37,8 @@
     }
   }
 
-  // features button
-  > .grid-block {
+  // buttons
+  .btn-wrapper {
     margin: 15px auto 150px;
 
     @include media(xs) {
@@ -61,10 +61,18 @@
 
   // code snippets link
   .well {
-    margin-bottom: 30px;
-    margin-top: 150px;
+    margin: 150px auto 30px;
     max-width: 390px;
     padding: 21px 30px 21px 21px;
+
+    @include media(sm) {
+      margin-bottom: 60px;
+    }
+
+    @include media(xxs) {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
 
     .img {
       margin-right: 21px;

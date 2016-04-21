@@ -4,7 +4,17 @@
   border-radius: $input-border-radius-lg $input-border-radius-lg 0 0 !important;
   box-shadow: 0 -1px 6px rgba($black,.05);
   font-family: $sans-serif !important;
+  margin: 0 30px !important;
   z-index: $z-modal - 1 !important;
+
+  @include media(xs) {
+    left: 0 !important;
+    width: auto !important;
+  }
+
+  @include media(xxs) {
+    margin: 0 15px !important;
+  }
 }
 
 .habla_button:hover {
