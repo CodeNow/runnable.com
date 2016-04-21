@@ -63,6 +63,7 @@
   .well {
     margin: 150px auto 30px;
     max-width: 390px;
+    min-width: 0;
     padding: 21px 30px 21px 21px;
 
     @include media(sm) {
