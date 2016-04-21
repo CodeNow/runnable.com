@@ -30,14 +30,12 @@
   }
 
   @include media(xs) {
+    flex-direction: column;
     font-size: 17px;
-    padding: 30px 15px;
-  }
-
-  @include media(xxs) {
-    font-size: 14px;
     margin-left: 15px;
     margin-right: 15px;
+    padding: 15px 30px 30px;
+    text-align: center;
   }
 
   &:hover {
@@ -55,26 +53,24 @@
     &.grid-block {
       @include media(xs) {
         height: auto;
+        margin-bottom: 9px;
+        margin-right: 0;
         max-width: 75px;
-      }
-
-      @include media(xxs) {
-        margin-right: 9px;
-        max-width: 60px;
       }
     }
   }
 
   .p {
     line-height: 1.4;
+
+    @include media(xs) {
+      max-width: 450px;
+    }
   }
 
   .a {
     color: $purple-light;
     font-size: 14px;
-
-    @include media(xs) {
-      font-size: 12px;
-    }
+    white-space: nowrap;
   }
 }

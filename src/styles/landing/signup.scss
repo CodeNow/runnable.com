@@ -6,11 +6,8 @@
   position: relative;
 
   @include media(xs) {
-    padding-left: 45px;
-  }
-
-  @include media(xxs) {
-    padding-left: 30px;
+    align-items: center;
+    padding: 30px 15px 90px;
   }
 
   .img {
@@ -21,13 +18,9 @@
     width: 150px;
 
     @include media(xs) {
-      right: 15px;
-    }
-
-    @include media(xxs) {
-      bottom: -6px;
-      height: auto;
-      width: 105px;
+      left: 0;
+      margin: 0 auto;
+      right: 0;
     }
   }
 }
