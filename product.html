@@ -11,64 +11,278 @@
     <link rel="stylesheet" href="styles/index.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script ugly="true">
-  var whitelisted = window.location.search !== '?whitelist=false';
-  var app = angular.module('homeApp', []);
+    <script ugly="true">var whitelisted="?whitelist=false"!==window.location.search,app=angular.module("homeApp",[]);app.controller("MainCtrl",function(t,e,a){t.loginUrl="/auth/github?redirect=/?auth",t.data={embedActive:!1,hideUnauthorizedModal:whitelisted},window.fbq||(window.fbq=function(){}),whitelisted||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",location.hash="#sign-up",fbq("track","ViewContent",{action:"notWhitelisted"})),a.get("/users/me",{withCredentials:!0}).then(function(t){var a;try{a=t.data.userOptions.uiState.previousLocation.org}catch(i){a=t.data.accounts.github.username}var n;try{n=t.data.userOptions.uiState.previousLocation.instance}catch(i){}var o="/"+a;n&&(o+="/"+n),e.location=o})});</script>
+    <script>// sign up form
+function updateLabel(e) {
+  var label = document.getElementsByClassName('label-text')[0];
+  switch (e.target.getAttribute('value')) {
+    case 'GitHub':
+      label.innerHTML = 'GitHub Organization';
+      break;
+    case 'Bitbucket':
+      label.innerHTML = 'Bitbucket Team';
+      break;
+  }
+}
 
-  app.controller('MainCtrl', function ($scope, $window, $http) {
-    $scope.loginUrl = '/auth/github?redirect=/?auth';
-    $scope.data = {
-      embedActive: false,
-      hideUnauthorizedModal: whitelisted
+function markInvalid(e) {
+  var thisTarget = e.target;
+  var theseInputs;
+  var i;
+  if (thisTarget.tagName == 'INPUT') {
+    // for invalid event
+    theseInputs = thisTarget.classList.add('invalid');
+  } else {
+    // for change event
+    theseInputs = thisTarget.getElementsByTagName('input');
+    for (i = 0; i < theseInputs.length; i++) {
+      if (!theseInputs[i].validity.valid) {
+        theseInputs[i].classList.add('invalid');
+      }
+    }
+  }
+}
+
+function shakeForm(e) {
+  var thisModal = e.target;
+  // get modal element
+  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
+  thisModal.classList.add('shake');
+  thisModal.addEventListener('animationend', function(){
+    thisModal.classList.remove('shake');
+    thisModal.removeEventListener('animationend', function(){});
+  });
+}
+
+function makeDirty(e) {
+  e.target.classList.remove('pristine', 'invalid');
+}
+
+function formInvalid(e) {
+  markInvalid(e);
+  shakeForm(e);
+}
+
+function toggleEditing(form, state) {
+  var i;
+  var theseInputs = form.getElementsByTagName('input');
+  var theseTextareas = form.getElementsByTagName('textarea')[0];
+  var submitButton = form.getElementsByTagName('button')[0];
+  var spinner = document.getElementsByClassName('spinner-wrapper');
+
+  if (state === 'disable') {
+    if (theseInputs) {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].disabled = true;
+      }
+    }
+    if (theseTextareas) {
+      theseTextareas.disabled = true;
+    }
+    submitButton.disabled = true;
+    submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+  }
+
+  if (state === 'enable') {
+    if (theseInputs) {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].disabled = false;
+      }
+    }
+    if (theseTextareas) {
+      theseTextareas.disabled = false;
+    }
+    submitButton.disabled = false;
+    spinner[0].parentElement.removeChild(spinner[0]);
+  }
+}
+
+function xhrSubmit(e, form, formData) {
+  var xhr = new XMLHttpRequest();
+  var xhrUrl;
+  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
+  var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
+  var articleQuestionnaire = document.getElementsByClassName('article-questionnaire')[0];
+  var articleConfirm = document.getElementsByClassName('article-confirm')[0];
+
+  // determine script to submit to
+  if (form.classList.contains('form-sign-up')) {
+    xhrUrl = 'https://codenow.com/submit';
+  } else if (form.classList.contains('form-questionnaire')) {
+    xhrUrl = 'https://codenow.com/submitreason';
+  }
+
+  // send form
+  xhr.open('POST', xhrUrl);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(formData);
+
+  xhr.onreadystatechange = function() {
+    if ( xhr.readyState === 4 && xhr.status === 0) {
+      shakeForm(e);
+      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
+      toggleEditing(form, 'enable'); // re-enables form
+    }
+  };
+
+  xhr.onload = function() {
+    var response = JSON.parse(xhr.responseText);
+    var resultCode = response.result_code;
+    var resultMessage = response.result_message;
+
+    // result_codes:
+    // -1 = error from sundip
+    // 0 = error from active campaign
+    // 1 = success from active campaign
+
+    if (resultCode === -1 || resultCode === 0) {
+      shakeForm(e);
+      activeCampaignValidation(resultMessage, form);
+    }
+
+    if (resultCode === 1) {
+      if (!articleSignUp.classList.contains('out')) {
+        // attach events
+        questionnaireForm.addEventListener('change', makeDirty);
+        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire({
+          subscriber_id: response.subscriber_id,
+          email: response.email
+        }));
+
+        // show questionnaire
+        articleSignUp.classList.add('out');
+        articleQuestionnaire.classList.add('in');
+
+        // for tracking and conversions
+        fbq('track', 'Lead');
+        ga('send', 'event', 'signUp', 'submit');
+        goog_report_conversion();
+      } else {
+        // else show confirmation
+        articleQuestionnaire.classList.add('out');
+        articleConfirm.classList.add('in');
+      }
+    }
+
+    toggleEditing(form, 'enable'); // re-enables form
+  };
+}
+
+function submitSignUp(e) {
+  var form = e.target;
+  e.preventDefault();
+
+  if (form.checkValidity()) {
+    var scm = document.getElementsByName('scm');
+    var scmName = '';
+    var formData;
+
+    toggleEditing(form, 'disable'); // disables inputs
+
+    // jsonify form data
+    for(var i = 0; i < scm.length; i++) {
+      if(scm[i].checked) {
+        scmName = scm[i].value;
+      }
+    }
+
+    formData = {
+      scm: scmName,
+      organization: form[2].value,
+      email: form[3].value
     };
 
-    if (!window.fbq) {
-      // Stub fbq
-      window.fbq = function () {}
+    formData = JSON.stringify(formData); // convert to JSON
+    xhrSubmit(e, form, formData);
+  }
+}
+
+function setupSubmitQuestionnaire(response) {
+  return function (e) {
+    var form = e.target;
+    e.preventDefault();
+
+    if (form.checkValidity()) {
+      var formData;
+
+      toggleEditing(form, 'disable'); // disables inputs
+
+      formData = {
+        email: response.email,
+        subscriber_id: response.subscriber_id,
+        reason: form[0].value
+      };
+
+      formData = JSON.stringify(formData); // convert to JSON
+      xhrSubmit(e, form, formData);
     }
+  };
+}
 
-    if (!whitelisted) {
-      // set sign up form error
-      document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
+function activeCampaignValidation(resultMessage, form) {
+  var thisArticle = form.parentNode;
+  var thisErrorWell = thisArticle.getElementsByClassName('well-error')[0];
+  var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
+  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
 
-      // open sign up form
-      location.hash = '#sign-up';
+  // change error text from active campaign (checks first sentence)
+  switch (firstSentence) {
+    case 'You selected a list that does not allow duplicates':
+      resultMessage = 'That email has already been used to sign up.';
+      break;
+    case 'Contact Email Address is not valid':
+      resultMessage = 'That email address is not valid.';
+      break;
+    case 'Your Organization or Team is invalid':
+      resultMessage = 'We couldn’t find that organization or team.';
+      break;
+  }
 
-      // facebook tracking
-      fbq('track', 'ViewContent', {
-        action: 'notWhitelisted'
-      });
+  thisErrorText.innerHTML = resultMessage;
+  thisErrorWell.setAttribute('style', 'display: flex !important');
+}
+
+// check scrolling
+function checkScroll() {
+  var dBody = document.body;
+  if (location.hash === '#sign-up') {
+    dBody.classList.add('modal-open');
+  } else {
+    dBody.classList.remove('modal-open');
+  }
+}
+
+// events
+window.addEventListener('load', function(){
+  var i;
+  var signUpForm = document.getElementsByClassName('form-sign-up')[0];
+  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
+  var imgFlip = document.getElementsByClassName('img-rounded');
+  var theseInputs;
+
+  checkScroll();
+  window.addEventListener('hashchange', checkScroll);
+
+  // modal forms
+  if (signUpForm) {
+    signUpForm.addEventListener('change', makeDirty);
+    signUpForm.addEventListener('submit', submitSignUp);
+
+    theseInputs = signUpForm.getElementsByTagName('input');
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].addEventListener('invalid', formInvalid);
+
+      if (theseInputs[i].classList.contains('input-radio')) {
+        theseInputs[i].addEventListener('change', updateLabel);
+      }
     }
-
-    // redirect
-    $http.get('/users/me', {
-      withCredentials: true
-    })
-      .then(function (user) {
-        var org;
-        try {
-          org = user.data.userOptions.uiState.previousLocation.org;
-        } catch (e) {
-          org = user.data.accounts.github.username;
-        }
-        var prevInstance;
-        try {
-          prevInstance = user.data.userOptions.uiState.previousLocation.instance;
-        } catch (e) {
-        }
-        var newURL = '/' + org;
-        if (prevInstance) {
-          newURL += '/' + prevInstance
-        }
-        $window.location = newURL;
-      });
-  });
+  }
+});
 </script>
-    <script>function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentElement.removeChild(r[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],r=document.getElementsByClassName("article-sign-up")[0],l=document.getElementsByClassName("article-questionnaire")[0],o=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var a=JSON.parse(i.responseText),n=a.result_code,d=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(d,t)),1===n&&(r.classList.contains("out")?(l.classList.add("out"),o.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),r.classList.add("out"),l.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion())),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(a.addEventListener("change",makeDirty),a.addEventListener("submit",submitSignUp),t=a.getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)});</script>
 
     <!--
-      Commit Hash: bf767859342cd5ada3db8bcb3129bdf25f50168a
-      Commit Time: Tue Apr 19 17:14:22 2016 -0700
+      Commit Hash: 1835ae112bf0316e99726130b7995e75bb315e4d
+      Commit Time: Wed Apr 20 18:48:32 2016 -0700
     -->
 
   </head><body class="page-landing page-product" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -79,6 +293,9 @@
   </symbol>
   <symbol id="icons-check" viewbox="0 0 14.5 10">
     <path d="M7.25,14a1,1,0,0,1-.707-0.293l-4.5-4.5A1,1,0,0,1,3.457,7.793L7.25,11.586l7.293-7.293a1,1,0,0,1,1.414,1.414l-8,8A1,1,0,0,1,7.25,14Z" transform="translate(-1.75 -4)"/>
+  </symbol>
+  <symbol id="icons-chevron-right" viewbox="0 0 11 18">
+    <polyline points="1 1 10 9 1 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
   <symbol id="icons-close" viewbox="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
@@ -219,18 +436,32 @@
     </p></div>
   </section>
 </article>
+      <a class="grid-block well well-anchor">
+  <img class="grid-block shrink img" src="images/integration-testing.gif" height="108" width="108">
+  <div class="grid-block vertical">
+    <p class="p">
+      <strong class="strong">Integration Testing</strong><br>
+      Run end-to-end tests for every code change automatically without managing environments.
+    </p>
+    <div class="a strong">How integration testing on Runnable works
+      <svg class="icons icons-chevron-right">
+        <use xlink:href="#icons-chevron-right"/>
+      </svg>
+    </div>
+  </div>
+</a>
     </main>
 
-    <div class="sign-up-box grid-block vertical">
+    <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
-  <p class="p text-center">Runnable is <strong class="strong">free</strong> during our preview.
-    <br>
-  </p>
-  <div class="p text-center underline popover-trigger hover">Infrastructure cost is always included.
-    <div class="popover top text-center">That means you don’t pay extra for server usage (AWS included)!</div>
+  <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br>
+    including infrastructure costs!
+  <div class="a strong">Sign Up
+    <svg class="icons icons-chevron-right">
+      <use xlink:href="#icons-chevron-right"/>
+    </svg>
   </div>
-  <a href="#sign-up" class="btn btn-md green grid-content shrink">Sign Up</a>
-</div>
+</p></a>
 
     <hr class="hr grid-container">
 
@@ -336,17 +567,84 @@
 </div>
 
 
-    <script data-cfasync="false">window.olark||function(e){var t=window,n=document,o="https:"==t.location.protocol?"https:":"http:",a=e.name,r="load",i=function(){function d(){c.P(r),t[a](r)}t[a]=function(){(c.s=c.s||[]).push(arguments)};for(var c=t[a]._={},l=e.methods.length;l--;)!function(e){t[a][e]=function(){t[a]("call",e,arguments)}}(e.methods[l]);c.l=e.loader,c.i=i,c.p={0:+new Date},c.P=function(e){c.p[e]=new Date-c.p[0]},t.addEventListener?t.addEventListener(r,d,!1):t.attachEvent("on"+r,d);var s=function(){function t(e){return e="head",["<",e,"></",e,"><",r,' onload="var d=',v,";d.getElementsByTagName('head')[0].",l,"(d.",f,"('script')).",m,"='",o,"//",c.l,"'",'"',"></",r,">"].join("")}var r="body",i=n[r];if(!i)return setTimeout(s,100);c.P(1);var d,l="appendChild",f="createElement",m="src",p=n[f]("div"),u=p[l](n[f](a)),h=n[f]("iframe"),v="document",w="domain";p.style.display="none",i.insertBefore(p,i.firstChild).id=a,h.frameBorder="0",h.id=a+"-loader",/MSIE[ ]+6/.test(navigator.userAgent)&&(h.src="javascript:false"),h.allowTransparency="true",u[l](h);try{h.contentWindow[v].open()}catch(y){e[w]=n[w],d="javascript:var d="+v+".open();d.domain='"+n.domain+"';",h[m]=d+"void(0);"}try{var g=h.contentWindow[v];g.write(t()),g.close()}catch(E){h[m]=d+'d.write("'+t().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}c.P(2)};s()};i()}({loader:"static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]}),olark.identify("1268-458-10-2188");</script>
+    <script data-cfasync="false">
+/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+f[z]=function(){
+(a.s=a.s||[]).push(arguments)};var a=f[z]._={
+},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+0:+new Date};a.P=function(u){
+a.p[u]=new Date-a.p[0]};function s(){
+a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+b.contentWindow[g].open()}catch(w){
+c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('1268-458-10-2188');/*]]>*/
+</script>
 <noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 
-<script>goog_snippet_vars=function(){var o=window;o.google_conversion_id=927781586,o.google_conversion_label="3G2tCK_GoGUQ0qWzugM",o.google_remarketing_only=!1},goog_report_conversion=function(o){goog_snippet_vars(),window.google_conversion_format="3";var n=new Object;n.onload_callback=function(){"undefined"!=typeof o&&(window.location=o)};var e=window.google_trackConversion;"function"==typeof e&&e(n)};</script>
+<script>
+  /* <![CDATA[ */
+  goog_snippet_vars = function() {
+    var w = window;
+    w.google_conversion_id = 927781586;
+    w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
+    w.google_remarketing_only = false;
+  }
+  // DO NOT CHANGE THE CODE BELOW.
+  goog_report_conversion = function(url) {
+    goog_snippet_vars();
+    window.google_conversion_format = "3";
+    var opt = new Object();
+    opt.onload_callback = function() {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    }
+    var conv_handler = window['google_trackConversion'];
+    if (typeof(conv_handler) == 'function') {
+      conv_handler(opt);
+    }
+  }
+  /* ]]> */
+</script>
 <script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
-<script>!function(e,n,t,c,o,a,f){e.fbq||(o=e.fbq=function(){o.callMethod?o.callMethod.apply(o,arguments):o.queue.push(arguments)},e._fbq||(e._fbq=o),o.push=o,o.loaded=!0,o.version="2.0",o.queue=[],a=n.createElement(t),a.async=!0,a.src=c,f=n.getElementsByTagName(t)[0],f.parentNode.insertBefore(a,f))}(window,document,"script","//connect.facebook.net/en_US/fbevents.js"),fbq("init","761302660669573"),fbq("track","PageView");</script>
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','//connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '761302660669573');
+  fbq('track', "PageView");
+</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"></noscript>
 
-<script>!function(e,a,t,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=a.createElement(t),s=a.getElementsByTagName(t)[0],o.async=1,o.src=n,s.parentNode.insertBefore(o,s)}(window,document,"script","//www.google-analytics.com/analytics.js","ga"),ga("create","UA-59677301-1","auto"),ga("send","pageview");</script>
+<script>
+  // google analytics
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+  ga("create", "UA-59677301-1", "auto");
+  ga("send", "pageview");
+  // end google analytics
+</script>
 <script src="//platform.twitter.com/oct.js"></script>
-<script>twttr.conversion.trackPid("nuqve",{tw_sale_amount:0,tw_order_quantity:0});</script>
+<script>twttr.conversion.trackPid('nuqve', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=nuqve&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0">
 <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=nuqve&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0">
