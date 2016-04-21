@@ -37,6 +37,14 @@
 
     &.main {
       margin-top: 0;
+
+      .well-anchor {
+        min-width: 660px;
+
+        @include media(sm) {
+          min-width: none;
+        }
+      }
     }
   }
 
