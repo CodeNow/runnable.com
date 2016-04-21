@@ -1,32 +1,15 @@
 .sign-up-box {
-  align-items: center;
-  background: $gray-lighterest;
-  border: 1px solid $gray-lighter;
-  border-radius: $input-border-radius-lg;
-  color: $gray;
-  margin: 0 auto 60px;
+  align-items: flex-start;
+  margin-bottom: 150px;
   overflow: visible;
-  padding: 21px 30px;
+  padding-left: 60px;
   position: relative;
-  width: 390px;
-
-  @include media(xxs) {
-    font-size: 16px;
-    width: 330px;
-  }
-
-  @include media(xxxs) {
-    padding: 21px 15px;
-    width: 300px;
-  }
 
   .img {
+    bottom: -8px;
     height: 85px;
-    left: 0;
-    margin: 0 auto;
     position: absolute;
-    right: 0;
-    top: -77px;
+    right: 15px;
     width: 150px;
   }
 
@@ -39,6 +22,7 @@
   }
 
   .popover-trigger {
+    color: $gray;
     cursor: pointer;
 
     @include media(xxs) {
@@ -47,7 +31,7 @@
   }
 
   .popover {
-    bottom: 100%;
+    bottom: 30px;
     font-size: 15px;
     width: 270px;
   }
