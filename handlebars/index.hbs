@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/index.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script ugly=true>
+    <script>
   var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
@@ -64,7 +64,7 @@
       });
   });
 </script>
-    <script>
+    <script ugly>
       // sign up form
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
