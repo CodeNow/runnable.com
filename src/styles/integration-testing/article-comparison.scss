@@ -1,0 +1,37 @@
+.article-comparison {
+  background: linear-gradient($gray-lightest, $gray-lighterest);
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+  margin-top: 180px;
+  padding-top: 0;
+
+  .grid-container:first-child {
+    margin-top: -90px;
+  }
+
+  .card {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.075);
+    flex: 1 1 50%;
+    margin: 15px;
+    padding: 30px;
+  }
+
+  .img {
+    margin: 0 auto 15px;
+    width: auto;
+  }
+
+  .p {
+
+    &.strong {
+      line-height: 1.4;
+    }
+
+    + .p {
+      font-size: 16px;
+    }
+  }
+}
