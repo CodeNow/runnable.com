@@ -1,12 +1,7 @@
 .well {
-  background: $gray-lighterest;
   border: 1px solid $gray-lighter;
-  border-radius: $input-border-radius;
+  border-radius: $input-border-radius-lg;
   color: $gray;
-  display: table;
-  font-size: 16px;
-  margin: 0 auto;
-  padding: 6px 6px 6px 12px;
 
   &.grid-block {
 
@@ -21,15 +16,6 @@
     }
   }
 
-  .btn {
-    border-width: 1px;
-    margin-left: 6px;
-
-    @include media(xs) {
-      top: 0;
-    }
-  }
-
   .icons {
     height: 12px;
     margin-top: 1px;
@@ -40,12 +26,12 @@
 }
 
 .well-anchor {
-  background: $white;
-  border-radius: $input-border-radius-lg;
   color: $gray-dark;
   cursor: pointer;
   display: flex;
   font-size: 21px;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 660px;
   padding: 30px;
 

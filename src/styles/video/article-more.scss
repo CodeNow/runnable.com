@@ -59,6 +59,23 @@
     }
   }
 
+  // code snippets link
+  .well {
+    margin-bottom: 30px;
+    margin-top: 150px;
+    max-width: 390px;
+    padding: 21px 30px 21px 21px;
+
+    .img {
+      margin-right: 21px;
+      opacity: .75;
+    }
+
+    .p {
+      margin: 0;
+    }
+  }
+
   .footer {
     margin-bottom: 30px;
   }
