@@ -77,6 +77,10 @@
     .img {
       margin-right: 21px;
       opacity: .75;
+
+      @include media(xs) {
+        margin-right: 0;
+      }
     }
 
     .p {

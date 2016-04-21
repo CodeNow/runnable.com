@@ -72,5 +72,9 @@
     color: $purple-light;
     font-size: 14px;
     white-space: nowrap;
+
+    @include media(xxxs) {
+      font-size: 12px;
+    }
   }
 }
