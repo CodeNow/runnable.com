@@ -26,11 +26,11 @@
 
     @include media(md) {
       flex: 0 0 50%;
+      padding: 30px 21px;
     }
 
     @include media(sm) {
       flex: 0 0 100%;
-      padding: 30px;
     }
   }
 
