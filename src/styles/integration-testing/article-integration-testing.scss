@@ -1,0 +1,24 @@
+.article-integration-testing {
+
+  .grid-container-sm {
+    margin-bottom: 30px;
+  }
+
+  .grid-wrapper {
+    flex-wrap: wrap;
+
+    > .grid-block {
+      flex: 0 0 50%;
+      padding: 30px;
+    }
+  }
+
+  .h3 {
+    font-size: 19px;
+    margin: 0 0 15px;
+
+    + .p {
+      margin: 0;
+    }
+  }
+}
