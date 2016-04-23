@@ -2,6 +2,13 @@
 
   .grid-container-sm {
     margin-bottom: 30px;
+
+    @include media(xxs) {
+      &.grid-container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 
   .grid-wrapper {
@@ -13,7 +20,16 @@
 
       @include media(sm) {
         flex: 0 0 100%;
+        padding: 30px 60px;
         text-align: center;
+      }
+
+      @include media(xs) {
+        padding: 30px;
+      }
+
+      @include media(xxs) {
+        padding: 30px 0;
       }
     }
   }
@@ -30,6 +46,12 @@
 
     + .p {
       margin: 0;
+    }
+  }
+
+  .p {
+    @include media(xs) {
+      font-size: 16px;
     }
   }
 }

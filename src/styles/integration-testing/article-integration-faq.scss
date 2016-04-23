@@ -37,6 +37,10 @@
     @include media(xs) {
       padding: 30px;
     }
+
+    @include media(xxs) {
+      padding: 30px 0;
+    }
   }
 
   .h3 {
