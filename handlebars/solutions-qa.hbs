@@ -17,8 +17,7 @@
   app.controller('MainCtrl', function ($scope, $window, $http) {
     $scope.loginUrl = '{{{apiUrl}}}/auth/github?redirect={{{angularUrl}}}/?auth';
     $scope.data = {
-      embedActive: false,
-      hideUnauthorizedModal: whitelisted
+      embedActive: false
     };
 
     if (!window.fbq) {
@@ -29,6 +28,7 @@
     if (!whitelisted) {
       // set sign up form error
       document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
+      document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
 
       // open sign up form
       location.hash = '#sign-up';
@@ -453,7 +453,7 @@ window.addEventListener('load', function(){
   <div class="modal">
     <article class="article article-form article-sign-up">
   <!-- white list errors -->
-  <div class="well well-error" ng-show="!data.hideUnauthorizedModal">
+  <div class="well well-error">
     <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
     <span class="span well-text"></span>
   </div>
