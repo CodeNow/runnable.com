@@ -15,7 +15,6 @@
     margin-top: 150px; // override grid default
   }
 
-
   > .grid-block {
     @include media(sm) {
       flex-wrap: wrap;
@@ -26,7 +25,7 @@
       margin: 0;
     }
 
-    &:first-child{
+    &:first-child {
       margin-top: -60px;
       overflow: visible;
     }
