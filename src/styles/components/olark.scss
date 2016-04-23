@@ -1,6 +1,7 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
   border: $input-border solid $purple-lighter !important;
+  border-bottom-width: 0 !important;
   border-radius: $input-border-radius-lg $input-border-radius-lg 0 0 !important;
   box-shadow: 0 -1px 6px rgba($black,.05);
   font-family: $sans-serif !important;
