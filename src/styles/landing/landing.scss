@@ -87,6 +87,10 @@
 
     &.hr-footer {
       margin-top: 150px;
+
+      @include media(sm) {
+        margin-top: 60px;
+      }
     }
 
     @include media(xs) {
