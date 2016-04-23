@@ -295,11 +295,19 @@ function activeCampaignValidation(resultMessage, form) {
   thisErrorWell.setAttribute('style', 'display: flex !important');
 }
 
+function escModal(e) {
+  if (e.keyCode == 27) {
+    location.hash = '#';
+    document.removeEventListener('keydown', escModal);
+  }
+}
+
 // check scrolling
 function checkScroll() {
   var dBody = document.body;
   if (location.hash === '#sign-up') {
     dBody.classList.add('modal-open');
+    document.addEventListener('keydown', escModal);
   } else {
     dBody.classList.remove('modal-open');
   }
@@ -702,11 +710,7 @@ window.addEventListener('load', function(){
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
-  <div class="a strong">Sign Up
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-  </div>
+  <div class="btn btn-sm green">Sign Up</div>
 </a>
 
     <hr class="hr grid-container hr-footer">

@@ -295,11 +295,19 @@ function activeCampaignValidation(resultMessage, form) {
   thisErrorWell.setAttribute('style', 'display: flex !important');
 }
 
+function escModal(e) {
+  if (e.keyCode == 27) {
+    location.hash = '#';
+    document.removeEventListener('keydown', escModal);
+  }
+}
+
 // check scrolling
 function checkScroll() {
   var dBody = document.body;
   if (location.hash === '#sign-up') {
     dBody.classList.add('modal-open');
+    document.addEventListener('keydown', escModal);
   } else {
     dBody.classList.remove('modal-open');
   }

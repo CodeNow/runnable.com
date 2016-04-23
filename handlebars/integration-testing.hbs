@@ -295,11 +295,19 @@ function activeCampaignValidation(resultMessage, form) {
   thisErrorWell.setAttribute('style', 'display: flex !important');
 }
 
+function escModal(e) {
+  if (e.keyCode == 27) {
+    location.hash = '#';
+    document.removeEventListener('keydown', escModal);
+  }
+}
+
 // check scrolling
 function checkScroll() {
   var dBody = document.body;
   if (location.hash === '#sign-up') {
     dBody.classList.add('modal-open');
+    document.addEventListener('keydown', escModal);
   } else {
     dBody.classList.remove('modal-open');
   }
@@ -399,28 +407,48 @@ window.addEventListener('load', function(){
 
     <main class="grid-block vertical main">
       <article class="grid-block vertical article hero">
-  <h1 class="grid-content h1 text-center">Integration Testing</h1>
-  <p class="grid-content p text-center">Run end-to-end tests for every code change automatically<br>
+  <h1 class="grid-content h1 text-center">Integration testing, simplified.</h1>
+  <p class="grid-content p text-center">Run end-to-end tests for every code change automatically<br class="hidden-xs">
     without managing environments.
 </article>
-      <article class="grid-block vertical grid-container grid-container-sm article">
-  <h2 class="grid-content h2 align-center strong">End-to-end integration tests for every branch.</h2>
-  <p class="grid-content p align-center">Run tests on a full-stack environment every time you update a branch—complete with seeded databases, caches, service discovery, etc. Find issues during development that were only possible to find during staging or production.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">Support for Selenium-based tests.</h2>
-  <p class="grid-content p align-center">First-class support for Selenium/Webdriver tests is included. Run comprehensive tests automatically after a branch update, and spot regressions by reviewing screenshots and videos.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">Automated test environment management.</h2>
-  <p class="grid-content p align-center">Environments are automatically created when a new branch is created, and they’re discarded when the branch is deleted or becomes inactive. Caching keeps this fast by reducing the number of builds needed, and new builds always have at least 1 CPU core.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">Notifications on pull requests & Slack.</h2>
-  <p class="grid-content p align-center">Give visibility to your entire team right where they need it. Integration test results are displayed on the Pull Requests page, along with the environment URL to speed up reviews. Enable Slack integration to be instantly notified when a test passes or fails.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">Docker Compose support.</h2>
-  <p class="grid-content p align-center">Runnable uses native Docker components under the hood (Compose, Registry, Swarm), so it’s easy to pull in Dockerfiles and a docker-compose.yml file to get started right away. Running full Docker eliminates the risk of vendor lock-in. You’re always able to export your assets.
+      <article class="grid-block vertical article article-integration-testing">
+  <div class="grid-block vertical grid-container grid-container-sm text-center">
+    <h2 class="grid-content h2 align-center strong">End-to-end integration<br>
+      tests for every branch.</h2>
+    <p class="grid-content p align-center">Run tests on a full-stack environment every time you update a branch—complete with seeded databases, caches, service discovery, etc. Find issues during development that were only possible to find during staging or production.
+  </div>
+  <div class="grid-block grid-container grid-wrapper">
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-selenium.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Support for Selenium-based tests.</h3>
+      <p class="grid-content shrink p align-center">First-class support for Selenium/Webdriver tests is included. Run comprehensive tests automatically after a branch update, and spot regressions by reviewing screenshots and videos.
+    </div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/icons-automatic.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Automated test environment management.</h3>
+      <p class="grid-content shrink p align-center">Environments are automatically created when a new branch is created, and they’re discarded when the branch is deleted or becomes inactive. Caching keeps this fast by reducing the number of builds needed, and new builds always have at least 1 CPU core.
+    </div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-slack.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Notifications on pull requests & Slack.</h3>
+      <p class="grid-content shrink p align-center">Give visibility to your entire team right where they need it. Integration test results are displayed on the Pull Requests page, along with the environment URL to speed up reviews. Enable Slack integration to be instantly notified when a test passes or fails.
+    </div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-docker.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Docker Compose support.</h3>
+      <p class="grid-content shrink p align-center">Runnable uses native Docker components under the hood (Compose, Registry, Swarm), so it’s easy to pull in Dockerfiles and a docker-compose.yml file to get started right away. Running full Docker eliminates the risk of vendor lock-in. You’re always able to export your assets.
+    </div>
+  <div>
 </article>
-      <article class="article article-comparison">
-  <div class="grid-block grid-container">
+      <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
+  <img class="img" src="images/runnabear-hello.png">
+  <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
+    including infrastructure costs!
+  <div class="btn btn-sm green">Sign Up</div>
+</a>
+
+      <article class="grid-block vertical article article-comparison">
+  <div class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-jenkins.svg" height="60">
       <p class="grid-content shrink p strong text-center">How is Runnable different from<br>
@@ -434,12 +462,12 @@ window.addEventListener('load', function(){
       <p class="grid-content shrink p text-center">Runnable enables end-to-end testing on top of automated unit and functional test running and building of artifacts. Runnable also charges per developer, not per resources used at any given time.
     </div>
   </div>
-  <div class="grid-block grid-container">
+  <div class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-sauce-labs.png" height="60">
       <p class="grid-content shrink p strong text-center">How is this different from<br>
         Sauce Labs?
-      <p class="grid-content shrink p text-center">Runnable makes it easy to support many forms of testing by always having a complete, isolated environment to test against with every code change. This enables us to support running and reporting Selenium / Webdriver tests.
+      <p class="grid-content shrink p text-center">Runnable makes it easy to support many forms of testing by always having a complete, isolated environment to test against with every code change. This enables us to support running and reporting Selenium or Webdriver tests.
     </div>
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-docker-cloud.png" height="60">
@@ -449,38 +477,26 @@ window.addEventListener('load', function(){
     </div>
   </div>
 </article>
-      <article class="grid-block vertical grid-container grid-container-sm article">
-  <h2 class="grid-content h2 align-center strong">Do I need to use Docker?</h2>
-  <p class="grid-content p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">How secure is my code?</h2>
-  <p class="grid-content p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
-  <hr class="hr">
-  <h2 class="grid-content h2 align-center strong">What does the setup process look like?</h2>
-  <p class="grid-content p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
-</article>
-      <a class="grid-block well well-anchor" href="integration-testing.html">
-  <img class="grid-block shrink img" src="images/production.gif" height="108" width="108">
-  <div class="grid-block vertical">
-    <p class="p">
-      <strong class="strong">Production</strong><br>
-      Your environments are ready to push directly to production from Runnable.
-    <div class="a strong">How deploying to production works on Runnable
-      <svg class="icons icons-chevron-right">
-        <use xlink:href="#icons-chevron-right">
-      </svg>
-    </div>
+      <article class="grid-block article article-integration-faq">
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
+    <p class="grid-content shrink p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
   </div>
-</a>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How secure is my code?</h3>
+    <p class="grid-content shrink p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
+  </div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> What does the setup process look like?</h3>
+    <p class="grid-content shrink p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
+  </div>
+</article>
+
       <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
-  <div class="a strong">Sign Up
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-  </div>
+  <div class="btn btn-sm green">Sign Up</div>
 </a>
 
     </main>

@@ -64,11 +64,11 @@
       });
   });
 </script>
-    <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentElement.removeChild(r[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],r=document.getElementsByClassName("article-sign-up")[0],l=document.getElementsByClassName("article-questionnaire")[0],o=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var a=JSON.parse(i.responseText),n=a.result_code,d=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(d,t)),1===n&&(r.classList.contains("out")?(l.classList.add("out"),o.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),r.classList.add("out"),l.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion())),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function checkScroll(){var e=document.body;"#sign-up"===location.hash?e.classList.add("modal-open"):e.classList.remove("modal-open")}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(a.addEventListener("change",makeDirty),a.addEventListener("submit",submitSignUp),t=a.getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)});</script>
+    <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentElement.removeChild(o[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],o=document.getElementsByClassName("article-sign-up")[0],r=document.getElementsByClassName("article-questionnaire")[0],l=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var a=JSON.parse(i.responseText),n=a.result_code,d=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(d,t)),1===n&&(o.classList.contains("out")?(r.classList.add("out"),l.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),o.classList.add("out"),r.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion())),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important")}function escModal(e){27==e.keyCode&&(location.hash="#",document.removeEventListener("keydown",escModal))}function checkScroll(){var e=document.body;"#sign-up"===location.hash?(e.classList.add("modal-open"),document.addEventListener("keydown",escModal)):e.classList.remove("modal-open")}window.addEventListener("load",function(){var e,t,a=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),a)for(a.addEventListener("change",makeDirty),a.addEventListener("submit",submitSignUp),t=a.getElementsByTagName("input"),e=0;e<t.length;e++)t[e].addEventListener("invalid",formInvalid),t[e].classList.contains("input-radio")&&t[e].addEventListener("change",updateLabel)});</script>
 
     <!--
-      Commit Hash: a787c699d71cdab4bb25cf60f4e7804cf8649ba0
-      Commit Time: Thu Apr 21 15:37:44 2016 -0700
+      Commit Hash: 6659643ede205dc82fe339b5f0645b37cc1baf8d
+      Commit Time: Fri Apr 22 18:04:23 2016 -0700
     -->
 
   </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -131,28 +131,48 @@
 
     <main class="grid-block vertical main">
       <article class="grid-block vertical article hero">
-  <h1 class="grid-content h1 text-center">Integration Testing</h1>
-  <p class="grid-content p text-center">Run end-to-end tests for every code change automatically<br>
+  <h1 class="grid-content h1 text-center">Integration testing, simplified.</h1>
+  <p class="grid-content p text-center">Run end-to-end tests for every code change automatically<br class="hidden-xs">
     without managing environments.
 </p></article>
-      <article class="grid-block vertical grid-container grid-container-sm article">
-  <h2 class="grid-content h2 align-center strong">End-to-end integration tests for every branch.</h2>
-  <p class="grid-content p align-center">Run tests on a full-stack environment every time you update a branch—complete with seeded databases, caches, service discovery, etc. Find issues during development that were only possible to find during staging or production.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">Support for Selenium-based tests.</h2>
-  <p class="grid-content p align-center">First-class support for Selenium/Webdriver tests is included. Run comprehensive tests automatically after a branch update, and spot regressions by reviewing screenshots and videos.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">Automated test environment management.</h2>
-  <p class="grid-content p align-center">Environments are automatically created when a new branch is created, and they’re discarded when the branch is deleted or becomes inactive. Caching keeps this fast by reducing the number of builds needed, and new builds always have at least 1 CPU core.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">Notifications on pull requests & Slack.</h2>
-  <p class="grid-content p align-center">Give visibility to your entire team right where they need it. Integration test results are displayed on the Pull Requests page, along with the environment URL to speed up reviews. Enable Slack integration to be instantly notified when a test passes or fails.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">Docker Compose support.</h2>
-  <p class="grid-content p align-center">Runnable uses native Docker components under the hood (Compose, Registry, Swarm), so it’s easy to pull in Dockerfiles and a docker-compose.yml file to get started right away. Running full Docker eliminates the risk of vendor lock-in. You’re always able to export your assets.
-</p></article>
-      <article class="article article-comparison">
-  <div class="grid-block grid-container">
+      <article class="grid-block vertical article article-integration-testing">
+  <div class="grid-block vertical grid-container grid-container-sm text-center">
+    <h2 class="grid-content h2 align-center strong">End-to-end integration<br>
+      tests for every branch.</h2>
+    <p class="grid-content p align-center">Run tests on a full-stack environment every time you update a branch—complete with seeded databases, caches, service discovery, etc. Find issues during development that were only possible to find during staging or production.
+  </p></div>
+  <div class="grid-block grid-container grid-wrapper">
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-selenium.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Support for Selenium-based tests.</h3>
+      <p class="grid-content shrink p align-center">First-class support for Selenium/Webdriver tests is included. Run comprehensive tests automatically after a branch update, and spot regressions by reviewing screenshots and videos.
+    </p></div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/icons-automatic.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Automated test environment management.</h3>
+      <p class="grid-content shrink p align-center">Environments are automatically created when a new branch is created, and they’re discarded when the branch is deleted or becomes inactive. Caching keeps this fast by reducing the number of builds needed, and new builds always have at least 1 CPU core.
+    </p></div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-slack.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Notifications on pull requests & Slack.</h3>
+      <p class="grid-content shrink p align-center">Give visibility to your entire team right where they need it. Integration test results are displayed on the Pull Requests page, along with the environment URL to speed up reviews. Enable Slack integration to be instantly notified when a test passes or fails.
+    </p></div>
+    <div class="grid-block vertical">
+      <img class="img" src="images/logos/logo-docker.svg" height="60" width="60">
+      <h3 class="grid-content shrink h3 align-center strong">Docker Compose support.</h3>
+      <p class="grid-content shrink p align-center">Runnable uses native Docker components under the hood (Compose, Registry, Swarm), so it’s easy to pull in Dockerfiles and a docker-compose.yml file to get started right away. Running full Docker eliminates the risk of vendor lock-in. You’re always able to export your assets.
+    </p></div>
+  <div>
+</div></div></article>
+      <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
+  <img class="img" src="images/runnabear-hello.png">
+  <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
+    including infrastructure costs!
+  <div class="btn btn-sm green">Sign Up</div>
+</p></a>
+
+      <article class="grid-block vertical article article-comparison">
+  <div class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-jenkins.svg" height="60">
       <p class="grid-content shrink p strong text-center">How is Runnable different from<br>
@@ -166,12 +186,12 @@
       </p><p class="grid-content shrink p text-center">Runnable enables end-to-end testing on top of automated unit and functional test running and building of artifacts. Runnable also charges per developer, not per resources used at any given time.
     </p></div>
   </div>
-  <div class="grid-block grid-container">
+  <div class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-sauce-labs.png" height="60">
       <p class="grid-content shrink p strong text-center">How is this different from<br>
         Sauce Labs?
-      </p><p class="grid-content shrink p text-center">Runnable makes it easy to support many forms of testing by always having a complete, isolated environment to test against with every code change. This enables us to support running and reporting Selenium / Webdriver tests.
+      </p><p class="grid-content shrink p text-center">Runnable makes it easy to support many forms of testing by always having a complete, isolated environment to test against with every code change. This enables us to support running and reporting Selenium or Webdriver tests.
     </p></div>
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-docker-cloud.png" height="60">
@@ -181,38 +201,26 @@
     </p></div>
   </div>
 </article>
-      <article class="grid-block vertical grid-container grid-container-sm article">
-  <h2 class="grid-content h2 align-center strong">Do I need to use Docker?</h2>
-  <p class="grid-content p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">How secure is my code?</h2>
-  <p class="grid-content p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
-  <hr class="hr">
-  </p><h2 class="grid-content h2 align-center strong">What does the setup process look like?</h2>
-  <p class="grid-content p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
-</p></article>
-      <a class="grid-block well well-anchor" href="integration-testing.html">
-  <img class="grid-block shrink img" src="images/production.gif" height="108" width="108">
-  <div class="grid-block vertical">
-    <p class="p">
-      <strong class="strong">Production</strong><br>
-      Your environments are ready to push directly to production from Runnable.
-    <div class="a strong">How deploying to production works on Runnable
-      <svg class="icons icons-chevron-right">
-        <use xlink:href="#icons-chevron-right"/>
-      </svg>
-    </div>
+      <article class="grid-block article article-integration-faq">
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
+    <p class="grid-content shrink p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
   </p></div>
-</a>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How secure is my code?</h3>
+    <p class="grid-content shrink p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
+  </p></div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> What does the setup process look like?</h3>
+    <p class="grid-content shrink p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
+  </p></div>
+</article>
+
       <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
-  <div class="a strong">Sign Up
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right"/>
-    </svg>
-  </div>
+  <div class="btn btn-sm green">Sign Up</div>
 </p></a>
 
     </main>
