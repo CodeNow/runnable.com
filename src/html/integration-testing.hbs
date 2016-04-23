@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Your team has a staging problem. — Runnable</title>
+    <title>Integration testing, simplified. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -14,7 +14,6 @@
     @@include('../js/index.hbs')
     <script ugly>
       @@include('../js/signup.js')
-      @@include('../js/youtube.js')
     </script>
 
     <!--
@@ -22,19 +21,21 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('components/icons.hbs')
     @@include('components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('html/video/video.hbs')
-      @@include('html/video/video-hero.hbs')
-      @@include('html/video/article-more.hbs')
+      @@include('html/integration-testing/integration-testing-hero.hbs')
+      @@include('html/integration-testing/article-integration-testing.hbs')
+      @@include('components/signup.hbs')
+      @@include('html/integration-testing/article-integration-comparison.hbs')
+      @@include('html/integration-testing/article-integration-faq.hbs')
+      @@include('components/signup.hbs')
     </main>
 
+    @@include('components/footer.hbs')
     @@include('components/form-modal.hbs')
-
-    <script async src="js/external/modernizr.js"></script>
 
     @@include('../js/external/external.html')

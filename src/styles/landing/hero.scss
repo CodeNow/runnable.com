@@ -40,7 +40,9 @@
     display: table;
     margin: 0 auto;
     padding: 0 30px;
+    position: relative;
     text-shadow: 0 0 6px rgba($black,.3);
+    z-index: 1;
   }
 
   .p {

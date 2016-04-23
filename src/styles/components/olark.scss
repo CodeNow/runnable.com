@@ -1,10 +1,25 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
   border: $input-border solid $purple-lighter !important;
+  border-bottom-width: 0 !important;
   border-radius: $input-border-radius-lg $input-border-radius-lg 0 0 !important;
   box-shadow: 0 -1px 6px rgba($black,.05);
   font-family: $sans-serif !important;
+  margin: 0 30px !important;
   z-index: $z-modal - 1 !important;
+
+  @include media(xs) {
+    left: 0 !important;
+    width: auto !important;
+  }
+
+  @include media(xxs) {
+    margin: 0 15px !important;
+  }
+}
+
+#habla_window_div #habla_middle_div {
+  padding: 6px 10px !important;
 }
 
 .habla_button:hover {
