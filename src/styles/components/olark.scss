@@ -1,9 +1,9 @@
 // scss-lint:disable IdSelector SelectorFormat ImportantRule
 #habla_window_div {
-  border: $input-border solid $purple-lighter !important;
+  border: $input-border solid $purple-light !important;
   border-bottom-width: 0 !important;
   border-radius: $input-border-radius-lg $input-border-radius-lg 0 0 !important;
-  box-shadow: 0 -1px 6px rgba($black,.05);
+  box-shadow: 0 -1px 3px rgba($black,.1);
   font-family: $sans-serif !important;
   margin: 0 30px !important;
   z-index: $z-modal - 1 !important;
@@ -49,7 +49,7 @@
 }
 
 #habla_oplink_a {
-  color: $purple-lighter !important;
+  color: $purple-light !important;
 
   &:hover,
   &:active {
@@ -136,7 +136,7 @@
 // links
 #habla_window_div #habla_panel_div #habla_expanded_div a,
 #habla_window_div #habla_panel_div #habla_conversation_div a {
-  color: $purple-lighter !important;
+  color: $purple-light !important;
   text-decoration: underline;
 }
 
