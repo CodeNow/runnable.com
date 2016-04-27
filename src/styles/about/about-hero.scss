@@ -1,6 +1,10 @@
-@include media(sm) {
-  .about-hero .p {
-    max-width: 420px;
+.about-hero {
+  background: linear-gradient($purple-light, $purple, $purple-dark);
+
+  .p {
+    @include media(sm) {
+      max-width: 420px;
+    }
   }
 }
 
