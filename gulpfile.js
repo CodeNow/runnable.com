@@ -108,7 +108,8 @@ gulp.task('sass', function() {
       console.log(err.message);
     })
     .pipe(autoprefixer({
-      browsers: ['last 2 versions']
+      browsers: ['last 2 versions'],
+      remove: false
     }))
     .pipe(gulp.dest(sassDist));
 });
