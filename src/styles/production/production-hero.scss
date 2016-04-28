@@ -2,4 +2,9 @@
   // scss-lint:disable ColorVariable
   background: linear-gradient($purple-light, #d48876);
   // scss-lint:enable ColorVariable
+
+  &::after {
+    filter: brightness(1.3);
+    opacity: .5;
+  }
 }

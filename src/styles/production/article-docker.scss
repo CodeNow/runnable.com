@@ -1,0 +1,27 @@
+$regedit-lighter: #e4ffff;
+$regedit-light: #aae0e0;
+$regedit-dark: #006e6e;
+$docker-lighter: #f0fcff;
+$docker-light: #cbf5ff;
+
+// scss-lint:disable ColorVariable
+.article-docker {
+  background: linear-gradient($docker-lighter, $regedit-lighter);
+  border: 1px solid;
+  border-bottom-color: $regedit-light;
+  border-left-color: #bcf0f5;
+  border-radius: $input-border-radius-lg;
+  border-right-color: #bcf0f5;
+  border-top-color: $docker-light;
+  margin: 0 auto 90px;
+  padding: 90px;
+
+  > .section + .section {
+    margin-top: 90px;
+  }
+
+  .img {
+    margin-right: 30px;
+  }
+}
+// scss-lint:enable ColorVariable

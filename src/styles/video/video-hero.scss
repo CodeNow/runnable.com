@@ -16,6 +16,10 @@
     height: 376px;
   }
 
+  &::after {
+    opacity: .5;
+  }
+
   .h1 {
     margin: 0 auto 6px;
     max-width: 510px;
