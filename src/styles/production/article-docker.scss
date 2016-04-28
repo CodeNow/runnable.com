@@ -1,26 +1,29 @@
-$regedit-lighter: #e4ffff;
-$regedit-light: #aae0e0;
-$regedit-dark: #006e6e;
-$docker-lighter: #f0fcff;
-$docker-light: #cbf5ff;
-
 // scss-lint:disable ColorVariable
 .article-docker {
-  background: linear-gradient($docker-lighter, $regedit-lighter);
-  border: 1px solid;
-  border-bottom-color: $regedit-light;
-  border-left-color: #bcf0f5;
-  border-radius: $input-border-radius-lg;
-  border-right-color: #bcf0f5;
-  border-top-color: $docker-light;
-  margin: 0 auto 90px;
-  padding: 90px;
+  background: linear-gradient(#e1f9ff, #e4ffff);
+  border-bottom: 1px solid #cff7f7;
+  margin-bottom: 90px;
+  overflow: visible;
+  padding: 0 0 90px;
 
-  > .section + .section {
-    margin-top: 90px;
+  .section {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.075);
+    margin: -60px auto 0;
+    padding: 60px 60px 60px 45px;
+
+    > .grid-block + .grid-block {
+      margin-top: 60px;
+    }
   }
 
-  .img {
+  .img-container {
+    margin-right: 39px;
+  }
+
+  .img-regedit {
     margin-right: 30px;
   }
 }
