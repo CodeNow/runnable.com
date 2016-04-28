@@ -2,6 +2,11 @@
   margin-bottom: 60px;
   overflow: visible;
 
+  @include media(xs) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   > .grid-block {
     margin-top: -120px;
     overflow: visible;
@@ -20,6 +25,10 @@
     position: relative;
     width: 345px;
     z-index: 1;
+
+    @include media(xxxs) {
+      width: auto;
+    }
   }
 
   .img-box {
@@ -35,6 +44,12 @@
     right: 0;
     width: 120px;
 
+    @include media(xxxs) {
+      height: 105px;
+      padding: 21px;
+      width: 105px;
+    }
+
     &:first-child {
       right: auto;
     }
@@ -44,6 +59,11 @@
       top: -15px;
       width: 150px;
       z-index: 2;
+
+      @include media(xxxs) {
+        height: 135px;
+        width: 135px;
+      }
     }
 
     &:last-child {
@@ -57,5 +77,9 @@
 
   .p {
     max-width: 540px;
+
+    @include media(xxs) {
+      font-size: 16px;
+    }
   }
 }

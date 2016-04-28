@@ -59,5 +59,11 @@
       }
     }
   }
+
+  .p {
+    @include media(xs) {
+      font-size: 16px;
+    }
+  }
 }
 // scss-lint:enable ColorVariable
