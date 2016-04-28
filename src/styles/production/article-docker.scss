@@ -5,6 +5,11 @@
   overflow: visible;
   padding: 0 0 90px;
 
+  @include media(xs) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .section {
     background: $white;
     border: 1px solid $gray-lighter;
@@ -13,17 +18,45 @@
     margin: -60px auto 0;
     padding: 60px 60px 60px 45px;
 
-    > .grid-block + .grid-block {
-      margin-top: 60px;
+    @include media(xs) {
+      padding: 30px 15px;
+      text-align: center;
+    }
+
+    > .grid-block {
+
+      @include media(xs) {
+        align-items: center;
+        flex-direction: column;
+        padding: 0 15px;
+      }
+
+      + .grid-block {
+        margin-top: 60px;
+      }
     }
   }
 
   .img-container {
     margin-right: 39px;
+
+    @include media(xs) {
+      margin-right: 0;
+    }
   }
 
-  .img-regedit {
+  .img-regedit,
+  .img-dockerfile {
     margin-right: 30px;
+
+    @include media(xs) {
+      margin-bottom: 9px;
+      margin-right: 0;
+
+      &.img-regedit {
+        margin-left: 15px;
+      }
+    }
   }
 }
 // scss-lint:enable ColorVariable

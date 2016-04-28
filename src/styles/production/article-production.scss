@@ -7,6 +7,13 @@
     overflow: visible;
   }
 
+  .grid-container-sm {
+    @include media(xs) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
   .img-box-wrapper {
     height: 150px;
     margin: 0 auto 15px;
@@ -46,5 +53,9 @@
     .img {
       width: 100%;
     }
+  }
+
+  .p {
+    max-width: 540px;
   }
 }
