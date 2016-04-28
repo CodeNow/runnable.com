@@ -21,6 +21,7 @@
 
 // components
 @import "components/buttons";
+@import "components/faq";
 @import "components/header";
 @import "components/keyframes";
 @import "components/icons";
@@ -56,12 +57,10 @@
 @import "integration-testing/integration-testing-hero";
 @import "integration-testing/article-integration-testing";
 @import "integration-testing/article-comparison";
-@import "integration-testing/article-integration-faq";
 
 @import "production/production-hero";
 @import "production/article-production";
 @import "production/article-docker";
-@import "production/article-production-faq";
 
 @import "solutions/hero";
 

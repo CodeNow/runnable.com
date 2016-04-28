@@ -1,4 +1,5 @@
-.article-integration-faq {
+.article.article-faq {
+  flex-wrap: wrap;
   margin: 0 auto;
   max-width: $screen-lg;
   padding: 90px;
@@ -8,20 +9,16 @@
     padding-right: 60px;
   }
 
-  @include media(md) {
-    flex-wrap: wrap;
-  }
-
   @include media(sm) {
     padding: 60px 30px;
   }
 
   .question {
     flex: 0 0 33.33%;
-    padding: 0 30px;
+    padding: 30px;
 
     @include media(lg) {
-      padding: 0 21px;
+      padding: 30px 21px;
     }
 
     @include media(md) {
