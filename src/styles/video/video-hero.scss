@@ -1,4 +1,7 @@
 .video-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, $purple, #475496);
+  // scss-lint:enable ColorVariable
   height: 600px;
 
   @include media(sm) {
@@ -11,6 +14,10 @@
 
   @include media(xxs) {
     height: 376px;
+  }
+
+  &::after {
+    opacity: .5;
   }
 
   .h1 {

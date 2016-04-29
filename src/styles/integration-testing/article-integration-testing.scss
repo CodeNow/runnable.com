@@ -4,10 +4,8 @@
     margin-bottom: 30px;
 
     @include media(xxs) {
-      &.grid-container {
-        padding-left: 0;
-        padding-right: 0;
-      }
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 

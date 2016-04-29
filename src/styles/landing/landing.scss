@@ -36,12 +36,12 @@
       max-width: $screen-md - 30px;
       width: $screen-md - 30px;
     }
+  }
 
-    &.grid-container-sm {
-      max-width: 630px;
-      padding-left: 30px;
-      padding-right: 30px;
-    }
+  .grid-container-sm {
+    max-width: 630px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   > .grid-block + .grid-block {

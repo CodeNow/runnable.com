@@ -1,0 +1,69 @@
+// scss-lint:disable ColorVariable
+.article-docker {
+  background: linear-gradient(#e1f9ff, #e4ffff);
+  border-bottom: 1px solid #cff7f7;
+  overflow: visible;
+  padding: 0 0 90px;
+
+  @include media(xs) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .section {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.075);
+    margin: -60px auto 0;
+    max-width: 737px;
+    padding: 60px 60px 60px 45px;
+
+    @include media(xs) {
+      padding: 30px 15px;
+      text-align: center;
+    }
+
+    > .grid-block {
+
+      @include media(xs) {
+        align-items: center;
+        flex-direction: column;
+        padding: 0 15px;
+      }
+
+      + .grid-block {
+        margin-top: 60px;
+      }
+    }
+  }
+
+  .img-container {
+    margin-right: 39px;
+
+    @include media(xs) {
+      margin-right: 0;
+    }
+  }
+
+  .img-regedit,
+  .img-dockerfile {
+    margin-right: 30px;
+
+    @include media(xs) {
+      margin-bottom: 9px;
+      margin-right: 0;
+
+      &.img-regedit {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .p {
+    @include media(xs) {
+      font-size: 16px;
+    }
+  }
+}
+// scss-lint:enable ColorVariable
