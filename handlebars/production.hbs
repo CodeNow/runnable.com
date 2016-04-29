@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>A Sandbox-as-a-Service built for your team’s workflow. — Runnable</title>
+    <title>Push to production. — Runnable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -347,7 +347,7 @@ window.addEventListener('load', function(){
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-product" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
@@ -406,119 +406,86 @@ window.addEventListener('load', function(){
 
 
     <main class="grid-block vertical main">
-      <article class="article hero">
-  <h1 class="h1 text-center">A Sandbox-as-a-Service built for your team’s workflow.</h1>
+      <article class="grid-block vertical article hero production-hero">
+  <h1 class="grid-content h1 text-center">Push to production.</h1>
+  <p class="grid-content p text-center">Your tested builds & artifacts are ready to<br class="hidden-xs">
+    push directly to production from Runnable.
 </article>
-
-      <article class="article article-github grid-container">
-  <section class="section section-environments grid-block">
-    <div class="grid-block text-block vertical align-center">
-      <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
-    </div>
-    <figure class="grid-block figure">
-      <img class="img" src="images/product/runnable.svg" height="420" width="1080">
+      <article class="grid-block vertical article article-production">
+  <section class="grid-block vertical grid-container grid-container-sm text-center section">
+    <figure class="img-box-wrapper">
+      <div class="img-box">
+        <img class="img" src="images/logos/logo-google-cloud.png">
+      </div>
+      <div class="img-box">
+        <img class="img" src="images/logos/logo-aws.svg">
+      </div>
+      <div class="img-box">
+        <img class="img" src="images/logos/logo-azure.svg">
+      </div>
     </figure>
-  </section>
-  <section class="section section-updates grid-block">
-    <div class="grid-block text-block vertical align-center">
-      <h2 class="h2">Updates to a branch automatically update the environment.</h2>
-    </div>
-    <figure class="grid-block figure gradient gradient-left">
-      <img class="img img-updates" src="images/product/updates.svg" height="420" width="1080">
-    </figure>
+    <h2 class="grid-content h2 align-center strong">Deploy to Google Cloud,<br class="hidden-xxs"> AWS, Azure and more.</h2>
+    <p class="grid-content p align-center">Safely push to production with minimal configuration differences between development, test, and staging environments. Update production more frequently and with higher confidence after reviewing end-to-end test results for every change.
   </section>
 </article>
 
-      <article class="article article-use-cases">
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-sharing">
-      <h2 class="h2 text-center">Simplify development.</h2>
-      <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/simplify.png" width="450" height="360">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-pr">
-      <h2 class="h2 text-center">Faster reviews.</h2>
-      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/pr-page.svg" width="450" height="315">
-      </figure>
-    </section>
-  </div>
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-e2e">
-      <h2 class="h2 text-center">Run integration tests automatically.</h2>
-      <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/e2e-testing.svg" width="450" height="315">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-isolation">
-      <h2 class="h2 text-center">Test database changes safely in isolation.</h2>
-      <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
-      <figure class="figure figure-isolation gradient gradient-right">
-        <img class="img img-isolation" src="images/product/isolation.svg" width="1080" height="420">
-      </figure>
-    </section>
-  </div>
-</article>
-
-      <article class="article article-bonus grid-container">
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-flexible.svg" width="60" height="60">
-      <h3 class="h3">Flexible</h3>
-      <p class="p">Sync changes from your local machine and SSH into running containers with
-        <br class="visible-sm hidden-xs">our&#32;
-        <a class="link strong" href="https://github.com/runnable/cli">CLI</a>.
-      </p>
+      <article class="grid-block vertical article article-docker">
+  <section class="grid-block vertical section">
+    <div class="grid-block grid-container grid-container-sm">
+      <img class="grid-content shrink img img-container" src="images/production/containers.svg" height="115" width="81">
+      <div class="grid-block vertical">
+        <h3 class="grid-content shrink h3 strong">Environments powered by native Docker components.</h3>
+        <p class="grid-content p">You’re ready to run production on any number of growing IaaS platforms which support running containers, including Amazon ECS, Azure Container Service, Google Container Engine, and Docker Cloud/Tutum.
+      </div>
     </div>
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-open.svg" width="60" height="60">
-      <h3 class="h3">Open</h3>
-      <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
-        <br class="br visible-xs">export capabilities.
-        <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
-      </p>
+    <div class="grid-block grid-container grid-container-sm">
+      <img class="grid-block shrink img img-regedit" src="images/production/registry.svg" height="83" width="90">
+      <div class="grid-block vertical">
+        <h3 class="grid-content shrink h3 strong">Export from our private Docker Registry.</h3>
+        <p class="grid-content p">Every Docker Image that is built on Runnable is exportable via our private authenticated Docker Registry. This enables seamless transfers of all build artifacts to any host.
+      </div>
     </div>
-  </section>
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-performance.svg" width="60" height="60">
-      <h3 class="h3">Performant</h3>
-      <p class="p">Dedicated infrastructure that&#32;
-        <br class="br visible-xs">auto-scales based on usage.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item bonus-secure">
-      <img class="img grid-block shrink" src="images/product/icons-security.svg" width="60" height="60">
-      <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per team. Third-party security audits.
+    <div class="grid-block grid-container grid-container-sm">
+      <img class="grid-block shrink img img-dockerfile" src="images/production/dockerfile.svg" height="75" width="90">
+      <div class="grid-block vertical">
+        <h3 class="grid-content shrink h3 strong">Dockerize your application.</h3>
+        <p class="grid-content p">Runnable generates Dockerfiles for your application during setup (don’t worry, our setup is built to on board any app). Future proof your configuration to scale from development to production when you’re ready to start deploying Dockerized components.
+      </div>
     </div>
   </section>
 </article>
-      <a class="grid-block well well-anchor" href="integration-testing.html">
-  <img class="grid-block shrink img" src="images/integration-testing.gif" height="108" width="108">
-  <div class="grid-block vertical">
-    <p class="p">
-      <strong class="strong">Integration testing, simplified.</strong><br>
-      Run end-to-end tests for every code change automatically without managing environments.
-    <div class="a strong">How integration testing on Runnable works
-      <svg class="icons icons-chevron-right">
-        <use xlink:href="#icons-chevron-right">
-      </svg>
-    </div>
-  </div>
-</a>
-    </main>
 
-    <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
+      <article class="grid-block article article-faq">
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Does Runnable provide container hosting?</h3>
+    <p class="grid-content shrink p align-center">Runnable hosts containers in order to provide working environments that are accessible to anyone; however, these environments are not intended to replace heavy workloads typical of production. Runnable containers are suitable for lightweight usage, and are easily exportable to other, more robust platforms designed for production.
+  </div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How is this different from Docker Cloud or Tutum?</h3>
+    <p class="grid-content shrink p align-center">Runnable hosts containers in order to provide working environments that are accessible to anyone; however, these environments are not intended to replace heavy workloads typical of production. Runnable containers are suitable for lightweight usage, and are easily exportable to other, more robust platforms designed for production.
+  </div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
+    <p class="grid-content shrink p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
+  </div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How secure is my code?</h3>
+    <p class="grid-content shrink p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
+  </div>
+  <div class="grid-block vertical question">
+    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> What does the setup process look like?</h3>
+    <p class="grid-content shrink p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
+  </div>
+</article>
+
+      <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
   <div class="btn btn-sm green">Sign Up</div>
 </a>
+
+    </main>
 
     <hr class="hr grid-container hr-footer">
 

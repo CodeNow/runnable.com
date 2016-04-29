@@ -406,25 +406,25 @@ window.addEventListener('load', function(){
 
 
     <main class="grid-block vertical main">
-      <article class="grid-block vertical article hero">
+      <article class="grid-block vertical article hero integration-testing-hero">
   <h1 class="grid-content h1 text-center">Integration testing, simplified.</h1>
   <p class="grid-content p text-center">Run end-to-end tests for every code change automatically<br class="hidden-sm">
     without managing environments.
 </article>
       <article class="grid-block vertical article article-integration-testing">
-  <div class="grid-block vertical grid-container grid-container-sm text-center">
+  <section class="grid-block vertical grid-container grid-container-sm text-center">
     <h2 class="grid-content h2 align-center strong">End-to-end integration<br>
       tests for every branch.</h2>
     <p class="grid-content p align-center">Run tests on a full-stack environment every time you update a branch—complete with seeded databases, caches, service discovery, etc. Find issues during development that were only possible to find during staging or production.
-  </div>
-  <div class="grid-block grid-container grid-wrapper">
+  </section>
+  <section class="grid-block grid-container grid-wrapper">
     <div class="grid-block vertical">
       <img class="img" src="images/logos/logo-selenium.svg" height="60" width="60">
       <h3 class="grid-content shrink h3 align-center strong">Support for Selenium-based tests.</h3>
       <p class="grid-content shrink p align-center">First-class support for Selenium/Webdriver tests is included. Run comprehensive tests automatically after a branch update, and spot regressions by reviewing screenshots and videos.
     </div>
     <div class="grid-block vertical">
-      <img class="img" src="images/icons-automatic.svg" height="60" width="60">
+      <img class="img" src="images/integration-testing/icons-automatic.svg" height="60" width="60">
       <h3 class="grid-content shrink h3 align-center strong">Automated test environment management.</h3>
       <p class="grid-content shrink p align-center">Environments are automatically created when a new branch is created, and they’re discarded when the branch is deleted or becomes inactive. Caching keeps this fast by reducing the number of builds needed, and new builds always have at least 1 CPU core.
     </div>
@@ -438,7 +438,7 @@ window.addEventListener('load', function(){
       <h3 class="grid-content shrink h3 align-center strong">Docker Compose support.</h3>
       <p class="grid-content shrink p align-center">Runnable uses native Docker components under the hood (Compose, Registry, Swarm), so it’s easy to pull in Dockerfiles and a docker-compose.yml file to get started right away. Running full Docker eliminates the risk of vendor lock-in. You’re always able to export your assets.
     </div>
-  <div>
+  <section>
 </article>
       <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
@@ -448,7 +448,7 @@ window.addEventListener('load', function(){
 </a>
 
       <article class="grid-block vertical article article-comparison">
-  <div class="grid-block align-center">
+  <section class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-jenkins.svg" height="60">
       <p class="grid-content shrink p strong text-center">How is Runnable different from<br class="hidden-xxs">
@@ -461,8 +461,8 @@ window.addEventListener('load', function(){
         CircleCI or Travis CI?
       <p class="grid-content shrink p text-center">Runnable enables end-to-end testing on top of automated unit and functional test running and building of artifacts. Runnable also charges per developer, not per resources used at any given time.
     </div>
-  </div>
-  <div class="grid-block align-center">
+  </section>
+  <section class="grid-block align-center">
     <div class="grid-block vertical card">
       <img class="grid-content shrink img" src="images/logos/logo-sauce-labs.png" height="60">
       <p class="grid-content shrink p strong text-center">How is this different from<br class="hidden-xxs">
@@ -475,9 +475,9 @@ window.addEventListener('load', function(){
         Docker Cloud or Tutum?
       <p class="grid-content shrink p text-center">Docker Cloud is a hosted service for docker containers. While Runnable also hosts containers, it has been built from the ground up to make end-to-end testing as easy as possible. Runnable also charges per developer, not per resources used at any given time.
     </div>
-  </div>
+  </section>
 </article>
-      <article class="grid-block article article-integration-faq">
+      <article class="grid-block article article-faq">
   <div class="grid-block vertical question">
     <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
     <p class="grid-content shrink p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
@@ -492,6 +492,19 @@ window.addEventListener('load', function(){
   </div>
 </article>
 
+      <a class="grid-block well well-anchor" href="production.html">
+  <img class="grid-block shrink img" src="images/production.gif" height="108" width="108">
+  <div class="grid-block vertical">
+    <p class="p">
+      <strong class="strong">Push to production.</strong><br>
+      Your environments are ready to push directly to production from Runnable.
+    <div class="a strong">How pushing to prod works on Runnable
+      <svg class="icons icons-chevron-right">
+        <use xlink:href="#icons-chevron-right">
+      </svg>
+    </div>
+  </div>
+</a>
       <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
