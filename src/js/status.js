@@ -1,23 +1,23 @@
 window.addEventListener('load', function(){
   var statusPage = new StatusPage.page({page:'ngvk75ydhg3t'});
-  var popover = document.getElementsByClassName('popover')[0];
+  var footer = document.getElementsByClassName('footer')[0];
   var statusElement = document.createElement('a');
   var statusText;
   var statusColor;
 
   // set up status element
   statusElement.href = '//status.runnable.com';
-  statusElement.classList.add('list-item-a','status');
+  statusElement.classList.add('btn','btn-xs','link','strong','status');
 
   statusPage.components({
     success : function(data) {
       // add status element
-      popover.appendChild(statusElement);
+      footer.appendChild(statusElement);
 
       // set text
       switch (data.components[0].status) {
         case 'operational':
-          statusText = 'Status: Gucci';
+          statusText = 'Status: Beary good!';
           statusColor = 'status-green';
           break;
         case 'degraded_performance':
