@@ -340,6 +340,45 @@ window.addEventListener('load', function(){
   }
 });
 
+      window.addEventListener('load', function(){
+  var statusPage = new StatusPage.page({page:'ngvk75ydhg3t'});
+  var footer = document.getElementsByClassName('footer')[0];
+  var statusElement = document.createElement('a');
+  var statusText;
+  var statusColor;
+
+  // set up status element
+  statusElement.href = '//status.runnable.com';
+  statusElement.classList.add('btn','btn-xs','link','strong','status');
+
+  statusPage.components({
+    success : function(data) {
+      // add status element
+      footer.appendChild(statusElement);
+
+      // set text
+      switch (data.components[0].status) {
+        case 'operational':
+          statusText = 'Status: Beary good!';
+          statusColor = 'status-green';
+          break;
+        case 'degraded_performance':
+        case 'partial_outage':
+          statusText = 'Partial Outage';
+          statusColor = 'status-orange';
+          break;
+        case 'major_outage':
+          statusText = 'Major Outage';
+          statusColor = 'status-red';
+          break;
+      }
+
+      statusElement.textContent = statusText;
+      statusElement.classList.add(statusColor);
+    }
+  });
+});
+
     </script>
 
     <!--
@@ -389,7 +428,7 @@ window.addEventListener('load', function(){
           <div class="list text-left">
             <a ng-href="\{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
             <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
-            <a class="list-item divider visible-md"></a>
+            <div class="list-item divider visible-md"></div>
             <a href="product.html" class="list-item-a visible-sm">Product</a>
             <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
             <a href="about.html" class="list-item-a">About</a>
@@ -588,6 +627,10 @@ window.addEventListener('load', function(){
     </div>
 
     <button class="grid-content btn btn-lg green">Ship It!</button>
+
+    <div class="grid-content text-center">
+      <a ng-href="\{{loginUrl}}" class="link">Sign in</a> if your team is already using Runnable.
+    </div>
   </form>
 </article>
 
@@ -640,6 +683,8 @@ olark.identify('1268-458-10-2188');/*]]>*/
 </script>
 <noscript><a href="https://www.olark.com/site/1268-458-10-2188/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 
+<script async src="https://cdn.statuspage.io/se-v2.js"></script>
+<script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
 <script>
   /* <![CDATA[ */
   goog_snippet_vars = function() {
@@ -665,7 +710,6 @@ olark.identify('1268-458-10-2188');/*]]>*/
   }
   /* ]]> */
 </script>
-<script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
