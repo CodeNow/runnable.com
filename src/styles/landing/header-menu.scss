@@ -1,0 +1,45 @@
+.popover-header-menu {
+
+  @include media(xs) {
+    left: auto;
+    right: 6px;
+    transform: scale3d(.2,.2,1);
+
+    &.bottom {
+      transform-origin: 90% 0;
+
+      &::before,
+      &::after {
+        left: auto;
+        right: 10px;
+      }
+    }
+  }
+
+  .list-item-a {
+    cursor: pointer;
+    display: block;
+    height: $input-sm;
+    line-height: $input-sm;
+    padding: 0 15px 0 6px;
+
+    &:hover {
+      color: $purple-light;
+    }
+
+    &.visible-xs {
+      display: none;
+
+      @include media(xs) {
+        display: block;
+      }
+    }
+
+    .icons {
+      height: 12px;
+      margin-left: 3px;
+      opacity: .5;
+      width: 12px;
+    }
+  }
+}

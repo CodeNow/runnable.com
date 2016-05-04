@@ -23,6 +23,7 @@
   background: $white;
   border: 1px solid $gray-lighter;
   border-radius: $input-border-radius;
+  cursor: default;
   left: 50%;
   margin: 0 auto;
   opacity: 0;
@@ -30,7 +31,7 @@
   pointer-events: none;
   position: absolute;
   transform: scale3d(.2,.2,1) translate3d(-50%,0,0);
-  transition: all .15s .15s ease-in-out;
+  transition: all .15s .1s ease-in-out;
   visibility: hidden;
   z-index: 100;
 
@@ -83,5 +84,15 @@
     position: absolute;
     right: 0;
     width: 0;
+  }
+
+  .list {
+    padding: 0;
+  }
+
+  .divider {
+    background: $gray-lighter;
+    height: 1px;
+    margin: 9px -15px;
   }
 }

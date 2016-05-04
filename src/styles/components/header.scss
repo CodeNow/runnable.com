@@ -23,13 +23,13 @@
   }
 
   .text-white {
+    color: $purple-lightest;
     line-height: $input-sm;
-    opacity: .8;
 
     &:hover,
     &:active,
     &:focus {
-      opacity: 1;
+      color: $white;
     }
 
     .icons-chevron-down {
@@ -62,8 +62,6 @@
   }
 
   .popover-trigger {
-    opacity: .75;
-    transition: opacity .15s;
 
     @include media(xs) {
       &.click:focus .popover {
@@ -71,72 +69,15 @@
       }
     }
 
-    &:hover,
-    &:focus {
-      opacity: 1;
+    &:hover .icons-overflow,
+    &:focus .icons-overflow {
+      color: $white;
     }
 
-    .img-overflow {
+    .icons-overflow {
+      color: $purple-lightest;
       height: $input-sm;
       width: 24px;
     }
-  }
-
-  .popover {
-    color: $gray-dark;
-    cursor: default;
-
-    @include media(xs) {
-      left: auto;
-      right: 6px;
-      transform: scale3d(.2,.2,1);
-
-      &.bottom {
-        transform-origin: 90% 0;
-
-        &::before,
-        &::after {
-          left: auto;
-          right: 10px;
-        }
-      }
-    }
-  }
-
-  .list {
-    padding: 0;
-  }
-
-  .divider {
-    background: $gray-lighter;
-    height: 1px;
-    margin: 9px -15px;
-  }
-}
-
-.list-item-a {
-  cursor: pointer;
-  display: block;
-  height: $input-sm;
-  line-height: $input-sm;
-  padding: 0 15px 0 6px;
-
-  &:hover {
-    color: $purple-light;
-  }
-
-  &.visible-xs {
-    display: none;
-
-    @include media(xs) {
-      display: block;
-    }
-  }
-
-  .icons {
-    height: 12px;
-    margin-left: 3px;
-    opacity: .5;
-    width: 12px;
   }
 }
