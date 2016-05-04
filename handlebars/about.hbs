@@ -439,6 +439,9 @@ window.addEventListener('load', function(){
   <symbol id="icons-chevron-right" viewBox='0 0 11 18'>
     <polyline points="1 1 10 9 1 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
+  <symbol id="icons-chevron-down" viewBox='0 0 18 11'>
+    <polyline points="17 1 9 10 1 1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+  </symbol>
   <symbol id="icons-close" viewBox="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
   </symbol>
@@ -459,7 +462,38 @@ window.addEventListener('load', function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <div class="grid-block shrink">
-      <a href="product.html" class="grid-content btn btn-sm text-white strong hidden-sm">Product</a>
+      <div class="grid-content btn btn-sm popover-trigger click text-white strong hidden-sm" tabindex="1">Product
+        <svg class="icons icons-chevron-down">
+          <use xlink:href="#icons-chevron-down">
+        </svg>
+        <div class="popover popover-product-menu bottom">
+          <div class="grid-block">
+            <a href="product.html" class="grid-block vertical btn">
+              <img class="img" src="images/product-menu/sandbox.svg" height="50" width="50">
+              <p class="p">
+                <strong class="strong">Product Tour</strong>
+                <small class="small">
+                  A Sandbox-as-a-Service built for your team’s workflow.
+                </small>
+              </p>
+            </a>
+            <a href="integration-testing.html" class="grid-block vertical btn">
+              <img class="img" src="images/product-menu/integration-testing.svg" height="50" width="50">
+              <p class="p">
+                <strong class="strong">Integration Testing</strong>
+                <small class="small">End-to-end tests for every code change without managing environments.</small>
+              </p>
+            </a>
+            <a href="production.html" class="grid-block vertical btn">
+              <img class="img" src="images/product-menu/production.svg" height="50" width="50">
+              <p class="p">
+                <strong class="strong">Push to Production</strong>
+                <small class="small">Your environments are ready to push directly to production from Runnable.</small>
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
       <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
       <a ng-href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
