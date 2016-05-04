@@ -24,6 +24,18 @@
 
   .text-white {
     line-height: $input-sm;
+    opacity: .8;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+    }
+
+    .icons-chevron-down {
+      margin-left: 6px;
+      width: 12px;
+    }
   }
 
   .btn-white {
@@ -71,6 +83,7 @@
   }
 
   .popover {
+    color: $gray-dark;
     cursor: default;
 
     @include media(xs) {
