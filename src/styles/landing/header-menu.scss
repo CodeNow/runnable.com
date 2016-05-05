@@ -1,24 +1,67 @@
-.popover-header-menu {
+.btn-overflow .popover-hover-wrapper {
   margin-left: 12px;
 
-  @include media(xs) {
-    left: 26px;
+  @include media(sm) {
+    margin-left: 34px;
+  }
+}
 
-    &.bottom {
-      transform-origin: 40% 0;
+.popover-header-menu {
 
-      &::before,
-      &::after {
-        left: auto;
-        right: 10px;
+  .btn {
+    align-items: center;
+    border: $input-border solid transparent;
+    border-radius: $input-border-radius-lg;
+    color: $gray-dark;
+    display: flex;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 9px 6px;
+    white-space: normal;
+    width: 180px;
+
+    &:hover {
+      background: $gray-lightest;
+      border-color: $gray-lighter;
+    }
+
+    &:active {
+      background: $purple-lightest;
+      border-color: $purple-light;
+      color: $purple-light;
+
+      .small {
+        color: currentColor;
       }
+    }
+
+    + .btn {
+      margin-top: 15px;
+    }
+
+    .img {
+      height: 45px;
+      margin-bottom: 6px;
+      width: 45px;
+    }
+  }
+
+  .list-product {
+    padding: 15px 30px 15px 15px;
+  }
+
+  .list {
+    @include media(sm) {
+      border-left: 1px solid $gray-lighter;
+      margin-bottom: -15px;
+      margin-top: -15px;
+      padding: 15px;
     }
   }
 
   .divider {
-    @include media(xs) {
-      margin-bottom: 15px;
-      margin-top: 15px;
+    @include media(sm) {
+      margin: 15px 0;
     }
   }
 
@@ -28,7 +71,7 @@
     line-height: $input-sm;
     padding: 0 15px 0 6px;
 
-    @include media(xs) {
+    @include media(sm) {
       height: $input-md;
       line-height: $input-md;
       padding: 0 60px 0 15px;

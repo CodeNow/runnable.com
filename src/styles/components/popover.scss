@@ -3,40 +3,65 @@
   overflow: visible;
   position: relative;
 
-  &.hover:hover .popover,
-  &.hover:active .popover,
-  &.click:focus .popover {
-    opacity: 1;
-    transform: scale3d(1,1,1) translate3d(-50%,0,0);
-    transition: all .15s ease-in-out;
-    visibility: visible;
+  &.hover:hover,
+  &.hover:active,
+  &.click:focus {
+
+    .popover {
+      opacity: 1;
+      transform: scale3d(1,1,1) translate3d(-50%,0,0);
+      transition: all .15s ease-in-out;
+      visibility: visible;
+    }
+
+    .right-align-sm .popover {
+      @include media(sm) {
+        transform: scale3d(1,1,1);
+      }
+    }
   }
 
   &.click .popover {
     pointer-events: auto;
   }
 
-  &.hover {
+  &.has-links:hover,
+  &.has-links:active {
 
-    &.has-links {
+    .popover-hover-wrapper,
+    .popover {
+      pointer-events: auto;
+    }
+  }
 
-      &:hover .popover-hover-wrapper,
-      &:active .popover-hover-wrapper,
-      &:hover .popover,
-      &:active .popover {
-        pointer-events: auto;
-      }
+  .popover-hover-wrapper {
+    cursor: default;
+    padding-top: 48px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(-50%,0,0);
 
-      .popover-hover-wrapper {
-        cursor: default;
-        padding-top: 48px;
-        pointer-events: none;
-        position: absolute;
-        transform: translate3d(-50%,0,0);
-      }
+    .popover {
+      position: relative;
+    }
+  }
 
-      .popover {
-        position: relative;
+  .right-align-sm {
+    @include media(sm) {
+      transform: translate3d(-100%,0,0);
+    }
+
+    .popover {
+      @include media(sm) {
+        left: auto;
+        transform: scale3d(.2,.2, 1);
+        transform-origin: 95% 0;
+
+        &::before,
+        &::after {
+          left: auto;
+          right: 10px;
+        }
       }
     }
   }
