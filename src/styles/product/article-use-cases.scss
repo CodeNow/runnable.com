@@ -1,6 +1,6 @@
 .article-use-cases {
-  border-top: 1px solid $gray-lighter;
   border-bottom: 1px solid $gray-lighter;
+  border-top: 1px solid $gray-lighter;
   margin: 0 auto;
   max-width: 1600px;
   padding-bottom: 0;
@@ -23,10 +23,13 @@
     > .grid-block {
 
       @include media(sm) {
-        border-bottom: 1px solid $gray-lighter;
         flex: 0 0 auto;
         margin: 0 auto;
         max-width: 100%;
+
+        &:not(.section-isolation) {
+          border-bottom: 1px solid $gray-lighter;
+        }
       }
 
       @include media(xxs) {
