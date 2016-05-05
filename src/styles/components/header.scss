@@ -6,13 +6,18 @@
   right: 0;
   z-index: 10;
 
-  @include media(xxxs) {
-    .logo {
+  .logo {
+    position: relative; // forces popover to recognize hover state
+    z-index: 1;
+
+    @include media(xxxs) {
       align-items: center;
       flex: 0 0 150px;
     }
+  }
 
-    .img {
+  .img {
+    @include media(xxxs) {
       height: 100%;
       width: 100%;
     }
@@ -23,12 +28,40 @@
   }
 
   .text-white {
+    color: $purple-lightest;
     line-height: $input-sm;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+    }
+  }
+
+  .product-link {
+    height: 36px;
+    padding: 0;
+
+    + .btn {
+      margin-left: 9px;
+    }
+
+    .a {
+      padding: 0 15px;
+      z-index: 1; // so you can click it
+    }
+
+    .icons-chevron-down {
+      height: $input-sm;
+      margin-left: 6px;
+      width: 12px;
+    }
   }
 
   .btn-white {
     border: 2px solid rgba($white,.75);
     line-height: $input-line-height-sm;
+    z-index: 1; // forces popover to recognize hover state
 
     &:hover {
       background: rgba($white,.1);
@@ -50,80 +83,19 @@
   }
 
   .popover-trigger {
-    opacity: .75;
-    transition: opacity .15s;
 
-    @include media(xs) {
-      &.click:focus .popover {
-        transform: scale3d(1,1,1);
-      }
+    &:hover .icons-overflow,
+    &:focus .icons-overflow {
+      color: $white;
     }
 
-    &:hover,
-    &:focus {
-      opacity: 1;
-    }
-
-    .img-overflow {
+    .icons-overflow {
+      color: $purple-lightest;
+      float: left; // for the popover to get the correct position...
       height: $input-sm;
+      position: relative;
       width: 24px;
+      z-index: 1; // for the cursor
     }
-  }
-
-  .popover {
-    cursor: default;
-
-    @include media(xs) {
-      left: auto;
-      right: 6px;
-      transform: scale3d(.2,.2,1);
-
-      &.bottom {
-        transform-origin: 90% 0;
-
-        &::before,
-        &::after {
-          left: auto;
-          right: 10px;
-        }
-      }
-    }
-  }
-
-  .list {
-    padding: 0;
-  }
-
-  .divider {
-    background: $gray-lighter;
-    height: 1px;
-    margin: 9px -15px;
-  }
-}
-
-.list-item-a {
-  cursor: pointer;
-  display: block;
-  height: $input-sm;
-  line-height: $input-sm;
-  padding: 0 15px 0 6px;
-
-  &:hover {
-    color: $purple-light;
-  }
-
-  &.visible-xs {
-    display: none;
-
-    @include media(xs) {
-      display: block;
-    }
-  }
-
-  .icons {
-    height: 12px;
-    margin-left: 3px;
-    opacity: .5;
-    width: 12px;
   }
 }
