@@ -61,6 +61,7 @@
   .btn-white {
     border: 2px solid rgba($white,.75);
     line-height: $input-line-height-sm;
+    z-index: 1; // forces popover to recognize hover state
 
     &:hover {
       background: rgba($white,.1);
@@ -83,12 +84,6 @@
 
   .popover-trigger {
 
-    @include media(xs) {
-      &.click:focus .popover {
-        transform: scale3d(1,1,1);
-      }
-    }
-
     &:hover .icons-overflow,
     &:focus .icons-overflow {
       color: $white;
@@ -96,8 +91,11 @@
 
     .icons-overflow {
       color: $purple-lightest;
+      float: left; // for the popover to get the correct position...
       height: $input-sm;
+      position: relative;
       width: 24px;
+      z-index: 1; // for the cursor
     }
   }
 }
