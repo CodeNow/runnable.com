@@ -2,12 +2,10 @@
   margin-left: 12px;
 
   @include media(xs) {
-    left: auto;
-    right: 6px;
-    transform: scale3d(.2,.2,1);
+    left: 26px;
 
     &.bottom {
-      transform-origin: 90% 0;
+      transform-origin: 40% 0;
 
       &::before,
       &::after {
@@ -17,11 +15,24 @@
     }
   }
 
+  .divider {
+    @include media(xs) {
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+  }
+
   .list-item-a {
     cursor: pointer;
     height: $input-sm;
     line-height: $input-sm;
     padding: 0 15px 0 6px;
+
+    @include media(xs) {
+      height: $input-md;
+      line-height: $input-md;
+      padding: 0 60px 0 15px;
+    }
 
     &:hover {
       color: $purple-light;
