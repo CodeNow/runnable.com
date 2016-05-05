@@ -2,11 +2,28 @@
   margin-left: 12px;
 
   @include media(sm) {
-    margin-left: 34px;
+    margin-left: 39px;
+  }
+
+  @include media(xxs) {
+    margin-left: 54px;
   }
 }
 
 .popover-header-menu {
+
+  @include media(sm) {
+    padding-right: 0;
+  }
+
+  @include media(xs) {
+    width: calc(100vw - 60px);
+  }
+
+  @include media(xxs) {
+    padding: 9px 0 9px 9px;
+    width: calc(100vw - 30px);
+  }
 
   .btn {
     align-items: center;
@@ -19,6 +36,15 @@
     padding: 9px 6px;
     white-space: normal;
     width: 180px;
+
+    @media (max-width: $screen-xs) and (min-width: 510px) {
+      padding: 9px 15px;
+      width: 198px;
+    }
+
+    @include media(xxs) {
+      width: 160px;
+    }
 
     &:hover {
       background: $gray-lightest;
@@ -43,11 +69,29 @@
       height: 45px;
       margin-bottom: 6px;
       width: 45px;
+
+
+      @media (max-width: 510px) {
+        height: 36px;
+        width: 36px;
+      }
+    }
+
+    .p {
+      margin-bottom: 0;
     }
   }
 
   .list-product {
     padding: 15px 30px 15px 15px;
+
+    @media (max-width: 510px) {
+      padding: 0 15px 0 0;
+    }
+
+    @include media(xxs) {
+      padding-right: 9px;
+    }
   }
 
   .list {
@@ -56,6 +100,12 @@
       margin-bottom: -15px;
       margin-top: -15px;
       padding: 15px;
+    }
+
+    @include media(xxs) {
+      margin-bottom: -9px;
+      margin-top: -9px;
+      padding: 15px 9px;
     }
   }
 
@@ -75,6 +125,10 @@
       height: $input-md;
       line-height: $input-md;
       padding: 0 60px 0 15px;
+    }
+
+    @media (max-width: 510px) {
+      padding: 0 15px;
     }
 
     &:hover {
