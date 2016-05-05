@@ -4,15 +4,17 @@
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <div class="grid-block shrink">
-      <div class="grid-content btn btn-sm popover-trigger click text-white strong hidden-sm" tabindex="1">Product
-        <svg class="icons icons-chevron-down">
-          <use xlink:href="#icons-chevron-down">
-        </svg>
+      <div class="grid-content btn btn-sm popover-trigger hover text-white strong hidden-sm product-link" tabindex="1">
+        <a class="a" href="product.html">Product
+          <svg class="icons icons-chevron-down float-right">
+            <use xlink:href="#icons-chevron-down">
+          </svg>
+        </a>
         @@include('../popovers/product-menu.hbs')
       </div>
       <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
-      <a ng-href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
+      <a href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
       <div class="grid-content btn btn-sm popover-trigger click" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow">

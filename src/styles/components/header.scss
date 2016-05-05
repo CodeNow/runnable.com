@@ -6,13 +6,18 @@
   right: 0;
   z-index: 10;
 
-  @include media(xxxs) {
-    .logo {
+  .logo {
+    position: relative; // forces popover to recognize hover state
+    z-index: 1;
+
+    @include media(xxxs) {
       align-items: center;
       flex: 0 0 150px;
     }
+  }
 
-    .img {
+  .img {
+    @include media(xxxs) {
       height: 100%;
       width: 100%;
     }
@@ -31,8 +36,23 @@
     &:focus {
       color: $white;
     }
+  }
+
+  .product-link {
+    height: 36px;
+    padding: 0;
+
+    + .btn {
+      margin-left: 9px;
+    }
+
+    .a {
+      padding: 0 15px;
+      z-index: 1; // so you can click it
+    }
 
     .icons-chevron-down {
+      height: $input-sm;
       margin-left: 6px;
       width: 12px;
     }

@@ -17,6 +17,26 @@
       pointer-events: auto;
     }
   }
+
+  &.hover {
+
+    &:hover .popover-hover-wrapper,
+    &:hover .popover {
+      pointer-events: auto;
+    }
+
+    .popover-hover-wrapper {
+      cursor: default;
+      padding-top: 48px;
+      pointer-events: none;
+      position: absolute;
+      transform: translate3d(-50%,0,0);
+    }
+
+    .popover {
+      position: relative;
+    }
+  }
 }
 
 .popover {
