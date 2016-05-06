@@ -14,12 +14,12 @@
       align-items: center;
       flex: 0 0 150px;
     }
-  }
 
-  .img {
-    @include media(xxxs) {
-      height: 100%;
-      width: 100%;
+    .img {
+      @include media(xxxs) {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 
