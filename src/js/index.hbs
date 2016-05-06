@@ -1,31 +1,8 @@
 <script>
-  var whitelisted = window.location.search !== '?whitelist=false';
   var app = angular.module('homeApp', []);
 
   app.controller('MainCtrl', function ($scope, $window, $http) {
     $scope.loginUrl = '{{{apiUrl}}}/auth/github?redirect={{{angularUrl}}}/?auth';
-    $scope.data = {
-      embedActive: false
-    };
-
-    if (!window.fbq) {
-      // Stub fbq
-      window.fbq = function () {}
-    }
-
-    if (!whitelisted) {
-      // set sign up form error
-      document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
-      document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
-
-      // open sign up form
-      location.hash = '#sign-up';
-
-      // facebook tracking
-      fbq('track', 'ViewContent', {
-        action: 'notWhitelisted'
-      });
-    }
 
     // redirect
     $http.get('{{{apiUrl}}}/users/me', {
