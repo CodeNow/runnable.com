@@ -33,6 +33,12 @@
     + .btn {
       margin-top: 9px;
     }
+
+    .small {
+      @include media(xxxs) {
+        display: none;
+      }
+    }
   }
 
   .list-product {
