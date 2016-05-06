@@ -9,9 +9,9 @@
     display: flex;
     font-size: 14px;
     line-height: 1.2;
-    padding: 9px 6px;
+    padding: 12px 6px;
     white-space: normal;
-    width: 180px;
+    width: 192px;
 
     &:hover {
       background: $gray-lightest;
@@ -29,7 +29,7 @@
     }
 
     + .btn {
-      margin-left: 15px;
+      margin-left: 9px;
     }
   }
 
@@ -39,10 +39,15 @@
 
   .strong {
     display: block;
-    margin-bottom: 3px;
   }
 
   .small {
     color: $gray;
+    margin-top: 3px;
+  }
+
+  .img {
+    height: 36px;
+    width: 36px;
   }
 }

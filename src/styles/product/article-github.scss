@@ -164,18 +164,6 @@
       max-width: 285px;
     }
   }
-
-  .img {
-    // scss-lint:disable VendorPrefix
-    -webkit-mask-image: -webkit-linear-gradient(top, rgba($black,.8), rgba($black,1) 19%, rgba($black,1));
-    mask-image: linear-gradient(top, rgba($black,.8), rgba($black,1) 20%, rgba($black,1));
-
-    @media (max-width: $screen-md - 1) and (min-width: $screen-sm + 1) {
-      -webkit-mask-image: -webkit-linear-gradient(top, rgba($black,.8), rgba($black,1) 7%, rgba($black,1));
-      mask-image: linear-gradient(top, rgba($black,.8), rgba($black,1) 7%, rgba($black,1));
-    }
-    // scss-lint:enable VendorPrefix
-  }
 }
 
 .section-updates {
