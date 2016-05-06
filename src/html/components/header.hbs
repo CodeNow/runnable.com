@@ -11,7 +11,11 @@
             <use xlink:href="#icons-chevron-down">
           </svg>
         </a>
-        @@include('../popovers/product-menu.hbs')
+        <div class="popover-hover-wrapper">
+          <div class="grid-block popover popover-product-menu bottom">
+            @@include('../popovers/product-menu.hbs')
+          </div>
+        </div>
       </div>
       <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
       <a ng-href="\{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>

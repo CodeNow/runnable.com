@@ -25,48 +25,13 @@
     width: calc(100vw - 30px);
   }
 
-  .btn {
-    align-items: center;
-    border: $input-border solid transparent;
-    border-radius: $input-border-radius-lg;
-    color: $gray-dark;
-    display: flex;
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 12px 6px;
-    white-space: normal;
-    width: 192px;
-
+  .btn-product {
     @include media(xxxs) {
       width: 150px;
     }
 
-    &:hover {
-      background: $gray-lightest;
-      border-color: $gray-lighter;
-    }
-
-    &:active {
-      background: $purple-lightest;
-      border-color: $purple-light;
-      color: $purple-light;
-
-      .small {
-        color: currentColor;
-      }
-    }
-
     + .btn {
       margin-top: 9px;
-    }
-
-    .p {
-      margin: 9px 0 0;
-    }
-
-    .small {
-      color: $gray;
-      margin-top: 3px;
     }
   }
 

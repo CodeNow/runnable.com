@@ -1,27 +1,7 @@
 <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block shrink vertical visible-sm list-product">
-      <a href="product.html" class="grid-block align-center vertical btn">
-        <img class="img" src="images/product-menu/sandbox.svg" height="36" width="36">
-        <p class="p">
-          <strong class="strong">Get an overview.</strong><br>
-          <small class="small hidden-xxxs">A sandbox service for teams.</small>
-        </p>
-      </a>
-      <a href="integration-testing.html" class="grid-block align-center vertical btn">
-        <img class="img" src="images/product-menu/integration-testing.svg" height="36" width="36">
-        <p class="p">
-          <strong class="strong">Integrate & test changes.</strong><br>
-          <small class="small hidden-xxxs">Every branch, end-to-end.</small>
-        </p>
-      </a>
-      <a href="production.html" class="grid-block align-center vertical btn">
-        <img class="img" src="images/product-menu/production.svg" height="36" width="36">
-        <p class="p">
-          <strong class="strong">Deploy tested artifacts.</strong><br>
-          <small class="small hidden-xxxs">Tested builds, ready to push.</small>
-        </p>
-      </a>
+      @@include('product-menu.hbs')
     </div>
     <div class="grid-block vertical list text-left">
       <a ng-href="\{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
