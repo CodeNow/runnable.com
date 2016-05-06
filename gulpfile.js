@@ -15,6 +15,10 @@ var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
 
+// urls
+var apiUrl = process.env.API_URL;
+var angularUrl = process.env.ANGULAR_URL;
+
 // file locations
 var src = 'src/';
 var dist = './dist/';
@@ -64,11 +68,12 @@ gulp.task('html', function() {
     }))
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiUrl: process.env.API_URL,
+      apiUrl: apiUrl,
       env: process.env.NODE_ENV,
       commitHash: commitHash,
       commitTime: commitTime,
-      angularUrl: process.env.ANGULAR_URL
+      angularUrl: angularUrl,
+      loginUrl: apiUrl + '/auth/github?redirect=' + angularUrl + '/?auth'
     }, {
       helpers: {
         if_eq: function(a, b, opts) {

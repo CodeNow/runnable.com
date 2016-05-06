@@ -2,8 +2,6 @@
   var app = angular.module('homeApp', []);
 
   app.controller('MainCtrl', function ($scope, $window, $http) {
-    $scope.loginUrl = '{{{apiUrl}}}/auth/github?redirect={{{angularUrl}}}/?auth';
-
     // redirect
     $http.get('{{{apiUrl}}}/users/me', {
       withCredentials: true
