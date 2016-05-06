@@ -23,8 +23,17 @@
     }
   }
 
+  .nav {
+    align-items: center;
+  }
+
   .grid-container {
-    padding: 27px 30px 18px;
+    padding: 27px 45px 18px;
+
+    @include media(sm) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   .text-white {

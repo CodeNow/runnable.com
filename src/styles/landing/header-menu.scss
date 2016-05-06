@@ -25,60 +25,13 @@
     width: calc(100vw - 30px);
   }
 
-  .btn {
-    align-items: center;
-    border: $input-border solid transparent;
-    border-radius: $input-border-radius-lg;
-    color: $gray-dark;
-    display: flex;
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 9px 6px;
-    white-space: normal;
-    width: 180px;
-
-    @media (max-width: $screen-xs) and (min-width: 510px) {
-      padding: 9px 15px;
-      width: 198px;
-    }
-
-    @include media(xxs) {
-      width: 160px;
-    }
-
-    &:hover {
-      background: $gray-lightest;
-      border-color: $gray-lighter;
-    }
-
-    &:active {
-      background: $purple-lightest;
-      border-color: $purple-light;
-      color: $purple-light;
-
-      .small {
-        color: currentColor;
-      }
+  .btn-product {
+    @include media(xxxs) {
+      width: 150px;
     }
 
     + .btn {
-      margin-top: 15px;
-    }
-
-    .img {
-      height: 45px;
-      margin-bottom: 6px;
-      width: 45px;
-
-
-      @media (max-width: 510px) {
-        height: 36px;
-        width: 36px;
-      }
-    }
-
-    .p {
-      margin-bottom: 0;
+      margin-top: 9px;
     }
   }
 
