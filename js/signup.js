@@ -248,14 +248,20 @@ function checkScroll() {
 
 // events
 window.addEventListener('load', function(){
-  var i;
+  var whitelisted = window.location.search !== '?whitelist=false';
   var signUpForm = document.getElementsByClassName('form-sign-up')[0];
   var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var imgFlip = document.getElementsByClassName('img-rounded');
   var theseInputs;
+  var i;
 
   checkScroll();
   window.addEventListener('hashchange', checkScroll);
+
+  // stub fbq
+  if (!window.fbq) {
+    window.fbq = function () {};
+  }
 
   // modal forms
   if (signUpForm) {
@@ -270,5 +276,20 @@ window.addEventListener('load', function(){
         theseInputs[i].addEventListener('change', updateLabel);
       }
     }
+  }
+
+  // show sign up if not whitelisted
+  if (!whitelisted) {
+    // set sign up form error
+    document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
+    document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
+
+    // open sign up form
+    location.hash = '#sign-up';
+
+    // facebook tracking
+    fbq('track', 'ViewContent', {
+      action: 'notWhitelisted'
+    });
   }
 });
