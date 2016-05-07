@@ -11,7 +11,6 @@ var imagemin = require('gulp-imagemin');
 var minifyInline = require('gulp-minify-inline');
 var newer = require('gulp-newer');
 var rename = require('gulp-rename');
-var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
@@ -85,8 +84,6 @@ gulp.task('html', function() {
         }
       }
     }))
-    .pipe(replace('{{apiUrl}}', apiUrl))
-    .pipe(replace('{{angularUrl}}', angularUrl))
     .pipe(rename({
       extname: '.html'
     }))
