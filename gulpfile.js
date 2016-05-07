@@ -1,19 +1,23 @@
-var autoprefixer = require('gulp-autoprefixer'); // adds vendor prefixes to css properties
+var autoprefixer = require('gulp-autoprefixer');
 var awspublish = require('gulp-awspublish');
-var debug = require('gulp-debug'); // for debugging gulp
-var del = require('del'); // deletes things
+var debug = require('gulp-debug');
+var del = require('del');
 var exec = require('child_process').exec;
 var fileinclude = require('gulp-file-include');
-var ghPages = require('gulp-gh-pages'); // deploy to github pages
+var ghPages = require('gulp-gh-pages');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
-var imagemin = require('gulp-imagemin'); // optimizes images
-var minifyInline = require('gulp-minify-inline'); // minifies inline script tags
-var newer = require('gulp-newer'); // checks for file changes
-var rename = require('gulp-rename'); // rename files
-var runSequence = require('run-sequence'); // sequence of gulp tasks
+var imagemin = require('gulp-imagemin');
+var minifyInline = require('gulp-minify-inline');
+var newer = require('gulp-newer');
+var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
+
+// urls
+var apiUrl = process.env.API_URL;
+var angularUrl = process.env.ANGULAR_URL;
 
 // file locations
 var src = 'src/';
@@ -28,31 +32,12 @@ var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 
 var htmlDist = dist;
-var hbsDist = dist + 'handlebars/';
-var hbsSrc = hbsDist + '/*';
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
 var favIconDist = dist;
 
-// delete dist
-gulp.task('clean', function() {
-  return del.sync('dist');
-});
-
-// html files
-gulp.task('html', function() {
-  return gulp.src(htmlSrc)
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .on('error', function(err){
-      console.log(err.message);
-    })
-    .pipe(gulp.dest(hbsDist));
-});
-
+// git commit/hash
 var commitTime;
 gulp.task('getCommitTime', function (cb) {
   exec('git log -1 --format=%cd', {cwd: __dirname}, function (err, stdout, stderr) {
@@ -69,16 +54,26 @@ gulp.task('getCommitHash', function (cb) {
   });
 });
 
-// hbs files
-gulp.task('hbs', function() {
-  return gulp.src(hbsSrc)
+// delete dist
+gulp.task('clean', function() {
+  return del.sync('dist');
+});
+
+// html files
+gulp.task('html', function() {
+  return gulp.src(htmlSrc)
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiUrl: process.env.API_URL,
+      apiUrl: apiUrl,
       env: process.env.NODE_ENV,
       commitHash: commitHash,
       commitTime: commitTime,
-      angularUrl: process.env.ANGULAR_URL
+      angularUrl: angularUrl,
+      loginUrl: apiUrl + '/auth/github?redirect=' + angularUrl + '/?auth'
     }, {
       helpers: {
         if_eq: function(a, b, opts) {
@@ -89,12 +84,12 @@ gulp.task('hbs', function() {
         }
       }
     }))
+    .pipe(rename({
+      extname: '.html'
+    }))
     .on('error', function(err){
       console.log(err.message);
     })
-    .pipe(rename({
-      extname: ".html"
-    }))
     .pipe(gulp.dest(htmlDist));
 });
 
@@ -219,7 +214,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'minify'], 'imagemin', cb);
+  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'js', ['sass:build', 'images', 'favicon', 'minify'], 'imagemin', cb);
 });
 
 // build and deploy to gh pages
@@ -229,7 +224,7 @@ gulp.task('deploy:gh', function(cb) {
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], 'ghPages', cb);
+  runSequence('clean', 'html', 'js', ['sass', 'images', 'favicon'], 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
@@ -245,9 +240,9 @@ gulp.task('server', function() {
 
 // dev build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'favicon'], 'server', cb);
-  gulp.watch(htmlDir, function(){runSequence('html', 'hbs');});
+  runSequence('clean', 'html', 'js', ['sass', 'images', 'favicon'], 'server', cb);
+  gulp.watch(htmlDir, ['html']);
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});
+  gulp.watch(jsDir, function(){runSequence('html', 'js');});
   gulp.watch(imgDir, ['images']);
 });
