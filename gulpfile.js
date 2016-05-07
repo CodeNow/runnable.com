@@ -241,7 +241,7 @@ gulp.task('server', function() {
 // dev build and watch
 gulp.task('default', function(cb) {
   runSequence('clean', 'html', 'js', ['sass', 'images', 'favicon'], 'server', cb);
-  gulp.watch(htmlDir, function(){runSequence('html');});
+  gulp.watch(htmlDir, ['html']);
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, function(){runSequence('html', 'js');});
   gulp.watch(imgDir, ['images']);
