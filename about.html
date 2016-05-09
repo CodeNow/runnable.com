@@ -13,8 +13,8 @@
     <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentElement.removeChild(o[0])}}function xhrSubmit(e,t,a){var n,s=new XMLHttpRequest,i=document.getElementsByClassName("form-questionnaire")[0],o=document.getElementsByClassName("article-sign-up")[0],r=document.getElementsByClassName("article-questionnaire")[0],l=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),s.open("POST",n),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},s.onload=function(){var a=JSON.parse(s.responseText),n=a.result_code,d=a.result_message;-1!==n&&0!==n||(shakeForm(e),activeCampaignValidation(d,t)),1===n&&(o.classList.contains("out")?(r.classList.add("out"),l.classList.add("in")):(i.addEventListener("change",makeDirty),i.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),o.classList.add("out"),r.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion())),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),s="";toggleEditing(t,"disable");for(var i=0;i<n.length;i++)n[i].checked&&(s=n[i].value);a={scm:s,organization:t[2].value,email:t[3].value},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],s=a.getElementsByClassName("well-text")[0],i=e.substr(0,e.indexOf("."));switch(i){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}s.innerHTML=e,n.setAttribute("style","display: flex !important")}function escModal(e){27==e.keyCode&&(location.hash="#",document.removeEventListener("keydown",escModal))}function checkScroll(){var e=document.body;"#sign-up"===location.hash?(e.classList.add("modal-open"),document.addEventListener("keydown",escModal)):e.classList.remove("modal-open")}function flipCard(e){for(var t,a,n=e.type,s=e.target;(s=s.parentElement)&&!s.classList.contains("team-card"););if(a=s.getElementsByClassName("img-rounded"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(s.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("load",function(){var e,t,a="?whitelist=false"!==window.location.search,n=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),window.fbq||(window.fbq=function(){}),n)for(n.addEventListener("change",makeDirty),n.addEventListener("submit",submitSignUp),e=n.getElementsByTagName("input"),t=0;t<e.length;t++)e[t].addEventListener("invalid",formInvalid),e[t].classList.contains("input-radio")&&e[t].addEventListener("change",updateLabel);a||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important"),location.hash="#sign-up",fbq("track","ViewContent",{action:"notWhitelisted"}))}),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("img-rounded");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)}),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(s),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 9b6d9d8246bfe9b6d8c88a87b566b796b2486e4e
-      Commit Time: Fri May 6 17:07:13 2016 -0700
+      Commit Hash: 5576d62be179cb33331ca140d71e4a64cb89f57a
+      Commit Time: Mon May 9 15:06:29 2016 -0700
     -->
 
   </head><body class="page-landing page-about" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -120,7 +120,7 @@
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a ng-href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
+      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md">Sign In</a>
       <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
       <div class="list-item divider visible-md"></div>
       <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
@@ -145,14 +145,14 @@
   <p class="p text-center">Working to simplify how teams develop software.
   <div class="grid-block grid-container align-center team-grid">
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/yashkumar.jpg" alt="Yash Kumar">
+      <img class="grid-block shrink img" src="images/team/yashkumar.jpg" alt="Yash Kumar" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Yash Kumar</strong>
         <small class="small">CEO</small>
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/sundippatel.jpg" alt="Sundip Patel">
+      <img class="grid-block shrink img" src="images/team/sundippatel.jpg" alt="Sundip Patel" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Sundip Patel</strong>
         <small class="small">Product Manager</small>
@@ -167,7 +167,7 @@
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/prafulrana.jpg" alt="Raful Rana">
+      <img class="grid-block shrink img" src="images/team/prafulrana.jpg" alt="Raful Rana" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Praful Rana</strong>
         <small class="small">Product Manager</small>
@@ -183,8 +183,8 @@
     </figure>
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
-        <img class="grid-block shrink img" src="images/team/tonyli.jpg" alt="Tony Li">
-        <img class="img img-rounded" src="images/team/luna-rounded.jpg" height="66" width="66" alt="luna">
+        <img class="grid-block shrink img" src="images/team/tonyli.jpg" alt="Tony Li" height="215" width="300">
+        <img class="img img-rounded" src="images/team/luna-rounded.jpg" height="60" width="60" alt="luna">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Tony Li</strong>
           <small class="small">Designer</small>
@@ -196,8 +196,8 @@
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna">
-        <img class="img img-rounded" src="images/team/tonyli-rounded.jpg" height="66" width="66" alt="Tony Li">
+        <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna" height="215" width="300">
+        <img class="img img-rounded" src="images/team/tonyli-rounded.jpg" height="60" width="60" alt="Tony Li">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Luna</strong>
           <small class="small">Beagle & Pointer</small>
@@ -210,7 +210,7 @@
       </div>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel">
+      <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Anand Patel</strong>
         <small class="small">Engineer</small>
@@ -225,7 +225,7 @@
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/bryankendall.jpg" alt="Bryan Kendall">
+      <img class="grid-block shrink img" src="images/team/bryankendall.jpg" alt="Bryan Kendall" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Bryan Kendall</strong>
         <small class="small">Engineer</small>
@@ -238,16 +238,16 @@
     </figure>
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
-        <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers">
-        <img class="img img-rounded" src="images/team/doobie-rounded.jpg" height="66" width="66" alt="doobie">
+        <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers" height="215" width="300">
+        <img class="img img-rounded" src="images/team/doobie-rounded.jpg" height="60" width="60" alt="doobie">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Nathan Meyers</strong>
           <small class="small">Engineer</small>
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie">
-        <img class="img img-rounded" src="images/team/nathanmeyers-rounded.jpg" height="66" width="66" alt="Nathan Meyers">
+        <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie" height="215" width="300">
+        <img class="img img-rounded" src="images/team/nathanmeyers-rounded.jpg" height="60" width="60" alt="Nathan Meyers">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Doobie</strong>
           <small class="small">Beagle</small>
@@ -260,7 +260,7 @@
       </div>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov">
+      <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Anton Podviaznikov</strong>
         <small class="small">Engineer</small>
@@ -275,7 +275,7 @@
       </figcaption>
     </figure>
     <figure class="grid-block team-card vertical">
-      <img class="grid-block shrink img" src="images/team/forrestjunod.jpg" alt="Forrest Junod">
+      <img class="grid-block shrink img" src="images/team/forrestjunod.jpg" alt="Forrest Junod" height="215" width="300">
       <figcaption class="grid-block vertical figcaption text-center">
         <strong class="strong">Forrest Junod</strong>
         <small class="small">VP Engineering</small>
@@ -314,7 +314,7 @@
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
         <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
-        <img class="img img-rounded" src="images/team/robot-rounded.jpg" height="66" width="66" alt="Robot">
+        <img class="img img-rounded" src="images/team/robot-rounded.jpg" height="60" width="60" alt="Robot">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Taylor Dolan</strong>
           <small class="small">Designer</small>
@@ -326,8 +326,8 @@
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot">
-        <img class="img img-rounded" src="images/team/taylordolan-rounded.jpg" height="66" width="66" alt="Taylor Dolan">
+        <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot" height="215" width="300">
+        <img class="img img-rounded" src="images/team/taylordolan-rounded.jpg" height="60" width="60" alt="Taylor Dolan">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Robot</strong>
           <small class="small">Boston Terrier</small>
@@ -336,8 +336,8 @@
     </figure>
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
-        <img class="grid-block shrink img" src="images/team/jorgesilva.jpg" alt="Jorge Silva">
-        <img class="img img-rounded" src="images/team/majesticmaury-rounded.jpg" height="66" width="66" alt="Majestic Maury">
+        <img class="grid-block shrink img" src="images/team/jorgesilva.jpg" alt="Jorge Silva" height="215" width="300">
+        <img class="img img-rounded" src="images/team/majesticmaury-rounded.jpg" height="60" width="60" alt="Majestic Maury">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Jorge Silva</strong>
           <small class="small">Engineer</small>
@@ -352,8 +352,8 @@
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/majesticmaury.jpg" alt="Majestic Maury">
-        <img class="img img-rounded" src="images/team/jorgesilva-rounded.jpg" height="66" width="66" alt="Jorge Silva">
+        <img class="grid-block shrink img" src="images/team/majesticmaury.jpg" alt="Majestic Maury" height="215" width="300">
+        <img class="img img-rounded" src="images/team/jorgesilva-rounded.jpg" height="60" width="60" alt="Jorge Silva">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Majestic Maury</strong>
           <small class="small">Plant</small>
@@ -362,8 +362,8 @@
     </figure>
     <figure class="grid-block team-card">
       <div class="grid-block vertical align-center team-card-a">
-        <img class="grid-block shrink img" src="images/team/chrisneill.jpg" alt="Chris Neill">
-        <img class="img img-rounded" src="images/team/grillninja-rounded.jpg" height="66" width="66" alt="Grill Ninja">
+        <img class="grid-block shrink img" src="images/team/chrisneill.jpg" alt="Chris Neill" height="215" width="300">
+        <img class="img img-rounded" src="images/team/grillninja-rounded.jpg" height="60" width="60" alt="Grill Ninja">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Chris Neill</strong>
           <small class="small">Lead DevOps</small>
@@ -375,8 +375,8 @@
         </figcaption>
       </div>
       <div class="grid-block vertical align-center team-card-b">
-        <img class="grid-block shrink img" src="images/team/grillninja.jpg" alt="Grill Ninja">
-        <img class="img img-rounded" src="images/team/chrisneill-rounded.jpg" height="66" width="66" alt="Chris Neill">
+        <img class="grid-block shrink img" src="images/team/grillninja.jpg" alt="Grill Ninja" height="215" width="300">
+        <img class="img img-rounded" src="images/team/chrisneill-rounded.jpg" height="60" width="60" alt="Chris Neill">
         <figcaption class="grid-block vertical figcaption text-center">
           <strong class="strong">Chris Neill</strong>
           <small class="small">Grill Ninja</small>
@@ -482,7 +482,7 @@
     <button class="grid-content btn btn-lg green">Ship It!</button>
 
     <div class="grid-content text-center">
-      <a ng-href="{{loginUrl}}" class="link">Sign in</a> if your team is already using Runnable.
+      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link">Sign in</a> if your team is already using Runnable.
     </div>
   </form>
 </article>
