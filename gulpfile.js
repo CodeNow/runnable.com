@@ -36,8 +36,6 @@ var htmlDist = dist;
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
-var favIconDist = dist;
-var robotsDist = dist;
 
 // git commit/hash
 var commitTime;
@@ -159,7 +157,7 @@ gulp.task('robots', function () {
     .pipe(debug({
       title: 'robots'
     }))
-    .pipe(gulp.dest(robotsDist));
+    .pipe(gulp.dest(htmlDist));
 });
 
 // favicon
@@ -168,7 +166,7 @@ gulp.task('favicon', function () {
     .pipe(debug({
       title: 'favicon'
     }))
-    .pipe(gulp.dest(favIconDist));
+    .pipe(gulp.dest(htmlDist));
 });
 
 // imagemin
