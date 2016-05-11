@@ -96,16 +96,14 @@ gulp.task('html', function() {
 // sass
 gulp.task('sass', function() {
   return gulp.src(sassSrc)
-    .pipe(sass({
-      errLogToConsole: true
-    }))
-    .on('error', function(err){
-      console.log(err.message);
-    })
+    .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       remove: false
     }))
+    .on('error', function(err){
+      console.log(err.message);
+    })
     .pipe(gulp.dest(sassDist));
 });
 
@@ -115,12 +113,12 @@ gulp.task('sass:build', function() {
       errLogToConsole: true,
       outputStyle: 'compressed'
     }))
-    .on('error', function(err){
-      console.log(err.message);
-    })
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .on('error', function(err){
+      console.log(err.message);
+    })
     .pipe(gulp.dest(sassDist));
 });
 
