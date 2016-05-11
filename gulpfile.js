@@ -30,12 +30,12 @@ var sassSrc = src + 'styles/index.scss';
 var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
+var robotsSrc = src + 'html/robots.txt';
 
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
 var imgDist = dist + 'images/';
-var favIconDist = dist;
 
 // git commit/hash
 var commitTime;
@@ -151,13 +151,22 @@ gulp.task('images', function () {
     .pipe(gulp.dest(imgDist));
 });
 
+// robots.txt
+gulp.task('robots', function () {
+  return gulp.src(robotsSrc)
+    .pipe(debug({
+      title: 'robots'
+    }))
+    .pipe(gulp.dest(htmlDist));
+});
+
 // favicon
 gulp.task('favicon', function () {
   return gulp.src(favIconSrc)
     .pipe(debug({
       title: 'favicon'
     }))
-    .pipe(gulp.dest(favIconDist));
+    .pipe(gulp.dest(htmlDist));
 });
 
 // imagemin
@@ -212,7 +221,12 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence('getCommitTime', 'getCommitHash', 'clean', 'html', 'js', ['sass:build', 'images', 'favicon', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
+});
+
+// build without optimizing
+gulp.task('build:dev', function(cb) {
+  runSequence('clean', 'html', 'js', ['sass', 'images', 'robots', 'favicon'], cb);
 });
 
 // build and deploy to gh pages
@@ -222,7 +236,7 @@ gulp.task('deploy:gh', function(cb) {
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html', 'js', ['sass', 'images', 'favicon'], 'ghPages', cb);
+  runSequence('build:dev', 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
@@ -238,7 +252,7 @@ gulp.task('server', function() {
 
 // dev build and watch
 gulp.task('default', function(cb) {
-  runSequence('clean', 'html', 'js', ['sass', 'images', 'favicon'], 'server', cb);
+  runSequence('build:dev', 'server', cb);
   gulp.watch(htmlDir, ['html']);
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, function(){runSequence('html', 'js');});
