@@ -6,11 +6,15 @@
 ## Gulp Commands
 **`gulp build`** Build and minify/optimize files.
 
+**`gulp build:dev`** Build without minifying/optimizing files.
+
 **`gulp deploy:gh`** Build and minify/optimize files, then deploys to GitHub Pages.
 
-**`gulp deploy:s3`** Build and minify/optimize files, then deploys to an amazon s3 bucket.
+**`gulp deploy:gh:dev`** Build without minifying/optimizing files, then deploys to GitHub Pages.
 
-**`gulp`** Build and watch files for changes and builds when there are changes.
+**`gulp deploy:s3`** Build and minify/optimize files, then deploys to an Amazon S3 bucket.
+
+**`gulp`** Build without minifying/optimizing files and watch for changes, then runs a local web server.
 
 ## Tagging
 1. `npm version [type]`
