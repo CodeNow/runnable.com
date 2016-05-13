@@ -143,6 +143,7 @@ function xhrSubmit(e, form, formData) {
         fbq('track', 'Lead');
         ga('send', 'event', 'signUp', 'submit');
         goog_report_conversion();
+        analytics.track('Signed Up'); // TODO: need to add more details in a json
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
