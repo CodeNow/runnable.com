@@ -143,6 +143,8 @@ function xhrSubmit(e, form, formData) {
         fbq('track', 'Lead');
         ga('send', 'event', 'signUp', 'submit');
         goog_report_conversion();
+       
+        analytics.track('Signed Up', formData);
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
@@ -162,6 +164,7 @@ function submitSignUp(e) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
+    var clientId = ga.getAll()[0].get('clientId');
 
     toggleEditing(form, 'disable'); // disables inputs
 
@@ -175,7 +178,8 @@ function submitSignUp(e) {
     formData = {
       scm: scmName,
       organization: form[2].value,
-      email: form[3].value
+      email: form[3].value,
+      clientId: clientId
     };
 
     formData = JSON.stringify(formData); // convert to JSON
@@ -289,6 +293,10 @@ window.addEventListener('load', function(){
 
     // facebook tracking
     fbq('track', 'ViewContent', {
+      action: 'notWhitelisted'
+    });
+    // segment/fb tracking
+    analytics.track('ViewContent', {
       action: 'notWhitelisted'
     });
   }
