@@ -143,7 +143,7 @@ function xhrSubmit(e, form, formData) {
         fbq('track', 'Lead');
         ga('send', 'event', 'signUp', 'submit');
         goog_report_conversion();
-       
+
         analytics.track('Signed Up', formData);
       } else {
         // else show confirmation
@@ -295,6 +295,7 @@ window.addEventListener('load', function(){
     fbq('track', 'ViewContent', {
       action: 'notWhitelisted'
     });
+
     // segment/fb tracking
     analytics.track('ViewContent', {
       action: 'notWhitelisted'
