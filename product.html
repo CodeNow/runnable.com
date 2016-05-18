@@ -13,8 +13,8 @@
     <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentElement.removeChild(o[0])}}function xhrSubmit(e,t,a){var n,s=new XMLHttpRequest,i=document.getElementsByClassName("form-questionnaire")[0],o=document.getElementsByClassName("article-sign-up")[0],l=document.getElementsByClassName("article-questionnaire")[0],r=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),s.open("POST",n),s.setRequestHeader("Content-Type","application/json"),s.send(a),s.onreadystatechange=function(){4===s.readyState&&0===s.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},s.onload=function(){var n=JSON.parse(s.responseText),d=n.result_code,c=n.result_message;-1!==d&&0!==d||(shakeForm(e),activeCampaignValidation(c,t)),1===d&&(o.classList.contains("out")?(l.classList.add("out"),r.classList.add("in")):(i.addEventListener("change",makeDirty),i.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),o.classList.add("out"),l.classList.add("in"),fbq("track","Lead"),ga("send","event","signUp","submit"),goog_report_conversion(),analytics.track("Signed Up",a))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),s="",i=ga.getAll()[0].get("clientId");toggleEditing(t,"disable");for(var o=0;o<n.length;o++)n[o].checked&&(s=n[o].value);a={scm:s,organization:t[2].value,email:t[3].value,clientId:i},a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],s=a.getElementsByClassName("well-text")[0],i=e.substr(0,e.indexOf("."));switch(i){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}s.innerHTML=e,n.setAttribute("style","display: flex !important")}function escModal(e){27==e.keyCode&&(location.hash="#",document.removeEventListener("keydown",escModal))}function checkScroll(){var e=document.body;"#sign-up"===location.hash?(e.classList.add("modal-open"),document.addEventListener("keydown",escModal)):e.classList.remove("modal-open")}window.addEventListener("load",function(){var e,t,a="?whitelist=false"!==window.location.search,n=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),window.fbq||(window.fbq=function(){}),n)for(n.addEventListener("change",makeDirty),n.addEventListener("submit",submitSignUp),e=n.getElementsByTagName("input"),t=0;t<e.length;t++)e[t].addEventListener("invalid",formInvalid),e[t].classList.contains("input-radio")&&e[t].addEventListener("change",updateLabel);a||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important"),location.hash="#sign-up",fbq("track","ViewContent",{action:"notWhitelisted"}),analytics.track("ViewContent",{action:"notWhitelisted"}))}),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(s),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: ff6c88e9d89bb3f186818579dec7d795b92c837c
-      Commit Time: Mon May 16 11:58:07 2016 -0700
+      Commit Hash: 26722aff6d9fe043a0fac12ab8bf999b806d3c40
+      Commit Time: Tue May 17 16:23:48 2016 -0700
     -->
 
   </head><body class="page-landing page-product" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -362,71 +362,26 @@
 </div>
 
 
-    
+    <script>
+  var match,
+    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+    search = /([^&=]+)=?([^&]*)/g,
+    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+    query  = window.location.search.substring(1),
+    urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+    analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
+    analytics.page(); // fire this just to initialize integrations
+    analytics.ready( function() {
+      analytics.page({
+        clientId: ga.getAll()[0].get('clientId'),
+        querystrings: urlParams
+      });
+    });
+  }}();
+</script>
+
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
-<!--
-<script src="//www.googleadservices.com/pagead/conversion_async.js"></script>
-<script>
-  /* <![CDATA[ */
-  goog_snippet_vars = function() {
-    var w = window;
-    w.google_conversion_id = 927781586;
-    w.google_conversion_label = "3G2tCK_GoGUQ0qWzugM";
-    w.google_remarketing_only = false;
-  }
-  // DO NOT CHANGE THE CODE BELOW.
-  goog_report_conversion = function(url) {
-    goog_snippet_vars();
-    window.google_conversion_format = "3";
-    var opt = new Object();
-    opt.onload_callback = function() {
-      if (typeof(url) != 'undefined') {
-        window.location = url;
-      }
-    }
-    var conv_handler = window['google_trackConversion'];
-    if (typeof(conv_handler) == 'function') {
-      conv_handler(opt);
-    }
-  }
-  /* ]]> */
-</script>
-<script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','//connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '761302660669573');
-  fbq('track', "PageView");
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=761302660669573&ev=PageView&noscript=1"/></noscript>
-
-<script>
-  // google analytics
-  (function (i, s, o, g, r, a, m) {
-    i["GoogleAnalyticsObject"] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-    m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
-  ga("create", "UA-59677301-1", "auto");
-  ga("send", "pageview");
-  // end google analytics
-</script>
-<script src="//platform.twitter.com/oct.js"></script>
-<script>twttr.conversion.trackPid('nuqve', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=nuqve&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=nuqve&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-</noscript>
-
--->
-
-
 </body></html>
