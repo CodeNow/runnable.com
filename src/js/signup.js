@@ -185,8 +185,7 @@ function submitSignUp(e) {
 
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Sign up Attempt', formData);
-      console.log("Sign up attempt track sent..");
+      analytics.track('Sign Up Attempt', {scm: scmName, org: form[2].value, email: form[3].value, clientId: clientId});
     });
 
     formData = JSON.stringify(formData); // convert to JSON
