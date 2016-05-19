@@ -138,13 +138,13 @@ function xhrSubmit(e, form, formData) {
         // show questionnaire
         articleSignUp.classList.add('out');
         articleQuestionnaire.classList.add('in');
-
-        // for tracking and conversions
-        fbq('track', 'Lead');
-        ga('send', 'event', 'signUp', 'submit');
-        goog_report_conversion();
-
-        analytics.track('Signed Up', formData);
+        
+        // segment tracking
+        analytics.ready(function() {
+          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});  
+          analytics.identify(formData);
+        });
+        
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
@@ -159,7 +159,7 @@ function xhrSubmit(e, form, formData) {
 function submitSignUp(e) {
   var form = e.target;
   e.preventDefault();
-
+  
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
@@ -182,6 +182,11 @@ function submitSignUp(e) {
       clientId: clientId
     };
 
+    // Send event to Segment
+    analytics.ready(function() {
+      analytics.track('Sign up Attempt', formData);
+    });
+
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
   }
@@ -202,6 +207,13 @@ function setupSubmitQuestionnaire(response) {
         subscriber_id: response.subscriber_id,
         reason: form[0].value
       };
+
+      // Send event to Segment
+      analytics.ready(function() {
+        formData.clientId = ga.getAll()[0].get('clientId');
+        analytics.track('Questionnaire Submit', formData);
+        analytics.identify({reason: formData.reason});
+      });
 
       formData = JSON.stringify(formData); // convert to JSON
       xhrSubmit(e, form, formData);
@@ -230,6 +242,12 @@ function activeCampaignValidation(resultMessage, form) {
 
   thisErrorText.innerHTML = resultMessage;
   thisErrorWell.setAttribute('style', 'display: flex !important');
+  
+  // segment tracking
+  analytics.ready(function() {
+    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});  
+  });
+  
 }
 
 function escModal(e) {
@@ -291,14 +309,9 @@ window.addEventListener('load', function(){
     // open sign up form
     location.hash = '#sign-up';
 
-    // facebook tracking
-    fbq('track', 'ViewContent', {
-      action: 'notWhitelisted'
-    });
-
-    // segment/fb tracking
-    analytics.track('ViewContent', {
-      action: 'notWhitelisted'
+    // segment tracking
+    analytics.ready(function() {
+      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});  
     });
   }
 });
