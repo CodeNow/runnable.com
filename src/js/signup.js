@@ -142,8 +142,9 @@ function xhrSubmit(e, form, formData) {
         
         // segment tracking
         analytics.ready(function() {
-          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});  
-          analytics.identify({userId:formData.email, traits: formData});
+          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
+          var data = JSON.parse(formData);
+          analytics.identify(data.email, data);
         });
         
       } else {
