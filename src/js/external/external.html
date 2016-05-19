@@ -17,6 +17,8 @@
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
+    var sign-up = document.querySelectorAll('[href="#sign-up"]');
+    analytics.trackLink(sign-up, 'Clicked Sign Up');
   });
 </script>
 
