@@ -94,8 +94,18 @@ function xhrSubmit(e, form, formData) {
   // determine script to submit to
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
+    
+    // segment track sign up attempt
+    analytics.ready(function() {
+      analytics.track('Sign Up Attempt', formData);  
+    });
   } else if (form.classList.contains('form-questionnaire')) {
     xhrUrl = 'https://codenow.com/submitreason';
+    
+    // segment track questionnaire attempt
+    analytics.ready(function() {
+      analytics.track('Submit Reason Attempt', formData);  
+    });
   }
 
   // send form
@@ -142,7 +152,7 @@ function xhrSubmit(e, form, formData) {
         // segment tracking
         analytics.ready(function() {
           analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});  
-          analytics.identify({email:formData.email, scm:formData.scm, org:formData.organization, clientId:formData.clientId});
+          analytics.identify(formData.email, formData);
         });
         
       } else {
@@ -212,7 +222,7 @@ function setupSubmitQuestionnaire(response) {
       analytics.ready(function() {
         formData.clientId = ga.getAll()[0].get('clientId');
         analytics.track('Questionnaire Submit', formData);
-        analytics.identify({reason: formData.reason});
+        analytics.identify(formData.email, {reason: formData.reason, subscriberId: formData.subscriber_id});
       });
 
       formData = JSON.stringify(formData); // convert to JSON
