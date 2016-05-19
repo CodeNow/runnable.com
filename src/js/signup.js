@@ -143,7 +143,7 @@ function xhrSubmit(e, form, formData) {
         // segment tracking
         analytics.ready(function() {
           analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});  
-          analytics.identify(formData.email, formData);
+          analytics.identify({userId:formData.email, traits: formData});
         });
         
       } else {
