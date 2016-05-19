@@ -95,17 +95,8 @@ function xhrSubmit(e, form, formData) {
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
     
-    // segment track sign up attempt
-    analytics.ready(function() {
-      analytics.track('Sign Up Attempt', formData);  
-    });
   } else if (form.classList.contains('form-questionnaire')) {
     xhrUrl = 'https://codenow.com/submitreason';
-    
-    // segment track questionnaire attempt
-    analytics.ready(function() {
-      analytics.track('Submit Reason Attempt', formData);  
-    });
   }
 
   // send form
@@ -116,7 +107,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
+      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.', form);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -195,6 +186,7 @@ function submitSignUp(e) {
     // Send event to Segment
     analytics.ready(function() {
       analytics.track('Sign up Attempt', formData);
+      console.log("Sign up attempt track sent..");
     });
 
     formData = JSON.stringify(formData); // convert to JSON
