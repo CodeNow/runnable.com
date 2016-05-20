@@ -1,0 +1,10 @@
+.development-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #7E76B0, #73B3D4);
+  // scss-lint:enable ColorVariable
+
+  &::after {
+    filter: brightness(1.1);
+    opacity: .5;
+  }
+}
