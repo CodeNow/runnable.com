@@ -106,7 +106,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:support@runnable.com">support@runnable.com</a> for assistance.', form);
+      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.', form);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -139,12 +139,13 @@ function xhrSubmit(e, form, formData) {
         articleSignUp.classList.add('out');
         articleQuestionnaire.classList.add('in');
 
-        // for tracking and conversions
-        fbq('track', 'Lead');
-        ga('send', 'event', 'signUp', 'submit');
-        goog_report_conversion();
+        // segment tracking
+        analytics.ready(function() {
+          var data = JSON.parse(formData);
+          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
+          analytics.identify(data.email, data);
+        });
 
-        analytics.track('Signed Up', formData);
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
@@ -164,7 +165,6 @@ function submitSignUp(e) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
     var formData;
-    var clientId = ga.getAll()[0].get('clientId');
 
     toggleEditing(form, 'disable'); // disables inputs
 
@@ -179,8 +179,12 @@ function submitSignUp(e) {
       scm: scmName,
       organization: form[2].value,
       email: form[3].value,
-      clientId: clientId
     };
+
+    // Send event to Segment
+    analytics.ready(function() {
+      analytics.track('Sign Up Attempt', {scm: scmName, org: form[2].value, email: form[3].value, clientId: ga.getAll()[0].get('clientId')});
+    });
 
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
@@ -202,6 +206,13 @@ function setupSubmitQuestionnaire(response) {
         subscriber_id: response.subscriber_id,
         reason: form[0].value
       };
+
+      // Send event to Segment
+      analytics.ready(function() {
+        var data = {email: response.email,subscriber_id: response.subscriber_id,reason: form[0].value, clientId:ga.getAll()[0].get('clientId')};
+        analytics.track('Questionnaire Submit', data);
+        analytics.identify(data.email, data);
+      });
 
       formData = JSON.stringify(formData); // convert to JSON
       xhrSubmit(e, form, formData);
@@ -230,6 +241,11 @@ function activeCampaignValidation(resultMessage, form) {
 
   thisErrorText.innerHTML = resultMessage;
   thisErrorWell.setAttribute('style', 'display: flex !important');
+
+  // segment tracking
+  analytics.ready(function() {
+    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+  });
 }
 
 function escModal(e) {
@@ -291,14 +307,9 @@ window.addEventListener('load', function(){
     // open sign up form
     location.hash = '#sign-up';
 
-    // facebook tracking
-    fbq('track', 'ViewContent', {
-      action: 'notWhitelisted'
-    });
-
-    // segment/fb tracking
-    analytics.track('ViewContent', {
-      action: 'notWhitelisted'
+    // segment tracking
+    analytics.ready(function() {
+      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});
     });
   }
 });
