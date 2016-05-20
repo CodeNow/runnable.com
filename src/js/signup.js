@@ -94,7 +94,7 @@ function xhrSubmit(e, form, formData) {
   // determine script to submit to
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
-    
+
   } else if (form.classList.contains('form-questionnaire')) {
     xhrUrl = 'https://codenow.com/submitreason';
   }
@@ -139,14 +139,14 @@ function xhrSubmit(e, form, formData) {
         // show questionnaire
         articleSignUp.classList.add('out');
         articleQuestionnaire.classList.add('in');
-        
+
         // segment tracking
         analytics.ready(function() {
           analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
           var data = JSON.parse(formData);
           analytics.identify(data.email, data);
         });
-        
+
       } else {
         // else show confirmation
         articleQuestionnaire.classList.add('out');
@@ -161,7 +161,7 @@ function xhrSubmit(e, form, formData) {
 function submitSignUp(e) {
   var form = e.target;
   e.preventDefault();
-  
+
   if (form.checkValidity()) {
     var scm = document.getElementsByName('scm');
     var scmName = '';
@@ -244,12 +244,11 @@ function activeCampaignValidation(resultMessage, form) {
 
   thisErrorText.innerHTML = resultMessage;
   thisErrorWell.setAttribute('style', 'display: flex !important');
-  
+
   // segment tracking
   analytics.ready(function() {
-    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});  
+    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
-  
 }
 
 function escModal(e) {
@@ -313,7 +312,7 @@ window.addEventListener('load', function(){
 
     // segment tracking
     analytics.ready(function() {
-      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});  
+      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});
     });
   }
 });
