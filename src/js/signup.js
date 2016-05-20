@@ -212,8 +212,9 @@ function setupSubmitQuestionnaire(response) {
 
       // Send event to Segment
       analytics.ready(function() {
-        analytics.track('Questionnaire Submit', {email: response.email,subscriber_id: response.subscriber_id,reason: form[0].value, clientId:ga.getAll()[0].get('clientId')});
-        analytics.identify(formData.email, {reason: formData.reason, subscriberId: formData.subscriber_id});
+        var data = {email: response.email,subscriber_id: response.subscriber_id,reason: form[0].value, clientId:ga.getAll()[0].get('clientId')};
+        analytics.track('Questionnaire Submit', data);
+        analytics.identify(data.email, data);
       });
 
       formData = JSON.stringify(formData); // convert to JSON
