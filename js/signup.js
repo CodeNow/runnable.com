@@ -94,7 +94,6 @@ function xhrSubmit(e, form, formData) {
   // determine script to submit to
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
-
   } else if (form.classList.contains('form-questionnaire')) {
     xhrUrl = 'https://codenow.com/submitreason';
   }
@@ -142,8 +141,8 @@ function xhrSubmit(e, form, formData) {
 
         // segment tracking
         analytics.ready(function() {
-          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
           var data = JSON.parse(formData);
+          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
           analytics.identify(data.email, data);
         });
 
