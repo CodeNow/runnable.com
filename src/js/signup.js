@@ -94,7 +94,6 @@ function xhrSubmit(e, form, formData) {
   // determine script to submit to
   if (form.classList.contains('form-sign-up')) {
     xhrUrl = 'https://codenow.com/submit';
-
   } else if (form.classList.contains('form-questionnaire')) {
     xhrUrl = 'https://codenow.com/submitreason';
   }
