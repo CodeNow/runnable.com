@@ -23,72 +23,123 @@
     }
   }
 
-  .img {
-    height: auto;
-    max-width: 100%;
-
+  .figure {
     @include media(sm) {
       margin-bottom: 30px;
     }
   }
 
-  .section {
-
-    + .section {
-      margin-top: 90px;
-    }
-
-    .grid-block {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
+  .img {
+    height: auto;
+    max-width: 100%;
   }
 
-  .section-stack .img,
-  .section-tools .img {
-    @media (min-width: $screen-sm) and (max-width: $screen-md) {
-      height: auto;
-      width: 279px;
-    }
+  .section .grid-block {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.section-stack {
+  @include media(sm) {
+    flex-direction: column-reverse;
+  }
+}
+
+.figure-stack {
+  flex-direction: column;
+  justify-content: center;
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+
+  @include media(sm) {
+    flex-direction: row;
   }
 
-  .section-stack {
+  .img {
+    margin: 7.5px;
+
     @include media(sm) {
-      flex-direction: column-reverse;
+      width: 270px;
+    }
+
+    @include media(xxs) {
+      width: 180px;
+    }
+
+    &:nth-child(2) {
+      border-radius: 6px;
+      box-shadow: 0 1px 9px rgba($gray,.1);
+
+      @include media(sm) {
+        border-radius: 5px;
+      }
     }
   }
 
-  .section-tools {
+  &::before {
+    background: linear-gradient(to bottom, $white, rgba($white,0) 20%, rgba($white,0) 80%, $white);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
     @include media(sm) {
-      flex-direction: column;
+      background: linear-gradient(to right, $white, rgba($white,0) 20%, rgba($white,0) 80%, $white);
+    }
+  }
+}
+
+.section-notification.section.section { // specificity to override default '.vertical .grid-block' margin
+  background: $gray-lighterest;
+  border: 1px solid $gray-lightest;
+  border-radius: $input-border-radius-lg;
+  margin-top: 195px;
+  overflow: visible;
+  padding-bottom: 75px;
+  padding-top: 75px;
+  position: relative;
+
+  @include media(xs) {
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+  }
+
+  .img-wrapper {
+    height: 188px;
+    left: 0;
+    position: absolute;
+    top: -116px;
+    width: 100%;
+  }
+
+  .img {
+    @include media(xxs) {
+      max-width: 155%;
+      width: 155%;
     }
   }
 
-  .section-notification {
-    background: $gray-lighterest;
-    border: 1px solid $gray-lightest;
-    border-radius: $input-border-radius-lg;
-    overflow: visible;
-    padding-bottom: 75px;
-    padding-top: 75px;
-    position: relative;
+  .text-center {
+    max-width: 720px;
+  }
+}
 
-    @include media(xs) {
-      border-left: 0;
-      border-radius: 0;
-      border-right: 0;
-    }
+.section-tools.section.section { // specificity to override default '.vertical .grid-block' margin
+  margin-top: 105px;
 
-    .img-wrapper {
-      left: 0;
-      position: absolute;
-      top: -30px;
-      width: 100%;
-    }
+  @include media(sm) {
+    flex-direction: column;
+  }
 
-    .h3,
-    .p {
-      max-width: 720px;
+  .img {
+    @include media(sm) {
+      width: 270px;
     }
   }
 }
