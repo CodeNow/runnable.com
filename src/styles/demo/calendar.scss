@@ -28,7 +28,8 @@
   &.bookingjs,
   .bookingjs-displayname,
   .fc-view-container,
-  .fc-event {
+  .fc-event,
+  .fc-today-button {
     color: $gray-dark;
   }
 
@@ -49,5 +50,12 @@
 
   .bookingjs-poweredby {
     display: none;
+  }
+
+  .fc .fc-toolbar > .fc-right > button.fc-today-button {
+    border: 1px solid currentColor;
+    border-radius: $input-border-radius;
+    margin: 10px 0;
+    padding: 5px;
   }
 }
