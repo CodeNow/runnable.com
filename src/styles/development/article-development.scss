@@ -27,37 +27,36 @@
 
   .img {
     height: auto;
-    max-width: 100%;
   }
 }
 
-.section-stack.section-stack {
+.section-stack {
   @include media(sm) {
     flex-direction: column-reverse;
+    overflow: visible;
   }
 }
 
 .figure-stack {
   flex-direction: column;
   justify-content: center;
+  margin-right: 0;
   max-height: 300px;
   overflow: hidden;
   position: relative;
 
   @include media(sm) {
     flex-direction: row;
-    max-width: 100%;
+    margin-left: -30px;
+    margin-right: -30px;
   }
 
   .img {
     margin: 7.5px;
+    max-width: 100%;
 
     @include media(md) {
-      width: 270px;
-    }
-
-    @include media(xxs) {
-      width: 180px;
+      width: 300px;
     }
 
     &:nth-child(2) {
@@ -81,7 +80,7 @@
     width: 100%;
 
     @include media(sm) {
-      background: linear-gradient(to right, $white, rgba($white,0) 20%, rgba($white,0) 80%, $white);
+      background: linear-gradient(to right, rgba($white,.75), rgba($white,0) 20%, rgba($white,0) 80%, rgba($white,.75));
     }
   }
 }
@@ -94,7 +93,10 @@
     border: 1px solid $gray-lightest;
     border-radius: $input-border-radius-lg;
     color: $gray-dark;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 100px;
+    max-width: 981px;
     overflow: visible;
     padding: 75px;
     position: relative;
@@ -106,21 +108,27 @@
       margin-left: -30px;
       margin-right: -30px;
     }
+
+    @include media(xs) {
+      padding: 75px 30px 60px;
+    }
   }
 
   .img-wrapper {
-    height: 188px;
     left: 0;
     margin: 0 auto;
-    padding: 75px 30px 60px;
     position: absolute;
     right: 0;
-    top: -116px;
+    top: -120px;
   }
 
   .img {
     @include media(xxs) {
       max-width: 155%;
+    }
+
+    @include media(xxxs) {
+      max-width: 145%;
     }
   }
 
@@ -130,10 +138,18 @@
   }
 }
 
-.section-tools.section.section { // specificity to override default '.vertical .grid-block' margin-top
+.section-tools {
 
   @include media(sm) {
     flex-direction: column;
+  }
+
+  .figure {
+    margin-left: 0;
+
+    @include media(sm) {
+      margin-right: 0;
+    }
   }
 
   .img {
