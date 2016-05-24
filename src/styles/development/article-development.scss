@@ -1,6 +1,12 @@
 .article-development {
   padding-top: 60px;
 
+  @include media(md) {
+    &.grid-container {
+      max-width: 100%;
+    }
+  }
+
   // override default article padding
   @include media(xxs) {
     padding-left: 0;
