@@ -53,6 +53,12 @@
     display: none;
   }
 
+  // hide avatar and display name
+  .bookingjs-avatar,
+  .bookingjs-displayname {
+    display: none;
+  }
+
   // scss-lint:disable SelectorDepth
   .fc .fc-toolbar > .fc-right > button.fc-today-button {
     border: 1px solid currentColor;
