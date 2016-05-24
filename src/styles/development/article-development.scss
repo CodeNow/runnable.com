@@ -13,6 +13,10 @@
     padding-right: 0;
   }
 
+  > .grid-block + .grid-block {
+    margin-top: 105px;
+  }
+
   // figure.img-wrapper
   .img-wrapper {
     margin: 0; // reset default figure margin
@@ -96,20 +100,26 @@
   }
 }
 
-.section-notification.section.section { // specificity to override default '.vertical .grid-block' margin
-  background: $gray-lighterest;
-  border: 1px solid $gray-lightest;
-  border-radius: $input-border-radius-lg;
-  margin-top: 195px;
+.section-notification { // specificity to override default '.vertical .grid-block' margin-top
   overflow: visible;
-  padding-bottom: 75px;
-  padding-top: 75px;
-  position: relative;
 
-  @include media(xs) {
-    border-left: 0;
-    border-radius: 0;
-    border-right: 0;
+  .well {
+    background: $gray-lighterest;
+    border: 1px solid $gray-lightest;
+    border-radius: $input-border-radius-lg;
+    color: $gray-dark;
+    margin-top: 90px;
+    overflow: visible;
+    padding-bottom: 75px;
+    padding-top: 75px;
+    position: relative;
+    width: 100%;
+
+    @include media(xs) {
+      border-left: 0;
+      border-radius: 0;
+      border-right: 0;
+    }
   }
 
   .img-wrapper {
@@ -127,13 +137,13 @@
     }
   }
 
-  .text-center {
+  .h3,
+  .p {
     max-width: 720px;
   }
 }
 
-.section-tools.section.section { // specificity to override default '.vertical .grid-block' margin
-  margin-top: 105px;
+.section-tools.section.section { // specificity to override default '.vertical .grid-block' margin-top
 
   @include media(sm) {
     flex-direction: column;
