@@ -50,3 +50,9 @@
     margin-top: 3px;
   }
 }
+
+.text-request {
+  @media (max-width: 475px) {
+    display: none;
+  }
+}
