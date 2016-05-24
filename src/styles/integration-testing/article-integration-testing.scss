@@ -7,6 +7,14 @@
       padding-left: 0;
       padding-right: 0;
     }
+
+    &:first-child .p {
+      font-size: 19px;
+
+      @include media(xxs) {
+        font-size: 16px;
+      }
+    }
   }
 
   .grid-wrapper {

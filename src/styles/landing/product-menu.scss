@@ -1,9 +1,6 @@
 .popover-product-menu {
   margin-left: -20px;
-
-  .btn-product + .btn {
-    margin-left: 9px;
-  }
+  width: 600px;
 }
 
 .btn-product {
@@ -16,7 +13,13 @@
   line-height: 1.2;
   padding: 12px 6px;
   white-space: normal;
-  width: 192px;
+  width: 210px;
+
+  @media (min-width: $screen-sm) {
+    + .btn-product {
+      margin-left: 9px;
+    }
+  }
 
   &:hover {
     background: $gray-lightest;
@@ -43,6 +46,7 @@
 
   .small {
     color: $gray;
+    display: block;
     margin-top: 3px;
   }
 }
