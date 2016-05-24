@@ -1,6 +1,6 @@
 .article-development {
 
-  @include media(md) {
+  @include media(sm) {
     &.grid-container {
       max-width: 100%;
     }
