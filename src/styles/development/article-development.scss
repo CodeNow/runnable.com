@@ -1,15 +1,11 @@
 .article-development {
+  padding-left: 30px;
+  padding-right: 30px;
 
   @include media(sm) {
     &.grid-container {
       max-width: 100%;
     }
-  }
-
-  // override default article padding
-  @include media(xxs) {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   > .grid-block + .grid-block {
@@ -18,7 +14,6 @@
 
   // figure.img-wrapper
   .img-wrapper {
-    margin: 0; // reset default figure margin
     max-width: 100%;
   }
 
@@ -37,11 +32,6 @@
   .img {
     height: auto;
     max-width: 100%;
-  }
-
-  .section .grid-block {
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }
 
