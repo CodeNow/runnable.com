@@ -1,6 +1,4 @@
 .article-development {
-  padding-left: 45px;
-  padding-right: 45px;
 
   @include media(sm) {
     &.grid-container {
@@ -12,14 +10,22 @@
   @include media(xs) {
     &.grid-container {
       max-width: 100%;
-      padding-left: 30px;
-      padding-right: 30px;
       width: auto;
     }
   }
 
   > .grid-block + .grid-block {
     margin-top: 90px;
+  }
+
+  .section {
+    padding-left: 45px;
+    padding-right: 45px;
+
+    @include media(xs) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   .p {
