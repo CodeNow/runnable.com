@@ -1,6 +1,6 @@
 // needs to be more specific than the inline styles
 .calendar.calendar.calendar {
-  margin: 75px auto 0;
+  margin: 90px auto 0;
   max-width: 900px;
   min-height: 541px;
   z-index: 1;
@@ -17,6 +17,21 @@
   @include media(xxs) {
     margin-left: 15px;
     margin-right: 15px;
+  }
+
+  &::after {
+    background: url(../images/runnabear-peek.png);
+    background-size: 230px 130px;
+    content: '';
+    display: block;
+    height: 130px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: -120px;
+    width: 230px;
+    z-index: 1;
   }
 
   &.bookingjs {
@@ -60,6 +75,10 @@
   }
 
   // scss-lint:disable SelectorDepth
+  &.is-small.has-avatar.has-displayname .bookingjs-calendar .fc-toolbar {
+    padding-bottom: 0;
+  }
+
   .fc .fc-toolbar > .fc-right > button.fc-today-button {
     border: 1px solid currentColor;
     border-radius: $input-border-radius;
