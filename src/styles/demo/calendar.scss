@@ -43,8 +43,10 @@
 
   // forms
   .input-comment {
-    max-height: 155px;
+    max-height: 150px;
     max-width: 100%;
+    min-height: 84px;
+    min-width: 100%;
   }
 
   .bookingjs-poweredby {
