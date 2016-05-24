@@ -7,10 +7,6 @@
     padding-right: 0;
   }
 
-  .align-center {
-    align-items: center;
-  }
-
   // figure.img-wrapper
   .img-wrapper {
     margin: 0; // reset default figure margin
@@ -40,7 +36,7 @@
   }
 }
 
-.section-stack {
+.section-stack.section-stack {
   @include media(sm) {
     flex-direction: column-reverse;
   }
@@ -60,7 +56,7 @@
   .img {
     margin: 7.5px;
 
-    @include media(sm) {
+    @include media(md) {
       width: 270px;
     }
 
@@ -138,7 +134,7 @@
   }
 
   .img {
-    @include media(sm) {
+    @include media(md) {
       width: 270px;
     }
   }
