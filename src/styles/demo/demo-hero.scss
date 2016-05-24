@@ -1,4 +1,9 @@
 .demo-hero {
   background: linear-gradient($purple-light, $purple-dark);
   margin-bottom: 60px;
+
+  @include media(sm) {
+    padding-bottom: 30px;
+    margin-bottom: 0;
+  }
 }
