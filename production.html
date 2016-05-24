@@ -13,11 +13,11 @@
     <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],r=document.getElementsByClassName("article-questionnaire")[0],o=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var n=JSON.parse(i.responseText),d=n.result_code,c=n.result_message;-1!==d&&0!==d||(shakeForm(e),activeCampaignValidation(c,t)),1===d&&(l.classList.contains("out")?(r.classList.add("out"),o.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),l.classList.add("out"),r.classList.add("in"),analytics.ready(function(){var e=JSON.parse(a);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function escModal(e){27==e.keyCode&&(location.hash="#",document.removeEventListener("keydown",escModal))}function checkScroll(){var e=document.body;"#sign-up"===location.hash?(e.classList.add("modal-open"),document.addEventListener("keydown",escModal)):e.classList.remove("modal-open")}window.addEventListener("load",function(){var e,t,a="?whitelist=false"!==window.location.search,n=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),window.fbq||(window.fbq=function(){}),n)for(n.addEventListener("change",makeDirty),n.addEventListener("submit",submitSignUp),e=n.getElementsByTagName("input"),t=0;t<e.length;t++)e[t].addEventListener("invalid",formInvalid),e[t].classList.contains("input-radio")&&e[t].addEventListener("change",updateLabel);a||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important"),location.hash="#sign-up",analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})}))}),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: d9c19fe2e5c87f0a41c8b70d2180f85e5e0ecb98
-      Commit Time: Mon May 23 19:17:28 2016 -0700
+      Commit Hash: b2499631107455caadc0ce99eec2c1c5092e9324
+      Commit Time: Mon May 23 19:29:57 2016 -0700
     -->
 
-  </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
+  </head><body class="page-landing" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
@@ -47,13 +47,13 @@
 </svg>
 
     <header class="grid-block shrink header">
-  <div class="grid-block grid-container align-justify">
+  <div class="grid-block grid-container justify-justified">
     <a href="/" class="grid-content shrink logo">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
       <div class="grid-content btn btn-sm popover-trigger hover has-links text-white strong hidden-sm product-link" tabindex="1">
-        <a href="product.html" class="a">
+        <a class="a" href="product.html">
           <span class="float-left">Product Tour</span>
           <svg class="icons icons-chevron-down float-right">
             <use xlink:href="#icons-chevron-down"/>
@@ -61,32 +61,49 @@
         </a>
         <div class="popover-hover-wrapper">
           <div class="grid-block popover popover-product-menu bottom">
-            <a href="product.html" class="grid-block align-center vertical btn btn-product">
+            <a href="product.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/sandbox.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Get an overview.</strong>
-    <small class="small">A sandbox service for teams.</small>
+    <strong class="strong">Get an&#32;
+      <br class="hidden-md">overview
+    </strong>
+    <small class="small">A sandbox service&#32;
+      <br class="hidden-md">for teams.
+    </small>
   </p>
 </a>
-<a href="integration-testing.html" class="grid-block align-center vertical btn btn-product">
+<a href="development.html" class="grid-block justify-center vertical btn btn-product">
+  <img class="img" src="images/product-menu/development.svg" height="36" width="36">
+  <p class="p">
+    <strong class="strong">Speed up development</strong>
+    <small class="small">With the power&#32;
+      <br class="hidden-md">of Docker.
+    </small>
+  </p>
+</a>
+<a href="integration-testing.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/integration-testing.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Integrate & test changes.</strong>
-    <small class="small">Every branch, end-to-end.</small>
+    <strong class="strong">Integrate & test changes</strong>
+    <small class="small">Every branch,&#32;
+      <br class="hidden-md">end-to-end.
+    </small>
   </p>
 </a>
-<a href="production.html" class="grid-block align-center vertical btn btn-product">
+<a href="production.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/production.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Deploy tested artifacts.</strong>
-    <small class="small">Tested builds, ready to push.</small>
+    <strong class="strong">Deploy tested artifacts</strong>
+    <small class="small">Tested builds,&#32;
+      <br class="hidden-md">ready to push.
+    </small>
   </p>
 </a>
 
           </div>
         </div>
       </div>
-      <a href="demo.html" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
+      <a href="http://support.runnable.io" class="grid-content btn btn-sm text-white strong hidden-sm">Docs</a>
       <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
       <a href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
@@ -96,25 +113,42 @@
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block shrink vertical visible-sm list-product">
-      <a href="product.html" class="grid-block align-center vertical btn btn-product">
+      <a href="product.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/sandbox.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Get an overview.</strong>
-    <small class="small">A sandbox service for teams.</small>
+    <strong class="strong">Get an&#32;
+      <br class="hidden-md">overview
+    </strong>
+    <small class="small">A sandbox service&#32;
+      <br class="hidden-md">for teams.
+    </small>
   </p>
 </a>
-<a href="integration-testing.html" class="grid-block align-center vertical btn btn-product">
+<a href="development.html" class="grid-block justify-center vertical btn btn-product">
+  <img class="img" src="images/product-menu/development.svg" height="36" width="36">
+  <p class="p">
+    <strong class="strong">Speed up development</strong>
+    <small class="small">With the power&#32;
+      <br class="hidden-md">of Docker.
+    </small>
+  </p>
+</a>
+<a href="integration-testing.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/integration-testing.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Integrate & test changes.</strong>
-    <small class="small">Every branch, end-to-end.</small>
+    <strong class="strong">Integrate & test changes</strong>
+    <small class="small">Every branch,&#32;
+      <br class="hidden-md">end-to-end.
+    </small>
   </p>
 </a>
-<a href="production.html" class="grid-block align-center vertical btn btn-product">
+<a href="production.html" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/production.svg" height="36" width="36">
   <p class="p">
-    <strong class="strong">Deploy tested artifacts.</strong>
-    <small class="small">Tested builds, ready to push.</small>
+    <strong class="strong">Deploy tested artifacts</strong>
+    <small class="small">Tested builds,&#32;
+      <br class="hidden-md">ready to push.
+    </small>
   </p>
 </a>
 
@@ -123,8 +157,7 @@
       <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md">Sign In</a>
       <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
       <div class="list-item divider visible-md"></div>
-      <a href="demo.html" class="list-item-a">Request Demo</a>
-      <a href="http://support.runnable.io" class="list-item-a">Docs</a>
+      <a href="http://support.runnable.io" class="list-item-a visible-sm">Docs</a>
       <a href="about.html" class="list-item-a">About</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
       <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
@@ -159,8 +192,8 @@
         <img class="img" src="images/logos/logo-azure.svg">
       </div>
     </figure>
-    <h2 class="grid-content h2 align-center strong">Deploy to Google Cloud,<br class="hidden-xxs"> AWS, Azure and more.</h2>
-    <p class="grid-content p align-center">Safely push to production with minimal configuration differences between development, test, and staging environments. Update production more frequently and with higher confidence after reviewing end-to-end test results for every change.
+    <h2 class="grid-content h2 justify-center strong">Deploy to Google Cloud,<br class="hidden-xxs"> AWS, Azure and more.</h2>
+    <p class="grid-content p justify-center">Safely push to production with minimal configuration differences between development, test, and staging environments. Update production more frequently and with higher confidence after reviewing end-to-end test results for every change.
   </p></section>
 </article>
 
@@ -192,24 +225,24 @@
 
       <article class="grid-block article article-faq">
   <div class="grid-block vertical question">
-    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Does Runnable provide container hosting?</h3>
-    <p class="grid-content shrink p align-center">Runnable hosts containers in order to provide working environments that are accessible to anyone; however, these environments are not intended to replace heavy workloads typical of production. Runnable containers are suitable for lightweight usage, and are easily exportable to other, more robust platforms designed for production.
+    <h3 class="grid-content shrink h3 justify-center strong"><span class="em">Q:</span> Does Runnable provide container hosting?</h3>
+    <p class="grid-content shrink p justify-center">Runnable hosts containers in order to provide working environments that are accessible to anyone; however, these environments are not intended to replace heavy workloads typical of production. Runnable containers are suitable for lightweight usage, and are easily exportable to other, more robust platforms designed for production.
   </p></div>
   <div class="grid-block vertical question">
-    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How is this different from Docker Cloud or Tutum?</h3>
-    <p class="grid-content shrink p align-center">Runnable complements your team’s workflow to simplify creating environments to test code changes. The assets used to generate these environments are also ready for production deployments. Runnable charges a flat fee per user, not by resource usage.
+    <h3 class="grid-content shrink h3 justify-center strong"><span class="em">Q:</span> How is this different from Docker Cloud or Tutum?</h3>
+    <p class="grid-content shrink p justify-center">Runnable complements your team’s workflow to simplify creating environments to test code changes. The assets used to generate these environments are also ready for production deployments. Runnable charges a flat fee per user, not by resource usage.
   </p></div>
   <div class="grid-block vertical question">
-    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
-    <p class="grid-content shrink p align-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
+    <h3 class="grid-content shrink h3 justify-center strong"><span class="em">Q:</span> Do I need to use Docker?</h3>
+    <p class="grid-content shrink p justify-center">No. Our setup process was built to easily onboard applications regardless of whether they are Dockerized.
   </p></div>
   <div class="grid-block vertical question">
-    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> How secure is my code?</h3>
-    <p class="grid-content shrink p align-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
+    <h3 class="grid-content shrink h3 justify-center strong"><span class="em">Q:</span> How secure is my code?</h3>
+    <p class="grid-content shrink p justify-center">Your code is only transferred to an isolated set of servers that are not accessible to any other users. This is commonly referred to as <strong class="strong">single-tenant infrastructure</strong>. Runnable also undergoes regular security audits to ensure your code stays secure.
   </p></div>
   <div class="grid-block vertical question">
-    <h3 class="grid-content shrink h3 align-center strong"><span class="em">Q:</span> What does the setup process look like?</h3>
-    <p class="grid-content shrink p align-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
+    <h3 class="grid-content shrink h3 justify-center strong"><span class="em">Q:</span> What does the setup process look like?</h3>
+    <p class="grid-content shrink p justify-center">For many teams, it’s as easy as selecting your repositories, adding in environment variables or replace rules (for hard-coded values), and then saving. Adding databases and other services is also point-and-click. You’ll be invited to join our engineering team’s Slack, so you’ll have direct access to our entire team to help with setup. We can even set up your app for you. :)
   </p></div>
 </article>
 
@@ -224,9 +257,8 @@
 
     <hr class="hr grid-container hr-footer">
 
-<footer class="grid-block vertical footer align-spaced">
+<footer class="grid-block vertical footer justify-spaced">
   <div class="grid-block link-wrapper">
-    <a href="demo.html" class="btn btn-xs link strong">Request Demo</a>
     <a href="product.html" class="btn btn-xs link strong">Product</a>
     <a href="http://support.runnable.io" class="btn btn-xs link strong">Docs</a>
     <a href="about.html" class="btn btn-xs link strong">About</a>
