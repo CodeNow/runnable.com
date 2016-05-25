@@ -16,7 +16,7 @@
     padding-right: 0;
   }
 
-  @include media(xs) {
+  @include media(xxs) {
     width: calc(100vw - 60px);
   }
 

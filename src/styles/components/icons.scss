@@ -15,11 +15,11 @@
   width: 30px;
 
   &:hover {
-    background: rgba($black,.2);
+    background: rgba($red,.75);
   }
 
   &:active {
-    background: rgba($black,.25);
+    background: $red;
   }
 
   .icons {
