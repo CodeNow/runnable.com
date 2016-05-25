@@ -48,16 +48,47 @@
   }
 
   .fc-event {
+    border-color: $purple-light;
     border-radius: 1px;
     font-size: 15px;
     transition: none;
 
     &:hover {
+      background-color: $purple-light;
       color: $white;
     }
   }
 
   // forms
+  .bookingjs-form-box {
+    background: none;
+    box-shadow: none;
+  }
+
+  .bookingjs-form-input,
+  .bookingjs-form input,
+  .bookingjs-form input:invalid textarea,
+  .bookingjs-form textarea:invalid {
+    background: $white;
+    border-radius: $input-border-radius;
+    box-shadow: inset 0 0 0 $input-border $gray-lighter;
+    color: $gray-dark;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: $weight-normal;
+    margin-bottom: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: none;
+  }
+
+  .bookingjs-form-input:focus,
+  .bookingjs-form input:focus,
+  .bookingjs-form input:invalid textarea:focus,
+  .bookingjs-form textarea:invalid:focus {
+    box-shadow: inset 0 0 0 $input-border $purple-light;
+  }
+
   .input-comment {
     max-height: 150px;
     max-width: 100%;
@@ -75,6 +106,7 @@
     display: inline-block;
     font-size: 18px;
     font-weight: $weight-bold;
+    margin-top: 6px;
     padding: 0 15px;
     text-transform: capitalize;
     transition: none;
@@ -82,7 +114,9 @@
 
     &:hover,
     &.hover {
+      // scss-lint:disable ColorVariable
       background: #8ae09c; // rgba($green,.6);
+      // scss-lint:enable ColorVariable
     }
 
     &:active,
