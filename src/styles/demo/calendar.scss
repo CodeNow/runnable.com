@@ -50,6 +50,7 @@
   .fc-event {
     border-radius: 1px;
     font-size: 15px;
+    transition: none;
 
     &:hover {
       color: $white;
@@ -62,6 +63,34 @@
     max-width: 100%;
     min-height: 84px;
     min-width: 100%;
+  }
+
+  .bookingjs-form-button {
+    @extend %btn-md;
+    @extend %green;
+    border-radius: $input-border-radius;
+    border-style: solid;
+    border-width: $input-border;
+    box-shadow: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: $weight-bold;
+    padding: 0 15px;
+    text-transform: capitalize;
+    transition: none;
+    user-select: none;
+
+    &:hover,
+    &.hover {
+      background: #8ae09c; // rgba($green,.6);
+    }
+
+    &:active,
+    &.active,
+    &.active:hover {
+      background: $green;
+      transition: none;
+    }
   }
 
   .bookingjs-poweredby {
