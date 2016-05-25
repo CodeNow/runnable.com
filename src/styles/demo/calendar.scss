@@ -93,6 +93,12 @@
     }
   }
 
+  .bookingjs-form-button .error-text,
+  .bookingjs-form-button .loading-text,
+  .bookingjs-form-button .success-text {
+    top: 2px;
+  }
+
   .bookingjs-poweredby {
     display: none;
   }
