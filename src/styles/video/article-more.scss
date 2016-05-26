@@ -57,12 +57,13 @@
     padding: 15px 30px 15px 15px;
 
     @include media(sm) {
-      margin-bottom: 54px;
+      margin-bottom: 21px;
     }
 
     @include media(xxs) {
       margin-left: -15px;
       margin-right: -15px;
+      max-width: none;
     }
 
     .img {

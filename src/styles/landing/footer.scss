@@ -60,6 +60,12 @@
   margin: 30px auto 0;
   max-width: 510px;
 
+  @include media(xs) {
+    font-size: 17px;
+    margin: 45px 30px 0;
+    max-width: none;
+  }
+
   .p {
     margin-bottom: 18px;
     margin-top: 9px;
