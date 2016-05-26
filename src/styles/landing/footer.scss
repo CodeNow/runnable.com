@@ -47,15 +47,40 @@
 
   .hr {
     background: $gray-lightest;
-    margin: 0;
-    width: 300px;
+    margin: 0 auto;
+    width: 510px;
   }
 }
 
 // support aside
 .aside-support {
-  margin: 0 auto;
-  max-width: 660px;
+  border-bottom: 1px solid darken($gray-lightest,2.5%);
+  color: darken($gray-light,5%);
+  font-weight: $weight-normal;
+  margin: 30px auto 0;
+  max-width: 510px;
+
+  .p {
+    margin-bottom: 18px;
+    margin-top: 9px;
+  }
+
+  .figure {
+    flex: 0 0 auto;
+    margin: 0 0 15px;
+
+    + .figure {
+      margin-left: 30px;
+    }
+  }
+
+  .img {
+    opacity: .75;
+  }
+
+  .small {
+    margin-left: 6px;
+  }
 }
 
 // status indicator

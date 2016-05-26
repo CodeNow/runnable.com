@@ -2,19 +2,16 @@ window.addEventListener('load', function(){
   var statusPage = new StatusPage.page({page:'ngvk75ydhg3t'});
   var footer = document.getElementsByClassName('footer')[0];
   var statusElement = document.createElement('a');
-  var hrElement = document.createElement('hr');
   var statusText;
   var statusColor;
 
   // set up status element
   statusElement.href = '//status.runnable.com';
   statusElement.classList.add('btn','btn-xs','link','strong','status');
-  hrElement.classList.add('hr','status-hr');
 
   statusPage.components({
     success : function(data) {
       // add status element
-      footer.appendChild(hrElement);
       footer.appendChild(statusElement);
 
       // set text
