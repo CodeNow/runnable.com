@@ -52,6 +52,13 @@
   }
 }
 
+// support aside
+.aside-support {
+  margin: 0 auto;
+  max-width: 660px;
+}
+
+// status indicator
 .link.status {
   color: $gray-light;
   font-size: 15px;
