@@ -6,7 +6,7 @@
   }
 
   .rounded-map {
-    border: 9px solid $gray-lightest;
+    border: 6px solid $white;
     border-radius: 50%;
     height: 300px;
     margin: -45px auto 0;
@@ -20,12 +20,13 @@
   }
 
   .map-address {
-    background: $gray-lightest;
+    background: $gray-lighterest;
+    border: 1px solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     display: table;
     font-style: normal;
     line-height: 1.4;
-    margin: 30px auto 0;
+    margin: 15px auto 0;
     padding: 15px;
   }
 }
