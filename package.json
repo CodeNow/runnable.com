@@ -3,7 +3,7 @@
   "version": "9.1.0",
   "description": "",
   "main": "gulpfile.js",
-  "dependencies": {
+  "devDependencies": {
     "del": "^2.2.0",
     "git": "^0.1.5",
     "gulp": "~3.9.0",
