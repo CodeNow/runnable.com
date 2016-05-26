@@ -1,57 +1,68 @@
 .footer {
   align-items: center;
-  margin: 0 auto 150px;
-  max-width: 660px;
+  background: linear-gradient($gray-lighterest, $white);
+  border-top: 1px solid $gray-lighter;
+  margin: 0 auto;
   overflow: visible;
+  padding-top: 30px;
   position: relative;
 
   .link-wrapper {
+    padding: 60px 30px 60px 0;
 
-    @include media(md) {
-      flex-wrap: wrap;
+    @include media(xs) {
+      flex-flow: column wrap;
       justify-content: center;
-      margin-bottom: 30px;
+      padding: 60px 30px;
+    }
+  }
+
+  .align-start {
+
+    @include media(xs) {
+      align-items: center;
     }
 
-    .link {
-      color: $gray-light;
-      font-size: 16px;
-      line-height: 24px;
-      margin: 0 27px 15px;
-      text-decoration: none;
+    + .align-start {
+      margin-left: 90px;
 
-      @include media(md) {
-        font-size: 18px;
-        margin: 15px;
-      }
-
-      &:hover,
-      &:active {
-        color: $gray;
+      @include media(xs) {
+        margin-left: 0;
       }
     }
   }
 
-  .img {
-    flex: 0 0 45px;
-    height: 45px;
-    left: 0;
-    margin: 0 24px;
-    right: 0;
+  .link {
+    color: $gray-light;
+    font-size: 19px;
+    line-height: 24px;
+    margin: 15px 27px;
+    text-decoration: none;
 
-    @include media(md) {
-      margin-bottom: 15px;
+    &:hover,
+    &:active {
+      color: $gray;
     }
+  }
+
+  .hr {
+    background: $gray-lightest;
+    margin: 0;
+    width: 300px;
   }
 }
 
-.status {
+.link.status {
   color: $gray-light;
   font-size: 15px;
-  margin-top: 21px;
+  margin-bottom: 24px;
   position: relative;
   text-decoration: none;
   text-indent: 9px;
+
+  @include media(xs) {
+    margin-bottom: 60px;
+  }
 
   &:hover,
   &:active {
@@ -80,7 +91,7 @@
     left: 0;
     opacity: .5;
     position: absolute;
-    top: 5px;
+    top: 6px;
     width: 10px;
   }
 }

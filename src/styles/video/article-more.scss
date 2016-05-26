@@ -27,16 +27,6 @@
     }
   }
 
-  .p {
-    margin: 0 auto;
-    max-width: 450px;
-
-    @include media(xs) {
-      font-size: 16px;
-      max-width: 300px;
-    }
-  }
-
   // buttons
   .btn-wrapper {
     margin: 15px auto 150px;
@@ -60,7 +50,7 @@
   }
 
   // code snippets link
-  .well {
+  .well-code {
     margin: 150px auto 30px;
     max-width: 400px;
     min-width: 0;

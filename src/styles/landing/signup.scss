@@ -1,8 +1,15 @@
 .sign-up-box {
   align-items: flex-start;
+  align-self: stretch;
+  background: $white;
+  min-width: 660px;
   overflow: visible;
   padding-left: 60px;
   position: relative;
+
+  @media (max-width: 720px) {
+    min-width: 0;
+  }
 
   @include media(xs) {
     align-items: center;
