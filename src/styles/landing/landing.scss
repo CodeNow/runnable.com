@@ -1,6 +1,10 @@
 .main {
   overflow: visible;
 
+  &.hero-only + .footer.grid-block {
+    margin-top: 0;
+  }
+
   .well-anchor {
     min-width: 660px;
 
