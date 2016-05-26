@@ -1,8 +1,9 @@
 .main {
   overflow: visible;
+  padding-bottom: 30px;
 
-  &.hero-only + .footer.grid-block {
-    margin-top: 0;
+  &.hero-only {
+    padding-bottom: 0;
   }
 
   .well-anchor {
@@ -46,14 +47,6 @@
     max-width: 630px;
     padding-left: 30px;
     padding-right: 30px;
-  }
-
-  > .grid-block + .grid-block {
-    margin-top: 30px;
-
-    &.main {
-      margin-top: 0;
-    }
   }
 
   .h1 {
