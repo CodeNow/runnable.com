@@ -54,38 +54,88 @@
 
 // support aside
 .aside-support {
-  border-bottom: 1px solid darken($gray-lightest,2.5%);
-  color: darken($gray-light,5%);
-  font-weight: $weight-normal;
-  margin: 30px auto 0;
-  max-width: 510px;
+  border-bottom: 1px solid darken($gray-lightest,2.5%); // darken colors for gradient
+  color: $gray-dark;
+  margin: 45px auto 0;
+  max-width: 660px;
+  padding: 0 30px 30px;
 
   @include media(xs) {
-    font-size: 17px;
-    margin: 45px 30px 0;
-    max-width: none;
+    flex-flow: column;
   }
 
-  .p {
-    margin-bottom: 18px;
-    margin-top: 9px;
-  }
+  .support-text {
+    line-height: 1.4;
+    margin-right: 30px;
 
-  .figure {
-    flex: 0 0 auto;
-    margin: 0 0 15px;
+    @include media(xs) {
+      margin-bottom: 15px;
+      margin-right: 0;
+      text-align: center;
+    }
 
-    + .figure {
-      margin-left: 30px;
+    .br {
+      display: none;
+
+      @include media(xs) {
+        display: block;
+      }
+
+      @include media(xxs) {
+        display: none;
+      }
     }
   }
 
-  .img {
-    opacity: .75;
+  .figure {
+    margin: 0;
+
+    @include media(xs) {
+      margin: 0 auto;
+      max-width: 225px;
+    }
+
+    // user avatar
+    .img {
+      margin-right: 5px;
+      margin-top: 2px;
+      opacity: .75;
+    }
   }
 
-  .small {
-    margin-left: 6px;
+  // chat message
+  .bubble {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
+    font-size: 13px;
+    font-weight: $weight-normal;
+    padding: 6px 9px;
+    pointer-events: none;
+    user-select: none;
+
+    + .bubble {
+      border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
+      margin-top: -1px;
+    }
+  }
+
+  .user-name {
+    color: $gray-dark;
+  }
+
+  .user-text {
+    color: $gray;
+    margin-bottom: 0;
+  }
+
+  .user-time {
+    color: lighten($gray, 20%);
+    font-size: 11px;
+  }
+
+  .link-blue {
+    color: lighten($blue,10%);
   }
 }
 
