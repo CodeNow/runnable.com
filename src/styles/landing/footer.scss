@@ -62,6 +62,7 @@
 
   @include media(xs) {
     flex-flow: column;
+    padding: 0 15px 30px;
   }
 
   .support-text {
