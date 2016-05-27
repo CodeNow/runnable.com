@@ -17,16 +17,18 @@
   }
 
   .img {
-    bottom: -8px;
-    height: 85px;
+    bottom: -11px;
+    height: auto;
     position: absolute;
     right: 30px;
-    width: 150px;
+    width: 210px;
 
     @include media(xs) {
+      bottom: -8px;
       left: 0;
       margin: 0 auto;
       right: 0;
+      width: 150px;
     }
   }
 }
