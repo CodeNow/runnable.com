@@ -20,16 +20,15 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-demo" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('components/icons.hbs')
     @@include('components/header.hbs')
 
-    <main class="grid-block vertical main">
+    <main class="grid-block vertical main hero-only">
       @@include('html/demo/demo-hero.hbs')
     </main>
 
-    @@include('components/signup.hbs')
     @@include('components/footer.hbs')
     @@include('components/form-modal.hbs')
 
