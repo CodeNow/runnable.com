@@ -28,7 +28,8 @@
   }
 
   .address {
-    background: $gray-lightest;
+    background: $gray-lighterest;
+    border: 1px solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     display: table;
     font-style: normal;
