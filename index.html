@@ -43,8 +43,8 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     <script ugly="">function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],o=document.getElementsByClassName("article-questionnaire")[0],r=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var n=JSON.parse(i.responseText),d=n.result_code,c=n.result_message;-1!==d&&0!==d||(shakeForm(e),activeCampaignValidation(c,t)),1===d&&(l.classList.contains("out")?(o.classList.add("out"),r.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),l.classList.add("out"),o.classList.add("in"),analytics.ready(function(){var e=JSON.parse(a);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function escModal(e){27==e.keyCode&&(location.hash="#",document.removeEventListener("keydown",escModal))}function checkScroll(){var e=document.body;"#sign-up"===location.hash?(e.classList.add("modal-open"),document.addEventListener("keydown",escModal)):e.classList.remove("modal-open")}function onYouTubeIframeAPIReady(){player=new YT.Player("player",{videoId:"mBR-_5dXH4w",playerVars:{color:"white",iv_load_policy:3,modestbranding:1,rel:0,showinfo:0},events:{onReady:onPlayerReady}})}function playVideo(){document.body.classList.add("modal-open"),document.getElementById("player").classList.add("playing"),player.playVideo()}function pauseVideo(){document.body.classList.remove("modal-open"),document.getElementById("player").classList.remove("playing"),player.pauseVideo()}function onPlayerReady(e){Modernizr.on("videoautoplay",function(e){if(e){var t=document.getElementsByClassName("video-start"),a=document.getElementsByClassName("video-pause");if(t){var n;for(n=0;n<t.length;n++)t[n].addEventListener("click",playVideo),t[n].addEventListener("touchend",playVideo);for(n=0;n<a.length;n++)a[n].addEventListener("click",pauseVideo),a[n].addEventListener("touchend",pauseVideo)}}})}window.addEventListener("load",function(){var e,t,a="?whitelist=false"!==window.location.search,n=document.getElementsByClassName("form-sign-up")[0];document.getElementsByClassName("form-questionnaire")[0],document.getElementsByClassName("img-rounded");if(checkScroll(),window.addEventListener("hashchange",checkScroll),window.fbq||(window.fbq=function(){}),n)for(n.addEventListener("change",makeDirty),n.addEventListener("submit",submitSignUp),e=n.getElementsByTagName("input"),t=0;t<e.length;t++)e[t].addEventListener("invalid",formInvalid),e[t].classList.contains("input-radio")&&e[t].addEventListener("change",updateLabel);a||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important"),location.hash="#sign-up",analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})}))});var tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";var firstScriptTag=document.getElementsByTagName("script")[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var player;window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 09e0f0631945aef9eac89fad50ef0033e254a088
-      Commit Time: Thu Jun 23 18:27:29 2016 -0700
+      Commit Hash: f198f73569e12b5463ea0b378730908d7aee3071
+      Commit Time: Thu Jun 23 18:44:07 2016 -0700
     -->
 
   </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -92,7 +92,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
         <div class="popover-hover-wrapper">
           <div class="grid-block popover popover-product-menu bottom">
             <a href="/product/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/sandbox.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/sandbox.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Get an&#32;
       <br class="hidden-md">overview
@@ -103,7 +103,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/development/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/development.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/development.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Speed up development</strong>
     <small class="small">With the power&#32;
@@ -112,7 +112,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/integration-testing/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/integration-testing.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/integration-testing.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Integrate & test changes</strong>
     <small class="small">Every branch,&#32;
@@ -121,7 +121,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/production/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/production.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/production.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Deploy tested artifacts</strong>
     <small class="small">Tested builds,&#32;
@@ -144,7 +144,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block shrink vertical visible-sm list-product">
       <a href="/product/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/sandbox.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/sandbox.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Get an&#32;
       <br class="hidden-md">overview
@@ -155,7 +155,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/development/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/development.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/development.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Speed up development</strong>
     <small class="small">With the power&#32;
@@ -164,7 +164,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/integration-testing/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/integration-testing.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/integration-testing.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Integrate & test changes</strong>
     <small class="small">Every branch,&#32;
@@ -173,7 +173,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </p>
 </a>
 <a href="/production/" class="grid-block justify-center vertical btn btn-product">
-  <img class="img" src="/images/product-menu/production.svg" height="36" width="36">
+  <img class="img" src="../images/product-menu/production.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Deploy tested artifacts</strong>
     <small class="small">Tested builds,&#32;
@@ -216,9 +216,9 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   <h1 class="h1 text-center">Your team has<br>a staging problem.</h1>
   <div class="video-img-wrapper video-start">
     <button class="btn btn-lg green video-link">Watch the Video
-      <img src="/images/video/play.svg" class="img" height="21" width="21">
+      <img src="../images/video/play.svg" class="img" height="21" width="21">
     </button>
-    <img class="video-img" src="/images/video/video-still.jpg">
+    <img class="video-img" src="../images/video/video-still.jpg">
     <iframe id="mobile-player" class="mobile-video-embed" src="https://www.youtube-nocookie.com/embed/mBR-_5dXH4w?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
   </div>
 </article>
@@ -232,7 +232,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
   <footer class="grid-block vertical footer justify-spaced">
   <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
-  <img class="img" src="/images/runnabear-hello.png">
+  <img class="img" src="../images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
   <div class="btn btn-sm green">Sign Up</div>
@@ -245,7 +245,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
   </div>
   <figure class="grid-block vertical figure shrink">
     <div class="grid-block shrink bubble">
-      <img class="img float-left" src="/images/logos/logo-slack.svg" height="18" width="18" alt="Slack">
+      <img class="img float-left" src="../images/logos/logo-slack.svg" height="18" width="18" alt="Slack">
       <div class="grid-block vertical">
         <div class="user">
           <strong class="strong user-name">Jorge</strong>
@@ -255,7 +255,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
       </div>
     </div>
     <div class="grid-block shrink bubble">
-      <img class="img float-left" src="/images/runnabot-head.png" height="18" width="18" alt="Slack">
+      <img class="img float-left" src="../images/runnabot-head.png" height="18" width="18" alt="Slack">
       <div class="grid-block vertical">
         <div class="user">
           <strong class="strong user-name">Taylor</strong>
@@ -287,7 +287,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
 
   <a href="http://code.runnable.com" class="grid-block well well-anchor well-code">
-    <img class="grid-block shrink img" src="/images/video/codesnippets.png" height="45" width="45">
+    <img class="grid-block shrink img" src="../images/video/codesnippets.png" height="45" width="45">
     <div class="grid-block vertical justify-center">
       <p class="p">Check out our other project:
       <div class="a strong">Runnable CodeSnippets
@@ -311,7 +311,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     <article class="article article-form article-sign-up">
   <!-- white list errors -->
   <div class="well well-error">
-    <img class="img float-left" src="/images/runnabear-error.png" height="90" width="45">
+    <img class="img float-left" src="../images/runnabear-error.png" height="90" width="45">
     <span class="span well-text"></span>
   </div>
 
@@ -369,7 +369,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
     <article class="article article-form article-questionnaire">
   <div class="well well-error">
-    <img class="img float-left" src="/images/runnabear-error.png" height="90" width="45">
+    <img class="img float-left" src="..//runnabear-error.png" height="90" width="45">
     <span class="span well-text"></span>
   </div>
 
@@ -384,7 +384,7 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
 
     <!-- submitted state -->
 <article class="article article-form article-confirm">
-  <img class="img hide" src="/images/runnabear-jumping.png">
+  <img class="img hide" src="..//runnabear-jumping.png">
   <p class="h1 text-center strong">You did it!
   </p><p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
   <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
