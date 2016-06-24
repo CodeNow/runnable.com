@@ -18,6 +18,7 @@ var webserver = require('gulp-webserver');
 // urls
 var apiUrl = process.env.API_URL;
 var angularUrl = process.env.ANGULAR_URL;
+var baseUrl;
 
 // file locations
 var src = 'src/';
@@ -68,6 +69,7 @@ gulp.task('html', function() {
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
       apiUrl: apiUrl,
+      baseurl: baseUrl,
       env: process.env.NODE_ENV,
       commitHash: commitHash,
       commitTime: commitTime,
@@ -230,11 +232,13 @@ gulp.task('build:dev', function(cb) {
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
+  baseUrl = '../';
   runSequence('build', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
+  baseUrl = '../';
   runSequence('build:dev', 'ghPages', cb);
 });
 
