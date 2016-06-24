@@ -24,7 +24,6 @@ var src = 'src/';
 var dist = './dist/';
 
 var htmlDir = src + 'html/**/*.hbs';
-var htmlSrc = src + 'html/*.hbs';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
 var jsDir = src + 'js/**/*.**';
@@ -61,7 +60,7 @@ gulp.task('clean', function() {
 
 // html files
 gulp.task('html', function() {
-  return gulp.src(htmlSrc)
+  return gulp.src(htmlDir)
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
