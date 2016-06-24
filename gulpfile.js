@@ -232,13 +232,13 @@ gulp.task('build:dev', function(cb) {
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  baseUrl = '../';
+  baseUrl = 'http://codenow.github.io/runnable.com/';
   runSequence('build', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  baseUrl = '../';
+  baseUrl = 'http://codenow.github.io/runnable.com/';
   runSequence('build:dev', 'ghPages', cb);
 });
 
