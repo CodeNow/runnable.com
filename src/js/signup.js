@@ -1,4 +1,35 @@
 // sign up form
+function openSignUp(signUpModal) {
+  var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
+  // show modal
+  signUpModal.classList.add('in');
+  // stop scrolling
+  document.body.classList.add('modal-open');
+  // triggers for close button
+  closeTrigger.addEventListener('click', function(){closeSignUp(signUpModal)});
+  closeTrigger.addEventListener('touchend', function(){closeSignUp(signUpModal)});
+  // trigger for esc key
+  document.addEventListener('keydown', escModal);
+}
+
+function closeSignUp(signUpModal) {
+  var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
+  // hide modal
+  document.getElementById('sign-up').classList.remove('in');
+  // resume scrolling
+  document.body.classList.remove('modal-open');
+  // remove triggers
+  closeTrigger.removeEventListener('click', closeSignUp);
+  closeTrigger.removeEventListener('touchend', closeSignUp);
+}
+
+function escModal(e) {
+  if (e.keyCode == 27) {
+    document.removeEventListener('keydown', escModal);
+    closeSignUp();
+  }
+}
+
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
@@ -248,35 +279,16 @@ function activeCampaignValidation(resultMessage, form) {
   });
 }
 
-function escModal(e) {
-  if (e.keyCode == 27) {
-    location.hash = '#';
-    document.removeEventListener('keydown', escModal);
-  }
-}
-
-// check scrolling
-function checkScroll() {
-  var dBody = document.body;
-  if (location.hash === '#sign-up') {
-    dBody.classList.add('modal-open');
-    document.addEventListener('keydown', escModal);
-  } else {
-    dBody.classList.remove('modal-open');
-  }
-}
-
 // events
 window.addEventListener('load', function(){
   var whitelisted = window.location.search !== '?whitelist=false';
+  var signUpTriggers = document.getElementsByClassName('js-sign-up');
+  var signUpModal = document.getElementById('sign-up');
   var signUpForm = document.getElementsByClassName('form-sign-up')[0];
   var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var imgFlip = document.getElementsByClassName('img-rounded');
   var theseInputs;
   var i;
-
-  checkScroll();
-  window.addEventListener('hashchange', checkScroll);
 
   // stub fbq
   if (!window.fbq) {
@@ -287,6 +299,11 @@ window.addEventListener('load', function(){
   if (signUpForm) {
     signUpForm.addEventListener('change', makeDirty);
     signUpForm.addEventListener('submit', submitSignUp);
+
+    for (i = 0; i < signUpTriggers.length; i++) {
+      signUpTriggers[i].addEventListener('click', function(){openSignUp(signUpModal)});
+      signUpTriggers[i].addEventListener('touchend', function(){openSignUp(signUpModal)});
+    }
 
     theseInputs = signUpForm.getElementsByTagName('input');
     for (i = 0; i < theseInputs.length; i++) {
@@ -305,7 +322,7 @@ window.addEventListener('load', function(){
     document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
 
     // open sign up form
-    location.hash = '#sign-up';
+    openSignUp(signUpModal);
 
     // segment tracking
     analytics.ready(function() {
