@@ -3,7 +3,7 @@
 
   <head>
     @@include('html/components/head.hbs')
-    <title>Push to production. — Runnable</title>
+    <title>Speed up development. — Runnable</title>
     <script ugly>
       @@include('js/signup.js')
       @@include('js/svgs.js')
@@ -21,10 +21,12 @@
     @@include('html/components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('html/production/production-hero.hbs')
-      @@include('html/production/article-production.hbs')
-      @@include('html/production/article-docker.hbs')
-      @@include('html/production/article-production-faq.hbs')
+      @@include('html/product/development/development-hero.hbs')
+      @@include('html/product/development/article-development.hbs')
+      @@include('html/components/signup.hbs')
+      @@include('html/product/development/article-development-comparison.hbs')
+      @@include('html/product/development/article-development-faq.hbs')
+      @@include('html/product/development/next-cta.hbs')
     </main>
 
     @@include('html/components/footer.hbs')
