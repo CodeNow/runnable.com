@@ -51,27 +51,29 @@ function openSignUp(signUpModal) {
   // stop scrolling
   document.body.classList.add('modal-open');
   // triggers for close button
-  closeTrigger.addEventListener('click', function(){closeSignUp(signUpModal)});
-  closeTrigger.addEventListener('touchend', function(){closeSignUp(signUpModal)});
+  closeTrigger.addEventListener('click', closeSignUp, false);
+  closeTrigger.addEventListener('touchend', closeSignUp, false);
   // trigger for esc key
   document.addEventListener('keydown', escModal);
 }
 
-function closeSignUp(signUpModal) {
+function closeSignUp(e) {
+  e.preventDefault();
+
   var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
   // hide modal
   document.getElementById('sign-up').classList.remove('in');
   // resume scrolling
   document.body.classList.remove('modal-open');
   // remove triggers
-  closeTrigger.removeEventListener('click', closeSignUp);
-  closeTrigger.removeEventListener('touchend', closeSignUp);
+  closeTrigger.removeEventListener('click', closeSignUp, false);
+  closeTrigger.removeEventListener('touchend', closeSignUp, false);
+  document.removeEventListener('keydown', escModal);
 }
 
 function escModal(e) {
   if (e.keyCode == 27) {
-    document.removeEventListener('keydown', escModal);
-    closeSignUp();
+    closeSignUp(e);
   }
 }
 
