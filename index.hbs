@@ -44,6 +44,37 @@ app.controller('MainCtrl', function ($scope, $window, $http) {
     </script>
     <script ugly>
       // sign up form
+function openSignUp(signUpModal) {
+  var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
+  // show modal
+  signUpModal.classList.add('in');
+  // stop scrolling
+  document.body.classList.add('modal-open');
+  // triggers for close button
+  closeTrigger.addEventListener('click', function(){closeSignUp(signUpModal)});
+  closeTrigger.addEventListener('touchend', function(){closeSignUp(signUpModal)});
+  // trigger for esc key
+  document.addEventListener('keydown', escModal);
+}
+
+function closeSignUp(signUpModal) {
+  var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
+  // hide modal
+  document.getElementById('sign-up').classList.remove('in');
+  // resume scrolling
+  document.body.classList.remove('modal-open');
+  // remove triggers
+  closeTrigger.removeEventListener('click', closeSignUp);
+  closeTrigger.removeEventListener('touchend', closeSignUp);
+}
+
+function escModal(e) {
+  if (e.keyCode == 27) {
+    document.removeEventListener('keydown', escModal);
+    closeSignUp();
+  }
+}
+
 function updateLabel(e) {
   var label = document.getElementsByClassName('label-text')[0];
   switch (e.target.getAttribute('value')) {
@@ -293,35 +324,16 @@ function activeCampaignValidation(resultMessage, form) {
   });
 }
 
-function escModal(e) {
-  if (e.keyCode == 27) {
-    location.hash = '#';
-    document.removeEventListener('keydown', escModal);
-  }
-}
-
-// check scrolling
-function checkScroll() {
-  var dBody = document.body;
-  if (location.hash === '#sign-up') {
-    dBody.classList.add('modal-open');
-    document.addEventListener('keydown', escModal);
-  } else {
-    dBody.classList.remove('modal-open');
-  }
-}
-
 // events
 window.addEventListener('load', function(){
   var whitelisted = window.location.search !== '?whitelist=false';
+  var signUpTriggers = document.getElementsByClassName('js-sign-up');
+  var signUpModal = document.getElementById('sign-up');
   var signUpForm = document.getElementsByClassName('form-sign-up')[0];
   var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var imgFlip = document.getElementsByClassName('img-rounded');
   var theseInputs;
   var i;
-
-  checkScroll();
-  window.addEventListener('hashchange', checkScroll);
 
   // stub fbq
   if (!window.fbq) {
@@ -332,6 +344,11 @@ window.addEventListener('load', function(){
   if (signUpForm) {
     signUpForm.addEventListener('change', makeDirty);
     signUpForm.addEventListener('submit', submitSignUp);
+
+    for (i = 0; i < signUpTriggers.length; i++) {
+      signUpTriggers[i].addEventListener('click', function(){openSignUp(signUpModal)});
+      signUpTriggers[i].addEventListener('touchend', function(){openSignUp(signUpModal)});
+    }
 
     theseInputs = signUpForm.getElementsByTagName('input');
     for (i = 0; i < theseInputs.length; i++) {
@@ -350,7 +367,7 @@ window.addEventListener('load', function(){
     document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
 
     // open sign up form
-    location.hash = '#sign-up';
+    openSignUp(signUpModal);
 
     // segment tracking
     analytics.ready(function() {
@@ -462,7 +479,7 @@ function onPlayerReady(event) {
 
   <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
     <path d='M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z', transform='translate(-2.122)'</<path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" transform="translate(-2.122)"/>
   </symbol>
@@ -488,7 +505,7 @@ function onPlayerReady(event) {
     <path fill="currentColor" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
 </svg>
-
+ -->
     <header class="grid-block shrink header">
   <div class="grid-block grid-container justify-justified">
     <a href="/" class="grid-content shrink logo">
@@ -548,7 +565,7 @@ function onPlayerReady(event) {
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
       <a href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
-      <a href="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs">Sign Up</a>
+      <a class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-sign-up">Sign Up</a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow">
@@ -598,7 +615,7 @@ function onPlayerReady(event) {
     </div>
     <div class="grid-block vertical list text-left">
       <a href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
-      <a href="#sign-up" class="list-item-a visible-xs">Sign Up</a>
+      <a class="list-item-a visible-xs js-sign-up">Sign Up</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
@@ -640,11 +657,11 @@ function onPlayerReady(event) {
   <h3 class="h3 text-center">Runnable is a sandbox service that creates <strong class="strong">full-stack environments</strong> for your GitHub branches, so your team can integrate and test more often.</h3>
   <div class="grid-block justify-center btn-wrapper">
     <a class="grid-content shrink btn btn-lg green" href="product/">Explore Features</a>
-    <a class="grid-content shrink btn btn-lg gray" href="#sign-up">Sign Up</a>
+    <a class="grid-content shrink btn btn-lg gray js-sign-up">Sign Up</a>
   </div>
 
   <footer class="grid-block vertical footer justify-spaced">
-  <a class="sign-up-box grid-block vertical well well-anchor" href="#sign-up">
+  <a class="sign-up-box grid-block vertical well well-anchor js-sign-up">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xxxs">
     including infrastructure costs!
@@ -715,7 +732,7 @@ function onPlayerReady(event) {
     </main>
 
     <div class="modal-backdrop" id="sign-up">
-  <a href="#" class="icons-close">
+  <a class="icons-close js-modal-close">
     <svg class="icons">
       <use xlink:href="#icons-close">
     </svg>
