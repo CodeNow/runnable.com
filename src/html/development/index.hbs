@@ -2,17 +2,11 @@
 <html lang="en">
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    @@include('html/components/head.hbs')
     <title>Speed up development. — Runnable</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="{{baseUrl}}../styles/index.css">
-
     <script ugly>
-      @@include('../../js/signup.js')
-      @@include('../../js/status.js')
+      @@include('js/signup.js')
+      @@include('js/status.js')
     </script>
 
     <!--
@@ -22,19 +16,19 @@
 
   <body class="page-landing" ontouchstart>
 
-    @@include('../components/icons.hbs')
-    @@include('../components/header.hbs')
+    @@include('html/components/icons.hbs')
+    @@include('html/components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('development-hero.hbs')
-      @@include('article-development.hbs')
-      @@include('../components/signup.hbs')
-      @@include('article-development-comparison.hbs')
-      @@include('article-development-faq.hbs')
-      @@include('next-cta.hbs')
+      @@include('html/development/development-hero.hbs')
+      @@include('html/development/article-development.hbs')
+      @@include('html/components/signup.hbs')
+      @@include('html/development/article-development-comparison.hbs')
+      @@include('html/development/article-development-faq.hbs')
+      @@include('html/development/next-cta.hbs')
     </main>
 
-    @@include('../components/footer.hbs')
-    @@include('../components/form-modal.hbs')
+    @@include('html/components/footer.hbs')
+    @@include('html/components/form-modal.hbs')
 
-    @@include('../../js/external/external.html')
+    @@include('js/external/external.html')

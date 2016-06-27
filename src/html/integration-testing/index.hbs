@@ -2,17 +2,11 @@
 <html lang="en">
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    @@include('html/components/head.hbs')
     <title>Integration testing, simplified. — Runnable</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="/styles/index.css">
-
     <script ugly>
-      @@include('../../js/signup.js')
-      @@include('../../js/status.js')
+      @@include('js/signup.js')
+      @@include('js/status.js')
     </script>
 
     <!--
@@ -22,19 +16,19 @@
 
   <body class="page-landing" ontouchstart>
 
-    @@include('../components/icons.hbs')
-    @@include('../components/header.hbs')
+    @@include('html/components/icons.hbs')
+    @@include('html/components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('integration-testing-hero.hbs')
-      @@include('article-integration-testing.hbs')
-      @@include('../components/signup.hbs')
-      @@include('article-integration-comparison.hbs')
-      @@include('article-integration-faq.hbs')
-      @@include('next-cta.hbs')
+      @@include('html/integration-testing/integration-testing-hero.hbs')
+      @@include('html/integration-testing/article-integration-testing.hbs')
+      @@include('html/components/signup.hbs')
+      @@include('html/integration-testing/article-integration-comparison.hbs')
+      @@include('html/integration-testing/article-integration-faq.hbs')
+      @@include('html/integration-testing/next-cta.hbs')
     </main>
 
-    @@include('../components/footer.hbs')
-    @@include('../components/form-modal.hbs')
+    @@include('html/components/footer.hbs')
+    @@include('html/components/form-modal.hbs')
 
-    @@include('../../js/external/external.html')
+    @@include('js/external/external.html')
