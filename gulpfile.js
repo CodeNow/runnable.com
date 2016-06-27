@@ -243,7 +243,7 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs,', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
 });
 
 // build without optimizing
@@ -253,7 +253,7 @@ gulp.task('build:dev', function(cb) {
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs,', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
