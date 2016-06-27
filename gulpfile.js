@@ -193,7 +193,7 @@ gulp.task('favicon', function () {
 
 // imagemin
 gulp.task('imagemin', function() {
-  return gulp.src(imgDist + '/**/*.+(png|jpg|gif|svg)')
+  return gulp.src(imgDist + '/**/*.+(png|jpg|gif)')
     .pipe(imagemin())
     .pipe(debug({
       title: 'imagemin'
