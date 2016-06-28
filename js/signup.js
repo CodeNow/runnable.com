@@ -1,13 +1,11 @@
 // sign up form
 function openSignUp(dragging, signUpModal) {
   if (!dragging) {
-    var dBody = document.body;
     var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
     // show modal
     signUpModal.classList.add('in');
-    signUpModal.style.top = dBody.scrollTop + 'px';
     // stop scrolling
-    dBody.classList.add('modal-open');
+    document.body.classList.add('modal-open');
     // triggers for close button
     closeTrigger.addEventListener('click', closeSignUp, false);
     closeTrigger.addEventListener('touchend', closeSignUp, false);
@@ -84,8 +82,6 @@ function makeDirty(e) {
 function formInvalid(e) {
   markInvalid(e);
   shakeForm(e);
-  // prevent scrolling
-  document.getElementById('sign-up').style.top = dBody.scrollTop + 'px';
 }
 
 function toggleEditing(form, state) {
