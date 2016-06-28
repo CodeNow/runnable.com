@@ -18,7 +18,7 @@ body {
 
   &.modal-open {
     overflow: hidden;
-    position: relative;
+    position: fixed;
   }
 }
 

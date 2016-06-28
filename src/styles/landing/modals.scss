@@ -47,6 +47,8 @@
 }
 
 .modal {
+  height: 100%;
+  overflow-y: auto;
 
   &.shake {
     animation: shake .25s ease-in-out;
