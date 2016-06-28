@@ -23,8 +23,7 @@ var angularUrl = process.env.ANGULAR_URL;
 var src = 'src/';
 var dist = './dist/';
 
-var htmlDir = src + 'html/**/*.hbs';
-var htmlSrc = src + 'html/*.hbs';
+var hbsDir = src + 'html/**/*.hbs';
 var sassDir = src +'styles/**/*.scss';
 var sassSrc = src + 'styles/index.scss';
 var jsDir = src + 'js/**/*.**';
@@ -32,6 +31,7 @@ var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 var robotsSrc = src + 'html/robots.txt';
 
+var hbsDist = dist + '**/*.hbs';
 var htmlDist = dist;
 var sassDist = dist + 'styles/';
 var jsDist = dist + 'js/';
@@ -59,13 +59,35 @@ gulp.task('clean', function() {
   return del.sync('dist');
 });
 
-// html files
+// include files
 gulp.task('html', function() {
-  return gulp.src(htmlSrc)
+  return gulp.src(hbsDir)
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: '@file'
+      basepath: src,
+      context: {
+        env: ''
+      }
     }))
+    .pipe(gulp.dest(htmlDist));
+});
+
+// include files (github)
+gulp.task('html:gh', function() {
+  return gulp.src(hbsDir)
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: src,
+      context: {
+        env: 'gh'
+      }
+    }))
+    .pipe(gulp.dest(htmlDist));
+});
+
+// process hbs
+gulp.task('hbs', function() {
+  return gulp.src(hbsDist)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
       apiUrl: apiUrl,
@@ -171,7 +193,7 @@ gulp.task('favicon', function () {
 
 // imagemin
 gulp.task('imagemin', function() {
-  return gulp.src(imgDist + '/**/*.+(png|jpg|gif|svg)')
+  return gulp.src(imgDist + '/**/*.+(png|jpg|gif)')
     .pipe(imagemin())
     .pipe(debug({
       title: 'imagemin'
@@ -221,22 +243,22 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
 });
 
 // build without optimizing
 gulp.task('build:dev', function(cb) {
-  runSequence('clean', 'html', 'js', ['sass', 'images', 'robots', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], cb);
 });
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence('build', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('build:dev', 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
@@ -253,8 +275,8 @@ gulp.task('server', function() {
 // dev build and watch
 gulp.task('default', function(cb) {
   runSequence('build:dev', 'server', cb);
-  gulp.watch(htmlDir, ['html']);
+  gulp.watch(hbsDir, function(){runSequence('html', 'hbs');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, function(){runSequence('html', 'js');});
+  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});
   gulp.watch(imgDir, ['images']);
 });
