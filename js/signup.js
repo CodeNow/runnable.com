@@ -1,15 +1,17 @@
 // sign up form
-function openSignUp(signUpModal) {
-  var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
-  // show modal
-  signUpModal.classList.add('in');
-  // stop scrolling
-  document.body.classList.add('modal-open');
-  // triggers for close button
-  closeTrigger.addEventListener('click', closeSignUp, false);
-  closeTrigger.addEventListener('touchend', closeSignUp, false);
-  // trigger for esc key
-  document.addEventListener('keydown', escModal);
+function openSignUp(dragging, signUpModal) {
+  if (!dragging) {
+    var closeTrigger = document.getElementsByClassName('js-modal-close')[0];
+    // show modal
+    signUpModal.classList.add('in');
+    // stop scrolling
+    document.body.classList.add('modal-open');
+    // triggers for close button
+    closeTrigger.addEventListener('click', closeSignUp, false);
+    closeTrigger.addEventListener('touchend', closeSignUp, false);
+    // trigger for esc key
+    document.addEventListener('keydown', escModal);
+  }
 }
 
 function closeSignUp(e) {
@@ -288,9 +290,14 @@ window.addEventListener('load', function(){
   var signUpModal = document.getElementById('sign-up');
   var signUpForm = document.getElementsByClassName('form-sign-up')[0];
   var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
-  var imgFlip = document.getElementsByClassName('img-rounded');
+  var dBody = document.body;
+  var dragging = false;
   var theseInputs;
   var i;
+
+  // prevent drag touch
+  dBody.addEventListener('touchmove',function(){dragging = true;});
+  dBody.addEventListener('touchstart',function(){dragging = false;})
 
   // stub fbq
   if (!window.fbq) {
@@ -303,8 +310,8 @@ window.addEventListener('load', function(){
     signUpForm.addEventListener('submit', submitSignUp);
 
     for (i = 0; i < signUpTriggers.length; i++) {
-      signUpTriggers[i].addEventListener('click', function(){openSignUp(signUpModal)});
-      signUpTriggers[i].addEventListener('touchend', function(){openSignUp(signUpModal)});
+      signUpTriggers[i].addEventListener('click', function(){openSignUp(dragging, signUpModal)});
+      signUpTriggers[i].addEventListener('touchend', function(){openSignUp(dragging, signUpModal)});
     }
 
     theseInputs = signUpForm.getElementsByTagName('input');
