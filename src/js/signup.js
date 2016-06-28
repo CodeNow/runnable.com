@@ -134,7 +134,7 @@ function xhrSubmit(e, form, formData) {
   }
 
   // send form
-  xhr.open('POST', xhrUrl);
+  xhr.open('POST', xhrUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(formData);
 
