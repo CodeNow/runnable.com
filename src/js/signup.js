@@ -2,10 +2,15 @@
 function openModal(dragging) {
   event.preventDefault();
   if (!dragging) {
-    var modalName = event.target.getAttribute('href').substring(1);
+    var openModal = document.getElementsByClassName('modal-backdrop in')[0];
+    var modalName = event.target.getAttribute('data-target').substring(1);
     var modal = document.getElementById(modalName);
     var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
 
+    // close open modal
+    if (openModal) {
+      openModal.classList.remove('in');
+    }
     // show modal
     modal.classList.add('in');
     // stop scrolling
