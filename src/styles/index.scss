@@ -39,11 +39,13 @@
 @import "landing/footer";
 @import "landing/modals";
 @import "landing/signup";
-@import "landing/signin";
 @import "landing/questionnaire";
 @import "landing/confirm";
 @import "landing/product-menu";
 @import "landing/header-menu";
+
+@import "modals/signin";
+@import "modals/signup";
 
 @import "video/video";
 @import "video/video-hero";
