@@ -1,38 +1,3 @@
-.sign-up-box {
-  align-items: flex-start;
-  align-self: stretch;
-  background: $white;
-  min-width: 660px;
-  overflow: visible;
-  padding-left: 60px;
-  position: relative;
-
-  @media (max-width: 720px) {
-    min-width: 0;
-  }
-
-  @include media(xs) {
-    align-items: center;
-    padding: 30px 15px 90px;
-  }
-
-  .img {
-    bottom: -11px;
-    height: auto;
-    position: absolute;
-    right: 30px;
-    width: 210px;
-
-    @include media(xs) {
-      bottom: -8px;
-      left: 0;
-      margin: 0 auto;
-      right: 0;
-      width: 150px;
-    }
-  }
-}
-
 .article-form {
   border-radius: $input-border-radius-lg;
   margin: 30px auto;
@@ -224,6 +189,118 @@
       right: 6px;
       top: 0;
       width: 39px;
+    }
+  }
+}
+
+
+.article-sign-up.new {
+
+  .card {
+    background: $gray-lighterest;
+    border: $input-border solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    margin-bottom: 15px;
+    margin-top: 60px;
+    overflow: visible;
+    padding: 15px 45px 30px;
+    position: relative;
+
+    > .p {
+      margin-top: 15px;
+    }
+
+    > .img {
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      top: -120px;
+      z-index: 1;
+    }
+  }
+
+  .list-bordered {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    color: $gray;
+    padding: 0;
+
+    + .list-bordered {
+      margin-top: 15px;
+    }
+
+    .p {
+      font-size: 15px;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .strong + .p {
+      margin-top: 6px;
+    }
+
+    .img {
+      border-radius: $input-border-radius;
+      margin-right: 12px;
+    }
+
+    .btn.no-touching {
+      background: $gray-lightest;
+      border: 0;
+      color: $gray;
+      font-weight: $weight-normal;
+    }
+  }
+
+  .list-item {
+    overflow: visible; // for popover
+
+    > .grid-block {
+      overflow: visible;
+    }
+
+    > .icons {
+      height: 24px;
+      margin-right: 15px;
+      margin-top: 3px;
+      opacity: .5;
+      width: 24px;
+    }
+  }
+
+  .popover-trigger {
+    color: $gray;
+    font-weight: $weight-light;
+    line-height: 1.2;
+    margin-left: 0;
+    margin-top: 9px;
+    top: 0;
+
+    .popover {
+      width: 360px;
+    }
+
+    .popover-p + .popover-p {
+      margin-top: 6px;
+    }
+  }
+
+  // sign up button
+  .btn.green {
+    margin: 0;
+    overflow: hidden;
+    padding: 0 30px;
+
+    > .grid-block {
+      display: inline-block;
+    }
+
+    .icons {
+      height: 100%;
+      margin-right: 6px;
+      width: 24px;
     }
   }
 }
