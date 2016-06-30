@@ -511,10 +511,9 @@ window.addEventListener('load', function(){
           <use xlink:href="#icons-overflow">
         </svg>
         <div class="popover-hover-wrapper right-align-sm">
-  <div class="grid-block vertical popover popover-header-menu bottom">
-    <div class="grid-block">
-      <div class="grid-block shrink vertical visible-sm list-product">
-        <a href="product/" class="grid-block justify-center vertical btn btn-product">
+  <div class="grid-block popover popover-header-menu bottom">
+    <div class="grid-block shrink vertical visible-sm list-product">
+      <a href="product/" class="grid-block justify-center vertical btn btn-product">
   <img class="img" src="images/product-menu/sandbox.svg" height="36" width="36">
   <p class="p">
     <strong class="strong">Get an&#32;
@@ -553,29 +552,28 @@ window.addEventListener('load', function(){
   </p>
 </a>
 
-      </div>
-      <div class="grid-block vertical list text-left">
-        {{!-- NEW sign in and sign up buttons --}}
-        {{!-- <a data-target="#new-sign-up" class="list-item-a js-modal">Sign Up</a> --}}
-        {{!-- <a data-target="#sign-in" class="list-item-a visible-md js-modal">Sign In</a> --}}
-        {{!--
-        <a href="{{loginUrl}}" class="grid-block align-center shrink list-item-a btn-sandbox strong">
-          <img class="grid-block shrink avatar" src="images/runnabot-head.png" height="24" width="24">
-          <span class="grid-block"><span class="hidden-xxs">Your&nbsp;</span>Sandbox</span>
-        </a>
-        --}}
-        {{!-- END NEW sign in and sign up buttons --}}
-        <a href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
-        <a data-target="#sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
-        <div class="list-item divider visible-md"></div>
-        <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
-        <a href="https://support.runnable.com" class="list-item-a">Docs</a>
-        <a href="about/" class="list-item-a">About</a>
-        <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
-        <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
-        <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="list-item-a">Security</a>
-        <a href="privacy/" class="list-item-a">Privacy</a>
-      </div>
+    </div>
+    <div class="grid-block vertical list text-left">
+      {{!-- NEW sign in and sign up buttons --}}
+      {{!-- <a data-target="#new-sign-up" class="list-item-a js-modal">Sign Up</a> --}}
+      {{!-- <a data-target="#sign-in" class="list-item-a visible-md js-modal">Sign In</a> --}}
+      {{!--
+      <a href="{{loginUrl}}" class="grid-block align-center shrink list-item-a btn-sandbox strong">
+        <img class="grid-block shrink avatar" src="images/runnabot-head.png" height="24" width="24">
+        <span class="grid-block"><span class="hidden-xxs">Your&nbsp;</span>Sandbox</span>
+      </a>
+      --}}
+      {{!-- END NEW sign in and sign up buttons --}}
+      <a href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
+      <a data-target="#sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
+      <div class="list-item divider visible-md"></div>
+      <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
+      <a href="https://support.runnable.com" class="list-item-a">Docs</a>
+      <a href="about/" class="list-item-a">About</a>
+      <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
+      <a href="http://blog.runnable.com/private/141107158076/tumblr_o43mfmwB671t3hjy4" class="list-item-a">Pricing</a>
+      <a href="http://blog.runnable.com/private/141107137076/tumblr_o43mexUxVP1t3hjy4" class="list-item-a">Security</a>
+      <a href="privacy/" class="list-item-a">Privacy</a>
     </div>
   </div>
 </div>
@@ -741,6 +739,7 @@ window.addEventListener('load', function(){
   </div>
 </div>
 
+{{!--
 <div class="modal-backdrop" id="new-sign-up">
   <a class="icons-close js-modal-close">
     <svg class="icons">
@@ -790,6 +789,7 @@ window.addEventListener('load', function(){
 
   </div>
 </div>
+--}}
 
 <div class="modal-backdrop" id="sign-in">
   <a class="icons-close js-modal-close">
