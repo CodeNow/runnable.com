@@ -1,0 +1,39 @@
+<article class="grid-block vertical article article-form article-sign-up new">
+  <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
+  <div class="grid-block vertical card">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
+    <ul class="list list-bordered">
+      <li class="grid-block align-center list-item list-item-write align-start">
+        <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
+        <div class="grid-block vertical align-start">
+          <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
+          <small class="small underline popover-trigger hover">Why do we need this</span>?
+            <div class="popover top text-left">
+              <p class="popover-p">Based on GitHub’s current permission model, we have to ask for more permissions than we would ideally like to.</p>
+              <p class="popover-p">In the future, if GitHub offers a way to request read only access that allows us to add webhooks and deploy keys we will no longer need to request write access.</p>
+            </div>
+          </small>
+        </div>
+    </ul>
+    <ul class="list list-bordered">
+      <li class="grid-block align-center list-item padding-xs">
+        <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
+        <div class="grid-block vertical">
+          <p class="p strong">Your Organization</p>
+        </div>
+        <button class="btn btn-xs gray no-touching">Grant access on GitHub</button>
+    </ul>
+  </div>
+  <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
+  <a href="{{loginUrl}}" class="grid-block btn btn-lg green">
+    <svg class="grid-block icons">
+      <use xlink:href="#icons-github">
+    </svg>
+    <span class="grid-block">Grant permissions on GitHub</span>
+  </a>
+  <hr class="hr">
+  <div class="grid-content text-center">
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+  </div>
+</article>
