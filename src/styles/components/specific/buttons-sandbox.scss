@@ -1,0 +1,21 @@
+.btn-sandbox.btn-sandbox {
+
+  .popover-header-menu & {
+    display: none;
+    padding: 0;
+
+    @include media(xs) {
+      display: flex;
+    }
+
+    .avatar {
+      height: 18px;
+      margin: 12px 4px 12px 0;
+      width: 18px;
+    }
+  }
+
+  .avatar {
+    margin: 4px 4px 4px 0;
+  }
+}
