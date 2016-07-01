@@ -19,16 +19,13 @@
 
   .btn {
     overflow: hidden;
-    padding: 0 30px;
 
-    > .grid-block {
-      display: inline-block;
+    .icons {
+      height: 24px;
+      margin-right: 6px;
+      position: relative;
+      top: 4px;
+      width: 24px;
     }
-  }
-
-  .icons {
-    height: 100%;
-    margin-right: 6px;
-    width: 24px;
   }
 }
