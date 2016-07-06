@@ -324,8 +324,22 @@ window.addEventListener('load', function(){
     // set sign up form error
     document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
     document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
+
     // open sign up form
-    openSignUp(signUpModal);
+    var modal = document.getElementById('sign-up');
+    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+    // show modal
+    modal.classList.add('in');
+    // stop scrolling
+    document.body.classList.add('modal-open');
+    // triggers for close button
+    closeTrigger.addEventListener('click', closeModal);
+    closeTrigger.addEventListener('touchend', closeModal);
+    // trigger for esc key
+    document.addEventListener('keydown', escModal);
+    // bind sign up events
+    setupSignUp();
+
     // segment tracking
     analytics.ready(function() {
       analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});
