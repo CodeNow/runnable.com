@@ -13,6 +13,11 @@
     overflow: hidden;
     width: 300px;
 
+    @include media(xxxs) {
+      height: 270px;
+      width: 270px;
+    }
+
     .img {
       height: 100%;
       width: 100%;
