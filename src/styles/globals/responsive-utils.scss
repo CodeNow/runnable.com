@@ -1,3 +1,4 @@
+// scss-lint:disable ImportantRule
 // responsive utils
 .visible-xxxs,
 .visible-xxs,
@@ -51,54 +52,44 @@
   }
 }
 
-.hidden-xxxs,
-.hidden-xxs,
-.hidden-xs,
-.hidden-sm,
-.hidden-md,
-.hidden-lg,
-.hidden-xl {
-  display: inherit;
-}
-
 @include media(xxxs) {
   .hidden-xxxs {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(xxs) {
   .hidden-xxs {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(xs) {
   .hidden-xs {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(sm) {
   .hidden-sm {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(md) {
   .hidden-md {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(lg) {
   .hidden-lg {
-    display: none;
+    display: none !important;
   }
 }
 
 @include media(xl) {
   .hidden-xl {
-    display: none;
+    display: none !important;
   }
 }

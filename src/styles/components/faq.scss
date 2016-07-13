@@ -2,12 +2,7 @@
   flex-wrap: wrap;
   margin: 0 auto;
   max-width: $screen-lg;
-  padding: 90px;
-
-  @include media(lg) {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
+  padding: 60px;
 
   @include media(sm) {
     padding: 60px 30px;

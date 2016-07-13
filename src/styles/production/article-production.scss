@@ -2,18 +2,13 @@
   margin-bottom: 60px;
   overflow: visible;
 
-  @include media(xs) {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
   > .grid-block {
-    margin-top: -120px;
+    margin-top: -105px;
     overflow: visible;
   }
 
-  .grid-container-sm {
-    @include media(xs) {
+  .section {
+    @include media(xxs) {
       padding-left: 0;
       padding-right: 0;
     }
@@ -26,8 +21,10 @@
     width: 345px;
     z-index: 1;
 
-    @include media(xxxs) {
-      width: 100%;
+    @include media(xxs) {
+      margin-left: -15px;
+      margin-right: -15px;
+      width: auto;
     }
   }
 

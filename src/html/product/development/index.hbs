@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Speed up development. — Runnable</title>
+    <script ugly>
+      @@include('js/signup.js')
+      @@include('js/svgs.js')
+      @@include('js/status.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ontouchstart>
+
+    @@include('images/icons.svg')
+    @@include('html/components/header.hbs')
+
+    <main class="grid-block vertical main">
+      @@include('html/product/development/development-hero.hbs')
+      @@include('html/product/development/article-development.hbs')
+      @@include('html/components/signup.hbs')
+      @@include('html/product/development/article-development-comparison.hbs')
+      @@include('html/product/development/article-development-faq.hbs')
+      @@include('html/product/development/next-cta.hbs')
+    </main>
+
+    @@include('html/components/footer.hbs')
+    @@include('html/components/form-modal.hbs')
+
+    @@include('js/external/external.html')

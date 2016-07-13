@@ -2,23 +2,18 @@
 <html lang="en">
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    @@include('html/components/head.hbs')
     <title>Your team has a staging problem. — Runnable</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="styles/index.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
     <script>
-      @@include('../js/external/fetch.js')
-      @@include('../js/redirect.js')
+      @@include('js/external/fetch.js')
+      @@include('js/redirect.js')
     </script>
     <script ugly>
-      @@include('../js/signup.js')
-      @@include('../js/youtube.js')
-      @@include('../js/status.js')
+      @@include('js/signup.js')
+      @@include('js/svgs.js')
+      @@include('js/youtube.js')
+      @@include('js/status.js')
     </script>
 
     <!--
@@ -28,17 +23,17 @@
 
   <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
-    @@include('components/icons.hbs')
-    @@include('components/header.hbs')
+    @@include('images/icons.svg')
+    @@include('html/components/header.hbs')
 
     <main class="grid-block vertical main">
-      @@include('html/video/video.hbs')
-      @@include('html/video/video-hero.hbs')
-      @@include('html/video/article-more.hbs')
+      @@include('html/html/video.hbs')
+      @@include('html/html/video-hero.hbs')
+      @@include('html/html/article-more.hbs')
     </main>
 
-    @@include('components/form-modal.hbs')
+    @@include('html/components/form-modal.hbs')
 
     <script async src="js/external/modernizr.js"></script>
 
-    @@include('../js/external/external.html')
+    @@include('js/external/external.html')

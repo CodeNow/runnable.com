@@ -1,0 +1,31 @@
+.article-sign-in {
+
+  // sign in wrapper
+  > .grid-block {
+    margin-bottom: 15px;
+    margin-top: 45px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .img {
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: -64px;
+    z-index: 1;
+  }
+
+  .btn {
+    overflow: hidden;
+
+    .icons {
+      height: 24px;
+      margin-right: 6px;
+      position: relative;
+      top: 4px;
+      width: 24px;
+    }
+  }
+}

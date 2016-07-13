@@ -19,6 +19,11 @@
     max-width: 737px;
     padding: 60px 60px 60px 45px;
 
+    @include media(sm) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
     @include media(xs) {
       padding: 30px 15px;
       text-align: center;
@@ -35,6 +40,13 @@
       + .grid-block {
         margin-top: 60px;
       }
+    }
+  }
+
+  .grid-container-sm {
+    @include media(sm) {
+      max-width: none;
+      width: auto;
     }
   }
 

@@ -33,6 +33,9 @@
 @import "components/spinners";
 @import "components/wells";
 
+// component specific
+@import "components/specific/buttons-sandbox";
+
 // landing specific
 @import "landing/landing";
 @import "landing/hero";
@@ -43,6 +46,9 @@
 @import "landing/confirm";
 @import "landing/product-menu";
 @import "landing/header-menu";
+
+@import "modals/signin";
+@import "modals/signup";
 
 @import "video/video";
 @import "video/video-hero";
@@ -56,6 +62,9 @@
 @import "about/about-hero";
 @import "about/article-location";
 
+@import "development/development-hero";
+@import "development/article-development";
+
 @import "integration-testing/integration-testing-hero";
 @import "integration-testing/article-integration-testing";
 @import "integration-testing/article-comparison";
@@ -64,8 +73,9 @@
 @import "production/article-production";
 @import "production/article-docker";
 
-@import "solutions/hero";
-
 @import "privacy/article-privacy";
+
+@import "demo/demo-hero";
+@import "demo/calendar";
 
 @import "globals/responsive-utils";

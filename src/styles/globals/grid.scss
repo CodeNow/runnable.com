@@ -7,52 +7,65 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  // shrink to only fill space of content (defaults to fill available space)
-  &.shrink {
-    flex: 0 0 auto;
-  }
-
   // switch orientation to vertical (defaults to horizontal)
   &.vertical {
     flex-flow: column nowrap;
   }
 
+  // shrink to only fill space of content (defaults to fill available space)
+  &.shrink {
+    flex: 0 0 auto;
+  }
+
+  &.grow {
+    flex: 1 1 100%;
+  }
+
   // alignment of content (defaults to left)
-  &.align-center {
+  &.justify-center {
     justify-content: center;
   }
 
-  &.align-left {
-    justify-content: flex-start;
-  }
-
-  &.align-right {
+  &.justify-right {
     justify-content: flex-end;
   }
 
-  &.align-justify {
+  &.justify-justified {
     justify-content: space-between; // space between blocks is even
   }
 
-  &.align-spaced {
+  &.justify-spaced {
     justify-content: space-around; // space around blocks is even
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-start {
+    align-items: flex-start;
+  }
+
+  &.align-end {
+    align-items: flex-end;
   }
 }
 
 // horizontal grid
 .grid-content {
+  display: block;
   flex: 1 1 auto;
 
   &.shrink {
     flex: 0 0 auto;
   }
 
+  &.grow {
+    flex: 1 1 100%;
+  }
+
   + .grid-content {
     margin-left: 15px;
-
-    @include media(sm) {
-      margin-left: 0;
-    }
   }
 }
 
@@ -65,10 +78,6 @@
     + .grid-content {
       margin-top: 15px;
     }
-  }
-
-  > .grid-block + .grid-block {
-    margin-top: 15px;
   }
 }
 
