@@ -1,6 +1,5 @@
 // modals
-function openModal(dragging) {
-  event.preventDefault();
+function openModal(event,dragging) {
   if (!dragging) {
     var openModal = document.getElementsByClassName('modal-backdrop in')[0];
     var modalName = event.target.getAttribute('data-target').substring(1);
@@ -27,13 +26,13 @@ function openModal(dragging) {
   }
 }
 
-function escModal() {
+function escModal(event) {
   if (event.keyCode == 27) {
-    closeModal();
+    closeModal(event);
   }
 }
 
-function closeModal() {
+function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
 
@@ -315,8 +314,12 @@ window.addEventListener('load', function(){
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
       /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(){openModal(dragging);});
-      modalTriggers[i].addEventListener('touchend', function(){openModal(dragging);});
+      modalTriggers[i].addEventListener('click', function(event){
+        openModal(event,dragging);
+      });
+      modalTriggers[i].addEventListener('touchend', function(event){
+        openModal(event,dragging);
+      });
     }
   }
   // show sign up if not whitelisted
