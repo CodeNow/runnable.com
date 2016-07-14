@@ -447,39 +447,28 @@
 
   (function () {
   // Redirect
-  console.log('hello')
   Promise.all([
     fetch('/users/me', { credentials: 'include' })
-      .then(function (res) { return res.json() }),
+      .then(function (res) { return res.json(); }),
     fetch('/auth/whitelist', { credentials: 'include' })
-      .then(function (res) { return res.json() }),
+      .then(function (res) { return res.json(); }),
   ])
     .then(function (res) {
-      var user = res[0]
-      var whitelistedOrgs = res[1]
+      var user = res[0];
+      var whitelistedOrgs = res[1];
 
       // Get variables we need
       var org;
       try {
         org = user.userOptions.uiState.previousLocation.org;
       } catch (e) {
-        return
+        return;
       }
       var prevInstance;
       try {
         prevInstance = user.userOptions.uiState.previousLocation.instance;
       } catch (e) {
-        return
-      }
-
-      // Show/Hide all elements
-      var els = document.getElementsByClassName('js-if-not-signed-in')
-      for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'none !important';
-      }
-      var els = document.getElementsByClassName('js-if-signed-in')
-      for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'flex !important';
+        return;
       }
 
       // Populate sign-in url
@@ -487,21 +476,57 @@
       if (prevInstance) {
         newURL += '/' + prevInstance;
       }
-      var els = document.getElementsByClassName('btn-sandbox')
+      var els = document.getElementsByClassName('btn-sandbox');
       for (var i = 0; i < els.length; i++) {
         els[i].href = newURL;
       }
-      console.log('newUrl', newURL)
+      console.log('newUrl', newURL);
+
+      // set up avatar
+      var userAvatar = document.createElement('img');
+      userAvatar.src = user.gravatar;
+      userAvatar.classList.add('avatar','float-left');
+      userAvatar.height = 21;
+      userAvatar.width = 21;
+
+      // set up btn-sandbox in headers
+      var headerBtnSandbox = document.createElement('a');
+      var overflowMenu = document.getElementsByClassName('btn-overflow')[0];
+      headerBtnSandbox.href = newURL;
+      headerBtnSandbox.classList.add('grid-content','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
+      headerBtnSandbox.textContent = 'Your Sandbox';
+      headerBtnSandbox.appendChild(userAvatar);
+      document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
+
+      // set up btn-sandbox in menus
+      var menuBtnSandbox = document.createElement('a');
+      var menuDivider = document.getElementsByClassName('divider')[0];
+      menuBtnSandbox.href = newURL;
+      menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
+      menuBtnSandbox.textContent = 'Your Sandbox';
+      menuDivider.classList.add('visible-xs');
+      menuDivider.classList.remove('visible-md');
+      document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
+
+      // hide sign in and sign up links
+      var signUpButtons = document.querySelectorAll('[data-target="#new-sign-up"]');
+      var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
+      for (var i = 0; i < signUpButtons.length; i++) {
+        signUpButtons[i].parentNode.removeChild(signUpButtons[i]);
+      }
+      for (var i = 0; i < signInButtons.length; i++) {
+        signInButtons[i].parentNode.removeChild(signInButtons[i]);
+      }
     });
-}())
+}());
 
 </script>
     <title>Integration testing, simplified. — Runnable</title>
     <script ugly="">function openModal(e){if(event.preventDefault(),!e){var t=document.getElementsByClassName("modal-backdrop in")[0],a=event.target.getAttribute("data-target").substring(1),n=document.getElementById(a),i=n.getElementsByClassName("js-modal-close")[0];t&&t.classList.remove("in"),n.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupSignUp()}}function escModal(){27==event.keyCode&&closeModal()}function closeModal(){var e=document.getElementsByClassName("modal-backdrop in")[0],t=e.getElementsByClassName("js-modal-close")[0];event.preventDefault(),e.classList.remove("in"),document.body.classList.remove("modal-open"),t.removeEventListener("click",closeModal),t.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupSignUp(){var e=document.getElementsByClassName("form-sign-up")[0],t=e.getElementsByTagName("input");for(e.addEventListener("change",makeDirty),e.addEventListener("submit",submitSignUp),i=0;i<t.length;i++)t[i].addEventListener("invalid",formInvalid),t[i].classList.contains("input-radio")&&t[i].addEventListener("change",updateLabel)}function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],o=document.getElementsByClassName("article-questionnaire")[0],d=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n,!0),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var n=JSON.parse(i.responseText),r=n.result_code,c=n.result_message;-1!==r&&0!==r||(shakeForm(e),activeCampaignValidation(c,t)),1===r&&(l.classList.contains("out")?(o.classList.add("out"),d.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),l.classList.add("out"),o.classList.add("in"),analytics.ready(function(){var e=JSON.parse(a);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t="?whitelist=false"!==window.location.search,a=document.getElementsByClassName("js-modal"),n=(document.getElementsByClassName("form-questionnaire")[0],document.body),i=!1;if(n.addEventListener("touchmove",function(){i=!0}),n.addEventListener("touchstart",function(){i=!1}),window.fbq||(window.fbq=function(){}),a)for(e=0;e<a.length;e++)a[e].addEventListener("click",function(){openModal(i)}),a[e].addEventListener("touchend",function(){openModal(i)});if(!t){document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important");var s=document.getElementById("sign-up"),l=s.getElementsByClassName("js-modal-close")[0];s.classList.add("in"),document.body.classList.add("modal-open"),l.addEventListener("click",closeModal),l.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),setupSignUp(),analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})})}}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var a=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",a+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 2b47fe2c30c3ed6ec2952c4415f9483d9806d48a
-      Commit Time: Wed Jul 13 17:59:30 2016 -0700
+      Commit Hash: 2700b0cf614a75fcde9188bcf4b6b4353e3c2c01
+      Commit Time: Thu Jul 14 14:23:56 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -591,12 +616,8 @@
         </div>
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
-      <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md js-modal js-if-not-signed-in">Sign In</a>
-      <a data-target="#new-sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal js-if-not-signed-in">Sign Up</a>
-      <a class="grid-content btn btn-sm btn-white text-white strong hidden-xs btn-sandbox js-if-signed-in">
-        <img class="avatar" src="images/runnabot-head.png" height="24" width="24">
-        Your Sandbox
-      </a>
+      <a data-target="#sign-in" class="grid-content btn btn-sm text-white strong hidden-md js-modal">Sign In</a>
+      <a data-target="#new-sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal">Sign Up</a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow"/>
@@ -645,12 +666,8 @@
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a data-target="#new-sign-up" class="list-item-a visible-xs js-modal js-if-not-signed-in">Sign Up</a>
-      <a data-target="#sign-in" class="list-item-a visible-md js-modal js-if-not-signed-in">Sign In</a>
-      <a class="grid-block align-center shrink list-item-a btn-sandbox strong visible-xs js-if-signed-in">
-        <img class="grid-block shrink avatar" src="images/runnabot-head.png" height="24" width="24">
-        <span class="grid-block"><span class="hidden-xxs">Your&nbsp;</span>Sandbox</span>
-      </a>
+      <a data-target="#new-sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
+      <a data-target="#sign-in" class="list-item-a visible-md js-modal">Sign In</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
