@@ -13,10 +13,10 @@
   border: 1px solid $gray-lighter;
   border-radius: $input-border-radius;
   height: $input-md;
+  padding: 0;
 
   @include media(xxs) {
     font-size: 13px;
-    padding: 0 6px;
   }
 
   &:hover,
