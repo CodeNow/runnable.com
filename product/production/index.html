@@ -10,13 +10,498 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="styles/index.css">
+<script>
+  (function(self) {
+  'use strict';
 
+  if (self.fetch) {
+    return
+  }
+
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob()
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  }
+
+  function normalizeName(name) {
+    if (typeof name !== 'string') {
+      name = String(name)
+    }
+    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+      throw new TypeError('Invalid character in header field name')
+    }
+    return name.toLowerCase()
+  }
+
+  function normalizeValue(value) {
+    if (typeof value !== 'string') {
+      value = String(value)
+    }
+    return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift()
+        return {done: value === undefined, value: value}
+      }
+    }
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      }
+    }
+
+    return iterator
+  }
+
+  function Headers(headers) {
+    this.map = {}
+
+    if (headers instanceof Headers) {
+      headers.forEach(function(value, name) {
+        this.append(name, value)
+      }, this)
+
+    } else if (headers) {
+      Object.getOwnPropertyNames(headers).forEach(function(name) {
+        this.append(name, headers[name])
+      }, this)
+    }
+  }
+
+  Headers.prototype.append = function(name, value) {
+    name = normalizeName(name)
+    value = normalizeValue(value)
+    var list = this.map[name]
+    if (!list) {
+      list = []
+      this.map[name] = list
+    }
+    list.push(value)
+  }
+
+  Headers.prototype['delete'] = function(name) {
+    delete this.map[normalizeName(name)]
+  }
+
+  Headers.prototype.get = function(name) {
+    var values = this.map[normalizeName(name)]
+    return values ? values[0] : null
+  }
+
+  Headers.prototype.getAll = function(name) {
+    return this.map[normalizeName(name)] || []
+  }
+
+  Headers.prototype.has = function(name) {
+    return this.map.hasOwnProperty(normalizeName(name))
+  }
+
+  Headers.prototype.set = function(name, value) {
+    this.map[normalizeName(name)] = [normalizeValue(value)]
+  }
+
+  Headers.prototype.forEach = function(callback, thisArg) {
+    Object.getOwnPropertyNames(this.map).forEach(function(name) {
+      this.map[name].forEach(function(value) {
+        callback.call(thisArg, value, name, this)
+      }, this)
+    }, this)
+  }
+
+  Headers.prototype.keys = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push(name) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.values = function() {
+    var items = []
+    this.forEach(function(value) { items.push(value) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.entries = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push([name, value]) })
+    return iteratorFor(items)
+  }
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+  }
+
+  function consumed(body) {
+    if (body.bodyUsed) {
+      return Promise.reject(new TypeError('Already read'))
+    }
+    body.bodyUsed = true
+  }
+
+  function fileReaderReady(reader) {
+    return new Promise(function(resolve, reject) {
+      reader.onload = function() {
+        resolve(reader.result)
+      }
+      reader.onerror = function() {
+        reject(reader.error)
+      }
+    })
+  }
+
+  function readBlobAsArrayBuffer(blob) {
+    var reader = new FileReader()
+    reader.readAsArrayBuffer(blob)
+    return fileReaderReady(reader)
+  }
+
+  function readBlobAsText(blob) {
+    var reader = new FileReader()
+    reader.readAsText(blob)
+    return fileReaderReady(reader)
+  }
+
+  function Body() {
+    this.bodyUsed = false
+
+    this._initBody = function(body) {
+      this._bodyInit = body
+      if (typeof body === 'string') {
+        this._bodyText = body
+      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+        this._bodyBlob = body
+      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+        this._bodyFormData = body
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString()
+      } else if (!body) {
+        this._bodyText = ''
+      } else if (support.arrayBuffer && ArrayBuffer.prototype.isPrototypeOf(body)) {
+        // Only support ArrayBuffers for POST method.
+        // Receiving ArrayBuffers happens via Blobs, instead.
+      } else {
+        throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type)
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+        }
+      }
+    }
+
+    if (support.blob) {
+      this.blob = function() {
+        var rejected = consumed(this)
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return Promise.resolve(this._bodyBlob)
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as blob')
+        } else {
+          return Promise.resolve(new Blob([this._bodyText]))
+        }
+      }
+
+      this.arrayBuffer = function() {
+        return this.blob().then(readBlobAsArrayBuffer)
+      }
+
+      this.text = function() {
+        var rejected = consumed(this)
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return readBlobAsText(this._bodyBlob)
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as text')
+        } else {
+          return Promise.resolve(this._bodyText)
+        }
+      }
+    } else {
+      this.text = function() {
+        var rejected = consumed(this)
+        return rejected ? rejected : Promise.resolve(this._bodyText)
+      }
+    }
+
+    if (support.formData) {
+      this.formData = function() {
+        return this.text().then(decode)
+      }
+    }
+
+    this.json = function() {
+      return this.text().then(JSON.parse)
+    }
+
+    return this
+  }
+
+  // HTTP methods whose capitalization should be normalized
+  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+  function normalizeMethod(method) {
+    var upcased = method.toUpperCase()
+    return (methods.indexOf(upcased) > -1) ? upcased : method
+  }
+
+  function Request(input, options) {
+    options = options || {}
+    var body = options.body
+    if (Request.prototype.isPrototypeOf(input)) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url
+      this.credentials = input.credentials
+      if (!options.headers) {
+        this.headers = new Headers(input.headers)
+      }
+      this.method = input.method
+      this.mode = input.mode
+      if (!body) {
+        body = input._bodyInit
+        input.bodyUsed = true
+      }
+    } else {
+      this.url = input
+    }
+
+    this.credentials = options.credentials || this.credentials || 'omit'
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers)
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET')
+    this.mode = options.mode || this.mode || null
+    this.referrer = null
+
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+      throw new TypeError('Body not allowed for GET or HEAD requests')
+    }
+    this._initBody(body)
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this)
+  }
+
+  function decode(body) {
+    var form = new FormData()
+    body.trim().split('&').forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=')
+        var name = split.shift().replace(/\+/g, ' ')
+        var value = split.join('=').replace(/\+/g, ' ')
+        form.append(decodeURIComponent(name), decodeURIComponent(value))
+      }
+    })
+    return form
+  }
+
+  function headers(xhr) {
+    var head = new Headers()
+    var pairs = (xhr.getAllResponseHeaders() || '').trim().split('\n')
+    pairs.forEach(function(header) {
+      var split = header.trim().split(':')
+      var key = split.shift().trim()
+      var value = split.join(':').trim()
+      head.append(key, value)
+    })
+    return head
+  }
+
+  Body.call(Request.prototype)
+
+  function Response(bodyInit, options) {
+    if (!options) {
+      options = {}
+    }
+
+    this.type = 'default'
+    this.status = options.status
+    this.ok = this.status >= 200 && this.status < 300
+    this.statusText = options.statusText
+    this.headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers)
+    this.url = options.url || ''
+    this._initBody(bodyInit)
+  }
+
+  Body.call(Response.prototype)
+
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  }
+
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''})
+    response.type = 'error'
+    return response
+  }
+
+  var redirectStatuses = [301, 302, 303, 307, 308]
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
+    }
+
+    return new Response(null, {status: status, headers: {location: url}})
+  }
+
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+
+  self.fetch = function(input, init) {
+    return new Promise(function(resolve, reject) {
+      var request
+      if (Request.prototype.isPrototypeOf(input) && !init) {
+        request = input
+      } else {
+        request = new Request(input, init)
+      }
+
+      var xhr = new XMLHttpRequest()
+
+      function responseURL() {
+        if ('responseURL' in xhr) {
+          return xhr.responseURL
+        }
+
+        // Avoid security warnings on getResponseHeader when not allowed by CORS
+        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+          return xhr.getResponseHeader('X-Request-URL')
+        }
+
+        return
+      }
+
+      xhr.onload = function() {
+        var options = {
+          status: xhr.status,
+          statusText: xhr.statusText,
+          headers: headers(xhr),
+          url: responseURL()
+        }
+        var body = 'response' in xhr ? xhr.response : xhr.responseText
+        resolve(new Response(body, options))
+      }
+
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.ontimeout = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.open(request.method, request.url, true)
+
+      if (request.credentials === 'include') {
+        xhr.withCredentials = true
+      }
+
+      if ('responseType' in xhr && support.blob) {
+        xhr.responseType = 'blob'
+      }
+
+      request.headers.forEach(function(value, name) {
+        xhr.setRequestHeader(name, value)
+      })
+
+      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+    })
+  }
+  self.fetch.polyfill = true
+})(typeof self !== 'undefined' ? self : this);
+
+  (function () {
+  // Redirect
+  console.log('hello')
+  Promise.all([
+    fetch('/users/me', { credentials: 'include' })
+      .then(function (res) { return res.json() }),
+    fetch('/auth/whitelist', { credentials: 'include' })
+      .then(function (res) { return res.json() }),
+  ])
+    .then(function (res) {
+      var user = res[0]
+      var whitelistedOrgs = res[1]
+
+      // Get variables we need
+      var org;
+      try {
+        org = user.userOptions.uiState.previousLocation.org;
+      } catch (e) {
+        return
+      }
+      var prevInstance;
+      try {
+        prevInstance = user.userOptions.uiState.previousLocation.instance;
+      } catch (e) {
+        return
+      }
+
+      // Show/Hide all elements
+      var els = document.getElementsByClassName('js-if-not-signed-in')
+      for (var i = 0; i < els.length; i++) {
+        els[i].style.display = 'none';
+      }
+      var els = document.getElementsByClassName('js-if-signed-in')
+      for (var i = 0; i < els.length; i++) {
+        els[i].style.display = 'flex';
+      }
+
+      // Populate sign-in url
+      var newURL = '/' + org;
+      if (prevInstance) {
+        newURL += '/' + prevInstance;
+      }
+      var els = document.getElementsByClassName('btn-sandbox')
+      for (var i = 0; i < els.length; i++) {
+        els[i].href = newURL;
+      }
+      console.log('newUrl', newURL)
+    });
+}())
+
+</script>
     <title>Push to production. — Runnable</title>
-    <script ugly="">function openSignUp(e,t){if(!e){var n=document.getElementsByClassName("js-modal-close")[0];t.classList.add("in"),document.body.classList.add("modal-open"),n.addEventListener("click",closeSignUp,!1),n.addEventListener("touchend",closeSignUp,!1),document.addEventListener("keydown",escModal)}}function closeSignUp(e){e.preventDefault();var t=document.getElementsByClassName("js-modal-close")[0];document.getElementById("sign-up").classList.remove("in"),document.body.classList.remove("modal-open"),t.removeEventListener("click",closeSignUp,!1),t.removeEventListener("touchend",closeSignUp,!1),document.removeEventListener("keydown",escModal)}function escModal(e){27==e.keyCode&&closeSignUp(e)}function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)t=a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,n){var a,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],o=document.getElementsByClassName("article-questionnaire")[0],r=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?a="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(a="https://codenow.com/submitreason"),i.open("POST",a,!0),i.setRequestHeader("Content-Type","application/json"),i.send(n),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var a=JSON.parse(i.responseText),c=a.result_code,d=a.result_message;-1!==c&&0!==c||(shakeForm(e),activeCampaignValidation(d,t)),1===c&&(l.classList.contains("out")?(o.classList.add("out"),r.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:a.subscriber_id,email:a.email})),l.classList.add("out"),o.classList.add("in"),analytics.ready(function(){var e=JSON.parse(n);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var n,a=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<a.length;s++)a[s].checked&&(i=a[s].value);n={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),n=JSON.stringify(n),xhrSubmit(e,t,n)}}function setupSubmitQuestionnaire(e){return function(t){var n=t.target;if(t.preventDefault(),n.checkValidity()){var a;toggleEditing(n,"disable"),a={email:e.email,subscriber_id:e.subscriber_id,reason:n[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:n[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),a=JSON.stringify(a),xhrSubmit(t,n,a)}}}function activeCampaignValidation(e,t){var n=t.parentNode,a=n.getElementsByClassName("well-error")[0],i=n.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,a.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t,n="?whitelist=false"!==window.location.search,a=document.getElementsByClassName("js-sign-up"),i=document.getElementById("sign-up"),s=document.getElementsByClassName("form-sign-up")[0],l=(document.getElementsByClassName("form-questionnaire")[0],document.body),o=!1;if(l.addEventListener("touchmove",function(){o=!0}),l.addEventListener("touchstart",function(){o=!1}),window.fbq||(window.fbq=function(){}),s){for(s.addEventListener("change",makeDirty),s.addEventListener("submit",submitSignUp),t=0;t<a.length;t++)a[t].addEventListener("click",function(){openSignUp(o,i)}),a[t].addEventListener("touchend",function(){openSignUp(o,i)});for(e=s.getElementsByTagName("input"),t=0;t<e.length;t++)e[t].addEventListener("invalid",formInvalid),e[t].classList.contains("input-radio")&&e[t].addEventListener("change",updateLabel)}n||(document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important"),openSignUp(i),analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})}))}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(i),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
+    <script ugly="">function openModal(e){if(event.preventDefault(),!e){var t=document.getElementsByClassName("modal-backdrop in")[0],a=event.target.getAttribute("data-target").substring(1),n=document.getElementById(a),i=n.getElementsByClassName("js-modal-close")[0];t&&t.classList.remove("in"),n.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupSignUp()}}function escModal(){27==event.keyCode&&closeModal()}function closeModal(){var e=document.getElementsByClassName("modal-backdrop in")[0],t=e.getElementsByClassName("js-modal-close")[0];event.preventDefault(),e.classList.remove("in"),document.body.classList.remove("modal-open"),t.removeEventListener("click",closeModal),t.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupSignUp(){var e=document.getElementsByClassName("form-sign-up")[0],t=e.getElementsByTagName("input");for(e.addEventListener("change",makeDirty),e.addEventListener("submit",submitSignUp),i=0;i<t.length;i++)t[i].addEventListener("invalid",formInvalid),t[i].classList.contains("input-radio")&&t[i].addEventListener("change",updateLabel)}function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],o=document.getElementsByClassName("article-questionnaire")[0],d=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n,!0),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var n=JSON.parse(i.responseText),r=n.result_code,c=n.result_message;-1!==r&&0!==r||(shakeForm(e),activeCampaignValidation(c,t)),1===r&&(l.classList.contains("out")?(o.classList.add("out"),d.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),l.classList.add("out"),o.classList.add("in"),analytics.ready(function(){var e=JSON.parse(a);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t="?whitelist=false"!==window.location.search,a=document.getElementsByClassName("js-modal"),n=(document.getElementsByClassName("form-questionnaire")[0],document.body),i=!1;if(n.addEventListener("touchmove",function(){i=!0}),n.addEventListener("touchstart",function(){i=!1}),window.fbq||(window.fbq=function(){}),a)for(e=0;e<a.length;e++)a[e].addEventListener("click",function(){openModal(i)}),a[e].addEventListener("touchend",function(){openModal(i)});if(!t){document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important");var s=document.getElementById("sign-up"),l=s.getElementsByClassName("js-modal-close")[0];s.classList.add("in"),document.body.classList.add("modal-open"),l.addEventListener("click",closeModal),l.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),setupSignUp(),analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})})}}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var a=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",a+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 8764fe0b8c9c3e6857c74c9027c4a21567864a9f
-      Commit Time: Tue Jun 28 13:13:49 2016 -0700
+      Commit Hash: 53f5a80816d352298dafafd5afd012c518dfbf9d
+      Commit Time: Wed Jul 13 17:45:52 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -106,8 +591,12 @@
         </div>
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
-      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md">Sign In</a>
-      <a class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-sign-up">Sign Up</a>
+      <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md js-modal js-if-not-signed-in">Sign In</a>
+      <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal js-if-not-signed-in">Sign Up</a>
+      <a class="grid-content btn btn-sm btn-white text-white strong hidden-xs btn-sandbox js-if-signed-in">
+        <img class="avatar" src="images/runnabot-head.png" height="24" width="24">
+        Your Sandbox
+      </a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow"/>
@@ -156,8 +645,12 @@
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md">Sign In</a>
-      <a class="list-item-a visible-xs js-sign-up">Sign Up</a>
+      <a data-target="#new-sign-up" class="list-item-a js-modal js-if-not-signed-in">Sign Up</a>
+      <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md js-moda js-if-not-signed-inl">Sign In</a>
+      <a class="grid-block align-center shrink list-item-a btn-sandbox strong js-if-signed-in">
+        <img class="grid-block shrink avatar" src="images/runnabot-head.png" height="24" width="24">
+        <span class="grid-block"><span class="hidden-xxs">Your&nbsp;</span>Sandbox</span>
+      </a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
@@ -252,7 +745,7 @@
     </main>
 
     <footer class="grid-block vertical footer justify-spaced">
-  <a class="sign-up-box grid-block vertical well well-anchor js-sign-up">
+  <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal">
   <img class="img" src="images/runnabear-hello.png">
   <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
     including infrastructure costs!
@@ -399,6 +892,34 @@
 </div>
 
 
+<div class="modal-backdrop" id="sign-in">
+  <a class="icons-close js-modal-close">
+    <svg class="icons">
+      <use xlink:href="#icons-close"/>
+    </svg>
+  </a>
+  <div class="modal">
+    <article class="grid-block vertical article article-form article-sign-in">
+  <h1 class="h1 text-center strong">Hey again.</h1>
+  <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
+  <div class="grid-block vertical align-center">
+    <img class="img" src="images/runnabear-peek.png" height="104" width="184">
+    <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block btn btn-lg green">
+      <svg class="icons">
+        <use xlink:href="#icons-github"/>
+      </svg>
+      <span>Sign in with GitHub</span>
+    </a>
+  </div>
+  <div class="grid-content text-center">
+    <a data-target="#new-sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+  </div>
+</article>
+
+  </div>
+</div>
+
+
     <!-- segment.io-->
 <script>
   var match,
@@ -418,7 +939,7 @@
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
-    var signUp = document.querySelectorAll('js-sign-up');
+    var signUp = document.querySelectorAll('[data-target="#sign-up"]');
     analytics.trackLink(signUp, 'Clicked Sign Up');
   });
 </script>

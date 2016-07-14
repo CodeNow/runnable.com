@@ -1,13 +1,4 @@
-
-<base href="/runnable.com/">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index.css">
-<script>
-  (function(self) {
+(function(self) {
   'use strict';
 
   if (self.fetch) {
@@ -440,55 +431,3 @@
   }
   self.fetch.polyfill = true
 })(typeof self !== 'undefined' ? self : this);
-
-  (function () {
-  // Redirect
-  console.log('hello')
-  Promise.all([
-    fetch('/users/me', { credentials: 'include' })
-      .then(function (res) { return res.json() }),
-    fetch('/auth/whitelist', { credentials: 'include' })
-      .then(function (res) { return res.json() }),
-  ])
-    .then(function (res) {
-      var user = res[0]
-      var whitelistedOrgs = res[1]
-
-      // Get variables we need
-      var org;
-      try {
-        org = user.userOptions.uiState.previousLocation.org;
-      } catch (e) {
-        return
-      }
-      var prevInstance;
-      try {
-        prevInstance = user.userOptions.uiState.previousLocation.instance;
-      } catch (e) {
-        return
-      }
-
-      // Show/Hide all elements
-      var els = document.getElementsByClassName('js-if-not-signed-in')
-      for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'none';
-      }
-      var els = document.getElementsByClassName('js-if-signed-in')
-      for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'flex';
-      }
-
-      // Populate sign-in url
-      var newURL = '/' + org;
-      if (prevInstance) {
-        newURL += '/' + prevInstance;
-      }
-      var els = document.getElementsByClassName('btn-sandbox')
-      for (var i = 0; i < els.length; i++) {
-        els[i].href = newURL;
-      }
-      console.log('newUrl', newURL)
-    });
-}())
-
-</script>
