@@ -1,12 +1,8 @@
 .btn-sandbox.btn-sandbox {
 
   .popover-header-menu & {
-    display: none;
+    display: flex;
     padding: 0;
-
-    @include media(xs) {
-      display: flex;
-    }
 
     .avatar {
       height: 18px;

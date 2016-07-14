@@ -94,7 +94,7 @@
       display: none;
 
       @include media(xs) {
-        display: block;
+        display: inherit;
       }
     }
 

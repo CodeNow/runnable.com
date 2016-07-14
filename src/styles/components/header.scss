@@ -7,8 +7,9 @@
   z-index: 10;
 
   // used when a user IS signed in
+  // scss-lint:disable ImportantRule
   .js-if-signed-in {
-    display: none;
+    display: none !important;
   }
 
   .logo {
