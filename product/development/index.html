@@ -500,8 +500,8 @@
     <script ugly="">function openModal(e){if(event.preventDefault(),!e){var t=document.getElementsByClassName("modal-backdrop in")[0],a=event.target.getAttribute("data-target").substring(1),n=document.getElementById(a),i=n.getElementsByClassName("js-modal-close")[0];t&&t.classList.remove("in"),n.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupSignUp()}}function escModal(){27==event.keyCode&&closeModal()}function closeModal(){var e=document.getElementsByClassName("modal-backdrop in")[0],t=e.getElementsByClassName("js-modal-close")[0];event.preventDefault(),e.classList.remove("in"),document.body.classList.remove("modal-open"),t.removeEventListener("click",closeModal),t.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupSignUp(){var e=document.getElementsByClassName("form-sign-up")[0],t=e.getElementsByTagName("input");for(e.addEventListener("change",makeDirty),e.addEventListener("submit",submitSignUp),i=0;i<t.length;i++)t[i].addEventListener("invalid",formInvalid),t[i].classList.contains("input-radio")&&t[i].addEventListener("change",updateLabel)}function updateLabel(e){var t=document.getElementsByClassName("label-text")[0];switch(e.target.getAttribute("value")){case"GitHub":t.innerHTML="GitHub Organization";break;case"Bitbucket":t.innerHTML="Bitbucket Team"}}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)t=n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentElement)&&!t.classList.contains("modal"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],l=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,l[0].parentElement.removeChild(l[0])}}function xhrSubmit(e,t,a){var n,i=new XMLHttpRequest,s=document.getElementsByClassName("form-questionnaire")[0],l=document.getElementsByClassName("article-sign-up")[0],o=document.getElementsByClassName("article-questionnaire")[0],d=document.getElementsByClassName("article-confirm")[0];t.classList.contains("form-sign-up")?n="https://codenow.com/submit":t.classList.contains("form-questionnaire")&&(n="https://codenow.com/submitreason"),i.open("POST",n,!0),i.setRequestHeader("Content-Type","application/json"),i.send(a),i.onreadystatechange=function(){4===i.readyState&&0===i.status&&(shakeForm(e),activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.',t),toggleEditing(t,"enable"))},i.onload=function(){var n=JSON.parse(i.responseText),r=n.result_code,c=n.result_message;-1!==r&&0!==r||(shakeForm(e),activeCampaignValidation(c,t)),1===r&&(l.classList.contains("out")?(o.classList.add("out"),d.classList.add("in")):(s.addEventListener("change",makeDirty),s.addEventListener("submit",setupSubmitQuestionnaire({subscriber_id:n.subscriber_id,email:n.email})),l.classList.add("out"),o.classList.add("in"),analytics.ready(function(){var e=JSON.parse(a);analytics.track("Signed Up",{clientId:ga.getAll()[0].get("clientId")}),analytics.identify(e.email,e)}))),toggleEditing(t,"enable")}}function submitSignUp(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=document.getElementsByName("scm"),i="";toggleEditing(t,"disable");for(var s=0;s<n.length;s++)n[s].checked&&(i=n[s].value);a={scm:i,organization:t[2].value,email:t[3].value},analytics.ready(function(){analytics.track("Sign Up Attempt",{scm:i,org:t[2].value,email:t[3].value,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function setupSubmitQuestionnaire(e){return function(t){var a=t.target;if(t.preventDefault(),a.checkValidity()){var n;toggleEditing(a,"disable"),n={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value},analytics.ready(function(){var t={email:e.email,subscriber_id:e.subscriber_id,reason:a[0].value,clientId:ga.getAll()[0].get("clientId")};analytics.track("Questionnaire Submit",t),analytics.identify(t.email,t)}),n=JSON.stringify(n),xhrSubmit(t,a,n)}}}function activeCampaignValidation(e,t){var a=t.parentNode,n=a.getElementsByClassName("well-error")[0],i=a.getElementsByClassName("well-text")[0],s=e.substr(0,e.indexOf("."));switch(s){case"You selected a list that does not allow duplicates":e="That email has already been used to sign up.";break;case"Contact Email Address is not valid":e="That email address is not valid.";break;case"Your Organization or Team is invalid":e="We couldn’t find that organization or team."}i.innerHTML=e,n.setAttribute("style","display: flex !important"),analytics.ready(function(){analytics.track("Error submit form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t="?whitelist=false"!==window.location.search,a=document.getElementsByClassName("js-modal"),n=(document.getElementsByClassName("form-questionnaire")[0],document.body),i=!1;if(n.addEventListener("touchmove",function(){i=!0}),n.addEventListener("touchstart",function(){i=!1}),window.fbq||(window.fbq=function(){}),a)for(e=0;e<a.length;e++)a[e].addEventListener("click",function(){openModal(i)}),a[e].addEventListener("touchend",function(){openModal(i)});if(!t){document.getElementsByClassName("well-text")[0].innerHTML="You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!",document.getElementsByClassName("well-error")[0].setAttribute("style","display: flex !important");var s=document.getElementById("sign-up"),l=s.getElementsByClassName("js-modal-close")[0];s.classList.add("in"),document.body.classList.add("modal-open"),l.addEventListener("click",closeModal),l.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),setupSignUp(),analytics.ready(function(){analytics.track("User not whitelisted",{clientId:ga.getAll()[0].get("clientId")})})}}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var a=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",a+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 53f5a80816d352298dafafd5afd012c518dfbf9d
-      Commit Time: Wed Jul 13 17:45:52 2016 -0700
+      Commit Hash: 11a3c4875d98e04fee667628420d7272b36738ff
+      Commit Time: Wed Jul 13 17:48:51 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -592,7 +592,7 @@
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
       <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md js-modal js-if-not-signed-in">Sign In</a>
-      <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal js-if-not-signed-in">Sign Up</a>
+      <a data-target="#new-sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal js-if-not-signed-in">Sign Up</a>
       <a class="grid-content btn btn-sm btn-white text-white strong hidden-xs btn-sandbox js-if-signed-in">
         <img class="avatar" src="images/runnabot-head.png" height="24" width="24">
         Your Sandbox
@@ -922,6 +922,55 @@
   </div>
 </div>
 
+<div class="modal-backdrop" id="new-sign-up">
+  <a class="icons-close js-modal-close">
+    <svg class="icons">
+      <use xlink:href="#icons-close"/>
+    </svg>
+  </a>
+  <div class="modal">
+    <article class="grid-block vertical article article-form article-sign-up new">
+  <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
+  <div class="grid-block vertical card">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
+    <ul class="list list-bordered">
+      <li class="grid-block list-item list-item-write">
+        <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
+        <div class="grid-block vertical align-start">
+          <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
+          <small class="small underline popover-trigger hover">Why do we need this?
+            <div class="popover top text-left">
+              <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
+              <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
+            </div>
+          </small>
+        </div>
+    </li></ul>
+    <ul class="list list-bordered">
+      <li class="grid-block align-center list-item padding-xs">
+        <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
+        <div class="grid-block vertical">
+          <p class="p strong">Your Organization</p>
+        </div>
+        <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+    </li></ul>
+  </div>
+  <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
+  <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block align-center btn btn-lg green wrap-xxxs">
+    <svg class="icons hidden-xs">
+      <use xlink:href="#icons-github"/>
+    </svg>
+    <span>Grant permissions on GitHub</span>
+  </a>
+  <hr class="hr">
+  <div class="grid-content text-center">
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+  </div>
+</article>
+
+  </div>
+</div>
 
 <div class="modal-backdrop" id="sign-in">
   <a class="icons-close js-modal-close">
