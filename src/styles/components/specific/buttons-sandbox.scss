@@ -2,15 +2,16 @@
   margin: 4px 4px 4px 0;
 }
 
-.popover-header-menu {
+.popover-header-menu .btn-sandbox {
+  background: $gray-lighterest;
+  border: 1px solid $gray-lighter;
+  border-radius: $input-border-radius;
+  height: $input-sm;
 
-  .btn-sandbox {
-    border: 1px solid $gray-light;
-    border-radius: $input-border-radius;
-
-    &:hover,
-    &:active {
-      border-color: $purple-light;
-    }
+  &:hover,
+  &:active {
+    background: $white;
+    border-color: $purple-light;
+    color: $purple-light;
   }
 }
