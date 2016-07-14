@@ -10,22 +10,40 @@
     .then(function (res) {
       var user = res[0]
       var whitelistedOrgs = res[1]
-      if (!user || !whitelistedOrgs) {
-        return
-      }
+
+      // Get variables we need
       var org;
       try {
         org = user.userOptions.uiState.previousLocation.org;
-      } catch (e) {}
+      } catch (e) {
+        return
+      }
       var prevInstance;
       try {
         prevInstance = user.userOptions.uiState.previousLocation.instance;
-      } catch (e) {}
-      newURL = '{{angularUrl}}/' + org;
+      } catch (e) {
+        return
+      }
+
+      // Show/Hide all elements
+      var els = document.getElementsByClassName('if-not-signed-in')
+      for (var i = 0; i < els.length; i++) {
+        els[i].style.display = 'none';
+      }
+      var els = document.getElementsByClassName('if-signed-in')
+      for (var i = 0; i < els.length; i++) {
+        els[i].style.display = 'block';
+      }
+
+      // Populate sign-in url
+      var newURL = '{{angularUrl}}/' + org;
       if (prevInstance) {
         newURL += '/' + prevInstance;
       }
-      console.log('newUrl', newUrl)
-      // $window.location = newURL;
+      var els = document.getElementsByClassName('btn-sandbox')
+      for (var i = 0; i < els.length; i++) {
+        els[i].href = newURL;
+      }
+      console.log('newUrl', newURL)
     });
 }())
