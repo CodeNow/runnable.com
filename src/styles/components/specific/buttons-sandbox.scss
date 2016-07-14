@@ -1,17 +1,16 @@
-.btn-sandbox.btn-sandbox {
+.btn-sandbox .avatar {
+  margin: 4px 4px 4px 0;
+}
 
-  .popover-header-menu & {
-    display: flex;
-    padding: 0;
+.popover-header-menu {
 
-    .avatar {
-      height: 18px;
-      margin: 12px 4px 12px 0;
-      width: 18px;
+  .btn-sandbox {
+    border: 1px solid $gray-light;
+    border-radius: $input-border-radius;
+
+    &:hover,
+    &:active {
+      border-color: $purple-light;
     }
-  }
-
-  .avatar {
-    margin: 4px 4px 4px 0;
   }
 }
