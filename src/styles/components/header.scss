@@ -76,6 +76,7 @@
   .btn-white {
     background: rgba($white,.1);
     border: 2px solid rgba($white,.75);
+    display: flex;
     line-height: $input-line-height-sm;
     z-index: 1; // forces popover to recognize hover state
 
