@@ -55,7 +55,7 @@
       var menuBtnSandbox = document.createElement('a');
       var menuDivider = document.getElementsByClassName('divider')[0];
       menuBtnSandbox.href = newURL;
-      menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','shrink','btn-sandbox','strong','visible-xs');
+      menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
       menuBtnSandbox.textContent = 'Your Sandbox';
       menuDivider.classList.add('visible-xs');
       menuDivider.classList.remove('visible-md');
