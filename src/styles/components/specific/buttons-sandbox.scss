@@ -1,5 +1,10 @@
 .btn-sandbox .avatar {
-  margin: 4px 4px 4px 0;
+  border-radius: $input-border-radius;
+  margin: 6px 6px 5px 0;
+}
+
+.header .btn-sandbox {
+  padding: 0 15px 0 12px;
 }
 
 .popover-header-menu .btn-sandbox {

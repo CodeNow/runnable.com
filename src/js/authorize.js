@@ -35,12 +35,20 @@
       }
       console.log('newUrl', newURL);
 
+      // set up avatar
+      var userAvatar = document.createElement('img');
+      userAvatar.src = user.gravatar;
+      userAvatar.classList.add('avatar','float-left');
+      userAvatar.height = 21;
+      userAvatar.width = 21;
+
       // set up btn-sandbox in headers
       var headerBtnSandbox = document.createElement('a');
       var overflowMenu = document.getElementsByClassName('btn-overflow')[0];
       headerBtnSandbox.href = newURL;
       headerBtnSandbox.classList.add('grid-content','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
       headerBtnSandbox.textContent = 'Your Sandbox';
+      headerBtnSandbox.appendChild(userAvatar);
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
