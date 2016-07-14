@@ -28,11 +28,11 @@
       // Show/Hide all elements
       var els = document.getElementsByClassName('js-if-not-signed-in')
       for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'none !important';
+        els[i].style.setProperty('display', 'none', 'important')
       }
       var els = document.getElementsByClassName('js-if-signed-in')
       for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'flex !important';
+        els[i].style.setProperty('display', 'flex', 'important')
       }
 
       // Populate sign-in url
