@@ -26,13 +26,13 @@
       }
 
       // Show/Hide all elements
-      var els = document.getElementsByClassName('if-not-signed-in')
+      var els = document.getElementsByClassName('js-if-not-signed-in')
       for (var i = 0; i < els.length; i++) {
         els[i].style.display = 'none';
       }
-      var els = document.getElementsByClassName('if-signed-in')
+      var els = document.getElementsByClassName('js-if-signed-in')
       for (var i = 0; i < els.length; i++) {
-        els[i].style.display = 'block';
+        els[i].style.display = 'flex';
       }
 
       // Populate sign-in url

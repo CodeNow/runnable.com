@@ -6,13 +6,10 @@
   right: 0;
   z-index: 10;
 
-  // Class used when a user IS signed in
-  .if-signed-in {
+  // used when a user IS signed in
+  .js-if-signed-in {
     display: none;
   }
-
-  // Class used when a user is NOT signed in
-  .if-not-signed-in {}
 
   .logo {
     position: relative; // forces popover to recognize hover state
