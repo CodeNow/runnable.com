@@ -78,6 +78,7 @@
     border: 2px solid rgba($white,.75);
     display: flex;
     line-height: $input-line-height-sm;
+    margin-left: 15px;
     z-index: 1; // forces popover to recognize hover state
 
     &:hover {
