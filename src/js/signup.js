@@ -20,7 +20,7 @@ function openModal(event,dragging) {
     // trigger for esc key
     document.addEventListener('keydown', escModal);
     // bind sign up events
-    if (modalName === 'new-sign-up') {
+    if (modalName === 'sign-up') {
       setupBitbucket();
     }
   }
