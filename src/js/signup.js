@@ -202,7 +202,7 @@ function activeCampaignValidation(resultMessage, form) {
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
-  error.classList.add('small','red');
+  error.classList.add('small','red','text-center');
   error.innerHTML = resultMessage;
   form.appendChild(error);
   // segment tracking
@@ -236,5 +236,9 @@ window.addEventListener('load', function(){
         openModal(event,dragging);
       });
     }
+  }
+  // if sign up page
+  if (window.location.pathname === '/signup/') {
+    setupBitbucket();
   }
 });
