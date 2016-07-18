@@ -480,12 +480,11 @@
       for (var i = 0; i < els.length; i++) {
         els[i].href = newURL;
       }
-      console.log('newUrl', newURL);
 
       // set up avatar
       var userAvatar = document.createElement('img');
       userAvatar.src = user.gravatar;
-      userAvatar.classList.add('avatar','float-left');
+      userAvatar.classList.add('avatar');
       userAvatar.height = 21;
       userAvatar.width = 21;
 
@@ -493,9 +492,9 @@
       var headerBtnSandbox = document.createElement('a');
       var overflowMenu = document.getElementsByClassName('btn-overflow')[0];
       headerBtnSandbox.href = newURL;
-      headerBtnSandbox.classList.add('grid-content','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
+      headerBtnSandbox.classList.add('grid-block','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
       headerBtnSandbox.textContent = 'Your Sandbox';
-      headerBtnSandbox.appendChild(userAvatar);
+      headerBtnSandbox.appendChild(userAvatar.cloneNode(true));
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
@@ -503,13 +502,14 @@
       var menuDivider = document.getElementsByClassName('divider')[0];
       menuBtnSandbox.href = newURL;
       menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
-      menuBtnSandbox.textContent = 'Your Sandbox';
       menuDivider.classList.add('visible-xs');
       menuDivider.classList.remove('visible-md');
+      menuBtnSandbox.textContent = 'Your Sandbox';
+      menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
-      var signUpButtons = document.querySelectorAll('[data-target="#new-sign-up"]');
+      var signUpButtons = document.querySelectorAll('[data-target="#sign-up"]');
       var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
       for (var i = 0; i < signUpButtons.length; i++) {
         signUpButtons[i].parentNode.removeChild(signUpButtons[i]);
@@ -524,8 +524,7 @@
     <title>Push to production. — Runnable</title>
     <script ugly>
       // modals
-function openModal(dragging) {
-  event.preventDefault();
+function openModal(event,dragging) {
   if (!dragging) {
     var openModal = document.getElementsByClassName('modal-backdrop in')[0];
     var modalName = event.target.getAttribute('data-target').substring(1);
@@ -547,18 +546,18 @@ function openModal(dragging) {
     document.addEventListener('keydown', escModal);
     // bind sign up events
     if (modalName === 'sign-up') {
-      setupSignUp();
+      setupBitbucket();
     }
   }
 }
 
-function escModal() {
+function escModal(event) {
   if (event.keyCode == 27) {
-    closeModal();
+    closeModal(event);
   }
 }
 
-function closeModal() {
+function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
 
@@ -574,30 +573,13 @@ function closeModal() {
 }
 
 // sign up
-function setupSignUp() {
-  var signUpForm = document.getElementsByClassName('form-sign-up')[0];
-  var theseInputs = signUpForm.getElementsByTagName('input');
+function setupBitbucket() {
+  var bitbucketForm = document.getElementsByClassName('form-bitbucket');
 
-  signUpForm.addEventListener('change', makeDirty);
-  signUpForm.addEventListener('submit', submitSignUp);
-  for (i = 0; i < theseInputs.length; i++) {
-    theseInputs[i].addEventListener('invalid', formInvalid);
-    if (theseInputs[i].classList.contains('input-radio')) {
-      theseInputs[i].addEventListener('change', updateLabel);
-    }
-  }
-}
-
-function updateLabel(e) {
-  var label = document.getElementsByClassName('label-text')[0];
-
-  switch (e.target.getAttribute('value')) {
-    case 'GitHub':
-      label.innerHTML = 'GitHub Organization';
-      break;
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
+  for (i = 0; i < bitbucketForm.length; i++) {
+    bitbucketForm[i].addEventListener('change', makeDirty);
+    bitbucketForm[i].addEventListener('submit', submitBitbucket);
+    bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -621,14 +603,14 @@ function markInvalid(e) {
 }
 
 function shakeForm(e) {
-  var thisModal = e.target;
+  var thisForm = e.target;
 
-  // get modal element
-  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
-  thisModal.classList.add('shake');
-  thisModal.addEventListener('animationend', function(){
-    thisModal.classList.remove('shake');
-    thisModal.removeEventListener('animationend', function(){});
+  // get shake element
+  while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  thisForm.classList.add('shake');
+  thisForm.addEventListener('animationend', function(){
+    thisForm.classList.remove('shake');
+    thisForm.removeEventListener('animationend', function(){});
   });
 }
 
@@ -670,24 +652,14 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = false;
     }
     submitButton.disabled = false;
-    spinner[0].parentElement.removeChild(spinner[0]);
+    spinner[0].parentNode.removeChild(spinner[0]);
   }
 }
 
 function xhrSubmit(e, form, formData) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl;
-  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
-  var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
-  var articleQuestionnaire = document.getElementsByClassName('article-questionnaire')[0];
-  var articleConfirm = document.getElementsByClassName('article-confirm')[0];
+  var xhrUrl = 'https://codenow.com/submit';
 
-  // determine script to submit to
-  if (form.classList.contains('form-sign-up')) {
-    xhrUrl = 'https://codenow.com/submit';
-  } else if (form.classList.contains('form-questionnaire')) {
-    xhrUrl = 'https://codenow.com/submitreason';
-  }
   // send form
   xhr.open('POST', xhrUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -695,7 +667,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.', form);
+      activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.', form);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -703,6 +675,8 @@ function xhrSubmit(e, form, formData) {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
+    var successMsg = form.parentNode.getElementsByClassName('hide')[0];
+
     // result_codes:
     // -1 = error from sundip
     // 0 = error from active campaign
@@ -712,108 +686,50 @@ function xhrSubmit(e, form, formData) {
       activeCampaignValidation(resultMessage, form);
     }
     if (resultCode === 1) {
-      if (!articleSignUp.classList.contains('out')) {
-        // attach events
-        questionnaireForm.addEventListener('change', makeDirty);
-        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire({
-          subscriber_id: response.subscriber_id,
-          email: response.email
-        }));
-        // show questionnaire
-        articleSignUp.classList.add('out');
-        articleQuestionnaire.classList.add('in');
-        // segment tracking
-        analytics.ready(function() {
-          var data = JSON.parse(formData);
-          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
-          analytics.identify(data.email, data);
-        });
-      } else {
-        // else show confirmation
-        articleQuestionnaire.classList.add('out');
-        articleConfirm.classList.add('in');
-      }
+      // tell the user something nice
+      form.classList.add('hide');
+      form.classList.remove('show');
+      successMsg.classList.add('show');
+      successMsg.classList.remove('hide');
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
 }
 
-function submitSignUp(e) {
+function submitBitbucket(e) {
   var form = e.target;
 
   e.preventDefault();
   if (form.checkValidity()) {
-    var scm = document.getElementsByName('scm');
-    var scmName = '';
+    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
+    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
+
     toggleEditing(form, 'disable'); // disables inputs
     // jsonify form data
-    for(var i = 0; i < scm.length; i++) {
-      if(scm[i].checked) {
-        scmName = scm[i].value;
-      }
-    }
     formData = {
-      scm: scmName,
-      organization: form[2].value,
-      email: form[3].value,
+      email: emailValue,
+      name: nameValue
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Sign Up Attempt', {scm: scmName, org: form[2].value, email: form[3].value, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Sign Up Attempt', {email: emailValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
   }
 }
 
-function setupSubmitQuestionnaire(response) {
-  return function (e) {
-    var form = e.target;
-
-    e.preventDefault();
-    if (form.checkValidity()) {
-      var formData;
-
-      toggleEditing(form, 'disable'); // disables inputs
-      formData = {
-        email: response.email,
-        subscriber_id: response.subscriber_id,
-        reason: form[0].value
-      };
-      // Send event to Segment
-      analytics.ready(function() {
-        var data = {email: response.email,subscriber_id: response.subscriber_id,reason: form[0].value, clientId:ga.getAll()[0].get('clientId')};
-
-        analytics.track('Questionnaire Submit', data);
-        analytics.identify(data.email, data);
-      });
-      formData = JSON.stringify(formData); // convert to JSON
-      xhrSubmit(e, form, formData);
-    }
-  };
-}
-
 function activeCampaignValidation(resultMessage, form) {
-  var thisArticle = form.parentNode;
-  var thisErrorWell = thisArticle.getElementsByClassName('well-error')[0];
-  var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
-  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
+  var prevError = form.getElementsByClassName('red')[0];
+  var error = document.createElement('small');
 
-  // change error text from active campaign (checks first sentence)
-  switch (firstSentence) {
-    case 'You selected a list that does not allow duplicates':
-      resultMessage = 'That email has already been used to sign up.';
-      break;
-    case 'Contact Email Address is not valid':
-      resultMessage = 'That email address is not valid.';
-      break;
-    case 'Your Organization or Team is invalid':
-      resultMessage = 'We couldn’t find that organization or team.';
-      break;
+  if (prevError) {
+    prevError.parentNode.removeChild(prevError);
   }
-  thisErrorText.innerHTML = resultMessage;
-  thisErrorWell.setAttribute('style', 'display: flex !important');
+  error.classList.add('small','red','text-center');
+  error.innerHTML = resultMessage;
+  form.appendChild(error);
   // segment tracking
   analytics.ready(function() {
     analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
@@ -822,9 +738,7 @@ function activeCampaignValidation(resultMessage, form) {
 
 // events
 window.addEventListener('load', function(){
-  var whitelisted = window.location.search !== '?whitelist=false';
   var modalTriggers = document.getElementsByClassName('js-modal');
-  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var dBody = document.body;
   var dragging = false;
   var i;
@@ -840,35 +754,17 @@ window.addEventListener('load', function(){
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
       /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(){openModal(dragging);});
-      modalTriggers[i].addEventListener('touchend', function(){openModal(dragging);});
+      modalTriggers[i].addEventListener('click', function(event){
+        openModal(event,dragging);
+      });
+      modalTriggers[i].addEventListener('touchend', function(event){
+        openModal(event,dragging);
+      });
     }
   }
-  // show sign up if not whitelisted
-  if (!whitelisted) {
-    // set sign up form error
-    document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
-    document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
-
-    // open sign up form
-    var modal = document.getElementById('sign-up');
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-    // bind sign up events
-    setupSignUp();
-
-    // segment tracking
-    analytics.ready(function() {
-      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});
-    });
+  // if sign up page
+  if (window.location.pathname === '/signup/') {
+    setupBitbucket();
   }
 });
 
@@ -1021,8 +917,8 @@ window.addEventListener('load', function(){
         </div>
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
-      <a data-target="#sign-in" class="grid-content btn btn-sm text-white strong hidden-md js-modal">Sign In</a>
-      <a data-target="#new-sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal">Sign Up</a>
+      <a href="{{loginUrl}}" class="grid-content btn btn-sm text-white strong hidden-md js-modal">Sign In</a>
+      <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal">Sign Up</a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow">
@@ -1071,8 +967,8 @@ window.addEventListener('load', function(){
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a data-target="#new-sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
-      <a data-target="#sign-in" class="list-item-a visible-md js-modal">Sign In</a>
+      <a data-target="#sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
+      <a href="{{loginUrl}}" class="list-item-a visible-md js-modal">Sign In</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
@@ -1228,99 +1124,7 @@ window.addEventListener('load', function(){
     </svg>
   </a>
   <div class="modal">
-    <article class="article article-form article-sign-up">
-  <!-- white list errors -->
-  <div class="well well-error">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
-
-  <!-- initial state -->
-  <h1 class="h1 text-center strong">Let’s get started.</h1>
-  <form class="grid-block vertical form form-sign-up">
-    <div class="grid-block vertical radio-group">
-      <label class="p text-center">Where does your team keep their code?</label>
-      <div class="grid-block">
-        <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-        <label class="btn btn-lg white radio" for="radio-github">
-          <svg class="icons">
-            <use xlink:href="#icons-github">
-          </svg>
-          GitHub
-          <svg class="icons">
-            <use xlink:href="#icons-check">
-          </svg>
-        </label>
-        <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-        <label class="btn btn-lg white radio" for="radio-bb">
-          <svg class="icons">
-            <use xlink:href="#icons-bitbucket">
-          </svg>
-          Bitbucket
-          <svg class="icons">
-            <use xlink:href="#icons-check">
-          </svg>
-        </label>
-      </div>
-    </div>
-
-    <div class="grid-content input-group-vertical input-group-org">
-      <label class="label" for="input-organization">
-        <span class="label-text">Team Name</span>
-        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-          <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-        </small>
-      </label>
-      <input class="input input-md input-validate pristine" id="input-organization" name="organization" title="Enter a valid organization or team." required>
-    </div>
-
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="input-email">Your Email</label>
-      <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-    </div>
-
-    <button class="grid-content btn btn-lg green">Ship It!</button>
-
-    <div class="grid-content text-center">
-      <a href="{{loginUrl}}" class="link">Sign in</a> if your team is already using Runnable.
-    </div>
-  </form>
-</article>
-
-    <article class="article article-form article-questionnaire">
-  <div class="well well-error">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
-
-  <p class="h1 text-center strong">Got it!
-  <p class="p text-center">We’re processing your info now. To speed up the verification process, please <strong class="strong">tell us what problems you want Runnable to solve for your team</strong>:
-
-  <form class="grid-block vertical form form-questionnaire">
-    <textarea class="grid-content textarea input-validate pristine" id="question-textarea" required></textarea>
-    <button class="grid-content btn btn-lg green">Fire Away</button>
-  </form>
-</article>
-
-    <!-- submitted state -->
-<article class="article article-form article-confirm">
-  <img class="img hide" src="images/runnabear-jumping.png">
-  <p class="h1 text-center strong">You did it!
-  <p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
-  <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
-</article>
-
-  </div>
-</div>
-
-<div class="modal-backdrop" id="new-sign-up">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
-  <div class="modal">
-    <article class="grid-block vertical article article-form article-sign-up new">
+    <article class="grid-block vertical article article-form article-sign-up">
   <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
@@ -1347,7 +1151,6 @@ window.addEventListener('load', function(){
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </ul>
   </div>
-  <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
   <a href="{{loginUrl}}" class="grid-block align-center btn btn-lg green wrap-xxxs">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github">
@@ -1356,12 +1159,50 @@ window.addEventListener('load', function(){
   </a>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    <a href="{{loginUrl}}" class="link js-modal">Sign in</a> if your team is already using Runnable.
   </div>
+  <aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
+    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+  </div>
+</aside>
+
 </article>
 
   </div>
 </div>
+<aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
+    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+  </div>
+</aside>
+
 
 <div class="modal-backdrop" id="sign-in">
   <a class="icons-close js-modal-close">
@@ -1383,7 +1224,7 @@ window.addEventListener('load', function(){
     </a>
   </div>
   <div class="grid-content text-center">
-    <a data-target="#new-sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+    <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
   </div>
 </article>
 

@@ -5,99 +5,7 @@
     </svg>
   </a>
   <div class="modal">
-    <article class="article article-form article-sign-up">
-  <!-- white list errors -->
-  <div class="well well-error">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
-
-  <!-- initial state -->
-  <h1 class="h1 text-center strong">Let’s get started.</h1>
-  <form class="grid-block vertical form form-sign-up">
-    <div class="grid-block vertical radio-group">
-      <label class="p text-center">Where does your team keep their code?</label>
-      <div class="grid-block">
-        <input class="input-radio" type="radio" value="GitHub" name="scm" id="radio-github" required>
-        <label class="btn btn-lg white radio" for="radio-github">
-          <svg class="icons">
-            <use xlink:href="#icons-github">
-          </svg>
-          GitHub
-          <svg class="icons">
-            <use xlink:href="#icons-check">
-          </svg>
-        </label>
-        <input class="input-radio" type="radio" value="Bitbucket" name="scm" id="radio-bb" required>
-        <label class="btn btn-lg white radio" for="radio-bb">
-          <svg class="icons">
-            <use xlink:href="#icons-bitbucket">
-          </svg>
-          Bitbucket
-          <svg class="icons">
-            <use xlink:href="#icons-check">
-          </svg>
-        </label>
-      </div>
-    </div>
-
-    <div class="grid-content input-group-vertical input-group-org">
-      <label class="label" for="input-organization">
-        <span class="label-text">Team Name</span>
-        <small class="underline popover-trigger hover">Why<span class="hidden-xxs"> do we need this</span>?
-          <div class="popover top text-center">We’re sending invitations to teams that are on Bitbucket or GitHub.</div>
-        </small>
-      </label>
-      <input class="input input-md input-validate pristine" id="input-organization" name="organization" title="Enter a valid organization or team." required>
-    </div>
-
-    <div class="grid-content input-group-vertical">
-      <label class="label" for="input-email">Your Email</label>
-      <input class="input input-md input-validate pristine" id="input-email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-    </div>
-
-    <button class="grid-content btn btn-lg green">Ship It!</button>
-
-    <div class="grid-content text-center">
-      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link">Sign in</a> if your team is already using Runnable.
-    </div>
-  </form>
-</article>
-
-    <article class="article article-form article-questionnaire">
-  <div class="well well-error">
-    <img class="img float-left" src="images/runnabear-error.png" height="90" width="45">
-    <span class="span well-text"></span>
-  </div>
-
-  <p class="h1 text-center strong">Got it!
-  <p class="p text-center">We’re processing your info now. To speed up the verification process, please <strong class="strong">tell us what problems you want Runnable to solve for your team</strong>:
-
-  <form class="grid-block vertical form form-questionnaire">
-    <textarea class="grid-content textarea input-validate pristine" id="question-textarea" required></textarea>
-    <button class="grid-content btn btn-lg green">Fire Away</button>
-  </form>
-</article>
-
-    <!-- submitted state -->
-<article class="article article-form article-confirm">
-  <img class="img hide" src="images/runnabear-jumping.png">
-  <p class="h1 text-center strong">You did it!
-  <p class="p text-center">To prevent spam, we also need you to confirm your email address by clicking on the link in the email we just sent you.
-  <a href="#" class="grid-content btn btn-lg gray">Return Home</a>
-</article>
-
-  </div>
-</div>
-
-<div class="modal-backdrop" id="new-sign-up">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
-  <div class="modal">
-    <article class="grid-block vertical article article-form article-sign-up new">
+    <article class="grid-block vertical article article-form article-sign-up">
   <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
@@ -124,7 +32,6 @@
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </ul>
   </div>
-  <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
   <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block align-center btn btn-lg green wrap-xxxs">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github">
@@ -133,12 +40,50 @@
   </a>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link js-modal">Sign in</a> if your team is already using Runnable.
   </div>
+  <aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
+    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+  </div>
+</aside>
+
 </article>
 
   </div>
 </div>
+<aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
+    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+  </div>
+</aside>
+
 
 <div class="modal-backdrop" id="sign-in">
   <a class="icons-close js-modal-close">
@@ -160,7 +105,7 @@
     </a>
   </div>
   <div class="grid-content text-center">
-    <a data-target="#new-sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+    <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
   </div>
 </article>
 
