@@ -1,21 +1,44 @@
-.btn-sandbox.btn-sandbox {
-
-  .popover-header-menu & {
-    display: none;
-    padding: 0;
-
-    @include media(xs) {
-      display: flex;
-    }
-
-    .avatar {
-      height: 18px;
-      margin: 12px 4px 12px 0;
-      width: 18px;
-    }
-  }
+.btn-sandbox {
+  flex-direction: row-reverse;
+  padding: 0 15px 0 12px;
 
   .avatar {
-    margin: 4px 4px 4px 0;
+    border-radius: $input-border-radius;
+    margin: 6px 6px 5px 0;
+
+    @media (max-width: 480px) and (min-width: 400px) {
+      height: 18px;
+      margin-right: 3px;
+      width: 18px;
+    }
+
+    @include media(xxxs) {
+      display: none;
+    }
+  }
+}
+
+.popover-header-menu .btn-sandbox {
+  background: $gray-lighterest;
+  border: $input-border solid $gray-lighter;
+  border-radius: $input-border-radius;
+  font-weight: $weight-bold;
+  height: $input-md;
+
+  @media (max-width: 480px) and (min-width: 400px) {
+    font-size: 12px;
+    padding: 0 6px;
+  }
+
+  @include media(xxs) {
+    font-size: 13px;
+    padding: 0 6px;
+  }
+
+  &:hover,
+  &:active {
+    background: $white;
+    border-color: $purple-light;
+    color: $purple-light;
   }
 }

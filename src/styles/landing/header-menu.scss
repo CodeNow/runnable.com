@@ -5,8 +5,18 @@
     margin-left: 39px;
   }
 
-  @include media(xxs) {
+  @media (max-width: 430px) {
     margin-left: 54px;
+  }
+
+  &.right-align-sm {
+
+    .popover-header-menu::after,
+    .popover-header-menu::before {
+      @media (max-width: 430px) {
+        right: 30px;
+      }
+    }
   }
 }
 
@@ -17,16 +27,12 @@
   }
 
   @include media(xxs) {
-    width: calc(100vw - 60px);
-  }
-
-  @include media(xxs) {
     padding: 9px 0 9px 9px;
     width: calc(100vw - 30px);
   }
 
   .btn-product {
-    @include media(xxxs) {
+    @include media(xxs) {
       width: 150px;
     }
 
@@ -35,7 +41,7 @@
     }
 
     .small {
-      @include media(xxxs) {
+      @include media(xxs) {
         display: none;
       }
     }
@@ -94,7 +100,7 @@
       display: none;
 
       @include media(xs) {
-        display: block;
+        display: inherit;
       }
     }
 
