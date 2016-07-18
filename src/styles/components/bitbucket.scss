@@ -52,10 +52,6 @@
   .label {
     font-size: 13px;
     margin-bottom: 6px;
-
-    @media (max-width: 465px) {
-      text-align: center;
-    }
   }
 
   .input {
@@ -64,15 +60,19 @@
     @media (max-width: 465px) {
       text-align: center;
     }
+
+    + .input {
+      margin-left: 6px;
+
+      @include media(xxs) {
+        margin-left: 0;
+        margin-top: 6px;
+      }
+    }
   }
 
   .btn {
-    margin-left: 6px;
-
-    @include media(xxs) {
-      margin-left: 0;
-      margin-top: 6px;
-    }
+    margin-top: 6px;
   }
 
   // errors

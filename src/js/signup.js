@@ -176,13 +176,15 @@ function submitBitbucket(e) {
 
   e.preventDefault();
   if (form.checkValidity()) {
-    var emailValue = form.getElementsByTagName('input')[0].value;
+    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
+    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
 
     toggleEditing(form, 'disable'); // disables inputs
     // jsonify form data
     formData = {
-      email: emailValue
+      email: emailValue,
+      name: nameValue
     };
     // Send event to Segment
     analytics.ready(function() {
