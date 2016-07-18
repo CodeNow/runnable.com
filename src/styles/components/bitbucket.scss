@@ -1,18 +1,24 @@
 .modal-backdrop.in + .bitbucket-box {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 
   @media (max-width: 1300px) {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 }
 
 .modal .bitbucket-box {
   @media (max-width: 1300px) {
     box-shadow: none;
-    display: flex;
     margin: 30px auto 0;
+    opacity: 1;
+    pointer-events: auto;
     position: static;
     right: auto;
+    visibility: visible;
   }
 }
 
@@ -22,9 +28,12 @@
   border-radius: $input-border-radius-lg;
   bottom: 15px;
   box-shadow: 0 1px 3px rgba($black,.1);
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   right: 15px;
+  transition: opacity .3s ease-in-out;
+  visibility: hidden;
   width: 388px;
   z-index: 102;
 
@@ -50,7 +59,6 @@
   }
 
   .label {
-    font-size: 13px;
     margin-bottom: 6px;
   }
 
