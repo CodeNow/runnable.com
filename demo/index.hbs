@@ -580,6 +580,7 @@ function setupBitbucket() {
     bitbucketForm[i].addEventListener('change', makeDirty);
     bitbucketForm[i].addEventListener('submit', submitBitbucket);
     bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
+    bitbucketForm[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -590,7 +591,7 @@ function markInvalid(e) {
 
   if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    theseInputs = thisTarget.classList.add('invalid');
+    thisTarget.classList.add('invalid');
   } else {
     // for change event
     theseInputs = thisTarget.getElementsByTagName('input');
@@ -658,7 +659,7 @@ function toggleEditing(form, state) {
 
 function xhrSubmit(e, form, formData) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl = 'https://codenow.com/submit';
+  var xhrUrl = 'https://codenow.com:8443/bitbucket';
 
   // send form
   xhr.open('POST', xhrUrl, true);
@@ -713,7 +714,7 @@ function submitBitbucket(e) {
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Sign Up Attempt', {email: emailValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Bitbucket-list sign up attempt', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
@@ -732,7 +733,7 @@ function activeCampaignValidation(resultMessage, form) {
   form.appendChild(error);
   // segment tracking
   analytics.ready(function() {
-    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+    analytics.track('Error bitbucket-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
 }
 
@@ -997,10 +998,10 @@ window.addEventListener('load', function(){
 
     <footer class="grid-block vertical footer justify-spaced">
   <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal">
-  <img class="img" src="images/runnabear-hello.png">
-  <p class="p">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
+  <img class="img no-touching" src="images/runnabear-hello.png">
+  <p data-target="#sign-up" class="p js-modal">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
     including infrastructure costs!
-  <div class="btn btn-sm green">Sign Up</div>
+  <div data-target="#sign-up" class="btn btn-sm green js-modal">Sign Up</div>
 </a>
 
   <aside class="grid-block aside-support">
@@ -1036,9 +1037,10 @@ window.addEventListener('load', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block vertical align-start">
+      <a href="product/" class="btn btn-xs link strong">Product Tour</a>
       <a href="demo/" class="btn btn-xs link strong">Request Demo</a>
-      <a href="product/" class="btn btn-xs link strong">Product</a>
       <a href="https://support.runnable.com" class="btn btn-xs link strong">Docs</a>
+      <a href="https://runnable.com/docker/" class="btn btn-xs link strong">Docker Guides</a>
       <a href="about/" class="btn btn-xs link strong">About</a>
     </div>
     <div class="grid-block vertical align-start">
@@ -1103,7 +1105,7 @@ window.addEventListener('load', function(){
   <form class="grid-block vertical form form-bitbucket show">
     <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
     <div class="grid-block">
-      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
       <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
     <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
@@ -1126,7 +1128,7 @@ window.addEventListener('load', function(){
   <form class="grid-block vertical form form-bitbucket show">
     <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
     <div class="grid-block">
-      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
       <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
     <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
