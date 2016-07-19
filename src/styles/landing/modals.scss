@@ -1,4 +1,3 @@
-// scss-lint:disable IdSelector
 .modal-backdrop {
   background: rgba($white,.98);
   bottom: 0;
@@ -46,10 +45,6 @@
 }
 
 .modal {
-
-  &.shake {
-    animation: shake .25s ease-in-out;
-  }
 
   // errors
   .well {
@@ -115,26 +110,3 @@
     }
   }
 }
-
-@keyframes shake {
-  0% {
-    transform: none;
-  }
-
-  25% {
-    transform: translate3d(2%,0,0);
-  }
-
-  50% {
-    transform: translate3d(-2%,0,0);
-  }
-
-  75% {
-    transform: translate3d(2%,0,0);
-  }
-
-  100% {
-    transform: none;
-  }
-}
-// scss-lint:enable IdSelector

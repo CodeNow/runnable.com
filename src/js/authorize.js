@@ -62,7 +62,7 @@
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
-      var signUpButtons = document.querySelectorAll('[data-target="#new-sign-up"]');
+      var signUpButtons = document.querySelectorAll('[data-target="#sign-up"]');
       var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
       for (var i = 0; i < signUpButtons.length; i++) {
         signUpButtons[i].parentNode.removeChild(signUpButtons[i]);

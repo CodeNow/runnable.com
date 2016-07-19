@@ -21,7 +21,7 @@ function openModal(event,dragging) {
     document.addEventListener('keydown', escModal);
     // bind sign up events
     if (modalName === 'sign-up') {
-      setupSignUp();
+      setupBitbucket();
     }
   }
 }
@@ -48,30 +48,14 @@ function closeModal(event) {
 }
 
 // sign up
-function setupSignUp() {
-  var signUpForm = document.getElementsByClassName('form-sign-up')[0];
-  var theseInputs = signUpForm.getElementsByTagName('input');
+function setupBitbucket() {
+  var bitbucketForm = document.getElementsByClassName('form-bitbucket');
 
-  signUpForm.addEventListener('change', makeDirty);
-  signUpForm.addEventListener('submit', submitSignUp);
-  for (i = 0; i < theseInputs.length; i++) {
-    theseInputs[i].addEventListener('invalid', formInvalid);
-    if (theseInputs[i].classList.contains('input-radio')) {
-      theseInputs[i].addEventListener('change', updateLabel);
-    }
-  }
-}
-
-function updateLabel(e) {
-  var label = document.getElementsByClassName('label-text')[0];
-
-  switch (e.target.getAttribute('value')) {
-    case 'GitHub':
-      label.innerHTML = 'GitHub Organization';
-      break;
-    case 'Bitbucket':
-      label.innerHTML = 'Bitbucket Team';
-      break;
+  for (i = 0; i < bitbucketForm.length; i++) {
+    bitbucketForm[i].addEventListener('change', makeDirty);
+    bitbucketForm[i].addEventListener('submit', submitBitbucket);
+    bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
+    bitbucketForm[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -82,7 +66,7 @@ function markInvalid(e) {
 
   if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    theseInputs = thisTarget.classList.add('invalid');
+    thisTarget.classList.add('invalid');
   } else {
     // for change event
     theseInputs = thisTarget.getElementsByTagName('input');
@@ -95,14 +79,14 @@ function markInvalid(e) {
 }
 
 function shakeForm(e) {
-  var thisModal = e.target;
+  var thisForm = e.target;
 
-  // get modal element
-  while ((thisModal = thisModal.parentElement) && !thisModal.classList.contains('modal'));
-  thisModal.classList.add('shake');
-  thisModal.addEventListener('animationend', function(){
-    thisModal.classList.remove('shake');
-    thisModal.removeEventListener('animationend', function(){});
+  // get shake element
+  while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  thisForm.classList.add('shake');
+  thisForm.addEventListener('animationend', function(){
+    thisForm.classList.remove('shake');
+    thisForm.removeEventListener('animationend', function(){});
   });
 }
 
@@ -144,24 +128,14 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = false;
     }
     submitButton.disabled = false;
-    spinner[0].parentElement.removeChild(spinner[0]);
+    spinner[0].parentNode.removeChild(spinner[0]);
   }
 }
 
 function xhrSubmit(e, form, formData) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl;
-  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
-  var articleSignUp = document.getElementsByClassName('article-sign-up')[0];
-  var articleQuestionnaire = document.getElementsByClassName('article-questionnaire')[0];
-  var articleConfirm = document.getElementsByClassName('article-confirm')[0];
+  var xhrUrl = 'https://codenow.com:8443/bitbucket';
 
-  // determine script to submit to
-  if (form.classList.contains('form-sign-up')) {
-    xhrUrl = 'https://codenow.com/submit';
-  } else if (form.classList.contains('form-questionnaire')) {
-    xhrUrl = 'https://codenow.com/submitreason';
-  }
   // send form
   xhr.open('POST', xhrUrl, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -169,7 +143,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An unknown error occured. Please send us an email at <a class="link" href="mailto:preview@runnable.com">preview@runnable.com</a> for assistance.', form);
+      activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.', form);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -177,6 +151,8 @@ function xhrSubmit(e, form, formData) {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
+    var successMsg = form.parentNode.getElementsByClassName('hide')[0];
+
     // result_codes:
     // -1 = error from sundip
     // 0 = error from active campaign
@@ -186,119 +162,59 @@ function xhrSubmit(e, form, formData) {
       activeCampaignValidation(resultMessage, form);
     }
     if (resultCode === 1) {
-      if (!articleSignUp.classList.contains('out')) {
-        // attach events
-        questionnaireForm.addEventListener('change', makeDirty);
-        questionnaireForm.addEventListener('submit', setupSubmitQuestionnaire({
-          subscriber_id: response.subscriber_id,
-          email: response.email
-        }));
-        // show questionnaire
-        articleSignUp.classList.add('out');
-        articleQuestionnaire.classList.add('in');
-        // segment tracking
-        analytics.ready(function() {
-          var data = JSON.parse(formData);
-          analytics.track('Signed Up', {clientId: ga.getAll()[0].get('clientId')});
-          analytics.identify(data.email, data);
-        });
-      } else {
-        // else show confirmation
-        articleQuestionnaire.classList.add('out');
-        articleConfirm.classList.add('in');
-      }
+      // tell the user something nice
+      form.classList.add('hide');
+      form.classList.remove('show');
+      successMsg.classList.add('show');
+      successMsg.classList.remove('hide');
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
 }
 
-function submitSignUp(e) {
+function submitBitbucket(e) {
   var form = e.target;
 
   e.preventDefault();
   if (form.checkValidity()) {
-    var scm = document.getElementsByName('scm');
-    var scmName = '';
+    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
+    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
+
     toggleEditing(form, 'disable'); // disables inputs
     // jsonify form data
-    for(var i = 0; i < scm.length; i++) {
-      if(scm[i].checked) {
-        scmName = scm[i].value;
-      }
-    }
     formData = {
-      scm: scmName,
-      organization: form[2].value,
-      email: form[3].value,
+      email: emailValue,
+      name: nameValue
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Sign Up Attempt', {scm: scmName, org: form[2].value, email: form[3].value, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Bitbucket-list sign up attempt', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
   }
 }
 
-function setupSubmitQuestionnaire(response) {
-  return function (e) {
-    var form = e.target;
-
-    e.preventDefault();
-    if (form.checkValidity()) {
-      var formData;
-
-      toggleEditing(form, 'disable'); // disables inputs
-      formData = {
-        email: response.email,
-        subscriber_id: response.subscriber_id,
-        reason: form[0].value
-      };
-      // Send event to Segment
-      analytics.ready(function() {
-        var data = {email: response.email,subscriber_id: response.subscriber_id,reason: form[0].value, clientId:ga.getAll()[0].get('clientId')};
-
-        analytics.track('Questionnaire Submit', data);
-        analytics.identify(data.email, data);
-      });
-      formData = JSON.stringify(formData); // convert to JSON
-      xhrSubmit(e, form, formData);
-    }
-  };
-}
-
 function activeCampaignValidation(resultMessage, form) {
-  var thisArticle = form.parentNode;
-  var thisErrorWell = thisArticle.getElementsByClassName('well-error')[0];
-  var thisErrorText = thisArticle.getElementsByClassName('well-text')[0];
-  var firstSentence = resultMessage.substr(0, resultMessage.indexOf('.'));
+  var prevError = form.getElementsByClassName('red')[0];
+  var error = document.createElement('small');
 
-  // change error text from active campaign (checks first sentence)
-  switch (firstSentence) {
-    case 'You selected a list that does not allow duplicates':
-      resultMessage = 'That email has already been used to sign up.';
-      break;
-    case 'Contact Email Address is not valid':
-      resultMessage = 'That email address is not valid.';
-      break;
-    case 'Your Organization or Team is invalid':
-      resultMessage = 'We couldn’t find that organization or team.';
-      break;
+  if (prevError) {
+    prevError.parentNode.removeChild(prevError);
   }
-  thisErrorText.innerHTML = resultMessage;
-  thisErrorWell.setAttribute('style', 'display: flex !important');
+  error.classList.add('small','red','text-center');
+  error.innerHTML = resultMessage;
+  form.appendChild(error);
   // segment tracking
   analytics.ready(function() {
-    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+    analytics.track('Error bitbucket-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
 }
 
 // events
 window.addEventListener('load', function(){
-  var whitelisted = window.location.search !== '?whitelist=false';
   var modalTriggers = document.getElementsByClassName('js-modal');
-  var questionnaireForm = document.getElementsByClassName('form-questionnaire')[0];
   var dBody = document.body;
   var dragging = false;
   var i;
@@ -322,30 +238,8 @@ window.addEventListener('load', function(){
       });
     }
   }
-  // show sign up if not whitelisted
-  if (!whitelisted) {
-    // set sign up form error
-    document.getElementsByClassName('well-text')[0].innerHTML = 'You don’t have access to Runnable…yet. Fill out this form and we’ll get in touch!';
-    document.getElementsByClassName('well-error')[0].setAttribute('style', 'display: flex !important');
-
-    // open sign up form
-    var modal = document.getElementById('sign-up');
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-    // bind sign up events
-    setupSignUp();
-
-    // segment tracking
-    analytics.ready(function() {
-      analytics.track('User not whitelisted', {clientId: ga.getAll()[0].get('clientId')});
-    });
+  // if sign up page
+  if (window.location.pathname === '/signup/') {
+    setupBitbucket();
   }
 });
