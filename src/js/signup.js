@@ -133,7 +133,7 @@ function toggleEditing(form, state) {
 
 function xhrSubmit(e, form, formData) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl = 'https://codenow.com/submit';
+  var xhrUrl = 'https://codenow.com:8443/bitbucket';
 
   // send form
   xhr.open('POST', xhrUrl, true);
@@ -188,7 +188,7 @@ function submitBitbucket(e) {
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Sign Up Attempt', {email: emailValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Bitbucket-list sign up attempt', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
@@ -207,7 +207,7 @@ function activeCampaignValidation(resultMessage, form) {
   form.appendChild(error);
   // segment tracking
   analytics.ready(function() {
-    analytics.track('Error submit form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+    analytics.track('Error bitbucket-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
 }
 
