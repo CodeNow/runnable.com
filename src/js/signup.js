@@ -55,6 +55,7 @@ function setupBitbucket() {
     bitbucketForm[i].addEventListener('change', makeDirty);
     bitbucketForm[i].addEventListener('submit', submitBitbucket);
     bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
+    bitbucketForm[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -65,7 +66,7 @@ function markInvalid(e) {
 
   if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    theseInputs = thisTarget.classList.add('invalid');
+    thisTarget.classList.add('invalid');
   } else {
     // for change event
     theseInputs = thisTarget.getElementsByTagName('input');
