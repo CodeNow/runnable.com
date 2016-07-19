@@ -1,6 +1,6 @@
 .article-form {
   border-radius: $input-border-radius-lg;
-  margin: 30px auto;
+  margin: 0 auto;
   max-width: 600px;
   padding: 60px;
 
@@ -194,7 +194,7 @@
 }
 
 
-.article-sign-up.new {
+.article-sign-up {
 
   .card {
     background: $gray-lighterest;
@@ -287,7 +287,7 @@
     top: 0;
 
     .popover {
-      width: 360px;
+      width: 285px;
     }
 
     .popover-p + .popover-p {
