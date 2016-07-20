@@ -4,8 +4,8 @@
       @@include('html/popovers/product-menu.hbs')
     </div>
     <div class="grid-block vertical list text-left">
-      <a data-target="#sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
-      <a data-target="#sign-in" href="{{loginUrl}}" class="list-item-a visible-md">Sign In</a>
+      <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in">Sign Up</a>
+      <a data-target="#sign-in" href="{{loginUrl}}" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
