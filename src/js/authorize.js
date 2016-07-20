@@ -63,8 +63,11 @@
 
       // hide sign in and sign up links
       var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
-      for (var i = 0; i < hideIfSignedIn.length; i++) {
-        hideIfSignedIn[i].parentNode.removeChild(hideIfSignedIn[i]);
+      for (var z = hideIfSignedIn.length; z > 0; z--) {
+        var i = z - 1;
+        if (hideIfSignedIn[i].parentNode) {
+          hideIfSignedIn[i].parentNode.removeChild(hideIfSignedIn[i]);
+        }
       }
     });
 }());
