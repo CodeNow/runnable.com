@@ -30,6 +30,7 @@ var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 var robotsSrc = src + 'html/robots.txt';
+var sitemapSrc = src + 'html/sitemap.xml';
 
 var hbsDist = dist + '**/*.hbs';
 var htmlDist = dist;
@@ -182,6 +183,15 @@ gulp.task('robots', function () {
     .pipe(gulp.dest(htmlDist));
 });
 
+// sitemap.xml
+gulp.task('sitemap', function () {
+  return gulp.src(sitemapSrc)
+    .pipe(debug({
+      title: 'sitemap'
+    }))
+    .pipe(gulp.dest(htmlDist));
+});
+
 // favicon
 gulp.task('favicon', function () {
   return gulp.src(favIconSrc)
@@ -243,22 +253,22 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'sitemap', 'minify'], 'imagemin', cb);
 });
 
 // build without optimizing
 gulp.task('build:dev', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'robots', 'sitemap', 'favicon'], cb);
 });
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'sitemap', 'minify'], 'imagemin', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'robots', 'sitemap', 'favicon'], 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
