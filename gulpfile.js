@@ -174,29 +174,11 @@ gulp.task('images', function () {
     .pipe(gulp.dest(imgDist));
 });
 
-// robots.txt
-gulp.task('robots', function () {
-  return gulp.src(robotsSrc)
+// robots, sitemap, and favicon
+gulp.task('moveMisc', function () {
+  return gulp.src([robotsSrc, sitemapSrc, favIconSrc])
     .pipe(debug({
-      title: 'robots'
-    }))
-    .pipe(gulp.dest(htmlDist));
-});
-
-// sitemap.xml
-gulp.task('sitemap', function () {
-  return gulp.src(sitemapSrc)
-    .pipe(debug({
-      title: 'sitemap'
-    }))
-    .pipe(gulp.dest(htmlDist));
-});
-
-// favicon
-gulp.task('favicon', function () {
-  return gulp.src(favIconSrc)
-    .pipe(debug({
-      title: 'favicon'
+      title: 'moveMisc'
     }))
     .pipe(gulp.dest(htmlDist));
 });
@@ -253,22 +235,22 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'sitemap', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', cb);
 });
 
 // build without optimizing
 gulp.task('build:dev', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'robots', 'sitemap', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'moveMisc'], cb);
 });
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'sitemap', 'minify'], 'imagemin', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'robots', 'sitemap', 'favicon'], 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
