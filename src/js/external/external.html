@@ -17,12 +17,12 @@
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
-    var signUp = document.querySelectorAll('[class="track-sign-up"]');
-    var signIn = document.querySelectorAll('[class="track-sign-in"]');
-    var grantGitHubPerms = document.querySelectorAll('[class="track-grant-access-github"]');
+    var signUp = document.getElementsByClassName('track-sign-up');
+    var signIn = document.getElementsByClassName('track-sign-in');
+    var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
-    analytics.trackLink(signUp, 'Clicked Grant GitHub Permissions');
+    analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
   });
 </script>
 
