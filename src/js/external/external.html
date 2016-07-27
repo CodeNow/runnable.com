@@ -17,8 +17,12 @@
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
-    var signUp = document.querySelectorAll('[data-target="#sign-up"]');
+    var signUp = document.getElementsByClassName('track-sign-up');
+    var signIn = document.getElementsByClassName('track-sign-in');
+    var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
+    analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
   });
 </script>
 

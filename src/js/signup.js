@@ -189,7 +189,7 @@ function submitBitbucket(e) {
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Bitbucket-list sign up attempt', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Bitbucket-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
