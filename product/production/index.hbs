@@ -967,8 +967,8 @@ window.addEventListener('load', function(){
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in">Sign Up</a>
-      <a data-target="#sign-in" href="{{loginUrl}}" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
+      <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
+      <a data-target="#sign-in" href="{{loginUrl}}" class="list-item-a visible-md js-hide-if-signed-in track-sign-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
@@ -1063,9 +1063,9 @@ window.addEventListener('load', function(){
     </main>
 
     <footer class="grid-block vertical footer justify-spaced">
-  <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal">
+  <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal track-sign-up">
   <img class="img no-touching" src="images/runnabear-hello.png">
-  <p data-target="#sign-up" class="p js-modal">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
+  <p class="p js-modal">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
     including infrastructure costs!
   <div data-target="#sign-up" class="btn btn-sm green js-modal track-sign-up">Sign Up</div>
 </a>
@@ -1262,13 +1262,13 @@ window.addEventListener('load', function(){
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
     for (var j=0; j<signIn.length; j++) {
-      append_id(signIn[j], aid);
+      append_id(signIn[j], aid, 'Signed In');
     }
     for (var k=0; k<grantGitHubPerms.length; k++) {
-      append_id(grantGitHubPerms[k], aid);
+      append_id(grantGitHubPerms[k], aid, 'Signed Up');
     }
-    function append_id(link, id) {
-      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id);
+    function append_id(link, id, event) {
+      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
     }
   });
 </script>
