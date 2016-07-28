@@ -26,9 +26,6 @@
     
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
-    for (var i=0; i<signUp.length; i++) {
-      append_id(signUp[i], aid);
-    }
     for (var j=0; j<signIn.length; j++) {
       append_id(signIn[j], aid);
     }
