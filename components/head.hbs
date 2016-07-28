@@ -505,13 +505,12 @@
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
-      var signUpButtons = document.querySelectorAll('[data-target="#sign-up"]');
-      var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
-      for (var i = 0; i < signUpButtons.length; i++) {
-        signUpButtons[i].parentNode.removeChild(signUpButtons[i]);
-      }
-      for (var i = 0; i < signInButtons.length; i++) {
-        signInButtons[i].parentNode.removeChild(signInButtons[i]);
+      var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
+      for (var z = hideIfSignedIn.length; z > 0; z--) {
+        var i = z - 1;
+        if (hideIfSignedIn[i].parentNode) {
+          hideIfSignedIn[i].parentNode.removeChild(hideIfSignedIn[i]);
+        }
       }
     });
 }());

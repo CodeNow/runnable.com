@@ -509,24 +509,23 @@
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
-      var signUpButtons = document.querySelectorAll('[data-target="#sign-up"]');
-      var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
-      for (var i = 0; i < signUpButtons.length; i++) {
-        signUpButtons[i].parentNode.removeChild(signUpButtons[i]);
-      }
-      for (var i = 0; i < signInButtons.length; i++) {
-        signInButtons[i].parentNode.removeChild(signInButtons[i]);
+      var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
+      for (var z = hideIfSignedIn.length; z > 0; z--) {
+        var i = z - 1;
+        if (hideIfSignedIn[i].parentNode) {
+          hideIfSignedIn[i].parentNode.removeChild(hideIfSignedIn[i]);
+        }
       }
     });
 }());
 
 </script>
     <title>Our Privacy Policy — Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var a=document.getElementsByClassName("modal-backdrop in")[0],n=e.target.getAttribute("data-target").substring(1),i=document.getElementById(n),s=i.getElementsByClassName("js-modal-close")[0];a&&a.classList.remove("in"),i.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===n&&setupBitbucket()}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],a=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),a.removeEventListener("click",closeModal),a.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupBitbucket(){var e=document.getElementsByClassName("form-bitbucket");for(i=0;i<e.length;i++)e[i].addEventListener("change",makeDirty),e[i].addEventListener("submit",submitBitbucket),e[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),e[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,a){var n=new XMLHttpRequest,i="https://codenow.com:8443/bitbucket";n.open("POST",i,!0),n.setRequestHeader("Content-Type","application/json"),n.send(a),n.onreadystatechange=function(){4===n.readyState&&0===n.status&&(shakeForm(e),activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.',t),toggleEditing(t,"enable"))},n.onload=function(){var a=JSON.parse(n.responseText),i=a.result_code,s=a.result_message,o=t.parentNode.getElementsByClassName("hide")[0];-1!==i&&0!==i||(shakeForm(e),activeCampaignValidation(s,t)),1===i&&(t.classList.add("hide"),t.classList.remove("show"),o.classList.add("show"),o.classList.remove("hide")),toggleEditing(t,"enable")}}function submitBitbucket(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=t.querySelectorAll('[name="email"]')[0].value,i=t.querySelectorAll('[name="name"]')[0].value;toggleEditing(t,"disable"),a={email:n,name:i},analytics.ready(function(){analytics.track("Bitbucket-list sign up attempt",{email:n,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function activeCampaignValidation(e,t){var a=t.getElementsByClassName("red")[0],n=document.createElement("small");a&&a.parentNode.removeChild(a),n.classList.add("small","red","text-center"),n.innerHTML=e,t.appendChild(n),analytics.ready(function(){analytics.track("Error bitbucket-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),a=document.body,n=!1;if(a.addEventListener("touchmove",function(){n=!0}),a.addEventListener("touchstart",function(){n=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,n)}),t[e].addEventListener("touchend",function(e){openModal(e,n)});"/signup/"===window.location.pathname&&setupBitbucket()}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var a=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",a+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
+    <script ugly="">function openModal(e,t){if(!t){var a=document.getElementsByClassName("modal-backdrop in")[0],n=e.target.getAttribute("data-target").substring(1),i=document.getElementById(n),s=i.getElementsByClassName("js-modal-close")[0];a&&a.classList.remove("in"),i.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===n&&setupBitbucket()}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],a=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),a.removeEventListener("click",closeModal),a.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupBitbucket(){var e=document.getElementsByClassName("form-bitbucket");for(i=0;i<e.length;i++)e[i].addEventListener("change",makeDirty),e[i].addEventListener("submit",submitBitbucket),e[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),e[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.innerHTML+='<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,a){var n=new XMLHttpRequest,i="https://codenow.com:8443/bitbucket";n.open("POST",i,!0),n.setRequestHeader("Content-Type","application/json"),n.send(a),n.onreadystatechange=function(){4===n.readyState&&0===n.status&&(shakeForm(e),activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.',t),toggleEditing(t,"enable"))},n.onload=function(){var a=JSON.parse(n.responseText),i=a.result_code,s=a.result_message,o=t.parentNode.getElementsByClassName("hide")[0];i!==-1&&0!==i||(shakeForm(e),activeCampaignValidation(s,t)),1===i&&(t.classList.add("hide"),t.classList.remove("show"),o.classList.add("show"),o.classList.remove("hide")),toggleEditing(t,"enable")}}function submitBitbucket(e){var t=e.target;if(e.preventDefault(),t.checkValidity()){var a,n=t.querySelectorAll('[name="email"]')[0].value,i=t.querySelectorAll('[name="name"]')[0].value;toggleEditing(t,"disable"),a={email:n,name:i},analytics.ready(function(){analytics.track("Bitbucket-list sign up",{email:n,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,t,a)}}function activeCampaignValidation(e,t){var a=t.getElementsByClassName("red")[0],n=document.createElement("small");a&&a.parentNode.removeChild(a),n.classList.add("small","red","text-center"),n.innerHTML=e,t.appendChild(n),analytics.ready(function(){analytics.track("Error bitbucket-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),a=document.body,n=!1;if(a.addEventListener("touchmove",function(){n=!0}),a.addEventListener("touchstart",function(){n=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,n)}),t[e].addEventListener("touchend",function(e){openModal(e,n)});"/signup/"===window.location.pathname&&setupBitbucket()}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var a=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",a+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 6969273f79a4549cb36d7ebcb6aa4fe34418294b
-      Commit Time: Tue Jul 19 14:55:21 2016 -0700
+      Commit Hash: 5919e2f9d4030fd2c37b3f8e498e44555dbb1a8a
+      Commit Time: Thu Jul 28 14:48:44 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -616,8 +615,8 @@
         </div>
       </div>
       <a href="demo/" class="grid-content btn btn-sm text-white strong hidden-md">Request Demo</a>
-      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md js-modal">Sign In</a>
-      <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal">Sign Up</a>
+      <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-content btn btn-sm text-white strong hidden-md js-hide-if-signed-in track-sign-in">Sign In</a>
+      <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white strong hidden-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
       <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
         <svg class="icons icons-overflow">
           <use xlink:href="#icons-overflow"/>
@@ -666,8 +665,8 @@
 
     </div>
     <div class="grid-block vertical list text-left">
-      <a data-target="#sign-up" class="list-item-a visible-xs js-modal">Sign Up</a>
-      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md js-modal">Sign In</a>
+      <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in">Sign Up</a>
+      <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
       <a href="demo/" class="list-item-a visible-md"><span class="text-request">Request&nbsp;</span>Demo</a>
       <a href="https://support.runnable.com" class="list-item-a">Docs</a>
@@ -763,7 +762,7 @@
   <img class="img no-touching" src="images/runnabear-hello.png">
   <p data-target="#sign-up" class="p js-modal">Runnable is <strong class="strong">free</strong> during our preview,<br class="hidden-xs">
     including infrastructure costs!
-  <div data-target="#sign-up" class="btn btn-sm green js-modal">Sign Up</div>
+  <div data-target="#sign-up" class="btn btn-sm green js-modal track-sign-up">Sign Up</div>
 </p></a>
 
   <aside class="grid-block aside-support">
@@ -848,7 +847,7 @@
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </li></ul>
   </div>
-  <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block align-center btn btn-lg green wrap-xxxs">
+  <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block align-center btn btn-lg green wrap-xxxs track-grant-access-github">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github"/>
     </svg>
@@ -856,7 +855,7 @@
   </a>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
   </div>
   <aside class="grid-block bitbucket-box padding-sm shake-me">
   <div class="grid-block shrink align-center">
@@ -913,7 +912,7 @@
   <p class="p text-center">By using Runnable, you are agreeing to <a href="#" class="link">our terms of use</a>.</p>
   <div class="grid-block vertical align-center">
     <img class="img" src="images/runnabear-peek.png" height="104" width="184">
-    <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block btn btn-lg green">
+    <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block btn btn-lg green track-sign-in">
       <svg class="icons">
         <use xlink:href="#icons-github"/>
       </svg>
@@ -948,8 +947,24 @@
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
-    var signUp = document.querySelectorAll('[data-target="#sign-up"]');
+    var signUp = document.getElementsByClassName('track-sign-up');
+    var signIn = document.getElementsByClassName('track-sign-in');
+    var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
+    analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
+    
+    // Attach anonymous_id to links
+    var aid = analytics.user().anonymousId();
+    for (var j=0; j<signIn.length; j++) {
+      append_id(signIn[j], aid);
+    }
+    for (var k=0; k<grantGitHubPerms.length; k++) {
+      append_id(grantGitHubPerms[k], aid);
+    }
+    function append_id(link, id) {
+      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id);
+    }
   });
 </script>
 

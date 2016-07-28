@@ -509,13 +509,12 @@
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
-      var signUpButtons = document.querySelectorAll('[data-target="#sign-up"]');
-      var signInButtons = document.querySelectorAll('[data-target="#sign-in"]');
-      for (var i = 0; i < signUpButtons.length; i++) {
-        signUpButtons[i].parentNode.removeChild(signUpButtons[i]);
-      }
-      for (var i = 0; i < signInButtons.length; i++) {
-        signInButtons[i].parentNode.removeChild(signInButtons[i]);
+      var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
+      for (var z = hideIfSignedIn.length; z > 0; z--) {
+        var i = z - 1;
+        if (hideIfSignedIn[i].parentNode) {
+          hideIfSignedIn[i].parentNode.removeChild(hideIfSignedIn[i]);
+        }
       }
     });
 }());
@@ -714,7 +713,7 @@ function submitBitbucket(e) {
     };
     // Send event to Segment
     analytics.ready(function() {
-      analytics.track('Bitbucket-list sign up attempt', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track('Bitbucket-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData);
@@ -852,7 +851,7 @@ window.addEventListener('load', function(){
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </ul>
   </div>
-  <a href="{{loginUrl}}" class="grid-block align-center btn btn-lg green wrap-xxxs">
+  <a href="{{loginUrl}}" class="grid-block align-center btn btn-lg green wrap-xxxs track-grant-access-github">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github">
     </svg>
@@ -860,7 +859,7 @@ window.addEventListener('load', function(){
   </a>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a href="{{loginUrl}}" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    <a data-target="#sign-in" href="{{loginUrl}}" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
   </div>
   <aside class="grid-block bitbucket-box padding-sm shake-me">
   <div class="grid-block shrink align-center">
@@ -924,8 +923,24 @@ window.addEventListener('load', function(){
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
     });
-    var signUp = document.querySelectorAll('[data-target="#sign-up"]');
+    var signUp = document.getElementsByClassName('track-sign-up');
+    var signIn = document.getElementsByClassName('track-sign-in');
+    var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
+    analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
+    
+    // Attach anonymous_id to links
+    var aid = analytics.user().anonymousId();
+    for (var j=0; j<signIn.length; j++) {
+      append_id(signIn[j], aid);
+    }
+    for (var k=0; k<grantGitHubPerms.length; k++) {
+      append_id(grantGitHubPerms[k], aid);
+    }
+    function append_id(link, id) {
+      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id);
+    }
   });
 </script>
 
