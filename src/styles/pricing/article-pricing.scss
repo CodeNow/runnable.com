@@ -35,11 +35,6 @@
     font-weight: $weight-normal;
   }
 
-  .section-teams {
-    max-width: 100%;
-    width: 100%;
-  }
-
   .section-includes {
 
     > .grid-block {
@@ -68,18 +63,6 @@
     > .grid-block {
       width: 465px;
     }
-  }
-
-  .section-teams {
-    border-bottom: 1px solid $gray-lighter;
-  }
-
-  .team {
-    border: 1px solid $gray-lighter;
-    border-radius: 9px;
-    flex: 0 0 auto;
-    height: 90px;
-    width: 135px;
   }
 }
 
