@@ -1,16 +1,8 @@
 .pricing-hero {
   background: $purple-light;
 
-  &::after {
-    background: none;
-  }
-
   .h1 {
     text-shadow: none;
-  }
-
-  .font-normal {
-    font-weight: 400;
   }
 
   .pp {

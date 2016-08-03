@@ -46,6 +46,10 @@ h4 {
   font-weight: $weight-normal; // reset if within header tags
 }
 
+.normal {
+  font-weight: $weight-normal;
+}
+
 .strong {
   font-weight: $weight-bold;
 }
