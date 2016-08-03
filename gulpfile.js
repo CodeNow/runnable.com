@@ -30,6 +30,7 @@ var jsDir = src + 'js/**/*.**';
 var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 var robotsSrc = src + 'html/robots.txt';
+var sitemapSrc = src + 'html/sitemap.xml';
 
 var hbsDist = dist + '**/*.hbs';
 var htmlDist = dist;
@@ -173,20 +174,11 @@ gulp.task('images', function () {
     .pipe(gulp.dest(imgDist));
 });
 
-// robots.txt
-gulp.task('robots', function () {
-  return gulp.src(robotsSrc)
+// robots, sitemap, and favicon
+gulp.task('moveMisc', function () {
+  return gulp.src([robotsSrc, sitemapSrc, favIconSrc])
     .pipe(debug({
-      title: 'robots'
-    }))
-    .pipe(gulp.dest(htmlDist));
-});
-
-// favicon
-gulp.task('favicon', function () {
-  return gulp.src(favIconSrc)
-    .pipe(debug({
-      title: 'favicon'
+      title: 'moveMisc'
     }))
     .pipe(gulp.dest(htmlDist));
 });
@@ -243,22 +235,22 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', cb);
 });
 
 // build without optimizing
 gulp.task('build:dev', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'moveMisc'], cb);
 });
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'favicon', 'robots', 'minify'], 'imagemin', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'robots', 'favicon'], 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
