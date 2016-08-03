@@ -1,0 +1,114 @@
+.article-pricing {
+
+  .section {
+    padding: 90px 0;
+
+    .grid-block + .grid-block {
+      margin-left: 30px;
+    }
+  }
+
+  .pill {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-left: 4px;
+    padding: 1px 7px 3px;
+    position: relative;
+    top: -1px;
+
+    &.pill-gray {
+      border-color: $gray;
+      color: $gray;
+    }
+
+    &.pill-green {
+      border-color: $green;
+      color: $green;
+    }
+  }
+
+  .strong {
+    font-weight: $weight-normal;
+  }
+
+  .section-teams {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .section-includes {
+
+    > .grid-block {
+      overflow: visible;
+      width: 330px;
+    }
+
+    .p {
+      position: relative;
+    }
+
+    .icons-check {
+      height: 15px;
+      left: -24px;
+      position: absolute;
+      top: 8px;
+      width: 15px;
+    }
+  }
+
+  .section-how {
+    background: $gray-lighterest;
+    border-bottom: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
+
+    > .grid-block {
+      width: 465px;
+    }
+  }
+
+  .section-teams {
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  .team {
+    border: 1px solid $gray-lighter;
+    border-radius: 9px;
+    flex: 0 0 auto;
+    height: 90px;
+    width: 135px;
+  }
+}
+
+.pricing-faq {
+  padding: 90px 0;
+  width: 630px;
+
+  .link {
+    color: $purple-light;
+  }
+
+  .faq-wrapper {
+    flex-wrap: wrap;
+    width: 630px;
+  }
+
+  .vertical {
+    width: 300px;
+
+    &:nth-child(2n) {
+      margin-left: 30px;
+    }
+
+    &:nth-child(n+3) {
+      margin-top: 30px;
+    }
+  }
+
+  .answer {
+    font-size: 16px;
+  }
+}
