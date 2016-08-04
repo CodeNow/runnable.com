@@ -1,0 +1,22 @@
+.article-explanation {
+  border-bottom: 1px solid $gray-lighter;
+  margin: 0 auto;
+  padding: 90px 0;
+  width: 960px;
+
+  > .grid-block {
+    flex: 1 1 50%;
+
+    + .grid-block {
+      margin-left: 30px;
+    }
+  }
+
+  .block-quote {
+    border-color: $blue;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 15px auto 18px;
+    padding-left: 20px;
+  }
+}
