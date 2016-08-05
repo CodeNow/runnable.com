@@ -3,18 +3,34 @@
   border: 1px solid $gray-lighter;
   border-radius: 9px;
   max-width: 960px;
+  padding-left: 60px;
+  padding-right: 60px;
 
-  > .grid-block {
+  @include media(md) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .ul {
+    list-style-type: none;
     overflow: visible;
-    width: 360px;
+    padding: 0 15px;
+    flex: 0 0 360px;
 
-    + .grid-block {
-      margin-left: 30px;
+    @include media(md) {
+      flex: 0 0 auto;
+      width: 360px;
+      // padding: 0 30px;
     }
   }
 
-  .p {
+  .li {
+    margin-bottom: 9px;
     position: relative;
+
+    &.normal {
+      margin-bottom: 18px;
+    }
   }
 
   .icons-check {
