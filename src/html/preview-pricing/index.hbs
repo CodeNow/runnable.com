@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Preview Pricing</title>
+    <script ugly>
+      @@include('js/signup.js')
+      @@include('js/svgs.js')
+      @@include('js/preview-pricing.js')
+      @@include('js/status.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing page-about" ontouchstart>
+
+    @@include('images/icons.svg')
+    @@include('html/components/header.hbs')
+
+    <main class="grid-block vertical main hero-only">
+      @@include('html/preview-pricing/payment-hero.hbs')
+    </main>
+
+    @@include('html/components/footer.hbs')
+    @@include('html/components/form-modal.hbs')
+
+    @@include('js/external/external.html')
