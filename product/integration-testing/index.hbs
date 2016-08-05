@@ -1289,10 +1289,10 @@ window.addEventListener('load', function(){
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
     for (var j=0; j<signIn.length; j++) {
-      append_id(signIn[j], aid, 'Signed In');
+      append_id(signIn[j], aid, 'Signed%20In');
     }
     for (var k=0; k<grantGitHubPerms.length; k++) {
-      append_id(grantGitHubPerms[k], aid, 'Signed Up');
+      append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
     function append_id(link, id, event) {
       link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
