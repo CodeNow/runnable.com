@@ -6,7 +6,7 @@
 
   .card-wrapper {
     color: $gray-dark;
-    height: 177px;
+    height: 186px;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
     perspective: 1000px;
@@ -15,13 +15,13 @@
     z-index: 1;
 
     @include media(xxs) {
-      height: 210px;
+      height: 219px;
     }
 
     &.flip {
 
       @include media(xxs) {
-        height: 240px;
+        height: 249px;
       }
 
       .card-a {
