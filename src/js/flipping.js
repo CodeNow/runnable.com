@@ -6,7 +6,7 @@ function flipCard(e) {
   var flipTriggers;
 
   // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('card-flipper'));
   flipTriggers = thisCard.getElementsByClassName('img-rounded');
 
   // remove and reset touch events or they can trigger twice

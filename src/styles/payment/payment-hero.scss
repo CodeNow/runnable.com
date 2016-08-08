@@ -4,48 +4,29 @@
     max-width: 600px;
   }
 
-  .card-wrapper {
+  .card-flipper {
     color: $gray-dark;
     height: 186px;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
-    perspective: 1000px;
-    position: relative;
     width: 420px;
-    z-index: 1;
 
     @include media(xxs) {
       height: 219px;
     }
 
     &.flip {
-
       @include media(xxs) {
         height: 249px;
-      }
-
-      .card-a {
-        transform: rotate3d(0,1,0,180deg);
-      }
-
-      .card-b {
-        transform: rotate3d(0,1,0,0);
       }
     }
   }
 
   .card-a,
   .card-b {
-    backface-visibility: hidden;
     background: $gray-lighterest;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    transform-origin: 50% 250%;
-    transition: transform .3s ease-in-out;
-    width: 100%;
   }
 
   .card-a {
@@ -53,9 +34,6 @@
   }
 
   .card-b {
-    transform: rotate3d(0,1,0,-180deg);
-    transition: transform .3s ease-in-out;
-    z-index: 1;
 
     .icons {
       background: $green-lighter;
