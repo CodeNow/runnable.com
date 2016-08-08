@@ -1,0 +1,47 @@
+.article-included {
+  border-bottom: 1px solid $gray-lighter;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 90px 0;
+  width: 960px;
+
+  .grid-block {
+    overflow: visible;
+  }
+
+  > .grid-block {
+    flex: 1 1 50%;
+
+    + .grid-block {
+      margin-left: 30px;
+    }
+  }
+
+  .h3 {
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .ul {
+    font-size: 16px;
+    padding-left: 0;
+  }
+
+  .li {
+    list-style-type: none;
+    position: relative;
+
+    &.normal {
+      margin: 18px 0 9px;
+    }
+  }
+
+
+  .icons-check {
+    height: 12px;
+    left: -18px;
+    position: absolute;
+    top: 6px;
+    width: 12px;
+  }
+}
