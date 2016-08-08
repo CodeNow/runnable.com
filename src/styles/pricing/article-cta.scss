@@ -1,5 +1,7 @@
 .article-cta {
+  align-self: center;
   margin: 0 45px;
+  max-width: 540px;
   padding: 105px 0 60px;
 
   @include media(xxs) {
@@ -12,5 +14,14 @@
     @include media(sm) {
       font-size: 16px;
     }
+  }
+
+  .btn-lg {
+    margin-top: 15px;
+  }
+
+  .small {
+    font-size: 16px;
+    margin-top: 12px;
   }
 }
