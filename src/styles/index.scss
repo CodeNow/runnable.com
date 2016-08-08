@@ -22,6 +22,7 @@
 // components
 @import "components/bitbucket";
 @import "components/buttons";
+@import "components/cards";
 @import "components/faq";
 @import "components/header";
 @import "components/keyframes";
@@ -83,5 +84,7 @@
 
 @import "demo/demo-hero";
 @import "demo/calendar";
+
+@import "payment/payment-hero";
 
 @import "globals/responsive-utils";

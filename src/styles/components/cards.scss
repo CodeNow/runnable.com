@@ -1,0 +1,38 @@
+.card-flipper {
+  perspective: 1000px;
+  position: relative;
+  z-index: 1;
+
+  &.flip {
+
+    .card-a {
+      transform: rotate3d(0,1,0,180deg);
+    }
+
+    .card-b {
+      transform: rotate3d(0,1,0,0);
+    }
+  }
+
+}
+
+.card-a,
+.card-b {
+  backface-visibility: hidden;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  transform-origin: 50% 250%;
+  transition: transform .3s ease-in-out;
+  width: 100%;
+}
+
+.card-a {
+  z-index: 2;
+}
+
+.card-b {
+  transform: rotate3d(0,1,0,-180deg);
+  transition: transform .3s ease-in-out;
+  z-index: 1;
+}

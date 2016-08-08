@@ -1,0 +1,75 @@
+.payment-hero {
+
+  > .p {
+    max-width: 600px;
+  }
+
+  .card-flipper {
+    color: $gray-dark;
+    height: 186px;
+    margin: 30px 15px 0;
+    max-width: calc(100% - 30px);
+    width: 420px;
+
+    @include media(xxs) {
+      height: 219px;
+    }
+
+    &.flip {
+      @include media(xxs) {
+        height: 249px;
+      }
+    }
+  }
+
+  .card-a,
+  .card-b {
+    background: $gray-lighterest;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.15);
+  }
+
+  .card-a {
+    z-index: 2;
+  }
+
+  .card-b {
+
+    .icons {
+      background: $green-lighter;
+      border: $input-border solid $green;
+      border-radius: 50%;
+      color: $green;
+      height: $input-sm;
+      padding: 6px;
+      width: $input-sm;
+
+      &.in {
+        animation: spin-in .75s ease-in-out forwards;
+      }
+    }
+
+    .p {
+      font-size: 16px;
+      padding: 0;
+      text-shadow: none;
+    }
+  }
+
+  .btn-stripe {
+    background: $blue;
+    border: $input-border solid darken($blue,5%);
+    color: $white;
+    font-weight: $weight-bold;
+
+    &:hover {
+      background: lighten($blue,10%);
+      color: $white;
+    }
+
+    &:active {
+      background: darken($blue,5%);
+      color: $white;
+    }
+  }
+}

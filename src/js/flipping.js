@@ -6,7 +6,7 @@ function flipCard(e) {
   var flipTriggers;
 
   // set thisCard to parent card element
-  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('team-card'));
+  while ((thisCard = thisCard.parentElement) && !thisCard.classList.contains('card-flipper'));
   flipTriggers = thisCard.getElementsByClassName('img-rounded');
 
   // remove and reset touch events or they can trigger twice
@@ -28,13 +28,13 @@ function flipCard(e) {
 // events
 window.addEventListener('load', function(){
   var i;
-  var imgFlip = document.getElementsByClassName('img-rounded');
+  var flipper = document.getElementsByClassName('js-flipper');
 
   // flipping cards
-  if (imgFlip) {
-    for (i = 0; i < imgFlip.length; i++) {
-      imgFlip[i].addEventListener('click', flipCard);
-      imgFlip[i].addEventListener('touchend', flipCard);
+  if (flipper) {
+    for (i = 0; i < flipper.length; i++) {
+      flipper[i].addEventListener('click', flipCard);
+      flipper[i].addEventListener('touchend', flipCard);
     }
   }
 });
