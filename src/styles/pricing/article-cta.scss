@@ -1,7 +1,7 @@
 .article-cta {
   align-self: center;
   margin: 0 45px;
-  max-width: 540px;
+  max-width: 630px;
   padding: 105px 0 60px;
 
   @include media(xxs) {
@@ -16,12 +16,25 @@
     }
   }
 
-  .btn-lg {
-    margin-top: 15px;
-  }
-
   .small {
     font-size: 16px;
-    margin-top: 12px;
+    margin-top: 9px;
+  }
+
+  .well {
+    background: $gray-lighterest;
+    margin-top: 15px;
+    padding-bottom: 0;
+    width: 480px;
+
+    .img {
+      display: block;
+      height: auto;
+      margin-bottom: -13px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -45px;
+      width: 240px;
+    }
   }
 }
