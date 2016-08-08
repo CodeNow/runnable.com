@@ -28,13 +28,13 @@ function flipCard(e) {
 // events
 window.addEventListener('load', function(){
   var i;
-  var imgFlip = document.getElementsByClassName('img-rounded');
+  var flipper = document.getElementsByClassName('js-flipper');
 
   // flipping cards
-  if (imgFlip) {
-    for (i = 0; i < imgFlip.length; i++) {
-      imgFlip[i].addEventListener('click', flipCard);
-      imgFlip[i].addEventListener('touchend', flipCard);
+  if (flipper) {
+    for (i = 0; i < flipper.length; i++) {
+      flipper[i].addEventListener('click', flipCard);
+      flipper[i].addEventListener('touchend', flipCard);
     }
   }
 });
