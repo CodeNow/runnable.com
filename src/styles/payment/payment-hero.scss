@@ -1,0 +1,129 @@
+.payment-hero {
+
+  > .p {
+    max-width: 600px;
+  }
+
+  .card-wrapper {
+    color: $gray-dark;
+    height: 394px;
+    margin: 30px 15px 0;
+    max-width: calc(100% - 30px);
+    perspective: 1000px;
+    position: relative;
+    width: 420px;
+    z-index: 1;
+
+    @include media(xxs) {
+      height: 360px;
+    }
+
+    @include media(xxxs) {
+      height: 430px;
+    }
+
+    &.flip {
+      height: 190px;
+
+      @include media(xxs) {
+        height: 210px;
+      }
+
+      @include media(xxxs) {
+        height: 240px;
+      }
+
+      .card-a {
+        transform: rotate3d(0,1,0,180deg);
+      }
+
+      .card-b {
+        transform: rotate3d(0,1,0,0);
+      }
+    }
+  }
+
+  .card-a,
+  .card-b {
+    backface-visibility: hidden;
+    background: $gray-lighterest;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.15);
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    transform-origin: 50% 250%;
+    transition: transform .3s ease-in-out;
+    width: 100%;
+  }
+
+  .card-a {
+    z-index: 2;
+
+    .ul {
+      font-size: 16px;
+      list-style-type: none;
+      margin: 15px 15px 30px 0;
+
+      @include media(xxs) {
+        font-size: 13px;
+        padding: 0;
+      }
+    }
+
+    .li + .li {
+      margin-top: 15px;
+    }
+
+    .icons {
+      color: $green;
+      height: $input-xxs;
+      margin: 4px 9px 4px 3px;
+      padding: 3px;
+      width: $input-xxs;
+    }
+  }
+
+  .card-b {
+    transform: rotate3d(0,1,0,-180deg);
+    transition: transform .3s ease-in-out;
+    z-index: 1;
+
+    .icons {
+      background: $green-lighter;
+      border: $input-border solid $green;
+      border-radius: 50%;
+      color: $green;
+      height: $input-sm;
+      padding: 6px;
+      width: $input-sm;
+
+      &.in {
+        animation: spin-in .75s ease-in-out forwards;
+      }
+    }
+
+    .p {
+      font-size: 16px;
+      padding: 0;
+      text-shadow: none;
+    }
+  }
+
+  .btn-stripe {
+    background: $blue;
+    border: $input-border solid darken($blue,5%);
+    color: $white;
+    font-weight: $weight-bold;
+
+    &:hover {
+      background: lighten($blue,10%);
+      color: $white;
+    }
+
+    &:active {
+      background: darken($blue,5%);
+      color: $white;
+    }
+  }
+}
