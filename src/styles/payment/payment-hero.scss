@@ -6,38 +6,23 @@
 
   .card-wrapper {
     color: $gray-dark;
-    height: 394px;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
     perspective: 1000px;
     position: relative;
-    width: 420px;
+    width: 480px;
     z-index: 1;
 
-    @include media(xxs) {
-      height: 360px;
-    }
-
-    @include media(xxxs) {
-      height: 430px;
-    }
-
     &.flip {
-      height: 190px;
-
-      @include media(xxs) {
-        height: 210px;
-      }
-
-      @include media(xxxs) {
-        height: 240px;
-      }
 
       .card-a {
+        position: absolute;
+        top: 0;
         transform: rotate3d(0,1,0,180deg);
       }
 
       .card-b {
+        position: relative;
         transform: rotate3d(0,1,0,0);
       }
     }
@@ -51,24 +36,23 @@
     box-shadow: 0 2px 9px rgba($black,.15);
     height: 100%;
     overflow: hidden;
-    position: absolute;
     transform-origin: 50% 250%;
     transition: transform .3s ease-in-out;
     width: 100%;
+
+    .p {
+      text-shadow: none;
+    }
   }
 
   .card-a {
     z-index: 2;
 
     .ul {
-      font-size: 16px;
+      font-size: 14px;
       list-style-type: none;
       margin: 15px 15px 30px 0;
-
-      @include media(xxs) {
-        font-size: 13px;
-        padding: 0;
-      }
+      padding: 0;
     }
 
     .li + .li {
@@ -78,13 +62,27 @@
     .icons {
       color: $green;
       height: $input-xxs;
-      margin: 4px 9px 4px 3px;
+      margin: 3px 13px;
       padding: 3px;
       width: $input-xxs;
+    }
+
+    .p {
+      border-bottom: 1px solid $gray-lighter;
+      font-size: 16px;
+      margin: 15px;
+      padding-bottom: 30px;
+
+      @include media(md) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 
   .card-b {
+    position: absolute;
+    top: 0;
     transform: rotate3d(0,1,0,-180deg);
     transition: transform .3s ease-in-out;
     z-index: 1;
@@ -101,12 +99,6 @@
       &.in {
         animation: spin-in .75s ease-in-out forwards;
       }
-    }
-
-    .p {
-      font-size: 16px;
-      padding: 0;
-      text-shadow: none;
     }
   }
 
