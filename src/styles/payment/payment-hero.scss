@@ -6,18 +6,19 @@
 
   .card-flipper {
     color: $gray-dark;
-    height: 186px;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
-    width: 420px;
-
-    @include media(xxs) {
-      height: 219px;
-    }
+    width: 480px;
 
     &.flip {
-      @include media(xxs) {
-        height: 249px;
+
+      .card-a {
+        position: absolute;
+        top: 0;
+      }
+
+      .card-b {
+        position: relative;
       }
     }
   }
@@ -27,13 +28,51 @@
     background: $gray-lighterest;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
+    position: relative;
+
+    .p {
+      text-shadow: none;
+
+      @include media(md) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 
   .card-a {
     z-index: 2;
+
+    .ul {
+      font-size: 14px;
+      list-style-type: none;
+      margin: 15px 15px 30px 0;
+      padding: 0;
+    }
+
+    .li + .li {
+      margin-top: 15px;
+    }
+
+    .icons {
+      color: $green;
+      height: $input-xxs;
+      margin: 3px 13px;
+      padding: 3px;
+      width: $input-xxs;
+    }
+
+    .p {
+      border-bottom: 1px solid $gray-lighter;
+      font-size: 16px;
+      margin: 15px;
+      padding-bottom: 30px;
+    }
   }
 
   .card-b {
+    position: absolute;
+    top: 0;
 
     .icons {
       background: $green-lighter;
@@ -47,12 +86,6 @@
       &.in {
         animation: spin-in .75s ease-in-out forwards;
       }
-    }
-
-    .p {
-      font-size: 16px;
-      padding: 0;
-      text-shadow: none;
     }
   }
 
