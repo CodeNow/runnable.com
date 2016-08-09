@@ -12,7 +12,7 @@
     @media (max-width: 530px) {
       flex: 0 0 auto;
       max-width: 100%;
-      width: 300px;
+      width: 360px;
     }
 
     + .plan:not(.card-b),
@@ -46,7 +46,7 @@
     flex-direction: column;
   }
 
-  @include media(xs) {
+  @include media(xxs) {
     padding: 0 30px;
   }
 }

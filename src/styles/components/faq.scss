@@ -18,7 +18,12 @@
       flex: 0 0 100%;
     }
 
-    @include media(xs) {
+    @include media(xxs) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    @include media(xxs) {
       padding-left: 0;
       padding-right: 0;
     }

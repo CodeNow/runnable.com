@@ -16,6 +16,9 @@
 
   @include media(xs) {
     flex-direction: column-reverse;
+  }
+
+  @include media(xxs) {
     margin: 0 30px;
   }
 
