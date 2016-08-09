@@ -16,10 +16,6 @@
 
   @include media(xs) {
     flex-direction: column;
-    margin: 0 45px;
-  }
-
-  @include media(xxs) {
     margin: 0 30px;
   }
 

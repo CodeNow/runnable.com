@@ -1,68 +1,21 @@
 .pricing-hero {
-  background: $purple-light;
   padding-bottom: 0;
 
-  .section-plans {
-    margin: 60px auto -60px;
+  .grid-block {
     overflow: visible;
-    padding: 0 60px;
-
-    @media (max-width: 960px) {
-      align-items: center;
-      flex-direction: column;
-    }
-
-    @media (max-width: 530px) {
-      padding: 0 45px;
-    }
-
-    @include media(xxs) {
-      padding: 0 30px;
-    }
   }
 
-  .plan-wrapper {
-    flex: 0 1 auto;
-    overflow: visible;
-    width: 480px;
-
-    @media (max-width: 960px) {
-      max-width: 100%;
-      width: 600px;
-    }
-
-    @media (max-width: 530px) {
-      align-items: center;
-      flex-direction: column;
-    }
-
-    + .plan-wrapper {
-      margin-left: 20px;
-
-      @media (max-width: 960px) {
-        margin-left: 0;
-        margin-top: 20px;
-      }
-    }
-  }
-
-  .plan {
-    background: $white;
-    border: 1px solid $gray-lighter;
-    border-radius: 9px;
-    box-shadow: 0 2px 6px 0 rgba($black,.05);
-    color: $gray-dark;
+  .plan,
+  .card-flipper {
     flex: 1 1 50%;
-    font-size: 16px;
-    line-height: 1.4;
-    padding: 12px 20px 24px;
 
     @media (max-width: 530px) {
       max-width: 100%;
       width: 300px;
     }
 
-    + .plan {
+    + .plan:not(.card-b),
+    + .card-flipper {
       margin-left: 20px;
 
       @media (max-width: 530px) {
@@ -70,70 +23,110 @@
         margin-top: 20px;
       }
     }
+  }
 
-    .sup {
-      font-size: 65%;
-      margin: 0 2px;
-      top: -.35em;
+  .card-flipper {
+
+    @media (max-width: 530px) {
+      height: 283px;
     }
+  }
+
+  .card-a .btn-sm {
+    margin-top: 9px;
+  }
+}
+
+.section-plans {
+  margin: 60px auto -60px;
+  padding: 0 60px;
+
+  @media (max-width: 960px) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  @media (max-width: 530px) {
+    padding: 0 30px;
+  }
+}
+
+.plan-wrapper {
+  flex: 0 1 auto;
+  width: 480px;
+
+  @media (max-width: 960px) {
+    max-width: 100%;
+    width: 600px;
+  }
+
+  @media (max-width: 530px) {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  + .plan-wrapper {
+    margin-left: 20px;
+
+    @media (max-width: 960px) {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+}
+
+.plan {
+  background: $white;
+  border: 1px solid $gray-lighter;
+  border-radius: 9px;
+  box-shadow: 0 2px 6px 0 rgba($black,.05);
+  color: $gray-dark;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 12px 20px 24px;
+
+  &.form {
 
     .small {
-      font-size: 14px;
+      margin: 15px 0 24px;
     }
 
-    .btn.gray {
-      margin-top: 9px;
-    }
-
-    .strike {
-      color: $red;
-      margin-bottom: 3px;
-      text-decoration: line-through;
-    }
-
-    .input-wrapper {
-      align-self: stretch;
-      position: relative;
-    }
-
-    .btn-xs {
-      display: none;
-      position: absolute;
-      right: 6px;
-      top: 10px;
-    }
-
-    .text-gray {
-      color: #aaa;
+    .divider {
+      background: $gray-lighter;
+      height: 1px;
+      margin: auto 0 20px;
+      width: 100%;
     }
 
     .input {
-      margin: 4px 0 -1px;
-
-      &:focus {
-        padding-right: 69px;
-
-        + .btn-xs {
-          display: block;
-        }
-      }
+      margin-bottom: 10px;
     }
   }
 
-  .price-wrapper {
-    border-bottom: 1px solid #f0f0f0;
-    border-top: 1px solid #f0f0f0;
-    margin: 12px 0 21px;
-    padding: 12px 0 18px;
+  .sup {
+    font-size: 65%;
+    margin: 0 2px;
+    top: -.35em;
   }
 
-  .price {
-    font-size: 36px;
-    line-height: 36px;
-    margin-bottom: 3px;
+  .small {
+    font-size: 14px;
   }
+}
 
-  .plan-description {
-    margin-bottom: 15px;
-  }
+.price-wrapper {
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+  margin: 12px 0 21px;
+  padding: 12px 0 18px;
+}
+
+.price {
+  font-size: 36px;
+  line-height: 36px;
+  margin: 3px 0;
+}
+
+.plan-description {
+  margin-bottom: 15px;
 }
