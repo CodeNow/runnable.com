@@ -87,12 +87,33 @@
 
   &.form {
 
-    .small {
-      margin: 15px 0 24px;
+    .price-wrapper {
+      margin-bottom: 11px;
+      padding-top: 20px;
+    }
+
+    .icons-chevron-right {
+      color: $gray-light;
+      cursor: pointer;
+      height: 30px;
+      left: 9px;
+      padding: 9px;
+      position: absolute;
+      top: 9px;
+      transform: rotate(180deg);
+      width: 30px;
+
+      &:hover {
+        color: $gray;
+      }
+
+      &:active {
+        color: $purple-light;
+      }
     }
 
     .divider {
-      background: $gray-lighter;
+      background: $gray-lightest;
       height: 1px;
       margin: auto 0 20px;
       width: 100%;
