@@ -63,8 +63,13 @@
   }
 
   .included-list {
+
     @include media(md) {
       flex-direction: column;
+    }
+
+    @include media(xs) {
+      padding-left: 21px;
     }
   }
 
@@ -81,7 +86,7 @@
 
   .icons-check {
     height: 12px;
-    left: -18px;
+    left: -21px;
     position: absolute;
     top: 6px;
     width: 12px;
