@@ -23,17 +23,24 @@ function replaceOrgName(replaceOrg,orgName) {
   }
 }
 
+// replace price
+function replacePriceAmount(replacePrice,price) {
+  for (i = 0; i < replacePrice.length; i++) {
+    replacePrice[i].textContent = price;
+  }
+}
+
 // set up stripe
 function setUpStripe(email,orgName,stripeButton) {
   var paymentCard = document.getElementsByClassName('card-wrapper')[0];
-  var checkImage = paymentCard.getElementsByClassName('icons')[0];
+  var checkImage = paymentCard.getElementsByClassName('icons-check')[0];
   var handler = StripeCheckout.configure({
     key: 'pk_test_sHr5tQaPtgwiE2cpW6dQkzi8',
     locale: 'auto',
     email: email,
     name: 'Runnable Preview',
     description: 'For ' + orgName + '.',
-    panelLabel: 'Save Card',
+    panelLabel: 'Add Payment Info',
     token: function(token) {
       // You can access the token ID with `token.id`.
       // Get the token ID to your server-side code for use.
@@ -57,20 +64,24 @@ function setUpStripe(email,orgName,stripeButton) {
 window.addEventListener('load', function(){
   var orgName = getParameterByName('org');
   var email = getParameterByName('email');
+  var price = getParameterByName('price');
 
-  if (orgName && email) {
+  if (orgName && email && price) {
     var stripeButton = document.getElementsByClassName('btn-stripe')[0];
     var replaceOrg = document.getElementsByClassName('js-replace-org');
+    var replacePrice = document.getElementsByClassName('js-replace-price');
+    var spinner = document.getElementsByClassName('spinner-wrapper')[0];
 
     // hide query params
     window.history.pushState('object or string', 'Title', '/preview-pricing' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split('?')[0]);
 
-    if (stripeButton) {
-      setUpStripe(email,orgName,stripeButton);
-    }
-    if (replaceOrg) {
-      replaceOrgName(replaceOrg,orgName);
-    }
+    setUpStripe(email,orgName,stripeButton);
+    replaceOrgName(replaceOrg,orgName);
+    replacePriceAmount(replacePrice,price);
+
+    stripeButton.removeChild(spinner);
+    stripeButton.disabled = false;
+    stripeButton.textContent = 'Add Payment Info';
   } else {
     // redirect if url is invalid
     window.location.replace('https://runnable.com');

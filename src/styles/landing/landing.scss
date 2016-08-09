@@ -70,9 +70,16 @@
 
   .ol,
   .ul {
-    list-style-type: circle;
     margin: 0;
     padding-left: 21px;
+  }
+
+  .ul {
+    list-style-type: circle;
+  }
+
+  .ol {
+    list-style-type: decimal;
   }
 
   .hr {
