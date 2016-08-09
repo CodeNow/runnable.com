@@ -21,6 +21,10 @@
 
   > .grid-block {
     flex: 1 1 50%;
+
+    @media (max-width: 530px) {
+      flex: 0 0 auto;
+    }
   }
 
   .h3 {
