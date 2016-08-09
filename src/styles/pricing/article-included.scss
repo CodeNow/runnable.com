@@ -16,6 +16,9 @@
 
   @include media(xs) {
     flex-direction: column-reverse;
+  }
+
+  @include media(xxs) {
     margin: 0 30px;
   }
 
@@ -42,7 +45,7 @@
       font-size: 16px;
     }
 
-    &.normal {
+    &.strong {
       font-size: 16px;
       margin: 18px 0 9px;
     }
