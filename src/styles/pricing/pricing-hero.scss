@@ -26,7 +26,6 @@
   }
 
   .card-flipper {
-
     @media (max-width: 530px) {
       height: 283px;
     }
@@ -46,7 +45,7 @@
     flex-direction: column;
   }
 
-  @media (max-width: 530px) {
+  @include media(xs) {
     padding: 0 30px;
   }
 }
