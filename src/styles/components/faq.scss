@@ -1,13 +1,18 @@
 .article.article-faq {
   align-self: center;
   flex-wrap: wrap;
+  margin: 0 30px;
   max-width: 1020px;
-  padding-left: 30px;
-  padding-right: 30px;
+
+  @include media(md) {
+    margin: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 
   .question {
     flex: 0 1 50%;
-    padding: 15px 30px;
+    padding: 30px;
 
     @include media(sm) {
       flex: 0 0 100%;
