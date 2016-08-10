@@ -15,7 +15,7 @@
       width: 360px;
     }
 
-    + .plan:not(.card-b),
+    + .plan,
     + .card-flipper {
       margin-left: 20px;
 
@@ -32,8 +32,13 @@
   }
 
   .card-flipper {
+
     @media (max-width: 530px) {
       height: 283px;
+    }
+
+    .plan {
+      margin-left: 0; // override .plan + .plan margin
     }
   }
 
