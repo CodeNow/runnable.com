@@ -120,7 +120,7 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
   if (state === 'enable') {
     if (theseInputs) {
