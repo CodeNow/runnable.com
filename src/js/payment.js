@@ -25,6 +25,7 @@ function replaceOrgName(replaceOrg,orgName) {
 
 // replace price
 function replacePriceAmount(replacePrice,price) {
+  price = price.replace('/','');
   for (i = 0; i < replacePrice.length; i++) {
     replacePrice[i].textContent = price;
   }
@@ -73,7 +74,7 @@ window.addEventListener('load', function(){
     var spinner = document.getElementsByClassName('spinner-wrapper')[0];
 
     // hide query params
-    window.history.pushState('object or string', 'Title', '/preview-pricing' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split('?')[0]);
+    window.history.pushState('object or string', 'Title', '/private/setup-payment' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split('?')[0]);
 
     setUpStripe(email,orgName,stripeButton);
     replaceOrgName(replaceOrg,orgName);
