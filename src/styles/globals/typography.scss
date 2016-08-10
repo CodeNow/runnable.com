@@ -42,19 +42,20 @@ h4 {
 
 // inline styles
 .small {
+
   font-size: 13px; // percentage was unreliable
   font-weight: $weight-normal; // reset if within header tags
 }
 
-.light {
+.weight-light {
   font-weight: $weight-light;
 }
 
-.normal {
+.weight-normal {
   font-weight: $weight-normal;
 }
 
-.strong {
+.weight-strong {
   font-weight: $weight-bold;
 }
 
