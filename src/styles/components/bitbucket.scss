@@ -80,6 +80,7 @@
   }
 
   .btn {
+    display: flex;
     margin-top: 6px;
   }
 
@@ -97,13 +98,5 @@
   // success
   .p {
     margin-top: 9px;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  .show {
-    display: flex;
   }
 }

@@ -34,7 +34,7 @@
         <p class="plan-description">Up to <span class="weight-strong">15</span> templates</p>
         <p class="weight-light text-gray small">For larger apps<br>or multiple apps</p>
       </div>
-      <div class="grid-block card-flipper">
+      <div class="grid-block card-flipper shake-me">
         <div class="grid-block vertical text-center card-a plan">
           <p class="weight-strong">Enterprise</p>
           <div class="grid-block vertical align-center justify-center price-wrapper">
@@ -44,18 +44,21 @@
           <p class="plan-description">Unlimited templates</p>
           <p class="weight-light text-gray small">On-premise<br>support</p>
         </div>
-        <form class="grid-block vertical text-center card-b plan form">
+        <form class="grid-block vertical text-center card-b plan form form-enterprise show">
           <svg class="icons icons-chevron-right js-flipper">
             <use xlink:href="#icons-chevron-right">
           </svg>
           <p class="weight-strong shrink">Enterprise</p>
-          <div class="grid-block vertical price-wrapper">
+          <div class="grid-block shrink vertical price-wrapper">
             <input class="grid-block shrink text-center input input-sm input-validate pristine" placeholder="Name" name="name" required>
             <input class="grid-block shrink text-center input input-sm input-validate pristine" placeholder="Work email" name="email" required>
             <p class="small text-gray text-center weight-light">No spam — we promise!</p>
           </div>
-          <button class="grid-block shrink btn btn-sm gray">Submit</button>
+          <button class="grid-block justify-center align-center shrink btn btn-sm gray"><span class="grid-content shrink">Submit</span></button>
         </form>
+        <div class="grid-block align-center plan hide">
+          <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+        </div>
       </div>
     </div>
   </section>

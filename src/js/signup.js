@@ -21,7 +21,7 @@ function openModal(event,dragging) {
     document.addEventListener('keydown', escModal);
     // bind sign up events
     if (modalName === 'sign-up') {
-      setupBitbucket();
+      setupForm('bitbucket');
     }
   }
 }
@@ -47,15 +47,19 @@ function closeModal(event) {
   document.removeEventListener('keydown', escModal);
 }
 
-// sign up
-function setupBitbucket() {
-  var bitbucketForm = document.getElementsByClassName('form-bitbucket');
-
-  for (i = 0; i < bitbucketForm.length; i++) {
-    bitbucketForm[i].addEventListener('change', makeDirty);
-    bitbucketForm[i].addEventListener('submit', submitBitbucket);
-    bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
-    bitbucketForm[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
+// set up forms
+function setupForm(formName) {
+  var formEl;
+  if (formName === 'bitbucket') {
+    formEl = document.getElementsByClassName('form-bitbucket');
+  } else if (formName === 'enterprise') {
+    formEl = document.getElementsByClassName('form-enterprise');
+  }
+  for (i = 0; i < formEl.length; i++) {
+    formEl[i].addEventListener('change', makeDirty);
+    formEl[i].addEventListener('submit', submitForm);
+    formEl[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
+    formEl[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -116,7 +120,7 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    submitButton.innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -132,9 +136,18 @@ function toggleEditing(form, state) {
   }
 }
 
-function xhrSubmit(e, form, formData) {
+function xhrSubmit(e, form, formData, formName) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl = 'https://codenow.com:8443/bitbucket';
+  var xhrUrl;
+  var supportEmail;
+
+  if (formName === 'bitbucket') {
+    xhrUrl = 'https://codenow.com:8443/bitbucket';
+    supportEmail = 'bitbucket@runnable.com';
+  } else if (formName === 'enterprise') {
+    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
+    supportEmail = 'preview@runnable.com';
+  }
 
   // send form
   xhr.open('POST', xhrUrl, true);
@@ -143,7 +156,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.', form);
+      sundipValidation('An error occured. Send us an email at <a class="link" href="' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -159,7 +172,7 @@ function xhrSubmit(e, form, formData) {
     // 1 = success from active campaign
     if (resultCode === -1 || resultCode === 0) {
       shakeForm(e);
-      activeCampaignValidation(resultMessage, form);
+      sundipValidation(resultMessage, form, formName);
     }
     if (resultCode === 1) {
       // tell the user something nice
@@ -172,8 +185,15 @@ function xhrSubmit(e, form, formData) {
   };
 }
 
-function submitBitbucket(e) {
+function submitForm(e) {
   var form = e.target;
+  var formName;
+
+  if (form.classList.contains('form-bitbucket')) {
+    formName = 'bitbucket';
+  } else if (form.classList.contains('form-enterprise')) {
+    formName = 'enterprise';
+  }
 
   e.preventDefault();
   if (form.checkValidity()) {
@@ -187,28 +207,29 @@ function submitBitbucket(e) {
       email: emailValue,
       name: nameValue
     };
-    // Send event to Segment
+
     analytics.ready(function() {
-      analytics.track('Bitbucket-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData);
+    xhrSubmit(e, form, formData, formName);
   }
 }
 
-function activeCampaignValidation(resultMessage, form) {
+function sundipValidation(resultMessage, form, formName) {
   var prevError = form.getElementsByClassName('red')[0];
   var error = document.createElement('small');
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
+
   error.classList.add('small','red','text-center');
   error.innerHTML = resultMessage;
   form.appendChild(error);
-  // segment tracking
+
   analytics.ready(function() {
-    analytics.track('Error bitbucket-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+    analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
 }
 
@@ -240,6 +261,10 @@ window.addEventListener('load', function(){
   }
   // if sign up page
   if (window.location.pathname === '/signup/') {
-    setupBitbucket();
+    setupForm('bitbucket');
+  }
+  // if pricing page
+  if (window.location.pathname === '/private/preview-pricing/') {
+    setupForm('enterprise');
   }
 });

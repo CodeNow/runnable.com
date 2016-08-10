@@ -24,6 +24,11 @@
         margin-top: 20px;
       }
     }
+
+    // override text shadow for .p in cards
+    .p {
+      text-shadow: none;
+    }
   }
 
   .card-flipper {
@@ -34,6 +39,20 @@
 
   .card-a .btn-sm {
     margin-top: 9px;
+  }
+
+  .card-b {
+
+    // submit button
+    .btn-sm {
+      display: flex;
+    }
+
+    // err text
+    .red {
+      font-weight: $weight-light;
+      margin-top: 6px;
+    }
   }
 }
 
