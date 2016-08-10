@@ -20,25 +20,11 @@
   margin: 15px;
   max-width: 300px;
   overflow: visible;
-  perspective: 1000px;
-  position: relative;
   width: 300px;
-  z-index: 1;
 
   // does not flip
   &.vertical {
     box-shadow: 0 2px 9px rgba($black,.15);
-  }
-
-  &.flip {
-
-    .team-card-a {
-      transform: rotate3d(0,1,0,180deg);
-    }
-
-    .team-card-b {
-      transform: rotate3d(0,1,0,0);
-    }
   }
 
   .img {
@@ -108,26 +94,9 @@
       opacity: 1;
     }
   }
-}
 
-.team-card-a,
-.team-card-b {
-  backface-visibility: hidden;
-  box-shadow: 0 2px 9px rgba($black,.15);
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  transform-origin: 50% 250%;
-  transition: transform .3s ease-in-out;
-  width: 100%;
-}
-
-.team-card-a {
-  z-index: 2;
-}
-
-.team-card-b {
-  transform: rotate3d(0,1,0,-180deg);
-  transition: transform .3s ease-in-out;
-  z-index: 1;
+  .card-a,
+  .card-b {
+    box-shadow: 0 2px 9px rgba($black,.15);
+  }
 }

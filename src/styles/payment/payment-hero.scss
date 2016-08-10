@@ -4,41 +4,31 @@
     max-width: 600px;
   }
 
-  .card-wrapper {
+  .card-flipper {
     color: $gray-dark;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
-    perspective: 1000px;
-    position: relative;
     width: 480px;
-    z-index: 1;
 
     &.flip {
 
       .card-a {
         position: absolute;
         top: 0;
-        transform: rotate3d(0,1,0,180deg);
       }
 
       .card-b {
         position: relative;
-        transform: rotate3d(0,1,0,0);
       }
     }
   }
 
   .card-a,
   .card-b {
-    backface-visibility: hidden;
     background: $gray-lighterest;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
-    height: 100%;
-    overflow: hidden;
-    transform-origin: 50% 250%;
-    transition: transform .3s ease-in-out;
-    width: 100%;
+    position: relative;
 
     .p {
       text-shadow: none;
@@ -83,9 +73,6 @@
   .card-b {
     position: absolute;
     top: 0;
-    transform: rotate3d(0,1,0,-180deg);
-    transition: transform .3s ease-in-out;
-    z-index: 1;
 
     .icons {
       background: $green-lighter;

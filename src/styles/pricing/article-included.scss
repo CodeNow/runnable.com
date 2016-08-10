@@ -1,0 +1,106 @@
+.article-included {
+  align-self: center;
+  border-bottom: 1px solid $gray-lighter;
+  margin: 0 60px;
+  max-width: 960px;
+  overflow: visible;
+  padding: 90px 0;
+
+  @include media(md) {
+    padding: 75px 0;
+  }
+
+  @include media(sm) {
+    padding: 60px 0;
+  }
+
+  @include media(xs) {
+    flex-direction: column-reverse;
+  }
+
+  @include media(xxs) {
+    margin: 0 30px;
+  }
+
+  > .grid-block {
+    flex: 1 1 50%;
+
+    @media (max-width: 530px) {
+      flex: 0 0 auto;
+    }
+  }
+
+  .grid-block {
+    overflow: visible;
+  }
+
+  .h3 {
+    line-height: 1.4;
+    margin: 0 0 12px;
+  }
+
+  .p {
+
+    @include media(sm) {
+      font-size: 16px;
+    }
+
+    &.weight-strong {
+      font-size: 16px;
+      margin: 18px 0 9px;
+    }
+  }
+
+  .img {
+    height: auto;
+    max-height: 320px;
+    padding-left: 60px;
+    width: auto;
+
+    @include media(xs) {
+      margin-bottom: 45px;
+      padding: 0;
+      width: 240px;
+    }
+  }
+
+  .list-included {
+
+    @include media(md) {
+      flex-direction: column;
+    }
+
+    @include media(xs) {
+      padding-left: 21px;
+    }
+  }
+
+  .ul {
+    font-size: 16px;
+    padding-left: 0;
+  }
+
+  .li {
+    list-style-type: none;
+    position: relative;
+  }
+
+  .pill {
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    color: $gray;
+    font-size: 12px;
+    margin-left: 3px;
+    padding: 1px 5px 2px;
+    position: relative;
+    top: -1px;
+  }
+
+  .icons-check {
+    height: 12px;
+    left: -21px;
+    position: absolute;
+    top: 6px;
+    width: 12px;
+  }
+}

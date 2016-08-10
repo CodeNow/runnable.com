@@ -32,7 +32,7 @@ function replacePriceAmount(replacePrice,price) {
 
 // set up stripe
 function setUpStripe(email,orgName,stripeButton) {
-  var paymentCard = document.getElementsByClassName('card-wrapper')[0];
+  var paymentCard = document.getElementsByClassName('card-flipper')[0];
   var checkImage = paymentCard.getElementsByClassName('icons-check')[0];
   var handler = StripeCheckout.configure({
     key: 'pk_test_sHr5tQaPtgwiE2cpW6dQkzi8',

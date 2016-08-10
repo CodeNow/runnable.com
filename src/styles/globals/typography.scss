@@ -42,17 +42,30 @@ h4 {
 
 // inline styles
 .small {
+
   font-size: 13px; // percentage was unreliable
   font-weight: $weight-normal; // reset if within header tags
 }
 
-.strong {
+.weight-light {
+  font-weight: $weight-light;
+}
+
+.weight-normal {
+  font-weight: $weight-normal;
+}
+
+.weight-strong {
   font-weight: $weight-bold;
 }
 
 .underline {
   border-bottom: 1px dotted;
   font-style: normal; // remove italics if em
+}
+
+.strike {
+  text-decoration: line-through;
 }
 
 .hr {
@@ -138,6 +151,10 @@ a {
   color: $gray;
 }
 
+.text-gray-light {
+  color: $gray-light;
+}
+
 .text-green {
   color: $green;
 }
@@ -148,6 +165,10 @@ a {
 
 .text-purple {
   color: $purple;
+}
+
+.text-red {
+  color: $red;
 }
 
 .text-white {
