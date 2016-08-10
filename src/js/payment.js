@@ -25,6 +25,7 @@ function replaceOrgName(replaceOrg,orgName) {
 
 // replace price
 function replacePriceAmount(replacePrice,price) {
+  price = price.replace('/','');
   for (i = 0; i < replacePrice.length; i++) {
     replacePrice[i].textContent = price;
   }
@@ -35,7 +36,7 @@ function setUpStripe(email,orgName,stripeButton) {
   var paymentCard = document.getElementsByClassName('card-flipper')[0];
   var checkImage = paymentCard.getElementsByClassName('icons-check')[0];
   var handler = StripeCheckout.configure({
-    key: 'pk_test_sHr5tQaPtgwiE2cpW6dQkzi8',
+    key: 'pk_live_5yYYZlYIwY3LwvKFaXY0jNlm',
     locale: 'auto',
     email: email,
     name: 'Runnable Preview',
@@ -73,7 +74,7 @@ window.addEventListener('load', function(){
     var spinner = document.getElementsByClassName('spinner-wrapper')[0];
 
     // hide query params
-    window.history.pushState('object or string', 'Title', '/preview-pricing' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split('?')[0]);
+    window.history.pushState('object or string', 'Title', '/private/setup-payment' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split('?')[0]);
 
     setUpStripe(email,orgName,stripeButton);
     replaceOrgName(replaceOrg,orgName);
