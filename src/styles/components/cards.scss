@@ -7,10 +7,12 @@
 
     .card-a {
       transform: rotate3d(0,1,0,180deg);
+      z-index: 1;
     }
 
     .card-b {
       transform: rotate3d(0,1,0,0);
+      z-index: 2;
     }
   }
 
