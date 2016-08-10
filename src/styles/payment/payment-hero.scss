@@ -54,7 +54,7 @@
       margin-top: 15px;
     }
 
-    .icons {
+    .li > .icons {
       color: $green;
       height: $input-xxs;
       margin: 3px 13px;
@@ -67,6 +67,15 @@
       font-size: 16px;
       margin: 15px;
       padding-bottom: 30px;
+    }
+
+    .link {
+      display: inline-block;
+
+      > .icons {
+        height: 9px;
+        width: 9px;
+      }
     }
   }
 
