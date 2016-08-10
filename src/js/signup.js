@@ -156,7 +156,7 @@ function xhrSubmit(e, form, formData, formName) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      sundipValidation('An error occured. Send us an email at <a class="link" href="' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
+      sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
