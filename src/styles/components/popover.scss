@@ -90,6 +90,13 @@
   visibility: hidden;
   z-index: 100;
 
+  &.in {
+    opacity: 1;
+    transform: scale3d(1,1,1) translate3d(-50%,0,0);
+    transition: all .15s ease-in-out;
+    visibility: visible;
+  }
+
   &.bottom {
     box-shadow: 0 1px 3px rgba($black,.1);
     top: calc(100% + 12px);
