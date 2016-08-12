@@ -47,12 +47,18 @@ function setUpStripe(email,orgName,stripeButton) {
       // Get the token ID to your server-side code for use.
       paymentCard.classList.add('flip');
       checkImage.classList.add('in');
+
+      // Track success
+      analytics.track('Payment Info Added');
     }
   });
 
   stripeButton.addEventListener('click',function(e) {
     handler.open();
     e.preventDefault();
+    
+    // Track button click
+    analytics.track('Clicked Add Payment Info');
   });
 
   // Close Checkout on page navigation:
@@ -65,7 +71,8 @@ function setUpStripe(email,orgName,stripeButton) {
 window.addEventListener('load', function(){
   var orgName = getParameterByName('org');
   var email = getParameterByName('email');
-  var price = getParameterByName('price');
+  // ensure price has two decimal digits
+  var price = parseFloat(getParameterByName('price')).toFixed(2);
 
   if (orgName && email && price) {
     var stripeButton = document.getElementsByClassName('btn-stripe')[0];
