@@ -1,5 +1,6 @@
 // needs to be more specific than the inline styles
 .calendar.calendar.calendar {
+  display: block;
   margin: 90px auto 0;
   max-width: 900px;
   min-height: 541px;
@@ -60,6 +61,10 @@
   }
 
   // forms
+  .bookingjs-bookpage {
+    display: block;
+  }
+
   .bookingjs-form-box {
     background: none;
     box-shadow: none;
