@@ -1,6 +1,13 @@
 .pricing-hero {
   padding-bottom: 0;
 
+  .popover {
+    line-height: 1.4;
+    white-space: normal;
+    width: 100%;
+    word-wrap: break-word;
+  }
+
   .grid-block {
     overflow: visible;
   }

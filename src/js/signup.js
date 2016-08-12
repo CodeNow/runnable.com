@@ -219,14 +219,15 @@ function submitForm(e) {
 function sundipValidation(resultMessage, form, formName) {
   var prevError = form.getElementsByClassName('red')[0];
   var error = document.createElement('small');
+  var submitButton = form.getElementsByTagName('button')[0];
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
 
-  error.classList.add('small','red','text-center');
+  error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
   error.innerHTML = resultMessage;
-  form.appendChild(error);
+  submitButton.appendChild(error);
 
   analytics.ready(function() {
     analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
