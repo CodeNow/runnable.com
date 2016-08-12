@@ -1,13 +1,6 @@
 .pricing-hero {
   padding-bottom: 0;
 
-  .popover {
-    line-height: 1.4;
-    white-space: normal;
-    width: 100%;
-    word-wrap: break-word;
-  }
-
   .grid-block {
     overflow: visible;
   }
@@ -144,15 +137,15 @@
       }
     }
 
-    .divider {
-      background: $gray-lightest;
-      height: 1px;
-      margin: auto 0 20px;
-      width: 100%;
-    }
-
     .input {
       margin-bottom: 10px;
+    }
+
+    .popover {
+      line-height: 1.4;
+      white-space: normal;
+      width: 100%;
+      word-wrap: break-word;
     }
   }
 
