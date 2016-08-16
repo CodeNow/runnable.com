@@ -21,7 +21,7 @@
       padding-left: 26px;
 
       // scss-lint:disable SelectorDepth
-      @for $i from 0 to 9 {
+      @for $i from 0 to 10 {
         &[start='#{$i}']::before {
           content: '#{$i}.' counters(item, '');
           counter-increment: item;
@@ -31,7 +31,7 @@
         }
       }
 
-      @for $i from 10 to 19 {
+      @for $i from 10 to 20 {
         &[start='#{$i}']::before {
           content: '#{$i}.' counters(item, '');
           counter-increment: item;
