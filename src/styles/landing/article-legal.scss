@@ -72,4 +72,9 @@
     margin: 60px auto 0;
     padding: 15px 30px;
   }
+
+  .underline {
+    border: 0; // override
+    text-decoration: underline;
+  }
 }
