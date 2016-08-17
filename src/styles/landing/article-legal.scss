@@ -1,0 +1,80 @@
+.article-legal {
+  margin: 0 auto;
+  max-width: 810px;
+  overflow: visible;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  .grid-content + .grid-content {
+    margin-top: 60px;
+  }
+
+  .p + .p {
+    margin-top: 15px;
+  }
+
+  .ol .ol {
+    counter-reset: item;
+    list-style-type: none;
+    margin-top: 15px;
+
+    > .li {
+      padding-left: 26px;
+
+      // scss-lint:disable SelectorDepth
+      @for $i from 0 to 10 {
+        &[start='#{$i}']::before {
+          content: '#{$i}.' counters(item, '');
+          counter-increment: item;
+          left: -9px;
+          margin-left: -26px;
+          position: relative;
+        }
+      }
+
+      @for $i from 10 to 20 {
+        &[start='#{$i}']::before {
+          content: '#{$i}.' counters(item, '');
+          counter-increment: item;
+          left: -9px;
+          margin-left: -37px;
+          position: relative;
+        }
+      }
+      // scss-lint:enable SelectorDepth
+    }
+  }
+
+  .ul {
+    margin: 30px 0;
+  }
+
+  .list-lower-alpha {
+    list-style-type: lower-alpha;
+  }
+
+  .li + .li {
+    margin-top: 15px;
+  }
+
+  .small {
+    color: $gray;
+    display: block;
+    margin: 0 21px;
+  }
+
+  .address {
+    background: $gray-lighterest;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    display: table;
+    font-style: normal;
+    margin: 60px auto 0;
+    padding: 15px 30px;
+  }
+
+  .underline {
+    border: 0; // override
+    text-decoration: underline;
+  }
+}
