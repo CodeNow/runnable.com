@@ -56,10 +56,13 @@
     display: flex;
     height: 36px;
     padding: 0;
-    position: relative;
 
     + .btn {
       margin-left: 9px;
+    }
+
+    .popover-hover-wrapper {
+      left: 100%;
     }
 
     .a {
