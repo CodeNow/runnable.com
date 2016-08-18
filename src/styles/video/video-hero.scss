@@ -2,7 +2,7 @@
   // scss-lint:disable ColorVariable
   background: linear-gradient($purple-light, $purple, #475496);
   // scss-lint:enable ColorVariable
-  height: 570px;
+  height: 540px;
 
   @include media(sm) {
     height: 562px;
@@ -21,7 +21,7 @@
   }
 
   .h1 {
-    margin: 30px auto 6px;
+    margin: 0 auto 6px;
     max-width: 530px;
     position: relative;
     z-index: 1;
