@@ -60,6 +60,14 @@
       margin-top: 6px;
     }
   }
+
+  .month {
+    font-size: 30px;
+  }
+
+  .slash {
+    margin: 0 6px;
+  }
 }
 
 .section-plans {
@@ -158,19 +166,47 @@
   .small {
     font-size: 14px;
   }
+
+  .well {
+    background-color: rgba($green,.05);
+    border-color: rgba($green,.5);
+    border-radius: 3px;
+    color: darken($green,5);
+    line-height: 18px;
+    margin-bottom: 18px;
+    padding: 6px;
+  }
 }
 
-.price-wrapper {
-  border-bottom: 1px solid $gray-lightest;
+.price-wrapper,
+.notify-wrapper {
   border-top: 1px solid $gray-lightest;
-  margin: 12px 0 21px;
+  margin-top: 12px;
   padding: 12px 0 18px;
+}
+
+.notify-wrapper {
+  border-bottom: 1px solid $gray-lightest;
+  margin-bottom: 33px;
 }
 
 .price {
   font-size: 36px;
   line-height: 36px;
   margin: 3px 0;
+  position: relative;
+
+  &::after {
+    background-color: lighten($red,10);
+    content: '';
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    top: 17px;
+    transform: translatex(-50%) rotate(15deg);
+    width: 135px;
+  }
 }
 
 .plan-description {
