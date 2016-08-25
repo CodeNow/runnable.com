@@ -1,4 +1,4 @@
-# The front of the front-end for Runnable’s sandbox management platform.
+# The front of the front-end for Runnable’s environment management platform.
 
 ## Setup
 **`npm install`**
