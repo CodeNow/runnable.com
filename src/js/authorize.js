@@ -36,7 +36,7 @@
 
       // set up avatar
       var userAvatar = document.createElement('img');
-      userAvatar.src = user.gravatar;
+      userAvatar.src = whitelistedOrgs[0].org.avatar_url;
       userAvatar.classList.add('grid-content','shrink','avatar');
       userAvatar.height = 21;
       userAvatar.width = 21;
