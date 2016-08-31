@@ -37,17 +37,22 @@
       // set up avatar
       var userAvatar = document.createElement('img');
       userAvatar.src = user.gravatar;
-      userAvatar.classList.add('avatar');
+      userAvatar.classList.add('grid-content','shrink','avatar');
       userAvatar.height = 21;
       userAvatar.width = 21;
+
+      // set up org name
+      var userOrg = document.createElement('div');
+      userOrg.classList.add('text-overflow');
+      userOrg.textContent = org;
 
       // set up btn-sandbox in headers
       var headerBtnSandbox = document.createElement('a');
       var overflowMenu = document.getElementsByClassName('btn-overflow')[0];
       headerBtnSandbox.href = newURL;
       headerBtnSandbox.classList.add('grid-block','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
-      headerBtnSandbox.textContent = 'Your Sandbox';
       headerBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      headerBtnSandbox.appendChild(userOrg.cloneNode(true));
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
@@ -57,8 +62,8 @@
       menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
       menuDivider.classList.add('visible-xs');
       menuDivider.classList.remove('visible-md');
-      menuBtnSandbox.textContent = 'Your Sandbox';
       menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      menuBtnSandbox.appendChild(userOrg.cloneNode(true));
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links

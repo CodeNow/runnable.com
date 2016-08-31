@@ -1,5 +1,6 @@
 .btn-sandbox {
   flex-direction: row-reverse;
+  max-width: 158px;
   padding: 0 15px 0 12px;
 
   .avatar {
@@ -27,6 +28,7 @@
 
   @media (max-width: 480px) and (min-width: 400px) {
     font-size: 12px;
+    max-width: 120px;
     padding: 0 6px;
   }
 
