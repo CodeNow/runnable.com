@@ -4,130 +4,17 @@
     max-width: 600px;
   }
 
-  .card-flipper {
+  .card {
+    background: $gray-lighterest;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.15);
     color: $gray-dark;
     margin: 30px 15px 0;
     max-width: calc(100% - 30px);
     width: 570px;
 
-    &.flip {
-
-      .card-a {
-        position: absolute;
-        top: 0;
-      }
-
-      .card-b {
-        position: relative;
-      }
-    }
-  }
-
-  .card-a,
-  .card-b {
-    background: $gray-lighterest;
-    border-radius: $input-border-radius-lg;
-    box-shadow: 0 2px 9px rgba($black,.15);
-    position: relative;
-
     .p {
       text-shadow: none;
-
-      @include media(md) {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-  }
-
-  .card-a {
-    z-index: 2;
-
-    .ul {
-      font-size: 14px;
-      list-style-type: none;
-      margin: 15px 15px 15px 0;
-      padding: 0;
-
-      .ul {
-        border-left: $input-border solid $gray-lighter;
-        margin-bottom: 0;
-        margin-left: 45px;
-        padding-left: 15px;
-      }
-    }
-
-    .li + .li {
-      margin-top: 15px;
-    }
-
-    .li-anchor {
-      color: $green;
-      height: $input-xxs;
-      margin: 3px 13px;
-      padding: 3px;
-      width: $input-xxs;
-    }
-
-    .p {
-      font-size: 16px;
-      margin: 15px;
-    }
-
-    .p-header {
-      border-bottom: 1px solid $gray-lighter;
-      padding-bottom: 30px;
-    }
-
-    .p-footer {
-      border-top: 1px solid $gray-lighter;
-      padding-top: 30px;
-    }
-
-    // for external icon
-    .link {
-      display: inline-block;
-
-      > .icons {
-        height: 9px;
-        width: 9px;
-      }
-    }
-  }
-
-  .card-b {
-    position: absolute;
-    top: 0;
-
-    .icons {
-      background: $green-lighter;
-      border: $input-border solid $green;
-      border-radius: 50%;
-      color: $green;
-      height: $input-sm;
-      padding: 6px;
-      width: $input-sm;
-
-      &.in {
-        animation: spin-in .75s ease-in-out forwards;
-      }
-    }
-  }
-
-  .btn-stripe {
-    background: $blue;
-    border: $input-border solid darken($blue,5%);
-    color: $white;
-    font-weight: $weight-bold;
-
-    &:hover {
-      background: lighten($blue,10%);
-      color: $white;
-    }
-
-    &:active {
-      background: darken($blue,5%);
-      color: $white;
     }
   }
 }
