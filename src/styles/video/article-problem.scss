@@ -1,0 +1,19 @@
+.article-problem {
+
+  .list {
+    margin-top: 30px;
+    max-width: 960px;
+
+    > .grid-block {
+      flex: 1 1 33.33%;
+    }
+  }
+
+  .img {
+    background: $gray-lightest;
+    border: 0;
+    border-radius: $input-border-radius-lg;
+    height: 150px;
+    width: 150px;
+  }
+}
