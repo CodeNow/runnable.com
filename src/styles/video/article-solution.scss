@@ -1,0 +1,59 @@
+.article-solution {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#475496, $purple, $purple-light);
+  // scss-lint:enable ColorVariable
+  border-top: 1px solid rgba($black,.1);
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .h3 {
+    color: $white;
+    max-width: 660px;
+  }
+
+  .list {
+    margin-top: 45px;
+    max-width: 660px;
+    padding-left: 0;
+  }
+
+  .list-item {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 1px 3px rgba($black,.1);
+
+    + .list-item {
+      border-top: 1px solid $gray-lighter;
+      margin-top: 30px;
+    }
+  }
+
+  .img {
+    background: $gray-lightest;
+    border: 0;
+    border-radius: $input-border-radius-lg;
+    height: 150px;
+    width: 150px;
+
+    &:first-child {
+      margin-right: 30px;
+    }
+
+    &:last-child {
+      margin-left: 45px;
+    }
+  }
+}
