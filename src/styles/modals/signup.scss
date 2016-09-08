@@ -198,7 +198,7 @@
 
   .card {
     background: $gray-lighterest;
-    border: $input-border solid $gray-lighter;
+    border: $input-border-lg solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     margin-bottom: 15px;
     margin-top: 60px;
@@ -219,7 +219,7 @@
       margin: 0 auto;
       position: absolute;
       right: 0;
-      top: -119px;
+      top: -120px;
       z-index: 1;
     }
   }
