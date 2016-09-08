@@ -52,31 +52,6 @@
     }
   }
 
-  .product-link {
-    display: flex;
-    height: 36px;
-    padding: 0;
-
-    + .btn {
-      margin-left: 9px;
-    }
-
-    .popover-hover-wrapper {
-      left: 100%;
-    }
-
-    .a {
-      padding: 0 15px;
-      z-index: 1; // so you can click it
-    }
-
-    .icons-chevron-down {
-      height: $input-sm;
-      margin-left: 6px;
-      width: 12px;
-    }
-  }
-
   .btn-white {
     background: rgba($white,.1);
     border: 2px solid rgba($white,.75);

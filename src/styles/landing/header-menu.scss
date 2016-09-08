@@ -22,48 +22,19 @@
 
 .popover-header-menu {
 
-  @include media(sm) {
-    padding-right: 0;
-  }
-
-  @include media(xxs) {
+  @include media(xxxs) {
     padding: 9px 0 9px 9px;
     width: calc(100vw - 30px);
   }
 
-  .btn-product {
-    @include media(xxs) {
-      width: 150px;
-    }
-
-    + .btn {
-      margin-top: 9px;
-    }
-
-    .small {
-      @include media(xxs) {
-        display: none;
-      }
-    }
-  }
-
-  .list-product {
-    padding: 0 15px 0 0;
-
-    @include media(xxs) {
-      padding-right: 9px;
-    }
-  }
-
   .list {
     @include media(sm) {
-      border-left: 1px solid $gray-lighter;
       margin-bottom: -15px;
       margin-top: -15px;
-      padding: 15px;
+      padding: 15px 0;
     }
 
-    @include media(xxs) {
+    @include media(xxxs) {
       margin-bottom: -9px;
       margin-top: -9px;
       padding: 15px 9px;
