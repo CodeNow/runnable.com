@@ -52,10 +52,8 @@
 .no-videoautoplay {
 
   .video-img-wrapper {
-    background: none;
     border: 0;
-    border-radius: 0;
-    box-shadow: 0 3px 9px rgba($black,.15);
+    overflow: hidden;
   }
 
   .video-embed,
