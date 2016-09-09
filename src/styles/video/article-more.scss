@@ -1,8 +1,8 @@
 .article-more {
-  background: $white;
+  background: linear-gradient($white, $gray-lighterest);
+  border-bottom: 1px solid $gray-lightest;
   border-top: 1px solid rgba($black,.1);
   margin-bottom: 0;
-  padding-bottom: 0;
   padding-top: 60px;
   z-index: 1;
 
@@ -10,42 +10,39 @@
     padding-top: 45px;
   }
 
+  .grid-container {
+    margin-top: 60px;
+
+    > .grid-block {
+      flex: 1 1 50%;
+    }
+  }
+
+  .list-companies {
+    flex-wrap: wrap;
+    max-width: 360px;
+    padding-left: 0;
+
+    .img {
+      background: $gray-lightest;
+      border: 0;
+      border-radius: $input-border-radius-lg;
+      height: 81px;
+      margin: 15px;
+      width: 90px;
+    }
+  }
+
   .h3 {
-    font-size: 24px;
-    line-height: 1.3;
-    margin: 24px auto;
     max-width: 470px;
-
-    @include media(xs) {
-      font-size: 21px;
-      margin-top: 0;
-      max-width: 360px;
-    }
-
-    @include media(xxxs) {
-      font-size: 18px;
-    }
   }
 
   // buttons
   .btn-wrapper {
-    margin: 15px auto 90px;
-
-    @include media(xs) {
-      margin-bottom: 45px;
-    }
-
-    @include media(xxs) {
-      flex-flow: column nowrap;
-    }
+    margin-top: 15px;
 
     .green + .gray {
       margin-left: 15px;
-
-      @include media(xxs) {
-        margin-left: 0;
-        margin-top: 15px;
-      }
     }
   }
 }
