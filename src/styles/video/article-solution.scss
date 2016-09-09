@@ -1,8 +1,9 @@
 .article-solution {
   // scss-lint:disable ColorVariable
-  background: linear-gradient(#475496, $purple, $purple-light);
+  background: linear-gradient(#475496, $blue);
   // scss-lint:enable ColorVariable
   border-top: 1px solid rgba($black,.1);
+  overflow: visible;
 
   &::after {
     background: url(../images/confetti.png);
@@ -18,42 +19,39 @@
     z-index: 0;
   }
 
-  .h3 {
-    color: $white;
-    max-width: 660px;
-  }
-
-  .list {
-    margin-top: 45px;
-    max-width: 660px;
-    padding-left: 0;
-  }
-
-  .list-item {
+  .card {
     background: $white;
     border: 1px solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 1px 3px rgba($black,.1);
+    margin-top: -210px;
+    max-width: 960px;
+    padding: 0 30px;
+    position: relative;
+    z-index: 1;
+  }
 
-    + .list-item {
-      border-top: 1px solid $gray-lighter;
-      margin-top: 30px;
-    }
+  .h3 + .p {
+    font-size: 24px;
+  }
+
+  .card-header {
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  .list {
+    padding-left: 0;
+  }
+
+  .list-item {
+    flex: 1 1 33.33%;
   }
 
   .img {
     background: $gray-lightest;
     border: 0;
     border-radius: $input-border-radius-lg;
-    height: 150px;
-    width: 150px;
-
-    &:first-child {
-      margin-right: 30px;
-    }
-
-    &:last-child {
-      margin-left: 45px;
-    }
+    height: 120px;
+    width: 120px;
   }
 }

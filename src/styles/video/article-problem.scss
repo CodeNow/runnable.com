@@ -1,4 +1,10 @@
 .article-problem {
+  padding-bottom: 180px;
+
+  .h3 + .p {
+    font-size: 24px;
+    max-width: 720px;
+  }
 
   .list {
     margin-top: 30px;
