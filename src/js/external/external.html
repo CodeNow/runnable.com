@@ -43,6 +43,8 @@
     analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
+    ga('require', 'linker');
+    ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
