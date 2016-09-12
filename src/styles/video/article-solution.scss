@@ -25,7 +25,7 @@
     border-radius: $input-border-radius-lg;
     box-shadow: 0 1px 3px rgba($black,.1);
     margin-top: -210px;
-    max-width: 960px;
+    max-width: 1020px;
     padding: 0 30px;
     position: relative;
     z-index: 1;
@@ -35,23 +35,11 @@
     font-size: 24px;
   }
 
-  .card-header {
-    border-bottom: 1px solid $gray-lighter;
-  }
-
   .list {
     padding-left: 0;
   }
 
   .list-item {
     flex: 1 1 33.33%;
-  }
-
-  .img {
-    background: $gray-lightest;
-    border: 0;
-    border-radius: $input-border-radius-lg;
-    height: 120px;
-    width: 120px;
   }
 }
