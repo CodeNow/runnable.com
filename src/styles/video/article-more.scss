@@ -19,13 +19,12 @@
     max-width: 360px;
     padding-left: 0;
 
-    .img {
-      background: $gray-lightest;
-      border: 0;
-      border-radius: $input-border-radius-lg;
-      height: 81px;
+    .list-item {
       margin: 15px;
-      width: 90px;
+    }
+
+    .img {
+      opacity: .3;
     }
   }
 
