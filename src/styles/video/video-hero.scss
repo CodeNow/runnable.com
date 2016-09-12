@@ -47,17 +47,16 @@
 }
 
 .video-img-wrapper {
-  background: $purple;
-  border: 1px solid darken($purple,5%);
+  background: $black;
   border-radius: $input-border-radius-lg;
-  box-shadow: 0 0 15px rgba($black,.3);
+  box-shadow: 0 0 15px rgba($black,.2);
   height: 342px;
   left: 0;
   margin: auto;
+  overflow: hidden;
   position: relative;
   right: 0;
   top: 30px;
-  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   width: 608px;
   z-index: 2;
 
@@ -77,52 +76,10 @@
   }
 }
 
-.video-img {
-  border-radius: $input-border-radius-lg - 1px;
-  cursor: pointer;
-  display: block;
+// no autoplay
+.mobile-video-embed {
   height: 100%;
-  opacity: .75;
-  position: absolute;
-  top: 0;
-  transform-origin: 50% 0%;
+  position: relative;
   width: 100%;
-
-  @include media(xxs) {
-    pointer-events: none;
-  }
-
-  &:hover {
-    opacity: .9;
-  }
-}
-
-.video-link {
-  border-radius: $input-sm;
-  left: 0;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  top: 58%;
-  transform-origin: 50% 0%;
-  width: 230px;
-  z-index: 9;
-
-  @include media(xxs) {
-    pointer-events: none;
-  }
-
-  @include media(xxxs) {
-    bottom: -$input-sm / 2;
-    top: auto;
-  }
-
-  &:hover ~ .video-img {
-    opacity: .9;
-  }
-
-  .img {
-    position: relative;
-    top: 3px;
-  }
+  z-index: 100;
 }
