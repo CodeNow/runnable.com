@@ -1,6 +1,11 @@
 .article-problem {
   padding-bottom: 180px;
 
+  > .h3,
+  > .p {
+    padding: 0 15px;
+  }
+
   .h3 + .p {
     font-size: 24px;
     max-width: 720px;
@@ -9,16 +14,30 @@
   .list {
     margin-top: 30px;
     max-width: 960px;
+    padding: 0;
+
+    @include media(sm) {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
 
     > .grid-block {
       flex: 1 1 33.33%;
+
+      @include media(sm) {
+        align-items: center;
+        flex: 0 1 50%;
+      }
+
+      @include media(xs) {
+        flex: 1 1 auto;
+        max-width: 360px;
+      }
     }
   }
 
   .img {
-    // background: $gray-lightest;
-    // border: 0;
-    // border-radius: $input-border-radius-lg;
     height: 120px;
     width: 120px;
   }
