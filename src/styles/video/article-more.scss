@@ -35,9 +35,9 @@
     line-height: 1.4;
     margin-top: 0;
     max-width: 470px;
-    padding: 0 15px;
 
     @include media(xs) {
+      padding: 0 15px;
       text-align: center;
     }
   }

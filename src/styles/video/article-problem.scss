@@ -3,12 +3,17 @@
 
   > .h3,
   > .p {
+    line-height: 1.6;
     padding: 0 15px;
   }
 
   .h3 + .p {
     font-size: 24px;
     max-width: 720px;
+
+    @include media(sm) {
+      font-size: 21px;
+    }
   }
 
   .list {
@@ -16,23 +21,27 @@
     max-width: 960px;
     padding: 0;
 
-    @include media(sm) {
+    @include media(md) {
       flex-wrap: wrap;
       justify-content: center;
       text-align: center;
     }
 
+    @include media(sm) {
+      max-width: 360px;
+    }
+
     > .grid-block {
       flex: 1 1 33.33%;
 
-      @include media(sm) {
+      @include media(md) {
         align-items: center;
         flex: 0 1 50%;
+        max-width: 360px;
       }
 
-      @include media(xs) {
+      @include media(sm) {
         flex: 1 1 auto;
-        max-width: 360px;
       }
     }
   }
