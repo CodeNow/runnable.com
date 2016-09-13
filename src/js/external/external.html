@@ -13,6 +13,8 @@
     analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
+    ga('require', 'linker');
+    ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
@@ -23,7 +25,7 @@
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
-    
+
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
     for (var j=0; j<signIn.length; j++) {

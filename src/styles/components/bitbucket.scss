@@ -1,24 +1,27 @@
-.modal-backdrop.in + .bitbucket-box {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
+.modal-backdrop.in {
 
-  @media (max-width: 1300px) {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-  }
-}
-
-.modal .bitbucket-box {
-  @media (max-width: 1300px) {
-    box-shadow: none;
-    margin: 30px auto 0;
+  + .bitbucket-box {
     opacity: 1;
     pointer-events: auto;
-    position: static;
-    right: auto;
     visibility: visible;
+
+    @media (max-width: 1300px) {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+  }
+
+  .bitbucket-box {
+    @media (max-width: 1300px) {
+      box-shadow: none;
+      margin: 30px auto 0;
+      opacity: 1;
+      pointer-events: auto;
+      position: static;
+      right: auto;
+      visibility: visible;
+    }
   }
 }
 

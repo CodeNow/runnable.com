@@ -242,6 +242,10 @@
   &.reversed {
     letter-spacing: 0;
   }
+
+  &.btn-lg {
+    border-width: $input-border-lg;
+  }
 }
 
 .blue,
