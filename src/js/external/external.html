@@ -1,33 +1,3 @@
-<!-- strucutred data -->
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "url": "https://runnable.com",
-  "logo": "https://runnable.com/images/runnable-logo.svg",
-  "sameAs": [
-    "https://www.facebook.com/runnable",
-    "https://twitter.com/GetRunnable",
-    "https://github.com/Runnable",
-    "https://plus.google.com/+RunnableHQ"
-  ],
-  "contactPoint": [{
-    "@type": "ContactPoint",
-    "telephone": "+1-844-786-6225",
-    "contactType": "customer service",
-    "contactOption": "TollFree"
-  }]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "WebSite",
-  "name": "Runnable",
-  "url": "https://runnable.com"
-}
-</script>
-
 <!-- segment.io-->
 <script>
   var match,
@@ -55,7 +25,7 @@
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
-    
+
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
     for (var j=0; j<signIn.length; j++) {
