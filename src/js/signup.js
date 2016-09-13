@@ -265,7 +265,7 @@ window.addEventListener('load', function(){
     setupForm('bitbucket');
   }
   // if pricing page
-  if (window.location.pathname === '/private/preview-pricing/' || window.location.pathname === '/pricing/') {
+  if (window.location.pathname === '/pricing/') {
     setupForm('enterprise');
   }
 });

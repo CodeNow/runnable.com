@@ -1,11 +1,12 @@
 .footer {
   align-items: center;
   background: linear-gradient($gray-lighterest, $white);
-  border-top: 1px solid $gray-lighter;
+  border-top: 1px solid $gray-lightest;
   margin: 0 auto;
   overflow: visible;
   padding-top: 30px;
   position: relative;
+  width: 100vw;
 
   .link-wrapper {
     padding: 60px 30px 60px 0;
