@@ -111,4 +111,20 @@
   .img {
     max-width: 100%;
   }
+
+  // cta
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $blue-lighter;
+    margin-top: 30px;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+  }
 }
