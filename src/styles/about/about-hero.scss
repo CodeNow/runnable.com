@@ -2,10 +2,10 @@
   background: linear-gradient($purple-light, $purple, $purple-dark);
 
   .p {
-    max-width: 750px;
+    max-width: 630px;
 
     @include media(sm) {
-      max-width: 420px;
+      max-width: 390px;
     }
   }
 }
