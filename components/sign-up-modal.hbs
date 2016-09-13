@@ -1,5 +1,5 @@
 <article class="grid-block vertical article article-form article-sign-up">
-  <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
+  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
@@ -20,12 +20,12 @@
       <li class="grid-block align-center list-item padding-xs">
         <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
         <div class="grid-block vertical">
-          <p class="p strong">Your Organization</p>
+          <p class="p weight-strong">Your Organization</p>
         </div>
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </ul>
   </div>
-  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="terms/" class="link">terms of service</a>.</p>
+  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
   <a href="{{loginUrl}}" class="grid-block align-center btn btn-lg green wrap-xxxs track-grant-access-github">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github">
@@ -48,7 +48,11 @@
       <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
       <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
-    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+    <button class="grid-block shrink btn btn-sm gray">
+      <div class="grid-block justify-center align-center">
+        <span class="grid-content shrink">Notify Me</span>
+      </div>
+    </button>
   </form>
   <div class="grid-block vertical hide">
     <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>

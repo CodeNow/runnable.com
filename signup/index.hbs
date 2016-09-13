@@ -2,14 +2,20 @@
 <html lang="en">
 
   <head>
-    
+    <!-- optimizely must be the first tag in the head -->
+<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
+
+
 <base href="/runnable.com/">
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="styles/index.css">
+
 <script>
   (function(self) {
   'use strict';
@@ -483,18 +489,23 @@
 
       // set up avatar
       var userAvatar = document.createElement('img');
-      userAvatar.src = user.gravatar;
-      userAvatar.classList.add('avatar');
+      userAvatar.src = whitelistedOrgs[0].org.avatar_url;
+      userAvatar.classList.add('grid-content','shrink','avatar');
       userAvatar.height = 21;
       userAvatar.width = 21;
+
+      // set up org name
+      var userOrg = document.createElement('div');
+      userOrg.classList.add('text-overflow');
+      userOrg.textContent = org;
 
       // set up btn-sandbox in headers
       var headerBtnSandbox = document.createElement('a');
       var overflowMenu = document.getElementsByClassName('btn-overflow')[0];
       headerBtnSandbox.href = newURL;
       headerBtnSandbox.classList.add('grid-block','btn','btn-sm','btn-white','text-white','strong','btn-sandbox','hidden-xs');
-      headerBtnSandbox.textContent = 'Your Sandbox';
       headerBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      headerBtnSandbox.appendChild(userOrg.cloneNode(true));
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
@@ -504,8 +515,8 @@
       menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
       menuDivider.classList.add('visible-xs');
       menuDivider.classList.remove('visible-md');
-      menuBtnSandbox.textContent = 'Your Sandbox';
       menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      menuBtnSandbox.appendChild(userOrg.cloneNode(true));
       document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
@@ -520,6 +531,37 @@
 }());
 
 </script>
+
+<!-- structured data -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://runnable.com",
+  "logo": "https://runnable.com/images/runnable-logo.svg",
+  "sameAs": [
+    "https://www.facebook.com/runnable",
+    "https://twitter.com/GetRunnable",
+    "https://github.com/Runnable",
+    "https://plus.google.com/+RunnableHQ"
+  ],
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+1-844-786-6225",
+    "contactType": "customer service",
+    "contactOption": "TollFree"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "name": "Runnable",
+  "url": "https://runnable.com"
+}
+</script>
+
     <title>Sign up for Runnable.</title>
     <script ugly>
       // modals
@@ -545,7 +587,7 @@ function openModal(event,dragging) {
     document.addEventListener('keydown', escModal);
     // bind sign up events
     if (modalName === 'sign-up') {
-      setupBitbucket();
+      setupForm('bitbucket');
     }
   }
 }
@@ -571,15 +613,19 @@ function closeModal(event) {
   document.removeEventListener('keydown', escModal);
 }
 
-// sign up
-function setupBitbucket() {
-  var bitbucketForm = document.getElementsByClassName('form-bitbucket');
-
-  for (i = 0; i < bitbucketForm.length; i++) {
-    bitbucketForm[i].addEventListener('change', makeDirty);
-    bitbucketForm[i].addEventListener('submit', submitBitbucket);
-    bitbucketForm[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
-    bitbucketForm[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
+// set up forms
+function setupForm(formName) {
+  var formEl;
+  if (formName === 'bitbucket') {
+    formEl = document.getElementsByClassName('form-bitbucket');
+  } else if (formName === 'enterprise') {
+    formEl = document.getElementsByClassName('form-enterprise');
+  }
+  for (i = 0; i < formEl.length; i++) {
+    formEl[i].addEventListener('change', makeDirty);
+    formEl[i].addEventListener('submit', submitForm);
+    formEl[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
+    formEl[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
   }
 }
 
@@ -640,7 +686,7 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.innerHTML += '<div class="spinner-wrapper spinner-md"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -656,9 +702,18 @@ function toggleEditing(form, state) {
   }
 }
 
-function xhrSubmit(e, form, formData) {
+function xhrSubmit(e, form, formData, formName) {
   var xhr = new XMLHttpRequest();
-  var xhrUrl = 'https://codenow.com:8443/bitbucket';
+  var xhrUrl;
+  var supportEmail;
+
+  if (formName === 'bitbucket') {
+    xhrUrl = 'https://codenow.com:8443/bitbucket';
+    supportEmail = 'bitbucket@runnable.com';
+  } else if (formName === 'enterprise') {
+    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
+    supportEmail = 'preview@runnable.com';
+  }
 
   // send form
   xhr.open('POST', xhrUrl, true);
@@ -667,7 +722,7 @@ function xhrSubmit(e, form, formData) {
   xhr.onreadystatechange = function() {
     if ( xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
-      activeCampaignValidation('An error occured. Send us an email at <a class="link" href="mailto:bitbucket@runnable.com">bitbucket@runnable.com</a> for help.', form);
+      sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
       toggleEditing(form, 'enable'); // re-enables form
     }
   };
@@ -683,7 +738,7 @@ function xhrSubmit(e, form, formData) {
     // 1 = success from active campaign
     if (resultCode === -1 || resultCode === 0) {
       shakeForm(e);
-      activeCampaignValidation(resultMessage, form);
+      sundipValidation(resultMessage, form, formName);
     }
     if (resultCode === 1) {
       // tell the user something nice
@@ -696,8 +751,15 @@ function xhrSubmit(e, form, formData) {
   };
 }
 
-function submitBitbucket(e) {
+function submitForm(e) {
   var form = e.target;
+  var formName;
+
+  if (form.classList.contains('form-bitbucket')) {
+    formName = 'bitbucket';
+  } else if (form.classList.contains('form-enterprise')) {
+    formName = 'enterprise';
+  }
 
   e.preventDefault();
   if (form.checkValidity()) {
@@ -711,28 +773,30 @@ function submitBitbucket(e) {
       email: emailValue,
       name: nameValue
     };
-    // Send event to Segment
+
     analytics.ready(function() {
-      analytics.track('Bitbucket-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
     });
     formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData);
+    xhrSubmit(e, form, formData, formName);
   }
 }
 
-function activeCampaignValidation(resultMessage, form) {
+function sundipValidation(resultMessage, form, formName) {
   var prevError = form.getElementsByClassName('red')[0];
   var error = document.createElement('small');
+  var submitButton = form.getElementsByTagName('button')[0];
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
-  error.classList.add('small','red','text-center');
+
+  error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
   error.innerHTML = resultMessage;
-  form.appendChild(error);
-  // segment tracking
+  submitButton.appendChild(error);
+
   analytics.ready(function() {
-    analytics.track('Error bitbucket-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
+    analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
   });
 }
 
@@ -764,7 +828,11 @@ window.addEventListener('load', function(){
   }
   // if sign up page
   if (window.location.pathname === '/signup/') {
-    setupBitbucket();
+    setupForm('bitbucket');
+  }
+  // if pricing page
+  if (window.location.pathname === '/pricing/') {
+    setupForm('enterprise');
   }
 });
 
@@ -825,7 +893,7 @@ window.addEventListener('load', function(){
       <div class="modal-backdrop in" id="sign-up">
         <div class="modal">
           <article class="grid-block vertical article article-form article-sign-up">
-  <h1 class="h1 text-center strong padding-sm">Sign up with GitHub.</h1>
+  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
@@ -846,12 +914,12 @@ window.addEventListener('load', function(){
       <li class="grid-block align-center list-item padding-xs">
         <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
         <div class="grid-block vertical">
-          <p class="p strong">Your Organization</p>
+          <p class="p weight-strong">Your Organization</p>
         </div>
         <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
     </ul>
   </div>
-  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="terms/" class="link">terms of service</a>.</p>
+  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
   <a href="{{loginUrl}}" class="grid-block align-center btn btn-lg green wrap-xxxs track-grant-access-github">
     <svg class="icons hidden-xs">
       <use xlink:href="#icons-github">
@@ -874,7 +942,11 @@ window.addEventListener('load', function(){
       <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
       <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
-    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+    <button class="grid-block shrink btn btn-sm gray">
+      <div class="grid-block justify-center align-center">
+        <span class="grid-content shrink">Notify Me</span>
+      </div>
+    </button>
   </form>
   <div class="grid-block vertical hide">
     <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
@@ -897,7 +969,11 @@ window.addEventListener('load', function(){
       <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
       <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
-    <button class="grid-block shrink btn btn-sm gray">Notify Me</button>
+    <button class="grid-block shrink btn btn-sm gray">
+      <div class="grid-block justify-center align-center">
+        <span class="grid-content shrink">Notify Me</span>
+      </div>
+    </button>
   </form>
   <div class="grid-block vertical hide">
     <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
@@ -920,6 +996,8 @@ window.addEventListener('load', function(){
     analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
+    ga('require', 'linker');
+    ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
       clientId: ga.getAll()[0].get('clientId'),
       querystrings: urlParams
@@ -930,7 +1008,7 @@ window.addEventListener('load', function(){
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
-    
+
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
     for (var j=0; j<signIn.length; j++) {
