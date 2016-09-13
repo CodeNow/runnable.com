@@ -132,10 +132,6 @@
   transform-origin: 50% 0%;
   width: 100%;
 
-  @include media(xxs) {
-    pointer-events: none;
-  }
-
   &:hover {
     opacity: 1;
   }
@@ -152,15 +148,6 @@
   transform-origin: 50% 0%;
   width: 230px;
   z-index: 9;
-
-  @include media(xxs) {
-    pointer-events: none;
-  }
-
-  @include media(xxxs) {
-    bottom: -$input-sm / 2;
-    top: auto;
-  }
 
   &:hover ~ .video-img {
     opacity: 1;
