@@ -1,12 +1,48 @@
+<!-- optimizely must be the first tag in the head -->
+<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
+
 @@if (env != 'gh') {<base href="/">}
 @@if (env === 'gh') {<base href="/runnable.com/">}
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="styles/index.css">
+
 <script>
   @@include('js/external/fetch.js')
   @@include('js/authorize.js')
+</script>
+
+<!-- structured data -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://runnable.com",
+  "logo": "https://runnable.com/images/runnable-logo.svg",
+  "sameAs": [
+    "https://www.facebook.com/runnable",
+    "https://twitter.com/GetRunnable",
+    "https://github.com/Runnable",
+    "https://plus.google.com/+RunnableHQ"
+  ],
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+1-844-786-6225",
+    "contactType": "customer service",
+    "contactOption": "TollFree"
+  }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "name": "Runnable",
+  "url": "https://runnable.com"
+}
 </script>
