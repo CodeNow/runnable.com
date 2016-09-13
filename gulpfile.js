@@ -272,7 +272,7 @@ gulp.task('deploy:gh', function(cb) {
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'inject', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'inject', 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'inject', 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
