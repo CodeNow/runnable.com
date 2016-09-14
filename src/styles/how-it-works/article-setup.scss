@@ -28,6 +28,11 @@
     + .btn-toggle {
       margin-left: 15px;
     }
+
+    .img {
+      align-self: center; // alignment in safari
+      flex-shrink: 0;
+    }
   }
 
   .figure {
