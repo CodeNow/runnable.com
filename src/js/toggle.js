@@ -20,10 +20,19 @@ function toggle(e) {
     }
 
     for (i = 0; i < toggleElements.length; i++) {
-      toggleElements[i].classList.add('hide');
 
-      if (toggleType === toggleElements[i].getAttribute('data-toggle')) {
-        toggleElements[i].classList.remove('hide');
+      if (toggleElements[i].classList.contains('fade')) {
+        toggleElements[i].classList.remove('in');
+
+        if (toggleType === toggleElements[i].getAttribute('data-toggle')) {
+          toggleElements[i].classList.add('in');
+        }
+      } else {
+        toggleElements[i].classList.add('hide');
+
+        if (toggleType === toggleElements[i].getAttribute('data-toggle')) {
+          toggleElements[i].classList.remove('hide');
+        }
       }
     }
 

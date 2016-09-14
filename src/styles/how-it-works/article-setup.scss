@@ -8,12 +8,17 @@
     background: transparent;
     border-color: transparent;
     border-radius: $input-border-radius-lg;
+    color: $purple;
     font-size: 16px;
     font-weight: $weight-light;
     padding: 15px;
     text-align: left;
     white-space: normal;
     width: 300px;
+
+    &:hover:not([disabled]) {
+      border-color: $purple;
+    }
 
     &:active,
     &.active {
@@ -28,7 +33,23 @@
   .figure {
     border-bottom: 1px solid $gray-lighter;
     height: 261px;
-    margin-top: 45px;
+    margin: 45px auto 0;
+    overflow: hidden;
     padding: 0 30px;
+    position: relative;
+    width: 810px;
+
+    .fade {
+      left: 30px;
+      opacity: 0;
+      position: absolute;
+      right: 30px;
+      top: 0;
+      transition: opacity .3s ease-in-out;
+
+      &.in {
+        opacity: 1;
+      }
+    }
   }
 }
