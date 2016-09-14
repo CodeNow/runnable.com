@@ -1,10 +1,8 @@
 // defaults to btn-md
-%btn,
 .btn {
   border: 0;
   border-radius: $input-border-radius;
   cursor: pointer;
-  display: inline-block;
   font-size: 18px;
   font-weight: $weight-normal;
   padding: 0 15px;
@@ -12,6 +10,10 @@
   text-align: center;
   user-select: none;
   white-space: nowrap;
+
+  &:not(.grid-block) {
+    display: inline-block;
+  }
 
   // for <a> elemnts
   &:hover,
@@ -23,17 +25,7 @@
     transition: none;
   }
 
-  // animations
-  &.active,
-  &.in {
-
-    > .icons-add {
-      transform: rotate3d(0,0,1,135deg) scale3d(.75,.75,1);
-    }
-  }
-
-  &[disabled],
-  &.disabled {
+  &[disabled] {
     cursor: not-allowed;
     opacity: .5;
   }
@@ -46,6 +38,21 @@
 
     &.btn-xxs {
       margin-right: -3px;
+    }
+  }
+
+  // spinner
+  > .spinner-wrapper {
+    align-items: center;
+    display: flex;
+    height: 100%;
+
+    &:first-child {
+      margin-right: 5px;
+    }
+
+    &:last-child {
+      margin-left: 5px;
     }
   }
 
@@ -105,11 +112,10 @@
 // only for inline buttons
 %btn-xxs,
 .btn-xxs {
-  border-radius: $input-border-radius-xxs;
   font-size: 12px;
   height: $input-xxs;
   line-height: $input-line-height-xxs;
-  padding: 0 3px;
+  padding: 0 5px;
 }
 
 // .btn-icon
@@ -148,28 +154,6 @@
   // if .arrow-down
   > .icons-arrow-down {
     width: 24px;
-  }
-}
-
-// help
-.btn-help {
-  background: rgba($white,.6);
-  border: 1px solid $gray-light;
-  border-radius: 50%;
-  color: $gray;
-  height: 24px;
-  text-decoration: none;
-  width: 24px;
-
-  &:hover {
-    border-color: currentColor;
-    color: rgba($blue,.6);
-  }
-
-  &:active,
-  &.active {
-    border-color: currentColor;
-    color: $blue;
   }
 }
 
@@ -230,6 +214,10 @@
   font-weight: $weight-bold;
   text-decoration: none;
 
+  &:not([disabled]).btn-hint {
+    @extend %btn-hint;
+  }
+
   &:active {
     transition: none;
   }
@@ -243,8 +231,8 @@
     letter-spacing: 0;
   }
 
-  &.btn-lg {
-    border-width: $input-border-lg;
+  &.btn-xxs {
+    border-width: 1px;
   }
 }
 
@@ -252,17 +240,20 @@
 %blue {
   color: $gray-light;
 
-  &.btn:not([disabled]):not(.disabled) {
+  &.btn:not([disabled]) {
+    background: $blue;
+    border-color: $blue-dark;
+    color: $white;
 
     &:hover,
     &.hover {
-      color: $blue;
+      background: lighten($blue,10%);
     }
 
     &:active,
     &.active,
     &.active:hover {
-      color: $blue;
+      background: $blue;
     }
   }
 }
@@ -271,9 +262,9 @@
 %gray {
   background: $gray-lighterest;
   border-color: $gray-lighter;
-  color: $gray-dark;
+  color: $gray;
 
-  &.btn:not([disabled]):not(.disabled) {
+  &.btn:not([disabled]) {
 
     &:hover,
     &.hover {
@@ -284,7 +275,7 @@
     &:active,
     &.active,
     &.active:hover {
-      background: $white;
+      background: lighten($purple-lightest,6%);
       border-color: $purple-light;
       color: $purple-light;
     }
@@ -296,7 +287,7 @@
   background: $gray;
   border-color: $gray-dark;
 
-  &.btn:not([disabled]):not(.disabled) {
+  &.btn:not([disabled]) {
 
     &:hover,
     &.hover {
@@ -315,10 +306,10 @@
 
 .green,
 %green {
-  background: #5fd377; // rgba($green,.81);
+  background: $green-dark; // rgba($green,.81);
   border-color: $green;
 
-  &.btn:not([disabled]):not(.disabled) {
+  &.btn:not([disabled]) {
 
     &:hover,
     &.hover {
@@ -339,7 +330,7 @@
   background: $orange-light;
   border-color: $orange;
 
-  &.btn:not([disabled]):not(.disabled) {
+  &.btn:not([disabled]) {
 
     &:hover,
     &.hover {
@@ -361,21 +352,20 @@
 
   &.btn {
     background: $purple-light;
-    border-color: $white;
+    border-color: $purple;
     color: $white;
 
-    &:not([disabled]):not(.disabled) {
+    &:not([disabled]) {
 
-      &:hover
+      &:hover,
       &.hover {
-        background: rgba($white,.1);
+        background: lighten($purple-light,10%);
       }
 
       &:active,
       &.active,
       &.active:hover {
-        background: $white;
-        color: $purple-light;
+        background: $purple;
       }
     }
   }
@@ -402,7 +392,7 @@
     border-color: $red-dark;
     color: $white;
 
-    &:not([disabled]):not(.disabled) {
+    &:not([disabled]) {
 
       &:hover,
       &.hover {
@@ -426,7 +416,7 @@
   &.btn {
     background: $white;
 
-    &:not([disabled]):not(.disabled) {
+    &:not([disabled]) {
 
       &:hover,
       &.hover {
@@ -436,11 +426,20 @@
       &:active,
       &.active,
       &.active:hover {
+        background: lighten($purple-lightest,6%);
         border-color: $purple-light;
         color: $purple-light;
 
         .icons-round {
           background: $purple-light;
+        }
+      }
+
+      &.btn-hint {
+
+        .card-body & {
+          border-top-width: $input-border;
+          z-index: 2;
         }
       }
     }
@@ -451,10 +450,28 @@
 .btn-cancel {
   background: transparent;
   border: $input-border solid transparent;
+  color: $gray;
 
   &:hover,
   &:active {
     background: $white;
+  }
+}
+
+// hint glow
+%btn-hint,
+.btn-hint {
+  border-color: rgba($blue,.45);
+  box-shadow: 0 0 6px rgba($blue,.35);
+
+  &:hover {
+    border-color: rgba($blue,.6);
+    box-shadow: none;
+  }
+
+  &:active {
+    border-color: currentColor;
+    box-shadow: none;
   }
 }
 
@@ -468,12 +485,10 @@
  }
 
 .btn-radio {
-  background: $white;
   border: $input-border solid transparent;
   border-radius: $input-border-radius;
   box-shadow: none;
   cursor: pointer;
-  display: inline-block;
   font-size: 16px;
   height: 72px;
   text-align: center;
@@ -481,42 +496,49 @@
   transition: none;
   user-select: none;
   white-space: nowrap;
-  width: 90px;
 
-  &:active,
-  &.active {
+  &:hover:not([disabled]) {
+    border-color: $gray-lighter;
+  }
+
+  &:active:not([disabled]),
+  &.active.active {
+    background: lighten($purple-lightest,6%);
+    border-color: $purple-light;
+    box-shadow: inset 0 0 0 1px $purple-light;
     color: $purple-light;
-    cursor: default;
   }
 
   &.active {
-    font-weight: $weight-bold;
+    cursor: default;
   }
 
   &:focus {
     outline: 0;
   }
+}
 
-  &.btn-lg {
-    height: 108px;
-    width: 120px;
+// add button
+.btn-add {
+  background: $white;
+  border: 1px solid $gray-lighter;
+  color: $gray-light;
+  line-height: initial;
+  overflow: hidden;
+  padding: 3px;
+  transition: none;
 
-    .img,
-    .iconnables {
-      margin-bottom: 6px;
-      width: 36px;
-    }
+  &.btn-sm {
+    width: $input-sm;
   }
 
-  &:last-child {
-    margin-right: 0;
+  &.btn-xs {
+    width: $input-xs;
   }
 
-  .img,
-  .iconnables {
-    display: block;
-    height: 33px;
-    margin: 0 auto;
-    width: 18px;
+  &.active {
+    background: $green;
+    border-color: $green;
+    color: $white;
   }
 }
