@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>How it works. — Runnable</title>
+    <script ugly>
+      @@include('js/signup.js')
+      @@include('js/svgs.js')
+      @@include('js/status.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ontouchstart>
+
+    @@include('images/icons.svg')
+    @@include('html/components/header.hbs')
+
+    <main class="grid-block vertical main">
+      @@include('html/how-it-works/how-it-works-hero.hbs')
+    </main>
+
+    @@include('html/components/footer.hbs')
+    @@include('html/components/form-modal.hbs')
+
+    @@include('js/external/external.html')
