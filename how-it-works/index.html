@@ -562,15 +562,15 @@
 }
 </script>
 
-    <title>Team Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),i=document.getElementById(a),s=i.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),i.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("bitbucket")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupForm(e){var t;for("bitbucket"===e?t=document.getElementsByClassName("form-bitbucket"):"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise")),i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var i,s,o=new XMLHttpRequest;"bitbucket"===a?(i="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"):"enterprise"===a&&(i="https://codenow.com:2096/notify/enterprise",s="preview@runnable.com"),o.open("POST",i,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,a),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),i=n.result_code,s=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==i&&0!==i||(shakeForm(e),sundipValidation(s,t,a)),1===i&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,i=n.querySelectorAll('[name="email"]')[0].value,s=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:i,name:s},analytics.ready(function(){analytics.track(t+"-list sign up",{email:i,name:s,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t)}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],i=document.createElement("small"),s=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),i.classList.add("popover","bottom","in","small","red","text-center"),i.innerHTML=e,s.appendChild(i),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function flipCard(e){for(var t,n,a=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("card-flipper"););if(n=i.getElementsByClassName("js-flipper"),"touchend"===a)for(t=0;t<n.length;t++)n[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===a)for(t=0;t<n.length;t++)n[t].addEventListener("touchend",flipCard)}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("bitbucket"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-flipper");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(i),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
+    <title>How it works. — Runnable</title>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("bitbucket")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupForm(e){var t;for("bitbucket"===e?t=document.getElementsByClassName("form-bitbucket"):"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise")),i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,l=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a)),1===s&&(t.classList.add("hide"),t.classList.remove("show"),l.classList.add("show"),l.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t)}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function toggle(e){var t,n,a=e.target,s=document.getElementsByClassName("js-toggler"),i=document.getElementsByClassName("js-toggle");if(!a.classList.contains("js-toggler"))for(;(a=a.parentElement)&&!a.classList.contains("js-toggler"););if(!a.classList.contains("active")){for(n=a.getAttribute("data-toggler"),t=0;t<s.length;t++)s[t].classList.remove("active");for(t=0;t<i.length;t++)i[t].classList.contains("fade")?(i[t].classList.remove("in"),n===i[t].getAttribute("data-toggle")&&i[t].classList.add("in")):(i[t].classList.add("hide"),n===i[t].getAttribute("data-toggle")&&i[t].classList.remove("hide"));a.classList.add("active")}}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("bitbucket"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-toggler");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",toggle),t[e].addEventListener("touchend",toggle)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
       Commit Hash: eb58c1018af0800181ad31bc85a44728131ff05b
       Commit Time: Wed Sep 14 16:43:48 2016 -0700
     -->
 
-  </head><body class="page-landing page-about" ontouchstart="">
+  </head><body class="page-landing" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
@@ -636,283 +636,31 @@
 </header>
 
 
-    <main class="grid-block vertical main about">
-      <article class="article hero about-hero">
-  <h1 class="h1 text-center">Team Runnable</h1>
-  <p class="p text-center">Meet the team that’s on a mission to help dev teams work smarter using the power of environments.</p>
-  <div class="grid-block grid-container justify-center team-grid">
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/yashkumar.jpg" alt="Yash Kumar" height="215" width="300">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Yash Kumar</strong>
-        <small class="small">CEO</small>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/kenolofsen.jpg" height="215" width="300" alt="Ken Olofsen">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Ken Olofsen</strong>
-        <small class="small">President & COO</small>
-        <div class="grid-block justify-center">
-          <a class="link-social" href="http://www.linkedin.com/in/kolofsen" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://twitter.com/kolofsen" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/sundippatel.jpg" alt="Sundip Patel" height="215" width="300">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Sundip Patel</strong>
-        <small class="small">Product Manager</small>
-        <div class="grid-block justify-center">
-          <a class="link-social" href="https://www.linkedin.com/in/sundippatel" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://twitter.com/sundippatel" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/prafulrana.jpg" alt="Raful Rana" height="215" width="300">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Praful Rana</strong>
-        <small class="small">Product Manager</small>
-        <div class="grid-block justify-center">
-          <a class="link-social link-github" href="http://github.com/prafulrana" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://in.linkedin.com/in/prafulrana" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-linkedin.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card">
-      <div class="grid-block vertical justify-center card-a">
-        <img class="grid-block shrink img" src="images/team/tonyli.jpg" alt="Tony Li" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/luna-rounded.jpg" height="60" width="60" alt="luna">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Tony Li</strong>
-          <small class="small">Designer</small>
-          <div class="grid-block justify-center">
-            <a class="link-social link-github" href="https://github.com/runnabro" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-            </a>
-          </div>
-        </figcaption>
-      </div>
-      <div class="grid-block vertical justify-center card-b">
-        <img class="grid-block shrink img" src="images/team/luna.jpg" alt="Luna" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/tonyli-rounded.jpg" height="60" width="60" alt="Tony Li">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Luna</strong>
-          <small class="small">Beagle & Pointer</small>
-          <div class="grid-block justify-center">
-            <a class="link-social link-instagram" href="https://www.instagram.com/lunagrams/" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-instagram.png" height="15" width="15">
-            </a>
-          </div>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/anandpatel.jpg" alt="Anand Patel" height="215" width="300">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Anand Patel</strong>
-        <small class="small">Engineer</small>
-        <div class="grid-block justify-center">
-          <a class="link-social" href="https://soundcloud.com/dj-faze" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-soundcloud.png" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://twitter.com/anandAKAdjfaze" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card">
-      <div class="grid-block vertical justify-center card-a">
-        <img class="grid-block shrink img" src="images/team/nathanmeyers.jpg" alt="Nathan Meyers" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/doobie-rounded.jpg" height="60" width="60" alt="doobie">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Nathan Meyers</strong>
-          <small class="small">Engineer</small>
-        </figcaption>
-      </div>
-      <div class="grid-block vertical justify-center card-b">
-        <img class="grid-block shrink img" src="images/team/doobie.jpg" alt="Doobie" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/nathanmeyers-rounded.jpg" height="60" width="60" alt="Nathan Meyers">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Doobie</strong>
-          <small class="small">Beagle</small>
-          <div class="grid-block justify-center">
-            <a class="link-social" href="https://www.facebook.com/DoobyToo?fref=ts" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-facebook.svg" height="15" width="15">
-            </a>
-          </div>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/antonpodviaznikov.jpg" alt="Anton Podviaznikov" height="215" width="300">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Anton Podviaznikov</strong>
-        <small class="small">Engineer</small>
-        <div class="grid-block justify-center">
-          <a class="link-social link-github" href="https://github.com/podviaznikov" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://twitter.com/podviaznikov" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/ryankahn.jpg" height="215" width="300" alt="Ryan Kahn">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Ryan Kahn</strong>
-        <small class="small">Engineer</small>
-        <div class="grid-block justify-center">
-          <a class="link-social link-github" href="https://github.com/myztiq" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://twitter.com/myztiq" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-          </a>
-          <a class="link-social" href="http://ryan-kahn.com/" target="_blank">
-            👾
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card">
-      <div class="grid-block vertical justify-center card-a">
-        <img class="grid-block shrink img" src="images/team/taylordolan.jpg" height="215" width="300" alt="Taylor Dolan">
-        <img class="img img-rounded js-flipper" src="images/team/robot-rounded.jpg" height="60" width="60" alt="Robot">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Taylor Dolan</strong>
-          <small class="small">Designer</small>
-          <div class="grid-block justify-center">
-            <a class="link-social" href="https://twitter.com/taylordolan" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-            </a>
-          </div>
-        </figcaption>
-      </div>
-      <div class="grid-block vertical justify-center card-b">
-        <img class="grid-block shrink img" src="images/team/robot.jpg" alt="Robot" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/taylordolan-rounded.jpg" height="60" width="60" alt="Taylor Dolan">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Robot</strong>
-          <small class="small">Boston Terrier</small>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="grid-block card-flipper team-card">
-      <div class="grid-block vertical justify-center card-a">
-        <img class="grid-block shrink img" src="images/team/jorgesilva.jpg" alt="Jorge Silva" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/majesticmaury-rounded.jpg" height="60" width="60" alt="Majestic Maury">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Jorge Silva</strong>
-          <small class="small">Engineer</small>
-          <div class="grid-block justify-center">
-            <a class="link-social link-github" href="https://github.com/thejsj" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-            </a>
-            <a class="link-social" href="https://twitter.com/thejsj" target="_blank">
-              <img class="img-social" src="images/logos/social/logo-twitter.svg" height="15" width="15">
-            </a>
-          </div>
-        </figcaption>
-      </div>
-      <div class="grid-block vertical justify-center card-b">
-        <img class="grid-block shrink img" src="images/team/majesticmaury.jpg" alt="Majestic Maury" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/jorgesilva-rounded.jpg" height="60" width="60" alt="Jorge Silva">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Majestic Maury</strong>
-          <small class="small">Plant</small>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="grid-block card-flipper team-card">
-      <div class="grid-block vertical justify-center card-a">
-        <img class="grid-block shrink img" src="images/team/chrisneill.jpg" alt="Chris Neill" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/grillninja-rounded.jpg" height="60" width="60" alt="Grill Ninja">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Chris Neill</strong>
-          <small class="small">Lead DevOps</small>
-          <div class="grid-block justify-center">
-          <a class="link-social" href="http://www.chowbacca.com" target="_blank">
-            🍕
-          </a>
-        </div>
-        </figcaption>
-      </div>
-      <div class="grid-block vertical justify-center card-b">
-        <img class="grid-block shrink img" src="images/team/grillninja.jpg" alt="Grill Ninja" height="215" width="300">
-        <img class="img img-rounded js-flipper" src="images/team/chrisneill-rounded.jpg" height="60" width="60" alt="Chris Neill">
-        <figcaption class="grid-block vertical figcaption text-center">
-          <strong class="weight-strong">Chris Neill</strong>
-          <small class="small">Grill Ninja</small>
-        </figcaption>
-      </div>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/sohailahmed.jpg" height="215" width="300" alt="Sohail Ahmed">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Sohail Ahmed</strong>
-        <small class="small">Engineer</small>
-        <div class="grid-block justify-center">
-          <a class="link-social link-instagram" href="https://www.instagram.com/sotothehail/" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-instagram.png" height="15" width="15">
-          </a>
-          <a class="link-social" href="https://soundcloud.com/sotothehail" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-soundcloud.png" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/sandychan.jpg" height="215" width="300" alt="Sandy Chan">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Sandy Chan</strong>
-        <small class="small">Office Manager & Recruiter</small>
-      </figcaption>
-    </figure>
-    <figure class="grid-block card-flipper team-card vertical">
-      <img class="grid-block shrink img" src="images/team/henrymollman.jpg" height="215" width="300" alt="Henry Mollman">
-      <figcaption class="grid-block vertical figcaption text-center">
-        <strong class="weight-strong">Henry Mollman</strong>
-        <small class="small">Engineer</small>
-        <div class="grid-block justify-center">
-          <a class="link-social link-github" href="https://github.com/henrymollman" target="_blank">
-            <img class="img-social" src="images/logos/social/logo-github.svg" height="15" width="15">
-          </a>
-        </div>
-      </figcaption>
-    </figure>
-  </div>
+    <main class="grid-block vertical main">
+      <article class="article hero how-it-works-hero">
+  <h1 class="h1 text-center">How it works.</h1>
+  <p class="p text-center">Runnable speeds up development by consumerizing a complex, time-consuming task shared by developers and DevOps. The result is a service that makes full-stack environments a commodity, and improves speed and throughput for dev teams.</p>
 </article>
 
-      <article class="article article-location">
-  <div class="grid-container grid-block vertical">
-    <figure class="rounded-map">
-      <img src="images/about/runnable-map.jpg" class="img">
-    </figure>
-    <address class="map-address text-center">
-      <strong>Runnable</strong>
-      <br>1481 Folsom St.
-      <br>San Francisco, CA
-    </address>
+      <article class="grid-block vertical align-center article article-setup">
+  <h1 class="h1 weight-strong text-center">Creating environments is simple.</h1>
+  <div class="grid-block">
+    <button class="grid-block align-center btn btn-toggle white js-toggler active" data-toggler="1">
+      <img class="grid-content img" src="images/how-it-works/dockerize.svg" height="30" width="30">
+      <span class="grid-content">Dockerize your service with our point-and-click interface.</span>
+    </button>
+    <button class="grid-block align-center btn btn-toggle white js-toggler" data-toggler="2">
+      <img class="grid-content img" src="images/how-it-works/dockerfile.svg" height="30" width="30">
+      <span class="grid-content">Bring your own Dockerfile.</span>
+    </button>
   </div>
+
+  <figure class="figure js-toggle fade in" data-toggle="1">
+    <img class="img js-toggle fade in" src="images/how-it-works/setup-dockerize.svg" data-toggle="1" height="300" width="750">
+    <img class="img js-toggle fade" src="images/how-it-works/setup-dockerfile.svg" data-toggle="2" height="300" width="750">
+  </figure>
 </article>
+
     </main>
 
     <footer class="grid-block vertical footer justify-spaced">
