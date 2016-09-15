@@ -157,7 +157,7 @@ gulp.task('sass:build', function() {
 
 // inject css tag
 gulp.task('inject', function () {
-  return gulp.src(htmlDist + 'index.html')
+  return gulp.src(htmlDist + '**/index.html')
     .pipe(inject(gulp.src(sassDist + 'index-' + currentVersion + '.css', {read: false}), {
       removeTags: true,
       transform: function () {
