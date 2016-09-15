@@ -15,17 +15,21 @@
   </section>
   <section class="section section-overview grid-block">
     <div class="grid-container grid-block">
-      <figure class="grid-block figure"></figure>
+      <figure class="grid-block figure">
+        <p class="js-toggle fade in" data-toggle="1">1</p>
+        <p class="js-toggle fade" data-toggle="2">2</p>
+        <p class="js-toggle fade" data-toggle="3">3</p>
+      </figure>
       <div class="grid-block shrink vertical card">
-        <div class="grid-content">
+        <div class="grid-content js-toggler active" data-toggler="1">
           <p class="weight-strong">Available</p>
           <p class="p">Every change is always ready to test with automatic environments for every branch and every repository.</p>
         </div>
-        <div class="grid-content">
+        <div class="grid-content js-toggler" data-toggler="2">
           <p class="weight-strong">Full-stack</p>
           <p class="p">Environments include cloned databases and all your services, properly configured, so you’re always running changes end-to-end.</p>
         </div>
-        <div class="grid-content">
+        <div class="grid-content js-toggler" data-toggler="3">
           <p class="weight-strong">Test E2E</p>
           <p class="p">Use your full-stack environments to run end-to-end tests with every code change.</p>
         </div>
