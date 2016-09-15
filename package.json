@@ -15,6 +15,7 @@
     "gulp-file-include": "^0.13.2",
     "gulp-gh-pages": "^0.5.4",
     "gulp-imagemin": "~2.4.0",
+    "gulp-inject": "^4.1.0",
     "gulp-minify-inline": "^0.2.0",
     "gulp-newer": "~0.5.1",
     "gulp-rename": "^1.2.2",
