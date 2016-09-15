@@ -1,7 +1,7 @@
 .article-setup {
 
-  .h1 {
-    margin-bottom: 30px;
+  .h1 + .h3 {
+    margin: 0 0 60px;
   }
 
   .btn-toggle {
@@ -37,9 +37,9 @@
 
   .figure {
     border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
-    box-shadow: 0 -2px 6px rgba($black,.045);
+    box-shadow: 0 -2px 6px rgba($black,.03);
     height: 300px;
-    margin: 45px auto 0;
+    margin: 30px auto 0;
     position: relative;
     width: 750px;
 

@@ -16,30 +16,25 @@
 
   .text-wrapper {
     flex: 0 0 420px;
+    padding-left: 60px;
   }
 
   .aside {
-    margin-top: 75px;
+    color: darken($gray-light,10);
 
     .p {
       margin-bottom: 0;
     }
 
     .a {
-      opacity: .3;
+      display: block;
+      opacity: .25;
+      transform: scale3d(1,1,1);
+      transition: .15s ease-in-out;
 
       &:hover,
       &:active {
-        opacity: .5;
-      }
-    }
-
-    .link {
-      color: $gray;
-
-      &:hover,
-      &:active {
-        color: $gray-dark;
+        transform: scale3d(1.15,1.15,1);
       }
     }
   }
@@ -50,16 +45,30 @@
   .figure {
     border-radius: 12px;
   }
-
-  .text-wrapper {
-    padding-left: 60px;
-  }
 }
 
-.article-urls .text-wrapper {
-  padding-right: 60px;
+.article-urls {
+
+  > .p {
+    margin-bottom: 30px;
+    margin-top: 90px;
+  }
 
   .figure {
     border-radius: $input-border-radius;
+    position: relative;
+
+    &::after {
+      animation: cursor-blink 1s infinite;
+      background: $gray-lighterest;
+      border-radius: 1px;
+      bottom: 15px;
+      content: '';
+      display: block;
+      height: 17px;
+      left: 15px;
+      position: absolute;
+      width: 9px;
+    }
   }
 }
