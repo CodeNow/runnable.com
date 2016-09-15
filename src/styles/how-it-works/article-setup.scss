@@ -70,6 +70,28 @@
   }
 
   .aside {
-    margin-top: 30px;
+    margin-top: 75px;
+
+    .p {
+      margin-bottom: 0;
+    }
+
+    .a {
+      opacity: .3;
+
+      &:hover,
+      &:active {
+        opacity: .5;
+      }
+    }
+
+    .link {
+      color: $gray;
+
+      &:hover,
+      &:active {
+        color: $gray-dark;
+      }
+    }
   }
 }
