@@ -57,6 +57,11 @@
         transform: scale3d(1.15,1.15,1);
       }
     }
+
+    // fix scrollbar appearing in firefox
+    .grid-block {
+      overflow: hidden;
+    }
   }
 }
 
