@@ -7,102 +7,131 @@
       display: none;
     }
   }
+}
+
+.article-product {
 
   .weight-strong {
     font-weight: 400 !important;
   }
 
-  .figure {
-    margin: 0; // override
+  .p {
+    font-size: 16px;
+  }
+
+  .section {
+    padding-left: 60px;
+    padding-right: 60px;
+
+    @include media(md) {
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+  }
+
+  .section-heading {
+    margin: 0 auto;
+    max-width: 900px;
+    padding-bottom: 75px;
+    padding-top: 75px;
+  }
+
+  .card {
+    background: $white;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    margin-top: -60px;
+    max-width: 50%;
+    padding: 60px;
+    width: 510px;
+
+    @include media(md) {
+      margin-top: -45px;
+      padding: 45px;
+    }
+  }
+
+  .quote {
+    margin-top: 30px;
+
+    @include media(sm) {
+      flex-direction: column;
+    }
+  }
+
+  .quote-bubble {
+    background: $gray-lighterest;
+    border: 1px solid $gray-lighter;
+    border-radius: 6px;
+    max-width: 390px;
+    padding: 12px 18px;
+    position: relative;
+
+    @include media(sm) {
+      margin-bottom: 21px;
+    }
+  }
+
+  .arrow,
+  .arrow::after {
+    border-color: transparent;
+    border-style: solid;
+    position: absolute;
+  }
+
+  .arrow {
+    border-bottom-width: 12px;
+    border-left: 12px solid darken($gray-lighter,5);
+    border-right-width: 0;
+    border-top-width: 12px;
+    margin-top: -12px;
+    right: -12px;
+    top: 50%;
+
+    &::after {
+      border-bottom-width: 11px;
+      border-left: 11px solid $gray-lighterest;
+      border-right-width: 0;
+      border-top-width: 11px;
+      bottom: -11px;
+      content: '';
+      right: 1px;
+    }
+  }
+
+  .avatar {
+    background: $gray-lightest;
+    border-radius: 50%;
+    height: 48px;
+    margin: 0 15px 0 24px;
+    width: 48px;
   }
 
   .grid-block {
     overflow: visible;
   }
-}
 
-.section-heading {
-  margin: 0 auto;
-  max-width: 900px;
-  padding: 75px 0;
-}
-
-.card {
-  background: $white;
-  border: 1px solid transparent;
-  border-radius: 9px;
-  margin-top: -60px;
-  max-width: 480px;
-  padding: 60px;
-}
-
-.quote {
-  color: $gray;
-  margin-top: 30px;
-}
-
-.quote-bubble {
-  background: $gray-lighterest;
-  border: 1px solid $gray-lighter;
-  border-radius: 6px;
-  margin-right: 15px;
-  padding: 12px 18px;
-  position: relative;
-}
-
-.arrow,
-.arrow::after {
-  border-color: transparent;
-  border-style: solid;
-  position: absolute;
-}
-
-.arrow {
-  border-bottom-width: 12px;
-  border-left: 12px solid darken($gray-lighter,5);
-  border-right-width: 0;
-  border-top-width: 12px;
-  margin-top: -12px;
-  right: -12px;
-  top: 50%;
-
-  &::after {
-    border-bottom-width: 11px;
-    border-left: 11px solid $gray-lighterest;
-    border-right-width: 0;
-    border-top-width: 11px;
-    bottom: -11px;
-    content: '';
-    right: 1px;
+  .grid-container {
+    margin: 0 auto;
+    max-width: 1080px;
+    width: 100%;
   }
-}
-
-.avatar {
-  background: $gray-lightest;
-  border-radius: 50%;
-  height: 48px;
-  width: 48px;
-}
-
-.article-product .p {
-  font-size: 16px;
-}
-
-.section-content-wrapper {
-  margin: 0 auto;
-  max-width: 1020px;
 }
 
 .section-overview {
   background: #78CCF0;
   padding-top: 120px;
 
+  @include media(md) {
+    padding-top: 90px;
+  }
+
   .figure {
     background: $gray-lightest;
     border-radius: 9px 0 0;
+    margin: 0;
   }
 
-  // overrides
   .card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -114,11 +143,20 @@
   margin-top: 60px;
   padding-bottom: 75px;
 
+  @include media(md) {
+    margin-top: 45px;
+    padding-bottom: 60px;
+  }
+
   .card {
     border-color: $gray-lighter;
 
     + .card {
       margin-left: 60px;
+
+      @include media(md) {
+        margin-left: 30px;
+      }
     }
   }
 
@@ -126,14 +164,18 @@
     height: 90px;
     margin-bottom: 60px;
     width: 100%;
+
+    @include media(md) {
+      margin-bottom: 30px;
+    }
   }
 }
 
 .section-glove {
   padding: 0 60px 90px;
 
-  .weight-strong {
-    margin-top: 30px;
+  .img {
+    margin-bottom: 30px;
   }
 
   .grid-block {
@@ -141,6 +183,10 @@
 
     + .grid-block {
       margin-left: 60px;
+
+      @include media(md) {
+        margin-left: 30px;
+      }
     }
   }
 }
