@@ -1,0 +1,55 @@
+.article-branches-urls {
+  margin: 0 auto;
+  max-width: 810px;
+  padding-top: 0;
+
+  .h3 {
+    line-height: 1.4;
+    margin-top: 30px;
+  }
+
+  .figure {
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba($black,.075);
+    flex: 0 0 330px;
+    margin: 0;
+  }
+
+  .text-wrapper {
+    flex: 0 0 420px;
+  }
+
+  .aside {
+    margin-top: 75px;
+
+    .p {
+      margin-bottom: 0;
+    }
+
+    .a {
+      opacity: .3;
+
+      &:hover,
+      &:active {
+        opacity: .5;
+      }
+    }
+
+    .link {
+      color: $gray;
+
+      &:hover,
+      &:active {
+        color: $gray-dark;
+      }
+    }
+  }
+}
+
+.article-branches .text-wrapper {
+  padding-left: 60px;
+}
+
+.article-urls .text-wrapper {
+  padding-right: 60px;
+}
