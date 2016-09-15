@@ -4,11 +4,6 @@
   // scss-lint:enable ColorVariable
   border-top: 1px solid rgba($black,.1);
   overflow: visible;
-  padding-bottom: 120px;
-
-  @include media(xs) {
-    padding-bottom: 30px;
-  }
 
   &::after {
     background: url(../images/confetti.png);
@@ -31,6 +26,7 @@
     border: 1px solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 1px 3px rgba($black,.1);
+    margin-bottom: 60px;
     margin-top: -210px;
     max-width: 1020px;
     padding: 0 30px;
