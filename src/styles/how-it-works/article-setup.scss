@@ -53,6 +53,7 @@
       position: absolute;
       right: -30px;
       width: 810px;
+      z-index: 3;
     }
 
     .fade {
@@ -61,10 +62,13 @@
       position: absolute;
       right: 0;
       top: 0;
-      transition: opacity .3s ease-in-out;
+      transition: opacity .3s .3s ease-in-out;
+      z-index: 1;
 
       &.in {
         opacity: 1;
+        transition: opacity .3s ease-in-out;
+        z-index: 2;
       }
     }
   }
