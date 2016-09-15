@@ -1,0 +1,47 @@
+.article-behind-the-scenes {
+  background: linear-gradient($purple-dark, $purple, $purple-light);
+  color: $white;
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  > .h1 + .p {
+    max-width: 660px;
+    padding: 0 15px;
+  }
+
+  .popover-trigger {
+    display: inline-block;
+    line-height: 1.2;
+  }
+
+  .popover {
+    white-space: nowrap;
+  }
+
+  .card {
+    background: $white;
+    border: 1px solid rgba($black,.1);
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.075);
+    color: $gray-dark;
+    margin: 15px;
+    max-width: 810px;
+  }
+
+  .well {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+}
