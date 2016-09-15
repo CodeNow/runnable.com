@@ -9,7 +9,6 @@
   }
 
   .figure {
-    border-radius: 12px;
     box-shadow: 0 3px 15px rgba($black,.075);
     flex: 0 0 330px;
     margin: 0;
@@ -46,10 +45,21 @@
   }
 }
 
-.article-branches .text-wrapper {
-  padding-left: 60px;
+.article-branches {
+
+  .figure {
+    border-radius: 12px;
+  }
+
+  .text-wrapper {
+    padding-left: 60px;
+  }
 }
 
 .article-urls .text-wrapper {
   padding-right: 60px;
+
+  .figure {
+    border-radius: $input-border-radius;
+  }
 }
