@@ -2,6 +2,10 @@
   background: #78CCF0;
   padding-top: 45px;
 
+  @include media(sm) {
+    color: $white;
+  }
+
   &.vertical + .section-overview {
     margin-top: 30px;
   }
@@ -14,11 +18,8 @@
     background: lighten($green,5);
   }
 
-  @include media(sm) {
-    color: $white;
-  }
-
   .figure {
+    background: $white;
     border-right: $input-border solid $gray-lighter;
     border-top-left-radius: $input-border-radius-lg;
     margin: 45px 0 0; // override
@@ -62,20 +63,22 @@
 
   .fade {
     display: none;
+    position: absolute;
 
     &.in {
       display: block;
-      position: absolute;
     }
   }
 
   .card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    min-height: 450px;
     padding: 45px - 1px;
     width: calc(50% - 15px);
 
     @include media(md) {
+      min-height: 0;
       padding: 30px - 1px;
     }
 
