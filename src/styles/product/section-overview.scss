@@ -1,5 +1,5 @@
 .section-overview {
-  background: #78CCF0;
+  background: linear-gradient(darken($blue-light,5), darken($blue-light,15));
   padding-top: 45px;
 
   @include media(sm) {
@@ -11,19 +11,19 @@
   }
 
   &:nth-child(4) {
-    background: lighten($purple-light,5);
+    background: linear-gradient(lighten($purple-light,5), darken($purple,0));
   }
 
   &:nth-child(5) {
-    background: lighten($green,5);
+    background: linear-gradient(desaturate($green,5), darken($green,5));
   }
 
   .figure {
     background: $white;
     border-right: $input-border solid $gray-lighter;
     border-top-left-radius: $input-border-radius-lg;
-    margin-top: 45px; // override
-    overflow: hidden; // remove later
+    margin-top: 45px;
+    overflow: hidden;
     position: relative;
 
     @include media(md) {
