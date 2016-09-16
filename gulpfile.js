@@ -146,6 +146,7 @@ gulp.task('sass:build', function() {
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .pipe(gulp.dest(sassDist))
     .pipe(rename({
       suffix: '-' + currentVersion
     }))
@@ -157,7 +158,7 @@ gulp.task('sass:build', function() {
 
 // inject css tag
 gulp.task('inject', function () {
-  return gulp.src(htmlDist + 'index.html')
+  return gulp.src(htmlDist + '**/index.html')
     .pipe(inject(gulp.src(sassDist + 'index-' + currentVersion + '.css', {read: false}), {
       removeTags: true,
       transform: function () {
