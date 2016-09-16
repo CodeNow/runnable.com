@@ -46,6 +46,8 @@
     }
 
     .text-left {
+      max-width: 165px;
+
       @include media(xxs) {
         text-align: center;
       }
