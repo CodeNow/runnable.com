@@ -41,29 +41,43 @@
     font-style: italic;
     margin-top: 45px;
 
-    @include media(xxs) {
+    @include media(xs) {
       flex-direction: column;
-    }
-
-    .text-left {
-      max-width: 165px;
-
-      @include media(xxs) {
-        text-align: center;
-      }
     }
   }
 
   .quote-bubble {
     border: 1px solid $gray-lighter;
     border-radius: $input-border-radius-lg;
-    margin-right: 30px;
+    margin-right: 24px;
     max-width: 390px;
     padding: 15px;
     position: relative;
 
-    @include media(xxs) {
-      margin-bottom: 30px;
+    @include media(xs) {
+      margin-bottom: 24px;
+      margin-right: 0;
+    }
+  }
+
+  .quote-attribution {
+    width: 240px;
+
+    @include media(xs) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .avatar {
+    background: $gray-lighter;
+    border-radius: 50%;
+    height: 45px;
+    margin-right: 18px;
+    width: 45px;
+
+    @include media(xs) {
+      margin-bottom: 18px;
       margin-right: 0;
     }
   }
@@ -84,10 +98,10 @@
     right: -12px;
     top: 50%;
 
-    @include media(xxs) {
+    @include media(xs) {
       bottom: -18px;
       left: 50%;
-      margin-left: -12px;
+      margin-left: -6px;
       margin-top: 0;
       right: auto;
       top: auto;
