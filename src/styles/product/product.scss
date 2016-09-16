@@ -11,24 +11,26 @@
 
 .article-product {
 
+  @include media(md) {
+    font-size: 17px;
+  }
+
   .p {
     font-size: 16px;
+
+    @include media(md) {
+      font-size: 15px;
+    }
   }
 
   .section {
-    // justify-content: center;
     padding-left: 45px;
     padding-right: 45px;
   }
 
   .section-heading {
-    // max-width: 900px;
     padding-bottom: 60px;
     padding-top: 60px;
-
-    // .grid-container {
-    //   max-width: 900px;
-    // }
   }
 
   .card {
@@ -38,24 +40,32 @@
     max-width: 50%;
   }
 
-  .quote {
+  .quote-wrapper {
+    font-style: italic;
     margin-top: 45px;
 
-    @include media(sm) {
+    @include media(xxs) {
       flex-direction: column;
+    }
+
+    .text-left {
+      @include media(xxs) {
+        text-align: center;
+      }
     }
   }
 
   .quote-bubble {
-    background: $gray-lighterest;
     border: 1px solid $gray-lighter;
     border-radius: 6px;
     max-width: 390px;
-    padding: 12px 18px;
+    padding: 15px;
     position: relative;
+    margin-right: 30px;
 
-    @include media(sm) {
-      margin-bottom: 21px;
+    @include media(xxs) {
+      margin-right: 0;
+      margin-bottom: 30px;
     }
   }
 
@@ -77,21 +87,13 @@
 
     &::after {
       border-bottom-width: 11px;
-      border-left: 11px solid $gray-lighterest;
+      border-left: 11px solid $white;
       border-right-width: 0;
       border-top-width: 11px;
       bottom: -11px;
       content: '';
       right: 1px;
     }
-  }
-
-  .avatar {
-    background: $gray-lightest;
-    border-radius: 50%;
-    height: 48px;
-    margin: 0 15px 0 24px;
-    width: 48px;
   }
 
   .grid-block {
@@ -104,10 +106,6 @@
     width: 100%;
   }
 }
-
-// .grid-container {
-//   max-width: 1080px;
-// }
 
 .section-overview {
   background: #78CCF0;
