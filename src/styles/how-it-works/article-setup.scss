@@ -85,14 +85,11 @@
     padding: 0 30px;
     position: relative;
 
-
-    @include media(xs) {
-      padding: 0;
-    }
-
     @media (max-width: 540px) {
+      margin-left: 0;
       margin-right: 0;
-      padding-right: 30px;
+      padding: 0;
+      width: 100vw;
     }
 
     .img {
@@ -109,13 +106,8 @@
         width: calc(100vw - 60px);
       }
 
-      @include media(xs) {
-        margin: 0 -30px;
-        width: calc(100vw + 60px);
-      }
-
       @media (max-width: 540px) {
-        margin: 0 0 0 -270px;
+        margin: 0 0 0 -240px;
         width: calc(100vw + 210px);
       }
     }
