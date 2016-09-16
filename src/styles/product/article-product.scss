@@ -82,6 +82,16 @@
     right: -12px;
     top: 50%;
 
+    @include media(xxs) {
+      bottom: -18px;
+      left: 50%;
+      margin-left: -12px;
+      margin-top: 0;
+      right: auto;
+      top: auto;
+      transform: rotate(90deg);
+    }
+
     &::after {
       border-bottom-width: 11px;
       border-left: 11px solid $white;
