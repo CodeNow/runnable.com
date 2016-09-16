@@ -146,6 +146,7 @@ gulp.task('sass:build', function() {
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .pipe(gulp.dest(sassDist))
     .pipe(rename({
       suffix: '-' + currentVersion
     }))
