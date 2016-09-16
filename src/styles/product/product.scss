@@ -11,49 +11,35 @@
 
 .article-product {
 
-  .weight-strong {
-    font-weight: 400 !important;
-  }
-
   .p {
     font-size: 16px;
   }
 
   .section {
-    padding-left: 60px;
-    padding-right: 60px;
-
-    @include media(md) {
-      padding-left: 45px;
-      padding-right: 45px;
-    }
+    // justify-content: center;
+    padding-left: 45px;
+    padding-right: 45px;
   }
 
   .section-heading {
-    margin: 0 auto;
-    max-width: 900px;
-    padding-bottom: 75px;
-    padding-top: 75px;
+    // max-width: 900px;
+    padding-bottom: 60px;
+    padding-top: 60px;
+
+    // .grid-container {
+    //   max-width: 900px;
+    // }
   }
 
   .card {
     background: $white;
     border: 1px solid transparent;
     border-radius: 9px;
-    margin-top: -60px;
     max-width: 50%;
-    padding: 60px;
-    width: calc(50% - 30px);
-
-    @include media(md) {
-      margin-top: -45px;
-      padding: 45px;
-      width: calc(50% - 15px);
-    }
   }
 
   .quote {
-    margin-top: 30px;
+    margin-top: 45px;
 
     @include media(sm) {
       flex-direction: column;
@@ -113,24 +99,57 @@
   }
 
   .grid-container {
-    margin: 0 auto;
+    // margin: 0 auto;
     max-width: 1080px;
     width: 100%;
   }
 }
 
+// .grid-container {
+//   max-width: 1080px;
+// }
+
 .section-overview {
   background: #78CCF0;
-  padding-top: 120px;
+  padding-top: 45px;
 
-  @include media(md) {
-    padding-top: 90px;
+  &.vertical + .section-overview {
+    margin-top: 30px;
+  }
+
+  @include media(sm) {
+    color: $white;
   }
 
   .figure {
-    background: $gray-lightest;
-    border-radius: 9px 0 0;
-    margin: 0;
+    margin: 45px 0 0; // override
+    border-right: 1px solid $gray-lighter;
+    position: relative;
+    overflow: hidden; // remove later
+
+    @include media(md) {
+      margin-top: 30px;
+    }
+
+    @include media(sm) {
+      height: 330px;
+      border-right: none;
+      border-radius: 9px 9px 0 0;
+    }
+
+    .img {
+
+      @include media(md) {
+        transform: scale(.85,.85);
+        transform-origin: top left;
+      }
+
+      @include media(sm) {
+        transform: scale(1,1);
+        max-width: 100%;
+        height: auto;
+      }
+    }
   }
 
   .fade {
@@ -138,18 +157,35 @@
 
     &.in {
       display: block;
+      position: absolute;
     }
   }
 
   .card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    padding: 45px - 1px;
+    width: calc(50% - 15px);
 
-    .grid-content {
-      opacity: .15;
+    @include media(md) {
+      padding: 30px - 1px;
+    }
+
+    .js-toggler {
+      color: #a1a1a1;
+      padding: 15px - 1px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:hover {
+        color: $gray-dark;
+      }
 
       &.active {
-        opacity: 1;
+        border-color: $gray-lighter;
+        cursor: default;
+        color: $gray-dark;
       }
     }
   }
@@ -158,33 +194,28 @@
 .section-deets {
   background: $gray-lighterest;
   margin-top: 60px;
-  padding-bottom: 75px;
-
-  @include media(md) {
-    margin-top: 45px;
-    padding-bottom: 60px;
-  }
 
   .card {
     border-color: $gray-lighter;
+    position: relative;
+    top: -60px;
+    padding: 60px - 1px;
+    width: 50%;
+
+    @include media(md) {
+      padding: 45px - 1px;
+      top: -45px;
+    }
 
     + .card {
-      margin-left: 60px;
-
-      @include media(md) {
-        margin-left: 30px;
-      }
+      margin-left: 30px;
     }
   }
 
   .img {
     height: 90px;
-    margin-bottom: 60px;
+    margin-bottom: 45px;
     width: 100%;
-
-    @include media(md) {
-      margin-bottom: 30px;
-    }
   }
 }
 
@@ -200,10 +231,6 @@
 
     + .grid-block {
       margin-left: 60px;
-
-      @include media(md) {
-        margin-left: 30px;
-      }
     }
   }
 }
