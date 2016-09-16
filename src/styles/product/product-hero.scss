@@ -1,0 +1,10 @@
+.page-product {
+
+  .hero {
+    background: $purple-light;
+
+    &::after {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.section-sharing {
+  background: $gray-lighterest;
+  margin-top: 60px;
+
+  @include media(md) {
+    margin-top: 45px;
+  }
+
+  .grid-container {
+    @include media(sm) {
+      flex-direction: column;
+    }
+  }
+
+  .card {
+    border-color: $gray-lighter;
+    padding: 60px - $input-border;
+    position: relative;
+    top: -60px;
+    width: 100%;
+
+    @include media(md) {
+      padding: 45px - $input-border;
+      top: -45px;
+    }
+
+    + .card {
+      margin-left: 30px;
+
+      @include media(sm) {
+        margin-left: 0;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .img {
+    height: 90px;
+    margin-bottom: 45px;
+    width: 100%;
+  }
+}

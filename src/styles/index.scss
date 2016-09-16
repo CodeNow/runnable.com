@@ -57,24 +57,14 @@
 @import "video/article-problem";
 @import "video/article-solution";
 
-@import "product/product";
-@import "product/article-bonus";
-@import "product/article-github";
-@import "product/article-use-cases";
+@import "product/product-hero";
+@import "product/article-product";
+@import "product/section-overview";
+@import "product/section-sharing";
+@import "product/section-workflow";
 
 @import "about/about-hero";
 @import "about/article-location";
-
-@import "development/development-hero";
-@import "development/article-development";
-
-@import "integration-testing/integration-testing-hero";
-@import "integration-testing/article-integration-testing";
-@import "integration-testing/article-comparison";
-
-@import "production/production-hero";
-@import "production/article-production";
-@import "production/article-docker";
 
 @import "pricing/pricing-hero";
 @import "pricing/article-cta";
