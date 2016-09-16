@@ -1,0 +1,135 @@
+.article-setup {
+
+  .h1 + .h3 {
+    margin: 0 0 60px;
+  }
+
+  .h1,
+  .h3 {
+    padding: 0 15px;
+
+    @include media(xxs) {
+      padding: 0;
+    }
+  }
+
+  .btn-toggle-wrapper {
+    // this is the width where the image width matches the width of both buttons
+    @media (max-width: 676px) {
+      padding: 0 30px;
+    }
+
+    @include media(xxs) {
+      padding: 0;
+    }
+  }
+
+  .btn-toggle {
+    background: transparent;
+    border-color: transparent;
+    border-radius: $input-border-radius-lg;
+    font-size: 16px;
+    font-weight: $weight-light;
+    padding: 15px;
+    text-align: left;
+    white-space: normal;
+    width: 300px;
+
+    @media (max-width: 676px) {
+      flex-direction: column;
+      font-size: 16px;
+      text-align: center;
+      width: 50%;
+    }
+
+    @include media(xs) {
+      font-size: 14px;
+      padding: 15px 9px;
+    }
+
+    &:hover:not([disabled]) {
+      border-color: $purple;
+      color: $purple;
+    }
+
+    &:active,
+    &.active {
+      box-shadow: inset 0 0 0 1px $purple-light;
+    }
+
+    + .btn-toggle {
+      margin-left: 15px;
+    }
+
+    .grid-content + .grid-content {
+      @media (max-width: 676px) {
+        margin-left: 0;
+        margin-top: 9px;
+      }
+    }
+
+    .img {
+      align-self: center; // alignment in safari
+      flex-shrink: 0;
+
+      @include media(xs) {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+
+  .figure {
+    border-bottom: 1px solid $gray-lighter;
+    margin: 30px auto 0;
+    padding: 0 30px;
+    position: relative;
+
+    @media (max-width: 540px) {
+      margin-left: 0;
+      margin-right: 0;
+      padding: 0;
+      width: 100vw;
+    }
+
+    .img {
+      border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
+      box-shadow: 0 -2px 6px rgba($black,.03);
+      display: block;
+      height: auto;
+      margin: 0 auto;
+      width: 810px;
+
+      @media (max-width: 930px) {
+        border-radius: 0;
+        box-shadow: none;
+        width: calc(100vw - 60px);
+      }
+
+      @media (max-width: 540px) {
+        margin: 0 0 0 -240px;
+        width: calc(100vw + 210px);
+      }
+    }
+
+    .fade {
+      left: 0;
+      opacity: 0;
+      position: relative;
+      right: 0;
+      top: 0;
+      transition: opacity .3s .3s ease-in-out;
+      z-index: 1;
+
+      &:last-child {
+        position: absolute;
+      }
+
+      &.in {
+        opacity: 1;
+        transition: opacity .3s ease-in-out;
+        z-index: 2;
+      }
+    }
+  }
+}
