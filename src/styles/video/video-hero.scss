@@ -23,21 +23,13 @@
   .h1 {
     margin: 0 auto 6px;
     max-width: 600px;
-    position: relative;
-    z-index: 1;
 
     @include media(sm) {
-      font-size: 39px;
       max-width: 570px;
     }
 
     @include media(xs) {
-      font-size: 36px;
       max-width: 450px;
-    }
-
-    @include media(xxs) {
-      font-size: 30px;
     }
   }
 
