@@ -32,31 +32,28 @@
 
     @include media(sm) {
       border-right: 0;
-      border-top-right-radius: 6px;
-      height: 330px;
+      height: 360px;
+      margin-right: -45px;
     }
 
     @include media(xs) {
-      border-top-right-radius: 0;
-      height: 270px;
+      height: 300px;
       margin-right: -30px;
     }
 
-    @include media(xxs) {
-      height: 180px;
-    }
-
     .img {
+      height: auto;
 
       @include media(md) {
-        transform: scale(.85,.85);
-        transform-origin: top left;
+        width: 600px;
       }
 
       @include media(sm) {
-        height: auto;
-        max-width: 100%;
-        transform: scale(1,1);
+        width: 100%;
+      }
+
+      @include media(xs) {
+        width: 570px;
       }
     }
   }
