@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Sign up for Runnable.</title>
+    <script ugly>
+      @@include('js/svgs.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('images/icons.svg')
+
+    <main class="grid-block vertical main">
+      <div class="modal-backdrop in" id="sign-in">
+        <div class="modal">
+          {{!-- this is not an include because we need to have a different link for sign up --}}
+          <article class="grid-block vertical article article-form article-sign-in">
+            <h1 class="h1 text-center weight-strong">Hey again.</h1>
+            <p class="p text-center">By continuing, you are agreeing to <a href="/legal/terms-of-service/" class="link">our terms of service</a>.</p>
+            <div class="grid-block vertical align-center">
+              <img class="img" src="images/runnabear-peek.png" height="104" width="184">
+              <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
+                <svg class="icons">
+                  <use xlink:href="#icons-github">
+                </svg>
+                <span>Sign in with GitHub</span>
+              </a>
+            </div>
+            <div class="grid-content text-center">
+              <a href="signup/" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+    @@include('js/external/external.html')

@@ -1,0 +1,116 @@
+.article-branches-urls {
+  margin: 0 auto;
+  max-width: 810px;
+  padding-top: 0;
+
+  @media (max-width: 810px) {
+    align-items: center;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .h3 {
+    line-height: 1.4;
+    margin-top: 30px;
+  }
+
+  .figure {
+    margin: 0;
+    overflow: visible;
+
+    .img {
+      box-shadow: 0 3px 15px rgba($black,.075);
+
+      @include media(xxxs) {
+        height: auto;
+        width: calc(100vw - 30px);
+      }
+    }
+  }
+
+  .text-wrapper {
+    flex: 0 0 420px;
+    padding-left: 60px;
+
+    @media (max-width: 810px) {
+      flex: 0 0 auto;
+      max-width: 330px;
+      padding: 0 15px;
+      text-align: center;
+    }
+  }
+
+  .aside {
+    color: darken($gray-light,10);
+
+    .p {
+      margin-bottom: 0;
+    }
+
+    .a {
+      display: block;
+      opacity: .25;
+      transform: scale3d(1,1,1);
+      transition: .15s ease-in-out;
+
+      &:hover,
+      &:active {
+        transform: scale3d(1.15,1.15,1);
+      }
+    }
+
+    // fix scrollbar appearing in firefox
+    .grid-block {
+      overflow: hidden;
+    }
+  }
+}
+
+.article-branches .img {
+  border-radius: 12px;
+}
+
+.article-urls {
+
+  > .well {
+    margin: 90px 30px 30px;
+
+    @media (max-width: 810px) {
+      margin-top: 30px;
+    }
+
+    @include media(xxs) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+
+  .figure-wrapper {
+    @media (max-width: 810px) {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  .figure {
+    position: relative;
+
+    &::after {
+      animation: cursor-blink 1s infinite;
+      background: $gray-lighterest;
+      border-radius: 1px;
+      bottom: 15px;
+      content: '';
+      display: block;
+      height: 17px;
+      left: 15px;
+      position: absolute;
+      width: 9px;
+    }
+
+    .img {
+      border-radius: $input-border-radius;
+    }
+  }
+}
