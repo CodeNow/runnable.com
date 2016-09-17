@@ -38,8 +38,9 @@
   }
 
   .img {
-    height: 90px;
+    align-self: center;
+    height: auto;
     margin-bottom: 45px;
-    width: 100%;
+    max-width: 100%;
   }
 }
