@@ -3,20 +3,42 @@
   max-width: 810px;
   padding-top: 0;
 
+  @media (max-width: 810px) {
+    align-items: center;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .h3 {
     line-height: 1.4;
     margin-top: 30px;
   }
 
   .figure {
-    box-shadow: 0 3px 15px rgba($black,.075);
-    flex: 0 0 330px;
     margin: 0;
+    overflow: visible;
+
+    .img {
+      box-shadow: 0 3px 15px rgba($black,.075);
+
+      @include media(xxxs) {
+        height: auto;
+        width: calc(100vw - 30px);
+      }
+    }
   }
 
   .text-wrapper {
     flex: 0 0 420px;
     padding-left: 60px;
+
+    @media (max-width: 810px) {
+      flex: 0 0 auto;
+      max-width: 330px;
+      padding: 0 15px;
+      text-align: center;
+    }
   }
 
   .aside {
@@ -37,25 +59,41 @@
         transform: scale3d(1.15,1.15,1);
       }
     }
+
+    // fix scrollbar appearing in firefox
+    .grid-block {
+      overflow: hidden;
+    }
   }
 }
 
-.article-branches {
-
-  .figure {
-    border-radius: 12px;
-  }
+.article-branches .img {
+  border-radius: 12px;
 }
 
 .article-urls {
 
-  > .p {
-    margin-bottom: 30px;
-    margin-top: 90px;
+  > .well {
+    margin: 90px 30px 30px;
+
+    @media (max-width: 810px) {
+      margin-top: 30px;
+    }
+
+    @include media(xxs) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  }
+
+  .figure-wrapper {
+    @media (max-width: 810px) {
+      align-items: center;
+      flex-direction: column;
+    }
   }
 
   .figure {
-    border-radius: $input-border-radius;
     position: relative;
 
     &::after {
@@ -69,6 +107,10 @@
       left: 15px;
       position: absolute;
       width: 9px;
+    }
+
+    .img {
+      border-radius: $input-border-radius;
     }
   }
 }

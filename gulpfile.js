@@ -4,9 +4,11 @@ var debug = require('gulp-debug');
 var del = require('del');
 var exec = require('child_process').exec;
 var fileinclude = require('gulp-file-include');
+var vfs = require('fs');
 var ghPages = require('gulp-gh-pages');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
+var inject = require('gulp-inject');
 var imagemin = require('gulp-imagemin');
 var minifyInline = require('gulp-minify-inline');
 var newer = require('gulp-newer');
@@ -20,6 +22,8 @@ var apiUrl = process.env.API_URL;
 var angularUrl = process.env.ANGULAR_URL;
 
 // file locations
+var json = JSON.parse(vfs.readFileSync('./package.json'));
+var currentVersion = json.version;
 var src = 'src/';
 var dist = './dist/';
 
@@ -124,6 +128,9 @@ gulp.task('sass', function() {
       browsers: ['last 2 versions'],
       remove: false
     }))
+    .pipe(rename({
+      suffix: '-' + currentVersion
+    }))
     .on('error', function(err){
       console.log(err.message);
     })
@@ -139,10 +146,26 @@ gulp.task('sass:build', function() {
     .pipe(autoprefixer({
       browsers: ['last 2 versions']
     }))
+    .pipe(gulp.dest(sassDist))
+    .pipe(rename({
+      suffix: '-' + currentVersion
+    }))
     .on('error', function(err){
       console.log(err.message);
     })
     .pipe(gulp.dest(sassDist));
+});
+
+// inject css tag
+gulp.task('inject', function () {
+  return gulp.src(htmlDist + '**/index.html')
+    .pipe(inject(gulp.src(sassDist + 'index-' + currentVersion + '.css', {read: false}), {
+      removeTags: true,
+      transform: function () {
+        return '<link rel="stylesheet" href="' + 'styles/index-' + currentVersion + '.css">';
+      }
+    }))
+    .pipe(gulp.dest(htmlDist));
 });
 
 // javascript
@@ -235,22 +258,22 @@ gulp.task('s3', function() {
 
 // build and optimize
 gulp.task('build', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], ['inject', 'imagemin'], cb);
 });
 
 // build without optimizing
 gulp.task('build:dev', function(cb) {
-  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'moveMisc'], cb);
+  runSequence('clean', 'html', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'inject', cb);
 });
 
 // build and deploy to gh pages
 gulp.task('deploy:gh', function(cb) {
-  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], 'imagemin', 'ghPages', cb);
+  runSequence(['getCommitTime', 'getCommitHash', 'clean'], 'html:gh', 'hbs', 'js', ['sass:build', 'images', 'moveMisc', 'minify'], ['inject', 'imagemin'], 'ghPages', cb);
 });
 
 // dev build and deploy to gh pages
 gulp.task('deploy:gh:dev', function(cb) {
-  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'ghPages', cb);
+  runSequence('clean', 'html:gh', 'hbs', 'js', ['sass', 'images', 'moveMisc'], 'inject', 'ghPages', cb);
 });
 
 // build and deploy to amazon s3
@@ -267,7 +290,7 @@ gulp.task('server', function() {
 // dev build and watch
 gulp.task('default', function(cb) {
   runSequence('build:dev', 'server', cb);
-  gulp.watch(hbsDir, function(){runSequence('html', 'hbs');});
+  gulp.watch(hbsDir, function(){runSequence('html', 'hbs', 'inject');});
   gulp.watch(sassDir, ['sass']);
   gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});
   gulp.watch(imgDir, ['images']);
