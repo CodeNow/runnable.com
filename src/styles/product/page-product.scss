@@ -2,6 +2,10 @@
 
   .p {
     margin-bottom: 0; //override
+
+    &.weight-strong {
+      margin-bottom: 9px;
+    }
   }
 
   .section {
