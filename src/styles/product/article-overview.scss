@@ -1,9 +1,29 @@
 .article-overview {
   padding: 0;
 
-  .section-main {
-    background: linear-gradient(darken($blue-light,5), darken($blue-light,15));
+  .section-overview {
+    background: linear-gradient(darken($blue-light,5), $blue);
     padding-top: 45px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    &::before {
+      box-shadow: inset 0 1px 0 0 rgba($black,.1);
+    }
+
+    &::after {
+      box-shadow: inset 0 -1px 0 0 rgba($black,.1);
+    }
 
     @include media(sm) {
       color: $white;
@@ -13,12 +33,12 @@
       margin-top: 30px;
     }
 
-    &.purple {
-      background: linear-gradient(lighten($purple-light,5), darken($purple,0));
+    &.section-purple {
+      background: linear-gradient(lighten($purple-light,10), darken($purple,5));
     }
 
-    &.green {
-      background: linear-gradient(desaturate($green,5), darken($green,5));
+    &.section-green {
+      background: linear-gradient(lighten($green,5), darken($green,10));
     }
 
     .p {
@@ -30,11 +50,14 @@
 
   .figure {
     background: $white;
+    // border-bottom: $input-border solid $gray-lighter;
+    // border-bottom: 1px solid rgba($black,.1);
     border-right: $input-border solid $gray-lighter;
     border-top-left-radius: $input-border-radius-lg;
     margin-top: 45px;
     overflow: hidden;
     position: relative;
+    // margin-bottom: -1px;
 
     @include media(md) {
       margin-top: 30px;
@@ -85,20 +108,20 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     min-height: 450px;
-    padding: 45px - $input-border;
+    padding: 45px - $input-border * 2;
     width: calc(50% - 15px);
 
     @include media(md) {
       min-height: 0;
-      padding: 30px - $input-border;
+      padding: 30px - $input-border * 2;
     }
 
-    .js-toggler {
+    .btn-toggle {
       border: $input-border solid transparent;
       border-radius: $input-border-radius-lg;
       color: lighten($gray,10);
       cursor: pointer;
-      padding: 15px - $input-border;
+      padding: 15px - $input-border * 2;
 
       &:hover {
         color: $gray-dark;

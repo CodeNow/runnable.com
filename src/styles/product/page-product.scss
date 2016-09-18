@@ -4,7 +4,7 @@
     margin-bottom: 0; //override
 
     &.weight-strong {
-      margin-bottom: 9px;
+      margin-bottom: 6px;
     }
   }
 
@@ -30,7 +30,7 @@
   .card {
     background: $white;
     border: $input-border solid transparent;
-    border-radius: 9px;
+    border-radius: $input-border-radius-lg;
   }
 
   .quote-wrapper {
