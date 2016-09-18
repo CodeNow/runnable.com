@@ -10,7 +10,7 @@
 
       .grid-block {
         flex: 1 1 33%;
-        padding: 0 15px 45px;
+        padding: 0 15px 30px;
 
         @include media(md) {
           flex: 0 1 50%;
@@ -23,9 +23,18 @@
         }
       }
     }
+
+    .img {
+      margin-bottom: 30px;
+    }
   }
 
-  .img {
-    margin-bottom: 30px;
+  .section-cta {
+    margin: 0 auto;
+    max-width: 1140px;
+
+    .p {
+      margin-top: 24px;
+    }
   }
 }
