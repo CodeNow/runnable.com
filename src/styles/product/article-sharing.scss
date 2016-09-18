@@ -1,17 +1,21 @@
-.section-sharing {
-  background: $gray-lighterest;
-  margin-top: 60px;
-  overflow: visible;
+.article-sharing {
+  padding: 0;
 
-  @include media(md) {
-    margin-top: 45px;
-  }
-
-  .grid-container {
+  .section-sharing {
+    background: $gray-lighterest;
+    margin-top: 60px;
     overflow: visible;
 
-    @include media(sm) {
-      flex-direction: column;
+    @include media(md) {
+      margin-top: 45px;
+    }
+
+    .grid-container {
+      overflow: visible;
+
+      @include media(sm) {
+        flex-direction: column;
+      }
     }
   }
 

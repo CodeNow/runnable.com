@@ -1,0 +1,31 @@
+.article-workflow {
+  padding: 0;
+
+  .section-workflow {
+    padding: 0 30px;
+
+    .grid-container {
+      flex-wrap: wrap;
+      max-width: 960px;
+
+      .grid-block {
+        flex: 1 1 33%;
+        padding: 0 15px 45px;
+
+        @include media(md) {
+          flex: 0 1 50%;
+        }
+
+        @include media(xs) {
+          align-items: center;
+          flex: 0 1 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .img {
+    margin-bottom: 30px;
+  }
+}

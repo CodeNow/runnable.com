@@ -1,21 +1,31 @@
-.section-overview {
-  background: linear-gradient(darken($blue-light,5), darken($blue-light,15));
-  padding-top: 45px;
+.article-overview {
+  padding: 0;
 
-  @include media(sm) {
-    color: $white;
-  }
+  .section-main {
+    background: linear-gradient(darken($blue-light,5), darken($blue-light,15));
+    padding-top: 45px;
 
-  &.vertical + .section-overview {
-    margin-top: 30px;
-  }
+    @include media(sm) {
+      color: $white;
+    }
 
-  &.purple {
-    background: linear-gradient(lighten($purple-light,5), darken($purple,0));
-  }
+    &.vertical + .section-overview {
+      margin-top: 30px;
+    }
 
-  &.green {
-    background: linear-gradient(desaturate($green,5), darken($green,5));
+    &.purple {
+      background: linear-gradient(lighten($purple-light,5), darken($purple,0));
+    }
+
+    &.green {
+      background: linear-gradient(desaturate($green,5), darken($green,5));
+    }
+
+    .p {
+      @media (min-width: $screen-sm) {
+        font-size: 16px;
+      }
+    }
   }
 
   .figure {
