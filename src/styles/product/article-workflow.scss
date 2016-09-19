@@ -2,11 +2,14 @@
   padding: 0;
 
   .section-workflow {
-    padding: 0 30px;
+    background: linear-gradient(#475496, $blue);
+    border-top: 1px solid rgba($black,.1);
+    margin-top: 60px;
+    overflow: visible;
+    padding: 0 30px 75px;
 
     .grid-container {
       flex-wrap: wrap;
-      max-width: 960px;
 
       .grid-block {
         flex: 1 1 33%;
@@ -21,6 +24,50 @@
           flex: 0 1 100%;
           text-align: center;
         }
+      }
+    }
+
+    .big-card {
+      background: $white;
+      border-radius: $input-border-radius-lg;
+      border: 1px solid $gray-lighter;
+      box-shadow: 0 1px 3px rgba($black,.1);
+      margin-bottom: 60px;
+      margin-top: -60px;
+      max-width: 1080px;
+      padding: 60px;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 1110px) {
+        max-width: 960px;
+      }
+
+      @include media(md) {
+        max-width: 810px;
+      }
+
+      @media (max-width: 870px) {
+        max-width: calc(100vw - 60px);
+      }
+
+      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
+        max-width: 570px;
+      }
+    }
+
+    .btn-white {
+      background: rgba($white,.1);
+      border: $input-border solid rgba($white,.75);
+      color: $blue-lighter;
+      margin-top: 30px;
+
+      &:hover {
+        background: rgba($white,.2);
+      }
+
+      &:active {
+        background: rgba($white,.3);
       }
     }
 
