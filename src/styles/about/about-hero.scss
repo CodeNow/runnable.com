@@ -1,7 +1,7 @@
 .about-hero {
   background: linear-gradient($purple-light, $purple, $purple-dark);
 
-  .p {
+  .h3 {
     max-width: 630px;
 
     @include media(sm) {
