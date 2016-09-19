@@ -45,7 +45,9 @@
   }
 
   .icons {
-    color: $gray-lighter;
+    // scss-lint:disable ColorVariable
+    color: #22517f;
+    // scss-lint:enable ColorVariable
     height: 45px;
     margin-right: 15px;
     width: 45px;
