@@ -6,7 +6,9 @@
   }
 
   .section {
-    background: linear-gradient(darken($blue-light,5), $blue);
+    // scss-lint:disable ColorVariable
+    background: linear-gradient(#4f419f, #3ea8f4);
+    // scss-lint:enable ColorVariable
     padding: 45px 45px 0;
     position: relative;
 
@@ -48,11 +50,15 @@
     }
 
     &.section-purple {
-      background: linear-gradient(lighten($purple-light,10), darken($purple,5));
+      // scss-lint:disable ColorVariable
+      background: linear-gradient(#4f3885, lighten($purple-light,10));
+      // scss-lint:enable ColorVariable
     }
 
     &.section-green {
-      background: linear-gradient(lighten($green,5), darken($green,10));
+      // scss-lint:disable ColorVariable
+      background: linear-gradient(#0f8a3c, lighten($green,15));
+      // scss-lint:enable ColorVariable
     }
 
     .p {
