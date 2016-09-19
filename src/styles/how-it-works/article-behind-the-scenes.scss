@@ -40,7 +40,7 @@
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.075);
     color: $gray-dark;
-    margin: 45px 15px 15px;
+    margin: 45px 15px 60px;
     max-width: 810px;
     overflow: visible;
   }
@@ -102,5 +102,21 @@
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
     border-top: 1px solid $gray-lightest;
     margin: 0 -45px -45px;
+  }
+
+  // cta
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $blue-lighter;
+    margin-top: 30px;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
   }
 }
