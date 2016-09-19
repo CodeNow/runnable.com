@@ -21,6 +21,10 @@
     padding: 0 15px;
   }
 
+  .p {
+    margin-bottom: 0;
+  }
+
   .popover-trigger {
     display: inline-block;
     line-height: 1.2;
@@ -36,12 +40,17 @@
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.075);
     color: $gray-dark;
-    margin: 15px;
+    margin: 45px 15px 15px;
     max-width: 810px;
   }
 
   .well {
+    background: $gray-lighterest;
     font-size: 16px;
     margin-top: 30px;
+
+    .img {
+      opacity: .3;
+    }
   }
 }

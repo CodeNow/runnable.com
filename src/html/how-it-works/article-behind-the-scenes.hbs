@@ -8,11 +8,16 @@
         <span class="popover top weight-light">Virtual Private Cloud</span>
       </span>.
     </p>
-    <p class="p">VPCs help ensure privacy and security for the team’s code. It also enables us to scale instances based on their usage. Every VPC has a dedicated set of Docker machines, Swarm, and Registry. Custom AMI are created for large databases to expedite provisioning.</p>
+    <p class="p">VPCs help ensure privacy and security for the team’s code. It also enables us to scale instances based on their usage. Every VPC has a dedicated set of Docker machines, Swarm, and Registry. Custom&#32;
+      <span class="underline popover-trigger hover">AMI
+        <span class="popover top weight-light">Amazon Machine Images</span>
+      </span>
+      &#32;are created for large databases to expedite provisioning.</p>
     <hr class="hr">
     <p class="p">Runnable runs on Docker, so if the team is already dockerized, setup is a breeze. If not, we construct a Dockerfile for each repository service based on configuration details a teammate enters via our simple interface.</p>
-    <div class="grid-block">
-      <div class="grid-content well padding-md">When a teammate creates a new branch, we receive a new webhook from GitHub. We schedule a new set of containers to create your new full-stack environment.</div>
+    <div class="grid-block well padding-md">
+      <img class="grid-content img" src="images/logos/social/logo-github.svg" height="45" width="45" alt="GitHub Logo">
+      <p class="grid-content p">When a teammate creates a new branch, we receive a new webhook from GitHub. Then we schedule a new set of containers to create your new full-stack environment.</p>
     </div>
   </section>
 </article>
