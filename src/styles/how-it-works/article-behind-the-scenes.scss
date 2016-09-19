@@ -83,6 +83,7 @@
   }
 
   .list {
+    list-style: disc; // decimal doesn't work on firefox
     margin: 0 15px;
     padding-left: 27px;
 
@@ -93,27 +94,6 @@
 
   .li + .li {
     margin-top: 15px;
-  }
-
-  .link-external {
-    text-decoration: none;
-
-    &:hover .span {
-      text-decoration: none;
-    }
-
-    .span {
-      text-decoration: underline;
-    }
-
-    .icons {
-      height: 18px;
-      left: -5px;
-      margin-right: 2px;
-      position: relative;
-      top: 2px;
-      width: 18px;
-    }
   }
 
   .grid-2 {
