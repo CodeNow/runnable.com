@@ -7,6 +7,7 @@
     <script ugly>
       @@include('js/signup.js')
       @@include('js/svgs.js')
+      @@include('js/toggle.js')
       @@include('js/status.js')
     </script>
 
@@ -15,17 +16,19 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-product" ontouchstart>
+  <body class="page-landing" ontouchstart>
 
     @@include('images/icons.svg')
     @@include('html/components/header.hbs')
 
-    <main class="grid-block vertical main">
+    <main class="grid-block vertical main hero-only">
       @@include('html/product/product-hero.hbs')
-      @@include('html/product/github.hbs')
-      @@include('html/product/use-cases.hbs')
-      @@include('html/product/bonus.hbs')
-      @@include('html/product/next-cta.hbs')
+      @@include('html/product/article-overview-heading.hbs')
+      @@include('html/product/article-overview.hbs')
+      @@include('html/product/article-sharing-heading.hbs')
+      @@include('html/product/article-sharing.hbs')
+      @@include('html/product/article-workflow-heading.hbs')
+      @@include('html/product/article-workflow.hbs')
     </main>
 
     @@include('html/components/footer.hbs')

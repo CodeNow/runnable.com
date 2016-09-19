@@ -1,12 +1,7 @@
 .demo-hero {
   background: linear-gradient($purple-light, $purple-dark);
 
-  .p {
-    font-size: 24px;
+  .h3 {
     max-width: 660px;
-
-    @include media(xs) {
-      font-size: 21px;
-    }
   }
 }

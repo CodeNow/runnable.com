@@ -1,0 +1,10 @@
+.product-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple, #4f419f);
+  // scss-lint:enable ColorVariable
+
+  .h1,
+  .p {
+    max-width: 720px;
+  }
+}
