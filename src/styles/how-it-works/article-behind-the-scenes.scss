@@ -86,9 +86,10 @@
 
   .grid-2 .grid-block {
     flex: 1 1;
+    margin-top: 60px;
     padding-top: 60px;
 
-    + .grid-block .p {
+    + .grid-block {
       border-left: 1px solid $gray-lighter;
     }
 
