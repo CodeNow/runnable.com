@@ -1129,8 +1129,9 @@ window.addEventListener('load', function(){
       <img class="grid-content img faded" src="images/logos/social/logo-github.svg" height="45" width="45" alt="GitHub Logo">
       <p class="grid-content p">When a teammate creates a new branch, we receive a new webhook from GitHub. Then we schedule a new set of containers to create your new full-stack environment.</p>
     </div>
+    <p class="grid-content p weight-strong">Build Optimization</p>
     <p class="grid-content p">We begin building a new image for the container with the new code changes.</p>
-    <ol class="grid-block vertical ol list list-lower-alpha padding-md">
+    <ol class="grid-block vertical ol list padding-md">
       <li class="li">Builds are distributed evenly across the Docker hosts available on the team’s VPC, and every build always has at least one dedicated CPU.
       <li class="li">If the other containers haven’t changed, we use the previous cached images to improve start up time.
     </ol>
@@ -1141,9 +1142,7 @@ window.addEventListener('load', function(){
 
     <p class="grid-content p weight-strong">When a Teammate Opens an Environment URL</p>
     <p class="grid-content p">Our routing system accommodates applications that require OAuth or other 3rd-party server-side integrations.</p>
-    <ol class="grid-block vertical ol list list-lower-alpha padding-md">
-      <li class="li">We store specific environment details in the teammate’s browser session and redirect them to a shared (or elastic) URL for the remainder of their session.
-    </ol>
+    <p class="grid-content p">We store specific environment details in the teammate’s browser session and redirect them to a shared (or elastic) URL for the remainder of their session.</p>
     <a class="grid-content link link-external" href="http://blog.runnable.com/post/149340238426/elastic-routing-in-runnable">
       <span class="span">Elastic Routing in Runnable</span>
       <svg class="icons">
@@ -1154,6 +1153,7 @@ window.addEventListener('load', function(){
       <img class="grid-content img" src="images/logos/logo-slack.svg" height="45" width="45" alt="Slack Logo">
       <p class="grid-content p">We receive a webhook when a teammate opens a pull request, and we publish the environment URLs to the page for easier reviews—Slack too.</p>
     </div>
+    <p class="grid-content p weight-strong">Automatic Infrastructure Scaling</p>
     <p class="grid-content p">Our infrastructure management uses machine learning to automatically scale up and down instances based on a predictive scaling model built from analyzing the team’s patterns in commit history.</p>
     <div class="grid-block grid-2">
       <div class="grid-block vertical align-center">
@@ -1170,6 +1170,10 @@ window.addEventListener('load', function(){
       <br>Articles are published weekly.
     </div>
   </section>
+  <div class="grid-block vertical align-center">
+    <p class="grid-content text-white p text-center">Get 25% off your first 6 months if you sign up by September 30<sup class="sup">th</sup>.</p>
+    <a class="grid-content btn btn-lg btn-white" href="product/">View Pricing Plans</a>
+  </div>
 </article>
 
     </main>
