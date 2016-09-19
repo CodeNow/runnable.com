@@ -1,6 +1,6 @@
 <article class="grid-block vertical align-center article article-behind-the-scenes">
   <h1 class="h1 weight-strong text-center">Behind the scenes.</h1>
-  <p class="p text-center">Here’s a glimpse of what it takes to provide a first-class experience around provisioning properly configured, full-stack environments on-demand:</p>
+  <h3 class="h3 text-center">See how we’ve created a powerful experience around building full-stack environments:</h3>
 
   <section class="grid-block vertical card padding-lg">
 
@@ -30,19 +30,6 @@
       <li class="li">If the other containers haven’t changed, we use the previous cached images to improve start up time.
     </ol>
     <p class="grid-content p">Once the containers are started in the necessary order, they’re attached to our Swarm-based network and are configured to communicate with each other.</p>
-    <p class="grid-content p">Each container is also configured to use our managed DNS server, which, coupled with our UI, enables teammates to route requests to other containers on-the-fly.</p>
-
-    <hr class="hr">
-
-    <p class="grid-content p weight-strong">When a Teammate Opens an Environment URL</p>
-    <p class="grid-content p">Our routing system accommodates applications that require OAuth or other 3rd-party server-side integrations.</p>
-    <p class="grid-content p">We store specific environment details in the teammate’s browser session and redirect them to a shared (or elastic) URL for the remainder of their session.</p>
-    <a class="grid-content link link-external" href="http://blog.runnable.com/post/149340238426/elastic-routing-in-runnable">
-      <span class="span">Elastic Routing in Runnable</span>
-      <svg class="icons">
-        <use xlink:href="#icons-external">
-      </svg>
-    </a>
     <div class="grid-block well padding-md">
       <img class="grid-content img" src="images/logos/logo-slack.svg" height="45" width="45" alt="Slack Logo">
       <p class="grid-content p">We receive a webhook when a teammate opens a pull request, and we publish the environment URLs to the page for easier reviews—Slack too.</p>
