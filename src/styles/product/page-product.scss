@@ -27,6 +27,11 @@
     }
   }
 
+  .grid-container {
+    max-width: 1080px;
+    width: 100%;
+  }
+
   .card {
     background: $white;
     border: $input-border solid transparent;
@@ -109,10 +114,5 @@
       content: '';
       left: -12px;
     }
-  }
-
-  .grid-container {
-    max-width: 1080px;
-    width: 100%;
   }
 }
