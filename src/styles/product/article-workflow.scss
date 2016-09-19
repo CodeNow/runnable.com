@@ -1,9 +1,11 @@
-.article-solution {
+.article-workflow {
   // scss-lint:disable ColorVariable
-  background: linear-gradient(#475496, $blue);
+  background: linear-gradient(#8f4374, $purple-light);
   // scss-lint:enable ColorVariable
   border-top: 1px solid rgba($black,.1);
+  margin-top: 60px;
   overflow: visible;
+  padding: 0 30px 75px;
 
   &::after {
     background: url(../images/confetti.png);
@@ -21,15 +23,36 @@
     z-index: 0;
   }
 
+  .grid-container {
+    flex-wrap: wrap;
+    max-width: 1080px;
+    width: 100%;
+
+    .grid-block {
+      flex: 1 1 33%;
+      padding: 0 15px 30px;
+
+      @include media(md) {
+        flex: 0 1 50%;
+      }
+
+      @include media(sm) {
+        align-items: center;
+        flex: 0 1 100%;
+        text-align: center;
+      }
+    }
+  }
+
   .card {
     background: $white;
     border: 1px solid $gray-lighter;
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba($black,.1);
     margin-bottom: 60px;
-    margin-top: -210px;
-    max-width: 1020px;
-    padding: 0 30px;
+    margin-top: -60px;
+    max-width: 1080px;
+    padding: 60px;
     position: relative;
     z-index: 1;
 
@@ -50,65 +73,6 @@
     }
   }
 
-  .card-header {
-    @include media(xs) {
-      padding: 30px;
-    }
-
-    @include media(xxs) {
-      padding: 30px 0;
-    }
-  }
-
-  .h3 {
-    line-height: 1.6;
-
-    + .p {
-      font-size: 24px;
-
-      @include media(sm) {
-        font-size: 21px;
-      }
-    }
-  }
-
-  .list {
-    padding-left: 0;
-
-    @include media(md) {
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-    }
-  }
-
-  .list-item {
-    flex: 1 1 33.33%;
-
-    @include media(md) {
-      align-items: center;
-      flex: 0 1 50%;
-      max-width: 360px;
-    }
-
-    @include media(sm) {
-      flex: 1 1 auto;
-    }
-
-    @include media(xs) {
-      padding: 45px 15px;
-    }
-
-    @include media(xxs) {
-      padding: 45px 0;
-    }
-  }
-
-  .img {
-    max-width: 100%;
-  }
-
-  // cta
   .btn-white {
     background: rgba($white,.1);
     border: $input-border solid rgba($white,.75);
@@ -122,5 +86,9 @@
     &:active {
       background: rgba($white,.3);
     }
+  }
+
+  .img {
+    margin-bottom: 30px;
   }
 }
