@@ -23,7 +23,7 @@
       <p class="grid-content p">When a teammate creates a new branch, we receive a webhook from GitHub. We then schedule a set of containers to create your new environment.</p>
     </div>
     <p class="grid-content p weight-strong">Build Optimization</p>
-    <p class="grid-content p">We begin building a new image for the container with the new code changes.</p>
+    <p class="grid-content p">When we receive branch updates, we begin building a new image for the container running that service.</p>
     <ol class="grid-block vertical ol list padding-md">
       <li class="li">Builds are distributed evenly across the Docker hosts available on the team’s VPC, and every build always has at least one dedicated CPU.
       <li class="li">If the other containers haven’t changed, we use the previous cached images to improve start up time.
