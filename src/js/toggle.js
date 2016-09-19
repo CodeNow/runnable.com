@@ -41,7 +41,7 @@ function toggle(e) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var i;
   var toggler = document.getElementsByClassName('js-toggler');
 
