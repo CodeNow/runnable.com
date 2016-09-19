@@ -802,7 +802,7 @@ function sundipValidation(resultMessage, form, formName) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var modalTriggers = document.getElementsByClassName('js-modal');
   var dBody = document.body;
   var dragging = false;
@@ -896,7 +896,7 @@ function toggle(e) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var i;
   var toggler = document.getElementsByClassName('js-toggler');
 
@@ -1025,19 +1025,19 @@ window.addEventListener('load', function(){
     <main class="grid-block vertical main hero-only">
       <article class="article hero how-it-works-hero">
   <h1 class="h1 text-center">How it works:</h1>
-  <p class="p text-center">Runnable speeds up development by removing some of the complex, time-consuming tasks shared by developers and DevOps. Empowering dev teams with full-stack environments for every change will significantly improve their speed and throughput.</p>
+  <h3 class="h3 text-center">Runnable is built on Docker, and provides all the benefits without the setup.</h3>
 </article>
 
       <article class="grid-block vertical align-center article article-setup">
   <h1 class="h1 weight-strong text-center">Creating environments is simple.</h1>
   <h3 class="h3 text-center">Start by adding the services that make up your environment.</h3>
 
-  <div class="grid-block btn-toggle-wrapper">
-    <div class="grid-block align-center btn btn-toggle white js-toggler active" data-toggler="1">
+  <div class="grid-block btn-radio-wrapper">
+    <div class="grid-block align-center btn btn-radio white js-toggler active" data-toggler="1">
       <img class="grid-content img" src="images/how-it-works/dockerize.svg" height="30" width="30">
       <span class="grid-content">Dockerize your service with our point-and-click interface.</span>
     </div>
-    <div class="grid-block align-center btn btn-toggle white js-toggler" data-toggler="2">
+    <div class="grid-block align-center btn btn-radio white js-toggler" data-toggler="2">
       <img class="grid-content img" src="images/how-it-works/dockerfile.svg" height="30" width="30">
       <span class="grid-content">Or bring your own Dockerfile.</span>
     </div>
@@ -1050,7 +1050,7 @@ window.addEventListener('load', function(){
 </article>
 
       <article class="grid-block justify-center article article-branches-urls article-branches">
-  <figure class="grid-block shrink figure">
+  <figure class="figure">
     <img class="img" src="images/how-it-works/setup-branches.svg" height="273" width="330">
   </figure>
   <div class="grid-block vertical text-wrapper">
@@ -1061,7 +1061,7 @@ window.addEventListener('load', function(){
 
 <article class="grid-block vertical align-center article article-branches-urls article-urls">
   <div class="grid-block justify-center figure-wrapper">
-    <figure class="grid-block shrink figure">
+    <figure class="figure">
       <img class="img" src="images/how-it-works/setup-urls.svg" height="165" width="330">
     </figure>
     <div class="grid-block vertical text-wrapper">
@@ -1106,51 +1106,37 @@ window.addEventListener('load', function(){
 
       <article class="grid-block vertical align-center article article-behind-the-scenes">
   <h1 class="h1 weight-strong text-center">Behind the scenes.</h1>
-  <p class="p text-center">Here’s a glimpse of what it takes to provide a first-class experience around provisioning properly configured, full-stack environments on-demand:</p>
+  <h3 class="h3 text-center">See how we’ve created a powerful experience around building full-stack environments:</h3>
 
   <section class="grid-block vertical card padding-lg">
-
     <p class="grid-content p weight-strong">When a Team Joins Runnable</p>
     <p class="grid-content p"> We create dedicated instances behind a new&#32;
       <span class="underline popover-trigger hover">VPC
         <span class="popover top weight-light">Virtual Private Cloud</span>
-      </span>. VPCs help ensure privacy and security for the team’s code. It also enables us to scale instances based on their usage. Every VPC has a dedicated set of Docker machines, Swarm, and Registry. Custom&#32;
+      </span>. VPCs help ensure privacy and security for the team’s code. It also enables us to scale instances based on their usage. Custom&#32;
       <span class="underline popover-trigger hover">AMI
         <span class="popover top weight-light">Amazon Machine Images</span>
       </span>
       &#32;are created for large databases to expedite provisioning.
     </p>
-
-    <hr class="hr">
-
-    <p class="grid-content p weight-strong">Runnable Runs on Docker</p>
+    <div class="grid-block align-center well padding-md">
+      <img class="grid-content shrink img" src="images/how-it-works/icons-docker.svg" height="33" width="33" alt="Docker Logo">
+      <p class="grid-content p">Runnable runs on Docker. Every VPC has a dedicated set of Docker machines, Swarm, and Registry.</p>
+    </div>
     <p class="grid-content p">If the team is already dockerized, setup is a breeze. If not, we construct a Dockerfile for each repository service based on configuration details a teammate enters via our simple interface.</p>
-    <div class="grid-block well padding-md">
-      <img class="grid-content img faded" src="images/logos/social/logo-github.svg" height="45" width="45" alt="GitHub Logo">
-      <p class="grid-content p">When a teammate creates a new branch, we receive a new webhook from GitHub. Then we schedule a new set of containers to create your new full-stack environment.</p>
+    <div class="grid-block align-center well padding-md">
+      <img class="grid-content shrink img faded" src="images/logos/social/logo-github.svg" height="33" width="33" alt="GitHub Logo">
+      <p class="grid-content p">When a teammate creates a new branch, we receive a webhook from GitHub. We then schedule a set of containers to create your new environment.</p>
     </div>
     <p class="grid-content p weight-strong">Build Optimization</p>
-    <p class="grid-content p">We begin building a new image for the container with the new code changes.</p>
+    <p class="grid-content p">When we receive branch updates, we begin building a new image for the container running that service.</p>
     <ol class="grid-block vertical ol list padding-md">
       <li class="li">Builds are distributed evenly across the Docker hosts available on the team’s VPC, and every build always has at least one dedicated CPU.
       <li class="li">If the other containers haven’t changed, we use the previous cached images to improve start up time.
     </ol>
     <p class="grid-content p">Once the containers are started in the necessary order, they’re attached to our Swarm-based network and are configured to communicate with each other.</p>
-    <p class="grid-content p">Each container is also configured to use our managed DNS server, which, coupled with our UI, enables teammates to route requests to other containers on-the-fly.</p>
-
-    <hr class="hr">
-
-    <p class="grid-content p weight-strong">When a Teammate Opens an Environment URL</p>
-    <p class="grid-content p">Our routing system accommodates applications that require OAuth or other 3rd-party server-side integrations.</p>
-    <p class="grid-content p">We store specific environment details in the teammate’s browser session and redirect them to a shared (or elastic) URL for the remainder of their session.</p>
-    <a class="grid-content link link-external" href="http://blog.runnable.com/post/149340238426/elastic-routing-in-runnable">
-      <span class="span">Elastic Routing in Runnable</span>
-      <svg class="icons">
-        <use xlink:href="#icons-external">
-      </svg>
-    </a>
-    <div class="grid-block well padding-md">
-      <img class="grid-content img" src="images/logos/logo-slack.svg" height="45" width="45" alt="Slack Logo">
+    <div class="grid-block align-center well padding-md">
+      <img class="grid-content shrink img" src="images/logos/logo-slack.svg" height="33" width="33" alt="Slack Logo">
       <p class="grid-content p">We receive a webhook when a teammate opens a pull request, and we publish the environment URLs to the page for easier reviews—Slack too.</p>
     </div>
     <p class="grid-content p weight-strong">Automatic Infrastructure Scaling</p>
@@ -1165,14 +1151,13 @@ window.addEventListener('load', function(){
         <p class="grid-content p text-center">When a teammate deletes their branch, we receive a webhook, and clean up the associated environment.</p>
       </div>
     </div>
-    <div class="grid-content padding-lg text-center text-gray card-footer">
-      Read our <a class="link" href="http://blog.runnable.com/">engineering blog</a> for specific details on Runnable’s infrastructure.
-      <br>Articles are published weekly.
+    <div class="grid-content padding-lg card-footer">
+      <p class="p text-center text-gray">Read our <a class="link" href="http://blog.runnable.com/">engineering blog</a> for specific details on Runnable’s infrastructure. Articles are published weekly.</p>
     </div>
   </section>
   <div class="grid-block vertical align-center">
-    <p class="grid-content text-white p text-center">Get 25% off your first 6 months if you sign up by September 30<sup class="sup">th</sup>.</p>
-    <a class="grid-content btn btn-lg btn-white" href="product/">View Pricing Plans</a>
+    <p class="grid-content text-white p text-center">Environments for your entire team at a low, fixed cost.</p>
+    <a class="grid-content btn btn-lg btn-white" href="pricing/">View Pricing Plans</a>
   </div>
 </article>
 

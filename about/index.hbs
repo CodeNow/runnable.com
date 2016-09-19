@@ -802,7 +802,7 @@ function sundipValidation(resultMessage, form, formName) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var modalTriggers = document.getElementsByClassName('js-modal');
   var dBody = document.body;
   var dragging = false;
@@ -881,7 +881,7 @@ function flipCard(e) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var i;
   var flipper = document.getElementsByClassName('js-flipper');
 
@@ -1010,7 +1010,7 @@ window.addEventListener('load', function(){
     <main class="grid-block vertical main about">
       <article class="article hero about-hero">
   <h1 class="h1 text-center">Team Runnable</h1>
-  <p class="p text-center">Our mission is to enable anyone to run code without worrying about infrastructure.</p>
+  <h3 class="h3 text-center">Our mission is to enable anyone to run code without worrying about infrastructure.</h3>
   <div class="grid-block grid-container justify-center team-grid">
     <figure class="grid-block card-flipper team-card vertical">
       <img class="grid-block shrink img" src="images/team/yashkumar.jpg" alt="Yash Kumar" height="215" width="300">

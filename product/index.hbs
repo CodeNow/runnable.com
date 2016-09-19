@@ -802,7 +802,7 @@ function sundipValidation(resultMessage, form, formName) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var modalTriggers = document.getElementsByClassName('js-modal');
   var dBody = document.body;
   var dragging = false;
@@ -853,6 +853,62 @@ window.addEventListener('load', function(){
   }, false);
 }(document, window));
 
+      // toggles
+function toggle(e) {
+  var i;
+  var toggler = e.target;
+  var togglerElements = document.getElementsByClassName('js-toggler');
+  var toggleType;
+  var toggleElements = document.getElementsByClassName('js-toggle');
+
+  // get parent
+  if (!toggler.classList.contains('js-toggler')) {
+    while ((toggler = toggler.parentElement) && !toggler.classList.contains('js-toggler'));
+  }
+
+  // only toggle things if it's not already active
+  if (!toggler.classList.contains('active')) {
+    toggleType = toggler.getAttribute('data-toggler');
+
+    for (i = 0; i < togglerElements.length; i++) {
+      togglerElements[i].classList.remove('active');
+    }
+
+    for (i = 0; i < toggleElements.length; i++) {
+
+      if (toggleElements[i].classList.contains('fade')) {
+        toggleElements[i].classList.remove('in');
+
+        if (toggleType === toggleElements[i].getAttribute('data-toggle')) {
+          toggleElements[i].classList.add('in');
+        }
+      } else {
+        toggleElements[i].classList.add('hide');
+
+        if (toggleType === toggleElements[i].getAttribute('data-toggle')) {
+          toggleElements[i].classList.remove('hide');
+        }
+      }
+    }
+
+    toggler.classList.add('active');
+  }
+}
+
+// events
+window.addEventListener('DOMContentLoaded', function(){
+  var i;
+  var toggler = document.getElementsByClassName('js-toggler');
+
+  // flipping cards
+  if (toggler) {
+    for (i = 0; i < toggler.length; i++) {
+      toggler[i].addEventListener('click', toggle);
+      toggler[i].addEventListener('touchend', toggle);
+    }
+  }
+});
+
       window.addEventListener('load', function(){
   var statusPage = new StatusPage.page({page:'ngvk75ydhg3t'});
   var footer = document.getElementsByClassName('footer')[0];
@@ -899,7 +955,7 @@ window.addEventListener('load', function(){
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-product" ontouchstart>
+  <body class="page-landing" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
@@ -966,114 +1022,153 @@ window.addEventListener('load', function(){
 </header>
 
 
-    <main class="grid-block vertical main">
-      <article class="article hero">
-  <h1 class="h1 text-center">Full-stack environments built for your team’s workflow.</h1>
+    <main class="grid-block vertical main hero-only">
+      <article class="grid-block vertical article hero product-hero">
+  <h1 class="grid-content h1 text-center">On-demand full-&#65279;stack<br class="visible-sm hidden-xs"> environments for all.</h1>
+  <p class="grid-content p text-center">Runnable enables teams to ship faster by freeing the burden of managing dev environments and reducing their dependence on the staging server.</p>
 </article>
 
-      <article class="article article-github grid-container">
-  <section class="section section-environments grid-block">
-    <div class="grid-block text-block vertical justify-center">
-      <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Save time and frustration.</h3>
+    <p class="text-center">Environments are built around how teams develop software. A new branch creates a new environment, and deleting a branch deletes its environment.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        Using Runnable reduces the effort required to manage our feature acceptance environments for the entire team.
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution">
+        <img class="grid-content shrink avatar" src="images/product/gregg-kang.png" alt="Gregg Kang">
+        Gregg Kang, Eshares
+        <br>
+        Head of Platform Engineering
+      </div>
     </div>
-    <figure class="grid-block figure">
-      <img class="img" src="images/product/runnable.svg" height="420" width="1080">
+  </div>
+</article>
+
+      <article class="article article-overview">
+  <section class="grid-block justify-center section hidden-sm">
+    <div class="grid-container grid-block">
+      <figure class="grid-block figure">
+        <img class="img js-toggle fade in" src="images/product/sidebar-1.png" data-toggle="1" height="650" width="723">
+        <img class="img js-toggle fade" src="images/product/sidebar-2.png" data-toggle="2" height="650" width="723">
+        <img class="img js-toggle fade" src="images/product/sidebar-3.png" data-toggle="3" height="650" width="723">
+      </figure>
+      <div class="grid-block shrink vertical card">
+        <button class="grid-content btn-radio text-left js-toggler active" data-toggler="1">
+          <p class="p weight-strong">Available</p>
+          <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+        </button>
+        <button class="grid-content btn-radio text-left js-toggler" data-toggler="2">
+          <p class="p weight-strong">Full-stack</p>
+          <p class="p">Environments include all your services and replicated databases, with up-to-date configs.</p>
+        </button>
+        <button class="grid-content btn-radio text-left js-toggler" data-toggler="3">
+          <p class="p weight-strong">Test E2E</p>
+          <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="grid-block vertical align-center section visible-sm">
+    <p class="p weight-strong">Available</p>
+    <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-1.png" height="650" width="723">
     </figure>
   </section>
-  <section class="section section-updates grid-block">
-    <div class="grid-block text-block vertical justify-center">
-      <h2 class="h2">Updates to a branch automatically update the environment.</h2>
-    </div>
-    <figure class="grid-block figure gradient gradient-left">
-      <img class="img img-updates" src="images/product/updates.svg" height="420" width="1080">
+  <section class="grid-block vertical align-center section visible-sm section-purple">
+    <p class="p weight-strong">Full-stack</p>
+    <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-2.png" height="650" width="723">
+    </figure>
+  </section>
+  <section class="grid-block vertical align-center section visible-sm section-green">
+    <p class="p weight-strong">Test E2E</p>
+    <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-3.png" height="650" width="723">
     </figure>
   </section>
 </article>
 
-      <article class="article article-use-cases">
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-sharing">
-      <h2 class="h2 text-center">Simplify development.</h2>
-      <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/simplify.png" width="450" height="360">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-pr">
-      <h2 class="h2 text-center">Faster reviews.</h2>
-      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/pr-page.svg" width="450" height="315">
-      </figure>
-    </section>
-  </div>
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-e2e">
-      <h2 class="h2 text-center">Run integration tests automatically.</h2>
-      <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/e2e-testing.svg" width="450" height="315">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-isolation">
-      <h2 class="h2 text-center">Test database changes safely in isolation.</h2>
-      <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
-      <figure class="figure figure-isolation gradient gradient-right">
-        <img class="img img-isolation" src="images/product/isolation.svg" width="1080" height="420">
-      </figure>
-    </section>
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Keep your team up-to-date.</h3>
+    <p class="text-center">Every environment has a unique URL, so it's easy to share progress with your team for code reviews, with QA and product teams, or with your customers for feedback.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        Runnable environments make it easy for everyone to see the impact of a change before it goes to production.
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution text-center">
+        Ian Grayson, Convoy
+        <br>
+        Senior Software Engineer
+      </div>
+    </div>
   </div>
 </article>
 
-      <article class="article article-bonus grid-container">
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-flexible.svg" width="60" height="60">
-      <h3 class="h3">Flexible</h3>
-      <p class="p">Sync changes from your local machine and SSH into running containers with
-        <br class="visible-sm hidden-xs">our&#32;
-        <a class="link weight-strong" href="https://github.com/runnable/cli">CLI</a>.
-      </p>
+      <article class="grid-block justify-center article article-sharing">
+  <div class="grid-container grid-block">
+    <div class="grid-block vertical card">
+      <img src="images/product/notification.png" class="img" width="400" height="200">
+      <p class="p weight-strong">Follow Branches</p>
+      <p class="p">Environments follow their branch activity to stay updated, making it easy to see how a feature is coming along: just refresh a link.</p>
     </div>
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-open.svg" width="60" height="60">
-      <h3 class="h3">Open</h3>
-      <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
-        <br class="br visible-xs">export capabilities.
-        <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
-      </p>
-    </div>
-  </section>
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-performance.svg" width="60" height="60">
-      <h3 class="h3">Performant</h3>
-      <p class="p">Dedicated infrastructure that&#32;
-        <br class="br visible-xs">auto-scales based on usage.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item bonus-secure">
-      <img class="img grid-block shrink" src="images/product/icons-security.svg" width="60" height="60">
-      <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per team. Third-party security audits.
-    </div>
-  </section>
-</article>
-
-      <a class="grid-block well well-anchor" href="product/development/">
-  <img class="grid-block shrink img" src="images/development.gif" height="108" width="108">
-  <div class="grid-block vertical">
-    <p class="p">
-      <strong class="weight-strong">Next: Development</strong>
-      <br>Your environments on Runnable are always
-      <br class="hidden-xxs">ready as you work.
-    <div class="a weight-strong">How development works on Runnable
-      <svg class="icons icons-chevron-right">
-        <use xlink:href="#icons-chevron-right">
-      </svg>
+    <div class="grid-block vertical card">
+      <img src="images/product/runnabot.png" class="img" width="400" height="200">
+      <p class="p weight-strong">Pull Requests & Slack Integration</p>
+      <p class="p">Environment links and state are shared on the pull request page and on Slack, giving your team one-click access to verify changes and view logs.</p>
     </div>
   </div>
-</a>
+</article>
+
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Fit your team like a glove.</h3>
+    <p class="text-center">Runnable integrates with your team’s development flow, and makes it better, regardless of frameworks, languages or architecture.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        “After a few hours we were up and running. Now we have test environments per feature without managing the orchestration.”
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution">
+        <img class="grid-content shrink avatar" src="images/product/alex-morse.png" alt="Alex Morse">
+        Alex Morse, Cratejoy
+        <br>
+        Co-founder and CTO
+      </div>
+    </div>
+  </div>
+</article>
+
+      <article class="article article-workflow grid-block vertical align-center">
+  <div class="card grid-container grid-block">
+    <div class="grid-block vertical">
+      <img src="images/product/icons-docker.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Docker</p>
+      <p class="p">Environments are built using your repository‘s Dockerfile. No Dockerfile? Runnable creates one for you.</p>
+    </div>
+    <div class="grid-block vertical">
+      <img src="images/product/icons-localhost.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Localhost-friendly</p>
+      <p class="p">Connect local services with the rest of your stack on Runnable. Logs, file browsing and terminals with root credentials ensure unrestricted access to your environments.</p>
+    </div>
+    <div class="grid-block vertical">
+      <img src="images/product/icons-secure.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Single-tenant & Secure</p>
+      <p class="p">Dedicated infrastructure per team keeps your code private and keeps performance consistent. Regular security audits (NCC Group) ensure our commitment to keeping your code secure.</p>
+    </div>
+  </div>
+  <div class="grid-block vertical align-center">
+    <p class="grid-content text-white p text-center">See what your team’s workflow will look like with Runnable.</p>
+    <a class="grid-content btn btn-lg btn-white" href="how-it-works/">How It Works</a>
+  </div>
+</article>
 
     </main>
 

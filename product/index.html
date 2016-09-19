@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-14.1.0.css">
+<link rel="stylesheet" href="styles/index-15.0.0.css">
 
 <script>
   (function(self) {
@@ -561,14 +561,14 @@
 </script>
 
     <title>Full-stack environments built for your team’s workflow. — Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("bitbucket")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupForm(e){var t;for("bitbucket"===e?t=document.getElementsByClassName("form-bitbucket"):"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise")),i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a)),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t)}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("bitbucket"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("bitbucket")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupForm(e){var t;for("bitbucket"===e?t=document.getElementsByClassName("form-bitbucket"):"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise")),i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,l=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a)),1===s&&(t.classList.add("hide"),t.classList.remove("show"),l.classList.add("show"),l.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t)}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function toggle(e){var t,n,a=e.target,s=document.getElementsByClassName("js-toggler"),i=document.getElementsByClassName("js-toggle");if(!a.classList.contains("js-toggler"))for(;(a=a.parentElement)&&!a.classList.contains("js-toggler"););if(!a.classList.contains("active")){for(n=a.getAttribute("data-toggler"),t=0;t<s.length;t++)s[t].classList.remove("active");for(t=0;t<i.length;t++)i[t].classList.contains("fade")?(i[t].classList.remove("in"),n===i[t].getAttribute("data-toggle")&&i[t].classList.add("in")):(i[t].classList.add("hide"),n===i[t].getAttribute("data-toggle")&&i[t].classList.remove("hide"));a.classList.add("active")}}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("bitbucket"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-toggler");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",toggle),t[e].addEventListener("touchend",toggle)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: eb994387ccd52c7d39ac8e1efe86e4c7ba1166f3
-      Commit Time: Sun Sep 18 18:45:06 2016 -0700
+      Commit Hash: f0a3b2160950c82668ea50080e324c7790980fa1
+      Commit Time: Mon Sep 19 11:58:22 2016 -0700
     -->
 
-  </head><body class="page-landing page-product" ontouchstart="">
+  </head><body class="page-landing" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
@@ -635,114 +635,153 @@
 </header>
 
 
-    <main class="grid-block vertical main">
-      <article class="article hero">
-  <h1 class="h1 text-center">Full-stack environments built for your team’s workflow.</h1>
+    <main class="grid-block vertical main hero-only">
+      <article class="grid-block vertical article hero product-hero">
+  <h1 class="grid-content h1 text-center">On-demand full-&#65279;stack<br class="visible-sm hidden-xs"> environments for all.</h1>
+  <p class="grid-content p text-center">Runnable enables teams to ship faster by freeing the burden of managing dev environments and reducing their dependence on the staging server.</p>
 </article>
 
-      <article class="article article-github grid-container">
-  <section class="section section-environments grid-block">
-    <div class="grid-block text-block vertical justify-center">
-      <h2 class="h2">Every branch across every repository runs in a full-stack environment.</h2>
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Save time and frustration.</h3>
+    <p class="text-center">Environments are built around how teams develop software. A new branch creates a new environment, and deleting a branch deletes its environment.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        Using Runnable reduces the effort required to manage our feature acceptance environments for the entire team.
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution">
+        <img class="grid-content shrink avatar" src="images/product/gregg-kang.png" alt="Gregg Kang">
+        Gregg Kang, Eshares
+        <br>
+        Head of Platform Engineering
+      </div>
     </div>
-    <figure class="grid-block figure">
-      <img class="img" src="images/product/runnable.svg" height="420" width="1080">
-    </figure>
-  </section>
-  <section class="section section-updates grid-block">
-    <div class="grid-block text-block vertical justify-center">
-      <h2 class="h2">Updates to a branch automatically update the environment.</h2>
-    </div>
-    <figure class="grid-block figure gradient gradient-left">
-      <img class="img img-updates" src="images/product/updates.svg" height="420" width="1080">
-    </figure>
-  </section>
-</article>
-
-      <article class="article article-use-cases">
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-sharing">
-      <h2 class="h2 text-center">Simplify development.</h2>
-      <p class="p text-center">Work on individual components locally and connect to the rest of your stack on Runnable.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/simplify.png" width="450" height="360">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-pr">
-      <h2 class="h2 text-center">Faster reviews.</h2>
-      <p class="p text-center">Reduce time spent on reviewing code changes with a live, up-to-date URL for every branch.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/pr-page.svg" width="450" height="315">
-      </figure>
-    </section>
-  </div>
-  <div class="grid-block grid-2">
-    <section class="grid-block vertical section-e2e">
-      <h2 class="h2 text-center">Run integration tests automatically.</h2>
-      <p class="p text-center">Integrate and test as changes are pushed to GitHub. Testing end-to-end has never been this easy.</p>
-      <figure class="figure">
-        <img class="img" src="images/product/e2e-testing.svg" width="450" height="315">
-      </figure>
-    </section>
-    <section class="grid-block vertical section-isolation">
-      <h2 class="h2 text-center">Test database changes safely in isolation.</h2>
-      <p class="p text-center">Isolate a branch to create a separate full-stack environment in seconds—including multi-gigabyte databases.</p>
-      <figure class="figure figure-isolation gradient gradient-right">
-        <img class="img img-isolation" src="images/product/isolation.svg" width="1080" height="420">
-      </figure>
-    </section>
   </div>
 </article>
 
-      <article class="article article-bonus grid-container">
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-flexible.svg" width="60" height="60">
-      <h3 class="h3">Flexible</h3>
-      <p class="p">Sync changes from your local machine and SSH into running containers with
-        <br class="visible-sm hidden-xs">our&#32;
-        <a class="link weight-strong" href="https://github.com/runnable/cli">CLI</a>.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-open.svg" width="60" height="60">
-      <h3 class="h3">Open</h3>
-      <p class="p">Full Docker (Dockerfiles, Swarm, Registry) under the hood, with direct network access and image&#32;
-        <br class="br visible-xs">export capabilities.
-        <small class="small">Docker, Docker Swarm, and the Docker logo are trademarks or registered trademarks of Docker, Inc. in the United States and/or other countries.</small>
-      </p>
+      <article class="article article-overview">
+  <section class="grid-block justify-center section hidden-sm">
+    <div class="grid-container grid-block">
+      <figure class="grid-block figure">
+        <img class="img js-toggle fade in" src="images/product/sidebar-1.png" data-toggle="1" height="650" width="723">
+        <img class="img js-toggle fade" src="images/product/sidebar-2.png" data-toggle="2" height="650" width="723">
+        <img class="img js-toggle fade" src="images/product/sidebar-3.png" data-toggle="3" height="650" width="723">
+      </figure>
+      <div class="grid-block shrink vertical card">
+        <button class="grid-content btn-radio text-left js-toggler active" data-toggler="1">
+          <p class="p weight-strong">Available</p>
+          <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+        </button>
+        <button class="grid-content btn-radio text-left js-toggler" data-toggler="2">
+          <p class="p weight-strong">Full-stack</p>
+          <p class="p">Environments include all your services and replicated databases, with up-to-date configs.</p>
+        </button>
+        <button class="grid-content btn-radio text-left js-toggler" data-toggler="3">
+          <p class="p weight-strong">Test E2E</p>
+          <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
+        </button>
+      </div>
     </div>
   </section>
-  <section class="section grid-block grid-2">
-    <div class="grid-block vertical bonus-item">
-      <img class="img grid-block shrink" src="images/product/icons-performance.svg" width="60" height="60">
-      <h3 class="h3">Performant</h3>
-      <p class="p">Dedicated infrastructure that&#32;
-        <br class="br visible-xs">auto-scales based on usage.
-      </p>
-    </div>
-    <div class="grid-block vertical bonus-item bonus-secure">
-      <img class="img grid-block shrink" src="images/product/icons-security.svg" width="60" height="60">
-      <h3 class="h3">Secure</h3>
-      <p class="p">Single-tenant infrastructure per team. Third-party security audits.
-    </p></div>
+  <section class="grid-block vertical align-center section visible-sm">
+    <p class="p weight-strong">Available</p>
+    <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-1.png" height="650" width="723">
+    </figure>
+  </section>
+  <section class="grid-block vertical align-center section visible-sm section-purple">
+    <p class="p weight-strong">Full-stack</p>
+    <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-2.png" height="650" width="723">
+    </figure>
+  </section>
+  <section class="grid-block vertical align-center section visible-sm section-green">
+    <p class="p weight-strong">Test E2E</p>
+    <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
+    <figure class="figure">
+      <img class="img" src="images/product/sidebar-3.png" height="650" width="723">
+    </figure>
   </section>
 </article>
 
-      <a class="grid-block well well-anchor" href="product/development/">
-  <img class="grid-block shrink img" src="images/development.gif" height="108" width="108">
-  <div class="grid-block vertical">
-    <p class="p">
-      <strong class="weight-strong">Next: Development</strong>
-      <br>Your environments on Runnable are always
-      <br class="hidden-xxs">ready as you work.
-    <div class="a weight-strong">How development works on Runnable
-      <svg class="icons icons-chevron-right">
-        <use xlink:href="#icons-chevron-right"/>
-      </svg>
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Keep your team up-to-date.</h3>
+    <p class="text-center">Every environment has a unique URL, so it's easy to share progress with your team for code reviews, with QA and product teams, or with your customers for feedback.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        Runnable environments make it easy for everyone to see the impact of a change before it goes to production.
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution text-center">
+        Ian Grayson, Convoy
+        <br>
+        Senior Software Engineer
+      </div>
     </div>
-  </p></div>
-</a>
+  </div>
+</article>
+
+      <article class="grid-block justify-center article article-sharing">
+  <div class="grid-container grid-block">
+    <div class="grid-block vertical card">
+      <img src="images/product/notification.png" class="img" width="400" height="200">
+      <p class="p weight-strong">Follow Branches</p>
+      <p class="p">Environments follow their branch activity to stay updated, making it easy to see how a feature is coming along: just refresh a link.</p>
+    </div>
+    <div class="grid-block vertical card">
+      <img src="images/product/runnabot.png" class="img" width="400" height="200">
+      <p class="p weight-strong">Pull Requests & Slack Integration</p>
+      <p class="p">Environment links and state are shared on the pull request page and on Slack, giving your team one-click access to verify changes and view logs.</p>
+    </div>
+  </div>
+</article>
+
+      <article class="article article-heading">
+  <div class="grid-container">
+    <h3 class="h3 weight-strong text-center">Fit your team like a glove.</h3>
+    <p class="text-center">Runnable integrates with your team’s development flow, and makes it better, regardless of frameworks, languages or architecture.</p>
+    <div class="grid-block vertical align-center quote-wrapper p text-gray">
+      <blockquote class="quote-bubble text-center">
+        <div class="arrow"></div>
+        “After a few hours we were up and running. Now we have test environments per feature without managing the orchestration.”
+      </blockquote>
+      <div class="grid-block align-center shrink quote-attribution">
+        <img class="grid-content shrink avatar" src="images/product/alex-morse.png" alt="Alex Morse">
+        Alex Morse, Cratejoy
+        <br>
+        Co-founder and CTO
+      </div>
+    </div>
+  </div>
+</article>
+
+      <article class="article article-workflow grid-block vertical align-center">
+  <div class="card grid-container grid-block">
+    <div class="grid-block vertical">
+      <img src="images/product/icons-docker.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Docker</p>
+      <p class="p">Environments are built using your repository‘s Dockerfile. No Dockerfile? Runnable creates one for you.</p>
+    </div>
+    <div class="grid-block vertical">
+      <img src="images/product/icons-localhost.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Localhost-friendly</p>
+      <p class="p">Connect local services with the rest of your stack on Runnable. Logs, file browsing and terminals with root credentials ensure unrestricted access to your environments.</p>
+    </div>
+    <div class="grid-block vertical">
+      <img src="images/product/icons-secure.svg" class="img" width="60" height="60">
+      <p class="p weight-strong">Single-tenant & Secure</p>
+      <p class="p">Dedicated infrastructure per team keeps your code private and keeps performance consistent. Regular security audits (NCC Group) ensure our commitment to keeping your code secure.</p>
+    </div>
+  </div>
+  <div class="grid-block vertical align-center">
+    <p class="grid-content text-white p text-center">See what your team’s workflow will look like with Runnable.</p>
+    <a class="grid-content btn btn-lg btn-white" href="how-it-works/">How It Works</a>
+  </div>
+</article>
 
     </main>
 
