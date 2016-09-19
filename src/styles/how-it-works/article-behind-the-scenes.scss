@@ -22,7 +22,7 @@
   }
 
   .p {
-    margin-bottom: 0;
+    margin-bottom: 0; // reset
   }
 
   .popover-trigger {
@@ -36,21 +36,71 @@
 
   .card {
     background: $white;
-    border: 1px solid rgba($black,.1);
+    border: $input-border solid rgba($black,.1);
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.075);
     color: $gray-dark;
     margin: 45px 15px 15px;
     max-width: 810px;
+    overflow: visible;
   }
 
   .well {
     background: $gray-lighterest;
     font-size: 16px;
-    margin-top: 30px;
+    margin: 45px 0;
 
-    .img {
+    .img.faded {
       opacity: .3;
     }
+  }
+
+  .list {
+    margin: 0 15px;
+  }
+
+  .li + .li {
+    margin-top: 15px;
+  }
+
+  .link-external {
+    text-decoration: none;
+
+    &:hover .span {
+      text-decoration: none;
+    }
+
+    .span {
+      text-decoration: underline;
+    }
+
+    .icons {
+      height: 18px;
+      left: -5px;
+      margin-right: 2px;
+      position: relative;
+      top: 2px;
+      width: 18px;
+    }
+  }
+
+  .grid-2 .grid-block {
+    flex: 1 1;
+    padding-top: 60px;
+
+    + .grid-block .p {
+      border-left: 1px solid $gray-lighter;
+    }
+
+    .p {
+      padding: 15px 45px 45px;
+    }
+  }
+
+  .card-footer {
+    background: $gray-lighterest;
+    border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
+    border-top: 1px solid $gray-lightest;
+    margin: 0 -45px -45px;
   }
 }
