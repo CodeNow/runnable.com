@@ -1,41 +1,13 @@
-.page-product {
+.article-heading {
+  padding: 60px 45px;
 
-  .p {
-    margin-bottom: 0; //override
-
-    &.weight-strong {
-      margin-bottom: 6px;
-    }
-  }
-
-  .section {
-    padding-left: 45px;
-    padding-right: 45px;
-
-    @include media(xs) {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-  }
-
-  .section-heading {
-    padding-bottom: 60px;
-    padding-top: 60px;
-
-    .grid-container {
-      max-width: 750px;
-    }
+  @include media(xs) {
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .grid-container {
-    max-width: 1080px;
-    width: 100%;
-  }
-
-  .card {
-    background: $white;
-    border: $input-border solid transparent;
-    border-radius: $input-border-radius-lg;
+    max-width: 750px;
   }
 
   .quote-wrapper {
@@ -47,9 +19,8 @@
   .quote-bubble {
     background: $gray-lighterest;
     border: 1px solid $gray-lighter;
-    border-radius: 9px;
+    border-radius: 12px;
     font-style: italic;
-    font-weight: $weight-bold;
     max-width: 480px;
     padding: 15px;
     position: relative;

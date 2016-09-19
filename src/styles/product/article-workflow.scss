@@ -1,87 +1,94 @@
 .article-workflow {
-  padding: 0;
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#475496, $blue);
+  // scss-lint:enable ColorVariable
+  border-top: 1px solid rgba($black,.1);
+  margin-top: 60px;
+  overflow: visible;
+  padding: 0 30px 75px;
 
-  .section-workflow {
-    background: linear-gradient(#475496, $blue);
-    border-top: 1px solid rgba($black,.1);
-    margin-top: 60px;
-    overflow: visible;
-    padding: 0 30px 75px;
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
 
-    .grid-container {
-      flex-wrap: wrap;
+  .grid-container {
+    flex-wrap: wrap;
+    max-width: 1080px;
+    width: 100%;
 
-      .grid-block {
-        flex: 1 1 33%;
-        padding: 0 15px 30px;
-
-        @include media(md) {
-          flex: 0 1 50%;
-        }
-
-        @include media(xs) {
-          align-items: center;
-          flex: 0 1 100%;
-          text-align: center;
-        }
-      }
-    }
-
-    .big-card {
-      background: $white;
-      border-radius: $input-border-radius-lg;
-      border: 1px solid $gray-lighter;
-      box-shadow: 0 1px 3px rgba($black,.1);
-      margin-bottom: 60px;
-      margin-top: -60px;
-      max-width: 1080px;
-      padding: 60px;
-      position: relative;
-      z-index: 1;
-
-      @media (max-width: 1110px) {
-        max-width: 960px;
-      }
+    .grid-block {
+      flex: 1 1 33%;
+      padding: 0 15px 30px;
 
       @include media(md) {
-        max-width: 810px;
+        flex: 0 1 50%;
       }
 
-      @media (max-width: 870px) {
-        max-width: calc(100vw - 60px);
+      @include media(xs) {
+        align-items: center;
+        flex: 0 1 100%;
+        text-align: center;
       }
-
-      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-        max-width: 570px;
-      }
-    }
-
-    .btn-white {
-      background: rgba($white,.1);
-      border: $input-border solid rgba($white,.75);
-      color: $blue-lighter;
-      margin-top: 30px;
-
-      &:hover {
-        background: rgba($white,.2);
-      }
-
-      &:active {
-        background: rgba($white,.3);
-      }
-    }
-
-    .img {
-      margin-bottom: 30px;
     }
   }
 
-  .section-cta {
-    margin: 0 auto;
-    max-width: 1140px;
+  .card {
+    background: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba($black,.1);
+    margin-bottom: 60px;
+    margin-top: -60px;
+    max-width: 1080px;
+    padding: 60px;
+    position: relative;
+    z-index: 1;
 
-    .p {
-      margin-top: 24px;
+    @media (max-width: 1110px) {
+      max-width: 960px;
     }
+
+    @include media(md) {
+      max-width: 810px;
+    }
+
+    @media (max-width: 870px) {
+      max-width: calc(100vw - 60px);
+    }
+
+    @media (max-width: $screen-sm) and (min-width: $screen-xs) {
+      max-width: 570px;
+    }
+  }
+
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $blue-lighter;
+    margin-top: 30px;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+  }
+
+  .img {
+    margin-bottom: 30px;
   }
 }

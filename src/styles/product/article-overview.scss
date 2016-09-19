@@ -1,13 +1,22 @@
 .article-overview {
   padding: 0;
 
-  .section-overview {
+  .p:not(.strong) {
+    margin-bottom: 0;
+  }
+
+  .section {
     background: linear-gradient(darken($blue-light,5), $blue);
-    padding-top: 45px;
+    padding: 45px 45px 0;
     position: relative;
 
     @include media(sm) {
       color: $white;
+    }
+
+    @include media(xs) {
+      padding-left: 30px;
+      padding-right: 30px;
     }
 
     // borders as shadows to evenly darken elements of different colors
@@ -51,6 +60,11 @@
         font-size: 16px;
       }
     }
+  }
+
+  .grid-container {
+    max-width: 1080px;
+    width: 100%;
   }
 
   .figure {
@@ -107,8 +121,9 @@
   }
 
   .card {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    background: $white;
+    border: $input-border solid transparent;
+    border-radius: 12px 12px 0 0;
     min-height: 450px;
     padding: 45px - $input-border * 2;
     width: calc(50% - 15px);

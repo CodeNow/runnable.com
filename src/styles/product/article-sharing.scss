@@ -1,28 +1,34 @@
 .article-sharing {
-  padding: 0;
+  background: $gray-lighterest;
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+  margin-top: 60px;
+  overflow: visible;
+  padding: 0 45px;
 
-  .section-sharing {
-    background: $gray-lighterest;
-    border-bottom: 1px solid $gray-lightest;
-    border-top: 1px solid $gray-lightest;
-    margin-top: 60px;
+  @include media(md) {
+    margin-top: 45px;
+  }
+
+  @include media(xs) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .grid-container {
+    max-width: 1080px;
     overflow: visible;
+    width: 100%;
 
-    @include media(md) {
-      margin-top: 45px;
-    }
-
-    .grid-container {
-      overflow: visible;
-
-      @include media(sm) {
-        flex-direction: column;
-      }
+    @include media(sm) {
+      flex-direction: column;
     }
   }
 
   .card {
-    border-color: $gray-lighter;
+    background: $white;
+    border: $input-border solid $gray-lighter;
+    border-radius: 12px;
     box-shadow: 0 2px 6px 0 rgba($black,.05);
     padding: 60px - $input-border * 2;
     position: relative;
