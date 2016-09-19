@@ -26,7 +26,7 @@
     <p class="grid-content p">When we receive branch updates, we begin building a new image for the container running that service.</p>
     <ol class="grid-block vertical ol list padding-md">
       <li class="li">Builds are distributed evenly across the Docker hosts available on the team’s VPC, and every build always has at least one dedicated CPU.
-      <li class="li">If the other containers haven’t changed, we use the previous cached images to improve start up time.
+      <li class="li">If the other containers’ dependencies haven’t changed, we use the previous cached images to improve start-up time.
     </ol>
     <p class="grid-content p">Once the containers are started in the necessary order, they’re attached to our Swarm-based network and are configured to communicate with each other.</p>
     <div class="grid-block align-center well padding-md">
@@ -37,11 +37,11 @@
     <p class="grid-content p">Our infrastructure management uses machine learning to automatically scale up and down instances based on a predictive scaling model built from analyzing the team’s patterns in commit history.</p>
     <div class="grid-block grid-2">
       <div class="grid-block vertical align-center">
-        <img class="grid-content shrink img" src="images/how-it-works/icons-performance.svg" height="60" width="60" alt="Slack Logo">
+        <img class="grid-content shrink img" src="images/how-it-works/icons-performance.svg" height="60" width="60" alt="Performance">
         <p class="grid-content p text-center">During cases where instances perform less than expected, we automatically create a new host and perform a migration of all containers and services.</p>
       </div>
       <div class="grid-block vertical align-center">
-        <img class="grid-content shrink img" src="images/how-it-works/icons-recycle.svg" height="60" width="60" alt="Slack Logo">
+        <img class="grid-content shrink img" src="images/how-it-works/icons-recycle.svg" height="60" width="60" alt="Recycle">
         <p class="grid-content p text-center">When a teammate deletes their branch, we receive a webhook, and clean up the associated environment.</p>
       </div>
     </div>
