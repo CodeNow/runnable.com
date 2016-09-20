@@ -292,6 +292,6 @@ gulp.task('default', function(cb) {
   runSequence('build:dev', 'server', cb);
   gulp.watch(hbsDir, function(){runSequence('html', 'hbs', 'inject');});
   gulp.watch(sassDir, ['sass']);
-  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js');});
+  gulp.watch(jsDir, function(){runSequence('html', 'hbs', 'js', 'inject');});
   gulp.watch(imgDir, ['images']);
 });
