@@ -33,6 +33,10 @@
   }
 
   .h3 {
+    @include media(md) {
+      max-width: 540px;
+    }
+
     @include media(xxs) {
       padding: 0 15px;
     }
