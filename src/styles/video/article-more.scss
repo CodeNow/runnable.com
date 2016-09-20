@@ -10,6 +10,10 @@
     padding-top: 105px;
   }
 
+  @include media(xxs) {
+    padding-top: 120px;
+  }
+
   .grid-container {
     flex-wrap: wrap;
 
