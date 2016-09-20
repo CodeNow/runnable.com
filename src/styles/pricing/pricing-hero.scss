@@ -1,4 +1,7 @@
 .pricing-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #4f438f);
+  // scss-lint:enable ColorVariable
   padding-bottom: 0;
 
   .grid-block {
@@ -34,7 +37,7 @@
   .card-flipper {
 
     @media (max-width: 530px) {
-      height: 283px;
+      height: 372px;
     }
 
     .plan {
@@ -49,9 +52,8 @@
 
   .card-b {
 
-    // submit button
     .btn-sm {
-      display: flex;
+      margin: 9px 0;
     }
 
     // err text
@@ -59,14 +61,6 @@
       font-weight: $weight-light;
       margin-top: 6px;
     }
-  }
-
-  .month {
-    font-size: 30px;
-  }
-
-  .slash {
-    margin: 0 6px;
   }
 }
 
@@ -116,14 +110,8 @@
   color: $gray-dark;
   font-size: 16px;
   line-height: 1.4;
-  padding: 12px 20px 24px;
 
   &.form {
-
-    .price-wrapper {
-      margin-bottom: 20px;
-      padding-top: 20px;
-    }
 
     .icons-chevron-right {
       color: $gray-light;
@@ -145,10 +133,6 @@
       }
     }
 
-    .input {
-      margin-bottom: 10px;
-    }
-
     .popover {
       line-height: 1.4;
       white-space: normal;
@@ -157,58 +141,53 @@
     }
   }
 
-  .sup {
-    font-size: 65%;
-    margin: 0 2px;
-    top: -.35em;
-  }
-
   .small {
     font-size: 14px;
   }
-
-  .well {
-    background-color: rgba($green,.05);
-    border-color: rgba($green,.5);
-    border-radius: 3px;
-    color: darken($green,5);
-    line-height: 18px;
-    margin-bottom: 18px;
-    padding: 6px;
-  }
 }
 
-.price-wrapper,
-.notify-wrapper {
+.price-wrapper {
+  border-bottom: 1px solid $gray-lighter;
   border-top: 1px solid $gray-lightest;
-  margin-top: 12px;
-  padding: 12px 0 18px;
-}
+  flex: 0 0 198px;
+  margin: 15px 0;
+  padding: 21px 0;
 
-.notify-wrapper {
-  border-bottom: 1px solid $gray-lightest;
-  margin-bottom: 33px;
-}
+  .strike {
+    font-weight: $weight-bold;
+    position: relative;
+    text-decoration: none;
 
-.price {
-  font-size: 36px;
-  line-height: 36px;
-  margin: 3px 0;
-  position: relative;
-
-  &::after {
-    background-color: lighten($red,10);
-    content: '';
-    display: block;
-    height: 3px;
-    left: 50%;
-    position: absolute;
-    top: 17px;
-    transform: translatex(-50%) rotate(15deg);
-    width: 135px;
+    &::after {
+      background-color: lighten($red,10);
+      content: '';
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translatex(-50%) rotate(5deg);
+      width: 120px;
+    }
   }
-}
 
-.plan-description {
-  margin-bottom: 15px;
+  .sup {
+    font-size: 19px;
+    top: -29px;
+
+    &:first-child {
+      font-weight: $weight-light;
+      margin-right: 3px;
+      top: -26px;
+    }
+
+    &.indent-left {
+      margin-left: -3px;
+    }
+  }
+
+  .price {
+    font-size: 60px;
+    line-height: 1;
+  }
 }
