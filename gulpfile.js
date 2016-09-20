@@ -71,7 +71,7 @@ gulp.task('html', function() {
       prefix: '@@',
       basepath: src,
       context: {
-        env: ''
+        env: process.env.NODE_ENV
       }
     }))
     .pipe(gulp.dest(htmlDist));
