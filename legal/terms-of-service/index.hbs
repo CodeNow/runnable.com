@@ -1194,11 +1194,11 @@ window.addEventListener('load', function(){
   Back
 </button>
 
-<article class="grid-block vertical article article-form article-sign-up slide in">
+<article class="grid-block noscroll vertical article article-form article-sign-up slide in">
   <h1 class="h1 text-center weight-strong padding-sm">Let’s get started.</h1>
   <div class="grid-block card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
+    <div class="grid-block vertical padding-lg form-wrapper">
       <p class="p text-center padding-sm">Where does your team keep their code?</p>
       <div class="grid-block align-center justify-center btn btn-lg white js-next" data-next="github">
         <svg class="grid-content shrink icons">
@@ -1226,11 +1226,11 @@ window.addEventListener('load', function(){
   </div>
 </article>
 
-<article class="grid-block vertical article article-form article-sign-up article-github slide">
+<article class="grid-block noscroll vertical article article-form article-sign-up article-github slide">
   <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
+    <div class="grid-block vertical padding-lg form-wrapper">
       <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
       <ul class="list list-bordered">
         <li class="grid-block list-item list-item-write">
@@ -1266,38 +1266,40 @@ window.addEventListener('load', function(){
   </div>
 </article>
 
-<article class="grid-block vertical article article-form article-sign-up article-bitbucket slide">
+<article class="grid-block noscroll vertical article article-form article-sign-up article-bitbucket slide">
   <h1 class="h1 text-center weight-strong padding-sm">Get notified.</h1>
-  <form class="grid-block vertical card form form-bitbucket shake-me">
+  <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
-      <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-      <div class="grid-block vertical show">
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Your Name</span>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
-        </div>
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Work Email</span>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
+    <form class="grid-block vertical form form-bitbucket show">
+      <div class="grid-block vertical padding-lg form-wrapper">
+        <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
+        <div class="grid-block vertical show">
+          <div class="grid-content input-group-vertical input-group-org">
+            <label class="label" for="input-organization">
+              <span class="label-text">Your Name</span>
+            </label>
+            <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
+          </div>
+          <div class="grid-content input-group-vertical input-group-org">
+            <label class="label" for="input-organization">
+              <span class="label-text">Work Email</span>
+            </label>
+            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
+          </div>
         </div>
       </div>
-    </div>
-    <footer class="card-footer">
-      <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
-        <div class="grid-block justify-center align-center">
-          <svg class="icons hidden-xxxs">
-            <use xlink:href="#icons-bitbucket">
-          </svg>
-          <span class="grid-content shrink">Notify Me</span>
-        </div>
-      </button>
-    </footer>
-    <div class="grid-block vertical hide">
+      <footer class="card-footer">
+        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
+          <div class="grid-block justify-center align-center">
+            <svg class="icons hidden-xxxs">
+              <use xlink:href="#icons-bitbucket">
+            </svg>
+            <span class="grid-content shrink">Notify Me</span>
+          </div>
+        </button>
+      </footer>
+    </form>
+    <div class="grid-block vertical justify-center padding-lg hide">
       <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
     </div>
   </form>

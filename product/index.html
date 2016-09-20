@@ -564,8 +564,8 @@
     <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],s=e.target.getAttribute("data-target").substring(1),a=document.getElementById(s),i=a.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),a.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===s&&setupForm("signup")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function whichForm(e){var t,n=e.target;if(!n.classList.contains("js-next"))for(;(n=n.parentNode)&&!n.classList.contains("js-next"););t=n.getAttribute("data-next"),nextForm(t)}function nextForm(e){var t,n=document.getElementsByClassName("slide in")[0],s=n.parentNode.getElementsByClassName("js-back")[0];n.classList.remove("in"),n.classList.add("out"),s.classList.add("in"),s.addEventListener("click",function(){prevForm(s,n,t)}),s.addEventListener("touchend",function(){prevForm(s,n,t)}),"github"===e?(t=document.getElementsByClassName("article-github")[0],t.classList.add("in")):"bitbucket"===e&&(t=document.getElementsByClassName("article-bitbucket")[0],t.classList.add("in"))}function prevForm(e,t,n){e.classList.remove("in"),t.classList.add("in"),t.classList.remove("out"),n.classList.remove("in")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-next");for(i=0;i<n.length;i++)n[i].addEventListener("click",whichForm),n[i].addEventListener("touchend",whichForm);t=document.getElementsByClassName("form-bitbucket")}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,s=e.target;if("INPUT"==s.tagName)s.classList.add("invalid");else for(t=s.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,s=e.getElementsByTagName("input"),a=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(s)for(n=0;n<s.length;n++)s[n].disabled=!0;a&&(a.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(s)for(n=0;n<s.length;n++)s[n].disabled=!1;a&&(a.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,s){var a,i,o=new XMLHttpRequest;"bitbucket"===s?(a="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===s&&(a="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",a,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,s),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),a=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==a&&0!==a||(shakeForm(e),sundipValidation(i,t,s)),1===a&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var s,a=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),s={email:a,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:a,name:i,clientId:ga.getAll()[0].get("clientId")})}),s=JSON.stringify(s),xhrSubmit(e,n,s,t)}}function sundipValidation(e,t,n){var s=t.getElementsByClassName("red")[0],a=document.createElement("small"),i=t.getElementsByTagName("button")[0];s&&s.parentNode.removeChild(s),a.classList.add("popover","bottom","in","small","red","text-center"),a.innerHTML=e,i.appendChild(a),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function toggle(e){var t,n,s=e.target,a=document.getElementsByClassName("js-toggler"),i=document.getElementsByClassName("js-toggle");if(!s.classList.contains("js-toggler"))for(;(s=s.parentElement)&&!s.classList.contains("js-toggler"););if(!s.classList.contains("active")){for(n=s.getAttribute("data-toggler"),t=0;t<a.length;t++)a[t].classList.remove("active");for(t=0;t<i.length;t++)i[t].classList.contains("fade")?(i[t].classList.remove("in"),n===i[t].getAttribute("data-toggle")&&i[t].classList.add("in")):(i[t].classList.add("hide"),n===i[t].getAttribute("data-toggle")&&i[t].classList.remove("hide"));s.classList.add("active")}}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,s=!1;if(n.addEventListener("touchmove",function(){s=!0}),n.addEventListener("touchstart",function(){s=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,s)}),t[e].addEventListener("touchend",function(e){openModal(e,s)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-toggler");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",toggle),t[e].addEventListener("touchend",toggle)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),s=document.getElementsByClassName("footer")[0],a=document.createElement("a");a.href="//status.runnable.com",a.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(s.appendChild(a),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}a.textContent=e,a.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 142684581316b24295aa771a68684ab90ad02460
-      Commit Time: Mon Sep 19 21:44:47 2016 -0700
+      Commit Hash: d776cb4f6ff4a93639164a42f918c2f1bbcebe2a
+      Commit Time: Mon Sep 19 22:07:35 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -856,11 +856,11 @@
   Back
 </button>
 
-<article class="grid-block vertical article article-form article-sign-up slide in">
+<article class="grid-block noscroll vertical article article-form article-sign-up slide in">
   <h1 class="h1 text-center weight-strong padding-sm">Let’s get started.</h1>
   <div class="grid-block card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
+    <div class="grid-block vertical padding-lg form-wrapper">
       <p class="p text-center padding-sm">Where does your team keep their code?</p>
       <div class="grid-block align-center justify-center btn btn-lg white js-next" data-next="github">
         <svg class="grid-content shrink icons">
@@ -888,11 +888,11 @@
   </div>
 </article>
 
-<article class="grid-block vertical article article-form article-sign-up article-github slide">
+<article class="grid-block noscroll vertical article article-form article-sign-up article-github slide">
   <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
+    <div class="grid-block vertical padding-lg form-wrapper">
       <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
       <ul class="list list-bordered">
         <li class="grid-block list-item list-item-write">
@@ -928,42 +928,44 @@
   </div>
 </article>
 
-<article class="grid-block vertical article article-form article-sign-up article-bitbucket slide">
+<article class="grid-block noscroll vertical article article-form article-sign-up article-bitbucket slide">
   <h1 class="h1 text-center weight-strong padding-sm">Get notified.</h1>
-  <form class="grid-block vertical card form form-bitbucket shake-me">
+  <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg">
-      <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-      <div class="grid-block vertical show">
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Your Name</span>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
-        </div>
-        <div class="grid-content input-group-vertical input-group-org">
-          <label class="label" for="input-organization">
-            <span class="label-text">Work Email</span>
-          </label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with." type="email" required>
+    <form class="grid-block vertical form form-bitbucket show">
+      <div class="grid-block vertical padding-lg form-wrapper">
+        <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
+        <div class="grid-block vertical show">
+          <div class="grid-content input-group-vertical input-group-org">
+            <label class="label" for="input-organization">
+              <span class="label-text">Your Name</span>
+            </label>
+            <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
+          </div>
+          <div class="grid-content input-group-vertical input-group-org">
+            <label class="label" for="input-organization">
+              <span class="label-text">Work Email</span>
+            </label>
+            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with." type="email" required>
+          </div>
         </div>
       </div>
-    </div>
-    <footer class="card-footer">
-      <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
-        <div class="grid-block justify-center align-center">
-          <svg class="icons hidden-xxxs">
-            <use xlink:href="#icons-bitbucket"/>
-          </svg>
-          <span class="grid-content shrink">Notify Me</span>
-        </div>
-      </button>
-    </footer>
-    <div class="grid-block vertical hide">
+      <footer class="card-footer">
+        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
+          <div class="grid-block justify-center align-center">
+            <svg class="icons hidden-xxxs">
+              <use xlink:href="#icons-bitbucket"/>
+            </svg>
+            <span class="grid-content shrink">Notify Me</span>
+          </div>
+        </button>
+      </footer>
+    </form>
+    <div class="grid-block vertical justify-center padding-lg hide">
       <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
     </div>
-  </form>
-</article>
+  
+</div></article>
 
 
   </div>
