@@ -13,6 +13,11 @@
 
     @include media(sm) {
       font-size: 21px;
+      padding: 0 30px;
+    }
+
+    @include media(xxs) {
+      padding: 0 15px;
     }
   }
 
