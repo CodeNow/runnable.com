@@ -66,7 +66,7 @@
 }
 
 .section-plans {
-  margin: 60px auto -60px;
+  margin: 60px auto -120px;
   padding: 0 60px;
 
   @media (max-width: 960px) {
@@ -140,6 +140,10 @@
       width: 100%;
       word-wrap: break-word;
     }
+  }
+
+  > .no-wrap {
+    white-space: nowrap;
   }
 
   .small {
