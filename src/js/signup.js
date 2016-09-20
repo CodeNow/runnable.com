@@ -208,7 +208,7 @@ function xhrSubmit(e, form, formData, formName) {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
   } else if (formName === 'github') {
-    xhrUrl = 'https://codenow.com';
+    xhrUrl = 'https://codenow.com:2053/ping';
     supportEmail = 'support@runnable.com';
   }
 
