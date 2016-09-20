@@ -3,6 +3,10 @@
   max-width: 158px;
   padding: 0 15px 0 12px;
 
+  @include media(xxxs) {
+    max-width: none;
+  }
+
   .avatar {
     border-radius: $input-border-radius;
     margin: 6px 6px 5px 0;
