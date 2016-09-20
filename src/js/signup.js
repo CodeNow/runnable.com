@@ -106,6 +106,8 @@ function setupForm(formName) {
     formEl = document.getElementsByClassName('form-bitbucket');
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
+  } else if (formName === 'github') {
+    formEl = document.getElementsByClassName('form-github');
   }
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
@@ -205,6 +207,9 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'enterprise') {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
+  } else if (formName === 'github') {
+    xhrUrl = 'https://codenow.com';
+    supportEmail = 'support@runnable.com';
   }
 
   // send form
@@ -251,6 +256,8 @@ function submitForm(e) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
+  } else if (form.classList.contains('form-github')) {
+    formName = 'github';
   }
 
   e.preventDefault();
