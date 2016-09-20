@@ -6,6 +6,10 @@
   padding-top: 120px;
   z-index: 1;
 
+  @include media(md) {
+    padding-top: 150px;
+  }
+
   @include media(xs) {
     padding-top: 105px;
   }
