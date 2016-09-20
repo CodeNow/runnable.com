@@ -572,6 +572,7 @@ function openModal(event,dragging) {
     var modalName = event.target.getAttribute('data-target').substring(1);
     var modal = document.getElementById(modalName);
     var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+    var nextTrigger = modal.getElementsByClassName('js-next');
 
     // close open modal
     if (openModal) {
@@ -586,9 +587,13 @@ function openModal(event,dragging) {
     closeTrigger.addEventListener('touchend', closeModal);
     // trigger for esc key
     document.addEventListener('keydown', escModal);
-    // bind sign up events
+
     if (modalName === 'sign-up') {
-      setupForm('bitbucket');
+      // triggers for next form
+      for (i = 0; i < nextTrigger.length; i++) {
+        nextTrigger[i].addEventListener('click', whichForm);
+        nextTrigger[i].addEventListener('touchend', whichForm);
+      }
     }
   }
 }
@@ -612,6 +617,54 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+}
+
+// determines form type
+function whichForm(e) {
+  var thisTrigger = e.target;
+  var formType;
+
+  if (!thisTrigger.classList.contains('js-next')) {
+    while ((thisTrigger = thisTrigger.parentNode) && !thisTrigger.classList.contains('js-next'));
+  }
+  formType = thisTrigger.getAttribute('data-next');
+  nextForm(formType);
+}
+
+// next form
+function nextForm(formType) {
+  var currentForm = document.getElementsByClassName('slide in')[0];
+  var newForm;
+  var backButton = currentForm.parentNode.getElementsByClassName('js-back')[0];
+
+  // hide current form
+  currentForm.classList.remove('in');
+  currentForm.classList.add('out');
+  // show back button
+  backButton.classList.add('in');
+  backButton.addEventListener('click', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  backButton.addEventListener('touchend', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  // show new form
+  if (formType === 'github') {
+    newForm = document.getElementsByClassName('form-github')[0];
+    newForm.classList.add('in');
+  } else if (formType === 'bitbucket') {
+    newForm = document.getElementsByClassName('form-bitbucket')[0];
+    newForm.classList.add('in');
+    setupForm(formType);
+  }
+}
+
+// prev form
+function prevForm(backButton, currentForm, newForm) {
+  backButton.classList.remove('in');
+  currentForm.classList.add('in');
+  currentForm.classList.remove('out');
+  newForm.classList.remove('in');
 }
 
 // set up forms
@@ -654,11 +707,11 @@ function shakeForm(e) {
 
   // get shake element
   while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
-  thisForm.classList.add('shake');
   thisForm.addEventListener('animationend', function(){
     thisForm.classList.remove('shake');
     thisForm.removeEventListener('animationend', function(){});
   });
+  thisForm.classList.add('shake');
 }
 
 function makeDirty(e) {
@@ -687,7 +740,7 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -811,10 +864,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // prevent drag touch
   dBody.addEventListener('touchmove',function(){dragging = true;});
   dBody.addEventListener('touchstart',function(){dragging = false;});
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
+
   // modals
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
@@ -834,6 +884,13 @@ window.addEventListener('DOMContentLoaded', function(){
   // if pricing page
   if (window.location.pathname === '/pricing/') {
     setupForm('enterprise');
+  }
+});
+
+window.addEventListener('load', function(){
+  // stub fbq
+  if (!window.fbq) {
+    window.fbq = function () {};
   }
 });
 
@@ -894,94 +951,125 @@ window.addEventListener('DOMContentLoaded', function(){
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-up">
         <div class="modal">
-          <article class="grid-block vertical article article-form article-sign-up">
-  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
-  <div class="grid-block vertical card">
+          <button class="grid-block btn btn-back js-back fade">
+  <svg class="icons float-left">
+    <use xlink:href="#icons-chevron-right">
+  </svg>
+  Back
+</button>
+
+<article class="grid-block vertical article article-form article-sign-up slide in">
+  <h1 class="h1 text-center weight-strong padding-sm">Let’s get started.</h1>
+  <div class="grid-block card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
-    <ul class="list list-bordered">
-      <li class="grid-block list-item list-item-write">
-        <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
-        <div class="grid-block vertical align-start">
-          <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
-          <small class="small underline popover-trigger hover">Why do we need this</span>?
-            <div class="popover top text-left">
-              <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
-              <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
-            </div>
-          </small>
-        </div>
-    </ul>
-    <ul class="list list-bordered">
-      <li class="grid-block align-center list-item padding-xs">
-        <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
-        <div class="grid-block vertical">
-          <p class="p weight-strong">Your Organization</p>
-        </div>
-        <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
-    </ul>
+    <div class="grid-block vertical padding-lg">
+      <p class="p text-center padding-sm">Where does your team keep their code?</p>
+      <div class="grid-block align-center justify-center btn btn-lg white js-next" data-next="github">
+        <svg class="grid-content shrink icons">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span class="grid-content shrink span text-left">GitHub</span>
+        <svg class="grid-content shrink icons">
+          <use xlink:href="#icons-chevron-right">
+        </svg>
+      </div>
+      <div class="grid-block align-center justify-center btn btn-lg white js-next" data-next="bitbucket">
+        <svg class="grid-content shrink icons">
+          <use xlink:href="#icons-bitbucket">
+        </svg>
+        <span class="grid-content shrink span text-left">Bitbucket</span>
+        <svg class="grid-content shrink icons">
+          <use xlink:href="#icons-chevron-right">
+        </svg>
+      </div>
+    </div>
   </div>
-  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-  <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
-    <svg class="icons hidden-xs">
-      <use xlink:href="#icons-github">
-    </svg>
-    <span>Grant permissions on GitHub</span>
-  </a>
   <hr class="hr">
   <div class="grid-content text-center">
     <a data-target="#sign-in" href="{{loginUrl}}" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
   </div>
-  <aside class="grid-block bitbucket-box padding-sm shake-me">
-  <div class="grid-block shrink align-center">
-    <svg class="icons">
-      <use xlink:href="#icons-bitbucket">
-    </svg>
-  </div>
-  <form class="grid-block vertical form form-bitbucket show">
-    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
-    <div class="grid-block">
-      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
-      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-    </div>
-    <button class="grid-block shrink btn btn-sm gray">
-      <div class="grid-block justify-center align-center">
-        <span class="grid-content shrink">Notify Me</span>
-      </div>
-    </button>
-  </form>
-  <div class="grid-block vertical hide">
-    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
-  </div>
-</aside>
-
 </article>
+
+<article class="grid-block vertical article article-form article-sign-up form-github slide">
+  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
+  <div class="grid-block vertical card">
+    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
+    <div class="grid-block vertical padding-lg">
+      <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
+      <ul class="list list-bordered">
+        <li class="grid-block list-item list-item-write">
+          <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
+          <div class="grid-block vertical align-start">
+            <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
+            <small class="small underline popover-trigger hover">Why do we need this</span>?
+              <div class="popover top text-left">
+                <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
+                <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
+              </div>
+            </small>
+          </div>
+      </ul>
+      <ul class="list list-bordered">
+        <li class="grid-block align-center list-item padding-xs">
+          <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
+          <div class="grid-block vertical">
+            <p class="p weight-strong">Your Organization</p>
+          </div>
+          <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+      </ul>
+    </div>
+    <footer class="card-footer">
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
+        <svg class="icons hidden-xs">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Grant permissions on GitHub</span>
+      </a>
+    </footer>
+  </div>
+</article>
+
+<article class="grid-block vertical article article-form article-sign-up form-bitbucket slide">
+  <h1 class="h1 text-center weight-strong padding-sm">Get notified.</h1>
+  <form class="grid-block vertical card form form-bitbucket shake-me">
+    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
+    <div class="grid-block vertical padding-lg">
+      <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
+      <div class="grid-block vertical show">
+        <div class="grid-content input-group-vertical input-group-org">
+          <label class="label" for="input-organization">
+            <span class="label-text">Your Name</span>
+          </label>
+          <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
+        </div>
+        <div class="grid-content input-group-vertical input-group-org">
+          <label class="label" for="input-organization">
+            <span class="label-text">Work Email</span>
+          </label>
+          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
+        </div>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
+        <div class="grid-block justify-center align-center">
+          <svg class="icons hidden-xxxs">
+            <use xlink:href="#icons-bitbucket">
+          </svg>
+          <span class="grid-content shrink">Notify Me</span>
+        </div>
+      </button>
+    </footer>
+    <div class="grid-block vertical hide">
+      <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+    </div>
+  </form>
+</article>
+
 
         </div>
       </div>
-      <aside class="grid-block bitbucket-box padding-sm shake-me">
-  <div class="grid-block shrink align-center">
-    <svg class="icons">
-      <use xlink:href="#icons-bitbucket">
-    </svg>
-  </div>
-  <form class="grid-block vertical form form-bitbucket show">
-    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
-    <div class="grid-block">
-      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
-      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
-    </div>
-    <button class="grid-block shrink btn btn-sm gray">
-      <div class="grid-block justify-center align-center">
-        <span class="grid-content shrink">Notify Me</span>
-      </div>
-    </button>
-  </form>
-  <div class="grid-block vertical hide">
-    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
-  </div>
-</aside>
-
     </main>
     <!-- segment.io-->
 <script>

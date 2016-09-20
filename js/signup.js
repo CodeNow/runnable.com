@@ -5,6 +5,7 @@ function openModal(event,dragging) {
     var modalName = event.target.getAttribute('data-target').substring(1);
     var modal = document.getElementById(modalName);
     var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+    var nextTrigger = modal.getElementsByClassName('js-next');
 
     // close open modal
     if (openModal) {
@@ -19,9 +20,13 @@ function openModal(event,dragging) {
     closeTrigger.addEventListener('touchend', closeModal);
     // trigger for esc key
     document.addEventListener('keydown', escModal);
-    // bind sign up events
+
     if (modalName === 'sign-up') {
-      setupForm('bitbucket');
+      // triggers for next form
+      for (i = 0; i < nextTrigger.length; i++) {
+        nextTrigger[i].addEventListener('click', whichForm);
+        nextTrigger[i].addEventListener('touchend', whichForm);
+      }
     }
   }
 }
@@ -45,6 +50,54 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+}
+
+// determines form type
+function whichForm(e) {
+  var thisTrigger = e.target;
+  var formType;
+
+  if (!thisTrigger.classList.contains('js-next')) {
+    while ((thisTrigger = thisTrigger.parentNode) && !thisTrigger.classList.contains('js-next'));
+  }
+  formType = thisTrigger.getAttribute('data-next');
+  nextForm(formType);
+}
+
+// next form
+function nextForm(formType) {
+  var currentForm = document.getElementsByClassName('slide in')[0];
+  var newForm;
+  var backButton = currentForm.parentNode.getElementsByClassName('js-back')[0];
+
+  // hide current form
+  currentForm.classList.remove('in');
+  currentForm.classList.add('out');
+  // show back button
+  backButton.classList.add('in');
+  backButton.addEventListener('click', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  backButton.addEventListener('touchend', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  // show new form
+  if (formType === 'github') {
+    newForm = document.getElementsByClassName('form-github')[0];
+    newForm.classList.add('in');
+  } else if (formType === 'bitbucket') {
+    newForm = document.getElementsByClassName('form-bitbucket')[0];
+    newForm.classList.add('in');
+    setupForm(formType);
+  }
+}
+
+// prev form
+function prevForm(backButton, currentForm, newForm) {
+  backButton.classList.remove('in');
+  currentForm.classList.add('in');
+  currentForm.classList.remove('out');
+  newForm.classList.remove('in');
 }
 
 // set up forms
@@ -87,11 +140,11 @@ function shakeForm(e) {
 
   // get shake element
   while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
-  thisForm.classList.add('shake');
   thisForm.addEventListener('animationend', function(){
     thisForm.classList.remove('shake');
     thisForm.removeEventListener('animationend', function(){});
   });
+  thisForm.classList.add('shake');
 }
 
 function makeDirty(e) {
@@ -120,7 +173,7 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -244,10 +297,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // prevent drag touch
   dBody.addEventListener('touchmove',function(){dragging = true;});
   dBody.addEventListener('touchstart',function(){dragging = false;});
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
+
   // modals
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
@@ -267,5 +317,12 @@ window.addEventListener('DOMContentLoaded', function(){
   // if pricing page
   if (window.location.pathname === '/pricing/') {
     setupForm('enterprise');
+  }
+});
+
+window.addEventListener('load', function(){
+  // stub fbq
+  if (!window.fbq) {
+    window.fbq = function () {};
   }
 });
