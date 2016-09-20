@@ -31,6 +31,12 @@
       max-width: 450px;
     }
   }
+
+  .h3 {
+    @include media(xxs) {
+      padding: 0 15px;
+    }
+  }
 }
 
 .video-embed {
@@ -104,6 +110,10 @@
   @include media(xxs) {
     height: 153px;
     width: 272px;
+  }
+
+  @media (max-width: 375px) {
+    top: 15px;
   }
 }
 

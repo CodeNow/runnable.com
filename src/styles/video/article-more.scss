@@ -10,6 +10,10 @@
     padding-top: 105px;
   }
 
+  @include media(xxs) {
+    padding-top: 120px;
+  }
+
   .grid-container {
     flex-wrap: wrap;
 
@@ -51,7 +55,7 @@
       flex-direction: column;
     }
 
-    @include media(xxxs) {
+    @include media(xxs) {
       flex-flow: column nowrap;
     }
 
@@ -62,7 +66,7 @@
         margin-top: 15px;
       }
 
-      @include media(xxxs) {
+      @include media(xxs) {
         margin-left: 0;
         margin-top: 15px;
       }
