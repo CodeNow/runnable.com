@@ -22,6 +22,7 @@ function openModal(event,dragging) {
 
     if (modalName === 'sign-up') {
       setupForm('signup');
+      setupForm('github');
     }
   }
 }
@@ -325,6 +326,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
+    setupForm('github');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {

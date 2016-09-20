@@ -589,6 +589,7 @@ function openModal(event,dragging) {
 
     if (modalName === 'sign-up') {
       setupForm('signup');
+      setupForm('github');
     }
   }
 }
@@ -892,6 +893,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
+    setupForm('github');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {
@@ -1329,7 +1331,7 @@ function onPlayerReady(event) {
     <div class="grid-block vertical justify-center padding-lg hide">
       <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
     </div>
-  </form>
+  </div>
 </article>
 
 <article class="grid-block noscroll vertical article article-form article-sign-up article-bitbucket slide">
