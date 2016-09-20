@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-15.0.2.css">
+<link rel="stylesheet" href="styles/index-16.0.0.css">
 
 <script>
   (function(self) {
@@ -564,8 +564,8 @@
     <script ugly="">!function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
-      Commit Hash: f524c252f822e1089ba6d252e1fe9c8db353cd5a
-      Commit Time: Mon Sep 19 23:24:13 2016 -0700
+      Commit Hash: c991468592eb02e359b6ba7890337660a365a64c
+      Commit Time: Tue Sep 20 01:14:44 2016 -0700
     -->
 
   </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -614,6 +614,7 @@
                 <span>Sign in with GitHub</span>
               </a>
             </div>
+            <hr class="hr">
             <div class="grid-content text-center">
               <a href="signup/" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
             </div>
@@ -644,9 +645,13 @@
     });
     var signUp = document.getElementsByClassName('track-sign-up');
     var signIn = document.getElementsByClassName('track-sign-in');
+    var github = document.getElementsByClassName('track-github');
+    var bitbucket = document.getElementsByClassName('track-bitbucket');
     var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(github, 'Clicked GitHub');
+    analytics.trackLink(bitbucket, 'Clicked Bitbucket');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
 
     // Attach anonymous_id to links
