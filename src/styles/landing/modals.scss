@@ -3,6 +3,7 @@
   bottom: 0;
   left: 0;
   opacity: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   pointer-events: none;
   position: fixed;
@@ -42,9 +43,45 @@
     width: 30px;
     z-index: $z-modal + 2;
   }
+
+  .btn-back {
+    left: 15px;
+    line-height: 30px;
+    padding: 0 9px;
+    position: absolute;
+    top: 15px;
+    width: auto;
+    z-index: $z-modal + 2;
+
+    &:hover {
+      background: rgba($gray,.5);
+    }
+
+    &:active {
+      background: rgba($gray,.75);
+    }
+
+    &.fade {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease-in-out;
+
+      &.in {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .icons {
+      margin-right: 6px;
+      transform: rotate3d(0,0,1,180deg);
+      width: 9px;
+    }
+  }
 }
 
 .modal {
+  position: relative;
 
   // errors
   .well {

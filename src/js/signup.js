@@ -19,9 +19,9 @@ function openModal(event,dragging) {
     closeTrigger.addEventListener('touchend', closeModal);
     // trigger for esc key
     document.addEventListener('keydown', escModal);
-    // bind sign up events
+
     if (modalName === 'sign-up') {
-      setupForm('bitbucket');
+      setupForm('signup');
     }
   }
 }
@@ -47,10 +47,62 @@ function closeModal(event) {
   document.removeEventListener('keydown', escModal);
 }
 
+// determines form type
+function whichForm(e) {
+  var thisTrigger = e.target;
+  var formType;
+
+  if (!thisTrigger.classList.contains('js-next')) {
+    while ((thisTrigger = thisTrigger.parentNode) && !thisTrigger.classList.contains('js-next'));
+  }
+  formType = thisTrigger.getAttribute('data-next');
+  nextForm(formType);
+}
+
+// next form
+function nextForm(formType) {
+  var currentForm = document.getElementsByClassName('slide in')[0];
+  var newForm;
+  var backButton = currentForm.parentNode.getElementsByClassName('js-back')[0];
+
+  // hide current form
+  currentForm.classList.remove('in');
+  currentForm.classList.add('out');
+  // show back button
+  backButton.classList.add('in');
+  backButton.addEventListener('click', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  backButton.addEventListener('touchend', function(){
+    prevForm(backButton, currentForm, newForm);
+  });
+  // show new form
+  if (formType === 'github') {
+    newForm = document.getElementsByClassName('article-github')[0];
+    newForm.classList.add('in');
+  } else if (formType === 'bitbucket') {
+    newForm = document.getElementsByClassName('article-bitbucket')[0];
+    newForm.classList.add('in');
+  }
+}
+
+// prev form
+function prevForm(backButton, currentForm, newForm) {
+  backButton.classList.remove('in');
+  currentForm.classList.add('in');
+  currentForm.classList.remove('out');
+  newForm.classList.remove('in');
+}
+
 // set up forms
 function setupForm(formName) {
   var formEl;
-  if (formName === 'bitbucket') {
+  if (formName === 'signup') {
+    var nextTrigger = document.getElementsByClassName('js-next');
+    for (i = 0; i < nextTrigger.length; i++) {
+      nextTrigger[i].addEventListener('click', whichForm);
+      nextTrigger[i].addEventListener('touchend', whichForm);
+    }
     formEl = document.getElementsByClassName('form-bitbucket');
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
@@ -86,7 +138,9 @@ function shakeForm(e) {
   var thisForm = e.target;
 
   // get shake element
-  while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  if (!thisForm.classList.contains('shake-me')) {
+    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  }
   thisForm.classList.add('shake');
   thisForm.addEventListener('animationend', function(){
     thisForm.classList.remove('shake');
@@ -120,7 +174,11 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    if (submitButton.classList.contains('green')) {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    } else {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    }
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -244,10 +302,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // prevent drag touch
   dBody.addEventListener('touchmove',function(){dragging = true;});
   dBody.addEventListener('touchstart',function(){dragging = false;});
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
+
   // modals
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
@@ -262,10 +317,17 @@ window.addEventListener('DOMContentLoaded', function(){
   }
   // if sign up page
   if (window.location.pathname === '/signup/') {
-    setupForm('bitbucket');
+    setupForm('signup');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {
     setupForm('enterprise');
+  }
+});
+
+window.addEventListener('load', function(){
+  // stub fbq
+  if (!window.fbq) {
+    window.fbq = function () {};
   }
 });

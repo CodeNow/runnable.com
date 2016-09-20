@@ -21,9 +21,13 @@
     });
     var signUp = document.getElementsByClassName('track-sign-up');
     var signIn = document.getElementsByClassName('track-sign-in');
+    var github = document.getElementsByClassName('track-github');
+    var bitbucket = document.getElementsByClassName('track-bitbucket');
     var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(github, 'Clicked GitHub');
+    analytics.trackLink(bitbucket, 'Clicked Bitbucket');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
 
     // Attach anonymous_id to links
