@@ -563,6 +563,10 @@
 }
 </script>
 
+{{!-- mixpanel has to be in the head --}}
+
+
+
     <title>Team Runnable</title>
     <script ugly>
       // modals
@@ -589,8 +593,10 @@ function openModal(event,dragging) {
 
     if (modalName === 'sign-up') {
       setupForm('signup');
-      setupForm('github');
     }
+
+    // mixpanel
+    mixpanel.track('Open Modal: ' + modalName);
   }
 }
 
@@ -630,6 +636,7 @@ function whichForm(e) {
 // next form
 function nextForm(formType) {
   var currentForm = document.getElementsByClassName('slide in')[0];
+  var formName;
   var newForm;
   var backButton = currentForm.parentNode.getElementsByClassName('js-back')[0];
 
@@ -639,10 +646,10 @@ function nextForm(formType) {
   // show back button
   backButton.classList.add('in');
   backButton.addEventListener('click', function(){
-    prevForm(backButton, currentForm, newForm);
+    prevForm(backButton, currentForm, newForm, formType);
   });
   backButton.addEventListener('touchend', function(){
-    prevForm(backButton, currentForm, newForm);
+    prevForm(backButton, currentForm, newForm, formType);
   });
   // show new form
   if (formType === 'github') {
@@ -652,14 +659,19 @@ function nextForm(formType) {
     newForm = document.getElementsByClassName('article-bitbucket')[0];
     newForm.classList.add('in');
   }
+  // mixpanel
+  mixpanel.track('Show Next: ' + formType);
+  console.log('show next: ' + formType);
 }
 
 // prev form
-function prevForm(backButton, currentForm, newForm) {
+function prevForm(backButton, currentForm, newForm, formType) {
   backButton.classList.remove('in');
   currentForm.classList.add('in');
   currentForm.classList.remove('out');
   newForm.classList.remove('in');
+  // mixpanel
+  mixpanel.track('Show Previous: Sign Up');
 }
 
 // set up forms
@@ -667,15 +679,21 @@ function setupForm(formName) {
   var formEl;
   if (formName === 'signup') {
     var nextTrigger = document.getElementsByClassName('js-next');
+    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
     for (i = 0; i < nextTrigger.length; i++) {
       nextTrigger[i].addEventListener('click', whichForm);
       nextTrigger[i].addEventListener('touchend', whichForm);
     }
     formEl = document.getElementsByClassName('form-bitbucket');
+    // mixpanel
+    linkGitHub.addEventListener('click', function(){
+      mixpanel.track('Open URL: GitHub Auth');
+    });
+    linkGitHub.addEventListener('touchend', function(){
+      mixpanel.track('Open URL: GitHub Auth');
+    });
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
-  } else if (formName === 'github') {
-    formEl = document.getElementsByClassName('form-github');
   }
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
@@ -775,9 +793,6 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'enterprise') {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
-  } else if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2053/github';
-    supportEmail = 'support@runnable.com';
   }
 
   // send form
@@ -785,10 +800,15 @@ function xhrSubmit(e, form, formData, formName) {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(formData);
   xhr.onreadystatechange = function() {
-    if ( xhr.readyState === 4 && xhr.status === 0) {
+    if (xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
       sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
       toggleEditing(form, 'enable'); // re-enables form
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'fail',
+        'error': 'xhr.readyState === 4 && xhr.status === 0'
+      });
     }
   };
   xhr.onload = function() {
@@ -804,6 +824,11 @@ function xhrSubmit(e, form, formData, formName) {
     if (resultCode === -1 || resultCode === 0) {
       shakeForm(e);
       sundipValidation(resultMessage, form, formName);
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'fail',
+        'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
+      });
     }
     if (resultCode === 1) {
       // tell the user something nice
@@ -811,6 +836,10 @@ function xhrSubmit(e, form, formData, formName) {
       form.classList.remove('show');
       successMsg.classList.add('show');
       successMsg.classList.remove('hide');
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'pass'
+      });
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
@@ -824,8 +853,6 @@ function submitForm(e) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
-  } else if (form.classList.contains('form-github')) {
-    formName = 'github';
   }
 
   e.preventDefault();
@@ -846,6 +873,10 @@ function submitForm(e) {
     });
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData, formName);
+    // mixpanel
+    mixpanel.track('FE Submit: ' + formName, {
+      'front-end validation': 'pass'
+    });
   }
 }
 
@@ -893,7 +924,6 @@ window.addEventListener('DOMContentLoaded', function(){
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
-    setupForm('github');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {
@@ -1461,41 +1491,42 @@ window.addEventListener('DOMContentLoaded', function(){
 </article>
 
 <article class="grid-block noscroll vertical article article-form article-sign-up article-github slide">
-  <h1 class="h1 text-center weight-strong padding-sm">Please bear with us.</h1>
-  <div class="grid-block vertical card shake-me">
+  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
+  <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <form class="grid-block vertical form form-github show">
-      <div class="grid-block vertical padding-lg form-wrapper">
-        <label class="p text-center padding-sm" for="input-name">We’re expericing higher than normal load. Fill out this form and we’ll send you an email when we can accomodate you.</label>
-        <div class="grid-block vertical show">
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Your Name</span>
-            </label>
-            <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
+    <div class="grid-block vertical padding-lg form-wrapper">
+      <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
+      <ul class="list list-bordered">
+        <li class="grid-block list-item list-item-write">
+          <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
+          <div class="grid-block vertical align-start">
+            <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
+            <small class="small underline popover-trigger hover">Why do we need this</span>?
+              <div class="popover top text-left">
+                <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
+                <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
+              </div>
+            </small>
           </div>
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Work Email</span>
-            </label>
-            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
+      </ul>
+      <ul class="list list-bordered">
+        <li class="grid-block align-center list-item padding-xs">
+          <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
+          <div class="grid-block vertical">
+            <p class="p weight-strong">Your Organization</p>
           </div>
-        </div>
-      </div>
-      <footer class="card-footer">
-        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
-          <div class="grid-block justify-center align-center">
-            <svg class="icons hidden-xxxs">
-              <use xlink:href="#icons-github">
-            </svg>
-            <span class="grid-content shrink">Notify Me</span>
-          </div>
-        </button>
-      </footer>
-    </form>
-    <div class="grid-block vertical justify-center padding-lg hide">
-      <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+          <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+      </ul>
     </div>
+    <footer class="card-footer">
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
+        <svg class="icons hidden-xs">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Grant permissions on GitHub</span>
+      </a>
+    </footer>
   </div>
 </article>
 
