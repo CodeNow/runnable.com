@@ -16,10 +16,6 @@
 
   .h1 {
     margin-bottom: 30px;
-
-    @include media(xxxs) {
-      margin-bottom: 15px;
-    }
   }
 
   .form {
