@@ -5,7 +5,6 @@ function openModal(event,dragging) {
     var modalName = event.target.getAttribute('data-target').substring(1);
     var modal = document.getElementById(modalName);
     var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-    var nextTrigger = modal.getElementsByClassName('js-next');
 
     // close open modal
     if (openModal) {
@@ -22,11 +21,7 @@ function openModal(event,dragging) {
     document.addEventListener('keydown', escModal);
 
     if (modalName === 'sign-up') {
-      // triggers for next form
-      for (i = 0; i < nextTrigger.length; i++) {
-        nextTrigger[i].addEventListener('click', whichForm);
-        nextTrigger[i].addEventListener('touchend', whichForm);
-      }
+      setupForm('signup');
     }
   }
 }
@@ -83,12 +78,11 @@ function nextForm(formType) {
   });
   // show new form
   if (formType === 'github') {
-    newForm = document.getElementsByClassName('form-github')[0];
+    newForm = document.getElementsByClassName('article-github')[0];
     newForm.classList.add('in');
   } else if (formType === 'bitbucket') {
-    newForm = document.getElementsByClassName('form-bitbucket')[0];
+    newForm = document.getElementsByClassName('article-bitbucket')[0];
     newForm.classList.add('in');
-    setupForm(formType);
   }
 }
 
@@ -103,7 +97,12 @@ function prevForm(backButton, currentForm, newForm) {
 // set up forms
 function setupForm(formName) {
   var formEl;
-  if (formName === 'bitbucket') {
+  if (formName === 'signup') {
+    var nextTrigger = document.getElementsByClassName('js-next');
+    for (i = 0; i < nextTrigger.length; i++) {
+      nextTrigger[i].addEventListener('click', whichForm);
+      nextTrigger[i].addEventListener('touchend', whichForm);
+    }
     formEl = document.getElementsByClassName('form-bitbucket');
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
@@ -139,12 +138,14 @@ function shakeForm(e) {
   var thisForm = e.target;
 
   // get shake element
-  while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  if (!thisForm.classList.contains('shake-me')) {
+    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  }
+  thisForm.classList.add('shake');
   thisForm.addEventListener('animationend', function(){
     thisForm.classList.remove('shake');
     thisForm.removeEventListener('animationend', function(){});
   });
-  thisForm.classList.add('shake');
 }
 
 function makeDirty(e) {
@@ -173,7 +174,11 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    if (submitButton.classList.contains('green')) {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    } else {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    }
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -312,7 +317,7 @@ window.addEventListener('DOMContentLoaded', function(){
   }
   // if sign up page
   if (window.location.pathname === '/signup/') {
-    setupForm('bitbucket');
+    setupForm('signup');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {
