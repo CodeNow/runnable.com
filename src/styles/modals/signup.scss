@@ -26,38 +26,6 @@
     overflow: visible;
   }
 
-  .popover-trigger {
-    cursor: pointer;
-    margin-left: 3px;
-    top: -1px;
-  }
-
-  .popover {
-    color: $gray;
-    font-size: 14px;
-    line-height: 1.4;
-    width: 280px;
-  }
-
-  .input-group-vertical {
-    flex: 0 0 auto;
-    margin-top: 15px;
-    overflow: visible;
-
-    @include media(sm) {
-      min-width: 100%;
-
-      &:first-child {
-        padding-bottom: 12px;
-      }
-    }
-
-    .input-md {
-      border-radius: $input-border-radius-lg;
-      border-width: $input-border-lg;
-    }
-  }
-
   // github and bitbucket buttons
   .btn-lg.white {
     border-color: rgba($black,.15);
@@ -170,6 +138,38 @@
     @include media(xxs) {
       padding: 15px;
     }
+
+    .popover-trigger {
+      cursor: pointer;
+      margin-left: 3px;
+      top: -1px;
+    }
+
+    .popover {
+      color: $gray;
+      font-size: 14px;
+      line-height: 1.4;
+      width: 280px;
+    }
+
+    .input-group-vertical {
+      flex: 0 0 auto;
+      margin-top: 15px;
+      overflow: visible;
+
+      @include media(sm) {
+        min-width: 100%;
+
+        &:first-child {
+          padding-bottom: 12px;
+        }
+      }
+
+      .input-md {
+        border-radius: $input-border-radius-lg;
+        border-width: $input-border-lg;
+      }
+    }
   }
 
   .list-bordered {
@@ -265,7 +265,7 @@
   // sign up button
   .btn.green {
     margin: 0;
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
 
     @media (max-width: 500px) {
@@ -286,6 +286,14 @@
       margin-right: 6px;
       position: relative;
       width: 24px;
+    }
+
+    // validation
+    .popover {
+      font-weight: $weight-light;
+      line-height: 1.4;
+      min-width: 300px;
+      white-space: normal;
     }
   }
 }
