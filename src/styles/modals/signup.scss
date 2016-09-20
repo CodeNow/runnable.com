@@ -132,6 +132,7 @@
     padding-top: 15px;
 
     @media (max-width: 500px) {
+      overflow: visible;
       padding: 15px 30px 30px;
     }
 
