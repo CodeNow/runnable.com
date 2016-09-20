@@ -776,7 +776,7 @@ function xhrSubmit(e, form, formData, formName) {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
   } else if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2053/ping';
+    xhrUrl = 'https://codenow.com:2053/github';
     supportEmail = 'support@runnable.com';
   }
 
@@ -1342,7 +1342,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a data-target="#sign-in" href="{{loginUrl}}" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
   </div>
 </article>
 

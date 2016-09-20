@@ -776,7 +776,7 @@ function xhrSubmit(e, form, formData, formName) {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
   } else if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2053/ping';
+    xhrUrl = 'https://codenow.com:2053/github';
     supportEmail = 'support@runnable.com';
   }
 
@@ -1093,7 +1093,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="weight-light">per month</p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-sm">Up to <span class="weight-strong">2</span> templates</p>
+        <p class="padding-xs no-wrap">Up to <span class="weight-strong">2</span> templates</p>
         <small class="weight-light text-gray small">For basic<br>two-tier apps</small>
       </div>
       <div class="grid-block vertical text-center plan padding-sm">
@@ -1104,7 +1104,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="weight-light">per month</p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-sm">Up to <span class="weight-strong">7</span> templates</p>
+        <p class="padding-xs no-wrap">Up to <span class="weight-strong">7</span> templates</p>
         <small class="weight-light text-gray small">For most<br>multi-tier apps</small>
       </div>
     </div>
@@ -1118,7 +1118,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="weight-light">per month</p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-sm">Up to <span class="weight-strong">15</span> templates</p>
+        <p class="padding-xs no-wrap">Up to <span class="weight-strong">15</span> templates</p>
         <small class="weight-light text-gray small">For larger apps<br>or multiple apps</small>
       </div>
       <div class="grid-block card-flipper shake-me">
@@ -1128,7 +1128,7 @@ window.addEventListener('DOMContentLoaded', function(){
             <p class="small weight-light text-gray">Coming Soon</p>
             <button class="btn gray btn-sm js-flipper">Notify Me</button>
           </div>
-          <p class="padding-sm">Unlimited templates</p>
+          <p class="padding-xs no-wrap">Unlimited templates</p>
           <small class="weight-light text-gray small">On-premise<br>support</small>
         </div>
         <form class="grid-block vertical text-center card-b plan padding-sm form form-enterprise show">
@@ -1345,7 +1345,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
   <hr class="hr">
   <div class="grid-content text-center">
-    <a data-target="#sign-in" href="{{loginUrl}}" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
   </div>
 </article>
 
