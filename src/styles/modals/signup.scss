@@ -141,12 +141,6 @@
     }
   }
 
-  .card > .padding-lg > .p,
-  .card-footer > .padding {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
-
   .card {
     background: $gray-lighterest;
     border: $input-border-lg solid $gray-lighter;
@@ -155,19 +149,6 @@
     overflow: visible;
     position: relative;
 
-    > .padding-lg {
-      padding-bottom: 30px;
-      padding-top: 15px;
-
-      @media (max-width: 500px) {
-        padding: 15px 30px 30px;
-      }
-
-      @include media(xxs) {
-        padding: 15px;
-      }
-    }
-
     > .img {
       left: 0;
       margin: 0 auto;
@@ -175,6 +156,19 @@
       right: 0;
       top: -120px;
       z-index: 1;
+    }
+  }
+
+  .form-wrapper {
+    padding-bottom: 30px;
+    padding-top: 15px;
+
+    @media (max-width: 500px) {
+      padding: 15px 30px 30px;
+    }
+
+    @include media(xxs) {
+      padding: 15px;
     }
   }
 
