@@ -38,7 +38,9 @@
       append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
     function append_id(link, id, event) {
-      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
+      ga(function(tracker) {
+        link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event+'%26'+tracker.get('linkerParam'));
+      });
     }
   });
 </script>
