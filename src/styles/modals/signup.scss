@@ -14,28 +14,6 @@
     margin: 0 auto;
   }
 
-  .h1 {
-    margin-bottom: 30px;
-  }
-
-  .form {
-    overflow: visible;
-  }
-
-  // submit
-  .btn.green {
-    margin-top: 30px;
-
-    .spinner-wrapper {
-      position: absolute;
-      right: 17px;
-      top: 17px;
-    }
-  }
-}
-
-
-.article-sign-up {
 
   &.slide {
     transition: opacity .3s ease-in-out, transform .3s ease-in-out;
@@ -66,6 +44,22 @@
     }
   }
 
+  .well-anchor {
+    // override defaults
+    @include media(sm) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include media(xs) {
+      flex-direction: row;
+    }
+  }
+
+  .form {
+    overflow: visible;
+  }
+
   .card {
     background: $gray-lighterest;
     border: $input-border-lg solid $gray-lighter;
@@ -81,10 +75,19 @@
       right: 0;
       top: -120px;
       z-index: 1;
+
+      + .card-footer {
+        border-top: 0;
+      }
     }
 
     + .grid-content {
       margin-top: 45px;
+
+      @media (max-width: 500px) {
+        font-size: 17px;
+        padding: 0 15px;
+      }
     }
   }
 
@@ -93,12 +96,13 @@
     padding-top: 30px;
 
     @media (max-width: 500px) {
-      overflow: visible;
-      padding: 15px 30px 30px;
-    }
+      padding: 30px;
 
-    @include media(xxs) {
-      padding: 15px;
+      > .p {
+        font-size: 17px;
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     .input-group-vertical {
@@ -159,14 +163,13 @@
 
     @media (max-width: 500px) {
       padding: 30px;
-    }
 
-    @include media(xxs) {
-      padding: 15px;
-    }
-
-    > .p {
-      padding-top: 0;
+      > .p {
+        font-size: 17px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+      }
     }
   }
 
@@ -177,7 +180,7 @@
     width: 100%;
 
     @media (max-width: 500px) {
-      font-size: 19px;
+      font-size: 17px;
     }
 
     @include media(xxxs) {
@@ -187,6 +190,12 @@
         padding: 15px;
         white-space: normal;
       }
+    }
+
+    .spinner-wrapper {
+      position: absolute;
+      right: 17px;
+      top: 17px;
     }
 
     .icons {
