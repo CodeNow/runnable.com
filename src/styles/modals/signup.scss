@@ -142,6 +142,10 @@
       font-size: 15px;
       line-height: 1.2;
       margin: 0;
+
+      @include media(xxxs) {
+        margin-right: 6px;
+      }
     }
 
     .img {
