@@ -50,68 +50,44 @@ function closeModal(event) {
   document.removeEventListener('keydown', escModal);
 }
 
-// determines form type
-function whichForm(e) {
-  var thisTrigger = e.target;
-  var formType;
+// show bitbucket form
+function openBitbucketForm() {
+  var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
 
-  if (!thisTrigger.classList.contains('js-next')) {
-    while ((thisTrigger = thisTrigger.parentNode) && !thisTrigger.classList.contains('js-next'));
-  }
-  formType = thisTrigger.getAttribute('data-next');
-  nextForm(formType);
+  bitbucketForm.classList.remove('out');
+  bitbucketForm.classList.add('in');
+  gitHubForm.classList.remove('in');
+  gitHubForm.classList.add('out');
+  // mixpanel
+  mixpanel.track('Open Bitbucket form');
 }
 
-// next form
-function nextForm(formType) {
-  var currentForm = document.getElementsByClassName('slide in')[0];
-  var formName;
-  var newForm;
-  var backButton = currentForm.parentNode.getElementsByClassName('js-back')[0];
+// show github form
+function openGitHubForm() {
+  var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
 
-  // hide current form
-  currentForm.classList.remove('in');
-  currentForm.classList.add('out');
-  // show back button
-  backButton.classList.add('in');
-  backButton.addEventListener('click', function(){
-    prevForm(backButton, currentForm, newForm, formType);
-  });
-  backButton.addEventListener('touchend', function(){
-    prevForm(backButton, currentForm, newForm, formType);
-  });
-  // show new form
-  if (formType === 'github') {
-    newForm = document.getElementsByClassName('article-github')[0];
-    newForm.classList.add('in');
-  } else if (formType === 'bitbucket') {
-    newForm = document.getElementsByClassName('article-bitbucket')[0];
-    newForm.classList.add('in');
-  }
+  gitHubForm.classList.remove('out');
+  gitHubForm.classList.add('in');
+  bitbucketForm.classList.remove('in');
   // mixpanel
-  mixpanel.track('Show Next: ' + formType);
-}
-
-// prev form
-function prevForm(backButton, currentForm, newForm, formType) {
-  backButton.classList.remove('in');
-  currentForm.classList.add('in');
-  currentForm.classList.remove('out');
-  newForm.classList.remove('in');
-  // mixpanel
-  mixpanel.track('Show Previous: Sign Up');
+  mixpanel.track('Open GitHub form');
 }
 
 // set up forms
 function setupForm(formName) {
   var formEl;
   if (formName === 'signup') {
-    var nextTrigger = document.getElementsByClassName('js-next');
+    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
-    for (i = 0; i < nextTrigger.length; i++) {
-      nextTrigger[i].addEventListener('click', whichForm);
-      nextTrigger[i].addEventListener('touchend', whichForm);
-    }
+
+    openGitHubFormTrigger.addEventListener('click', openGitHubForm);
+    openGitHubFormTrigger.addEventListener('touchend', openGitHubForm);
+    openBitbucketFormTrigger.addEventListener('click', openBitbucketForm);
+    openBitbucketFormTrigger.addEventListener('touchend', openBitbucketForm);
+
     formEl = document.getElementsByClassName('form-bitbucket');
     // mixpanel
     linkGitHub.addEventListener('click', function(){
