@@ -22,6 +22,7 @@ function openModal(event,dragging) {
 
     if (modalName === 'sign-up') {
       setupForm('signup');
+      setupForm('github');
     }
 
     // mixpanel
@@ -122,6 +123,8 @@ function setupForm(formName) {
     });
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
+  } else if (formName === 'github') {
+    formEl = document.getElementsByClassName('form-github');
   }
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
@@ -221,6 +224,9 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'enterprise') {
     xhrUrl = 'https://codenow.com:2096/notify/enterprise';
     supportEmail = 'preview@runnable.com';
+  } else if (formName === 'github') {
+    xhrUrl = 'https://codenow.com:2053/github';
+    supportEmail = 'support@runnable.com';
   }
 
   // send form
@@ -281,6 +287,8 @@ function submitForm(e) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
+  } else if (form.classList.contains('form-github')) {
+    formName = 'github';
   }
 
   e.preventDefault();
@@ -352,6 +360,7 @@ window.addEventListener('DOMContentLoaded', function(){
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
+    setupForm('github');
   }
   // if pricing page
   if (window.location.pathname === '/pricing/') {
