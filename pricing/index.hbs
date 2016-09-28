@@ -563,15 +563,6 @@
 }
 </script>
 
-{{!-- mixpanel has to be in the head --}}
-
-  <script>(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-  mixpanel.init("b2dd1add8e70407bbcf69a963fe9eff2");</script>
-
-
-
     <title>Pricing Plans — Runnable</title>
     <script ugly>
       // modals
@@ -666,7 +657,6 @@ function nextForm(formType) {
   }
   // mixpanel
   mixpanel.track('Show Next: ' + formType);
-  console.log('show next: ' + formType);
 }
 
 // prev form
@@ -1345,75 +1335,32 @@ window.addEventListener('DOMContentLoaded', function(){
     </svg>
   </a>
   <div class="modal">
-    <button class="grid-block btn btn-back js-back fade">
-  <svg class="icons float-left">
-    <use xlink:href="#icons-chevron-right">
-  </svg>
-  Back
-</button>
+    <article class="grid-block vertical align-center noscroll article article-form article-sign-up slide in">
+  <a class="grid-block align-center justify-center well well-anchor js-next track-bitbucket" data-next="bitbucket">
+    <svg class="icons icons-bitbucket">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+    <span>Sign up with Bitbucket</span>
+    <svg class="icons icons-chevron-right">
+      <use xlink:href="#icons-chevron-right">
+    </svg>
+  </a>
 
-<article class="grid-block noscroll vertical article article-form article-sign-up slide in">
-  <h1 class="h1 text-center weight-strong padding-sm">Let’s get started.</h1>
-  <div class="grid-block card">
+  <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="p text-center padding-sm">Where does your team keep their code?</p>
-      <div class="grid-block align-center justify-center btn btn-lg white js-next track-github" data-next="github">
-        <svg class="grid-content shrink icons">
-          <use xlink:href="#icons-github">
-        </svg>
-        <span class="grid-content shrink span text-left">GitHub</span>
-        <svg class="grid-content shrink icons">
-          <use xlink:href="#icons-chevron-right">
-        </svg>
-      </div>
-      <div class="grid-block align-center justify-center btn btn-lg white js-next track-bitbucket" data-next="bitbucket">
-        <svg class="grid-content shrink icons">
-          <use xlink:href="#icons-bitbucket">
-        </svg>
-        <span class="grid-content shrink span text-left">Bitbucket</span>
-        <svg class="grid-content shrink icons">
-          <use xlink:href="#icons-chevron-right">
-        </svg>
-      </div>
-    </div>
-  </div>
-  <hr class="hr">
-  <div class="grid-content text-center">
-    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
-  </div>
-</article>
-
-<article class="grid-block noscroll vertical article article-form article-sign-up article-github slide">
-  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
-  <div class="grid-block vertical card">
-    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
-      <ul class="list list-bordered">
-        <li class="grid-block list-item list-item-write">
-          <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
-          <div class="grid-block vertical align-start">
-            <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
-            <small class="small underline popover-trigger hover">Why do we need this</span>?
-              <div class="popover top text-left">
-                <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
-                <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
-              </div>
-            </small>
-          </div>
-      </ul>
+      <p class="p text-center padding-sm">Runnable is designed for teams. Grant permission to your GitHub organization on the next page.</p>
       <ul class="list list-bordered">
         <li class="grid-block align-center list-item padding-xs">
           <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
           <div class="grid-block vertical">
-            <p class="p weight-strong">Your Organization</p>
+            <p class="p weight-strong"><span class="hidden-xs">Your </span>Organization</p>
           </div>
-          <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+          <button class="btn btn-xs gray no-touching">Grant access<span class="hidden-xs"> on GitHub</span></button>
       </ul>
     </div>
     <footer class="card-footer">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing<br class="hidden-xxs"> to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github">
@@ -1422,10 +1369,21 @@ window.addEventListener('DOMContentLoaded', function(){
       </a>
     </footer>
   </div>
+  <div class="grid-content text-center text-gray">
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+  </div>
 </article>
 
-<article class="grid-block noscroll vertical article article-form article-sign-up article-bitbucket slide">
-  <h1 class="h1 text-center weight-strong padding-sm">Get notified.</h1>
+<article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
+  <a class="grid-block align-center justify-center well well-anchor js-back fade" data-next="bitbucket">
+    <svg class="icons icons-chevron-right">
+      <use xlink:href="#icons-chevron-right">
+    </svg>
+    <svg class="icons icons-github">
+      <use xlink:href="#icons-github">
+    </svg>
+    <span>Sign up with GitHub</span>
+  </a>
   <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
     <form class="grid-block vertical form form-bitbucket show">
@@ -1433,15 +1391,11 @@ window.addEventListener('DOMContentLoaded', function(){
         <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
         <div class="grid-block vertical show">
           <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Your Name</span>
-            </label>
+            <label class="label" for="input-name">Your Name</label>
             <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
           </div>
           <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Work Email</span>
-            </label>
+            <label class="label" for="input-email">Work Email</label>
             <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
           </div>
         </div>
@@ -1474,20 +1428,20 @@ window.addEventListener('DOMContentLoaded', function(){
     </svg>
   </a>
   <div class="modal">
-    <article class="grid-block vertical article article-form article-sign-in">
-  <h1 class="h1 text-center weight-strong padding-sm">Hey again.</h1>
-  <p class="p text-center">By continuing, you are agreeing to <a href="/legal/terms-of-service/" class="link">our terms of service</a>.</p>
-  <div class="grid-block vertical align-center">
-    <img class="img" src="images/runnabear-peek.png" height="104" width="184">
-    <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
-      <svg class="icons">
-        <use xlink:href="#icons-github">
-      </svg>
-      <span>Sign in with GitHub</span>
-    </a>
+    <article class="grid-block noscroll vertical article article-form article-sign-in">
+  <div class="grid-block vertical card">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    <footer class="card-footer">
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
+        <svg class="icons hidden-xs">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Sign in with GitHub</span>
+      </a>
+    </footer>
   </div>
-  <hr class="hr">
-  <div class="grid-content text-center">
+  <div class="grid-content text-center text-gray">
     <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
   </div>
 </article>
@@ -1508,7 +1462,6 @@ window.addEventListener('DOMContentLoaded', function(){
     urlParams[decode(match[1])] = decode(match[2]);
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
-    analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
     ga('require', 'linker');
@@ -1537,7 +1490,9 @@ window.addEventListener('DOMContentLoaded', function(){
       append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
     function append_id(link, id, event) {
-      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
+      ga(function(tracker) {
+        link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event+'%26'+tracker.get('linkerParam'));
+      });
     }
   });
 </script>

@@ -1,33 +1,29 @@
-<article class="grid-block noscroll vertical article article-form article-sign-up article-github slide">
-  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
+<article class="grid-block vertical align-center noscroll article article-form article-sign-up slide in">
+  <a class="grid-block align-center justify-center well well-anchor js-next track-bitbucket" data-next="bitbucket">
+    <svg class="icons icons-bitbucket">
+      <use xlink:href="#icons-bitbucket">
+    </svg>
+    <span>Sign up with Bitbucket</span>
+    <svg class="icons icons-chevron-right">
+      <use xlink:href="#icons-chevron-right">
+    </svg>
+  </a>
+
   <div class="grid-block vertical card">
-    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="p text-center padding-sm">But first, we’ll need some permissions.</p>
-      <ul class="list list-bordered">
-        <li class="grid-block list-item list-item-write">
-          <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
-          <div class="grid-block vertical align-start">
-            <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
-            <small class="small underline popover-trigger hover">Why do we need this</span>?
-              <div class="popover top text-left">
-                <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
-                <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
-              </div>
-            </small>
-          </div>
-      </ul>
+      <p class="p text-center padding-sm">Runnable is designed for teams. Grant permission to your GitHub organization on the next page.</p>
       <ul class="list list-bordered">
         <li class="grid-block align-center list-item padding-xs">
           <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
           <div class="grid-block vertical">
-            <p class="p weight-strong">Your Organization</p>
+            <p class="p weight-strong"><span class="hidden-xs">Your </span>Organization</p>
           </div>
-          <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+          <button class="btn btn-xs gray no-touching">Grant access<span class="hidden-xs"> on GitHub</span></button>
       </ul>
     </div>
     <footer class="card-footer">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing<br class="hidden-xxs"> to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github">
@@ -35,5 +31,8 @@
         <span>Grant permissions on GitHub</span>
       </a>
     </footer>
+  </div>
+  <div class="grid-content text-center text-gray">
+    <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
   </div>
 </article>

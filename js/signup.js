@@ -90,7 +90,6 @@ function nextForm(formType) {
   }
   // mixpanel
   mixpanel.track('Show Next: ' + formType);
-  console.log('show next: ' + formType);
 }
 
 // prev form
