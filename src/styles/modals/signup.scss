@@ -2,12 +2,12 @@
   border-radius: $input-border-radius-lg;
   margin: 0 auto;
   max-width: 630px;
-  padding: 60px;
+  padding: 45px 60px;
 
   @include media(xs) {
     border-radius: 0;
     margin: 0;
-    padding: 60px 30px 45px;
+    padding: 45px 30px;
   }
 
   @include media(xxs) {
@@ -22,37 +22,6 @@
     overflow: visible;
   }
 
-  // github and bitbucket buttons
-  .btn-lg.white {
-    border-color: rgba($black,.15);
-    height: 66px;
-
-    + .btn-lg {
-      margin-top: 15px;
-    }
-
-    // logo
-    .icons:first-child {
-      height: 100%;
-      width: 24px;
-    }
-
-    // name
-    .span {
-      flex: 0 0 105px;
-    }
-
-    // chevron
-    .icons:last-child {
-      height: 100%;
-      opacity: .3;
-      position: absolute;
-      right: 18px;
-      top: 0;
-      width: 12px;
-    }
-  }
-
   // submit
   .btn.green {
     margin-top: 30px;
@@ -61,14 +30,6 @@
       position: absolute;
       right: 17px;
       top: 17px;
-    }
-  }
-
-  .hr {
-    @include media(xxs) {
-      margin-left: 0;
-      margin-right: 0;
-      max-width: none;
     }
   }
 }
@@ -83,8 +44,8 @@
     &.out {
       opacity: 0;
       pointer-events: none;
-      transform: scale3d(.97,.97,1) translate3d(-120px,0,0);
-      transition: opacity .15s ease-in-out, transform .3s ease-in-out;
+      transform: scale3d(.97,.97,1) translate3d(-135px,0,0);
+      transition: opacity .2s ease-in-out, transform .3s ease-in-out;
       z-index: 1;
     }
 
@@ -92,8 +53,8 @@
     &:not(.out):not(.in) {
       opacity: 0;
       pointer-events: none;
-      transform: scale3d(.97,.97,1) translate3d(120px,0,0);
-      transition: opacity .15s ease-in-out, transform .3s ease-in-out;
+      transform: scale3d(.97,.97,1) translate3d(135px,0,0);
+      transition: opacity .2s ease-in-out, transform .3s ease-in-out;
       z-index: 1;
     }
 
@@ -109,7 +70,7 @@
     background: $gray-lighterest;
     border: $input-border-lg solid $gray-lighter;
     border-radius: $input-border-radius-lg;
-    margin-top: 60px;
+    margin-top: 105px;
     overflow: visible;
     position: relative;
 
@@ -121,11 +82,15 @@
       top: -120px;
       z-index: 1;
     }
+
+    + .grid-content {
+      margin-top: 45px;
+    }
   }
 
   .form-wrapper {
     padding-bottom: 30px;
-    padding-top: 15px;
+    padding-top: 30px;
 
     @media (max-width: 500px) {
       overflow: visible;
@@ -134,19 +99,6 @@
 
     @include media(xxs) {
       padding: 15px;
-    }
-
-    .popover-trigger {
-      cursor: pointer;
-      margin-left: 3px;
-      top: -1px;
-    }
-
-    .popover {
-      color: $gray;
-      font-size: 14px;
-      line-height: 1.4;
-      width: 280px;
     }
 
     .input-group-vertical {
@@ -186,10 +138,6 @@
       margin: 0;
     }
 
-    .weight-strong + .p {
-      margin-top: 6px;
-    }
-
     .img {
       border-radius: $input-border-radius;
       margin-right: 12px;
@@ -203,48 +151,11 @@
     }
   }
 
-  .list-item {
-    overflow: visible; // for popover
-
-    > .grid-block {
-      overflow: visible;
-    }
-
-    > .icons {
-      height: 24px;
-      margin-right: 15px;
-      margin-top: 3px;
-      opacity: .5;
-      width: 24px;
-    }
-  }
-
-  .list-item-write {
-    padding: 15px 12px 18px;
-  }
-
-  .popover-trigger {
-    color: $gray;
-    font-weight: $weight-light;
-    line-height: 1.2;
-    margin-left: 0;
-    margin-top: 9px;
-    top: 0;
-
-    .popover {
-      width: 288px;
-    }
-
-    .popover-p + .popover-p {
-      margin-top: 6px;
-    }
-  }
-
   .card-footer {
     background: $gray-lightest;
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
     border-top: 1px solid $gray-lighter;
-    padding: 30px 45px;
+    padding: 30px 45px 45px;
 
     @media (max-width: 500px) {
       padding: 30px;
