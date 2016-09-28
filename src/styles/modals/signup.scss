@@ -45,6 +45,8 @@
   }
 
   .well-anchor {
+    min-width: 0;
+
     // override defaults
     @include media(sm) {
       margin-left: auto;
