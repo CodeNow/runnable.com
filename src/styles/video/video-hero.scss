@@ -30,6 +30,14 @@
     @include media(xs) {
       max-width: 450px;
     }
+
+    .br {
+      display: none;
+
+      @media (max-width: 450px) {
+        display: block;
+      }
+    }
   }
 
   .h3 {
@@ -38,7 +46,13 @@
     }
 
     @include media(xxs) {
-      padding: 0 15px;
+      max-width: 320px;
+    }
+
+    .br {
+      @include media(xxs) {
+        display: none;
+      }
     }
   }
 }
@@ -114,10 +128,6 @@
   @include media(xxs) {
     height: 153px;
     width: 272px;
-  }
-
-  @media (max-width: 375px) {
-    top: 15px;
   }
 }
 
