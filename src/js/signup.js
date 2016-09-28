@@ -83,10 +83,26 @@ function setupForm(formName) {
     var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
 
-    openGitHubFormTrigger.addEventListener('click', openGitHubForm);
-    openGitHubFormTrigger.addEventListener('touchend', openGitHubForm);
-    openBitbucketFormTrigger.addEventListener('click', openBitbucketForm);
-    openBitbucketFormTrigger.addEventListener('touchend', openBitbucketForm);
+    openGitHubFormTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openGitHubForm();
+    });
+    openGitHubFormTrigger.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openGitHubForm();
+    });
+    openBitbucketFormTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openBitbucketForm();
+    });
+    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openBitbucketForm();
+    });
 
     formEl = document.getElementsByClassName('form-bitbucket');
     // mixpanel
