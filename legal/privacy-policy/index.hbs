@@ -1204,25 +1204,14 @@ window.addEventListener('load', function(){
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="p text-center padding-sm">Runnable is designed for teams. Grant permission to your GitHub organization on the next page.</p>
-      <ul class="list list-bordered">
-        <li class="grid-block align-center list-item padding-xs">
-          <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
-          <div class="grid-block vertical">
-            <p class="p weight-strong"><span class="hidden-xs">Your </span>Organization</p>
-          </div>
-          <button class="btn btn-xs gray no-touching">Grant access<span class="hidden-xs"> on GitHub</span></button>
-      </ul>
-    </div>
-    <footer class="card-footer">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing<br class="hidden-xxs"> to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
-        <svg class="icons hidden-xs">
+        <svg class="icons hidden-xxxs">
           <use xlink:href="#icons-github">
         </svg>
-        <span>Grant permissions on GitHub</span>
+        <span>Authorize With GitHub</span>
       </a>
-    </footer>
+    </div>
   </div>
   <div class="grid-content text-center text-gray">
     <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
@@ -1286,7 +1275,7 @@ window.addEventListener('load', function(){
     <article class="grid-block noscroll vertical article article-form article-sign-in">
   <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <footer class="card-footer">
+    <div class="grid-block vertical padding-lg form-wrapper">
       <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
         <svg class="icons hidden-xs">
@@ -1294,7 +1283,7 @@ window.addEventListener('load', function(){
         </svg>
         <span>Sign in with GitHub</span>
       </a>
-    </footer>
+    </div>
   </div>
   <div class="grid-content text-center text-gray">
     <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
