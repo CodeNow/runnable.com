@@ -70,6 +70,7 @@
     margin-top: 105px;
     overflow: visible;
     position: relative;
+    width: 100%;
 
     > .img {
       left: 0;
@@ -128,40 +129,6 @@
     }
   }
 
-  .list-bordered {
-    background: $white;
-    border: 1px solid $gray-lighter;
-    border-radius: $input-border-radius-lg;
-    color: $gray;
-    padding: 0;
-
-    + .list-bordered {
-      margin-top: 15px;
-    }
-
-    .p {
-      font-size: 15px;
-      line-height: 1.2;
-      margin: 0;
-
-      @include media(xxxs) {
-        margin-right: 6px;
-      }
-    }
-
-    .img {
-      border-radius: $input-border-radius;
-      margin-right: 12px;
-    }
-
-    .btn.no-touching {
-      background: $gray-lightest;
-      border: 0;
-      color: $gray;
-      font-weight: $weight-normal;
-    }
-  }
-
   .card-footer {
     background: $gray-lightest;
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
@@ -210,6 +177,11 @@
       margin-right: 6px;
       position: relative;
       width: 24px;
+
+      @media (max-width: 500px) {
+        height: 18px;
+        width: 18px;
+      }
     }
 
     // errors
