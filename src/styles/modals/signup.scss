@@ -2,79 +2,19 @@
   border-radius: $input-border-radius-lg;
   margin: 0 auto;
   max-width: 630px;
-  padding: 60px;
+  padding: 45px 60px;
 
   @include media(xs) {
     border-radius: 0;
     margin: 0;
-    padding: 60px 30px 45px;
+    padding: 45px 30px;
   }
 
   @include media(xxs) {
     margin: 0 auto;
+    padding: 60px 15px;
   }
 
-  .h1 {
-    margin-bottom: 30px;
-  }
-
-  .form {
-    overflow: visible;
-  }
-
-  // github and bitbucket buttons
-  .btn-lg.white {
-    border-color: rgba($black,.15);
-    height: 66px;
-
-    + .btn-lg {
-      margin-top: 15px;
-    }
-
-    // logo
-    .icons:first-child {
-      height: 100%;
-      width: 24px;
-    }
-
-    // name
-    .span {
-      flex: 0 0 105px;
-    }
-
-    // chevron
-    .icons:last-child {
-      height: 100%;
-      opacity: .3;
-      position: absolute;
-      right: 18px;
-      top: 0;
-      width: 12px;
-    }
-  }
-
-  // submit
-  .btn.green {
-    margin-top: 30px;
-
-    .spinner-wrapper {
-      position: absolute;
-      right: 17px;
-      top: 17px;
-    }
-  }
-
-  .hr {
-    @include media(xxs) {
-      margin-left: 0;
-      margin-right: 0;
-      max-width: none;
-    }
-  }
-}
-
-
-.article-sign-up {
 
   &.slide {
     transition: opacity .3s ease-in-out, transform .3s ease-in-out;
@@ -83,8 +23,8 @@
     &.out {
       opacity: 0;
       pointer-events: none;
-      transform: scale3d(.97,.97,1) translate3d(-120px,0,0);
-      transition: opacity .15s ease-in-out, transform .3s ease-in-out;
+      transform: scale3d(.97,.97,1) translate3d(-135px,0,0);
+      transition: opacity .2s ease-in-out, transform .3s ease-in-out;
       z-index: 1;
     }
 
@@ -92,8 +32,8 @@
     &:not(.out):not(.in) {
       opacity: 0;
       pointer-events: none;
-      transform: scale3d(.97,.97,1) translate3d(120px,0,0);
-      transition: opacity .15s ease-in-out, transform .3s ease-in-out;
+      transform: scale3d(.97,.97,1) translate3d(135px,0,0);
+      transition: opacity .2s ease-in-out, transform .3s ease-in-out;
       z-index: 1;
     }
 
@@ -105,11 +45,29 @@
     }
   }
 
+  .well-anchor {
+    min-width: 0;
+
+    // override defaults
+    @include media(sm) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include media(xs) {
+      flex-direction: row;
+    }
+  }
+
+  .form {
+    overflow: visible;
+  }
+
   .card {
     background: $gray-lighterest;
     border: $input-border-lg solid $gray-lighter;
     border-radius: $input-border-radius-lg;
-    margin-top: 60px;
+    margin-top: 105px;
     overflow: visible;
     position: relative;
 
@@ -120,33 +78,34 @@
       right: 0;
       top: -120px;
       z-index: 1;
+
+      + .card-footer {
+        border-top: 0;
+      }
+    }
+
+    + .grid-content {
+      margin-top: 45px;
+
+      @media (max-width: 500px) {
+        font-size: 17px;
+        padding: 0 15px;
+      }
     }
   }
 
   .form-wrapper {
     padding-bottom: 30px;
-    padding-top: 15px;
+    padding-top: 30px;
 
     @media (max-width: 500px) {
-      overflow: visible;
-      padding: 15px 30px 30px;
-    }
+      padding: 30px;
 
-    @include media(xxs) {
-      padding: 15px;
-    }
-
-    .popover-trigger {
-      cursor: pointer;
-      margin-left: 3px;
-      top: -1px;
-    }
-
-    .popover {
-      color: $gray;
-      font-size: 14px;
-      line-height: 1.4;
-      width: 280px;
+      > .p {
+        font-size: 17px;
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
 
     .input-group-vertical {
@@ -184,10 +143,10 @@
       font-size: 15px;
       line-height: 1.2;
       margin: 0;
-    }
 
-    .weight-strong + .p {
-      margin-top: 6px;
+      @include media(xxxs) {
+        margin-right: 6px;
+      }
     }
 
     .img {
@@ -203,59 +162,21 @@
     }
   }
 
-  .list-item {
-    overflow: visible; // for popover
-
-    > .grid-block {
-      overflow: visible;
-    }
-
-    > .icons {
-      height: 24px;
-      margin-right: 15px;
-      margin-top: 3px;
-      opacity: .5;
-      width: 24px;
-    }
-  }
-
-  .list-item-write {
-    padding: 15px 12px 18px;
-  }
-
-  .popover-trigger {
-    color: $gray;
-    font-weight: $weight-light;
-    line-height: 1.2;
-    margin-left: 0;
-    margin-top: 9px;
-    top: 0;
-
-    .popover {
-      width: 288px;
-    }
-
-    .popover-p + .popover-p {
-      margin-top: 6px;
-    }
-  }
-
   .card-footer {
     background: $gray-lightest;
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
     border-top: 1px solid $gray-lighter;
-    padding: 30px 45px;
+    padding: 30px 45px 45px;
 
     @media (max-width: 500px) {
       padding: 30px;
-    }
 
-    @include media(xxs) {
-      padding: 15px;
-    }
-
-    > .p {
-      padding-top: 0;
+      > .p {
+        font-size: 17px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+      }
     }
   }
 
@@ -266,7 +187,7 @@
     width: 100%;
 
     @media (max-width: 500px) {
-      font-size: 19px;
+      font-size: 17px;
     }
 
     @include media(xxxs) {
@@ -276,6 +197,12 @@
         padding: 15px;
         white-space: normal;
       }
+    }
+
+    .spinner-wrapper {
+      position: absolute;
+      right: 17px;
+      top: 17px;
     }
 
     .icons {

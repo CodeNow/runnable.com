@@ -3,19 +3,23 @@
   border-bottom: 1px solid $gray-lightest;
   border-top: 1px solid rgba($black,.1);
   margin-bottom: 0;
-  padding-top: 120px;
+  padding-top: 150px;
   z-index: 1;
 
   @include media(md) {
-    padding-top: 150px;
+    padding-top: 135px;
   }
 
   @include media(xs) {
-    padding-top: 105px;
+    padding-top: 90px;
+  }
+
+  @media (max-width: 450px) {
+    padding-top: 120px;
   }
 
   @include media(xxs) {
-    padding-top: 120px;
+    padding-top: 150px;
   }
 
   .grid-container {
@@ -47,6 +51,11 @@
     @include media(xs) {
       padding: 0 15px;
       text-align: center;
+    }
+
+    @include media(xxs) {
+      max-width: 320px;
+      padding: 0;
     }
   }
 

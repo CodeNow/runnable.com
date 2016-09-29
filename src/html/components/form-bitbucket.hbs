@@ -1,5 +1,13 @@
-<article class="grid-block noscroll vertical article article-form article-sign-up article-bitbucket slide">
-  <h1 class="h1 text-center weight-strong padding-sm">Get notified.</h1>
+<article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
+  <a class="grid-block align-center justify-center well well-anchor js-open-github fade">
+    <svg class="icons icons-chevron-right">
+      <use xlink:href="#icons-chevron-right">
+    </svg>
+    <svg class="icons icons-github">
+      <use xlink:href="#icons-github">
+    </svg>
+    <span>Sign up with GitHub</span>
+  </a>
   <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
     <form class="grid-block vertical form form-bitbucket show">
@@ -7,15 +15,11 @@
         <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
         <div class="grid-block vertical show">
           <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Your Name</span>
-            </label>
+            <label class="label" for="input-name">Your Name</label>
             <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
           </div>
           <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-organization">
-              <span class="label-text">Work Email</span>
-            </label>
+            <label class="label" for="input-email">Work Email</label>
             <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
           </div>
         </div>

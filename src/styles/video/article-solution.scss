@@ -5,6 +5,11 @@
   border-top: 1px solid rgba($black,.1);
   overflow: visible;
 
+  @include media(xxxs) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   &::after {
     background: url(../images/confetti.png);
     background-size: 864px 324px;
@@ -47,6 +52,10 @@
 
     @media (max-width: $screen-sm) and (min-width: $screen-xs) {
       max-width: 570px;
+    }
+
+    @include media(xxs) {
+      max-width: none;
     }
   }
 
