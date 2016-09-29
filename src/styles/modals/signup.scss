@@ -177,6 +177,11 @@
       margin-right: 6px;
       position: relative;
       width: 24px;
+
+      @media (max-width: 500px) {
+        height: 18px;
+        width: 18px;
+      }
     }
 
     // errors
