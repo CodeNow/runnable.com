@@ -5,6 +5,15 @@
   padding-left: 30px;
   padding-right: 30px;
 
+  @include media(xxs) {
+    max-width: 100vw;
+    overflow: hidden;
+
+    .link {
+      word-break: break-all;
+    }
+  }
+
   .grid-content + .grid-content {
     margin-top: 60px;
   }
