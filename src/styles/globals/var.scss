@@ -99,3 +99,15 @@ $input-line-height-xxs: $input-xxs - ($input-border * 2);
 
 $z-modal: 100;
 $z-modal-close: 101;
+
+// margin/padding sizes
+$xxs: 9px;
+$xs: 12px;
+$sm: 15px;
+$md: 30px;
+$lg: 45px;
+$xl: 60px;
+
+$size-directions: top right bottom left;
+$size-list: xxs xs sm md lg xl;
+$sizes: $xxs, $xs, $sm, $md, $lg, $xl;
