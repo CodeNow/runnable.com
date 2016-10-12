@@ -12,6 +12,11 @@
     </div>
   </div>
   <div class="grid-content text-center text-white">
+    @@if (!context.standalone) {
     <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    }
+    @@if (context.standalone) {
+    <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
+    }
   </div>
 </article>

@@ -19,25 +19,9 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-in">
+        @@include('html/components/modal-header.hbs', {"signup": false})
         <div class="modal">
-          {{!-- this is not an include because we need to have a different link for sign up --}}
-          <article class="grid-block noscroll vertical article article-form article-sign-in">
-            <div class="grid-block vertical card">
-              <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-              <div class="grid-block vertical padding-lg form-wrapper">
-                <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-                <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
-                  <svg class="icons hidden-xs">
-                    <use xlink:href="#icons-github">
-                  </svg>
-                  <span>Sign in with GitHub</span>
-                </a>
-              </div>
-            </div>
-            <div class="grid-content text-center text-gray">
-              <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
-            </div>
-          </article>
+          @@include('html/components/sign-in-modal.hbs', {"standalone": true})
         </div>
       </div>
     </main>
