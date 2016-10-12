@@ -73,21 +73,6 @@
     position: relative;
     width: 100%;
 
-    > .icons-close {
-      background: none;
-      color: $gray-light;
-      height: 24px;
-      position: absolute;
-      right: 6px;
-      top: 6px;
-      width: 24px;
-
-      &:hover,
-      &:active {
-        color: $red;
-      }
-    }
-
     > .img {
       left: 0;
       margin: 0 auto;
