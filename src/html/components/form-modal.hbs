@@ -1,12 +1,18 @@
 <div class="modal-backdrop" id="sign-up">
-  @@include('html/components/modal-header.hbs', {"signup": true})
+  @@include('html/components/modal-header.hbs', {
+    "signup": true,
+    "standalone": false
+  })
   <div class="modal">
     @@include('html/components/sign-up-modal.hbs')
   </div>
 </div>
 
 <div class="modal-backdrop" id="sign-in">
-  @@include('html/components/modal-header.hbs', {"signup": false})
+  @@include('html/components/modal-header.hbs', {
+    "signup": false,
+    "standalone": false
+  })
   <div class="modal">
     @@include('html/components/sign-in-modal.hbs')
   </div>

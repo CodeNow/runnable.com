@@ -19,7 +19,10 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-in">
-        @@include('html/components/modal-header.hbs', {"signup": false})
+        @@include('html/components/modal-header.hbs', {
+          "signup": false,
+          "standalone": true
+        })
         <div class="modal">
           @@include('html/components/sign-in-modal.hbs', {"standalone": true})
         </div>

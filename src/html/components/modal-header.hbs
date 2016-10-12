@@ -18,12 +18,14 @@
         <span>Sign up with GitHub</span>
       </a>
       }
+      @@if (!context.standalone) {
       <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
         <svg class="icons icons-close">
           <use xlink:href="#icons-close">
         </svg>
         <span>Close</span>
       </a>
+      }
     </div>
   </div>
 </header>

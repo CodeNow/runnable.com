@@ -20,7 +20,10 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-up">
-        @@include('html/components/modal-header.hbs', {"signup": true})
+        @@include('html/components/modal-header.hbs', {
+          "signup": true,
+          "standalone": true
+        })
         <div class="modal">
           @@include('html/components/form-github.hbs', {"standalone": true})
           @@include('html/components/form-bitbucket.hbs')
