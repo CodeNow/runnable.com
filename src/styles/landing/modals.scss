@@ -35,6 +35,31 @@
     }
   }
 
+  .header .grid-container {
+    @include media(sm) {
+      flex-direction: column;
+
+      > .grid-block,
+      > .grid-content {
+
+        &:first-child {
+          margin-top: $md;
+          order: 2;
+        }
+
+        &:last-child {
+          order: 1;
+        }
+      }
+
+      // fixes logo not appearing in firefox
+      .logo {
+        flex: 0 0 36px;
+        height: 36px;
+      }
+    }
+  }
+
   .btn-white {
     background: rgba($white,.1);
     border: $input-border solid rgba($white,.75);
@@ -89,6 +114,10 @@
     right: 0;
     top: 60px;
     transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+
+    @include media(sm) {
+      padding-top: 90px;
+    }
 
     &.article-sign-up {
       z-index: $z-modal + 1;
