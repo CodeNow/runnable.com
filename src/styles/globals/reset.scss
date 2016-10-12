@@ -289,6 +289,16 @@ textarea:focus,
   box-shadow: none;
 }
 
+// headings
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
 // lists
 ol,
 ul {
