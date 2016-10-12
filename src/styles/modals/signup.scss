@@ -65,12 +65,28 @@
 
   .card {
     background: $gray-lighterest;
-    border: $input-border-lg solid $gray-lighter;
+    border: $input-border-lg solid transparent;
     border-radius: $input-border-radius-lg;
+    box-shadow: 0 1px 3px rgba($black,.1);
     margin-top: 105px;
     overflow: visible;
     position: relative;
     width: 100%;
+
+    > .icons-close {
+      background: none;
+      color: $gray-light;
+      height: 24px;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      width: 24px;
+
+      &:hover,
+      &:active {
+        color: $red;
+      }
+    }
 
     > .img {
       left: 0;
@@ -149,9 +165,8 @@
 
   // sign up button
   .btn.green {
-    margin: 0;
+    margin: 0 auto;
     overflow: visible;
-    width: 100%;
 
     @media (max-width: 500px) {
       font-size: 17px;
@@ -191,5 +206,10 @@
       min-width: 300px;
       white-space: normal;
     }
+  }
+
+  // bottom text
+  > .text-white {
+    opacity: .75;
   }
 }

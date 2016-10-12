@@ -1,5 +1,5 @@
 .modal-backdrop {
-  background: rgba($white,.98);
+  background: linear-gradient(rgba($purple-light,.99), rgba($purple,.99), rgba($purple-dark,.98));
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -35,13 +35,48 @@
     }
   }
 
-  .icons-close {
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 30px;
-    z-index: $z-modal + 2;
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $white;
+    display: flex;
+    font-size: 16px;
+    margin: 0;
+    padding: 6px 12px;
+    z-index: 1; // forces popover to recognize hover state
+
+    @include media(xxs) {
+      font-size: 14px;
+    }
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    + .btn-white {
+      margin-left: 9px;
+    }
+
+    // anchor
+    .icons {
+      background: none;
+      height: 18px;
+      top: 0;
+      width: 18px;
+    }
+
+    .icons-github,
+    .icons-bitbucket {
+      margin: 0 9px 0 0;
+    }
   }
 }
 
@@ -52,7 +87,7 @@
     left: 0;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 60px;
     transition: opacity .3s ease-in-out, transform .3s ease-in-out;
 
     &.article-sign-up {
@@ -76,64 +111,6 @@
       opacity: 0;
       transform: translate3d(0,-100px,0);
       z-index: $z-modal;
-    }
-  }
-
-  .well {
-    font-size: 16px;
-    padding: 15px;
-    position: relative;
-    z-index: 2;
-
-    @include media(xxs) {
-      font-size: 14px;
-    }
-
-    &:hover {
-      border-color: $purple-light;
-      box-shadow: inset 0 0 0 1px $purple-light;
-      color: $purple-light;
-
-      .a {
-        text-decoration: underline;
-      }
-    }
-
-    &:hover .icons-chevron-right:first-child,
-    &:active .icons-chevron-right:first-child {
-      transform: rotate3d(0,0,1,180deg) translate3d(3px,0,0);
-    }
-
-    &:hover .icons-chevron-right:last-child,
-    &:active .icons-chevron-right:last-child {
-      transform: translate3d(3px,0,0);
-    }
-
-    // anchor
-    .icons-github,
-    .icons-bitbucket {
-      height: 21px;
-      margin: 0 9px 0 0;
-      top: 0;
-      width: 21px;
-    }
-
-    .icons-chevron-right {
-      height: 9px;
-      margin: 0;
-      opacity: .75;
-      top: 0;
-      transition: transform .3s ease-in-out;
-      width: 9px;
-
-      &:first-child {
-        margin-right: 6px;
-        transform: rotate3d(0,0,1,180deg);
-      }
-
-      &:last-child {
-        margin-left: 6px;
-      }
     }
   }
 }
