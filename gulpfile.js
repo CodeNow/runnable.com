@@ -238,8 +238,8 @@ gulp.task('s3', function() {
     'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
   };
 
-  return  gulp.src(dist + '**/*')
-    // gzip, Set Content-Encoding headers
+  return  gulp.src(dist + '**/*', '!' + dist + '*.html')
+  // gzip, Set Content-Encoding headers
     .pipe(awspublish.gzip())
 
     // publisher will add Content-Length, Content-Type and headers specified above
@@ -247,6 +247,15 @@ gulp.task('s3', function() {
     .pipe(publisher.publish(headers))
 
     // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // Add HTML files last
+    .pipe(addsrc(dist + '*.html'))
+
+    // Re-publish
+    .pipe(publisher.publish(headers))
+
+    // re-cache
     .pipe(publisher.cache())
 
     // print upload updates to console
