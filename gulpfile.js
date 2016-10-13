@@ -1,20 +1,21 @@
+var addsrc = require('gulp-add-src');
 var autoprefixer = require('gulp-autoprefixer');
 var awspublish = require('gulp-awspublish');
 var debug = require('gulp-debug');
 var del = require('del');
 var exec = require('child_process').exec;
 var fileinclude = require('gulp-file-include');
-var vfs = require('fs');
 var ghPages = require('gulp-gh-pages');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
-var inject = require('gulp-inject');
 var imagemin = require('gulp-imagemin');
+var inject = require('gulp-inject');
 var minifyInline = require('gulp-minify-inline');
 var newer = require('gulp-newer');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
+var vfs = require('fs');
 var webserver = require('gulp-webserver');
 
 // urls

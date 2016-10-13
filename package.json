@@ -33,5 +33,8 @@
   },
   "scripts": {
     "deploy": "node_modules/.bin/gulp deploy:s3"
+  },
+  "devDependencies": {
+    "gulp-add-src": "^0.2.0"
   }
 }
