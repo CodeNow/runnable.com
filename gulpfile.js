@@ -26,7 +26,7 @@ var angularUrl = process.env.ANGULAR_URL;
 var json = JSON.parse(vfs.readFileSync('./package.json'));
 var currentVersion = json.version;
 var src = 'src/';
-var dist = './dist/';
+var dist = 'dist/';
 
 var hbsDir = src + 'html/**/*.hbs';
 var sassDir = src +'styles/**/*.scss';
@@ -239,7 +239,7 @@ gulp.task('s3', function() {
     'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
   };
 
-  return  gulp.src(dist + '**/*', '!' + dist + '*.html')
+  return  gulp.src([dist + '**/*', '!' + dist + '*.html'])
   // gzip, Set Content-Encoding headers
     .pipe(awspublish.gzip())
 
