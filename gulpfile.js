@@ -246,9 +246,6 @@ gulp.task('s3', function() {
     // If not specified it will set x-amz-acl to public-read by default
     .pipe(publisher.publish(headers))
 
-    // Delete files in the bucket that aren't in the local folder
-    .pipe(publisher.sync())
-
     // create a cache file to speed up consecutive uploads
     .pipe(publisher.cache())
 
