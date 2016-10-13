@@ -1,20 +1,21 @@
+var addsrc = require('gulp-add-src');
 var autoprefixer = require('gulp-autoprefixer');
 var awspublish = require('gulp-awspublish');
 var debug = require('gulp-debug');
 var del = require('del');
 var exec = require('child_process').exec;
 var fileinclude = require('gulp-file-include');
-var vfs = require('fs');
 var ghPages = require('gulp-gh-pages');
 var gulp = require('gulp');
 var handlebars = require('gulp-compile-handlebars');
-var inject = require('gulp-inject');
 var imagemin = require('gulp-imagemin');
+var inject = require('gulp-inject');
 var minifyInline = require('gulp-minify-inline');
 var newer = require('gulp-newer');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
+var vfs = require('fs');
 var webserver = require('gulp-webserver');
 
 // urls
@@ -25,7 +26,7 @@ var angularUrl = process.env.ANGULAR_URL;
 var json = JSON.parse(vfs.readFileSync('./package.json'));
 var currentVersion = json.version;
 var src = 'src/';
-var dist = './dist/';
+var dist = 'dist/';
 
 var hbsDir = src + 'html/**/*.hbs';
 var sassDir = src +'styles/**/*.scss';
@@ -238,8 +239,8 @@ gulp.task('s3', function() {
     'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
   };
 
-  return  gulp.src(dist + '**/*')
-    // gzip, Set Content-Encoding headers
+  return  gulp.src([dist + '**/*', '!' + dist + '*.html'])
+  // gzip, Set Content-Encoding headers
     .pipe(awspublish.gzip())
 
     // publisher will add Content-Length, Content-Type and headers specified above
@@ -247,6 +248,15 @@ gulp.task('s3', function() {
     .pipe(publisher.publish(headers))
 
     // create a cache file to speed up consecutive uploads
+    .pipe(publisher.cache())
+
+    // Add HTML files last
+    .pipe(addsrc(dist + '*.html'))
+
+    // Re-publish
+    .pipe(publisher.publish(headers))
+
+    // re-cache
     .pipe(publisher.cache())
 
     // print upload updates to console
