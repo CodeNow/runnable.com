@@ -53,10 +53,14 @@ function closeModal(event) {
 // show bitbucket form
 function openBitbucketForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  bitbucketTrigger.classList.add('hide');
   bitbucketForm.classList.remove('out');
   bitbucketForm.classList.add('in');
+  gitHubTrigger.classList.remove('hide');
   gitHubForm.classList.remove('in');
   gitHubForm.classList.add('out');
   // mixpanel
@@ -66,10 +70,14 @@ function openBitbucketForm() {
 // show github form
 function openGitHubForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  gitHubTrigger.classList.add('hide');
   gitHubForm.classList.remove('out');
   gitHubForm.classList.add('in');
+  bitbucketTrigger.classList.remove('hide');
   bitbucketForm.classList.remove('in');
   // mixpanel
   mixpanel.track('Open GitHub form');

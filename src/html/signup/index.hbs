@@ -20,35 +20,12 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-up">
+        @@include('html/components/modal-header.hbs', {
+          "signup": true,
+          "standalone": true
+        })
         <div class="modal">
-          {{!-- this is not an include because we need to have a different link for sign up --}}
-          <article class="grid-block vertical align-center noscroll article article-form article-github article-sign-up slide in">
-            <a class="grid-block align-center justify-center well well-anchor js-open-bitbucket track-bitbucket" data-next="bitbucket">
-              <svg class="icons icons-bitbucket">
-                <use xlink:href="#icons-bitbucket">
-              </svg>
-              <span>Sign up with Bitbucket</span>
-              <svg class="icons icons-chevron-right">
-                <use xlink:href="#icons-chevron-right">
-              </svg>
-            </a>
-
-            <div class="grid-block vertical card">
-              <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-              <div class="grid-block vertical padding-lg form-wrapper">
-                <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing<br class="hidden-xxs"> to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-                <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
-                  <svg class="icons hidden-xxxs">
-                    <use xlink:href="#icons-github">
-                  </svg>
-                  <span>Authorize With GitHub</span>
-                </a>
-              </div>
-            </div>
-            <div class="grid-content text-center text-gray">
-              <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
-            </div>
-          </article>
+          @@include('html/components/form-github.hbs', {"standalone": true})
           @@include('html/components/form-bitbucket.hbs')
         </div>
       </div>

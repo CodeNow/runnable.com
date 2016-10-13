@@ -1,20 +1,18 @@
 <div class="modal-backdrop" id="sign-up">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  @@include('html/components/modal-header.hbs', {
+    "signup": true,
+    "standalone": false
+  })
   <div class="modal">
     @@include('html/components/sign-up-modal.hbs')
   </div>
 </div>
 
 <div class="modal-backdrop" id="sign-in">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  @@include('html/components/modal-header.hbs', {
+    "signup": false,
+    "standalone": false
+  })
   <div class="modal">
     @@include('html/components/sign-in-modal.hbs')
   </div>
