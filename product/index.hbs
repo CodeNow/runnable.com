@@ -2,10 +2,7 @@
 <html lang="en">
 
   <head>
-    {{!-- optimizely must be the first tag in the head --}}
-<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
-
-
+    
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -620,10 +617,14 @@ function closeModal(event) {
 // show bitbucket form
 function openBitbucketForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  bitbucketTrigger.classList.add('hide');
   bitbucketForm.classList.remove('out');
   bitbucketForm.classList.add('in');
+  gitHubTrigger.classList.remove('hide');
   gitHubForm.classList.remove('in');
   gitHubForm.classList.add('out');
   // mixpanel
@@ -633,10 +634,14 @@ function openBitbucketForm() {
 // show github form
 function openGitHubForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  gitHubTrigger.classList.add('hide');
   gitHubForm.classList.remove('out');
   gitHubForm.classList.add('in');
+  bitbucketTrigger.classList.remove('hide');
   bitbucketForm.classList.remove('in');
   // mixpanel
   mixpanel.track('Open GitHub form');
@@ -1118,7 +1123,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
       <article class="article article-heading">
   <div class="grid-container">
-    <h3 class="h3 weight-strong text-center">Save time and frustration.</h3>
+    <h2 class="h3 weight-strong text-center">Save time and frustration.</h2>
     <p class="text-center">Environments are built around how teams develop software. A new branch creates a new environment, and deleting a branch deletes its environment.</p>
     <div class="grid-block vertical align-center quote-wrapper p text-gray">
       <blockquote class="quote-bubble text-center">
@@ -1145,15 +1150,15 @@ window.addEventListener('DOMContentLoaded', function(){
       </figure>
       <div class="grid-block shrink vertical card">
         <button class="grid-content btn-radio text-left js-toggler active" data-toggler="1">
-          <p class="p weight-strong">Available</p>
+          <h3 class="p weight-strong">Available</h3>
           <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
         </button>
         <button class="grid-content btn-radio text-left js-toggler" data-toggler="2">
-          <p class="p weight-strong">Full-Stack</p>
+          <h3 class="p weight-strong">Full-Stack</h3>
           <p class="p">Environments include all your services and replicated databases, with up-to-date configs.</p>
         </button>
         <button class="grid-content btn-radio text-left js-toggler" data-toggler="3">
-          <p class="p weight-strong">Test E2E</p>
+          <h3 class="p weight-strong">Test E2E</h3>
           <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
         </button>
       </div>
@@ -1184,7 +1189,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
       <article class="article article-heading">
   <div class="grid-container">
-    <h3 class="h3 weight-strong text-center">Keep your team up-to-date.</h3>
+    <h2 class="h3 weight-strong text-center">Keep your team up-to-date.</h2>
     <p class="text-center">Every environment has a unique URL, so it's easy to share progress with your team for code reviews, with QA and product teams, or with your customers for feedback.</p>
     <div class="grid-block vertical align-center quote-wrapper p text-gray">
       <blockquote class="quote-bubble text-center">
@@ -1205,12 +1210,12 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="grid-container grid-block">
     <div class="grid-block vertical card">
       <img src="images/product/notification.png" class="img" width="400" height="200">
-      <p class="p weight-strong">Follow Branches</p>
+      <h3 class="p weight-strong">Follow Branches</h3>
       <p class="p">Environments follow their branch activity to stay updated, making it easy to see how a feature is coming along: just refresh a link.</p>
     </div>
     <div class="grid-block vertical card">
       <img src="images/product/runnabot.png" class="img" width="400" height="200">
-      <p class="p weight-strong">Pull Requests & Slack Integration</p>
+      <h3 class="p weight-strong">Pull Requests & Slack Integration</h3>
       <p class="p">Environment links and state are shared on the pull request page and on Slack, giving your team one-click access to verify changes and view logs.</p>
     </div>
   </div>
@@ -1218,7 +1223,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
       <article class="article article-heading">
   <div class="grid-container">
-    <h3 class="h3 weight-strong text-center">Fit your team like a glove.</h3>
+    <h2 class="h3 weight-strong text-center">Fit your team like a glove.</h2>
     <p class="text-center">Runnable integrates with your team’s development flow, and makes it better, regardless of frameworks, languages or architecture.</p>
     <div class="grid-block vertical align-center quote-wrapper p text-gray">
       <blockquote class="quote-bubble text-center">
@@ -1239,17 +1244,17 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="card grid-container grid-block">
     <div class="grid-block vertical">
       <img src="images/product/icons-docker.svg" class="img" width="60" height="60">
-      <p class="p weight-strong">Docker for All</p>
+      <h3 class="p weight-strong">Docker for All</h3>
       <p class="p">Environments are built using your repository‘s Dockerfile. No Dockerfile? Runnable creates one for you.</p>
     </div>
     <div class="grid-block vertical">
       <img src="images/product/icons-localhost.svg" class="img" width="60" height="60">
-      <p class="p weight-strong">Localhost-Friendly</p>
+      <h3 class="p weight-strong">Localhost-Friendly</h3>
       <p class="p">Connect local services with the rest of your stack on Runnable. Logs, file browsing and terminals with root credentials ensure unrestricted access to your environments.</p>
     </div>
     <div class="grid-block vertical">
       <img src="images/product/icons-secure.svg" class="img" width="60" height="60">
-      <p class="p weight-strong">Single-Tenant & Secure</p>
+      <h3 class="p weight-strong">Single-Tenant & Secure</h3>
       <p class="p">Dedicated infrastructure per team keeps your code private and keeps performance consistent. Regular security audits (NCC Group) ensure our commitment to keeping your code secure.</p>
     </div>
   </div>
@@ -1319,50 +1324,63 @@ window.addEventListener('DOMContentLoaded', function(){
 </footer>
 
     <div class="modal-backdrop" id="sign-up">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
+        <svg class="icons icons-bitbucket">
+          <use xlink:href="#icons-bitbucket">
+        </svg>
+        <span>Sign Up with Bitbucket</span>
+      </a>
+      <a class="grid-block align-center justify-center btn btn-sm btn-white js-open-github hide">
+        <svg class="icons icons-github">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Sign Up with GitHub</span>
+      </a>
+      
+      
+      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
+        <svg class="icons icons-close">
+          <use xlink:href="#icons-close">
+        </svg>
+        <span>Close</span>
+      </a>
+      
+    </div>
+  </div>
+</header>
+
   <div class="modal">
     <article class="grid-block vertical align-center noscroll article article-form article-github article-sign-up slide in">
-  <a class="grid-block align-center justify-center well well-anchor js-open-bitbucket track-bitbucket" data-next="bitbucket">
-    <svg class="icons icons-bitbucket">
-      <use xlink:href="#icons-bitbucket">
-    </svg>
-    <span>Sign up with Bitbucket</span>
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-  </a>
-
-  <div class="grid-block vertical card">
+  <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
+  <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
+  <div class="grid-block vertical card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xxxs">
           <use xlink:href="#icons-github">
         </svg>
-        <span>Authorize With GitHub</span>
+        <span>Sign Up With GitHub</span>
       </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
-  <div class="grid-content text-center text-gray">
+  <div class="grid-content text-center text-white">
+    
     <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    
+    
   </div>
 </article>
 
 <article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <a class="grid-block align-center justify-center well well-anchor js-open-github fade">
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-    <svg class="icons icons-github">
-      <use xlink:href="#icons-github">
-    </svg>
-    <span>Sign up with GitHub</span>
-  </a>
   <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
     <form class="grid-block vertical form form-bitbucket show">
@@ -1401,27 +1419,44 @@ window.addEventListener('DOMContentLoaded', function(){
 </div>
 
 <div class="modal-backdrop" id="sign-in">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      
+      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
+        <svg class="icons icons-close">
+          <use xlink:href="#icons-close">
+        </svg>
+        <span>Close</span>
+      </a>
+      
+    </div>
+  </div>
+</header>
+
   <div class="modal">
     <article class="grid-block noscroll vertical article article-form article-sign-in">
-  <div class="grid-block vertical card">
+  <div class="grid-block vertical card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github">
         </svg>
-        <span>Sign in with GitHub</span>
+        <span>Sign In With GitHub</span>
       </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
-  <div class="grid-content text-center text-gray">
+  <div class="grid-content text-center text-white">
+    
     <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+    
+    
   </div>
 </article>
 

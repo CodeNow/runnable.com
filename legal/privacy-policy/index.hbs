@@ -2,10 +2,7 @@
 <html lang="en">
 
   <head>
-    {{!-- optimizely must be the first tag in the head --}}
-<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
-
-
+    
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -620,10 +617,14 @@ function closeModal(event) {
 // show bitbucket form
 function openBitbucketForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  bitbucketTrigger.classList.add('hide');
   bitbucketForm.classList.remove('out');
   bitbucketForm.classList.add('in');
+  gitHubTrigger.classList.remove('hide');
   gitHubForm.classList.remove('in');
   gitHubForm.classList.add('out');
   // mixpanel
@@ -633,10 +634,14 @@ function openBitbucketForm() {
 // show github form
 function openGitHubForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
   var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
 
+  gitHubTrigger.classList.add('hide');
   gitHubForm.classList.remove('out');
   gitHubForm.classList.add('in');
+  bitbucketTrigger.classList.remove('hide');
   bitbucketForm.classList.remove('in');
   // mixpanel
   mixpanel.track('Open GitHub form');
@@ -1062,12 +1067,12 @@ window.addEventListener('load', function(){
 
       <article class="grid-block vertical article article-legal">
   <div class="grid-content">
-    <h3 class="h3 weight-strong">What information do we collect?</h3>
+    <h2 class="h3 weight-strong">What information do we collect?</h2>
     <p class="p">We collect information from you when you register on our site, subscribe to our newsletter, respond to a survey, fill out a form, or use a Runnable environment.
     <p class="p">When ordering or registering on our site, as appropriate, you may be asked to enter your: name, e-mail address, phone number or employer. You may, however, visit our site anonymously.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">What do we use your information for?</h3>
+    <h2 class="h3 weight-strong">What do we use your information for?</h2>
     <p class="p">Any of the information we collect from you may be used in one of the following ways:
     <ul class="ul">
       <li class="li"><strong class="weight-strong">To personalize your experience</strong>—your information helps us to better respond to your individual needs.
@@ -1079,41 +1084,41 @@ window.addEventListener('load', function(){
     <small class="small"><strong class="weight-strong">Note:</strong> If at any time you would like to unsubscribe from receiving future emails, we include detailed unsubscribe instructions at the bottom of each email.</small>
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">How do we protect your information?</h3>
+    <h2 class="h3 weight-strong">How do we protect your information?</h2>
     <p class="p">We offer the use of a secure server. All supplied sensitive/credit information is transmitted via Secure Socket Layer (SSL) technology and then encrypted into our Database to be only accessed by those authorized with special access rights to our systems, and are required to keep the information confidential.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Do we use cookies?</h3>
+    <h2 class="h3 weight-strong">Do we use cookies?</h2>
     <p class="p">Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow) that enables the sites or service providers systems to recognize your browser and capture and remember certain information.
     <p class="p">We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Do we disclose any information to outside parties?</h3>
+    <h2 class="h3 weight-strong">Do we disclose any information to outside parties?</h2>
     <p class="p">We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">California Online Privacy Protection Act Compliance</h3>
+    <h2 class="h3 weight-strong">California Online Privacy Protection Act Compliance</h2>
     <p class="p">Because we value your privacy we have taken the necessary precautions to be in compliance with the California Online Privacy Protection Act. We therefore will not distribute your personal information to outside parties without your consent.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Childrens Online Privacy Protection Act Compliance</h3>
+    <h2 class="h3 weight-strong">Childrens Online Privacy Protection Act Compliance</h2>
     <p class="p">We are in compliance with the requirements of COPPA (Childrens Online Privacy Protection Act), we do not collect any information from anyone under 13 years of age. Our website, products and services are all directed to people who are at least 13 years old or older.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Online Privacy Policy Only</h3>
+    <h2 class="h3 weight-strong">Online Privacy Policy Only</h2>
     <p class="p">This online privacy policy applies only to information collected through our website and not to information collected offline.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Your Consent</h3>
+    <h2 class="h3 weight-strong">Your Consent</h2>
     <p class="p">By using our site, you consent to the privacy policy terms on this page.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Changes to our Privacy Policy</h3>
+    <h2 class="h3 weight-strong">Changes to our Privacy Policy</h2>
     <p class="p">If we decide to change our privacy policy, we will post those changes on this page, and/or update the Privacy Policy modification date below.
     <p class="p">This policy was last modified on April 18th, 2016.
   </div>
   <div class="grid-content">
-    <h3 class="h3 weight-strong">Contacting Runnable</h3>
+    <h2 class="h3 weight-strong">Contacting Runnable</h2>
     <p class="p">If there are any questions regarding this privacy policy, contact us at <a class="link" href="mailto:privacy@runnable.com">privacy@runnable.com</a> or at the address below:
     <address class="address text-center">
       <strong>Runnable</strong><br>
@@ -1184,50 +1189,63 @@ window.addEventListener('load', function(){
 </footer>
 
     <div class="modal-backdrop" id="sign-up">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
+        <svg class="icons icons-bitbucket">
+          <use xlink:href="#icons-bitbucket">
+        </svg>
+        <span>Sign Up with Bitbucket</span>
+      </a>
+      <a class="grid-block align-center justify-center btn btn-sm btn-white js-open-github hide">
+        <svg class="icons icons-github">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Sign Up with GitHub</span>
+      </a>
+      
+      
+      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
+        <svg class="icons icons-close">
+          <use xlink:href="#icons-close">
+        </svg>
+        <span>Close</span>
+      </a>
+      
+    </div>
+  </div>
+</header>
+
   <div class="modal">
     <article class="grid-block vertical align-center noscroll article article-form article-github article-sign-up slide in">
-  <a class="grid-block align-center justify-center well well-anchor js-open-bitbucket track-bitbucket" data-next="bitbucket">
-    <svg class="icons icons-bitbucket">
-      <use xlink:href="#icons-bitbucket">
-    </svg>
-    <span>Sign up with Bitbucket</span>
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-  </a>
-
-  <div class="grid-block vertical card">
+  <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
+  <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
+  <div class="grid-block vertical card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xxxs">
           <use xlink:href="#icons-github">
         </svg>
-        <span>Authorize With GitHub</span>
+        <span>Sign Up With GitHub</span>
       </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
-  <div class="grid-content text-center text-gray">
+  <div class="grid-content text-center text-white">
+    
     <a data-target="#sign-in" class="link js-modal">Sign in</a> if your team is already using Runnable.
+    
+    
   </div>
 </article>
 
 <article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <a class="grid-block align-center justify-center well well-anchor js-open-github fade">
-    <svg class="icons icons-chevron-right">
-      <use xlink:href="#icons-chevron-right">
-    </svg>
-    <svg class="icons icons-github">
-      <use xlink:href="#icons-github">
-    </svg>
-    <span>Sign up with GitHub</span>
-  </a>
   <div class="grid-block vertical card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
     <form class="grid-block vertical form form-bitbucket show">
@@ -1266,27 +1284,44 @@ window.addEventListener('load', function(){
 </div>
 
 <div class="modal-backdrop" id="sign-in">
-  <a class="icons-close js-modal-close">
-    <svg class="icons">
-      <use xlink:href="#icons-close">
-    </svg>
-  </a>
+  <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      
+      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
+        <svg class="icons icons-close">
+          <use xlink:href="#icons-close">
+        </svg>
+        <span>Close</span>
+      </a>
+      
+    </div>
+  </div>
+</header>
+
   <div class="modal">
     <article class="grid-block noscroll vertical article article-form article-sign-in">
-  <div class="grid-block vertical card">
+  <div class="grid-block vertical card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <div class="grid-block vertical padding-lg form-wrapper">
-      <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github">
         </svg>
-        <span>Sign in with GitHub</span>
+        <span>Sign In With GitHub</span>
       </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
-  <div class="grid-content text-center text-gray">
+  <div class="grid-content text-center text-white">
+    
     <a data-target="#sign-up" class="link js-modal">Sign up</a> if your team isn’t using Runnable yet.
+    
+    
   </div>
 </article>
 

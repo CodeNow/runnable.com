@@ -2,9 +2,7 @@
 <html lang="en">
 
   <head>
-<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
-
-
+    
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -13,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-16.1.3.css">
+<link rel="stylesheet" href="styles/index-16.2.3.css">
 
 <script>
   (function(self) {
@@ -564,8 +562,8 @@
     <script ugly="">!function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
-      Commit Hash: 42522db6a1901ea9f5f44c7a3311c3da5769ff91
-      Commit Time: Mon Oct 3 11:24:17 2016 -0700
+      Commit Hash: 233b44270b45fdd86f2ce38fd8dd615fc86c812c
+      Commit Time: Thu Oct 13 18:39:23 2016 -0700
     -->
 
   </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -601,24 +599,40 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-in">
+        <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      
+    </div>
+  </div>
+</header>
+
         <div class="modal">
           <article class="grid-block noscroll vertical article article-form article-sign-in">
-            <div class="grid-block vertical card">
-              <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-              <div class="grid-block vertical padding-lg form-wrapper">
-                <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-                <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
-                  <svg class="icons hidden-xs">
-                    <use xlink:href="#icons-github"/>
-                  </svg>
-                  <span>Sign in with GitHub</span>
-                </a>
-              </div>
-            </div>
-            <div class="grid-content text-center text-gray">
-              <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
-            </div>
-          </article>
+  <div class="grid-block vertical card padding-top-sm">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    <div class="grid-block vertical padding-lg form-wrapper">
+      <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
+        <svg class="icons hidden-xs">
+          <use xlink:href="#icons-github"/>
+        </svg>
+        <span>Sign In With GitHub</span>
+      </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+    </div>
+  </div>
+  <div class="grid-content text-center text-white">
+    
+    
+    <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
+    
+  </div>
+</article>
+
         </div>
       </div>
     </main>

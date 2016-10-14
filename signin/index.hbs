@@ -2,10 +2,7 @@
 <html lang="en">
 
   <head>
-    {{!-- optimizely must be the first tag in the head --}}
-<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
-
-
+    
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -621,25 +618,40 @@
 
     <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-in">
+        <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    <a class="grid-content shrink logo hidden-sm">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    <div class="grid-block shrink align-center">
+      
+      
+    </div>
+  </div>
+</header>
+
         <div class="modal">
-          {{!-- this is not an include because we need to have a different link for sign up --}}
           <article class="grid-block noscroll vertical article article-form article-sign-in">
-            <div class="grid-block vertical card">
-              <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-              <div class="grid-block vertical padding-lg form-wrapper">
-                <p class="grid-content shrink p padding-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-                <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
-                  <svg class="icons hidden-xs">
-                    <use xlink:href="#icons-github">
-                  </svg>
-                  <span>Sign in with GitHub</span>
-                </a>
-              </div>
-            </div>
-            <div class="grid-content text-center text-gray">
-              <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
-            </div>
-          </article>
+  <div class="grid-block vertical card padding-top-sm">
+    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    <div class="grid-block vertical padding-lg form-wrapper">
+      <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
+        <svg class="icons hidden-xs">
+          <use xlink:href="#icons-github">
+        </svg>
+        <span>Sign In With GitHub</span>
+      </a>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+    </div>
+  </div>
+  <div class="grid-content text-center text-white">
+    
+    
+    <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
+    
+  </div>
+</article>
+
         </div>
       </div>
     </main>
