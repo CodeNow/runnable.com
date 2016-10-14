@@ -1,6 +1,6 @@
 {
   "name": "runnable.com",
-  "version": "16.2.5",
+  "version": "16.2.6",
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
