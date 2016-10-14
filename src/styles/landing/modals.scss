@@ -38,25 +38,10 @@
   .header .grid-container {
     @include media(sm) {
       flex-direction: column;
+    }
 
-      > .grid-block,
-      > .grid-content {
-
-        &:first-child {
-          margin-top: $md;
-          order: 2;
-        }
-
-        &:last-child {
-          order: 1;
-        }
-      }
-
-      // fixes logo not appearing in firefox
-      .logo {
-        flex: 0 0 36px;
-        height: 36px;
-      }
+    .logo:not(.hidden-sm) {
+      height: 36px;
     }
   }
 
@@ -117,6 +102,10 @@
 
     @include media(sm) {
       padding-top: 90px;
+    }
+
+    @include media(xxxs) {
+      padding-top: 60px;
     }
 
     &.article-sign-up {

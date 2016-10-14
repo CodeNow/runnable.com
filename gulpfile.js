@@ -273,7 +273,7 @@ gulp.task('s3-html', function() {
     'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
   };
 
-  return  gulp.src([dist + '*.html'])
+  return gulp.src([dist + '*.html'])
   // gzip, Set Content-Encoding headers
     .pipe(awspublish.gzip())
 
