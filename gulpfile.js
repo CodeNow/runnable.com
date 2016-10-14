@@ -250,14 +250,36 @@ gulp.task('s3', function() {
     // create a cache file to speed up consecutive uploads
     .pipe(publisher.cache())
 
-    // Add HTML files last
-    .pipe(addsrc(dist + '*.html'))
-
-    // Re-publish
-    .pipe(publisher.publish(headers))
-
     // re-cache
     .pipe(publisher.cache())
+
+    // print upload updates to console
+    .pipe(awspublish.reporter());
+});
+
+gulp.task('s3-html', function() {
+  // create a new publisher using S3 options
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
+  var publisher = awspublish.create({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY,
+    params: {
+      Bucket: process.env.AWS_BUCKET
+    }
+  });
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=' + (60 * 5) + ', no-transform, public'
+  };
+
+  return  gulp.src([dist + '*.html'])
+  // gzip, Set Content-Encoding headers
+    .pipe(awspublish.gzip())
+
+    // publisher will add Content-Length, Content-Type and headers specified above
+    // If not specified it will set x-amz-acl to public-read by default
+    .pipe(publisher.publish(headers))
 
     // print upload updates to console
     .pipe(awspublish.reporter());
@@ -285,7 +307,7 @@ gulp.task('deploy:gh:dev', function(cb) {
 
 // build and deploy to amazon s3
 gulp.task('deploy:s3', function(cb) {
-  runSequence('build', 's3', cb);
+  runSequence('build', 's3', 's3-html', cb);
 });
 
 // local webserver
