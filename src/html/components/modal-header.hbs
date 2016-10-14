@@ -1,12 +1,17 @@
 <header class="grid-block shrink header">
   <div class="grid-block grid-container align-center justify-justified">
-    @@if (!context.standalone || context.signup) {
+    @@if (!context.standalone) {
     <a class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     }
     @@if (context.standalone && !context.signup) {
-    <a class="grid-block justify-center logo">
+    <a href="/" class="grid-block justify-center logo">
+      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
+    </a>
+    }
+    @@if (context.standalone && context.signup) {
+    <a href="/" class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     }
