@@ -39,6 +39,10 @@
     @include media(sm) {
       flex-direction: column;
     }
+
+    .logo:not(.hidden-sm) {
+      height: 36px;
+    }
   }
 
   .btn-white {
