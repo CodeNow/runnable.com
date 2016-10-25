@@ -1,20 +1,11 @@
-.article-easy-setup {
+.article-easy-setup .section-features {
 
-  .section-features {
+  > .grid-block {
+    flex: 1 1 33.33%;
+    font-size: 16px;
 
-    > .grid-block {
-      flex: 1 1 33.33%;
-      font-size: 16px;
-
-      + .grid-block {
-        margin-left: 60px;
-      }
-    }
-
-    .img {
-      background: $gray-lightest;
-      border: 0;
-      margin-bottom: $sm;
+    + .grid-block {
+      margin-left: 60px;
     }
   }
 }
