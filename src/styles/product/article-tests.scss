@@ -1,12 +1,15 @@
-.article-tests {
+.article-tests,
+.article-share {
   background: $gray-lighterest;
   border-bottom: 1px solid $gray-lightest;
   border-top: 1px solid $gray-lightest;
-  overflow: visible;
-  padding: 60px;
+  margin-top: 60px;
+  padding: 0 60px 60px;
 
   @include media(xs) {
-    padding: 30px;
+    font-size: 16px;
+    margin-top: 45px;
+    padding: 0 30px 30px;
   }
 
   .grid-container {
@@ -26,7 +29,7 @@
       }
 
       @include media(xs) {
-        padding: 30px;
+        padding: 45px;
       }
     }
   }
@@ -36,19 +39,24 @@
     border: $input-border solid $gray-lighter;
     border-radius: 12px;
     box-shadow: 0 2px 6px 0 rgba($black,.05);
+    margin-top: -60px;
+
+    @include media(xs) {
+      margin-top: -45px;
+    }
 
     .grid-block {
       align-items: center;
 
       @include media(xxs) {
-        align-items: flex-start;
         flex-direction: column;
+        text-align: center;
       }
     }
 
     .img {
       @include media(xxs) {
-        margin-bottom: 15px;
+        margin-bottom: $md;
         margin-right: 0;
       }
     }
