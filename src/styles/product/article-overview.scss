@@ -14,23 +14,23 @@
     background: $white;
     border-right: $input-border solid $gray-lighter;
     border-top-left-radius: $input-border-radius-lg;
-    margin-top: 45px;
+    margin-top: $lg;
     overflow: hidden;
     position: relative;
 
     @include media(md) {
-      margin-top: 30px;
+      margin-top: $md;
     }
 
     @include media(sm) {
       border-right: 0;
       height: 360px;
-      margin-right: -45px;
+      margin-right: -$lg;
     }
 
     @include media(xs) {
       height: 300px;
-      margin-right: -30px;
+      margin-right: -$md;
     }
 
     .img {
@@ -68,30 +68,29 @@
     border: $input-border solid transparent;
     border-radius: 12px 12px 0 0;
     min-height: 450px;
-    padding: 45px - $input-border * 2;
+    padding: $lg - $input-border * 2;
     width: calc(50% - 15px);
 
     @include media(md) {
       min-height: 0;
-      padding: 30px - $input-border * 2;
+      padding: $md - $input-border * 2;
     }
   }
 
   .btn-radio {
     border-radius: $input-border-radius-lg;
     height: auto;
-    padding: (15px - $input-border * 2) $md;
+    padding: ($sm - $input-border * 2) $md;
     text-align: left;
     white-space: normal;
   }
-
 }
 
 .section-carousel {
   // scss-lint:disable ColorVariable
   background: linear-gradient(#4f419f, #3ea8f4);
   // scss-lint:enable ColorVariable
-  padding: 45px 45px 0;
+  padding: $lg $lg 0;
   position: relative;
 
   @include media(sm) {
@@ -99,8 +98,8 @@
   }
 
   @include media(xs) {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: $md;
+    padding-right: $md;
   }
 
   // borders as shadows to evenly darken elements of different colors
@@ -128,7 +127,7 @@
   }
 
   &.vertical + .section {
-    margin-top: 30px;
+    margin-top: $md;
   }
 
   &.section-purple {
