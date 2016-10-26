@@ -49,8 +49,8 @@
       align-items: center;
 
       @include media(xxs) {
+        align-items: flex-start;
         flex-direction: column;
-        text-align: center;
       }
     }
 
