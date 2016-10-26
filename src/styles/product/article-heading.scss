@@ -1,21 +1,20 @@
 .article-heading {
-  padding: 60px 45px;
+  padding: $xl $lg;
 
   @include media(xs) {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: $md;
+    padding-right: $md;
   }
+}
 
-  .grid-container {
-    max-width: 100%;
-    width: 750px;
-  }
+.grid-container.grid-container {
+  max-width: 100%;
+}
 
-  .quote-wrapper {
-    font-size: 16px;
-    margin: 30px 0 15px;
-    padding: 0 39px;
-  }
+.quote-wrapper {
+  font-size: 16px;
+  margin: $md 0 $sm;
+  padding: 0 39px;
 
   .quote-bubble {
     background: $gray-lighterest;
