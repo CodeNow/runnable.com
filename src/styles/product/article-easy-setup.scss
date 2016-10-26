@@ -1,11 +1,19 @@
 .article-easy-setup .section-features {
+  flex-wrap: wrap;
 
   > .grid-block {
-    flex: 1 1 33.33%;
-    font-size: 16px;
+    flex: 1 1 33%;
 
-    + .grid-block {
-      margin-left: 60px;
+    @include media(sm) {
+      flex: 0 1 50%;
+    }
+
+    @include media(xs) {
+      font-size: 16px;
+    }
+
+    @include media(xxs) {
+      flex: 0 1 100%;
     }
   }
 }

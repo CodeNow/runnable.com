@@ -41,10 +41,8 @@
       }
 
       @include media(sm) {
-        align-items: center;
         flex: 0 1 100%;
         padding: 0 0 30px;
-        text-align: center;
       }
     }
   }
