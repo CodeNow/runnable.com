@@ -5,15 +5,24 @@
     flex: 1 1 33%;
 
     @include media(sm) {
-      flex: 0 1 50%;
+      align-items: center;
+      flex: 0 1 100%;
+      flex-direction: row;
+      margin: 0 60px;
+
+      .img {
+        margin-right: $sm;
+      }
     }
 
     @include media(xs) {
       font-size: 16px;
+      margin: 0 30px;
     }
 
     @include media(xxs) {
-      flex: 0 1 100%;
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 }
