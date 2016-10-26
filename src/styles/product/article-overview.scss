@@ -164,7 +164,7 @@
   .video {
     background-color: $gray-lighterest;
     border-radius: $input-border-radius-lg;
-    box-shadow: 0 15px 21px -9px rgba($purple-darker,.45);
+    box-shadow: 0 15px 21px -9px rgba($purple-darker,.3);
     cursor: pointer;
     height: 68px;
     position: relative;
@@ -186,6 +186,7 @@
       background-image: url(../images/product/video.png);
       background-size: cover;
       filter: blur(2px);
+      opacity: .5;
       transition: filter .3s ease-in-out;
     }
 
@@ -197,7 +198,7 @@
 
     &:hover,
     &:active {
-      box-shadow: 0 15px 30px -9px rgba($purple-darker,.6);
+      box-shadow: 0 15px 30px -9px rgba($purple-darker,.45);
       transform: scale3d(1,1,1);
 
       &::after {
