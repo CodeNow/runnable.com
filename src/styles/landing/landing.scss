@@ -122,16 +122,3 @@
     }
   }
 }
-
-.article {
-  padding: $xl 0;
-  position: relative;
-
-  @include media(sm) {
-    padding: $lg 0;
-  }
-
-  @include media(xxs) {
-    padding: $lg $md;
-  }
-}
