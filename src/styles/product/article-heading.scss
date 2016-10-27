@@ -7,6 +7,10 @@
 
   + .section-dark {
     margin-top: $xl + 90px;
+
+    @include media(sm) {
+      margin-top: $md + 90px;
+    }
   }
 
   .grid-container {

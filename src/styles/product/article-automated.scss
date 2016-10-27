@@ -5,7 +5,6 @@
     background: linear-gradient(#4f419f, $purple);
     // scss-lint:enable ColorVariable
     border-top: 1px solid rgba($black,.1);
-    margin-top: $xl + 90px;
 
     &::after {
       background: url(../images/confetti.png);
