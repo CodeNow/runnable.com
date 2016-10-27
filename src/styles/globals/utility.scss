@@ -22,7 +22,7 @@
 }
 
 // default sizes
-@for $i from 1 to 7 {
+@for $i from 1 to 8 {
 
   // padding
   %padding-#{nth($size-list,$i)},

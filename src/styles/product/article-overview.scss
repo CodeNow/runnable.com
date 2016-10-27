@@ -1,10 +1,6 @@
 .article-overview {
   padding: 0;
 
-  .p:not(.strong) {
-    margin-bottom: 0;
-  }
-
   .grid-container {
     max-width: 1080px;
     width: 100%;
@@ -143,6 +139,8 @@
   }
 
   .p {
+    margin-bottom: 0;
+
     @media (min-width: $screen-md) {
       font-size: 16px;
     }
@@ -209,7 +207,7 @@
     }
   }
 
-
+  // hover and active states
   .a:hover,
   .a:active {
 
@@ -232,5 +230,6 @@
 
   .caption {
     font-style: italic;
+    margin-bottom: 0;
   }
 }
