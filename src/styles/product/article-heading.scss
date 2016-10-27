@@ -1,9 +1,16 @@
 .article-heading {
-  padding: $xl $lg;
+  padding: 0 $lg;
 
   @include media(xs) {
-    padding-left: $md;
-    padding-right: $md;
+    padding: 0 $md;
+  }
+
+  + .section-dark {
+    margin-top: $xl + 90px;
+
+    @include media(sm) {
+      margin-top: $md + 90px;
+    }
   }
 
   .grid-container {

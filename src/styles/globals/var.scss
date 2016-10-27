@@ -101,6 +101,7 @@ $z-modal: 100;
 $z-modal-close: 101;
 
 // margin/padding sizes
+$none: 0;
 $xxs: 9px;
 $xs: 12px;
 $sm: 15px;
@@ -109,5 +110,5 @@ $lg: 45px;
 $xl: 60px;
 
 $size-directions: top right bottom left;
-$size-list: xxs xs sm md lg xl;
-$sizes: $xxs, $xs, $sm, $md, $lg, $xl;
+$size-list: none xxs xs sm md lg xl;
+$sizes: $none, $xxs, $xs, $sm, $md, $lg, $xl;
