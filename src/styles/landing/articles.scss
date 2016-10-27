@@ -2,6 +2,10 @@
 
   &.padding-bottom-none {
     padding-bottom: 0;
+
+    @include media(xxs) {
+      padding: $lg 0;
+    }
   }
 
   // resets from landing.scss
