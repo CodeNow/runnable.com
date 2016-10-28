@@ -53,6 +53,17 @@
   &.align-end {
     align-items: flex-end;
   }
+
+  // responsive grid
+  @for $i from 1 to 8 {
+    @for $x from 1 to 3 {
+      &.#{nth($directions-list,$x)}-#{nth($screen-size-list,$i)} {
+        @media (max-width: #{nth($screen-sizes,$i)}) {
+          flex-direction: #{nth($flex-directions,$x)};
+        }
+      }
+    }
+  }
 }
 
 // horizontal grid
@@ -69,7 +80,7 @@
   }
 
   + .grid-content {
-    margin-left: 15px;
+    margin-left: $sm;
   }
 }
 
@@ -80,11 +91,10 @@
     margin-left: 0;
 
     + .grid-content {
-      margin-top: 15px;
+      margin-top: $sm;
     }
   }
 }
-
 
 // amount of blocks allowed within a parent
 %grid-2,
