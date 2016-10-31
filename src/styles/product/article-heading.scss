@@ -28,6 +28,10 @@
     padding-bottom: $lg;
   }
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   .quote-bubble {
     background: $gray-lighterest;
     border: 1px solid $gray-lighter;
