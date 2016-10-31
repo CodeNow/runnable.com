@@ -47,7 +47,6 @@
 
       @include media(md) {
         flex: 0 1 100%;
-        flex-direction: row;
 
         + .grid-block {
           margin-top: $xl;
