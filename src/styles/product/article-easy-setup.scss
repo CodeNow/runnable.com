@@ -4,20 +4,16 @@
   > .li {
     flex: 1 1 33%;
 
-    @include media(sm) {
+    @include media(md) {
       align-items: center;
       flex: 0 1 100%;
       flex-direction: row;
       margin: 0 $xl;
-
-      .img {
-        margin-right: $sm;
-      }
     }
 
     @include media(xs) {
       font-size: 16px;
-      margin: 0 $md;
+      margin: 0;
     }
 
     @include media(xxs) {

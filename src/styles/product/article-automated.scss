@@ -53,13 +53,6 @@
         }
       }
     }
-
-    .img {
-      @include media(md) {
-        margin-bottom: 0;
-        margin-right: $sm;
-      }
-    }
   }
 
   .btn-white {
