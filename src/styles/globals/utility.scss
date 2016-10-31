@@ -27,12 +27,12 @@
   // padding
   .padding-#{nth($size-list,$i)} {
     padding: nth($sizes,$i);
+  }
 
-    @for $y from 1 to 8 {
-      @media (max-width: #{nth($screen-sizes,$y)}) {
-        .padding-#{nth($size-list,$i)}-#{nth($screen-size-list,$y)} {
-          padding: nth($sizes,$i);
-        }
+  @for $y from 1 to 8 {
+    @media (max-width: #{nth($screen-sizes,$y)}) {
+      .padding-#{nth($size-list,$i)}-#{nth($screen-size-list,$y)} {
+        padding: nth($sizes,$i);
       }
     }
   }
