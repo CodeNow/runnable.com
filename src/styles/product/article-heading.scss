@@ -6,10 +6,10 @@
   }
 
   + .section-dark {
-    margin-top: $xl + 90px;
+    margin-top: $xl + 75px;
 
     @include media(sm) {
-      margin-top: $md + 90px;
+      margin-top: $md + 75px;
     }
   }
 
