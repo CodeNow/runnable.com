@@ -20,8 +20,13 @@
 
 .quote-wrapper {
   font-size: 16px;
-  margin: $md 0 $sm;
-  padding: 0 39px;
+  margin: $md 0;
+  padding: $md $xl $xl;
+
+  @include media(sm) {
+    margin-bottom: 0;
+    padding-bottom: $lg;
+  }
 
   .quote-bubble {
     background: $gray-lighterest;

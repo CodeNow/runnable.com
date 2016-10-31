@@ -1,7 +1,7 @@
-.article-easy-setup .section-features {
+.article-easy-setup .list-features {
   flex-wrap: wrap;
 
-  > .grid-block {
+  > .li {
     flex: 1 1 33%;
 
     @include media(sm) {
