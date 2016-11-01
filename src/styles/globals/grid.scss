@@ -12,7 +12,7 @@
   }
 
   // switch orientation to vertical (defaults to horizontal)
-  &.vertical {
+  &.col {
     flex-flow: column nowrap;
   }
 
@@ -85,7 +85,7 @@
 }
 
 // vertical grid
-.vertical {
+.col {
 
   > .grid-content {
     margin-left: 0;
