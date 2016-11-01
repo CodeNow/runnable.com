@@ -1,0 +1,21 @@
+.article-product-cta {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#674591, $purple);
+  // scss-lint:enable ColorVariable
+  margin-top: 0;
+
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $blue-lighter;
+    margin-top: $md;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+  }
+}

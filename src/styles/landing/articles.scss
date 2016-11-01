@@ -29,10 +29,8 @@
   }
 }
 
-.section-dark {
-  background: $gray-lighterest;
-  border-bottom: 1px solid $gray-lightest;
-  border-top: 1px solid $gray-lightest;
+.section-gray,
+.section-purple {
   margin-top: $xl;
   overflow: visible;
   padding: 0 $xl $xl;
@@ -93,5 +91,34 @@
         margin-right: 0;
       }
     }
+  }
+}
+
+.section-gray {
+  background: $gray-lighterest;
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+}
+
+.section-purple {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#4f419f, #674591);
+  // scss-lint:enable ColorVariable
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-position: bottom;
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
   }
 }

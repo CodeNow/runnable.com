@@ -5,7 +5,8 @@
     padding: 0 $md;
   }
 
-  + .section-dark {
+  + .section-gray,
+  + .section-purple {
     margin-top: $xl + 75px;
 
     @include media(sm) {
