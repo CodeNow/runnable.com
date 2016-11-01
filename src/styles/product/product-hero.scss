@@ -7,4 +7,125 @@
   .p {
     max-width: 720px;
   }
+
+  .popover-wrapper {
+    position: relative;
+  }
+
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    font-size: 24px;
+    position: static;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+
+    &:focus .popover {
+      transform: scale3d(1,1,1);
+    }
+
+    .icons {
+      opacity: .5;
+      width: 24px;
+    }
+
+    .ci-cd {
+      @include media(xs) {
+        font-size: 19px;
+      }
+
+      @include media(xxs) {
+        font-size: 16px;
+      }
+
+      @include media(xxxs) {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .popover {
+    // scss-lint:disable ColorVariable
+    background: rgba(#6855a2,.97);
+    // scss-lint:enable ColorVariable
+    border-color: rgba($white,.75);
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 1px 3px rgba($black,.1);
+    left: 0;
+    line-height: 1.6;
+    max-width: calc(100vw - 30px);
+    right: 0;
+    top: -100%;
+    transform: scale3d(.8,.8,1);
+    width: 420px;
+
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      // scss-lint:disable PropertySpelling ColorVariable
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background: rgba(#6855a2,.75);
+      // scss-lint:enable PropertySpelling ColorVariable
+    }
+
+    @include media(xs) {
+      font-size: 19px;
+    }
+
+    @include media(xxs) {
+      font-size: 16px;
+    }
+
+    @include media(xxxs) {
+      font-size: 13px;
+    }
+
+    &.active-everything {
+      top: -9px;
+      transform-origin: 50% 20%;
+    }
+
+    &.active-test-automation {
+      top: -60px;
+      transform-origin: 50% 40%;
+    }
+
+    &.active-docker {
+      top: -111px;
+      transform-origin: 50% 60%;
+    }
+
+    &.active-ci-cd {
+      top: -162px;
+      transform-origin: 50% 80%;
+    }
+
+    .li + .li {
+      margin-top: $xxs;
+    }
+
+    .a {
+      border-radius: $input-border-radius-lg;
+      display: block;
+      line-height: $input-md;
+      padding: 0 $xxs;
+
+      &:not(.active):hover {
+        background: rgba($white,.2);
+      }
+
+      &:not(.active):active {
+        background: rgba($white,.3);
+      }
+
+      &.active {
+        background: rgba($black,.15);
+      }
+    }
+  }
 }
