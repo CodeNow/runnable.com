@@ -61,10 +61,6 @@
       @include media(md) {
         flex: 0 0 auto;
       }
-
-      @include media(xs) {
-        padding: $lg;
-      }
     }
   }
 
