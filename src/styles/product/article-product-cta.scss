@@ -1,21 +1,48 @@
 .article-product-cta {
-  // scss-lint:disable ColorVariable
-  background: linear-gradient(#674591, $purple);
-  // scss-lint:enable ColorVariable
-  margin-top: 0;
+  padding: 0;
 
-  .btn-white {
-    background: rgba($white,.1);
-    border: $input-border solid rgba($white,.75);
-    color: $blue-lighter;
-    margin-top: $md;
+  // without background
+  .section-white {
 
-    &:hover {
-      background: rgba($white,.2);
+    .grid-container {
+      border-top: 1px solid $gray-lighter;
+      padding: 60px 0;
+
+      .btn {
+        @extend %gray;
+      }
+    }
+  }
+
+  // with background
+  .section-purple {
+    // scss-lint:disable ColorVariable
+    background: linear-gradient(#674591, $purple);
+    // scss-lint:enable ColorVariable
+    margin-top: 0;
+
+    .grid-container {
+      border-top: 0;
+      padding: 0;
     }
 
-    &:active {
-      background: rgba($white,.3);
+    .p {
+      color: $white;
+    }
+
+    .btn {
+      background: rgba($white,.1);
+      border: $input-border-lg solid rgba($white,.75);
+      color: $blue-lighter;
+      margin-top: $md;
+
+      &:hover {
+        background: rgba($white,.2);
+      }
+
+      &:active {
+        background: rgba($white,.3);
+      }
     }
   }
 }
