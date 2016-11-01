@@ -24,19 +24,11 @@
   }
 
   .card {
-    background: $white;
-    border: $input-border solid $gray-lighter;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px 0 rgba($black,.05);
-    flex-wrap: wrap;
-    margin: -$xl auto $xl;
-    max-width: 1080px;
-    width: 100%;
+    margin-bottom: $xl;
 
     @include media(xs) {
       font-size: 16px;
       margin-bottom: $md;
-      margin-top: -$lg;
     }
 
     > .grid-block {
