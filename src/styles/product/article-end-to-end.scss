@@ -1,0 +1,8 @@
+.article-end-to-end {
+
+  .card > .grid-block {
+    @include media(xxs) {
+      align-items: flex-start;
+    }
+  }
+}

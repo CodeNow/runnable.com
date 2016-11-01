@@ -1,5 +1,11 @@
 .article-tests {
 
+  .card > .grid-block {
+    @include media(xxs) {
+      align-items: flex-start;
+    }
+  }
+
   .test-types {
     @include media(xs) {
       flex-direction: column;
