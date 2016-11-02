@@ -17,7 +17,12 @@
     </div>
   </section>
 
-  <section class="grid-block justify-center section-gray">
+  @@if (context.background === 'purple') {
+    <section class="grid-block justify-center section-purple">
+  }
+  @@if (context.background === 'gray') {
+    <section class="grid-block justify-center section-gray">
+  }
     <div class="grid-container-lg grid-block">
       <ul class="grid-block col card padding-md">
         <li class="grid-block align-center shrink margin-bottom-sm padding-sm col-xxs">
@@ -30,7 +35,7 @@
           <img class="grid-content shrink img margin-right-md" src="images/for/icons-slack.svg" width="75" height="75">
           View the results on GitHub’s pull request page, and on Slack.
       </ul>
-      <div class="grid-block col padding-xl">
+      <div class="grid-block col padding-xl test-types-wrapper">
         <p class="margin-bottom-sm">Supports several types of testing:</p>
         <div class="grid-block test-types">
           <ul class="ul grid-block col">

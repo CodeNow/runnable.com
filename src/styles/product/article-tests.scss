@@ -1,5 +1,9 @@
 .article-tests {
 
+  .section-purple .test-types-wrapper {
+    color: $white;
+  }
+
   .card > .grid-block {
     @include media(xxs) {
       align-items: flex-start;
