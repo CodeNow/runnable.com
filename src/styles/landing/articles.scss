@@ -75,21 +75,37 @@
       margin-top: -$lg;
     }
 
+    &.card-lg {
+      flex: 0 1 100%;
+      padding: $xl;
 
-    &.vertical > .grid-block {
+      @include media(md) {
+        padding: $md;
+      }
+
+      > .grid-block {
+        align-items: flex-start;
+      }
+    }
+
+    > .grid-block {
+      align-items: center;
+
       @include media(xxs) {
         align-items: flex-start;
         flex-direction: column;
       }
-
-      + .grid-block {
-        margin-top: $md;
-      }
     }
 
     .img {
+      margin-bottom: $sm;
+
+      @include media(md) {
+        margin-bottom: 0;
+      }
+
       @include media(xxs) {
-        margin-bottom: $md;
+        margin-bottom: $sm;
         margin-right: 0;
       }
     }
