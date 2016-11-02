@@ -29,8 +29,10 @@
   }
 }
 
-.section-gray,
-.section-purple {
+.section-dark {
+  background: $gray-lighterest;
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
   margin-top: $xl;
   overflow: visible;
   padding: 0 $xl $xl;
@@ -94,16 +96,11 @@
   }
 }
 
-.section-gray {
-  background: $gray-lighterest;
-  border-bottom: 1px solid $gray-lightest;
-  border-top: 1px solid $gray-lightest;
-}
-
 .section-purple {
   // scss-lint:disable ColorVariable
   background: linear-gradient(#4f419f, #674591);
   // scss-lint:enable ColorVariable
+  border: 0;
 
   &::after {
     background: url(../images/confetti.png);

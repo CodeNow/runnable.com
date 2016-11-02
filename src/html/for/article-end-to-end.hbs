@@ -5,10 +5,10 @@
   </section>
 
   @@if (context.background === 'purple') {
-    <section class="grid-block justify-center section-purple">
+    <section class="grid-block justify-center section-dark section-purple">
   }
-  @@if (context.background === 'gray') {
-    <section class="grid-block justify-center section-gray">
+  @@if (context.background !== 'purple') {
+    <section class="grid-block justify-center section-dark">
   }
     <div class="grid-container-lg grid-block justify-center">
       <ul class="grid-block col card padding-md">

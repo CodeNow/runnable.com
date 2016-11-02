@@ -4,7 +4,12 @@
     <p class="text-center">Tail logs, edit files, run shell commands all in your browser with the most polished Docker user interface available. Prefer the keyboard? We have a CLI made just for you.</p>
   </section>
 
-  <section class="grid-block col section-gray">
+  @@if (context.background === 'purple') {
+    <section class="grid-block col section-dark section-purple">
+  }
+  @@if (context.background !== 'purple') {
+    <section class="grid-block col section-dark">
+  }
     <ul class="grid-container-lg grid-block noscroll card padding-xl">
       <li class="grid-block col row-md">
         <img src="" class="img margin-bottom-md margin-right-md-md" width="60" height="60">
