@@ -1,5 +1,16 @@
 <article class="grid-block col noscroll hero product-hero">
-  <h1 class="grid-content h1 text-center">Runnable works with <br class="hidden-xxs">your application.</h1>
+  @@if (context.interest === 'Everything') {
+    <h1 class="grid-content h1 text-center">Instantly test and share <br class="hidden-xxs">your work with everyone.</h1>
+  }
+  @@if (context.interest === 'Test Automation) {
+    <h1 class="grid-content h1 text-center">A complete test automation solution.</h1>
+  }
+  @@if (context.interest === 'Docker') {
+    <h1 class="grid-content h1 text-center">The benefits of Docker without the setup.</h1>
+  }
+  @@if (context.interest === 'Continuous Integration & Delivery') {
+    <h1 class="grid-content h1 text-center">Continuous integration &amp; delivery for <br class="hidden-xxs">all code branches.</h1>
+  }
   <p class="grid-content p text-center">I’m interested in:</p>
   <div class="grid-block noscroll align-center justify-center popover-wrapper">
     <div class="grid-block shrink btn btn-lg btn-white popover-trigger click" tabindex="1">
