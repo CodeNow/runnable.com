@@ -1020,6 +1020,15 @@ window.addEventListener('load', function(){
   <symbol id="icons-overflow" viewBox="0 0 18 4.688">
     <path fill="currentColor" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
+  <symbol id="icons-play" viewBox="0 0 30 30">
+    <path d="M25.615,13.268a2,2,0,0,1,0,3.464l-7.5,4.33-7.5,4.33a2,2,0,0,1-3-1.732V6.34a2,2,0,0,1,3-1.732l7.5,4.33Z" transform="translate(0 0)"/>
+    <rect width="30" height="30" fill="none"/>
+  </symbol>
+  <symbol id="icons-select" viewBox="0 0 18 18">
+    <path d="M6.161,7.01L8.608,3.123a0.5,0.5,0,0,1,.846,0L11.9,7.01a0.5,0.5,0,0,1-.423.766h-4.9A0.5,0.5,0,0,1,6.161,7.01Z"/>
+    <path d="M11.9,10.99L9.455,14.877a0.5,0.5,0,0,1-.846,0L6.161,10.99a0.5,0.5,0,0,1,.423-0.766h4.9A0.5,0.5,0,0,1,11.9,10.99Z"/>
+    <rect width="18" height="18" fill="none"/>
+  </symbol>
 </svg>
 
     <header class="grid-block shrink header">
@@ -1028,7 +1037,7 @@ window.addEventListener('load', function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
-      <a href="product/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
+      <a href="for/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
       <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
       <a data-target="#sign-in" class="grid-content btn btn-sm text-white weight-strong hidden-md js-modal js-hide-if-signed-in">Sign In</a>
       <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
@@ -1038,11 +1047,11 @@ window.addEventListener('load', function(){
         </svg>
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
-    <div class="grid-block vertical list text-left">
+    <div class="grid-block col list text-left">
       <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
       <a data-target="#sign-in" class="list-item-a visible-md js-modal js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="product/" class="list-item-a visible-sm">Product</a>
+      <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
@@ -1059,13 +1068,13 @@ window.addEventListener('load', function(){
 </header>
 
 
-    <main class="grid-block vertical main hero-only">
-      <article class="article hero">
+    <main class="grid-block col main hero-only">
+      <article class="hero">
   <h1 class="h1 text-center">Acceptable Use Policy</h1>
   <p class="p text-center">Updated August 12<sup class="sup">th</sup>, 2016</p>
 </article>
 
-      <article class="grid-block vertical article article-legal">
+      <article class="grid-block col article article-legal">
   <div class="grid-content">
     <p class="p">This Acceptable Use Policy governs your use of the runnable.com website, the Runnable service network, the servers operated by Runnable, and any Runnable software you use (collectively the “<strong class="weight-strong">Runnable Resources</strong>”).  If you do not accept this policy, you may not access or use any of the Runnable Resources.  We may modify this policy at any time by posting the modified policy on our website.
   </div>
@@ -1146,22 +1155,22 @@ window.addEventListener('load', function(){
 
     </main>
 
-    <footer class="grid-block vertical footer justify-spaced">
-  <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal track-sign-up">
+    <footer class="grid-block col footer justify-spaced">
+  <a data-target="#sign-up" class="sign-up-box grid-block col well well-anchor js-modal track-sign-up">
   <img class="img no-touching" src="images/runnabear-hello.png">
   <p class="p js-modal">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
   <div data-target="#sign-up" class="btn btn-sm green js-modal track-sign-up">Sign Up</div>
 </a>
 
   <aside class="grid-block aside-support">
-  <div class="grid-block vertical justify-center support-text">
+  <div class="grid-block col justify-center support-text">
     <p class="p weight-strong">Our engineers are here for you.</p>
     <p class="p">We can answer questions about Docker <br class="br">and help you set up your stack.</p>
   </div>
-  <figure class="grid-block vertical figure shrink">
+  <figure class="grid-block col figure shrink">
     <div class="grid-block shrink bubble">
       <img class="img float-left" src="images/logos/logo-slack.svg" height="18" width="18" alt="Slack">
-      <div class="grid-block vertical">
+      <div class="grid-block col">
         <div class="user">
           <strong class="strong user-name">Jorge</strong>
           <span class="user-time"> 4:19 PM</span>
@@ -1171,7 +1180,7 @@ window.addEventListener('load', function(){
     </div>
     <div class="grid-block shrink bubble">
       <img class="img float-left" src="images/runnabot-head.png" height="18" width="18" alt="Slack">
-      <div class="grid-block vertical">
+      <div class="grid-block col">
         <div class="user">
           <strong class="strong user-name">Taylor</strong>
           <span class="user-time"> 4:20 PM</span>
@@ -1185,15 +1194,15 @@ window.addEventListener('load', function(){
 </aside>
 
   <div class="grid-block link-wrapper">
-    <div class="grid-block vertical align-start">
-      <a href="product/" class="btn btn-xs link weight-strong">Product</a>
+    <div class="grid-block col align-start">
+      <a href="for/" class="btn btn-xs link weight-strong">Product</a>
       <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
       <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
       <a href="https://support.runnable.com" class="btn btn-xs link weight-strong">Get Help</a>
       <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
-    <div class="grid-block vertical align-start">
+    <div class="grid-block col align-start">
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1206,9 +1215,13 @@ window.addEventListener('load', function(){
     <div class="modal-backdrop" id="sign-up">
   <header class="grid-block shrink header">
   <div class="grid-block grid-container align-center justify-justified">
+    
     <a class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
+    
+    
+    
     <div class="grid-block shrink align-center">
       
       <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
@@ -1237,19 +1250,19 @@ window.addEventListener('load', function(){
 </header>
 
   <div class="modal">
-    <article class="grid-block vertical align-center noscroll article article-form article-github article-sign-up slide in">
+    <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
-  <div class="grid-block vertical card padding-top-sm">
+  <div class="grid-block col card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg form-wrapper">
+    <div class="grid-block col padding-lg form-wrapper">
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xxxs">
           <use xlink:href="#icons-github">
         </svg>
         <span>Sign Up With GitHub</span>
       </a>
-      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
   <div class="grid-content text-center text-white">
@@ -1260,13 +1273,13 @@ window.addEventListener('load', function(){
   </div>
 </article>
 
-<article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <div class="grid-block vertical card shake-me">
+<article class="grid-block col align-center noscroll article article-form article-sign-up article-bitbucket slide">
+  <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <form class="grid-block vertical form form-bitbucket show">
-      <div class="grid-block vertical padding-lg form-wrapper">
+    <form class="grid-block col form form-bitbucket show">
+      <div class="grid-block col padding-lg form-wrapper">
         <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-        <div class="grid-block vertical show">
+        <div class="grid-block col show">
           <div class="grid-content input-group-vertical input-group-org">
             <label class="label" for="input-name">Your Name</label>
             <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
@@ -1288,7 +1301,7 @@ window.addEventListener('load', function(){
         </button>
       </footer>
     </form>
-    <div class="grid-block vertical justify-center padding-lg hide">
+    <div class="grid-block col justify-center padding-lg hide">
       <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
     </div>
   </form>
@@ -1301,9 +1314,13 @@ window.addEventListener('load', function(){
 <div class="modal-backdrop" id="sign-in">
   <header class="grid-block shrink header">
   <div class="grid-block grid-container align-center justify-justified">
+    
     <a class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
+    
+    
+    
     <div class="grid-block shrink align-center">
       
       
@@ -1319,10 +1336,10 @@ window.addEventListener('load', function(){
 </header>
 
   <div class="modal">
-    <article class="grid-block noscroll vertical article article-form article-sign-in">
-  <div class="grid-block vertical card padding-top-sm">
+    <article class="grid-block noscroll col article article-form article-sign-in">
+  <div class="grid-block col card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg form-wrapper">
+    <div class="grid-block col padding-lg form-wrapper">
       <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github">

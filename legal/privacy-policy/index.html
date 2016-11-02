@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-16.2.3.css">
+<link rel="stylesheet" href="styles/index-17.0.3.css">
 
 <script>
   (function(self) {
@@ -562,8 +562,8 @@
     <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-open-bitbucket")[0],a=document.getElementsByClassName("js-open-github")[0],s=document.getElementsByClassName("track-grant-access-github")[0];a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),n.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),n.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),t=document.getElementsByClassName("form-bitbucket"),s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"})),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 233b44270b45fdd86f2ce38fd8dd615fc86c812c
-      Commit Time: Thu Oct 13 18:39:23 2016 -0700
+      Commit Hash: 5a555b667340fc71a99142596d1aea60acbe19af
+      Commit Time: Tue Nov 1 22:56:36 2016 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -594,6 +594,15 @@
   <symbol id="icons-overflow" viewbox="0 0 18 4.688">
     <path fill="currentColor" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
+  <symbol id="icons-play" viewbox="0 0 30 30">
+    <path d="M25.615,13.268a2,2,0,0,1,0,3.464l-7.5,4.33-7.5,4.33a2,2,0,0,1-3-1.732V6.34a2,2,0,0,1,3-1.732l7.5,4.33Z" transform="translate(0 0)"/>
+    <rect width="30" height="30" fill="none"/>
+  </symbol>
+  <symbol id="icons-select" viewbox="0 0 18 18">
+    <path d="M6.161,7.01L8.608,3.123a0.5,0.5,0,0,1,.846,0L11.9,7.01a0.5,0.5,0,0,1-.423.766h-4.9A0.5,0.5,0,0,1,6.161,7.01Z"/>
+    <path d="M11.9,10.99L9.455,14.877a0.5,0.5,0,0,1-.846,0L6.161,10.99a0.5,0.5,0,0,1,.423-0.766h4.9A0.5,0.5,0,0,1,11.9,10.99Z"/>
+    <rect width="18" height="18" fill="none"/>
+  </symbol>
 </svg>
 
     <header class="grid-block shrink header">
@@ -602,7 +611,7 @@
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
-      <a href="product/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
+      <a href="for/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
       <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
       <a data-target="#sign-in" class="grid-content btn btn-sm text-white weight-strong hidden-md js-modal js-hide-if-signed-in">Sign In</a>
       <a data-target="#sign-up" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
@@ -612,11 +621,11 @@
         </svg>
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
-    <div class="grid-block vertical list text-left">
+    <div class="grid-block col list text-left">
       <a data-target="#sign-up" class="list-item-a visible-xs js-modal js-hide-if-signed-in track-sign-up">Sign Up</a>
       <a data-target="#sign-in" class="list-item-a visible-md js-modal js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="product/" class="list-item-a visible-sm">Product</a>
+      <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</span></a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
@@ -633,13 +642,13 @@
 </header>
 
 
-    <main class="grid-block vertical main">
-      <article class="article hero">
+    <main class="grid-block col main">
+      <article class="hero">
   <h1 class="h1 text-center">Our Privacy Policy</h1>
   <p class="p text-center">Updated April 18<sup class="sup">th</sup>, 2016</p>
 </article>
 
-      <article class="grid-block vertical article article-legal">
+      <article class="grid-block col article article-legal">
   <div class="grid-content">
     <h2 class="h3 weight-strong">What information do we collect?</h2>
     <p class="p">We collect information from you when you register on our site, subscribe to our newsletter, respond to a survey, fill out a form, or use a Runnable environment.
@@ -705,22 +714,22 @@
 
     </main>
 
-    <footer class="grid-block vertical footer justify-spaced">
-  <a data-target="#sign-up" class="sign-up-box grid-block vertical well well-anchor js-modal track-sign-up">
+    <footer class="grid-block col footer justify-spaced">
+  <a data-target="#sign-up" class="sign-up-box grid-block col well well-anchor js-modal track-sign-up">
   <img class="img no-touching" src="images/runnabear-hello.png">
   <p class="p js-modal">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
   <div data-target="#sign-up" class="btn btn-sm green js-modal track-sign-up">Sign Up</div>
 </p></a>
 
   <aside class="grid-block aside-support">
-  <div class="grid-block vertical justify-center support-text">
+  <div class="grid-block col justify-center support-text">
     <p class="p weight-strong">Our engineers are here for you.</p>
     <p class="p">We can answer questions about Docker <br class="br">and help you set up your stack.</p>
   </div>
-  <figure class="grid-block vertical figure shrink">
+  <figure class="grid-block col figure shrink">
     <div class="grid-block shrink bubble">
       <img class="img float-left" src="images/logos/logo-slack.svg" height="18" width="18" alt="Slack">
-      <div class="grid-block vertical">
+      <div class="grid-block col">
         <div class="user">
           <strong class="strong user-name">Jorge</strong>
           <span class="user-time"> 4:19 PM</span>
@@ -730,7 +739,7 @@
     </div>
     <div class="grid-block shrink bubble">
       <img class="img float-left" src="images/runnabot-head.png" height="18" width="18" alt="Slack">
-      <div class="grid-block vertical">
+      <div class="grid-block col">
         <div class="user">
           <strong class="strong user-name">Taylor</strong>
           <span class="user-time"> 4:20 PM</span>
@@ -744,15 +753,15 @@
 </aside>
 
   <div class="grid-block link-wrapper">
-    <div class="grid-block vertical align-start">
-      <a href="product/" class="btn btn-xs link weight-strong">Product</a>
+    <div class="grid-block col align-start">
+      <a href="for/" class="btn btn-xs link weight-strong">Product</a>
       <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
       <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
       <a href="https://support.runnable.com" class="btn btn-xs link weight-strong">Get Help</a>
       <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
-    <div class="grid-block vertical align-start">
+    <div class="grid-block col align-start">
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -765,9 +774,13 @@
     <div class="modal-backdrop" id="sign-up">
   <header class="grid-block shrink header">
   <div class="grid-block grid-container align-center justify-justified">
+    
     <a class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
+    
+    
+    
     <div class="grid-block shrink align-center">
       
       <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
@@ -796,19 +809,19 @@
 </header>
 
   <div class="modal">
-    <article class="grid-block vertical align-center noscroll article article-form article-github article-sign-up slide in">
+    <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
-  <div class="grid-block vertical card padding-top-sm">
+  <div class="grid-block col card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg form-wrapper">
+    <div class="grid-block col padding-lg form-wrapper">
       <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
         <svg class="icons hidden-xxxs">
           <use xlink:href="#icons-github"/>
         </svg>
         <span>Sign Up With GitHub</span>
       </a>
-      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
     </div>
   </div>
   <div class="grid-content text-center text-white">
@@ -819,13 +832,13 @@
   </div>
 </article>
 
-<article class="grid-block vertical align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <div class="grid-block vertical card shake-me">
+<article class="grid-block col align-center noscroll article article-form article-sign-up article-bitbucket slide">
+  <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <form class="grid-block vertical form form-bitbucket show">
-      <div class="grid-block vertical padding-lg form-wrapper">
+    <form class="grid-block col form form-bitbucket show">
+      <div class="grid-block col padding-lg form-wrapper">
         <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-        <div class="grid-block vertical show">
+        <div class="grid-block col show">
           <div class="grid-content input-group-vertical input-group-org">
             <label class="label" for="input-name">Your Name</label>
             <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
@@ -847,7 +860,7 @@
         </button>
       </footer>
     </form>
-    <div class="grid-block vertical justify-center padding-lg hide">
+    <div class="grid-block col justify-center padding-lg hide">
       <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
     </div>
   
@@ -860,9 +873,13 @@
 <div class="modal-backdrop" id="sign-in">
   <header class="grid-block shrink header">
   <div class="grid-block grid-container align-center justify-justified">
+    
     <a class="grid-content shrink logo hidden-sm">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
+    
+    
+    
     <div class="grid-block shrink align-center">
       
       
@@ -878,10 +895,10 @@
 </header>
 
   <div class="modal">
-    <article class="grid-block noscroll vertical article article-form article-sign-in">
-  <div class="grid-block vertical card padding-top-sm">
+    <article class="grid-block noscroll col article article-form article-sign-in">
+  <div class="grid-block col card padding-top-sm">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block vertical padding-lg form-wrapper">
+    <div class="grid-block col padding-lg form-wrapper">
       <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
         <svg class="icons hidden-xs">
           <use xlink:href="#icons-github"/>
