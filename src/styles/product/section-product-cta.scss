@@ -1,0 +1,43 @@
+.section-product-cta {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#644690, $purple);
+  // scss-lint:enable ColorVariable
+  padding: $xl 0;
+  position: relative;
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-position: top;
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: .6;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .padding-bottom-none + & {
+    padding-top: 0;
+  }
+
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $blue-lighter;
+    margin-top: $md;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+  }
+}

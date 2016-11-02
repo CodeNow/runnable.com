@@ -208,7 +208,15 @@
 .orange,
 .purple,
 .red,
-.white {
+.white,
+%blue,
+%gray,
+%gray-dark,
+%green,
+%orange,
+%purple,
+%red,
+%white, {
   border: $input-border solid transparent;
   color: $white;
   font-weight: $weight-bold;

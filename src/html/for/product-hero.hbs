@@ -1,0 +1,69 @@
+<article class="grid-block col noscroll hero product-hero">
+  @@if (context.interest === 'Everything') {
+    <h1 class="grid-content h1 text-center">Instantly test and share <br class="hidden-xs">your work with everyone.</h1>
+  }
+  @@if (context.interest === 'Test Automation') {
+    <h1 class="grid-content h1 text-center">A complete test automation solution.</h1>
+  }
+  @@if (context.interest === 'Docker') {
+    <h1 class="grid-content h1 text-center">The benefits of Docker <br class="hidden-xxs">without the setup.</h1>
+  }
+  @@if (context.interest === 'Continuous Integration & Delivery') {
+    <h1 class="grid-content h1 text-center">Continuous integration & delivery for all code branches.</h1>
+  }
+  <p class="grid-content p text-center">I’m interested in:</p>
+  <div class="grid-block noscroll align-center justify-center popover-wrapper">
+    <div class="grid-block shrink btn btn-lg btn-white popover-trigger click" tabindex="1">
+      @@if (context.interest === 'Everything') {Everything}
+      @@if (context.interest === 'Test Automation') {Test Automation}
+      @@if (context.interest === 'Docker') {Docker}
+      @@if (context.interest === 'Continuous Integration & Delivery') {
+        <span class="ci-cd">Continuous Integration & Delivery</span>
+      }
+      <svg class="icons">
+        <use xlink:href="#icons-select">
+      </svg>
+      @@if (context.interest === 'Everything') {
+        <ul class="popover text-center active-everything">
+      }
+      @@if (context.interest === 'Test Automation') {
+        <ul class="popover text-center active-test-automation">
+      }
+      @@if (context.interest === 'Docker') {
+        <ul class="popover text-center active-docker">
+      }
+      @@if (context.interest === 'Continuous Integration & Delivery') {
+        <ul class="popover text-center active-ci-cd">
+      }
+        <li class="li">
+          @@if (context.interest === 'Everything') {
+            <a class="a active">Everything</a>
+          }
+          @@if (context.interest !== 'Everything') {
+            <a class="a" href="/for/">Everything</a>
+          }
+        <li class="li">
+          @@if (context.interest === 'Test Automation') {
+            <a class="a active">Test Automation</a>
+          }
+          @@if (context.interest !== 'Test Automation') {
+            <a class="a" href="/for/test-automation/">Test Automation</a>
+          }
+        <li class="li">
+          @@if (context.interest === 'Docker') {
+            <a class="a active">Docker</a>
+          }
+          @@if (context.interest !== 'Docker') {
+            <a class="a" href="/for/docker/">Docker</a>
+          }
+        <li class="li">
+          @@if (context.interest === 'Continuous Integration & Delivery') {
+            <a class="a active">Continuous Integration & Delivery</a>
+          }
+          @@if (context.interest !== 'Continuous Integration & Delivery') {
+            <a class="a" href="/for/ci-cd/">Continuous Integration & Delivery</a>
+          }
+      </ul>
+    </div>
+  </div>
+</article>

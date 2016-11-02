@@ -54,7 +54,7 @@
 
       .popover {
         left: auto;
-        transform: scale3d(.2,.2, 1);
+        transform: scale3d(.85,.85, 1);
         transform-origin: 95% 0;
       }
     }
@@ -85,7 +85,7 @@
   padding: 15px;
   pointer-events: none;
   position: absolute;
-  transform: scale3d(.2,.2,1) translate3d(-50%,0,0);
+  transform: scale3d(.85,.85,1) translate3d(-50%,0,0);
   transition: all .15s ease-in-out;
   visibility: hidden;
   z-index: 100;

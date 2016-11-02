@@ -3,7 +3,7 @@
 
   <head>
     @@include('html/components/head.hbs')
-    <title>Running apps for every code branch — Runnable</title>
+    <title>Continuous integration/delivery for all code branches — Runnable</title>
     <script ugly>
       @@include('js/signup.js')
       @@include('js/svgs.js')
@@ -22,12 +22,13 @@
     @@include('html/components/header.hbs')
 
     <main class="grid-block col main hero-only">
-      @@include('html/product/product-hero.hbs')
-      @@include('html/product/article-easy-setup.hbs')
-      @@include('html/product/article-overview.hbs')
-      @@include('html/product/article-tests.hbs')
-      @@include('html/product/article-share.hbs')
-      @@include('html/product/article-automated.hbs')
+      @@include('html/for/product-hero.hbs', {"interest": "Continuous Integration & Delivery"})
+      @@include('html/for/article-native-docker.hbs')
+      @@include('html/for/article-overview.hbs')
+      @@include('html/for/article-tests.hbs')
+      @@include('html/for/article-seamless-workflow.hbs')
+      @@include('html/for/article-easy-setup.hbs')
+      @@include('html/for/article-product-cta.hbs')
     </main>
 
     @@include('html/components/footer.hbs')
