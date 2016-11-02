@@ -104,20 +104,39 @@
       margin-top: -$lg;
     }
 
-    &.vertical > .grid-block {
+    &.card-lg {
+      flex: 0 0 auto;
+      max-width: 1080px;
+      padding: $xl;
+
+      @include media(md) {
+        padding: $md;
+      }
+
+      > .grid-block {
+        align-items: flex-start;
+      }
+
+      .img {
+        margin-bottom: $sm;
+
+        @include media(md) {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    > .grid-block {
+      align-items: center;
+
       @include media(xxs) {
         align-items: flex-start;
         flex-direction: column;
-      }
-
-      + .grid-block {
-        margin-top: $md;
       }
     }
 
     .img {
       @include media(xxs) {
-        margin-bottom: $md;
         margin-right: 0;
       }
     }
