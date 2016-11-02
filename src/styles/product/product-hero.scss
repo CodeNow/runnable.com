@@ -63,6 +63,7 @@
     right: 0;
     top: -100%;
     transform: scale3d(.8,.8,1);
+    transition-delay: .1s;
     width: 420px;
 
     @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
