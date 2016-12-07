@@ -3,24 +3,6 @@
   border-bottom: 1px solid $gray-lightest;
   border-top: 1px solid rgba($black,.1);
   margin-bottom: 0;
-  padding-top: 150px;
-  z-index: 1;
-
-  @include media(md) {
-    padding-top: 135px;
-  }
-
-  @include media(xs) {
-    padding-top: 90px;
-  }
-
-  @media (max-width: 450px) {
-    padding-top: 120px;
-  }
-
-  @include media(xxs) {
-    padding-top: 150px;
-  }
 
   .grid-container {
     flex-wrap: wrap;
