@@ -8,7 +8,7 @@
   }
 
   .h1 {
-    margin: 0;
+    margin: 0 auto;
     max-width: 600px;
 
     @include media(sm) {
@@ -29,9 +29,6 @@
   }
 
   .h3 {
-    margin-left: 0;
-    margin-right: 0;
-
     @include media(md) {
       max-width: 540px;
     }
@@ -44,6 +41,32 @@
       @include media(xxs) {
         display: none;
       }
+    }
+  }
+
+  .btn-lg {
+    background: $white;
+    box-shadow: 0 2px 4px rgba($black,.15);
+    font-weight: $weight-bold;
+
+    &:hover .span,
+    &:active .span {
+      animation-duration: 1s;
+      background-image: linear-gradient(135deg,$purple 0%,$blue 12.5%,$green 25%,$orange 37.5%,$red 50%,$purple 62.5%,$blue 75%,$green 87.5%,$orange 100%);
+    }
+
+    &:active {
+      top: 1px;
+    }
+
+    .span {
+      animation: rainbow 2s infinite linear;
+      background-image: linear-gradient(135deg,$purple 0%,$purple-light 12.5%,$blue-dark 25%,$blue 37.5%,$purple-light 50%,$purple 62.5%,$purple-light 75%,$blue-dark 87.5%,$blue 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-size: 285% 100%;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
     }
   }
 }
