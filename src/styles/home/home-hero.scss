@@ -1,7 +1,5 @@
 .home-hero {
-  // scss-lint:disable ColorVariable
-  background: linear-gradient($purple-light, #475496);
-  // scss-lint:enable ColorVariable
+  background: linear-gradient($purple-light, $purple-blue);
 
   &::after {
     opacity: .5;
@@ -67,6 +65,18 @@
       background-size: 285% 100%;
       -webkit-text-fill-color: transparent;
       text-fill-color: transparent;
+    }
+  }
+
+  .video-cta {
+    padding-top: $lg;
+
+    .img {
+      border-radius: $input-border-radius-lg;
+      box-shadow: 0 2px 4px rgba($black,.3);
+      display: block;
+      height: auto;
+      width: 360px;
     }
   }
 }

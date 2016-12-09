@@ -1,0 +1,25 @@
+.video-cta {
+  cursor: pointer;
+  position: relative;
+
+  &:hover .icon-play {
+    animation: jiggle 1s linear both;
+  }
+
+  .img {
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 4px rgba($black,.3);
+    display: block;
+    height: 150px;
+    width: auto;
+  }
+
+  .icon-play {
+    height: 60px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 60px;
+  }
+}
