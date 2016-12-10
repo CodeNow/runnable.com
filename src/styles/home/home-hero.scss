@@ -46,37 +46,33 @@
     background: $white;
     box-shadow: 0 2px 4px rgba($black,.15);
     font-weight: $weight-bold;
+    transition: transform .2s ease-in-out;
 
-    &:hover .span,
-    &:active .span {
-      animation-duration: 1s;
-      background-image: linear-gradient(135deg,$purple 0%,$blue 12.5%,$green 25%,$orange 37.5%,$red 50%,$purple 62.5%,$blue 75%,$green 87.5%,$orange 100%);
+    &:hover,
+    &:active {
+      transform: scale3d(1.05,1.05,1);
+
+      .span {
+        animation-duration: 1s;
+        background-image: linear-gradient(135deg,$purple 0%,$blue 12.5%,$green 25%,$orange 37.5%,$red 50%,$purple 62.5%,$blue 75%,$green 87.5%,$orange 100%);
+      }
     }
 
     &:active {
-      top: 1px;
+      transform: scale3d(1,1,1);
     }
 
     .span {
       animation: rainbow 2s infinite linear;
-      background-image: linear-gradient(135deg,$purple 0%,$purple-light 12.5%,$blue-dark 25%,$blue 37.5%,$purple-light 50%,$purple 62.5%,$purple-light 75%,$blue-dark 87.5%,$blue 100%);
+      // scss-lint:disable VendorPrefix
       -webkit-background-clip: text;
+      // scss-lint:enable VendorPrefix
       background-clip: text;
+      background-image: linear-gradient(135deg,$purple 0%,$purple-light 12.5%,$blue-dark 25%,$blue 37.5%,$purple-light 50%,$purple 62.5%,$purple-light 75%,$blue-dark 87.5%,$blue 100%);
       background-size: 285% 100%;
+      -moz-text-fill-color: transparent;
       -webkit-text-fill-color: transparent;
       text-fill-color: transparent;
-    }
-  }
-
-  .video-cta {
-    padding-top: $lg;
-
-    .img {
-      border-radius: $input-border-radius-lg;
-      box-shadow: 0 2px 4px rgba($black,.3);
-      display: block;
-      height: auto;
-      width: 360px;
     }
   }
 }

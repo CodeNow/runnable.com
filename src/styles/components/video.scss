@@ -2,8 +2,9 @@
   cursor: pointer;
   position: relative;
 
-  &:hover .icon-play {
-    animation: jiggle 1s linear both;
+  &:hover .icon-play,
+  &:active .icon-play {
+    animation: jiggle .5s linear both;
   }
 
   .img {
