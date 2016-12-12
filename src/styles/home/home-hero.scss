@@ -16,14 +16,6 @@
     @include media(xs) {
       max-width: 450px;
     }
-
-    .br {
-      display: none;
-
-      @media (max-width: 450px) {
-        display: block;
-      }
-    }
   }
 
   .h3 {
