@@ -38,6 +38,7 @@
     background: $white;
     box-shadow: 0 2px 4px rgba($black,.15);
     font-weight: $weight-bold;
+    margin-top: $xxs;
     transition: transform .2s ease-in-out;
 
     &:hover,
