@@ -3,13 +3,17 @@
   position: relative;
   transition: transform .2s ease-in-out;
 
-  &:hover .icon-play,
-  &:active .icon-play {
-    animation: jiggle .5s linear both;
+  &:hover {
+    transform: scale3d(1.05,1.05,1);
   }
 
   &:active {
-    transform: scale3d(.975,.975,1);
+    transform: scale3d(1,1,1);
+  }
+
+  &:hover .icon-play,
+  &:active .icon-play {
+    animation: jiggle 1s infinite linear both;
   }
 
   .img {
