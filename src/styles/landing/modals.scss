@@ -13,7 +13,6 @@
   transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   z-index: $z-modal;
 
-
   &.in {
     opacity: 1;
     pointer-events: auto;
@@ -33,6 +32,19 @@
         pointer-events: auto;
       }
     }
+  }
+
+  &.transparent {
+    background: transparent;
+  }
+
+  > .close-bg {
+    background: rgba($black,.3);
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: $z-modal;
   }
 
   .header .grid-container {
