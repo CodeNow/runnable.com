@@ -3,11 +3,10 @@
 
   <head>
     @@include('html/components/head.hbs')
-    <title>Speed up development with Runnable</title>
+    <title>Runnable: Catch bugs earlier.</title>
     <script ugly>
       @@include('js/signup.js')
       @@include('js/svgs.js')
-      @@include('js/youtube.js')
       @@include('js/status.js')
     </script>
 
@@ -16,20 +15,20 @@
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-home" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('images/icons.svg')
     @@include('html/components/header.hbs')
 
     <main class="grid-block col main">
       @@include('html/html/video.hbs')
-      @@include('html/html/video-hero.hbs')
+      @@include('html/html/home-hero.hbs')
       @@include('html/html/article-more.hbs')
       @@include('html/html/article-problem.hbs')
       @@include('html/html/article-solution.hbs')
       @@include('html/components/footer.hbs')
       <a href="http://code.runnable.com" class="grid-block well well-anchor well-code">
-        <img class="grid-block shrink img" src="images/video/codesnippets.png" height="45" width="45">
+        <img class="grid-block shrink img" src="images/home/codesnippets.png" height="45" width="45">
         <div class="grid-block col justify-center">
           <p class="p">Check out our other project:
           <div class="a weight-strong">Runnable CodeSnippets
@@ -42,7 +41,4 @@
     </main>
 
     @@include('html/components/form-modal.hbs')
-
-    <script async src="js/external/modernizr.js"></script>
-
     @@include('js/external/external.html')

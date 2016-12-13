@@ -1,0 +1,75 @@
+.video-cta {
+  cursor: pointer;
+  position: relative;
+  transition: transform .2s ease-in-out;
+
+  &:hover {
+    transform: scale3d(1.05,1.05,1);
+  }
+
+  &:active {
+    transform: scale3d(1,1,1);
+  }
+
+  &:hover .icon-play,
+  &:active .icon-play {
+    animation: jiggle 1s infinite linear both;
+  }
+
+  &::after {
+    background: rgba($black,.6);
+    border-radius: $input-border-radius-lg;
+    bottom: 6px;
+    color: rgba($white,.6);
+    content: '1:33';
+    display: block;
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 6px 4px;
+    position: absolute;
+    right: 6px;
+  }
+
+  .img {
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 4px rgba($black,.3);
+    display: block;
+    height: 150px;
+    width: auto;
+  }
+
+  .icon-play {
+    height: 100%;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+  }
+}
+
+.video-player {
+  background: $black;
+  box-shadow: 0 2px 6px rgba($black,.3);
+  height: 60vw * .5625;
+  left: 0;
+  margin: 0 auto;
+  max-height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  width: 60vw;
+  z-index: $z-modal + 1;
+
+  @include media(xl) {
+    height: 80vw * .5625;
+    width: 80vw;
+  }
+
+  @include media(xs) {
+    height: 95vw * .5625;
+    width: 95vw;
+  }
+}
