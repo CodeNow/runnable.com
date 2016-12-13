@@ -1,5 +1,5 @@
 .modal-backdrop {
-  background: linear-gradient(rgba($purple-light,.99), rgba($purple,.99), rgba($purple-dark,.98));
+  background: linear-gradient(rgba($purple-light,.99), rgba($purple-blue,.98));
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -12,7 +12,6 @@
   transform: scale3d(1.2,1.2,1);
   transition: opacity .3s ease-in-out, transform .3s ease-in-out;
   z-index: $z-modal;
-
 
   &.in {
     opacity: 1;
@@ -33,6 +32,21 @@
         pointer-events: auto;
       }
     }
+  }
+
+  &.transparent {
+    background: transparent;
+  }
+
+  > .close-bg {
+    background: rgba($black,.3);
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $z-modal;
   }
 
   .header .grid-container {

@@ -1,7 +1,5 @@
 .article-solution {
-  // scss-lint:disable ColorVariable
-  background: linear-gradient(#475496, $blue);
-  // scss-lint:enable ColorVariable
+  background: linear-gradient($purple-blue, $blue);
   border-top: 1px solid rgba($black,.1);
   overflow: visible;
 
