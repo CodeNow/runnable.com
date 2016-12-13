@@ -18,42 +18,8 @@
 .page-landing {
 
   .grid-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-
-    @media (min-width: $screen-xxs) {
-      max-width: inherit;
-      width: inherit;
-    }
-
-    @media (min-width: $screen-xs) {
-      max-width: $screen-xs - 30px;
-      width: $screen-xs - 30px;
-    }
-
-    @media (min-width: $screen-sm) {
-      max-width: $screen-sm - 30px;
-      width: $screen-sm - 30px;
-    }
-
-    @media (min-width: $screen-md) {
-      max-width: $screen-md - 30px;
-      width: $screen-md - 30px;
-    }
-  }
-
-  .grid-container-lg {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-width: 1080px;
-    width: 100%;
-  }
-
-  .grid-container-sm {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 750px;
     width: 100%;
   }
 

@@ -1,35 +1,16 @@
-.article-heading {
-  padding: 0 $lg;
+.section-quote {
+  font-size: 16px;
+  padding-top: 0;
+
+  // override .section defaults
+  @include media(sm) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 
   @include media(xs) {
-    padding: 0 $md;
-  }
-
-  + .section-dark {
-    margin-top: $xl + 75px;
-
-    @include media(sm) {
-      margin-top: $md + 75px;
-    }
-  }
-
-  .grid-container {
-    max-width: 100%;
-  }
-}
-
-.quote-wrapper {
-  font-size: 16px;
-  margin: $md 0;
-  padding: $md $xl $xl;
-
-  @include media(sm) {
-    margin-bottom: 0;
-    padding-bottom: $lg;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
+    padding-left: 65px;
+    padding-right: 65px;
   }
 
   .quote-bubble {
@@ -54,11 +35,11 @@
     }
 
     &::before {
-      left: -39px;
+      left: -36px;
     }
 
     &::after {
-      right: -39px;
+      right: -36px;
       transform: rotate(180deg);
     }
   }

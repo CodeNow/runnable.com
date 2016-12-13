@@ -1,7 +1,7 @@
 .article-seamless-workflow {
 
-  // override grid-container-lg defaults
-  .grid-container-lg {
+  // override grid-container defaults
+  .grid-container {
 
     @include media(md) {
       flex-direction: row;

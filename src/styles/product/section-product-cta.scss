@@ -2,8 +2,16 @@
   // scss-lint:disable ColorVariable
   background: linear-gradient(#644690, $purple);
   // scss-lint:enable ColorVariable
-  padding: $xl 0;
   position: relative;
+
+  .article-automated + &,
+  .article-browser + &,
+  .article-end-to-end + &,
+  .article-native-docker + &,
+  .article-seamless-workflow &,
+  .article-tests + & {
+    padding-top: 0;
+  }
 
   &::after {
     background: url(../images/confetti.png);
@@ -20,10 +28,6 @@
     top: 0;
     width: 100%;
     z-index: 0;
-  }
-
-  .padding-bottom-none + & {
-    padding-top: 0;
   }
 
   .btn-white {
