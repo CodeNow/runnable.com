@@ -16,6 +16,20 @@
     animation: jiggle 1s infinite linear both;
   }
 
+  &::after {
+    background: rgba($black,.6);
+    border-radius: $input-border-radius-lg;
+    bottom: 6px;
+    color: rgba($white,.6);
+    content: '1:33';
+    display: block;
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 6px 4px;
+    position: absolute;
+    right: 6px;
+  }
+
   .img {
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 4px rgba($black,.3);
