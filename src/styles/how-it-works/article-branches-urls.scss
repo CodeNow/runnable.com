@@ -1,13 +1,10 @@
 .article-branches-urls {
   margin: 0 auto;
-  max-width: 810px;
-  padding-top: 0;
+  max-width: 930px;
 
-  @media (max-width: 810px) {
+  @media (max-width: 930px) {
     align-items: center;
     flex-direction: column;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .h3 {
@@ -22,9 +19,8 @@
     .img {
       box-shadow: 0 3px 15px rgba($black,.075);
 
-      @include media(xxxs) {
+      @include media(xxs) {
         height: auto;
-        width: calc(100vw - 30px);
       }
     }
   }
@@ -33,7 +29,7 @@
     flex: 0 0 420px;
     padding-left: 60px;
 
-    @media (max-width: 810px) {
+    @media (max-width: 930px) {
       flex: 0 0 auto;
       max-width: 330px;
       padding: 0 15px;
@@ -67,27 +63,27 @@
   }
 }
 
+.article-branches-urls .img {
+  max-width: 100%;
+}
+
 .article-branches .img {
   border-radius: 12px;
 }
 
 .article-urls {
+  padding-top: 0;
 
   > .well {
     margin: 90px 30px 30px;
 
-    @media (max-width: 810px) {
-      margin-top: 30px;
-    }
-
-    @include media(xxs) {
-      margin-left: 15px;
-      margin-right: 15px;
+    @media (max-width: 930px) {
+      margin: 30px 0;
     }
   }
 
   .figure-wrapper {
-    @media (max-width: 810px) {
+    @media (max-width: 930px) {
       align-items: center;
       flex-direction: column;
     }

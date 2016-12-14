@@ -1,27 +1,11 @@
 .article-setup {
 
-  .h1 + .h3 {
-    margin: 0 0 60px;
-  }
-
-  .h1,
-  .h3 {
-    padding: 0 15px;
-
-    @include media(xxs) {
-      padding: 0;
-    }
+  .section + .section {
+    padding-top: 0;
   }
 
   .btn-radio-wrapper {
-    // this is the width where the image width matches the width of both buttons
-    @media (max-width: 676px) {
-      padding: 0 30px;
-    }
-
-    @include media(xxs) {
-      padding: 0;
-    }
+    padding-bottom: 30px;
   }
 
   .btn-radio {
@@ -70,16 +54,8 @@
 
   .figure {
     border-bottom: 1px solid $gray-lighter;
-    margin: 30px auto 0;
-    padding: 0 30px;
     position: relative;
-
-    @media (max-width: 540px) {
-      margin-left: 0;
-      margin-right: 0;
-      padding: 0;
-      width: 100vw;
-    }
+    padding-bottom: 0;
 
     .img {
       border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
@@ -92,12 +68,13 @@
       @media (max-width: 930px) {
         border-radius: 0;
         box-shadow: none;
-        width: calc(100vw - 60px);
+        max-width: 100%;
       }
 
       @media (max-width: 540px) {
-        margin: 0 0 0 -240px;
+        margin: 0 0 0 -270px;
         width: calc(100vw + 210px);
+        max-width: none;
       }
     }
 
