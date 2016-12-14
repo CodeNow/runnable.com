@@ -4,7 +4,7 @@
   > .li {
     flex: 1 1 33%;
 
-    @include media(sm) {
+    @include media(md) {
       align-items: center;
       flex: 0 1 100%;
       flex-direction: row;

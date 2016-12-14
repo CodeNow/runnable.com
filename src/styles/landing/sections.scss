@@ -23,11 +23,10 @@
     font-size: 16px;
   }
 
-  > .grid-container {
+  > .grid-container,
+  > .grid-container-sm,
+  > .grid-container-lg {
     overflow: visible;
-  }
-
-  > .grid-container {
 
     @include media(md) {
       flex-direction: column;
