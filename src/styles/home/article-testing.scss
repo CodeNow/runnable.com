@@ -3,30 +3,18 @@
   overflow: hidden;
   padding-bottom: 0;
 
-  @include media(sm) {
-    padding-top: 45px;
-  }
-
   .h3 {
     font-size: 30px;
     line-height: 1.3;
     margin: 0;
   }
 
-  .grid-container-lg {
-    overflow: visible;
-
-    @include media(sm) {
-      flex-direction: column;
-    }
-  }
-
   .copy-wrapper {
     flex: 0 0 50%;
-    padding: 60px 60px 60px 0;
+    padding: $xl $xl $xl 0;
 
     @include media(md) {
-      padding-right: 15px;
+      padding-right: $sm;
     }
 
     @include media(sm) {
@@ -35,13 +23,32 @@
     }
   }
 
+  .img-wrapper {
+    flex: 0 0 50%;
+    max-width: 720px;
+    overflow: visible;
+    position: relative;
+
+    @include media(sm) {
+      flex-basis: auto;
+      height: 369px;
+      margin-right: -$lg;
+      overflow: hidden;
+    }
+
+    @include media(xs) {
+      height: 276px;
+      margin-right: -$sm;
+    }
+  }
+
   .lists-wrapper {
     flex-wrap: wrap;
-    padding: 45px 0 60px;
+    padding: $lg 0 $xl;
 
     @include media(sm) {
       flex-wrap: nowrap;
-      padding-bottom: 45px;
+      padding-bottom: $lg;
     }
 
     @include media(xs) {
@@ -52,19 +59,11 @@
   .ul {
     flex: 0 0 50%;
 
-    @include media(sm) {
+    @media (max-width: $screen-sm) and (min-width: $screen-xs) {
       flex: 1 1 auto;
 
       + .ul {
         margin-left: 30px;
-      }
-    }
-
-    @include media(xs) {
-      flex: 0 0 50%;
-
-      + .ul {
-        margin-left: 0;
       }
     }
 
@@ -83,12 +82,8 @@
     &:nth-child(n+3) {
       padding-top: 30px;
 
-      @include media(sm) {
+      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
         padding-top: 0;
-      }
-
-      @include media(xs) {
-        padding-top: 30px;
       }
     }
   }
@@ -106,25 +101,6 @@
 
     @include media(xxs) {
       display: none;
-    }
-  }
-
-  .img-wrapper {
-    flex: 0 0 50%;
-    max-width: 720px;
-    overflow: visible;
-    position: relative;
-
-    @include media(sm) {
-      flex-basis: auto;
-      height: 369px;
-      margin-right: -45px;
-      overflow: hidden;
-    }
-
-    @include media(xs) {
-      height: 276px;
-      margin-right: -30px;
     }
   }
 
