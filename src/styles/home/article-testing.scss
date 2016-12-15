@@ -9,20 +9,6 @@
     margin: 0;
   }
 
-  .copy-wrapper {
-    flex: 0 0 50%;
-    padding: $xl $xl $xl 0;
-
-    @include media(md) {
-      padding-right: $sm;
-    }
-
-    @include media(sm) {
-      flex-basis: auto;
-      padding: 0;
-    }
-  }
-
   .img-wrapper {
     flex: 0 0 50%;
     max-width: 720px;
@@ -39,6 +25,29 @@
     @include media(xs) {
       height: 336px;
       margin-right: -$md;
+    }
+  }
+
+  .img {
+    position: absolute;
+
+    @include media(xs) {
+      transform: scale(.75,.75);
+      transform-origin: top left;
+    }
+  }
+
+  .copy-wrapper {
+    flex: 0 0 50%;
+    padding: $xl $xl $xl 0;
+
+    @include media(md) {
+      padding-right: $sm;
+    }
+
+    @include media(sm) {
+      flex-basis: auto;
+      padding: 0;
     }
   }
 
@@ -101,15 +110,6 @@
 
     @include media(xxs) {
       display: none;
-    }
-  }
-
-  .img {
-    position: absolute;
-
-    @include media(xs) {
-      transform: scale(.75,.75);
-      transform-origin: top left;
     }
   }
 }
