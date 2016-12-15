@@ -9,39 +9,6 @@
     margin: 0;
   }
 
-  .copy-wrapper {
-    flex: 0 0 50%;
-    padding: $xl $xl $xl 0;
-
-    @include media(md) {
-      padding-right: $sm;
-    }
-
-    @include media(sm) {
-      flex-basis: auto;
-      padding: 0;
-    }
-  }
-
-  .img-wrapper {
-    flex: 0 0 50%;
-    max-width: 720px;
-    overflow: visible;
-    position: relative;
-
-    @include media(sm) {
-      flex-basis: auto;
-      height: 449px;
-      margin-right: -$lg;
-      overflow: hidden;
-    }
-
-    @include media(xs) {
-      height: 336px;
-      margin-right: -$md;
-    }
-  }
-
   .lists-wrapper {
     flex-wrap: wrap;
     padding: $lg 0 $xl;

@@ -39,4 +39,49 @@
     list-style-type: none;
     padding-left: 0;
   }
+
+  .copy-wrapper {
+    flex: 0 0 50%;
+    padding: $xl 0;
+
+    @include media(sm) {
+      flex-basis: auto;
+      padding: 0;
+    }
+
+    &.left {
+      padding-right: $xl;
+
+      @include media(md) {
+        padding-right: $sm;
+      }
+    }
+
+    &.right {
+      padding-left: $xl;
+
+      @include media(md) {
+        padding-left: $sm;
+      }
+    }
+  }
+
+  .img-wrapper {
+    flex: 0 0 50%;
+    max-width: 720px;
+    overflow: visible;
+    position: relative;
+
+    @include media(sm) {
+      flex-basis: auto;
+      height: 449px;
+      margin-right: -$lg;
+      overflow: hidden;
+    }
+
+    @include media(xs) {
+      height: 336px;
+      margin-right: -$md;
+    }
+  }
 }
