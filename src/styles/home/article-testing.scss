@@ -31,14 +31,14 @@
 
     @include media(sm) {
       flex-basis: auto;
-      height: 369px;
+      height: 449px;
       margin-right: -$lg;
       overflow: hidden;
     }
 
     @include media(xs) {
-      height: 276px;
-      margin-right: -$sm;
+      height: 336px;
+      margin-right: -$md;
     }
   }
 
