@@ -39,4 +39,44 @@
     list-style-type: none;
     padding-left: 0;
   }
+
+  .copy-wrapper {
+    flex: 0 0 50%;
+    padding: $xl 0;
+
+    @include media(sm) {
+      flex-basis: auto;
+      padding: 0;
+    }
+
+    &.left {
+      padding-right: $xl;
+
+      @include media(md) {
+        padding-right: $sm;
+      }
+
+      @include media(sm) {
+        padding-right: 0;
+      }
+    }
+
+    &.right {
+      padding-left: $xl;
+
+      @include media(md) {
+        padding-left: $sm;
+      }
+
+      @include media(sm) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .img-wrapper {
+    flex: 0 0 50%;
+    overflow: visible;
+    position: relative;
+  }
 }
