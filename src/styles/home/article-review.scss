@@ -1,0 +1,14 @@
+.article-review .col-md {
+  @include media(md) {
+    align-items: center;
+    text-align: center;
+
+    .img {
+      max-width: 100%;
+    }
+
+    .copy-wrapper {
+      margin-top: $lg;
+    }
+  }
+}

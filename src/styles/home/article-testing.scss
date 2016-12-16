@@ -70,6 +70,20 @@
     }
   }
 
+  .img-wrapper {
+    @include media(sm) {
+      flex-basis: auto;
+      height: 449px;
+      margin-right: -$lg;
+      overflow: hidden;
+    }
+
+    @include media(xs) {
+      height: 336px;
+      margin-right: -$md;
+    }
+  }
+
   .img {
     position: absolute;
 

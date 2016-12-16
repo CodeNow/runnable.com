@@ -55,6 +55,10 @@
       @include media(md) {
         padding-right: $sm;
       }
+
+      @include media(sm) {
+        padding-right: 0;
+      }
     }
 
     &.right {
@@ -62,6 +66,10 @@
 
       @include media(md) {
         padding-left: $sm;
+      }
+
+      @include media(sm) {
+        padding-left: 0;
       }
     }
   }
@@ -71,17 +79,5 @@
     max-width: 720px;
     overflow: visible;
     position: relative;
-
-    @include media(sm) {
-      flex-basis: auto;
-      height: 449px;
-      margin-right: -$lg;
-      overflow: hidden;
-    }
-
-    @include media(xs) {
-      height: 336px;
-      margin-right: -$md;
-    }
   }
 }
