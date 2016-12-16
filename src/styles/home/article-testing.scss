@@ -20,36 +20,36 @@
     @include media(xs) {
       flex-wrap: wrap;
     }
-  }
 
-  .ul {
-    flex: 0 0 50%;
-
-    @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-      flex: 1 1 auto;
-
-      + .ul {
-        margin-left: 30px;
-      }
-    }
-
-    &:nth-child(2n) {
-      padding-right: 30px;
-
-      @include media(sm) {
-        padding-right: 0;
-      }
-
-      @include media(xs) {
-        padding-left: 30px;
-      }
-    }
-
-    &:nth-child(n+3) {
-      padding-top: 30px;
+    > .li {
+      flex: 0 0 50%;
 
       @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-        padding-top: 0;
+        flex: 1 1 auto;
+
+        + .ul {
+          margin-left: 30px;
+        }
+      }
+
+      &:nth-child(2n) {
+        padding-right: 30px;
+
+        @include media(sm) {
+          padding-right: 0;
+        }
+
+        @include media(xs) {
+          padding-left: 30px;
+        }
+      }
+
+      &:nth-child(n+3) {
+        padding-top: 30px;
+
+        @media (max-width: $screen-sm) and (min-width: $screen-xs) {
+          padding-top: 0;
+        }
       }
     }
   }
@@ -67,15 +67,6 @@
 
     @include media(xxs) {
       display: none;
-    }
-  }
-
-  .img {
-    position: absolute;
-
-    @include media(xs) {
-      transform: scale(.75,.75);
-      transform-origin: top left;
     }
   }
 }
