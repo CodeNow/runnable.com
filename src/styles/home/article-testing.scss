@@ -69,4 +69,13 @@
       display: none;
     }
   }
+
+  .img {
+    position: absolute;
+
+    @include media(xs) {
+      transform: scale(.75,.75);
+      transform-origin: top left;
+    }
+  }
 }
