@@ -1,0 +1,118 @@
+.article-graph {
+  background: linear-gradient($purple-blue, $purple-light);
+  color: $white;
+}
+
+.figure-graph {
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  width: 1000px;
+
+  &::before,
+  .outer-circle,
+  .inner-circle::before {
+    border: 2px solid transparent;
+    border-radius: 2500px;
+    bottom: 30px;
+    content: '';
+    display: block;
+    height: 2500px;
+    position: absolute;
+    width: 2500px;
+  }
+
+  &::before {
+    border-color: rgba($white,.15);
+    right: -200px;
+  }
+
+  .outer-circle {
+    animation: rotate 10s infinite linear;
+    right: -200px;
+    z-index: 1;
+
+    &:nth-child(1) .bug {
+      background: $red;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 3s;
+
+      .bug {
+        animation-delay: 3s;
+        // scss-lint:disable ColorVariable
+        background: #f27a41;
+        // scss-lint:enable ColorVariable
+      }
+    }
+
+    .bug {
+      animation: quarter-fade-in 10s infinite linear;
+      border: 11px solid $white;
+      border-radius: 30px;
+      height: 30px;
+      position: absolute;
+      width: 30px;
+
+      &:nth-child(1) {
+        right: -15px;
+        top: 50%;
+      }
+    }
+  }
+
+  .inner-circle {
+    height: 600px;
+    left: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 800px;
+
+    &::before {
+      border-color: rgba($white,.75);
+      right: -300px;
+    }
+  }
+}
+
+.figure-x-axis {
+  padding: 0 100px 60px;
+  width: 1000px;
+
+  .x-tag {
+    background: $white;
+    border-radius: $input-border-radius-lg;
+    font-weight: $weight-bold;
+    padding: 0 8px;
+
+    // scss-lint:disable ColorVariable
+    &:nth-child(1) {
+      color: #45cab2;
+    }
+
+    &:nth-child(2) {
+      color: #44ca7e;
+    }
+
+    &:nth-child(3) {
+      color: #78bc4d;
+    }
+
+    &:nth-child(4) {
+      color: #daa635;
+    }
+
+    &:nth-child(5) {
+      color: #f27a41;
+    }
+
+    &:nth-child(6) {
+      color: $red;
+    }
+    // scss-lint:enable ColorVariable
+  }
+}
