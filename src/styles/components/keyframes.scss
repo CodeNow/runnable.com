@@ -9,24 +9,6 @@
   }
 }
 
-@keyframes quarter-fade-in {
-  0% {
-    opacity: 0;
-    transform: scale3d(.8,.8,1);
-  }
-
-  5%,
-  95% {
-    opacity: 1;
-    transform: scale3d(1,1,1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale3d(.8,.8,1);
-  }
-}
-
 @keyframes jiggle {
   0% {
     transform: rotate3d(0,0,1,5deg);
@@ -48,17 +30,5 @@
 
   100% {
     background-position: 100% 0;
-  }
-}
-
-@keyframes rotate {
-  0%,
-  30% {
-    transform: rotate3d(0,0,1,40deg);
-  }
-
-  70%,
-  100% {
-    transform: rotate3d(0,0,1,82.3deg);
   }
 }

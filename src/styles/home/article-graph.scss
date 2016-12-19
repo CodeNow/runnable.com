@@ -1,5 +1,5 @@
-$outer-circle-z: 3; // faded white + bugs
-$inner-circle-z: 2; // solid white
+$bugs-z: 3; // faded white + bugs
+$circle-z: 2; // solid white
 $graph-x-z: 1; // x-axis lines
 
 %x-lines {
@@ -30,8 +30,7 @@ $graph-x-z: 1; // x-axis lines
   width: 1000px;
 
   &::before,
-  .outer-circle,
-  .inner-circle::before {
+  .circle::before {
     border: 2px solid transparent;
     border-radius: 2500px;
     bottom: 30px;
@@ -47,42 +46,7 @@ $graph-x-z: 1; // x-axis lines
     right: -200px;
   }
 
-  .outer-circle {
-    animation: rotate 10s infinite linear;
-    right: -200px;
-    z-index: $outer-circle-z;
-
-    &:nth-child(1) .bug {
-      background: $red;
-    }
-
-    &:nth-child(2) {
-      animation-delay: 3s;
-
-      .bug {
-        animation-delay: 3s;
-        // scss-lint:disable ColorVariable
-        background: #f39e31;
-        // scss-lint:enable ColorVariable
-      }
-    }
-
-    .bug {
-      animation: quarter-fade-in 10s infinite linear;
-      border: 11px solid $white;
-      border-radius: 30px;
-      height: 30px;
-      position: absolute;
-      width: 30px;
-
-      &:nth-child(1) {
-        right: -15px;
-        top: 50%;
-      }
-    }
-  }
-
-  .inner-circle {
+  .circle {
     height: 600px;
     left: 0;
     margin: 0 auto;
@@ -91,14 +55,40 @@ $graph-x-z: 1; // x-axis lines
     right: 0;
     top: 0;
     width: 800px;
-    z-index: $inner-circle-z;
+    z-index: $circle-z;
 
     &::before {
-      border-color: rgba($white,.75);
-      box-shadow: inset 0 0 90px rgba($black,.3);
+      border-color: $white;
+      box-shadow: inset 0 0 90px rgba($black,.2);
       right: -300px;
     }
   }
+
+  .bug {
+    position: absolute;
+    z-index: $bugs-z;
+
+    // scss-lint:disable ColorVariable
+    &.red {
+      background: $red;
+      right: 200px;
+      top: 234px;
+    }
+
+    &.orange {
+      background: #f39e31;
+      right: 250px;
+      top: 277px;
+    }
+    // scss-lint:enable ColorVariable
+  }
+}
+
+.bug {
+  border: 3px solid $white;
+  border-radius: 21px;
+  height: 18px;
+  width: 18px;
 }
 
 .figure-x-axis {
@@ -106,11 +96,7 @@ $graph-x-z: 1; // x-axis lines
   width: 1000px;
 
   .bug {
-    border: 7px solid $white;
-    border-radius: 21px;
-    height: 21px;
     margin-bottom: 3px;
-    width: 21px;
 
     + .bug {
       margin-left: 6px;
