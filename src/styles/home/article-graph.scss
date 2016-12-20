@@ -138,8 +138,8 @@ $bug-blue: #21a7ee;
 
     &.bug-indigo {
       bottom: auto;
-      right: 476px;
-      top: 361px;
+      right: 475px;
+      top: 381px;
     }
   }
 }
@@ -165,8 +165,22 @@ $bug-blue: #21a7ee;
     padding: $sm;
     position: relative;
 
-    &:nth-child(1)::before {
-      height: 95px;
+    &:nth-child(1) {
+
+      &::before {
+        height: 390px;
+      }
+
+      &::after {
+        bottom: 403px;
+        color: rgba($white,.3);
+        content: 'COST';
+        display: block;
+        font-size: 12px;
+        left: -16px;
+        position: absolute;
+        transform: rotate3d(0,0,1,-90deg);
+      }
     }
 
     &:nth-child(2)::before {
