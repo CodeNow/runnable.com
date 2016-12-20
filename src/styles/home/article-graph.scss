@@ -1,26 +1,15 @@
-%x-lines {
-  background: linear-gradient(rgba($white,.15),rgba($white,0));
-  bottom: 0;
-  content: '';
-  display: block;
-  left: 0;
-  position: absolute;
-  width: $circle-width;
-  z-index: $graph-x-z;
-}
-
 .article-graph {
   background: linear-gradient($purple-blue, $purple-light);
   color: $white;
 
   > .col {
-    max-width: 720px;
+    width: 720px;
   }
 }
 
 .figure-graph {
   height: 600px;
-  margin-top: -210px;
+  margin: -210px auto 0;
   overflow: hidden;
   position: relative;
   width: 1000px;
@@ -190,11 +179,23 @@
   }
 }
 
+// x axis columns
+%x-lines {
+  background: linear-gradient(rgba($white,.15),rgba($white,0));
+  bottom: 0;
+  content: '';
+  display: block;
+  left: 0;
+  position: absolute;
+  width: $circle-width;
+  z-index: $graph-x-z;
+}
+
 .figure-x-axis {
   color: rgba($white,.5);
   font-size: 13px;
-  padding: 0 100px 60px;
-  width: 1000px;
+  margin: 0 auto 60px;
+  width: 800px;
 
   .x-col {
     font-size: 15px;
