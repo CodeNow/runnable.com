@@ -1,0 +1,36 @@
+.article-more {
+  background: linear-gradient($white, $gray-lighterest);
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid rgba($black,.1);
+  margin-bottom: 0;
+
+  @media (max-width: 900px) {
+    flex-flow: column wrap;
+    padding-left: $md;
+    padding-right: $md;
+  }
+
+  .video-cta {
+    margin-right: $lg;
+
+    @media (max-width: 900px) {
+      margin-bottom: $md;
+      margin-right: 0;
+    }
+  }
+
+  .h3 {
+    font-size: 24px;
+    line-height: 1.3; // match hero
+    max-width: 470px;
+
+    @media (max-width: 900px) {
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    @include media(xs) {
+      max-width: calc(100vw - #{$md * 2});
+    }
+  }
+}

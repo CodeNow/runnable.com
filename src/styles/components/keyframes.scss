@@ -1,3 +1,13 @@
+@keyframes bug {
+  0% {
+    background: $bug-orange;
+  }
+
+  100% {
+    background: $purple-light;
+  }
+}
+
 @keyframes cursor-blink {
   0%,
   50% {
@@ -6,5 +16,39 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes jiggle {
+  0% {
+    transform: rotate3d(0,0,1,5deg);
+  }
+
+  50% {
+    transform: rotate3d(0,0,1,-5deg);
+  }
+
+  100% {
+    transform: rotate3d(0,0,1,5deg);
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes spin-circle {
+  0% {
+    transform: rotate3d(0,0,1,47deg);
+  }
+
+  100% {
+    transform: rotate3d(0,0,1,76deg);
   }
 }

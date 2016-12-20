@@ -1,4 +1,12 @@
-.page-video {
+.page-home {
+
+  .article .h3 {
+    margin: 0;
+
+    + .h3 {
+      margin-top: 3px;
+    }
+  }
 
   // code snippets link
   .well-code {
