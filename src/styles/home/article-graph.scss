@@ -10,9 +10,12 @@
 .figure-graph {
   height: 600px;
   margin: -210px auto 0;
-  overflow: hidden;
   position: relative;
   width: 1000px;
+
+  @media (max-width: 1000px) {
+    width: 100vw;
+  }
 
   // .figure-graph::before is the faded line
   // .circle::before is the solid line
@@ -31,6 +34,10 @@
   &::before {
     border-color: rgba($white,.15);
     right: -200px;
+
+    @media (max-width: 1000px) {
+      display: none;
+    }
   }
 
   // solid circle container
@@ -55,7 +62,7 @@
   .bug.has-img {
 
     &.orange {
-      right: 190px;
+      right: 90px;
       top: 224px;
 
       .popover {
@@ -80,7 +87,7 @@
     }
 
     &.purple {
-      left: 232px;
+      left: 132px;
       top: 520px;
 
       .popover {
