@@ -1,25 +1,10 @@
 @keyframes bug {
   0% {
-    background: $red;
-    transform: scale3d(0,0,0);
-  }
-
-  #{percentage(.15 / $spin-time)} {
-    transform: scale3d(1.2,1.2,1);
-  }
-
-  #{percentage(.3 / $spin-time)},
-  #{percentage(7.85 / $spin-time)} {
-    transform: scale3d(1,1,1);
-  }
-
-  50% {
     background: $bug-orange;
   }
 
   100% {
-    background: $bug-indigo;
-    transform: scale3d(0,0,0);
+    background: $purple-light;
   }
 }
 
@@ -60,7 +45,7 @@
 
 @keyframes spin-circle {
   0% {
-    transform: rotate3d(0,0,1,42deg);
+    transform: rotate3d(0,0,1,47deg);
   }
 
   100% {
