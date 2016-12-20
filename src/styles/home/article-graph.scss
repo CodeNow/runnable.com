@@ -77,7 +77,7 @@
           border-bottom-color: transparent;
         }
 
-        // scss-lint:enable PropertySpelling ColorVariable
+        // scss-lint:disable ColorVariable
         &::after {
           border-bottom-color: #9080ba;
           top: -8px;
@@ -86,7 +86,7 @@
             border-bottom-color: #8c7cb6;
           }
         }
-        // scss-lint:disable PropertySpelling ColorVariable
+        // scss-lint:enable ColorVariable
       }
     }
 
@@ -101,7 +101,7 @@
           border-top-color: transparent;
         }
 
-        // scss-lint:enable PropertySpelling ColorVariable
+        // scss-lint:disable  ColorVariable
         &::after {
           border-top-color: #9080ba;
 
@@ -109,7 +109,7 @@
             border-top-color: #8d7ab4;
           }
         }
-        // scss-lint:disabled PropertySpelling ColorVariable
+        // scss-lint:enable  ColorVariable
       }
     }
   }
@@ -117,9 +117,9 @@
   // position of popovers
   .popover {
     background: rgba($bug-popover-bg,.9);
-    box-shadow: 0 2px 9px rgba($black,.2), inset 0 1px 0 rgba($white,.1);
     border: 0;
     border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.2), inset 0 1px 0 rgba($white,.1);
     color: $white;
     font-size: 13px;
     font-weight: $weight-normal;
@@ -141,7 +141,6 @@
   height: $circle-size;
   position: absolute;
   right: -300px;
-  // transform: rotate3d(0,0,1,42deg);
   width: $circle-size;
 
   @for $i from 1 to 4 {
