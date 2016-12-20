@@ -1,0 +1,18 @@
+.article-merge {
+  background-color: $gray-lighterest;
+  border-top: 1px solid $gray-lightest;
+
+  .img {
+    margin-top: -90px;
+
+    @include media(sm) {
+      height: 75px;
+      margin-top: -70px;
+      width: 75px;
+    }
+  }
+
+  .h3 {
+    max-width: 480px;
+  }
+}
