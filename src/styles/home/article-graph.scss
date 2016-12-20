@@ -2,6 +2,8 @@ $bugs-z: 3; // faded white + bugs
 $circle-z: 2; // solid white
 $graph-x-z: 1; // x-axis lines
 
+$circle-size: 2500px;
+$circle-width: 2px;
 $bug-orange: #f39e31;
 $bug-yellow-green: #71be50;
 $bug-green: #44ca89;
@@ -15,7 +17,7 @@ $bug-blue: #21a7ee;
   display: block;
   left: 0;
   position: absolute;
-  width: 2px;
+  width: $circle-width;
   z-index: $graph-x-z;
 }
 
@@ -35,16 +37,18 @@ $bug-blue: #21a7ee;
   position: relative;
   width: 1000px;
 
+  // .figure-graph::before is the faded line
+  // .circle::before is the solid line
   &::before,
   .circle::before {
-    border: 2px solid transparent;
-    border-radius: 2500px;
+    border: $circle-width solid transparent;
+    border-radius: $circle-size;
     bottom: 30px;
     content: '';
     display: block;
-    height: 2500px;
+    height: $circle-size;
     position: absolute;
-    width: 2500px;
+    width: $circle-size;
   }
 
   &::before {
@@ -71,23 +75,8 @@ $bug-blue: #21a7ee;
   }
 
   .bug {
-    color: $gray-dark;
-    height: 15px;
-    position: absolute;
-    width: 15px;
-    z-index: $bugs-z;
-
-    &.has-img {
-      background-image: url(../images/home/bug.svg);
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: 16px 16px;
-      height: 30px;
-      width: 30px;
-    }
 
     &.red {
-      background-color: $red;
       right: 150px;
       top: 186px;
 
@@ -98,25 +87,21 @@ $bug-blue: #21a7ee;
     }
 
     &.orange {
-      background-color: $bug-orange;
       right: 330px;
       top: 337px;
     }
 
     &.green {
-      background-color: $bug-green;
       right: 430px;
       top: 400px;
     }
 
     &.indigo {
-      background-color: $bug-indigo;
       right: 650px;
       top: 493px;
     }
 
     &.blue {
-      background-color: $bug-blue;
       right: 830px;
       top: 543px;
     }
@@ -147,23 +132,56 @@ $bug-blue: #21a7ee;
 .bug {
   border: 3px solid $white;
   border-radius: 21px;
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  position: absolute;
+  width: 15px;
+  z-index: $bugs-z;
+
+  &.has-img {
+    background-image: url(../images/home/bug.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    height: 30px;
+    width: 30px;
+  }
+
+  &.red {
+    background-color: $red;
+  }
+
+  &.orange {
+    background-color: $bug-orange;
+  }
+
+  &.green {
+    background-color: $bug-green;
+  }
+
+  &.indigo {
+    background-color: $bug-indigo;
+  }
+
+  &.blue {
+    background-color: $bug-blue;
+  }
 }
 
 .figure-x-axis {
   color: rgba($white,.5);
   font-size: 13px;
   padding: 0 100px 60px;
-  text-align: center;
   width: 1000px;
 
   .x-col {
-    flex: 1 1;
     font-size: 15px;
-    justify-content: space-between;
-    padding: $sm;
+    justify-content: center;
+    padding-top: $sm;
     position: relative;
+
+    &::before {
+      @extend %x-lines;
+    }
 
     &:nth-child(1) {
 
@@ -184,37 +202,33 @@ $bug-blue: #21a7ee;
     }
 
     &:nth-child(2)::before {
-      height: 116px;
+      height: 99px;
     }
 
     &:nth-child(3)::before {
-      height: 155px;
+      height: 138px;
     }
 
     &:nth-child(4)::before {
-      height: 212px;
+      height: 191px;
     }
 
     &:nth-child(5)::before {
-      height: 286px;
+      height: 261px;
     }
 
     &:nth-child(6) {
 
       &::before {
-        height: 390px;
+        height: 371px;
       }
 
       &::after {
         @extend %x-lines;
-        height: 523px;
+        height: 506px;
         left: auto;
         right: 0;
       }
-    }
-
-    &::before {
-      @extend %x-lines;
     }
   }
 }
