@@ -118,3 +118,19 @@ $xl: 60px;
 $size-directions: top right bottom left;
 $size-list: none xxs xs sm md lg xl;
 $sizes: $none, $xxs, $xs, $sm, $md, $lg, $xl;
+
+// for the graph
+$bugs-z: 3; // faded white + bugs
+$circle-z: 2; // solid white
+$graph-x-z: 1; // x-axis lines
+
+$circle-size: 2500px;
+$circle-width: 2px;
+$bug-orange: #f39e31;
+$bug-yellow-green: #71be50;
+$bug-green: #44ca89;
+$bug-indigo: #37bfc6;
+$bug-blue: #21a7ee;
+
+$spin-time: 8;
+$spin-seconds: #{$spin-time}s;

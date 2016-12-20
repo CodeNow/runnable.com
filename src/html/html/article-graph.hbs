@@ -4,15 +4,28 @@
     <p class="p weight-light text-center margin-top-xxs">As your developer count and codebase grows, the number of bugs introduced increase during development. Some of these bugs can be caught early via unit testing, but others won't manifest until your new code is integrated with the rest of your system. For most teams, that happens too late in development.</p>
   </section>
   <figure class="grid-block figure-graph">
-    <div class="circle"></div>
-    <div class="bug red has-img"></div>
-    <div class="bug red"></div>
-    <div class="bug orange"></div>
-    <div class="bug green"></div>
-    <div class="bug indigo has-img"></div>
-    <div class="bug blue"></div>
-    <div class="popover top in bug-indigo">Runnable enables integration and QA testing when development begins.</div>
-    <div class="popover bottom in bug-red">Most bugs are caught at this point in development, when they’re expensive to fix.</div>
+    <div class="circle">
+      <div class="spin-circle">
+        <div class="bug red"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="bug red"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="bug red"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="bug red"></div>
+      </div>
+    </div>
+    <div class="popover in bug-red">
+      <div class="bug red has-img"></div>
+      Most bugs are caught late in development, when they’re expensive to fix.
+    </div>
+    <div class="popover in bug-indigo">
+      <div class="bug indigo has-img"></div>
+      Runnable enables integration and QA testing when development begins.
+    </div>
   </figure>
   <figure class="grid-block figure-x-axis noscroll">
     <div class="grid-block x-col noscroll">Code</div>
