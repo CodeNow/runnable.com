@@ -1,12 +1,7 @@
 .article-testing {
-  border-bottom: 1px solid $gray-lighter;
+  border-bottom: 1px solid $gray-lightest;
   overflow: hidden;
   padding-bottom: 0;
-
-  .h3 {
-    font-size: 30px;
-    line-height: 1.3;
-  }
 
   .lists-wrapper {
     flex-wrap: wrap;
