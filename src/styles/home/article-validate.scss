@@ -1,0 +1,14 @@
+.article-validate {
+
+  @media (min-width: $screen-sm) {
+    padding-bottom: 0;
+  }
+
+  @include media(sm) {
+    border-bottom: 1px solid $gray-lightest;
+  }
+
+  .h3 {
+    max-width: 470px;
+  }
+}
