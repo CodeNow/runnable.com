@@ -2,7 +2,13 @@
 <html lang="en">
 
   <head>
-    
+    <style>.async-hide {opacity: 0 !important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -588,6 +594,10 @@ function openModal(event,dragging) {
       setupForm('signup');
     }
 
+    if (modalName === 'video') {
+      addVideo();
+    }
+
     // mixpanel
     mixpanel.track('Open Modal: ' + modalName);
   }
@@ -602,6 +612,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -612,6 +623,22 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
 }
 
 // show bitbucket form
@@ -913,6 +940,7 @@ window.addEventListener('DOMContentLoaded', function(){
       });
     }
   }
+
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
@@ -1110,6 +1138,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -1173,13 +1202,13 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </article>
 
-      <article class="article article-tests padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-tests">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Run your automated tests on every branch.</h2>
     <p class="text-center">Your app runs on an isolated environment that’s fresh and clean, so it’s perfect for running tests. <br class="hidden-md">Branch updates are automatically tested end-to-end.</p>
   </section>
 
-  <section class="grid-block col align-center quote-wrapper text-gray">
+  <section class="grid-block col align-center section section-quote text-gray">
     <blockquote class="quote-bubble text-center">
       <div class="arrow"></div>
       Runnable environments make it easy for everyone to see the impact of a change before it goes to production.
@@ -1192,7 +1221,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </div>
   </section>
 
-  <section class="grid-block justify-center section-dark">
+  <section class="grid-block justify-center section section-dark">
     <div class="grid-container-lg grid-block">
       <ul class="grid-block col card padding-md">
         <li class="grid-block align-center shrink margin-bottom-sm padding-sm col-xxs">
@@ -1278,7 +1307,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </div>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm">
+  <section class="grid-block col align-center section section-carousel visible-sm">
     <p class="p weight-strong">Available</p>
     <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
     <figure class="figure">
@@ -1286,7 +1315,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </figure>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm section-purple">
+  <section class="grid-block col align-center section section-carousel visible-sm section-purple">
     <p class="p weight-strong">Full-stack</p>
     <p class="p">Environments include all your services and replicated databases, with up-to-date configs.</p>
     <figure class="figure">
@@ -1294,7 +1323,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </figure>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm section-green">
+  <section class="grid-block col align-center section section-carousel visible-sm section-green">
     <p class="p weight-strong">Test E2E</p>
     <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
     <figure class="figure">
@@ -1303,7 +1332,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </section>
 
   <section class="grid-block justify-center section-video">
-    <a class="grid-block shrink align-center a" href="https://youtu.be/bZNbWoLcZq4" target="_blank">
+    <a class="grid-block shrink align-center a" href="https://www.youtube.com/watch?v=bZNbWoLcZq4&index=2&list=PLq6TD6bZGZkZITy0W6PnqlerCzrgOd4qm" target="_blank">
       <div class="grid-block shrink justify-center align-center video margin-right-sm">
         <svg class="icons">
           <use xlink:href = "#icons-play">
@@ -1314,13 +1343,13 @@ window.addEventListener('DOMContentLoaded', function(){
   </section>
 </article>
 
-      <article class="article article-end-to-end padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-end-to-end">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Demo and share your changes, end to end.</h2>
     <p class="text-center">Every app runs in its own isolated environment, and includes all the services needed (databases included) to review your change end-to-end, without waiting for a staging server.</p>
   </section>
 
-  <section class="grid-block col section-dark">
+  <section class="grid-block col section section-dark">
     <div class="grid-container-lg grid-block justify-center">
       <ul class="grid-block col card padding-md">
         <li class="grid-block margin-bottom-sm padding-sm col-xxs">
@@ -1337,26 +1366,26 @@ window.addEventListener('DOMContentLoaded', function(){
   </section>
 </article>
 
-      <article class="article article-automated padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-automated">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Run your app on fully automated environments.</h2>
     <p class="text-center">Your app starts up, spins down, and rebuilds itself automatically in a way that makes sense with modern software development. Say you're starting a new feature or fixing a bug; all you need to do is:</p>
   </section>
 
-  <section class="grid-block col align-center quote-wrapper text-gray">
+  <section class="grid-block col align-center section section-quote text-gray">
     <blockquote class="quote-bubble text-center">
       <div class="arrow"></div>
       Using Runnable reduces the effort required to manage our feature acceptance environments for the entire team.
     </blockquote>
     <div class="grid-block align-center shrink quote-attribution">
-      <img class="grid-content shrink avatar" src="images/for/alex-morse.png" alt="Alex Morse">
+      <img class="grid-content shrink avatar" src="images/for/gregg-kang.png" alt="Gregg Kang">
       Gregg Kang, eShares
       <br>
       Head of Platform Engineering
     </div>
   </section>
 
-  <section class="grid-block col section-dark">
+  <section class="grid-block col section section-dark">
     <div class="grid-container-lg grid-block justify-center">
       <ul class="grid-block col-md card card-lg">
         <li class="grid-block margin-bottom-sm padding-sm col row-md">
@@ -1383,7 +1412,7 @@ window.addEventListener('DOMContentLoaded', function(){
 </article>
 
       <article class="article article-easy-setup">
-  <section class="grid-container article-heading">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Start running fast.</h2>
     <p class="p text-center">Set up once and get unlimited environments to run your app.</p>
     <ul class="grid-block margin-top-md list-features">
@@ -1399,7 +1428,7 @@ window.addEventListener('DOMContentLoaded', function(){
     </ul>
   </section>
 
-  <section class="grid-block col align-center quote-wrapper text-gray">
+  <section class="grid-block col align-center section section-quote text-gray">
     <blockquote class="quote-bubble text-center">
       <div class="arrow"></div>
       After a few hours we were up and running. Now we have test environments per feature without managing the orchestration.
@@ -1413,7 +1442,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </section>
 </article>
 
-      <section class="section-product-cta">
+      <section class="section section-product-cta">
   <div class="grid-block grid-container col align-center">
     <p class="grid-content p text-white text-center padding-left-sm-xs padding-right-sm-xs">See what your team’s workflow will look like with Runnable.</p>
     <a class="grid-content btn btn-lg btn-white" href="how-it-works/">How It Works</a>
@@ -1470,6 +1499,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1642,6 +1672,7 @@ window.addEventListener('DOMContentLoaded', function(){
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1674,7 +1705,26 @@ window.addEventListener('DOMContentLoaded', function(){
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

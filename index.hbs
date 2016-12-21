@@ -2,22 +2,13 @@
 <html lang="en">
 
   <head>
-    <!-- Google Analytics Content Experiment code -->
-    <script>function utmx_section(){}function utmx(){}(function(){var
-    k='118496608-2',d=document,l=d.location,c=d.cookie;
-    if(l.search.indexOf('utm_expid='+k)>0)return;
-    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-    </script><script>utmx('url','A/B');</script>
-    <!-- End of Google Analytics Content Experiment code -->
+    <style>.async-hide {opacity: 0 !important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
 
-    
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -575,7 +566,7 @@
 }
 </script>
 
-    <title>Speed up development with Runnable</title>
+    <title>Runnable: Catch bugs earlier.</title>
     <script ugly>
       // modals
 function openModal(event,dragging) {
@@ -603,6 +594,10 @@ function openModal(event,dragging) {
       setupForm('signup');
     }
 
+    if (modalName === 'video') {
+      addVideo();
+    }
+
     // mixpanel
     mixpanel.track('Open Modal: ' + modalName);
   }
@@ -617,6 +612,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -627,6 +623,22 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
 }
 
 // show bitbucket form
@@ -928,6 +940,7 @@ window.addEventListener('DOMContentLoaded', function(){
       });
     }
   }
+
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
@@ -960,61 +973,6 @@ window.addEventListener('load', function(){
         });
   }, false);
 }(document, window));
-
-      var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    videoId: 'BX5iPEWSrnY',
-    playerVars: {
-      color: 'white',
-      iv_load_policy: 3,
-      modestbranding: 1,
-      rel: 0,
-      showinfo: 0
-    },
-    events: {
-      'onReady': onPlayerReady
-    }
-  });
-}
-
-function playVideo() {
-  document.body.classList.add('modal-open');
-  document.getElementById('player').classList.add('playing');
-  player.playVideo();
-}
-
-function pauseVideo() {
-  document.body.classList.remove('modal-open');
-  document.getElementById('player').classList.remove('playing');
-  player.pauseVideo();
-}
-
-function onPlayerReady(event) {
-  Modernizr.on('videoautoplay', function(result) {
-    if (result) {
-      var videoStart = document.getElementsByClassName('video-start');
-      var videoPause = document.getElementsByClassName('video-pause');
-      if (videoStart) {
-        var i;
-        for (i = 0; i < videoStart.length; i++) {
-          videoStart[i].addEventListener('click', playVideo);
-          videoStart[i].addEventListener('touchend', playVideo);
-        }
-        for (i = 0; i < videoPause.length; i++) {
-          videoPause[i].addEventListener('click', pauseVideo);
-          videoPause[i].addEventListener('touchend', pauseVideo);
-        }
-      }
-    }
-  });
-}
 
       window.addEventListener('load', function(){
   var statusPage = new StatusPage.page({page:'ngvk75ydhg3t'});
@@ -1062,7 +1020,7 @@ function onPlayerReady(event) {
       Commit Time: {{{commitTime}}}
     -->
 
-  <body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-home" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
@@ -1124,6 +1082,7 @@ function onPlayerReady(event) {
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -1139,91 +1098,191 @@ function onPlayerReady(event) {
 
 
     <main class="grid-block col main">
-      <div id="player" class="video-embed"></div>
-<button class="btn btn-icon video-pause" title="Paws">
-  <svg class="icons icons-close">
-    <use xlink:href="#icons-close">
-  </svg>
-</button>
+      <div class="grid-block align-center justify-center modal-backdrop transparent video" id="video">
+  <div class="close-bg js-modal-close"></div>
+</div>
 
-      <article class="hero video-hero">
-  <h1 class="h1 text-center">Speed up <br class="br">development.</h1>
-  <p class="h3 text-center">Full-stack environments for every<br class="br"> branch and any application.</p>
-  <div class="video-img-wrapper video-start">
-    <button class="btn btn-lg green video-link">Watch the Video
-      <img src="images/video/play.svg" class="img" height="21" width="21">
-    </button>
-    <img class="video-img" src="images/video/video-still.jpg">
-    <iframe id="mobile-player" class="mobile-video-embed" src="https://www.youtube-nocookie.com/embed/BX5iPEWSrnY?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+      <article class="hero home-hero">
+  <div class="grid-block col grid-container noscroll">
+    <h1 class="h1 text-center">Catch bugs earlier.</h1>
+    <p class="h3 text-center">Run automated and manual tests before<br class="hidden-xs"> merging your feature branches.</p>
+    <div class="grid-block justify-center noscroll">
+      <button data-target="#sign-up" class="btn btn-lg js-modal track-sign-up">
+        <span class="span no-touching">Start Your Free Trial</span>
+      </button>
+    </div>
   </div>
 </article>
 
-      <article class="grid-block article article-more">
-  <div class="grid-block align-center grid-container">
-    <div class="grid-block justify-center">
-      <ul class="grid-block list-companies justify-center">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-cratejoy.png" height="81" width="90" alt="Cratejoy">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-viralstyle.png" height="81" width="90" alt="Viralstyle">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-redeye.png" height="81" width="90" alt="Redeye">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-eshares.png" height="81" width="90" alt="eShares">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-convoy.png" height="81" width="90" alt="Convoy">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-hitch.png" height="81" width="90" alt="Hitch.">
+      <article class="grid-block align-center justify-center noscroll section article article-more">
+  <div data-target="#video" class="grid-block shrink align-center video-cta noscroll js-modal">
+    <img src="images/home/video-still.jpg" class="grid-block shrink img no-touching">
+    <img src="images/home/play.svg" class="icon-play no-touching" height="120" width="120">
+  </div>
+  <div class="grid-block shrink col">
+    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments that include the services, databases, and data you need to test end‑to‑end.</h2>
+  </div>
+</article>
+
+      <article class="grid-block col align-center section article article-validate">
+  <img class="img margin-bottom-md" src="images/home/validate.svg" width="150" height="111">
+  <h2 class="h3 weight-strong text-center">Validate your changes.</h2>
+  <h3 class="h3 weight-light text-center">Test as you code with environments that rebuild on every commit.</h3>
+</article>
+
+      <article class="grid-block section article article-testing">
+  <div class="grid-block grid-container-lg noscroll col-sm">
+    <div class="grid-block col copy-wrapper left">
+      <h3 class="h3 weight-strong">Run automated tests.</h3>
+      <h4 class="h3">View test results on the pull<br class="hidden-md"> request page.</h4>
+      <ul class="grid-block lists-wrapper">
+        <li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Integration
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Cucumber
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Protractor
+          </ul>
+        <li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Manual
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              RainforestQA
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Test.io
+          </ul>
+        <li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">UI/E2E
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Selenium
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Webdriver
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Browserstack
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Capybara
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              Sauce Labs
+          </ul>
+        <li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Unit
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              PHPUnit
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              JUnit
+            <li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check">
+              </svg>
+              RSpec
+          </ul>
       </ul>
     </div>
-    <div class="grid-block col">
-      <h2 class="h3">Save time and frustration caused by the development workflow.</h2>
-      <div class="grid-block btn-wrapper">
-        <a class="grid-content shrink btn btn-lg green" href="for/">Product Features</a>
-        <a data-target="#sign-up" class="grid-content shrink btn btn-lg white js-modal track-sign-up">Sign Up</a>
+    <div class="grid-block img-wrapper col">
+      <img class="img" src="images/home/pr-page.png" width="800" height="647">
+    </div>
+  </div>
+</article>
+
+      <article class="grid-block grid-container section article article-review">
+  <img src="images/home/review.png" class="grid-block shrink img img-wrapper" height="242" width="437">
+  <div class="grid-block col copy-wrapper right">
+    <h2 class="h3 weight-strong">Review & sign-off.</h2>
+    <h3 class="h3 weight-light">Environment URLs are shared for <br class="visible-md hidden-xxs">easy code review and demos.</h3>
+  </div>
+</article>
+
+      <article class="grid-block col align-center noscroll section article article-merge">
+  <img class="img margin-bottom-md" src="images/home/check.svg" width="90" height="90">
+  <h2 class="h3 weight-strong text-center">Merge with confidence.</h2>
+  <h3 class="h3 weight-light text-center">Fully tested and reviewed, merge your changes with your mainline branch.</h3>
+  <button class="btn btn-lg green margin-top-md">Start Your Free Trial</button>
+</article>
+
+      <article class="grid-block col align-center article article-graph">
+  <section class="grid-block col section graph-container">
+    <h2 class="h3 weight-strong text-center">Catching bugs early <br class="visible-sm">saves time & money.</h2>
+    <p class="p weight-light text-center margin-top-xxs">The number of bugs your users may encounter increases as you add developers and lines of code.</p>
+  </section>
+  <figure class="grid-block col figure-graph">
+    <div class="popover top popover-purple visible-xs in">Most bugs are caught late in development, when they’re expensive to fix.</div>
+    <div class="circle">
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="absolute bug orange has-img">
+        <div class="popover popover-purple bottom in bug-orange hidden-xs">Most bugs are caught after your changes are integrated with the rest of your system.</div>
+      </div>
+      <div class="absolute bug purple has-img">
+        <div class="popover popover-purple top in bug-purple hidden-xs">Runnable fully integrates & tests your changes earlier in development.</div>
       </div>
     </div>
-  </div>
+    <div class="popover popover-purple visible-xs bottom in bug-orange">Most bugs are caught late in development, when they’re expensive to fix.</div>
+  </figure>
+  <figure class="grid-block figure-x-axis noscroll">
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Code</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Unit Tests</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Review</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Staging</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Integration</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">QA Tests</span></div>
+  </figure>
 </article>
 
-      <article class="grid-block col align-center article article-problem">
-  <h2 class="h3 weight-strong text-center">The traditional development workflow is broken.</h2>
-  <p class="p text-center">As applications mature and teams grow, the number of environments begin to limit the speed of development.</p>
-  <ul class="grid-block list">
-    <li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-waiting.svg" height="120" width="120">
-      <p class="grid-content shrink p">Time is spent waiting for an environment to free up.</p>
-    <li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-configuration.svg" height="120" width="120">
-      <p class="grid-content shrink p">Effort is wasted setting up environments with the right versions of other services and databases.</p>
-    <li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-testing.svg" height="120" width="120">
-      <p class="grid-content shrink p">Frustration increases when a change that took a wrong turn isn’t caught earlier in the cycle.</p>
-  </div>
-</article>
-
-      <article class="grid-block col align-center article article-solution">
-  <div class="card">
-    <div class="padding-lg card-header">
-      <h2 class="h3 weight-strong text-center">Runnable removes the bottleneck.</h2>
-      <p class="p text-center">Create self-managed environments for every code branch.</p>
+      <article class="article article-home-cta">
+  <section class="grid-block grid-container-lg justify-center section">
+    <div class="grid-block col">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-bug.svg" width="54" height="54">
+      Runnable enables every developer in your team to catch bugs earlier in development.
     </div>
-    <ul class="grid-block list">
-      <li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-automatic.svg" height="120" width="210">
-        <p class="grid-content p">Runnable automatically creates environments for every branch, and keeps them up to date.</p>
-      <li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-stack.svg" height="120" width="210">
-        <p class="grid-content p">Each environment includes all the services needed (properly configured with cloned DBs) to run changes end-to-end.</p>
-      <li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-refresh.svg" height="120" width="210">
-        <p class="grid-content p">Following progress and getting feedback is as simple as reloading the environment’s URL.</p>
-    </ul>
-  </div>
-  <div class="grid-block col align-center">
-    <p class="grid-content text-white p text-center">See how Runnable enables your team to ship faster.</p>
-    <a class="grid-content btn btn-lg btn-white" href="for/">View Product Features</a>
-  </div>
+    <div class="grid-block col align-start">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-unlimited.svg" width="54" height="54">
+      All plans include unlimited builds, concurrency, and environments that run on dedicated, single-tenant infrastructure.
+      <a class="btn btn-sm green margin-top-sm" href="pricing/">View Pricing Plans</a>
+    </div>
+  </section>
 </article>
 
       <footer class="grid-block col footer justify-spaced">
@@ -1274,6 +1333,7 @@ function onPlayerReady(event) {
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1284,7 +1344,7 @@ function onPlayerReady(event) {
 </footer>
 
       <a href="http://code.runnable.com" class="grid-block well well-anchor well-code">
-        <img class="grid-block shrink img" src="images/video/codesnippets.png" height="45" width="45">
+        <img class="grid-block shrink img" src="images/home/codesnippets.png" height="45" width="45">
         <div class="grid-block col justify-center">
           <p class="p">Check out our other project:
           <div class="a weight-strong">Runnable CodeSnippets
@@ -1444,9 +1504,6 @@ function onPlayerReady(event) {
   </div>
 </div>
 
-
-    <script async src="js/external/modernizr.js"></script>
-
     <!-- segment.io-->
 <script>
   var match,
@@ -1461,6 +1518,7 @@ function onPlayerReady(event) {
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1493,7 +1551,26 @@ function onPlayerReady(event) {
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

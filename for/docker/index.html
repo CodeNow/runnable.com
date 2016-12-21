@@ -2,7 +2,13 @@
 <html lang="en">
 
   <head>
-    
+    <style>.async-hide{opacity:0!important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -11,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-17.0.3.css">
+<link rel="stylesheet" href="styles/index-18.0.7.css">
 
 <script>
   (function(self) {
@@ -559,11 +565,11 @@
 </script>
 
     <title>The benefits of Docker without the setup — Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-open-bitbucket")[0],a=document.getElementsByClassName("js-open-github")[0],s=document.getElementsByClassName("track-grant-access-github")[0];a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),n.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),n.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),t=document.getElementsByClassName("form-bitbucket"),s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"})),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function toggle(e){var t,n,a=e.target,s=document.getElementsByClassName("js-toggler"),i=document.getElementsByClassName("js-toggle");if(!a.classList.contains("js-toggler"))for(;(a=a.parentElement)&&!a.classList.contains("js-toggler"););if(!a.classList.contains("active")){for(n=a.getAttribute("data-toggler"),t=0;t<s.length;t++)s[t].classList.remove("active");for(t=0;t<i.length;t++)i[t].classList.contains("fade")?(i[t].classList.remove("in"),n===i[t].getAttribute("data-toggle")&&i[t].classList.add("in")):(i[t].classList.add("hide"),n===i[t].getAttribute("data-toggle")&&i[t].classList.remove("hide"));a.classList.add("active")}}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-toggler");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",toggle),t[e].addEventListener("touchend",toggle)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),"video"===a&&addVideo(),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t,n=document.getElementsByClassName("modal-backdrop in")[0],a=n.getElementsByClassName("js-modal-close")[0];e.preventDefault(),n.classList.remove("in"),document.body.classList.remove("modal-open"),a.removeEventListener("click",closeModal),a.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal),n.getElementsByTagName("iframe").length&&(t=n.getElementsByTagName("iframe")[0],t.parentNode.removeChild(t))}function addVideo(){var e=document.getElementById("video"),t=document.createElement("iframe");t.setAttribute("frameborder","0"),t.setAttribute("allowfullscreen",""),t.setAttribute("src","https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0"),t.classList.add("video-player"),e.appendChild(t)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-open-bitbucket")[0],a=document.getElementsByClassName("js-open-github")[0],s=document.getElementsByClassName("track-grant-access-github")[0];a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),n.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),n.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),t=document.getElementsByClassName("form-bitbucket"),s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"})),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function toggle(e){var t,n,a=e.target,s=document.getElementsByClassName("js-toggler"),i=document.getElementsByClassName("js-toggle");if(!a.classList.contains("js-toggler"))for(;(a=a.parentElement)&&!a.classList.contains("js-toggler"););if(!a.classList.contains("active")){for(n=a.getAttribute("data-toggler"),t=0;t<s.length;t++)s[t].classList.remove("active");for(t=0;t<i.length;t++)i[t].classList.contains("fade")?(i[t].classList.remove("in"),n===i[t].getAttribute("data-toggle")&&i[t].classList.add("in")):(i[t].classList.add("hide"),n===i[t].getAttribute("data-toggle")&&i[t].classList.remove("hide"));a.classList.add("active")}}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-toggler");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",toggle),t[e].addEventListener("touchend",toggle)}),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 5a555b667340fc71a99142596d1aea60acbe19af
-      Commit Time: Tue Nov 1 22:56:36 2016 -0700
+      Commit Hash: a850407deb7958723f89c72c0aa1f31cb64f20da
+      Commit Time: Tue Dec 20 23:23:26 2016 -0800
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -628,6 +634,7 @@
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</span></a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -691,13 +698,13 @@
   </div>
 </article>
 
-      <article class="article article-browser padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-browser">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Manage everything from your browser.</h2>
     <p class="text-center">Tail logs, edit files, run shell commands all in your browser with the most polished Docker user interface available. Prefer the keyboard? We have a <a href="https://github.com/Runnable/cli" target="_blank" class="link">CLI</a> made just for you.</p>
   </section>
 
-  <section class="grid-block col section-dark">
+  <section class="grid-block col section section-dark">
     <div class="grid-container-lg grid-block justify-center">
       <ul class="grid-block col card padding-md">
         <li class="grid-block margin-bottom-sm padding-sm col-xxs">
@@ -739,7 +746,7 @@
     </div>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm">
+  <section class="grid-block col align-center section section-carousel visible-sm">
     <p class="p weight-strong">Available</p>
     <p class="p">Changes are always ready to test with automatic environments for every branch of every repository.</p>
     <figure class="figure">
@@ -747,7 +754,7 @@
     </figure>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm section-purple">
+  <section class="grid-block col align-center section section-carousel visible-sm section-purple">
     <p class="p weight-strong">Full-stack</p>
     <p class="p">Environments include all your services and replicated databases, with up-to-date configs.</p>
     <figure class="figure">
@@ -755,7 +762,7 @@
     </figure>
   </section>
 
-  <section class="grid-block col align-center section-carousel visible-sm section-green">
+  <section class="grid-block col align-center section section-carousel visible-sm section-green">
     <p class="p weight-strong">Test E2E</p>
     <p class="p">Run end-to-end or integration tests with every code change, with Selenium/Webdriver support.</p>
     <figure class="figure">
@@ -764,7 +771,7 @@
   </section>
 
   <section class="grid-block justify-center section-video">
-    <a class="grid-block shrink align-center a" href="https://youtu.be/bZNbWoLcZq4" target="_blank">
+    <a class="grid-block shrink align-center a" href="https://www.youtube.com/watch?v=bZNbWoLcZq4&index=2&list=PLq6TD6bZGZkZITy0W6PnqlerCzrgOd4qm" target="_blank">
       <div class="grid-block shrink justify-center align-center video margin-right-sm">
         <svg class="icons">
           <use xlink:href="#icons-play"/>
@@ -775,13 +782,13 @@
   </section>
 </article>
 
-      <article class="article article-native-docker padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-native-docker">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Native support for Docker.</h2>
     <p class="text-center">Runnable is built on Docker and its supporting technologies, so you're never locked into a proprietary format or system. <a href="/how-it-works/#behind-the-scenes" class="link">Read more</a> about Runnable's technology.</p>
   </section>
 
-  <section class="grid-block col section-dark">
+  <section class="grid-block col section section-dark">
     <div class="grid-container-lg grid-block justify-center">
       <ul class="grid-block col card padding-md">
         <li class="grid-block margin-bottom-sm padding-sm col-xxs">
@@ -798,13 +805,13 @@
   </section>
 </article>
 
-      <article class="article article-seamless-workflow padding-bottom-none">
-  <section class="grid-container article-heading">
+      <article class="article article-seamless-workflow">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Seamless integration with your tools.</h2>
     <p class="text-center">URLs, test results, and statuses for your running apps are presented right where you need them.</p>
   </section>
 
-  <section class="grid-block justify-center section-dark">
+  <section class="grid-block justify-center section section-dark">
     <ul class="grid-container-lg grid-block justify-center">
       <li class="grid-block col align-center card padding-xl">
         <img class="grid-content shrink img margin-bottom-lg" src="images/for/notification.png" width="400" height="200">
@@ -817,7 +824,7 @@
 </article>
 
       <article class="article article-easy-setup">
-  <section class="grid-container article-heading">
+  <section class="grid-container section">
     <h2 class="h2 weight-strong text-center">Start running fast.</h2>
     <p class="p text-center">Set up once and get unlimited environments to run your app.</p>
     <ul class="grid-block margin-top-md list-features">
@@ -833,7 +840,7 @@
     </li></ul>
   </section>
 
-  <section class="grid-block col align-center quote-wrapper text-gray">
+  <section class="grid-block col align-center section section-quote text-gray">
     <blockquote class="quote-bubble text-center">
       <div class="arrow"></div>
       After a few hours we were up and running. Now we have test environments per feature without managing the orchestration.
@@ -847,7 +854,7 @@
   </section>
 </article>
 
-      <section class="section-product-cta">
+      <section class="section section-product-cta">
   <div class="grid-block grid-container col align-center">
     <p class="grid-content p text-white text-center padding-left-sm-xs padding-right-sm-xs">See what your team’s workflow will look like with Runnable.</p>
     <a class="grid-content btn btn-lg btn-white" href="how-it-works/">How It Works</a>
@@ -904,6 +911,7 @@
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1076,6 +1084,7 @@
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1108,7 +1117,26 @@
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

@@ -2,7 +2,13 @@
 <html lang="en">
 
   <head>
-    
+    <style>.async-hide{opacity:0!important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -11,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-17.0.3.css">
+<link rel="stylesheet" href="styles/index-18.0.7.css">
 
 <script>
   (function(self) {
@@ -562,8 +568,8 @@
     <script ugly="">!function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
-      Commit Hash: 5a555b667340fc71a99142596d1aea60acbe19af
-      Commit Time: Tue Nov 1 22:56:36 2016 -0700
+      Commit Hash: a850407deb7958723f89c72c0aa1f31cb64f20da
+      Commit Time: Tue Dec 20 23:23:26 2016 -0800
     -->
 
   </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
@@ -663,6 +669,7 @@
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -695,7 +702,26 @@
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

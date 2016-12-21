@@ -2,22 +2,13 @@
 <html lang="en">
 
   <head>
-    <!-- Google Analytics Content Experiment code -->
-    <script>function utmx_section(){}function utmx(){}(function(){var
-    k='118496608-2',d=document,l=d.location,c=d.cookie;
-    if(l.search.indexOf('utm_expid='+k)>0)return;
-    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-    </script><script>utmx('url','A/B');</script>
-    <!-- End of Google Analytics Content Experiment code -->
+    <style>.async-hide{opacity:0!important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
 
-    
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -26,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-17.0.3.css">
+<link rel="stylesheet" href="styles/index-18.0.7.css">
 
 <script>
   (function(self) {
@@ -573,15 +564,15 @@
 }
 </script>
 
-    <title>Speed up development with Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-open-bitbucket")[0],a=document.getElementsByClassName("js-open-github")[0],s=document.getElementsByClassName("track-grant-access-github")[0];a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),n.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),n.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),t=document.getElementsByClassName("form-bitbucket"),s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"})),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function onYouTubeIframeAPIReady(){player=new YT.Player("player",{videoId:"BX5iPEWSrnY",playerVars:{color:"white",iv_load_policy:3,modestbranding:1,rel:0,showinfo:0},events:{onReady:onPlayerReady}})}function playVideo(){document.body.classList.add("modal-open"),document.getElementById("player").classList.add("playing"),player.playVideo()}function pauseVideo(){document.body.classList.remove("modal-open"),document.getElementById("player").classList.remove("playing"),player.pauseVideo()}function onPlayerReady(e){Modernizr.on("videoautoplay",function(e){if(e){var t=document.getElementsByClassName("video-start"),n=document.getElementsByClassName("video-pause");if(t){var a;for(a=0;a<t.length;a++)t[a].addEventListener("click",playVideo),t[a].addEventListener("touchend",playVideo);for(a=0;a<n.length;a++)n[a].addEventListener("click",pauseVideo),n[a].addEventListener("touchend",pauseVideo)}}})}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);var tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";var firstScriptTag=document.getElementsByTagName("script")[0];firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var player;window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
+    <title>Runnable: Catch bugs earlier.</title>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),s=document.getElementById(a),i=s.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),s.classList.add("in"),document.body.classList.add("modal-open"),i.addEventListener("click",closeModal),i.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),"video"===a&&addVideo(),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t,n=document.getElementsByClassName("modal-backdrop in")[0],a=n.getElementsByClassName("js-modal-close")[0];e.preventDefault(),n.classList.remove("in"),document.body.classList.remove("modal-open"),a.removeEventListener("click",closeModal),a.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal),n.getElementsByTagName("iframe").length&&(t=n.getElementsByTagName("iframe")[0],t.parentNode.removeChild(t))}function addVideo(){var e=document.getElementById("video"),t=document.createElement("iframe");t.setAttribute("frameborder","0"),t.setAttribute("allowfullscreen",""),t.setAttribute("src","https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0"),t.classList.add("video-player"),e.appendChild(t)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t;if("signup"===e){var n=document.getElementsByClassName("js-open-bitbucket")[0],a=document.getElementsByClassName("js-open-github")[0],s=document.getElementsByClassName("track-grant-access-github")[0];a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),n.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),n.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),t=document.getElementsByClassName("form-bitbucket"),s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}else"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise"));for(i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),s=e.getElementsByTagName("textarea")[0],i=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;s&&(s.disabled=!0),i.disabled=!0,i.classList.contains("green")?i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':i.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;s&&(s.disabled=!1),i.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var s,i,o=new XMLHttpRequest;"bitbucket"===a?(s="https://codenow.com:8443/bitbucket",i="bitbucket@runnable.com"):"enterprise"===a&&(s="https://codenow.com:2096/notify/enterprise",i="preview@runnable.com"),o.open("POST",s,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+i+'">'+i+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n=JSON.parse(o.responseText),s=n.result_code,i=n.result_message,r=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(i,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(t.classList.add("hide"),t.classList.remove("show"),r.classList.add("show"),r.classList.remove("hide"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"})),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,i=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:s,name:i},analytics.ready(function(){analytics.track(t+"-list sign up",{email:s,name:i,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],s=document.createElement("small"),i=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),s.classList.add("popover","bottom","in","small","red","text-center"),s.innerHTML=e,i.appendChild(s),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("signup"),"/pricing/"===window.location.pathname&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],s=document.createElement("a");s.href="//status.runnable.com",s.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(s),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}s.textContent=e,s.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 5a555b667340fc71a99142596d1aea60acbe19af
-      Commit Time: Tue Nov 1 22:56:36 2016 -0700
+      Commit Hash: a850407deb7958723f89c72c0aa1f31cb64f20da
+      Commit Time: Tue Dec 20 23:23:26 2016 -0800
     -->
 
-  </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
+  </head><body class="page-landing page-home" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
@@ -643,6 +634,7 @@
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</span></a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -658,91 +650,191 @@
 
 
     <main class="grid-block col main">
-      <div id="player" class="video-embed"></div>
-<button class="btn btn-icon video-pause" title="Paws">
-  <svg class="icons icons-close">
-    <use xlink:href="#icons-close"/>
-  </svg>
-</button>
+      <div class="grid-block align-center justify-center modal-backdrop transparent video" id="video">
+  <div class="close-bg js-modal-close"></div>
+</div>
 
-      <article class="hero video-hero">
-  <h1 class="h1 text-center">Speed up <br class="br">development.</h1>
-  <p class="h3 text-center">Full-stack environments for every<br class="br"> branch and any application.</p>
-  <div class="video-img-wrapper video-start">
-    <button class="btn btn-lg green video-link">Watch the Video
-      <img src="images/video/play.svg" class="img" height="21" width="21">
-    </button>
-    <img class="video-img" src="images/video/video-still.jpg">
-    <iframe id="mobile-player" class="mobile-video-embed" src="https://www.youtube-nocookie.com/embed/BX5iPEWSrnY?modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+      <article class="hero home-hero">
+  <div class="grid-block col grid-container noscroll">
+    <h1 class="h1 text-center">Catch bugs earlier.</h1>
+    <p class="h3 text-center">Run automated and manual tests before<br class="hidden-xs"> merging your feature branches.</p>
+    <div class="grid-block justify-center noscroll">
+      <button data-target="#sign-up" class="btn btn-lg js-modal track-sign-up">
+        <span class="span no-touching">Start Your Free Trial</span>
+      </button>
+    </div>
   </div>
 </article>
 
-      <article class="grid-block article article-more">
-  <div class="grid-block align-center grid-container">
-    <div class="grid-block justify-center">
-      <ul class="grid-block list-companies justify-center">
-        <li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-cratejoy.png" height="81" width="90" alt="Cratejoy">
-        </li><li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-viralstyle.png" height="81" width="90" alt="Viralstyle">
-        </li><li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-redeye.png" height="81" width="90" alt="Redeye">
-        </li><li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-eshares.png" height="81" width="90" alt="eShares">
-        </li><li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-convoy.png" height="81" width="90" alt="Convoy">
-        </li><li class="grid-block shrink list-item">
-          <img class="img" src="images/video/company-hitch.png" height="81" width="90" alt="Hitch.">
+      <article class="grid-block align-center justify-center noscroll section article article-more">
+  <div data-target="#video" class="grid-block shrink align-center video-cta noscroll js-modal">
+    <img src="images/home/video-still.jpg" class="grid-block shrink img no-touching">
+    <img src="images/home/play.svg" class="icon-play no-touching" height="120" width="120">
+  </div>
+  <div class="grid-block shrink col">
+    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments that include the services, databases, and data you need to test end‑to‑end.</h2>
+  </div>
+</article>
+
+      <article class="grid-block col align-center section article article-validate">
+  <img class="img margin-bottom-md" src="images/home/validate.svg" width="150" height="111">
+  <h2 class="h3 weight-strong text-center">Validate your changes.</h2>
+  <h3 class="h3 weight-light text-center">Test as you code with environments that rebuild on every commit.</h3>
+</article>
+
+      <article class="grid-block section article article-testing">
+  <div class="grid-block grid-container-lg noscroll col-sm">
+    <div class="grid-block col copy-wrapper left">
+      <h3 class="h3 weight-strong">Run automated tests.</h3>
+      <h4 class="h3">View test results on the pull<br class="hidden-md"> request page.</h4>
+      <ul class="grid-block lists-wrapper">
+        <li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Integration
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Cucumber
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Protractor
+          </li></ul>
+        </li><li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Manual
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              RainforestQA
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Test.io
+          </li></ul>
+        </li><li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">UI/E2E
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Selenium
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Webdriver
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Browserstack
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Capybara
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              Sauce Labs
+          </li></ul>
+        </li><li class="li">
+          <ul class="grid-block col ul">
+            <li class="li weight-strong">Unit
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              PHPUnit
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              JUnit
+            </li><li class="li">
+              <svg class="icons icons-check text-green">
+                <use xlink:href="#icons-check"/>
+              </svg>
+              RSpec
+          </li></ul>
       </li></ul>
     </div>
-    <div class="grid-block col">
-      <h2 class="h3">Save time and frustration caused by the development workflow.</h2>
-      <div class="grid-block btn-wrapper">
-        <a class="grid-content shrink btn btn-lg green" href="for/">Product Features</a>
-        <a data-target="#sign-up" class="grid-content shrink btn btn-lg white js-modal track-sign-up">Sign Up</a>
-      </div>
+    <div class="grid-block img-wrapper col">
+      <img class="img" src="images/home/pr-page.png" width="800" height="647">
     </div>
   </div>
 </article>
 
-      <article class="grid-block col align-center article article-problem">
-  <h2 class="h3 weight-strong text-center">The traditional development workflow is broken.</h2>
-  <p class="p text-center">As applications mature and teams grow, the number of environments begin to limit the speed of development.</p>
-  <ul class="grid-block list">
-    <li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-waiting.svg" height="120" width="120">
-      <p class="grid-content shrink p">Time is spent waiting for an environment to free up.</p>
-    </li><li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-configuration.svg" height="120" width="120">
-      <p class="grid-content shrink p">Effort is wasted setting up environments with the right versions of other services and databases.</p>
-    </li><li class="grid-block col padding-md">
-      <img class="grid-content shrink img" src="images/video/problem-testing.svg" height="120" width="120">
-      <p class="grid-content shrink p">Frustration increases when a change that took a wrong turn isn’t caught earlier in the cycle.</p>
-  
-</li></ul></article>
+      <article class="grid-block grid-container section article article-review">
+  <img src="images/home/review.png" class="grid-block shrink img img-wrapper" height="242" width="437">
+  <div class="grid-block col copy-wrapper right">
+    <h2 class="h3 weight-strong">Review & sign-off.</h2>
+    <h3 class="h3 weight-light">Environment URLs are shared for <br class="visible-md hidden-xxs">easy code review and demos.</h3>
+  </div>
+</article>
 
-      <article class="grid-block col align-center article article-solution">
-  <div class="card">
-    <div class="padding-lg card-header">
-      <h2 class="h3 weight-strong text-center">Runnable removes the bottleneck.</h2>
-      <p class="p text-center">Create self-managed environments for every code branch.</p>
+      <article class="grid-block col align-center noscroll section article article-merge">
+  <img class="img margin-bottom-md" src="images/home/check.svg" width="90" height="90">
+  <h2 class="h3 weight-strong text-center">Merge with confidence.</h2>
+  <h3 class="h3 weight-light text-center">Fully tested and reviewed, merge your changes with your mainline branch.</h3>
+  <button class="btn btn-lg green margin-top-md">Start Your Free Trial</button>
+</article>
+
+      <article class="grid-block col align-center article article-graph">
+  <section class="grid-block col section graph-container">
+    <h2 class="h3 weight-strong text-center">Catching bugs early <br class="visible-sm">saves time & money.</h2>
+    <p class="p weight-light text-center margin-top-xxs">The number of bugs your users may encounter increases as you add developers and lines of code.</p>
+  </section>
+  <figure class="grid-block col figure-graph">
+    <div class="popover top popover-purple visible-xs in">Most bugs are caught late in development, when they’re expensive to fix.</div>
+    <div class="circle">
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="spin-circle">
+        <div class="absolute bug orange"></div>
+      </div>
+      <div class="absolute bug orange has-img">
+        <div class="popover popover-purple bottom in bug-orange hidden-xs">Most bugs are caught after your changes are integrated with the rest of your system.</div>
+      </div>
+      <div class="absolute bug purple has-img">
+        <div class="popover popover-purple top in bug-purple hidden-xs">Runnable fully integrates & tests your changes earlier in development.</div>
+      </div>
     </div>
-    <ul class="grid-block list">
-      <li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-automatic.svg" height="120" width="210">
-        <p class="grid-content p">Runnable automatically creates environments for every branch, and keeps them up to date.</p>
-      </li><li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-stack.svg" height="120" width="210">
-        <p class="grid-content p">Each environment includes all the services needed (properly configured with cloned DBs) to run changes end-to-end.</p>
-      </li><li class="grid-block col padding-lg list-item">
-        <img class="grid-content shrink img" src="images/video/solution-refresh.svg" height="120" width="210">
-        <p class="grid-content p">Following progress and getting feedback is as simple as reloading the environment’s URL.</p>
-    </li></ul>
-  </div>
-  <div class="grid-block col align-center">
-    <p class="grid-content text-white p text-center">See how Runnable enables your team to ship faster.</p>
-    <a class="grid-content btn btn-lg btn-white" href="for/">View Product Features</a>
-  </div>
+    <div class="popover popover-purple visible-xs bottom in bug-orange">Most bugs are caught late in development, when they’re expensive to fix.</div>
+  </figure>
+  <figure class="grid-block figure-x-axis noscroll">
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Code</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Unit Tests</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Review</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Staging</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">Integration</span></div>
+    <div class="grid-block x-col noscroll"><span class="hidden-xs">QA Tests</span></div>
+  </figure>
+</article>
+
+      <article class="article article-home-cta">
+  <section class="grid-block grid-container-lg justify-center section">
+    <div class="grid-block col">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-bug.svg" width="54" height="54">
+      Runnable enables every developer in your team to catch bugs earlier in development.
+    </div>
+    <div class="grid-block col align-start">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-unlimited.svg" width="54" height="54">
+      All plans include unlimited builds, concurrency, and environments that run on dedicated, single-tenant infrastructure.
+      <a class="btn btn-sm green margin-top-sm" href="pricing/">View Pricing Plans</a>
+    </div>
+  </section>
 </article>
 
       <footer class="grid-block col footer justify-spaced">
@@ -793,6 +885,7 @@
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -803,7 +896,7 @@
 </footer>
 
       <a href="http://code.runnable.com" class="grid-block well well-anchor well-code">
-        <img class="grid-block shrink img" src="images/video/codesnippets.png" height="45" width="45">
+        <img class="grid-block shrink img" src="images/home/codesnippets.png" height="45" width="45">
         <div class="grid-block col justify-center">
           <p class="p">Check out our other project:
           <div class="a weight-strong">Runnable CodeSnippets
@@ -963,9 +1056,6 @@
   </div>
 </div>
 
-
-    <script async src="js/external/modernizr.js"></script>
-
     <!-- segment.io-->
 <script>
   var match,
@@ -980,6 +1070,7 @@
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1012,7 +1103,26 @@
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

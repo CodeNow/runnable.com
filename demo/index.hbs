@@ -2,7 +2,13 @@
 <html lang="en">
 
   <head>
-    
+    <style>.async-hide {opacity: 0 !important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -588,6 +594,10 @@ function openModal(event,dragging) {
       setupForm('signup');
     }
 
+    if (modalName === 'video') {
+      addVideo();
+    }
+
     // mixpanel
     mixpanel.track('Open Modal: ' + modalName);
   }
@@ -602,6 +612,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -612,6 +623,22 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
 }
 
 // show bitbucket form
@@ -913,6 +940,7 @@ window.addEventListener('DOMContentLoaded', function(){
       });
     }
   }
+
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
@@ -1054,6 +1082,7 @@ window.addEventListener('load', function(){
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -1124,6 +1153,7 @@ window.addEventListener('load', function(){
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1296,6 +1326,7 @@ window.addEventListener('load', function(){
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1328,7 +1359,26 @@ window.addEventListener('load', function(){
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

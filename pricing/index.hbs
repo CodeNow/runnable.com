@@ -2,7 +2,13 @@
 <html lang="en">
 
   <head>
-    
+    <style>.async-hide {opacity: 0 !important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+
+
 <base href="/runnable.com/">
 
 <meta charset="utf-8">
@@ -588,6 +594,10 @@ function openModal(event,dragging) {
       setupForm('signup');
     }
 
+    if (modalName === 'video') {
+      addVideo();
+    }
+
     // mixpanel
     mixpanel.track('Open Modal: ' + modalName);
   }
@@ -602,6 +612,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -612,6 +623,22 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
 }
 
 // show bitbucket form
@@ -913,6 +940,7 @@ window.addEventListener('DOMContentLoaded', function(){
       });
     }
   }
+
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
@@ -1095,6 +1123,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
+      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -1121,7 +1150,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="grid-content shrink price weight-strong">$9<span class="per-month"> ⁄ mo</span></p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">2</span> templates</p>
+        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">2</span> services</p>
         <small class="weight-light text-gray small padding-xxs">For basic<br>two-tier apps</small>
       </div>
       <div class="grid-block col text-center plan padding-sm">
@@ -1130,7 +1159,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="grid-content shrink price weight-strong">$29<span class="per-month"> ⁄ mo</span></p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">7</span> templates</p>
+        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">7</span> services</p>
         <small class="weight-light text-gray small padding-xxs">For most<br>multi-tier apps</small>
       </div>
     </div>
@@ -1142,7 +1171,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <p class="grid-content shrink price weight-strong">$49<span class="per-month"> ⁄ mo</span></p>
           <p class="weight-light">per user</p>
         </div>
-        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">15</span> templates</p>
+        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">15</span> services</p>
         <small class="weight-light text-gray small padding-xxs">For larger apps<br>or multiple apps</small>
       </div>
       <div class="grid-block card-flipper shake-me">
@@ -1152,7 +1181,7 @@ window.addEventListener('DOMContentLoaded', function(){
             <p class="small weight-light text-gray">Coming Soon</p>
             <button class="btn gray btn-sm js-flipper">Notify Me</button>
           </div>
-          <p class="padding-xxs no-wrap">Unlimited templates</p>
+          <p class="padding-xxs no-wrap">Unlimited services</p>
           <small class="weight-light text-gray small padding-xxs">On-premise<br>support</small>
         </div>
         <form class="grid-block col text-center card-b plan padding-sm form form-enterprise show">
@@ -1191,8 +1220,8 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
   <div class="grid-block shrink col">
     <h2 class="h3 weight-strong">How our pricing works.</h2>
-    <p class="p">We charge based on the number of configuration templates you use. A <span class="weight-strong">configuration template</span> corresponds to a repository or other service (like a database) that Runnable will create environments for.</p>
-    <p class="p">The number of templates your team will need is roughly the number of services that make up your application.</p>
+    <p class="p">We charge based on the number of services you use. A <span class="weight-strong">service</span> is a running process, like an API server or a database.</p>
+    <p class="p">The number of services your team needs is equal to the number of Docker images that make up your application.</p>
   </div>
 </article>
 
@@ -1255,7 +1284,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
   <div class="grid-block col question">
     <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Which plan should I pick?</h3>
-    <p class="grid-content shrink p justify-center">We automatically determine your plan based on the number of configuration templates your team uses.</p>
+    <p class="grid-content shrink p justify-center">We automatically determine your plan based on the number of services your team adds.</p>
   </div>
   <div class="grid-block col question">
     <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Why isn’t there a free plan?</h3>
@@ -1317,6 +1346,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
@@ -1489,6 +1519,7 @@ window.addEventListener('DOMContentLoaded', function(){
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1521,7 +1552,26 @@ window.addEventListener('DOMContentLoaded', function(){
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 

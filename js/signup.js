@@ -24,6 +24,10 @@ function openModal(event,dragging) {
       setupForm('signup');
     }
 
+    if (modalName === 'video') {
+      addVideo();
+    }
+
     // mixpanel
     mixpanel.track('Open Modal: ' + modalName);
   }
@@ -38,6 +42,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -48,6 +53,22 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
 }
 
 // show bitbucket form
@@ -349,6 +370,7 @@ window.addEventListener('DOMContentLoaded', function(){
       });
     }
   }
+
   // if sign up page
   if (window.location.pathname === '/signup/') {
     setupForm('signup');
