@@ -45,10 +45,22 @@
 
 @keyframes spin-circle {
   0% {
-    transform: rotate3d(0,0,1,47deg);
+    transform: rotate3d(0,0,1,48deg);
   }
 
   100% {
     transform: rotate3d(0,0,1,76deg);
+  }
+}
+
+@media (max-width: 800px) and (min-width: 601px) {
+  @keyframes spin-circle {
+    0% {
+      transform: rotate3d(0,0,1,55deg);
+    }
+
+    100% {
+      transform: rotate3d(0,0,1,81deg);
+    }
   }
 }
