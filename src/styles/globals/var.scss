@@ -125,6 +125,8 @@ $circle-z: 2; // solid white
 $graph-x-z: 1; // x-axis lines
 
 $circle-size: 2500px;
+$circle-size-sm: $circle-size * .75;
+$circle-size-xs: $circle-size * .4;
 $circle-width: 2px;
 $bug-orange: #f2863c;
 $bug-popover-bg: #9685be;
