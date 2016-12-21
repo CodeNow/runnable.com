@@ -4,14 +4,14 @@
 
   // container for graph
   .graph-container {
-    max-width: 720px;
+    max-width: 470px;
   }
 }
 
 // curve graph
 .figure-graph {
   height: 600px;
-  margin: -210px auto 0;
+  margin: -240px auto 0;
   position: relative;
   width: 1000px;
 
@@ -217,7 +217,7 @@
 
     &.bottom {
       bottom: auto;
-      left: 6px;
+      left: 17px;
       top: 319px;
 
       &::after {
