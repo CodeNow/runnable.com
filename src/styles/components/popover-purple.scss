@@ -1,0 +1,56 @@
+.popover.popover-purple {
+  background: rgba($bug-popover-bg,.9);
+  border: 0;
+  border-radius: $input-border-radius-lg;
+  box-shadow: 0 2px 9px rgba($black,.2), inset 0 1px 0 rgba($white,.1);
+  color: $white;
+  font-size: 13px;
+  font-weight: $weight-normal;
+  left: auto;
+  line-height: 1.4;
+  width: 190px;
+
+  @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background: rgba($bug-popover-bg,.8);
+  }
+
+  &.bottom {
+    margin-left: 11px;
+    margin-top: -1px;
+
+    &::before {
+      border-bottom-color: transparent;
+    }
+
+    // scss-lint:disable ColorVariable
+    &::after {
+      border-bottom-color: #9080ba;
+      top: -8px;
+
+      @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+        border-bottom-color: #8c7cb6;
+      }
+    }
+    // scss-lint:enable ColorVariable
+  }
+
+  &.top {
+    margin-left: 11px;
+
+    &::before {
+      border-top-color: transparent;
+    }
+
+    // scss-lint:disable  ColorVariable
+    &::after {
+      border-top-color: #9080ba;
+
+      @supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+        border-top-color: #8d7ab4;
+      }
+    }
+    // scss-lint:enable  ColorVariable
+  }
+}

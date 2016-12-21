@@ -31,7 +31,9 @@
 @import "components/input-group-vertical";
 @import "components/input-validation";
 @import "components/popover";
+@import "components/popover-purple";
 @import "components/spinners";
+@import "components/video";
 @import "components/wells";
 
 // component specific
@@ -47,24 +49,29 @@
 @import "landing/confirm";
 @import "landing/header-menu";
 @import "landing/articles";
+@import "landing/sections";
 @import "landing/article-legal";
 
 @import "modals/signin";
 @import "modals/signup";
 
-@import "video/video";
-@import "video/video-hero";
-@import "video/article-more";
-@import "video/article-problem";
-@import "video/article-solution";
+@import "home/home";
+@import "home/home-hero";
+@import "home/article-home-cta";
+@import "home/article-graph";
+@import "home/article-merge";
+@import "home/article-more";
+@import "home/article-testing";
+@import "home/article-review";
+@import "home/article-validate";
 
 @import "product/product-hero";
 @import "product/article-easy-setup";
-@import "product/article-heading";
 @import "product/article-overview";
 @import "product/article-tests";
 @import "product/article-automated";
 @import "product/article-seamless-workflow";
+@import "product/section-quote";
 @import "product/section-product-cta";
 
 @import "about/about-hero";

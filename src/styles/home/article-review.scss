@@ -1,0 +1,18 @@
+.article-review {
+  @include media(md) {
+    align-items: center;
+    flex-direction: column-reverse;
+    text-align: center;
+
+    .img {
+      height: auto;
+      max-width: 100%;
+    }
+
+    .copy-wrapper {
+      flex: 0 0 auto;
+      margin-bottom: $lg;
+      padding: 0;
+    }
+  }
+}

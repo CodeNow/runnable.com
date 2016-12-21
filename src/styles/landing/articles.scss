@@ -1,14 +1,5 @@
 .article {
-  padding: $xl 0;
   position: relative;
-
-  @include media(sm) {
-    padding: $lg 0;
-  }
-
-  @include media(xxs) {
-    padding: $lg $md;
-  }
 
   &:last-of-type .section-dark {
     // scss-lint:disable ColorVariable
@@ -39,14 +30,6 @@
     }
   }
 
-  &.padding-bottom-none {
-    padding-bottom: 0;
-
-    @include media(xxs) {
-      padding: $lg 0 0;
-    }
-  }
-
   // resets from landing.scss
   .p {
     margin-bottom: 0;
@@ -56,89 +39,44 @@
     list-style-type: none;
     padding-left: 0;
   }
-}
 
-.section-dark {
-  background: $gray-lighterest;
-  border-bottom: 1px solid $gray-lightest;
-  border-top: 1px solid $gray-lightest;
-  margin-top: $xl;
-  overflow: visible;
-  padding: 0 $xl $xl;
+  .copy-wrapper {
+    flex: 0 0 50%;
+    padding: $xl 0;
 
-  @include media(xs) {
-    font-size: 16px;
-    margin-top: $lg;
-    padding: 0 $md $lg;
+    @include media(sm) {
+      flex-basis: auto;
+      padding: 0;
+    }
+
+    &.left {
+      padding-right: $xl;
+
+      @include media(md) {
+        padding-right: $sm;
+      }
+
+      @include media(sm) {
+        padding-right: 0;
+      }
+    }
+
+    &.right {
+      padding-left: $xl;
+
+      @include media(md) {
+        padding-left: $sm;
+      }
+
+      @include media(sm) {
+        padding-left: 0;
+      }
+    }
   }
 
-  > .grid-container,
-  > .grid-container-sm,
-  > .grid-container-lg {
+  .img-wrapper {
+    flex: 0 0 50%;
     overflow: visible;
-  }
-
-  > .grid-container-lg {
-
-    @include media(md) {
-      flex-direction: column;
-    }
-
-    > .grid-block {
-      flex: 0 1 50%;
-
-      @include media(md) {
-        flex: 0 0 auto;
-      }
-    }
-  }
-
-  .card {
-    background: $white;
-    border: $input-border solid $gray-lighter;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px 0 rgba($black,.05);
-    margin-top: -$xl;
-
-    @include media(xs) {
-      margin-top: -$lg;
-    }
-
-    &.card-lg {
-      flex: 0 0 auto;
-      max-width: 1080px;
-      padding: $xl;
-
-      @include media(md) {
-        padding: $md;
-      }
-
-      > .grid-block {
-        align-items: flex-start;
-      }
-
-      .img {
-        margin-bottom: $sm;
-
-        @include media(md) {
-          margin-bottom: 0;
-        }
-      }
-    }
-
-    > .grid-block {
-      align-items: center;
-
-      @include media(xxs) {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    .img {
-      @include media(xxs) {
-        margin-right: 0;
-      }
-    }
+    position: relative;
   }
 }

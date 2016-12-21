@@ -36,6 +36,7 @@ $purple-lightest: #eee1f7;
 $purple-dark: #402754; // darken($purple,10%);
 $purple-darker: #261731; // darken($purple,20%);
 $purple-darkest: #1b0f24;
+$purple-blue: #475496; // blend of purple and blue
 
 $purple-faded: #866f98;
 $purple-light-faded: #f8f5fc;
@@ -117,3 +118,18 @@ $xl: 60px;
 $size-directions: top right bottom left;
 $size-list: none xxs xs sm md lg xl;
 $sizes: $none, $xxs, $xs, $sm, $md, $lg, $xl;
+
+// for the graph
+$bugs-z: 3; // faded white + bugs
+$circle-z: 2; // solid white
+$graph-x-z: 1; // x-axis lines
+
+$circle-size: 2500px;
+$circle-size-sm: $circle-size * .75;
+$circle-size-xs: $circle-size * .4;
+$circle-width: 2px;
+$bug-orange: #f2863c;
+$bug-popover-bg: #9685be;
+
+$spin-time: 15;
+$spin-seconds: #{$spin-time}s;
