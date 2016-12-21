@@ -1,6 +1,7 @@
-.article-review .col-md {
+.article-review {
   @include media(md) {
     align-items: center;
+    flex-direction: column-reverse;
     text-align: center;
 
     .img {
@@ -10,7 +11,7 @@
 
     .copy-wrapper {
       flex: 0 0 auto;
-      margin-top: $lg;
+      margin-bottom: $lg;
       padding: 0;
     }
   }
