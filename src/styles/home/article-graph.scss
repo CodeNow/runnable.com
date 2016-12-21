@@ -1,5 +1,5 @@
 .article-graph {
-  background: linear-gradient($purple-blue, $purple-light);
+  background: linear-gradient($purple-blue, $purple-light, $purple);
   color: $white;
 
   // container for graph
@@ -91,7 +91,7 @@
     // solid curve
     &::before {
       border-color: $white;
-      box-shadow: inset 0 0 90px rgba($black,.4);
+      box-shadow: inset 0 0 90px rgba($black,.3);
       right: -300px;
 
       @include media(xs) {
