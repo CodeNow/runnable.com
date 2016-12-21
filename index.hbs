@@ -624,7 +624,7 @@ function closeModal(event) {
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
   // delete video if it exists
-  if (modal.getElementsByTagName('iframe').length) {
+  if (modal.getElementsByTagName('iframe')) {
     iframe = modal.getElementsByTagName('iframe')[0];
     iframe.parentNode.removeChild(iframe);
   }
@@ -1082,7 +1082,6 @@ window.addEventListener('load', function(){
       <a href="for/" class="list-item-a visible-sm">Product</a>
       <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
-      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="https://support.runnable.com" class="list-item-a">Get Help</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
       <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
@@ -1120,169 +1119,23 @@ window.addEventListener('load', function(){
     <img src="images/home/play.svg" class="icon-play no-touching" height="120" width="120">
   </div>
   <div class="grid-block shrink col">
-    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments that include the services, databases, and data you need to test end‑to‑end.</h2>
+    <h2 class="h3">For every branch, Runnable builds, tests, and runs full-stack environments that include the services, databases, and data you need to test end‑to‑end.</h2>
   </div>
 </article>
 
-      <article class="grid-block col align-center section article article-validate">
-  <img class="img margin-bottom-md" src="images/home/validate.svg" width="150" height="111">
+      <article class="grid-block col align-center section article">
   <h2 class="h3 weight-strong text-center">Validate your changes.</h2>
-  <h3 class="h3 weight-light text-center">Test as you code with environments that rebuild on every commit.</h3>
+  <p class="p text-center">Test as you code with environments that rebuild on every commit.</p>
 </article>
 
-      <article class="grid-block section article article-testing">
-  <div class="grid-block grid-container-lg noscroll col-sm">
-    <div class="grid-block col copy-wrapper left">
-      <h3 class="h3 weight-strong">Run automated tests.</h3>
-      <h4 class="h3">View test results on the pull<br class="hidden-md"> request page.</h4>
-      <ul class="grid-block lists-wrapper">
-        <li class="li">
-          <ul class="grid-block col ul">
-            <li class="li weight-strong">Integration
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Cucumber
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Protractor
-          </ul>
-        <li class="li">
-          <ul class="grid-block col ul">
-            <li class="li weight-strong">Manual
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              RainforestQA
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Test.io
-          </ul>
-        <li class="li">
-          <ul class="grid-block col ul">
-            <li class="li weight-strong">UI/E2E
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Selenium
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Webdriver
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Browserstack
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Capybara
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              Sauce Labs
-          </ul>
-        <li class="li">
-          <ul class="grid-block col ul">
-            <li class="li weight-strong">Unit
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              PHPUnit
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              JUnit
-            <li class="li">
-              <svg class="icons icons-check text-green">
-                <use xlink:href="#icons-check">
-              </svg>
-              RSpec
-          </ul>
-      </ul>
-    </div>
-    <div class="grid-block img-wrapper col">
-      <img class="img" src="images/home/pr-page.png" width="800" height="647">
-    </div>
-  </div>
+      <article class="grid-block col align-center section article">
+  <h2 class="h3 weight-strong text-center">Review & sign-off.</h2>
+  <p class="p text-center">Environment URLs are shared for easy code review and demos.</p>
 </article>
 
-      <article class="grid-block grid-container section article article-review">
-  <img src="images/home/review.png" class="grid-block shrink img img-wrapper" height="242" width="437">
-  <div class="grid-block col copy-wrapper right">
-    <h2 class="h3 weight-strong">Review & sign-off.</h2>
-    <h3 class="h3 weight-light">Environment URLs are shared for <br class="visible-md hidden-xxs">easy code review and demos.</h3>
-  </div>
-</article>
-
-      <article class="grid-block col align-center noscroll section article article-merge">
-  <img class="img margin-bottom-md" src="images/home/check.svg" width="90" height="90">
+      <article class="grid-block col align-center section article">
   <h2 class="h3 weight-strong text-center">Merge with confidence.</h2>
-  <h3 class="h3 weight-light text-center">Fully tested and reviewed, merge your changes with your mainline branch.</h3>
-  <button class="btn btn-lg green margin-top-md">Start Your Free Trial</button>
-</article>
-
-      <article class="grid-block col align-center article article-graph">
-  <section class="grid-block col section graph-container">
-    <h2 class="h3 weight-strong text-center">Catching bugs early <br class="visible-sm">saves time & money.</h2>
-    <p class="p weight-light text-center margin-top-xxs">The number of bugs your users may encounter increases as you add developers and lines of code.</p>
-  </section>
-  <figure class="grid-block col figure-graph">
-    <div class="popover top popover-purple visible-xs in">Most bugs are caught after your changes are integrated with the rest of your system.</div>
-    <div class="circle">
-      <div class="spin-circle">
-        <div class="absolute bug orange"></div>
-      </div>
-      <div class="spin-circle">
-        <div class="absolute bug orange"></div>
-      </div>
-      <div class="spin-circle">
-        <div class="absolute bug orange"></div>
-      </div>
-      <div class="absolute bug orange has-img">
-        <div class="popover popover-purple bottom in bug-orange hidden-xs">Most bugs are caught after your changes are integrated with the rest of your system.</div>
-      </div>
-      <div class="absolute bug purple has-img">
-        <div class="popover popover-purple top in bug-purple hidden-xs">Runnable fully integrates & tests your changes earlier in development.</div>
-      </div>
-    </div>
-    <div class="popover popover-purple visible-xs bottom in">Runnable fully integrates & tests your changes earlier in development.</div>
-  </figure>
-  <figure class="grid-block figure-x-axis noscroll">
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">Code</span></div>
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">Unit Tests</span></div>
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">Review</span></div>
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">Staging</span></div>
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">Integration</span></div>
-    <div class="grid-block x-col noscroll"><span class="hidden-xs">QA Tests</span></div>
-  </figure>
-</article>
-
-      <article class="article article-home-cta">
-  <section class="grid-block grid-container-lg justify-center section">
-    <div class="grid-block col">
-      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-bug.svg" width="54" height="54">
-      Runnable enables every developer in your team to catch bugs earlier in development.
-    </div>
-    <div class="grid-block col align-start">
-      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-unlimited.svg" width="54" height="54">
-      All plans include unlimited builds, concurrency, and environments that run on dedicated, single-tenant infrastructure.
-      <a class="btn btn-sm green margin-top-sm" href="pricing/">View Pricing Plans</a>
-    </div>
-  </section>
+  <p class="p text-center">Fully tested and reviewed, merge your changes with your mainline branch.</p>
 </article>
 
       <footer class="grid-block col footer justify-spaced">
@@ -1333,7 +1186,6 @@ window.addEventListener('load', function(){
       <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
-      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
