@@ -54,7 +54,7 @@ function closeModal(event) {
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
   // delete video if it exists
-  if (modal.getElementsByTagName('iframe')) {
+  if (modal.getElementsByTagName('iframe').length) {
     iframe = modal.getElementsByTagName('iframe')[0];
     iframe.parentNode.removeChild(iframe);
   }
