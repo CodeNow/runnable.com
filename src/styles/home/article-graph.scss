@@ -4,7 +4,19 @@
 
   // container for graph
   .graph-container {
-    max-width: 470px;
+    max-width: 600px;
+
+    @include media(sm) {
+      max-width: 510px;
+    }
+
+    @include media(xs) {
+      max-width: 450px;
+    }
+  }
+
+  .h3 + .h3 {
+    opacity: .75;
   }
 }
 
