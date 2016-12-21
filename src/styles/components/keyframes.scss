@@ -1,10 +1,10 @@
 @keyframes bug {
   0% {
-    background: $bug-orange;
+    opacity: 0;
   }
 
   100% {
-    background: $purple-light;
+    opacity: 1;
   }
 }
 

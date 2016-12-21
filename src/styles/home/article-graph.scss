@@ -185,7 +185,7 @@
       &:nth-child(#{$i}) {
         animation: spin-circle $spin-seconds $delay infinite cubic-bezier(0,0,.75,1);
 
-        .bug {
+        .bug::before {
           animation-delay: $delay;
         }
       }
@@ -193,9 +193,19 @@
 
     // position small bugs
     .bug {
-      animation: bug $spin-seconds infinite ease-in-out;
       right: -7px;
       top: 50%;
+
+      &::before {
+        animation: bug $spin-seconds infinite ease-in-out;
+        background: $purple-light;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        height: 9px;
+        opacity: 0;
+        width: 9px;
+      }
     }
   }
 
