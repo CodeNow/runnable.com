@@ -5,19 +5,14 @@
     flex: 0 0 auto;
     flex-direction: column;
     margin: 0 auto;
-    max-width: 525px;
+    max-width: 490px;
+    width: 100%;
   }
 
   &.cta-features {
 
     @include media(md) {
       order: 2;
-
-      .img,
-      .p,
-      .ul {
-        margin-left: 30px;
-      }
     }
 
     .ul {
@@ -39,6 +34,10 @@
       position: absolute;
       top: 6px;
       width: 12px;
+
+      @include media(xs) {
+        display: none;
+      }
     }
   }
 
