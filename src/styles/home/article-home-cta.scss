@@ -1,11 +1,98 @@
 .article-home-cta .section {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 660px;
-  padding-bottom: 90px;
-  padding-top: 90px;
 
-  .h3 + .h3 {
-    margin-top: $md;
+  @media (min-width: $screen-md) {
+    padding: 0;
+  }
+
+  @include media(md) {
+    flex-direction: column;
+    max-width: 510px;
+  }
+
+  .cta-features,
+  .cta-pricing {
+    flex: 1 1 50%;
+
+    @media (min-width: $screen-md) {
+      padding: $xl;
+    }
+  }
+
+  .cta-features {
+
+    @media (min-width: $screen-md) {
+      padding-right: $lg;
+    }
+
+    @include media(md) {
+      order: 2;
+      padding-left: 21px;
+      padding-top: $xl;
+    }
+
+    @include media(sm) {
+      padding-top: $lg;
+    }
+
+    @include media(xs) {
+      padding-top: $md;
+    }
+
+    .p {
+      margin-bottom: $xs;
+    }
+
+    .ul {
+      font-size: 16px;
+
+      + .ul {
+        margin-top: $sm;
+      }
+    }
+
+    .li {
+      position: relative;
+
+      + .li {
+        margin-top: 6px;
+      }
+    }
+
+    .icons-check {
+      color: $green;
+      height: 12px;
+      left: -21px;
+      position: absolute;
+      top: 6px;
+      width: 12px;
+    }
+  }
+
+  .cta-pricing {
+    border-left: 1px solid $gray-lightest;
+
+    @media (min-width: $screen-md) {
+      padding-left: $lg;
+    }
+
+    @include media(md) {
+      border-left: 0;
+      border-bottom: 1px solid $gray-lighter;
+      order: 1;
+      padding-bottom: $xl;
+      padding-left: 21px; // line up with ul
+    }
+
+    @include media(sm) {
+      padding-bottom: $lg;
+    }
+
+    @include media(xs) {
+      padding-bottom: $md;
+    }
+
+    .p {
+      max-width: 330px;
+    }
   }
 }
