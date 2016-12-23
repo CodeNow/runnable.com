@@ -80,8 +80,8 @@
     }
 
     @include media(md) {
-      border-left: 0;
       border-bottom: 1px solid $gray-lighter;
+      border-left: 0;
       order: 1;
       padding-bottom: $xl;
       padding-left: 21px; // line up with ul
