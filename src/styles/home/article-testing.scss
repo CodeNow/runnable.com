@@ -3,6 +3,10 @@
   overflow: hidden;
   padding-bottom: 0;
 
+  .underline {
+    border-bottom: 2px solid currentColor;
+  }
+
   .lists-wrapper {
     flex-wrap: wrap;
     padding: $lg 0 $xl;
@@ -80,7 +84,13 @@
   }
 
   .img {
+    bottom: 0;
     position: absolute;
+
+    @include media(sm) {
+      bottom: auto;
+      top: 0;
+    }
 
     @include media(xs) {
       transform: scale(.75,.75);
