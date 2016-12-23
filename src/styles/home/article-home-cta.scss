@@ -16,6 +16,10 @@
     @media (min-width: $screen-md) {
       padding: $xl;
     }
+
+    @include media(md) {
+      flex: 0 0 auto;
+    }
   }
 
   .cta-features {
