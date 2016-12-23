@@ -1,11 +1,60 @@
 .article-home-cta .section {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 660px;
-  padding-bottom: 90px;
-  padding-top: 90px;
+  flex: 1 1 50%;
 
-  .h3 + .h3 {
-    margin-top: $md;
+  @include media(md) {
+    flex: 0 0 auto;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 490px;
+    width: 100%;
+  }
+
+  &.cta-features {
+
+    @include media(md) {
+      order: 2;
+    }
+
+    .li {
+      font-size: 16px;
+      position: relative;
+
+      + .li {
+        margin-top: 6px;
+      }
+    }
+
+    .icons-check {
+      color: $green;
+      height: 12px;
+      left: -21px;
+      position: absolute;
+      top: 6px;
+      width: 12px;
+
+      @include media(xs) {
+        display: none;
+      }
+    }
+  }
+
+  &.cta-pricing {
+
+    @include media(md) {
+      order: 1;
+    }
+
+    .p {
+      max-width: 345px;
+    }
+  }
+
+  + .section {
+    border-left: 1px solid $gray-lightest;
+
+    @include media(md) {
+      border-bottom: 1px solid $gray-lighter;
+      border-left: 0;
+    }
   }
 }
