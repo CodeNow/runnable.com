@@ -1120,21 +1120,21 @@ window.addEventListener('load', function(){
     <img src="images/home/play.svg" class="icon-play no-touching" height="120" width="120">
   </div>
   <div class="grid-block shrink col">
-    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments that include the services, databases, and data you need to test end‑to‑end.</h2>
+    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments including all the services, databases, and data you need to test end‑to‑end.</h2>
   </div>
 </article>
 
       <article class="grid-block col align-center section article article-validate">
   <img class="img margin-bottom-md" src="images/home/validate.svg" width="150" height="111">
-  <h2 class="h3 weight-strong text-center">Validate your changes.</h2>
-  <h3 class="h3 weight-light text-center">Test as you code with environments that rebuild on every commit.</h3>
+  <h2 class="h3 weight-strong text-center">See it to believe it.</h2>
+  <h3 class="h3 weight-light text-center">Validate your code with environments rebuilt on every commit.</h3>
 </article>
 
       <article class="grid-block section article article-testing">
   <div class="grid-block grid-container-lg noscroll col-sm">
     <div class="grid-block col copy-wrapper left">
-      <h3 class="h3 weight-strong">Run automated tests.</h3>
-      <h4 class="h3">View test results on the pull<br class="hidden-md"> request page.</h4>
+      <h3 class="h3 weight-strong">Run <span class="underline">all</span> your tests.</h3>
+      <h4 class="h3">Pull requests are automatically updated with test results from any framework, including:</h4>
       <ul class="grid-block lists-wrapper">
         <li class="li">
           <ul class="grid-block col ul">
@@ -1224,7 +1224,7 @@ window.addEventListener('load', function(){
   <img src="images/home/review.png" class="grid-block shrink img img-wrapper" height="242" width="437">
   <div class="grid-block col copy-wrapper right">
     <h2 class="h3 weight-strong">Review & sign-off.</h2>
-    <h3 class="h3 weight-light">Environment URLs are shared for <br class="visible-md hidden-xxs">easy code review and demos.</h3>
+    <h3 class="h3 weight-light">Share environment URLs for easy code review and demos.</h3>
   </div>
 </article>
 
@@ -1238,10 +1238,13 @@ window.addEventListener('load', function(){
       <article class="grid-block col align-center article article-graph">
   <section class="grid-block col section graph-container">
     <h2 class="h2 weight-strong text-center">Catching bugs early <br class="hidden-xxxs">saves time & money.</h2>
-    <h3 class="h3 weight-light text-center margin-top-xxs">The number of bugs your users may encounter increases as you add developers and lines of code.</h3>
+    <h3 class="h3 weight-light text-center margin-top-xxs">Runnable fully integrates and tests your changes earlier in development.</h3>
   </section>
   <figure class="grid-block col figure-graph">
-    <div class="popover top popover-purple visible-xs in">Most bugs are caught after your changes are integrated with the rest of your system.</div>
+    <div class="grid-block col noscroll popover top popover-purple visible-xs in">
+      <div class="weight-strong">With Runnable</div>
+      <div class="small">Most bugs are caught late, after your changes are integrated on a staging server.</div>
+    </div>
     <div class="circle">
       <div class="spin-circle">
         <div class="absolute bug orange"></div>
@@ -1253,13 +1256,22 @@ window.addEventListener('load', function(){
         <div class="absolute bug orange"></div>
       </div>
       <div class="absolute bug orange has-img">
-        <div class="popover popover-purple bottom in bug-orange hidden-xs">Most bugs are caught after your changes are integrated with the rest of your system.</div>
+        <div class="popover popover-purple bottom in bug-orange hidden-xs">
+          <div class="weight-strong">With Runnable</div>
+          <div class="small">Most bugs are caught late, after your changes are integrated on a staging server.</div>
+        </div>
       </div>
       <div class="absolute bug purple has-img">
-        <div class="popover popover-purple top in bug-purple hidden-xs">Runnable fully integrates & tests your changes earlier in development.</div>
+        <div class="popover popover-purple top in bug-purple hidden-xs">
+          <div class="weight-strong">Without Runnable</div>
+          <div class="small">Integration & end-to-end testing happens early, at the unit-testing phase.</div>
+        </div>
       </div>
     </div>
-    <div class="popover popover-purple visible-xs bottom in">Runnable fully integrates & tests your changes earlier in development.</div>
+    <div class="grid-block col noscroll popover popover-purple visible-xs bottom in">
+      <div class="weight-strong">Without Runnable</div>
+      <div class="small">Integration & end-to-end testing happens early, at the unit-testing phase.</div>
+    </div>
   </figure>
   <figure class="grid-block figure-x-axis noscroll">
     <div class="grid-block x-col noscroll"><span class="hidden-xs">Code</span></div>
@@ -1272,11 +1284,64 @@ window.addEventListener('load', function(){
 </article>
 
       <article class="article article-home-cta">
-  <section class="grid-block col justify-center section align-start">
-    <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-unlimited.svg" width="60" height="60">
-    <h3 class="h3 weight-strong">Runnable enables every developer in your team to catch bugs earlier.</h3>
-    <h3 class="h3 weight-light">All plans include unlimited builds, concurrency, and environments that run on dedicated, single-tenant infrastructure.</h3>
-    <a class="btn btn-lg green margin-top-md" href="pricing/">View Pricing Plans</a>
+  <section class="grid-block grid-container justify-center col-md">
+    <div class="grid-block col align-start section cta-features">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-star.svg" width="60" height="60">
+      <p class="p weight-strong">Features</p>
+      <ul class="ul padding-top-xs">
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Multi-GB database support
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Fast database replication
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Deploy to production: AWS, Azure, Google Cloud
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Always on, Docker-native environments
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Docker Compose support
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Simple setup (No Docker knowledge necessary)
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Hands-on experts to help with set up
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Secured single-tenant infrastructure
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Usage-based infrastructure scaling
+      </ul>
+    </div>
+    <div class="grid-block col align-start section cta-pricing">
+      <img class="grid-block shrink img margin-bottom-sm" src="images/home/icons-unlimited.svg" width="60" height="60">
+      <p class="p weight-strong">Runnable enables every developer in your team to catch bugs earlier.</p>
+      <p class="p weight-light margin-top-sm">All plans include unlimited builds, concurrency, and environments that run on dedicated, single-tenant infrastructure.</p>
+      <a class="btn btn-md green margin-top-sm" href="pricing/">View Pricing Plans</a>
+    </div>
   </section>
 </article>
 
