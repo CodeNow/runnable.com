@@ -3,16 +3,25 @@
     align-items: center;
     flex-direction: column-reverse;
     text-align: center;
+  }
 
-    .img {
+  .img {
+    @include media(md) {
       height: auto;
       max-width: 100%;
     }
+  }
 
-    .copy-wrapper {
+  .copy-wrapper.right {
+    @include media(md) {
       flex: 0 0 auto;
       margin-bottom: $lg;
+      max-width: 450px;
       padding: 0;
+    }
+
+    @include media(sm) {
+      max-width: 390px;
     }
   }
 }
