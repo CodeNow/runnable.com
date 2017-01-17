@@ -103,6 +103,12 @@
     <priority>1.00</priority>
   </url>
   <url>
+    <loc>https://runnable.com/use-cases/peer-review-changes-in-your-application-stack-quickly/</loc>
+    <lastmod>2016-12-13T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
     <loc>https://runnable.com/docker/getting-started/</loc>
     <lastmod>2016-07-25T23:56:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -152,6 +158,24 @@
   </url>
   <url>
     <loc>https://runnable.com/docker/securing-your-docker-system</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/introduction-to-docker-compose</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/advanced-docker-compose-configuration</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/docker-compose-networking</loc>
     <lastmod>2016-07-25T23:56:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.36</priority>
@@ -230,6 +254,18 @@
   </url>
   <url>
     <loc>https://runnable.com/docker/python/dockerize-your-pyramid-application</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.29</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/python/docker-compose-with-django-apps</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.29</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/python/docker-compose-with-flask-apps</loc>
     <lastmod>2016-07-25T23:56:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.29</priority>
