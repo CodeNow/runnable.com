@@ -5,14 +5,29 @@
     text-align: center;
   }
 
-  .ul {
-    margin-left:15px;
-    margin-top:10px;
-  }
+  .lists-wrapper {
+    flex-wrap: wrap;
+    padding: 5px 0 0;
 
-  .li {
-    @include media(md) {
-      font-size: 16px;
+    @include media(sm) {
+      flex-wrap: nowrap;
+      padding-bottom: $lg;
+    }
+
+    @include media(xs) {
+      flex-wrap: wrap;
+    }
+
+    > .li {
+      flex: 0 0 50%;
+
+      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
+        flex: 1 1 auto;
+
+        + .ul {
+          margin-left: 30px;
+        }
+      }
     }
   }
 
