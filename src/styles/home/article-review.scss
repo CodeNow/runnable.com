@@ -5,6 +5,27 @@
     text-align: center;
   }
 
+  .ul {
+    margin-left:15px;
+    margin-top:10px;
+  }
+
+  .li {
+    @include media(md) {
+      font-size: 16px;
+    }
+  }
+
+  .icons-check {
+    height: 12px;
+    margin-right: 3px;
+    width: 12px;
+
+    @include media(xxs) {
+      display: none;
+    }
+  }
+
   .img {
     @include media(md) {
       height: auto;
