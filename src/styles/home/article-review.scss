@@ -7,7 +7,7 @@
 
   .lists-wrapper {
     flex-wrap: wrap;
-    padding: 5px 0 0;
+    padding: 15px 0 0;
 
     @include media(sm) {
       flex-wrap: nowrap;
