@@ -7,40 +7,44 @@
 
   .lists-wrapper {
     flex-wrap: wrap;
-    padding: 15px 0 0;
+    padding: $sm 0 0;
 
-    @include media(sm) {
-      flex-wrap: nowrap;
+    @include media(md) {
+      justify-content: center;
     }
 
-    @include media(xs) {
-      flex-wrap: wrap;
+    @include media(xxxs) {
+      justify-content: flex-start;
+      margin: 0 auto;
+      max-width: 160px;
     }
 
-    > .li {
-      flex: 0 0 50%;
-
+    .ul {
       @include media(md) {
-        font-size: 16px;
-      }
-
-      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-        flex: 1 1 auto;
+        flex: 0 0 auto;
 
         + .ul {
-          margin-left: 30px;
+          margin-left: $md;
+        }
+      }
+
+      @include media(xxxs) {
+        + .ul {
+          margin-left: 0;
         }
       }
     }
-  }
 
-  .icons-check {
-    height: 12px;
-    margin-right: 3px;
-    width: 12px;
+    .li {
+      @include media(md) {
+        font-size: 16px;
+      }
+    }
 
-    @include media(xxs) {
-      display: none;
+    .icons {
+      height: 18px;
+      margin-right: 9px;
+      width: 18px;
     }
   }
 
