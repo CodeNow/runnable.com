@@ -1,7 +1,7 @@
 .article-validate {
 
   @media (min-width: $screen-sm + 1) {
-    padding-bottom: 50px;
+    padding-bottom: 0;
   }
 
   @include media(sm) {
