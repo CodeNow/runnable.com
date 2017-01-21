@@ -16,7 +16,8 @@
     @include media(xxxs) {
       justify-content: flex-start;
       margin: 0 auto;
-      max-width: 160px;
+      max-width: 170px;
+      white-space: nowrap;
     }
 
     .ul {
