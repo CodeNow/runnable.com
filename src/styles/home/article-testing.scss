@@ -10,62 +10,33 @@
   .lists-wrapper {
     flex-wrap: wrap;
     padding: $lg 0 $xl;
+    white-space: nowrap;
 
     @include media(sm) {
-      flex-wrap: nowrap;
       padding-bottom: $lg;
+      padding-top: $md;
     }
 
-    @include media(xs) {
+    @include media(xxs) {
       flex-wrap: wrap;
     }
 
-    > .li {
-      flex: 0 0 50%;
-
-      @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-        flex: 1 1 auto;
-
-        + .ul {
-          margin-left: 30px;
-        }
-      }
-
-      &:nth-child(2n) {
-        padding-right: 30px;
-
-        @include media(sm) {
-          padding-right: 0;
-        }
-
-        @include media(xs) {
-          padding-left: 30px;
-        }
-      }
-
-      &:nth-child(n+3) {
-        padding-top: 30px;
-
-        @media (max-width: $screen-sm) and (min-width: $screen-xs) {
-          padding-top: 0;
-        }
+    .ul {
+      @include media(sm) {
+        width: 180px;
       }
     }
-  }
 
-  .li {
-    @include media(md) {
-      font-size: 16px;
+    .li {
+      @include media(md) {
+        font-size: 16px;
+      }
     }
-  }
 
-  .icons-check {
-    height: 12px;
-    margin-right: 3px;
-    width: 12px;
-
-    @include media(xxs) {
-      display: none;
+    .icons-check {
+      height: 12px;
+      margin-right: 3px;
+      width: 12px;
     }
   }
 
