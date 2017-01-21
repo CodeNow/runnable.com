@@ -5,6 +5,50 @@
     text-align: center;
   }
 
+  .lists-wrapper {
+    flex-wrap: wrap;
+    padding: $sm 0 0;
+
+    @include media(md) {
+      justify-content: center;
+    }
+
+    @include media(xxxs) {
+      justify-content: flex-start;
+      margin: 0 auto;
+      max-width: 170px;
+      white-space: nowrap;
+    }
+
+    .ul {
+      @include media(md) {
+        flex: 0 0 auto;
+
+        + .ul {
+          margin-left: $md;
+        }
+      }
+
+      @include media(xxxs) {
+        + .ul {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .li {
+      @include media(md) {
+        font-size: 16px;
+      }
+    }
+
+    .icons {
+      height: 18px;
+      margin-right: 9px;
+      width: 18px;
+    }
+  }
+
   .img {
     @include media(md) {
       height: auto;
