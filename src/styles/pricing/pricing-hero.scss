@@ -18,6 +18,10 @@
       width: 360px;
     }
 
+    &.show {
+      z-index: 1; // fix confirmation state in safari
+    }
+
     + .plan,
     + .card-flipper {
       margin-left: 20px;
