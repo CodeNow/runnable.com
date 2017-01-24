@@ -18,6 +18,10 @@
       width: 360px;
     }
 
+    &.show {
+      z-index: 1; // fix confirmation state in safari
+    }
+
     + .plan,
     + .card-flipper {
       margin-left: 20px;
@@ -55,12 +59,15 @@
 
     .btn-sm {
       margin: 9px 0;
+
+      &[disabled] .red {
+        display: none;
+      }
     }
 
     // err text
     .red {
       font-weight: $weight-light;
-      margin-top: 6px;
     }
   }
 }
