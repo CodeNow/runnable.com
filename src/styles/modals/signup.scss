@@ -116,10 +116,6 @@
 
       @include media(sm) {
         min-width: 100%;
-
-        &:first-child {
-          padding-bottom: 12px;
-        }
       }
 
       .input-md {
