@@ -1,0 +1,62 @@
+// reset checkbox input
+.checkbox-input {
+  position: absolute; // no effect on layout
+  visibility: hidden; // not visible, but functional
+}
+
+// checkbox wrapper
+.checkbox-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+// actual checkbox
+.checkbox-group {
+  background-color: $white;
+  border-radius: 6px;
+  border: $input-border-lg solid $gray-lighter;
+  cursor: pointer;
+  height: 24px;
+  position: relative;
+  transition: background-color .2s, border-color .2s;
+  width: 24px;
+
+  &:hover {
+    border-color: lighten($purple-light,15);
+  }
+
+  &:active {
+    background-color: lighten($purple-light,15);
+    border-color: $purple-light;
+  }
+
+  &::after {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M13.01,2.757a1.5,1.5,0,0,0-2.121,0l-5.3,5.3L3.111,5.586A1.5,1.5,0,1,0,.99,7.707l3.536,3.536a1.5,1.5,0,0,0,2.121,0L13.01,4.879A1.5,1.5,0,0,0,13.01,2.757Z" style="fill:#fff"/></svg>');
+    content: '';
+    display: block;
+    height: 14px;
+    left: 3px;
+    opacity: 0;
+    position: absolute;
+    top: 3px;
+    transform: scale3d(0,0,0);
+    transition: transform .2s;
+    width: 14px;
+  }
+}
+
+// logic
+.checkbox-input:checked ~ .checkbox-group {
+  background-color: lighten($purple-light,10);
+  border-color: $purple-light;
+
+  &::after {
+    opacity: 1;
+    transform: scale3d(1,1,1);
+  }
+
+  &:active::after {
+    opacity: 0;
+    transform: scale3d(0,0,0);
+  }
+}
