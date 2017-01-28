@@ -3,7 +3,7 @@
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
   <div class="grid-block col card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <form class="grid-block col form-wrapper">
+    <form class="grid-block col form-wrapper form-github">
       <div class="grid-block col padding-lg">
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
@@ -20,14 +20,14 @@
           <div class="grid-block col">
             <label class="grid-block align-center margin-top-sm">
               <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" type="checkbox" value="E2E Testing" />
+                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" />
                 <div class="checkbox-group"></div>
               </div>
               E2E Testing
             </label>
             <label class="grid-block align-center margin-top-sm">
               <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" type="checkbox" value="Staging Environments" />
+                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" />
                 <div class="checkbox-group"></div>
               </div>
               Staging Environments
@@ -36,14 +36,14 @@
           <div class="grid-block col">
             <label class="grid-block align-center margin-top-sm">
               <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" type="checkbox" value="CI/CD" />
+                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" />
                 <div class="checkbox-group"></div>
               </div>
               CI/CD
             </label>
             <label class="grid-block align-center margin-top-sm">
               <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" type="checkbox" value="Other" />
+                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Other" />
                 <div class="checkbox-group"></div>
               </div>
               Other
@@ -52,12 +52,18 @@
         </div>
       </div>
       <footer class="grid-block col justify-center card-footer padding-lg">
-        <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
+        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github" disabled>
           <svg class="icons hidden-xxxs">
             <use xlink:href="#icons-github">
           </svg>
           <span>Sign Up With GitHub</span>
-        </a>
+        </button>
+        {{!-- <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
+          <svg class="icons hidden-xxxs">
+            <use xlink:href="#icons-github">
+          </svg>
+          <span>Sign Up With GitHub</span>
+        </a> --}}
         <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       </footer>
     </form>

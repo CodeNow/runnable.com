@@ -108,6 +108,8 @@ function openGitHubForm() {
 function setupForm(formName) {
   var formEl;
   if (formName === 'signup') {
+    var gitHubForm = document.getElementsByClassName('article-github')[0];
+    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
     var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
     var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
@@ -133,7 +135,12 @@ function setupForm(formName) {
       openBitbucketForm();
     });
 
-    formEl = document.getElementsByClassName('form-bitbucket');
+    if (gitHubForm.classList.contains('in')) {
+      formEl = document.getElementsByClassName('form-github');
+    } else if (bitbucketForm.classList.contains('in')) {
+      formEl = document.getElementsByClassName('form-bitbucket');
+    }
+
     // mixpanel
     linkGitHub.addEventListener('click', function(){
       mixpanel.track('Open URL: GitHub Auth');
@@ -298,13 +305,16 @@ function submitForm(e) {
   var form = e.target;
   var formName;
 
-  if (form.classList.contains('form-bitbucket')) {
+  if (form.classList.contains('form-github')) {
+    formName = 'github';
+  } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
   }
 
   e.preventDefault();
+
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
