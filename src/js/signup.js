@@ -166,6 +166,9 @@ function markInvalid(e) {
 
   if (thisTarget.tagName == 'INPUT') {
     // for invalid event
+    if (thisTarget.type === 'checkbox') {
+      while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+    }
     thisTarget.classList.add('invalid');
   } else {
     // for change event
@@ -193,7 +196,12 @@ function shakeForm(e) {
 }
 
 function makeDirty(e) {
-  e.target.classList.remove('pristine', 'invalid');
+  var thisTarget = e.target;
+
+  if (thisTarget.type === 'checkbox') {
+    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+  }
+  thisTarget.classList.remove('pristine', 'invalid');
 }
 
 function formInvalid(e) {
