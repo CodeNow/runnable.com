@@ -199,7 +199,23 @@ function makeDirty(e) {
   var thisTarget = e.target;
 
   if (thisTarget.type === 'checkbox') {
-    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+    var theseInputs;
+    var targetParent = thisTarget;
+
+    // get parent
+    while ((targetParent = targetParent.parentNode) && !targetParent.classList.contains('checkbox-group'));
+    // get all inputs in parent
+    theseInputs = targetParent.getElementsByTagName('input');
+    // toggle required state
+    if (thisTarget.checked) {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].removeAttribute('required');
+      }
+    } else {
+      for (i = 0; i < theseInputs.length; i++) {
+        theseInputs[i].setAttribute('required','required');
+      }
+    }
   }
   thisTarget.classList.remove('pristine', 'invalid');
 }
