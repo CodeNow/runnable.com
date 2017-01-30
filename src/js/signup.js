@@ -381,17 +381,24 @@ function submitForm(e) {
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var whyValue;
-    var whyValues = [];
     var formData;
 
+    // special github form data
     if (formName === 'github') {
-      whyValue = form.querySelectorAll('[name="checkbox-why"]');
-      whyValue.forEach(function (whyValue) {
-        whyValues.push({
-          name: whyValue.value,
-          checkbox: whyValue.checked
-        });
+      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
+      var whyValue = [];
+      var otherValue;
+
+      whyInputs.forEach(function (whyInputs) {
+        var obj = {
+          name: whyInputs.value,
+          checkbox: whyInputs.checked
+        }
+
+        if (whyInputs.value === 'Other') {
+          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
+        }
+        whyValue.push(obj);
       });
     }
 
@@ -400,7 +407,7 @@ function submitForm(e) {
     formData = {
       email: emailValue,
       name: nameValue,
-      why: whyValues
+      why: whyValue
     };
 
     analytics.ready(function() {
