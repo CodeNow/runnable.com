@@ -16,37 +16,28 @@
         <div class="label margin-top-md">
           <p class="text-center">I want Runnable to help my team with:</p>
         </div>
-        <div class="grid-block col-xs">
-          <div class="grid-block col">
-            <label class="grid-block align-center margin-top-sm">
-              <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" />
-                <div class="checkbox-group"></div>
-              </div>
+        <div class="grid-block col">
+          <div class="grid-block col checkbox-group margin-top-xs">
+            <label class="grid-block align-center checkbox-label">
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing">
+              <div class="checkbox margin-right-xs"></div>
               E2E Testing
             </label>
-            <label class="grid-block align-center margin-top-sm">
-              <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" />
-                <div class="checkbox-group"></div>
-              </div>
-              Staging Environments
-            </label>
-          </div>
-          <div class="grid-block col">
-            <label class="grid-block align-center margin-top-sm">
-              <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" />
-                <div class="checkbox-group"></div>
-              </div>
+            <label class="grid-block align-center checkbox-label">
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD">
+              <div class="checkbox margin-right-xs"></div>
               CI/CD
             </label>
-            <label class="grid-block align-center margin-top-sm">
-              <div class="checkbox-wrapper margin-right-xs">
-                <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Other" />
-                <div class="checkbox-group"></div>
-              </div>
-              Other
+            <label class="grid-block align-center checkbox-label">
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments">
+              <div class="checkbox margin-right-xs"></div>
+              Staging Environments
+            </label>
+            <label class="grid-block align-center checkbox-label">
+              <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other">
+              <div class="checkbox margin-right-xs"></div>
+              <span class="span-other">Other</span>
+              <input class="input-other" type="text" name="" placeholder="Other (please specify)" autofocus>
             </label>
           </div>
         </div>
@@ -58,12 +49,6 @@
           </svg>
           <span>Sign Up With GitHub</span>
         </button>
-        {{!-- <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green wrap-xxxs track-grant-access-github">
-          <svg class="icons hidden-xxxs">
-            <use xlink:href="#icons-github">
-          </svg>
-          <span>Sign Up With GitHub</span>
-        </a> --}}
         <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       </footer>
     </form>

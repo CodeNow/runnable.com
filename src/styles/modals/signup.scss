@@ -161,4 +161,28 @@
       white-space: normal;
     }
   }
+
+  .checkbox-group {
+    background-color: $white;
+    border: $input-border solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    padding: 6px;
+  }
+
+  .input-other {
+    display: none;
+    line-height: inherit;
+    padding: 0; // reset
+  }
+
+  .checkbox-other:checked {
+
+    ~ .input-other {
+      display: flex;
+    }
+
+    ~ .span-other {
+      display: none;
+    }
+  }
 }
