@@ -107,6 +107,7 @@ function openGitHubForm() {
 // set up forms
 function setupForm(formName) {
   var formEl;
+  var formInputs;
   if (formName === 'signup') {
     var gitHubForm = document.getElementsByClassName('article-github')[0];
     var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
@@ -151,24 +152,30 @@ function setupForm(formName) {
   } else if (formName === 'enterprise') {
     formEl = document.getElementsByClassName('form-enterprise');
   }
+
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
     formEl[i].addEventListener('submit', submitForm);
-    formEl[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
-    formEl[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
+    formInputs = formEl[i].getElementsByTagName('input');
+
+    for (y = 0; y < formInputs.length; y++) {
+      if (formInputs[y].type !== 'checkbox') {
+        formInputs[y].addEventListener('invalid', formInvalid);
+      }
+      if (formInputs[y].type === 'checkbox') {
+        formInputs[y].addEventListener('change', validateCheckGroup);
+      }
+    }
   }
 }
 
 function markInvalid(e) {
   var thisTarget = e.target;
   var theseInputs;
-  var checkboxGroup = document.getElementsByClassName('checkbox-group')[0];
   var i;
 
   if (thisTarget.tagName == 'INPUT') {
-    // for invalid event
     thisTarget.classList.add('invalid');
-    checkboxGroup.classList.add('invalid');
   } else {
     // for change event
     theseInputs = thisTarget.getElementsByTagName('input');
@@ -178,6 +185,7 @@ function markInvalid(e) {
       }
     }
   }
+  validateCheckGroup(e);
 }
 
 function shakeForm(e) {
@@ -196,42 +204,58 @@ function shakeForm(e) {
 
 function makeDirty(e) {
   var thisTarget = e.target;
+  var checkGroup;
 
   // checkbox logic
   if (thisTarget.type === 'checkbox') {
-    var theseInputs;
-    var targetParent = thisTarget;
-    var itemChecked = false;
-
     // get parent
-    while ((targetParent = targetParent.parentNode) && !targetParent.classList.contains('checkbox-group'));
-    targetParent.classList.remove('pristine');
-    theseInputs = targetParent.getElementsByTagName('input');
-
-    // toggle required state
-    if (thisTarget.checked) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].removeAttribute('required');
-      }
-      targetParent.classList.remove('invalid');
-      itemChecked = true;
-    } else {
-      for (i = 0; i < theseInputs.length; i++) {
-        if (theseInputs[i].checked) {
-          itemChecked = true;
-        }
-      }
-    }
-
-    if (!itemChecked) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].setAttribute('required','required');
-      }
-      // mark invalid
-      targetParent.classList.add('invalid');
-    }
+    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+    checkGroup = thisTarget
+    checkGroup.classList.remove('pristine');
   } else {
     thisTarget.classList.remove('pristine', 'invalid');
+  }
+}
+
+function validateCheckGroup(e) {
+  var thisTarget;
+  var checkGroup;
+  var theseInputs;
+  var itemChecked = false;
+
+  if (e.target.type !== 'checkbox') {
+    thisTarget = false;
+    checkGroup = document.getElementsByClassName('checkbox-group')[0];
+  } else {
+    thisTarget = e.target;
+    checkGroup = e.target;
+    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
+  }
+
+  // get all checkboxes
+  theseInputs = checkGroup.getElementsByTagName('input');
+
+  // toggle required state
+  if (thisTarget.checked) {
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].removeAttribute('required');
+    }
+    checkGroup.classList.remove('invalid');
+    itemChecked = true;
+  } else if (!thisTarget.checked || !thisTarget) {
+    for (i = 0; i < theseInputs.length; i++) {
+      if (theseInputs[i].checked) {
+        itemChecked = true;
+      }
+    }
+  }
+
+  if (!itemChecked) {
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].setAttribute('required','required');
+    }
+    // mark invalid
+    checkGroup.classList.add('invalid');
   }
 }
 
