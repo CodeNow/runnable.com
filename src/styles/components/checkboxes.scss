@@ -1,12 +1,7 @@
 .checkbox-label {
   border-radius: $input-border-radius;
   cursor: pointer;
-  padding: $xxs $xs;
-  transition: background-color .15s;
-
-  &:hover {
-    background-color: rgba($purple-light,.05);
-  }
+  padding: $xxs;
 }
 
 // reset checkbox input

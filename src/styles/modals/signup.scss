@@ -166,7 +166,7 @@
     background-color: $white;
     border: $input-border solid $gray-lighter;
     border-radius: $input-border-radius-lg;
-    padding: 6px;
+    padding: 12px 9px;
 
     @media (max-width: 500px) {
       font-size: 16px;
@@ -179,7 +179,9 @@
   }
 
   .input-other {
+    box-shadow: 0 2px 0 0 $gray-lighter;
     display: none;
+    font-style: italic;
     line-height: inherit;
     padding: 0; // reset
   }
