@@ -167,6 +167,15 @@
     border: $input-border solid $gray-lighter;
     border-radius: $input-border-radius-lg;
     padding: 6px;
+
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
+
+    &.invalid {
+      border-color: $red;
+      box-shadow: inset 0 0 0 1px $red;
+    }
   }
 
   .input-other {

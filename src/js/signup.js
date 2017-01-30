@@ -198,26 +198,42 @@ function shakeForm(e) {
 function makeDirty(e) {
   var thisTarget = e.target;
 
+  // checkbox logic
   if (thisTarget.type === 'checkbox') {
     var theseInputs;
     var targetParent = thisTarget;
+    var itemChecked = false;
 
     // get parent
     while ((targetParent = targetParent.parentNode) && !targetParent.classList.contains('checkbox-group'));
-    // get all inputs in parent
+    targetParent.classList.remove('pristine');
     theseInputs = targetParent.getElementsByTagName('input');
+
     // toggle required state
     if (thisTarget.checked) {
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].removeAttribute('required');
       }
+      targetParent.classList.remove('invalid');
+      itemChecked = true;
     } else {
+      for (i = 0; i < theseInputs.length; i++) {
+        if (theseInputs[i].checked) {
+          itemChecked = true;
+        }
+      }
+    }
+
+    if (!itemChecked) {
       for (i = 0; i < theseInputs.length; i++) {
         theseInputs[i].setAttribute('required','required');
       }
+      // mark invalid
+      markInvalid(e);
     }
+  } else {
+    thisTarget.classList.remove('pristine', 'invalid');
   }
-  thisTarget.classList.remove('pristine', 'invalid');
 }
 
 function formInvalid(e) {
