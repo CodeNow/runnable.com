@@ -10,9 +10,31 @@
 }
 
 // reset checkbox input
-.checkbox-input {
+.checkbox-input.checkbox-input {
+  height: 24px;
   position: absolute; // no effect on layout
-  visibility: hidden; // not visible, but functional
+  width: 24px;
+
+  // logic
+  &:focus ~ .checkbox {
+    border-color: lighten($purple-light,20);
+  }
+
+  &:checked ~ .checkbox {
+    background-color: lighten($purple-light,10);
+    border-color: $purple-light;
+
+    &::after {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+    }
+
+    &:active::after,
+    .checkbox-label:active &::after {
+      opacity: 0;
+      transform: scale3d(0,0,0);
+    }
+  }
 }
 
 // actual checkbox
@@ -48,22 +70,5 @@
     transform: scale3d(0,0,0);
     transition: transform .15s;
     width: 14px;
-  }
-}
-
-// logic
-.checkbox-input:checked ~ .checkbox {
-  background-color: lighten($purple-light,10);
-  border-color: $purple-light;
-
-  &::after {
-    opacity: 1;
-    transform: scale3d(1,1,1);
-  }
-
-  &:active::after,
-  .checkbox-label:active &::after {
-    opacity: 0;
-    transform: scale3d(0,0,0);
   }
 }
