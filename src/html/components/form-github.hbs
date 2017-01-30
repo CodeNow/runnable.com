@@ -1,7 +1,7 @@
 <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
-  <div class="grid-block col card">
+  <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
     <form class="grid-block col form-wrapper form-github">
       <div class="grid-block col padding-lg">
@@ -15,24 +15,24 @@
         </div>
         <p class="text-center margin-top-md margin-bottom-xs">I want Runnable to help <br class="visible-xs hidden-xxxs">my team with:</p>
         <div class="grid-block col">
-          <div class="grid-block col checkbox-group">
+          <div class="grid-block col checkbox-group pristine">
             <label class="grid-block align-center checkbox-label">
-              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing">
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" required>
               <div class="grid-block shrink margin-right-xs checkbox"></div>
               E2E Testing
             </label>
             <label class="grid-block align-center checkbox-label">
-              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD">
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" required>
               <div class="grid-block shrink margin-right-xs checkbox"></div>
               CI/CD
             </label>
             <label class="grid-block align-center checkbox-label">
-              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments">
-              <div class="grid-block checkbox shrink margin-right-xs"></div>
+              <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" required>
+              <div class="grid-block shrink margin-right-xs checkbox"></div>
               Staging Environments
             </label>
             <label class="grid-block align-center checkbox-label">
-              <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other">
+              <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
               <div class="grid-block shrink margin-right-xs checkbox"></div>
               <span class="span-other">Other</span>
               <input class="grid-block input-other" type="text" name="other-why" placeholder="Other (please specify)" autofocus>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <footer class="grid-block col justify-center card-footer padding-lg">
-        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github" disabled>
+        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
           <svg class="icons hidden-xxs">
             <use xlink:href="#icons-github">
           </svg>
