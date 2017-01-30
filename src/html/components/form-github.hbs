@@ -13,27 +13,27 @@
           <label class="label" for="input-name">Company Name</label>
           <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnable" title="Enter the name of the company you work for." required>
         </div>
-        <p class="text-center margin-top-md margin-bottom-xs">I want Runnable to help my team with:</p>
+        <p class="text-center margin-top-md margin-bottom-xs">I want Runnable to help <br class="visible-xs hidden-xxxs">my team with:</p>
         <div class="grid-block col">
           <div class="grid-block col checkbox-group pristine">
             <label class="grid-block align-center checkbox-label">
               <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" required>
-              <div class="checkbox margin-right-xs"></div>
+              <div class="grid-block shrink margin-right-xs checkbox"></div>
               E2E Testing
             </label>
             <label class="grid-block align-center checkbox-label">
               <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" required>
-              <div class="checkbox margin-right-xs"></div>
+              <div class="grid-block shrink margin-right-xs checkbox"></div>
               CI/CD
             </label>
             <label class="grid-block align-center checkbox-label">
               <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" required>
-              <div class="checkbox margin-right-xs"></div>
+              <div class="grid-block shrink margin-right-xs checkbox"></div>
               Staging Environments
             </label>
             <label class="grid-block align-center checkbox-label">
               <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
-              <div class="checkbox margin-right-xs"></div>
+              <div class="grid-block shrink margin-right-xs checkbox"></div>
               <span class="span-other">Other</span>
               {{!-- <input class="grid-block input-other" type="text" name="other-why" placeholder="Other (please specify)" autofocus> --}}
             </label>
@@ -42,7 +42,7 @@
       </div>
       <footer class="grid-block col justify-center card-footer padding-lg">
         <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
-          <svg class="icons hidden-xxxs">
+          <svg class="icons hidden-xxs">
             <use xlink:href="#icons-github">
           </svg>
           <span>Sign Up With GitHub</span>
