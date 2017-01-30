@@ -162,14 +162,13 @@ function setupForm(formName) {
 function markInvalid(e) {
   var thisTarget = e.target;
   var theseInputs;
+  var checkboxGroup = document.getElementsByClassName('checkbox-group')[0];
   var i;
 
   if (thisTarget.tagName == 'INPUT') {
     // for invalid event
-    if (thisTarget.type === 'checkbox') {
-      while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
-    }
     thisTarget.classList.add('invalid');
+    checkboxGroup.classList.add('invalid');
   } else {
     // for change event
     theseInputs = thisTarget.getElementsByTagName('input');
@@ -229,7 +228,7 @@ function makeDirty(e) {
         theseInputs[i].setAttribute('required','required');
       }
       // mark invalid
-      markInvalid(e);
+      targetParent.classList.add('invalid');
     }
   } else {
     thisTarget.classList.remove('pristine', 'invalid');
