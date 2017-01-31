@@ -405,13 +405,13 @@ function submitForm(e) {
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
     var name = 'name';
-    var whySegment = [];
 
     // special github form data
     if (formName === 'github') {
       var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
       var whyValue = [];
       var otherValue;
+      var whySegment = [];
 
       // change name to be labelled company
       name = 'company';
@@ -426,7 +426,8 @@ function submitForm(e) {
           obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
         }
 
-        if (whyInputs[i].checked == true) {
+        // for segment, we only want to send the data if it's checked
+        if (whyInputs[i].checked) {
           if (whyInputs[i].value === 'Other') {
             whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
           } else {
@@ -439,18 +440,20 @@ function submitForm(e) {
     }
 
     toggleEditing(form, 'disable'); // disables inputs
+
     // jsonify form data
     formData = {
       email: emailValue,
       why: whyValue,
-      intent: whySegment.join("").trim(),
+      intent: whySegment.join('').trim(),
       id: analytics.user().anonymousId(),
       client_id: ga.getAll()[0].get('clientId')
     };
+
     // add name
     formData[name] = nameValue;
     xhrSubmit(e, form, JSON.stringify(formData), formName);
-    
+
     // segment
     delete formData['why'];
     analytics.ready(function() {
