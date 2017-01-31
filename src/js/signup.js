@@ -107,7 +107,10 @@ function openGitHubForm() {
 // set up forms
 function setupForm(formName) {
   var formEl;
+  var formInputs;
   if (formName === 'signup') {
+    var gitHubForm = document.getElementsByClassName('article-github')[0];
+    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
     var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
     var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
@@ -133,7 +136,6 @@ function setupForm(formName) {
       openBitbucketForm();
     });
 
-    formEl = document.getElementsByClassName('form-bitbucket');
     // mixpanel
     linkGitHub.addEventListener('click', function(){
       mixpanel.track('Open URL: GitHub Auth');
@@ -141,14 +143,23 @@ function setupForm(formName) {
     linkGitHub.addEventListener('touchend', function(){
       mixpanel.track('Open URL: GitHub Auth');
     });
-  } else if (formName === 'enterprise') {
-    formEl = document.getElementsByClassName('form-enterprise');
   }
+
+  formEl = document.getElementsByClassName('js-form');
+
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
     formEl[i].addEventListener('submit', submitForm);
-    formEl[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
-    formEl[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
+    formInputs = formEl[i].getElementsByTagName('input');
+
+    for (y = 0; y < formInputs.length; y++) {
+      if (formInputs[y].type !== 'checkbox') {
+        formInputs[y].addEventListener('invalid', formInvalid);
+      }
+      if (formInputs[y].type === 'checkbox') {
+        formInputs[y].addEventListener('change', validateCheckGroup);
+      }
+    }
   }
 }
 
@@ -158,7 +169,6 @@ function markInvalid(e) {
   var i;
 
   if (thisTarget.tagName == 'INPUT') {
-    // for invalid event
     thisTarget.classList.add('invalid');
   } else {
     // for change event
@@ -169,6 +179,7 @@ function markInvalid(e) {
       }
     }
   }
+  validateCheckGroup(e);
 }
 
 function shakeForm(e) {
@@ -186,7 +197,75 @@ function shakeForm(e) {
 }
 
 function makeDirty(e) {
-  e.target.classList.remove('pristine', 'invalid');
+  var thisTarget = e.target;
+  var checkGroup;
+
+  // checkbox logic
+  if (thisTarget.type === 'checkbox') {
+    // get parent
+    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+    checkGroup = thisTarget
+    checkGroup.classList.remove('pristine');
+  } else {
+    thisTarget.classList.remove('pristine', 'invalid');
+  }
+}
+
+function validateCheckGroup(e) {
+  var thisTarget;
+  var checkGroup;
+  var theseInputs;
+  var itemChecked = false;
+  var otherInput;
+  var otherListened = false;
+
+  if (e.target.type !== 'checkbox') {
+    thisTarget = false;
+    checkGroup = document.getElementsByClassName('checkbox-group')[0];
+  } else {
+    thisTarget = e.target;
+    checkGroup = e.target;
+    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
+  }
+
+  // get all checkboxes
+  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+
+  // toggle required state
+  if (thisTarget.checked) {
+    // if an "other" option
+    if (thisTarget.value === 'Other') {
+      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
+      otherInput.setAttribute('required','required');
+
+      if (!otherListened) {
+        otherInput.addEventListener('click',function(e){
+          e.preventDefault();
+          otherListened = true;
+        })
+      }
+    }
+    // remaining options
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].removeAttribute('required');
+    }
+    checkGroup.classList.remove('invalid');
+    itemChecked = true;
+  } else if (!thisTarget.checked || !thisTarget) {
+    for (i = 0; i < theseInputs.length; i++) {
+      if (theseInputs[i].checked) {
+        itemChecked = true;
+      }
+    }
+  }
+
+  if (!itemChecked) {
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].setAttribute('required','required');
+    }
+    // mark invalid
+    checkGroup.classList.add('invalid');
+  }
 }
 
 function formInvalid(e) {
@@ -236,7 +315,10 @@ function xhrSubmit(e, form, formData, formName) {
   var xhrUrl;
   var supportEmail;
 
-  if (formName === 'bitbucket') {
+  if (formName === 'github') {
+    xhrUrl = 'https://codenow.com:2087/sign_up';
+    supportEmail = 'support@runnable.com';
+  } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
   } else if (formName === 'enterprise') {
@@ -260,11 +342,13 @@ function xhrSubmit(e, form, formData, formName) {
       });
     }
   };
+
   xhr.onload = function() {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
     var successMsg = form.parentNode.getElementsByClassName('hide')[0];
+    var href;
 
     // result_codes:
     // -1 = error from sundip
@@ -279,16 +363,24 @@ function xhrSubmit(e, form, formData, formName) {
         'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
       });
     }
+
     if (resultCode === 1) {
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'pass'
+      });
+
       // tell the user something nice
       form.classList.add('hide');
       form.classList.remove('show');
       successMsg.classList.add('show');
       successMsg.classList.remove('hide');
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'pass'
-      });
+
+      // if github form, redirect to log in
+      if (formName === 'github') {
+        href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
+        setTimeout(function(){window.location.href = href;},2500);
+      }
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
@@ -298,28 +390,59 @@ function submitForm(e) {
   var form = e.target;
   var formName;
 
-  if (form.classList.contains('form-bitbucket')) {
+  if (form.classList.contains('form-github')) {
+    formName = 'github';
+  } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
   }
 
   e.preventDefault();
+
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
+    var name = 'name';
+
+    // special github form data
+    if (formName === 'github') {
+      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
+      var whyValue = [];
+      var otherValue;
+
+      // change name to be labelled company
+      name = 'company';
+
+      for (i = 0; i < whyInputs.length; i++) {
+        var obj = {
+          name: whyInputs[i].value,
+          checkbox: whyInputs[i].checked
+        }
+
+        if (whyInputs[i].value === 'Other') {
+          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
+        }
+        whyValue.push(obj);
+      }
+    }
 
     toggleEditing(form, 'disable'); // disables inputs
     // jsonify form data
     formData = {
       email: emailValue,
-      name: nameValue
+      why: whyValue
     };
+    // add name
+    formData[name] = nameValue;
+    formData['id'] = analytics.user().anonymousId();
+    formData['client_id'] = ga.getAll()[0].get('clientId');
 
     analytics.ready(function() {
-      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + ' sign up', formData);
     });
+
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData, formName);
     // mixpanel
@@ -330,17 +453,26 @@ function submitForm(e) {
 }
 
 function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('red')[0];
-  var error = document.createElement('small');
-  var submitButton = form.getElementsByTagName('button')[0];
+  var prevError = form.getElementsByClassName('js-error')[0];
+  var error;
+  var submitButton;
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
 
-  error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-  error.innerHTML = resultMessage;
-  submitButton.appendChild(error);
+  if (formName === 'github' || formName === 'bitbucket') {
+    error = document.createElement('div');
+    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
+    error.innerHTML = resultMessage;
+    form.children[0].appendChild(error);
+  } else {
+    submitButton = form.getElementsByTagName('button')[0];
+    error = document.createElement('small');
+    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
+    error.innerHTML = resultMessage;
+    submitButton.appendChild(error);
+  }
 
   analytics.ready(function() {
     analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
@@ -371,12 +503,12 @@ window.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // if sign up page
-  if (window.location.pathname === '/signup/') {
+  // if sign up form exists
+  if (document.getElementsByClassName('form-github')) {
     setupForm('signup');
   }
   // if pricing page
-  if (window.location.pathname === '/pricing/') {
+  if (document.getElementsByClassName('form-enterprise')) {
     setupForm('enterprise');
   }
 });

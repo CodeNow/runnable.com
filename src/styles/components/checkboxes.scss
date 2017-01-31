@@ -1,0 +1,72 @@
+.checkbox-label {
+  border-radius: $input-border-radius;
+  cursor: pointer;
+  padding: $xxs;
+}
+
+// actual checkbox
+.checkbox {
+  background-color: $white;
+  border: $input-border-lg solid $gray-lighter;
+  border-radius: $input-border-radius-lg;
+  cursor: pointer;
+  height: 24px;
+  position: relative;
+  transition: background-color .15s, border-color .15s;
+  width: 24px;
+
+  // give the checkbox its hover state when its label is hovered
+  &:hover,
+  .checkbox-label:hover & {
+    border-color: lighten($purple-light,20);
+  }
+
+  // give the checkbox its active state when its label is active
+  &:active,
+  .checkbox-label:active & {
+    background-color: lighten($purple-light,20);
+    border-color: $purple-light;
+  }
+
+  &::after {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAKpJREFUeNrs1GEJgDAQBWAxgRGMYBQjGGUNjHARjGIEI2iD88QThqJu7m0g7MGxP3f7QE+LIifnJszcSo28Z5BqYmIdXzNL1amwI6ZEY3LQU0+ZEpMsKR7jkW2BKnujJuvlmphYc9NEcEyH+odmgmI6OLwMEQzzGCYIZl0yuqAQTMHKEQ3HgKg7BkD9sQD0O/YBDcc8UBzmgOKxE9rrz33W7zEOlvOLrAIMALqaxCrOyNlMAAAAAElFTkSuQmCC);
+    background-size: 100% 100%;
+    content: '';
+    height: 14px;
+    left: $input-border-radius;
+    opacity: 0;
+    position: absolute;
+    top: $input-border-radius;
+    transform: scale3d(0,0,0);
+    transition: transform .15s, opacity .15s;
+    width: 14px;
+  }
+}
+
+.checkbox-input {
+  height: 24px;
+  position: absolute; // no effect on layout
+  width: 24px;
+
+  // logic
+  &:focus ~ .checkbox {
+    border-color: lighten($purple-light,20);
+  }
+
+  &:checked ~ .checkbox {
+    background-color: lighten($purple-light,10);
+    border-color: $purple-light;
+
+    &::after {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+    }
+
+    // give the checkbox its active state when its label is active
+    &:active::after,
+    .checkbox-label:active &::after {
+      opacity: 0;
+      transform: scale3d(0,0,0);
+    }
+  }
+}

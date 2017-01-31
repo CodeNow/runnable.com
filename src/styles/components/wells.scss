@@ -12,6 +12,12 @@
   }
 }
 
+.well-red {
+  background-color: rgba($red,.05);
+  border-color: $red;
+  color: $red;
+}
+
 .well-anchor {
   align-items: center;
   color: $gray-dark;

@@ -23,6 +23,7 @@
 // components
 @import "components/buttons";
 @import "components/cards";
+@import "components/checkboxes";
 @import "components/faq";
 @import "components/header";
 @import "components/keyframes";
@@ -38,6 +39,7 @@
 
 // component specific
 @import "components/specific/buttons-sandbox";
+@import "components/specific/form-github";
 
 // landing specific
 @import "landing/landing";
