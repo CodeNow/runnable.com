@@ -217,6 +217,7 @@ function validateCheckGroup(e) {
   var theseInputs;
   var itemChecked = false;
   var otherInput;
+  var otherListened = false;
 
   if (e.target.type !== 'checkbox') {
     thisTarget = false;
@@ -236,7 +237,15 @@ function validateCheckGroup(e) {
     if (thisTarget.value === 'Other') {
       otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
       otherInput.setAttribute('required','required');
+
+      if (!otherListened) {
+        otherInput.addEventListener('click',function(e){
+          e.preventDefault();
+          otherListened = true;
+        })
+      }
     }
+    // remaining options
     for (i = 0; i < theseInputs.length; i++) {
       theseInputs[i].removeAttribute('required');
     }
