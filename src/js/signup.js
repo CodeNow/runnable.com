@@ -222,6 +222,7 @@ function validateCheckGroup(e) {
   var checkGroup;
   var theseInputs;
   var itemChecked = false;
+  var otherInput;
 
   if (e.target.type !== 'checkbox') {
     thisTarget = false;
@@ -233,10 +234,15 @@ function validateCheckGroup(e) {
   }
 
   // get all checkboxes
-  theseInputs = checkGroup.getElementsByTagName('input');
+  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
 
   // toggle required state
   if (thisTarget.checked) {
+    // if an "other" option
+    if (thisTarget.value === 'Other') {
+      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
+      otherInput.setAttribute('required','required');
+    }
     for (i = 0; i < theseInputs.length; i++) {
       theseInputs[i].removeAttribute('required');
     }

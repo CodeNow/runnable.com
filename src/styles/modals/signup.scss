@@ -184,6 +184,19 @@
     font-style: italic;
     line-height: inherit;
     padding: 0; // reset
+
+    &:not(.pristine):invalid,
+    &.invalid {
+      box-shadow: 0 2px 0 0 $red;
+    }
+
+    &.invalid:valid {
+      box-shadow: 0 2px 0 0 $gray-lighter;
+
+      &:focus {
+        box-shadow: 0 2px 0 0 $gray-lighter;
+      }
+    }
   }
 
   .checkbox-other:checked {
