@@ -102,6 +102,11 @@
   }
 
   .form-wrapper {
+    padding: 45px;
+
+    @include media(xxs) {
+      padding: 30px;
+    }
 
     .br {
       @media (max-width: 500px) {
@@ -130,6 +135,10 @@
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
     border-top: 1px solid $gray-lighter;
     padding: 30px 45px 45px;
+
+    @include media(xxs) {
+      padding: 30px;
+    }
   }
 
   // sign up button
