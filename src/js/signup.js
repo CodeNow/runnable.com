@@ -370,16 +370,16 @@ function xhrSubmit(e, form, formData, formName) {
         'server-side validation': 'pass'
       });
 
+      // tell the user something nice
+      form.classList.add('hide');
+      form.classList.remove('show');
+      successMsg.classList.add('show');
+      successMsg.classList.remove('hide');
+
       // if github form, redirect to log in
       if (formName === 'github') {
         href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
-        window.location.href = href;
-      } else {
-        // tell the user something nice
-        form.classList.add('hide');
-        form.classList.remove('show');
-        successMsg.classList.add('show');
-        successMsg.classList.remove('hide');
+        setTimeout(function(){window.location.href = href;},2500);
       }
     }
     toggleEditing(form, 'enable'); // re-enables form
