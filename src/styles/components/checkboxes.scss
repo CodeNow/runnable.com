@@ -29,7 +29,8 @@
   }
 
   &::after {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M13.01,2.757a1.5,1.5,0,0,0-2.121,0l-5.3,5.3L3.111,5.586A1.5,1.5,0,1,0,.99,7.707l3.536,3.536a1.5,1.5,0,0,0,2.121,0L13.01,4.879A1.5,1.5,0,0,0,13.01,2.757Z" style="fill:#fff"/></svg>');
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAKpJREFUeNrs1GEJgDAQBWAxgRGMYBQjGGUNjHARjGIEI2iD88QThqJu7m0g7MGxP3f7QE+LIifnJszcSo28Z5BqYmIdXzNL1amwI6ZEY3LQU0+ZEpMsKR7jkW2BKnujJuvlmphYc9NEcEyH+odmgmI6OLwMEQzzGCYIZl0yuqAQTMHKEQ3HgKg7BkD9sQD0O/YBDcc8UBzmgOKxE9rrz33W7zEOlvOLrAIMALqaxCrOyNlMAAAAAElFTkSuQmCC);
+    background-size: 100% 100%;
     content: '';
     height: 14px;
     left: $input-border-radius;
