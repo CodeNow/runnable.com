@@ -1070,12 +1070,12 @@ window.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // if sign up page
-  if (window.location.pathname === '/signup/') {
+  // if sign up form exists
+  if (document.getElementsByClassName('form-github')) {
     setupForm('signup');
   }
   // if pricing page
-  if (window.location.pathname === '/pricing/') {
+  if (document.getElementsByClassName('form-enterprise')) {
     setupForm('enterprise');
   }
 });
