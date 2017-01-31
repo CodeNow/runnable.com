@@ -365,11 +365,6 @@ function xhrSubmit(e, form, formData, formName) {
     }
 
     if (resultCode === 1) {
-      // tell the user something nice
-      form.classList.add('hide');
-      form.classList.remove('show');
-      successMsg.classList.add('show');
-      successMsg.classList.remove('hide');
       // mixpanel
       mixpanel.track('XHR Submit: ' + formName, {
         'server-side validation': 'pass'
@@ -379,6 +374,12 @@ function xhrSubmit(e, form, formData, formName) {
       if (formName === 'github') {
         href = window.location.origin + '/' + form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
         window.location.href = href;
+      } else {
+        // tell the user something nice
+        form.classList.add('hide');
+        form.classList.remove('show');
+        successMsg.classList.add('show');
+        successMsg.classList.remove('hide');
       }
     }
     toggleEditing(form, 'enable'); // re-enables form
