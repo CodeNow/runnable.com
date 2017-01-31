@@ -411,6 +411,7 @@ function submitForm(e) {
       var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
       var whyValue = [];
       var otherValue;
+      var whySegment = [];
 
       // change name to be labelled company
       name = 'company';
@@ -424,27 +425,41 @@ function submitForm(e) {
         if (whyInputs[i].value === 'Other') {
           obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
         }
+
+        // for segment, we only want to send the data if it's checked
+        if (whyInputs[i].checked) {
+          if (whyInputs[i].value === 'Other') {
+            whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
+          } else {
+            whySegment.push(whyInputs[i].value, "; ");
+          }
+        }
+
         whyValue.push(obj);
       }
     }
 
     toggleEditing(form, 'disable'); // disables inputs
+
     // jsonify form data
     formData = {
       email: emailValue,
-      why: whyValue
+      why: whyValue,
+      intent: whySegment.join('').trim(),
+      id: analytics.user().anonymousId(),
+      client_id: ga.getAll()[0].get('clientId')
     };
+
     // add name
     formData[name] = nameValue;
-    formData['id'] = analytics.user().anonymousId();
-    formData['client_id'] = ga.getAll()[0].get('clientId');
+    xhrSubmit(e, form, JSON.stringify(formData), formName);
 
+    // segment
+    delete formData['why'];
     analytics.ready(function() {
       analytics.track(formName + ' sign up', formData);
     });
 
-    formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData, formName);
     // mixpanel
     mixpanel.track('FE Submit: ' + formName, {
       'front-end validation': 'pass'
