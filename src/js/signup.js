@@ -429,10 +429,8 @@ function submitForm(e) {
         if (whyInputs[i].checked == true) {
           if (whyInputs[i].value === 'Other') {
             whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
-            console.log("whySegment(other): "+whySegment.join(""));
           } else {
             whySegment.push(whyInputs[i].value, "; ");
-            console.log("whySegment: "+whySegment.join(""));
           }
         }
 
