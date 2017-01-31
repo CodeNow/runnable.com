@@ -411,6 +411,7 @@ function submitForm(e) {
       var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
       var whyValue = [];
       var otherValue;
+      var whySegment = [];
 
       // change name to be labelled company
       name = 'company';
@@ -424,6 +425,17 @@ function submitForm(e) {
         if (whyInputs[i].value === 'Other') {
           obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
         }
+
+        if (whyInputs[i].checked == true) {
+          if (whyInputs[i].value === 'Other') {
+            whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
+            console.log("whySegment(other): "+whySegment.join(""));
+          } else {
+            whySegment.push(whyInputs[i].value, "; ");
+            console.log("whySegment: "+whySegment.join(""));
+          }
+        }
+
         whyValue.push(obj);
       }
     }
@@ -432,18 +444,20 @@ function submitForm(e) {
     // jsonify form data
     formData = {
       email: emailValue,
-      why: whyValue
+      why: whyValue,
+      intent: whySegment.join("").trim(),
+      id: analytics.user().anonymousId(),
+      client_id: ga.getAll()[0].get('clientId')
     };
     // add name
     formData[name] = nameValue;
-    formData['id'] = analytics.user().anonymousId();
-    formData['client_id'] = ga.getAll()[0].get('clientId');
+    
+    formData = JSON.stringify(formData); // convert to JSON
 
     analytics.ready(function() {
       analytics.track(formName + ' sign up', formData);
     });
 
-    formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData, formName);
     // mixpanel
     mixpanel.track('FE Submit: ' + formName, {
