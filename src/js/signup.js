@@ -339,6 +339,7 @@ function xhrSubmit(e, form, formData, formName) {
       });
     }
   };
+
   xhr.onload = function() {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
@@ -359,6 +360,7 @@ function xhrSubmit(e, form, formData, formName) {
         'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
       });
     }
+
     if (resultCode === 1) {
       // tell the user something nice
       form.classList.add('hide');
