@@ -449,14 +449,14 @@ function submitForm(e) {
     };
     // add name
     formData[name] = nameValue;
+    xhrSubmit(e, form, JSON.stringify(formData), formName);
     
-    formData = JSON.stringify(formData); // convert to JSON
-
+    // segment
+    delete formData['why'];
     analytics.ready(function() {
       analytics.track(formName + ' sign up', formData);
     });
 
-    xhrSubmit(e, form, formData, formName);
     // mixpanel
     mixpanel.track('FE Submit: ' + formName, {
       'front-end validation': 'pass'
