@@ -938,16 +938,16 @@ function xhrSubmit(e, form, formData, formName) {
         'server-side validation': 'pass'
       });
 
+      // tell the user something nice
+      form.classList.add('hide');
+      form.classList.remove('show');
+      successMsg.classList.add('show');
+      successMsg.classList.remove('hide');
+
       // if github form, redirect to log in
       if (formName === 'github') {
         href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
-        window.location.href = href;
-      } else {
-        // tell the user something nice
-        form.classList.add('hide');
-        form.classList.remove('show');
-        successMsg.classList.add('show');
-        successMsg.classList.remove('hide');
+        setTimeout(function(){window.location.href = href;},2500);
       }
     }
     toggleEditing(form, 'enable'); // re-enables form
@@ -983,17 +983,17 @@ function submitForm(e) {
       // change name to be labelled company
       name = 'company';
 
-      whyInputs.forEach(function (whyInputs) {
+      for (i = 0; i < whyInputs.length; i++) {
         var obj = {
-          name: whyInputs.value,
-          checkbox: whyInputs.checked
+          name: whyInputs[i].value,
+          checkbox: whyInputs[i].checked
         }
 
-        if (whyInputs.value === 'Other') {
+        if (whyInputs[i].value === 'Other') {
           obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
         }
         whyValue.push(obj);
-      });
+      }
     }
 
     toggleEditing(form, 'disable'); // disables inputs
@@ -1185,7 +1185,7 @@ window.addEventListener('load', function(){
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
   <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <form class="grid-block col form form-github js-form">
+    <form class="grid-block col form form-github js-form show">
       <div class="grid-block col form-wrapper">
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
@@ -1219,7 +1219,6 @@ window.addEventListener('load', function(){
             <input class="grid-block input-other pristine" name="why-other" placeholder="Other (please specify)" autofocus>
           </label>
         </div>
-        <div class="well well-red text-center small padding-xxs margin-top-md hide"></div>
       </div>
       <footer class="grid-block col justify-center card-footer">
         <button data-href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
@@ -1233,6 +1232,9 @@ window.addEventListener('load', function(){
         <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       </footer>
     </form>
+    <div class="grid-block col justify-center padding-lg hide">
+      <p class="p text-center">Thanks! We’re redirecting you to GitHub…</p>
+    </div>
   </div>
   <div class="grid-content text-center text-white">
     <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
