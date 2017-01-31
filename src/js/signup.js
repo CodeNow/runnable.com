@@ -377,7 +377,7 @@ function xhrSubmit(e, form, formData, formName) {
 
       // if github form, redirect to log in
       if (formName === 'github') {
-        href = window.location.origin + '/' + form.querySelectorAll('[data-href')[0].getAttribute('data-href');
+        href = window.location.origin + '/' + form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
         window.location.href = href;
       }
     }
