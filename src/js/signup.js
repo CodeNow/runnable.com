@@ -136,12 +136,6 @@ function setupForm(formName) {
       openBitbucketForm();
     });
 
-    if (gitHubForm.classList.contains('in')) {
-      formEl = document.getElementsByClassName('form-github');
-    } else if (bitbucketForm.classList.contains('in')) {
-      formEl = document.getElementsByClassName('form-bitbucket');
-    }
-
     // mixpanel
     linkGitHub.addEventListener('click', function(){
       mixpanel.track('Open URL: GitHub Auth');
@@ -149,9 +143,9 @@ function setupForm(formName) {
     linkGitHub.addEventListener('touchend', function(){
       mixpanel.track('Open URL: GitHub Auth');
     });
-  } else if (formName === 'enterprise') {
-    formEl = document.getElementsByClassName('form-enterprise');
   }
+
+  formEl = document.getElementsByClassName('js-form');
 
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
@@ -454,11 +448,11 @@ function sundipValidation(resultMessage, form, formName) {
     prevError.parentNode.removeChild(prevError);
   }
 
-  if (formName === 'github') {
+  if (formName === 'github' || formName === 'bitbucket') {
     error = document.createElement('div');
     error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
     error.innerHTML = resultMessage;
-    form.appendChild(error);
+    form.children[0].appendChild(error);
   } else {
     submitButton = form.getElementsByTagName('button')[0];
     error = document.createElement('small');
