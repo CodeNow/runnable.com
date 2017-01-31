@@ -405,13 +405,13 @@ function submitForm(e) {
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
     var name = 'name';
+    var whySegment = [];
 
     // special github form data
     if (formName === 'github') {
       var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
       var whyValue = [];
       var otherValue;
-      var whySegment = [];
 
       // change name to be labelled company
       name = 'company';
