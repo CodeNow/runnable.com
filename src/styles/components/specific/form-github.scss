@@ -1,0 +1,17 @@
+.form-github .green {
+
+  > .grid-block {
+    @include media(xxxs) {
+      flex-direction: column;
+    }
+  }
+
+  .spinner-wrapper {
+    margin-left: $sm;
+
+    @include media(xxxs) {
+      margin-left: 0;
+      margin-top: $sm;
+    }
+  }
+}
