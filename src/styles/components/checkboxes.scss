@@ -5,7 +5,7 @@
 }
 
 // reset checkbox input
-.checkbox-input.checkbox-input {
+.checkbox-input {
   height: 24px;
   position: absolute; // no effect on layout
   width: 24px;
@@ -24,6 +24,7 @@
       transform: scale3d(1,1,1);
     }
 
+    // give the checkbox its active state when its label is active
     &:active::after,
     .checkbox-label:active &::after {
       opacity: 0;
@@ -43,11 +44,13 @@
   transition: background-color .15s, border-color .15s;
   width: 24px;
 
+  // give the checkbox its hover state when its label is hovered
   &:hover,
   .checkbox-label:hover & {
     border-color: lighten($purple-light,20);
   }
 
+  // give the checkbox its active state when its label is active
   &:active,
   .checkbox-label:active & {
     background-color: lighten($purple-light,20);
