@@ -313,7 +313,7 @@ function xhrSubmit(e, form, formData, formName) {
   var supportEmail;
 
   if (formName === 'github') {
-    xhrUrl = '';
+    xhrUrl = 'https://codenow.com:2087/sign_up';
     supportEmail = 'support@runnable.com';
   } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
