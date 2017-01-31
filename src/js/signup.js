@@ -415,17 +415,17 @@ function submitForm(e) {
       // change name to be labelled company
       name = 'company';
 
-      whyInputs.forEach(function (whyInputs) {
+      for (i = 0; i < whyInputs.length; i++) {
         var obj = {
-          name: whyInputs.value,
-          checkbox: whyInputs.checked
+          name: whyInputs[i].value,
+          checkbox: whyInputs[i].checked
         }
 
-        if (whyInputs.value === 'Other') {
+        if (whyInputs[i].value === 'Other') {
           obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
         }
         whyValue.push(obj);
-      });
+      }
     }
 
     toggleEditing(form, 'disable'); // disables inputs
