@@ -446,17 +446,26 @@ function submitForm(e) {
 }
 
 function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('red')[0];
-  var error = document.createElement('small');
-  var submitButton = form.getElementsByTagName('button')[0];
+  var prevError = form.getElementsByClassName('js-error')[0];
+  var error;
+  var submitButton;
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
 
-  error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-  error.innerHTML = resultMessage;
-  submitButton.appendChild(error);
+  if (formName === 'github') {
+    error = document.createElement('div');
+    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
+    error.innerHTML = resultMessage;
+    form.appendChild(error);
+  } else {
+    submitButton = form.getElementsByTagName('button')[0];
+    error = document.createElement('small');
+    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
+    error.innerHTML = resultMessage;
+    submitButton.appendChild(error);
+  }
 
   analytics.ready(function() {
     analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
