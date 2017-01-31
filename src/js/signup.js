@@ -306,7 +306,10 @@ function xhrSubmit(e, form, formData, formName) {
   var xhrUrl;
   var supportEmail;
 
-  if (formName === 'bitbucket') {
+  if (formName === 'github') {
+    xhrUrl = '';
+    supportEmail = 'support@runnable.com';
+  } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
   } else if (formName === 'enterprise') {
@@ -335,6 +338,7 @@ function xhrSubmit(e, form, formData, formName) {
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
     var successMsg = form.parentNode.getElementsByClassName('hide')[0];
+    var href;
 
     // result_codes:
     // -1 = error from sundip
@@ -359,6 +363,12 @@ function xhrSubmit(e, form, formData, formName) {
       mixpanel.track('XHR Submit: ' + formName, {
         'server-side validation': 'pass'
       });
+
+      // if github form, redirect to log in
+      if (formName === 'github') {
+        href = window.location.origin + '/' + form.querySelectorAll('[data-href')[0].getAttribute('data-href');
+        window.location.href = href;
+      }
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
