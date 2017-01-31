@@ -400,12 +400,16 @@ function submitForm(e) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
+    var name = 'name';
 
     // special github form data
     if (formName === 'github') {
       var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
       var whyValue = [];
       var otherValue;
+
+      // change name to be labelled company
+      name = 'company';
 
       whyInputs.forEach(function (whyInputs) {
         var obj = {
@@ -424,9 +428,10 @@ function submitForm(e) {
     // jsonify form data
     formData = {
       email: emailValue,
-      name: nameValue,
       why: whyValue
     };
+    // add name
+    formData[name] = nameValue;
 
     analytics.ready(function() {
       analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
