@@ -1006,10 +1006,13 @@ function submitForm(e) {
     };
     // add name
     formData[name] = nameValue;
+    formData['id'] = analytics.user().anonymousId();
+    formData['client_id'] = ga.getAll()[0].get('clientId');
 
     analytics.ready(function() {
-      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + ' sign up', formData);
     });
+
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData, formName);
     // mixpanel
@@ -1218,7 +1221,7 @@ window.addEventListener('load', function(){
             <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
             <div class="grid-block shrink margin-right-xs checkbox"></div>
             <span class="span-other">Other</span>
-            <input class="grid-block input-other pristine" name="why-other" placeholder="Other (please specify)" autofocus>
+            <input class="grid-block input-other pristine" pattern=".*\S+.*" name="why-other" placeholder="Other (please specify)" autofocus>
           </label>
         </div>
       </div>

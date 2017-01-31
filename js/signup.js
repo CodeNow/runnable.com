@@ -436,10 +436,13 @@ function submitForm(e) {
     };
     // add name
     formData[name] = nameValue;
+    formData['id'] = analytics.user().anonymousId();
+    formData['client_id'] = ga.getAll()[0].get('clientId');
 
     analytics.ready(function() {
-      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + ' sign up', formData);
     });
+
     formData = JSON.stringify(formData); // convert to JSON
     xhrSubmit(e, form, formData, formName);
     // mixpanel

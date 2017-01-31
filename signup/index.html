@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <style>.async-hide {opacity: 0 !important}</style>
+    <style>.async-hide{opacity:0!important}</style>
 <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
 s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
 setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
@@ -565,582 +565,46 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 </script>
 
     <title>Sign up for Runnable.</title>
-    <script ugly>
-      // modals
-function openModal(event,dragging) {
-  if (!dragging) {
-    var openModal = document.getElementsByClassName('modal-backdrop in')[0];
-    var modalName = event.target.getAttribute('data-target').substring(1);
-    var modal = document.getElementById(modalName);
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-
-    // close open modal
-    if (openModal) {
-      openModal.classList.remove('in');
-    }
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-
-    if (modalName === 'sign-up') {
-      setupForm('signup');
-    }
-
-    if (modalName === 'video') {
-      addVideo();
-    }
-
-    // mixpanel
-    mixpanel.track('Open Modal: ' + modalName);
-  }
-}
-
-function escModal(event) {
-  if (event.keyCode == 27) {
-    closeModal(event);
-  }
-}
-
-function closeModal(event) {
-  var modal = document.getElementsByClassName('modal-backdrop in')[0];
-  var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-  var iframe;
-
-  event.preventDefault();
-  // hide modal
-  modal.classList.remove('in');
-  // resume scrolling
-  document.body.classList.remove('modal-open');
-  // remove triggers
-  closeTrigger.removeEventListener('click', closeModal);
-  closeTrigger.removeEventListener('touchend', closeModal);
-  document.removeEventListener('keydown', escModal);
-  // delete video if it exists
-  if (modal.getElementsByTagName('iframe').length) {
-    iframe = modal.getElementsByTagName('iframe')[0];
-    iframe.parentNode.removeChild(iframe);
-  }
-}
-
-// add video player
-function addVideo() {
-  var player = document.getElementById('video')
-  var iframe = document.createElement('iframe');
-  iframe.setAttribute('frameborder','0');
-  iframe.setAttribute('allowfullscreen','');
-  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
-  iframe.classList.add('video-player');
-  player.appendChild(iframe);
-}
-
-// show bitbucket form
-function openBitbucketForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  bitbucketTrigger.classList.add('hide');
-  bitbucketForm.classList.remove('out');
-  bitbucketForm.classList.add('in');
-  gitHubTrigger.classList.remove('hide');
-  gitHubForm.classList.remove('in');
-  gitHubForm.classList.add('out');
-  // mixpanel
-  mixpanel.track('Open Bitbucket form');
-}
-
-// show github form
-function openGitHubForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  gitHubTrigger.classList.add('hide');
-  gitHubForm.classList.remove('out');
-  gitHubForm.classList.add('in');
-  bitbucketTrigger.classList.remove('hide');
-  bitbucketForm.classList.remove('in');
-  // mixpanel
-  mixpanel.track('Open GitHub form');
-}
-
-// set up forms
-function setupForm(formName) {
-  var formEl;
-  var formInputs;
-  if (formName === 'signup') {
-    var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
-    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
-
-    openGitHubFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openGitHubFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openBitbucketFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-
-    // mixpanel
-    linkGitHub.addEventListener('click', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-    linkGitHub.addEventListener('touchend', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-  }
-
-  formEl = document.getElementsByClassName('js-form');
-
-  for (i = 0; i < formEl.length; i++) {
-    formEl[i].addEventListener('change', makeDirty);
-    formEl[i].addEventListener('submit', submitForm);
-    formInputs = formEl[i].getElementsByTagName('input');
-
-    for (y = 0; y < formInputs.length; y++) {
-      if (formInputs[y].type !== 'checkbox') {
-        formInputs[y].addEventListener('invalid', formInvalid);
-      }
-      if (formInputs[y].type === 'checkbox') {
-        formInputs[y].addEventListener('change', validateCheckGroup);
-      }
-    }
-  }
-}
-
-function markInvalid(e) {
-  var thisTarget = e.target;
-  var theseInputs;
-  var i;
-
-  if (thisTarget.tagName == 'INPUT') {
-    thisTarget.classList.add('invalid');
-  } else {
-    // for change event
-    theseInputs = thisTarget.getElementsByTagName('input');
-    for (i = 0; i < theseInputs.length; i++) {
-      if (!theseInputs[i].validity.valid) {
-        theseInputs[i].classList.add('invalid');
-      }
-    }
-  }
-  validateCheckGroup(e);
-}
-
-function shakeForm(e) {
-  var thisForm = e.target;
-
-  // get shake element
-  if (!thisForm.classList.contains('shake-me')) {
-    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
-  }
-  thisForm.classList.add('shake');
-  thisForm.addEventListener('animationend', function(){
-    thisForm.classList.remove('shake');
-    thisForm.removeEventListener('animationend', function(){});
-  });
-}
-
-function makeDirty(e) {
-  var thisTarget = e.target;
-  var checkGroup;
-
-  // checkbox logic
-  if (thisTarget.type === 'checkbox') {
-    // get parent
-    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
-    checkGroup = thisTarget
-    checkGroup.classList.remove('pristine');
-  } else {
-    thisTarget.classList.remove('pristine', 'invalid');
-  }
-}
-
-function validateCheckGroup(e) {
-  var thisTarget;
-  var checkGroup;
-  var theseInputs;
-  var itemChecked = false;
-  var otherInput;
-  var otherListened = false;
-
-  if (e.target.type !== 'checkbox') {
-    thisTarget = false;
-    checkGroup = document.getElementsByClassName('checkbox-group')[0];
-  } else {
-    thisTarget = e.target;
-    checkGroup = e.target;
-    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
-  }
-
-  // get all checkboxes
-  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
-
-  // toggle required state
-  if (thisTarget.checked) {
-    // if an "other" option
-    if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
-      otherInput.setAttribute('required','required');
-
-      if (!otherListened) {
-        otherInput.addEventListener('click',function(e){
-          e.preventDefault();
-          otherListened = true;
-        })
-      }
-    }
-    // remaining options
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].removeAttribute('required');
-    }
-    checkGroup.classList.remove('invalid');
-    itemChecked = true;
-  } else if (!thisTarget.checked || !thisTarget) {
-    for (i = 0; i < theseInputs.length; i++) {
-      if (theseInputs[i].checked) {
-        itemChecked = true;
-      }
-    }
-  }
-
-  if (!itemChecked) {
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].setAttribute('required','required');
-    }
-    // mark invalid
-    checkGroup.classList.add('invalid');
-  }
-}
-
-function formInvalid(e) {
-  markInvalid(e);
-  shakeForm(e);
-}
-
-function toggleEditing(form, state) {
-  var i;
-  var theseInputs = form.getElementsByTagName('input');
-  var theseTextareas = form.getElementsByTagName('textarea')[0];
-  var submitButton = form.getElementsByTagName('button')[0];
-  var spinner = document.getElementsByClassName('spinner-wrapper');
-
-  if (state === 'disable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = true;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = true;
-    }
-    submitButton.disabled = true;
-    if (submitButton.classList.contains('green')) {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    } else {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    }
-  }
-  if (state === 'enable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = false;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = false;
-    }
-    submitButton.disabled = false;
-    spinner[0].parentNode.removeChild(spinner[0]);
-  }
-}
-
-function xhrSubmit(e, form, formData, formName) {
-  var xhr = new XMLHttpRequest();
-  var xhrUrl;
-  var supportEmail;
-
-  if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2087/sign_up';
-    supportEmail = 'support@runnable.com';
-  } else if (formName === 'bitbucket') {
-    xhrUrl = 'https://codenow.com:8443/bitbucket';
-    supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
-  }
-
-  // send form
-  xhr.open('POST', xhrUrl, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(formData);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 0) {
-      shakeForm(e);
-      sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
-      toggleEditing(form, 'enable'); // re-enables form
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': 'xhr.readyState === 4 && xhr.status === 0'
-      });
-    }
-  };
-
-  xhr.onload = function() {
-    var response = JSON.parse(xhr.responseText);
-    var resultCode = response.result_code;
-    var resultMessage = response.result_message;
-    var successMsg = form.parentNode.getElementsByClassName('hide')[0];
-    var href;
-
-    // result_codes:
-    // -1 = error from sundip
-    // 0 = error from active campaign
-    // 1 = success from active campaign
-    if (resultCode === -1 || resultCode === 0) {
-      shakeForm(e);
-      sundipValidation(resultMessage, form, formName);
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
-      });
-    }
-
-    if (resultCode === 1) {
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'pass'
-      });
-
-      // tell the user something nice
-      form.classList.add('hide');
-      form.classList.remove('show');
-      successMsg.classList.add('show');
-      successMsg.classList.remove('hide');
-
-      // if github form, redirect to log in
-      if (formName === 'github') {
-        href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
-        setTimeout(function(){window.location.href = href;},2500);
-      }
-    }
-    toggleEditing(form, 'enable'); // re-enables form
-  };
-}
-
-function submitForm(e) {
-  var form = e.target;
-  var formName;
-
-  if (form.classList.contains('form-github')) {
-    formName = 'github';
-  } else if (form.classList.contains('form-bitbucket')) {
-    formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
-  }
-
-  e.preventDefault();
-
-  if (form.checkValidity()) {
-    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
-    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var formData;
-    var name = 'name';
-
-    // special github form data
-    if (formName === 'github') {
-      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
-      var whyValue = [];
-      var otherValue;
-
-      // change name to be labelled company
-      name = 'company';
-
-      for (i = 0; i < whyInputs.length; i++) {
-        var obj = {
-          name: whyInputs[i].value,
-          checkbox: whyInputs[i].checked
-        }
-
-        if (whyInputs[i].value === 'Other') {
-          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
-        }
-        whyValue.push(obj);
-      }
-    }
-
-    toggleEditing(form, 'disable'); // disables inputs
-    // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue
-    };
-    // add name
-    formData[name] = nameValue;
-
-    analytics.ready(function() {
-      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
-    });
-    formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData, formName);
-    // mixpanel
-    mixpanel.track('FE Submit: ' + formName, {
-      'front-end validation': 'pass'
-    });
-  }
-}
-
-function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('js-error')[0];
-  var error;
-  var submitButton;
-
-  if (prevError) {
-    prevError.parentNode.removeChild(prevError);
-  }
-
-  if (formName === 'github' || formName === 'bitbucket') {
-    error = document.createElement('div');
-    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
-    error.innerHTML = resultMessage;
-    form.children[0].appendChild(error);
-  } else {
-    submitButton = form.getElementsByTagName('button')[0];
-    error = document.createElement('small');
-    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-    error.innerHTML = resultMessage;
-    submitButton.appendChild(error);
-  }
-
-  analytics.ready(function() {
-    analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
-  });
-}
-
-// events
-window.addEventListener('DOMContentLoaded', function(){
-  var modalTriggers = document.getElementsByClassName('js-modal');
-  var dBody = document.body;
-  var dragging = false;
-  var i;
-
-  // prevent drag touch
-  dBody.addEventListener('touchmove',function(){dragging = true;});
-  dBody.addEventListener('touchstart',function(){dragging = false;});
-
-  // modals
-  if (modalTriggers) {
-    for (i = 0; i < modalTriggers.length; i++) {
-      /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(event){
-        openModal(event,dragging);
-      });
-      modalTriggers[i].addEventListener('touchend', function(event){
-        openModal(event,dragging);
-      });
-    }
-  }
-
-  // if sign up form exists
-  if (document.getElementsByClassName('form-github')) {
-    setupForm('signup');
-  }
-  // if pricing page
-  if (document.getElementsByClassName('form-enterprise')) {
-    setupForm('enterprise');
-  }
-});
-
-window.addEventListener('load', function(){
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
-});
-
-      // polyfill for svgs with base element
-(function(document, window) {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function() {
-    // Current URL, without the hash
-    var baseUrl = window.location.href.replace(window.location.hash, '');
-      [].slice.call(document.querySelectorAll("use[*|href]"))
-        .filter(function(element) {
-          return (element.getAttribute('xlink:href').indexOf('#') === 0);
-        })
-        .forEach(function(element) {
-          element.setAttribute('xlink:href', baseUrl + element.getAttribute('xlink:href'));
-        });
-  }, false);
-}(document, window));
-
-    </script>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],i=e.target.getAttribute("data-target").substring(1),a=document.getElementById(i),s=a.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),a.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===i&&setupForm("signup"),"video"===i&&addVideo(),mixpanel.track("Open Modal: "+i)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t,n=document.getElementsByClassName("modal-backdrop in")[0],i=n.getElementsByClassName("js-modal-close")[0];e.preventDefault(),n.classList.remove("in"),document.body.classList.remove("modal-open"),i.removeEventListener("click",closeModal),i.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal),n.getElementsByTagName("iframe").length&&(t=n.getElementsByTagName("iframe")[0],t.parentNode.removeChild(t))}function addVideo(){var e=document.getElementById("video"),t=document.createElement("iframe");t.setAttribute("frameborder","0"),t.setAttribute("allowfullscreen",""),t.setAttribute("src","https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0"),t.classList.add("video-player"),e.appendChild(t)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],i=document.getElementsByClassName("js-open-bitbucket")[0];i.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],i=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),i.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t,n;if("signup"===e){var a=(document.getElementsByClassName("article-github")[0],document.getElementsByClassName("article-bitbucket")[0],document.getElementsByClassName("js-open-bitbucket")[0]),s=document.getElementsByClassName("js-open-github")[0],o=document.getElementsByClassName("track-grant-access-github")[0];s.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),s.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),o.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),o.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}for(t=document.getElementsByClassName("js-form"),i=0;i<t.length;i++)for(t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),n=t[i].getElementsByTagName("input"),y=0;y<n.length;y++)"checkbox"!==n[y].type&&n[y].addEventListener("invalid",formInvalid),"checkbox"===n[y].type&&n[y].addEventListener("change",validateCheckGroup)}function markInvalid(e){var t,n,i=e.target;if("INPUT"==i.tagName)i.classList.add("invalid");else for(t=i.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid");validateCheckGroup(e)}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){var t,n=e.target;if("checkbox"===n.type){for(;(n=n.parentNode)&&!n.classList.contains("checkbox-group"););t=n,t.classList.remove("pristine")}else n.classList.remove("pristine","invalid")}function validateCheckGroup(e){var t,n,a,s,o=!1,r=!1;if("checkbox"!==e.target.type)t=!1,n=document.getElementsByClassName("checkbox-group")[0];else for(t=e.target,n=e.target;(n=n.parentNode)&&!n.classList.contains("checkbox-group"););if(a=n.querySelectorAll('[type="checkbox"]'),t.checked){for("Other"===t.value&&(s=t.parentNode.querySelectorAll('[name="why-other"]')[0],s.setAttribute("required","required"),r||s.addEventListener("click",function(e){e.preventDefault(),r=!0})),i=0;i<a.length;i++)a[i].removeAttribute("required");n.classList.remove("invalid"),o=!0}else if(!t.checked||!t)for(i=0;i<a.length;i++)a[i].checked&&(o=!0);if(!o){for(i=0;i<a.length;i++)a[i].setAttribute("required","required");n.classList.add("invalid")}}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,i=e.getElementsByTagName("input"),a=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(i)for(n=0;n<i.length;n++)i[n].disabled=!0;a&&(a.disabled=!0),s.disabled=!0,s.classList.contains("green")?s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(i)for(n=0;n<i.length;n++)i[n].disabled=!1;a&&(a.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,i){var a,s,o=new XMLHttpRequest;"github"===i?(a="https://codenow.com:2087/sign_up",s="support@runnable.com"):"bitbucket"===i?(a="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"):"enterprise"===i&&(a="https://codenow.com:2096/notify/enterprise",s="preview@runnable.com"),o.open("POST",a,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,i),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+i,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n,a=JSON.parse(o.responseText),s=a.result_code,r=a.result_message,l=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(r,t,i),mixpanel.track("XHR Submit: "+i,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(mixpanel.track("XHR Submit: "+i,{"server-side validation":"pass"}),t.classList.add("hide"),t.classList.remove("show"),l.classList.add("show"),l.classList.remove("hide"),"github"===i&&(n=t.querySelectorAll("[data-href]")[0].getAttribute("data-href"),setTimeout(function(){window.location.href=n},2500))),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-github")?t="github":n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,o=n.querySelectorAll('[name="name"]')[0].value,r="name";if("github"===t){var l=n.querySelectorAll('[name="checkbox-why"]'),c=[];for(r="company",i=0;i<l.length;i++){var d={name:l[i].value,checkbox:l[i].checked};"Other"===l[i].value&&(d.otherValue=n.querySelectorAll('[name="why-other"]')[0].value),c.push(d)}}toggleEditing(n,"disable"),a={email:s,why:c},a[r]=o,a.id=analytics.user().anonymousId(),a.client_id=ga.getAll()[0].get("clientId"),analytics.ready(function(){analytics.track(t+" sign up",a)}),a=JSON.stringify(a),xhrSubmit(e,n,a,t),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var i,a,s=t.getElementsByClassName("js-error")[0];s&&s.parentNode.removeChild(s),"github"===n||"bitbucket"===n?(i=document.createElement("div"),i.classList.add("well","well-red","text-center","small","padding-xxs","margin-top-md","js-error"),i.innerHTML=e,t.children[0].appendChild(i)):(a=t.getElementsByTagName("button")[0],i=document.createElement("small"),i.classList.add("popover","bottom","in","small","red","text-center"),i.innerHTML=e,a.appendChild(i)),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,i=!1;if(n.addEventListener("touchmove",function(){i=!0}),n.addEventListener("touchstart",function(){i=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,i)}),t[e].addEventListener("touchend",function(e){openModal(e,i)});document.getElementsByClassName("form-github")&&setupForm("signup"),document.getElementsByClassName("form-enterprise")&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
-      Commit Hash: 
-      Commit Time: 
+      Commit Hash: 65ff2bdb52a7ad1a010382f511106e288913ef20
+      Commit Time: Tue Jan 31 13:43:20 2017 -0800
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
-  <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
-    <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z", transform="translate(-2.122)"</<path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" transform="translate(-2.122)"/>
+  <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
+    <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" ,="" transform="translate(-2.122)" <="" <path=""/>
   </symbol>
-  <symbol id="icons-check" viewBox="0 0 14.5 10">
+  <symbol id="icons-check" viewbox="0 0 14.5 10">
     <path d="M7.25,14a1,1,0,0,1-.707-0.293l-4.5-4.5A1,1,0,0,1,3.457,7.793L7.25,11.586l7.293-7.293a1,1,0,0,1,1.414,1.414l-8,8A1,1,0,0,1,7.25,14Z" transform="translate(-1.75 -4)"/>
   </symbol>
-  <symbol id="icons-chevron-right" viewBox="0 0 11 18">
+  <symbol id="icons-chevron-right" viewbox="0 0 11 18">
     <polyline points="1 1 10 9 1 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
-  <symbol id="icons-chevron-down" viewBox="0 0 18 11">
-    <polyline points="17 1 9 10 1 1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+  <symbol id="icons-chevron-down" viewbox="0 0 18 11">
+    <polyline points="17 1 9 10 1 1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
-  <symbol id="icons-close" viewBox="0 0 30 30">
+  <symbol id="icons-close" viewbox="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
   </symbol>
-  <symbol id="icons-external" viewBox="0 0 18 18">
+  <symbol id="icons-external" viewbox="0 0 18 18">
     <path d="M15.462,3.306A0.5,0.5,0,0,0,15,3H4.084a0.5,0.5,0,0,0,0,1h9.709L2.646,15.144a0.5,0.5,0,1,0,.707.707L14.5,4.7v9.708a0.5,0.5,0,0,0,1,0V3.5A0.5,0.5,0,0,0,15.462,3.306Z" transform="translate(0)"/>
     <rect width="18" height="18" fill="none"/>
   </symbol>
-  <symbol id="icons-github" viewBox="0 0 24 23.41">
+  <symbol id="icons-github" viewbox="0 0 24 23.41">
     <path d="M24.336,7.791A12.011,12.011,0,0,1,25.52,23.366a12.083,12.083,0,0,1-5.883,4.313A0.686,0.686,0,0,1,19,27.549a0.648,0.648,0,0,1-.187-0.457l0.023-3.281a3.861,3.861,0,0,0-.258-1.395,2.219,2.219,0,0,0-.562-0.832,7.008,7.008,0,0,0,3.738-1.348Q23.41,19.03,23.5,15.655a5.127,5.127,0,0,0-.34-1.782,4.569,4.569,0,0,0-.9-1.43,3.254,3.254,0,0,0,.234-1.078,4.936,4.936,0,0,0-.352-2.109,1.719,1.719,0,0,0-.8.035A7.4,7.4,0,0,0,18.84,10.5a11.493,11.493,0,0,0-6,0,7.4,7.4,0,0,0-2.508-1.207,1.719,1.719,0,0,0-.8-0.035,4.936,4.936,0,0,0-.352,2.109,3.254,3.254,0,0,0,.234,1.078,4.569,4.569,0,0,0-.9,1.43,5.127,5.127,0,0,0-.34,1.782Q8.27,19.03,9.91,20.237a6.976,6.976,0,0,0,3.75,1.348,1.934,1.934,0,0,0-.48.633,3.414,3.414,0,0,0-.293.984,3.316,3.316,0,0,1-1.594.293,2.42,2.42,0,0,1-1.9-1.3,3.234,3.234,0,0,0-.645-0.75,1.767,1.767,0,0,0-1.184-.469q-0.7.023-.527,0.3a1.324,1.324,0,0,0,.551.469,2.583,2.583,0,0,1,.75.82,5.653,5.653,0,0,1,.469.867,2.2,2.2,0,0,0,.984,1.172,4.5,4.5,0,0,0,3.047.258l0.023,2.227a0.648,0.648,0,0,1-.187.457,0.686,0.686,0,0,1-.633.129A12.083,12.083,0,0,1,6.16,23.366,12,12,0,0,1,24.336,7.791Z" transform="translate(-3.84 -4.287)"/>
   </symbol>
-  <symbol id="icons-overflow" viewBox="0 0 18 4.688">
+  <symbol id="icons-overflow" viewbox="0 0 18 4.688">
     <path fill="currentColor" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
   </symbol>
-  <symbol id="icons-play" viewBox="0 0 30 30">
+  <symbol id="icons-play" viewbox="0 0 30 30">
     <path d="M25.615,13.268a2,2,0,0,1,0,3.464l-7.5,4.33-7.5,4.33a2,2,0,0,1-3-1.732V6.34a2,2,0,0,1,3-1.732l7.5,4.33Z" transform="translate(0 0)"/>
     <rect width="30" height="30" fill="none"/>
   </symbol>
-  <symbol id="icons-select" viewBox="0 0 18 18">
+  <symbol id="icons-select" viewbox="0 0 18 18">
     <path d="M6.161,7.01L8.608,3.123a0.5,0.5,0,0,1,.846,0L11.9,7.01a0.5,0.5,0,0,1-.423.766h-4.9A0.5,0.5,0,0,1,6.161,7.01Z"/>
     <path d="M11.9,10.99L9.455,14.877a0.5,0.5,0,0,1-.846,0L6.161,10.99a0.5,0.5,0,0,1,.423-0.766h4.9A0.5,0.5,0,0,1,11.9,10.99Z"/>
     <rect width="18" height="18" fill="none"/>
@@ -1163,13 +627,13 @@ window.addEventListener('load', function(){
       
       <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
         <svg class="icons icons-bitbucket">
-          <use xlink:href="#icons-bitbucket">
+          <use xlink:href="#icons-bitbucket"/>
         </svg>
         <span>Sign Up with Bitbucket</span>
       </a>
       <a class="grid-block align-center justify-center btn btn-sm btn-white js-open-github hide">
         <svg class="icons icons-github">
-          <use xlink:href="#icons-github">
+          <use xlink:href="#icons-github"/>
         </svg>
         <span>Sign Up with GitHub</span>
       </a>
@@ -1189,7 +653,7 @@ window.addEventListener('load', function(){
       <div class="grid-block col form-wrapper">
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email."  type="email" required>
+          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email." type="email" required>
         </div>
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-name">Company Name</label>
@@ -1216,7 +680,7 @@ window.addEventListener('load', function(){
             <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
             <div class="grid-block shrink margin-right-xs checkbox"></div>
             <span class="span-other">Other</span>
-            <input class="grid-block input-other pristine" name="why-other" placeholder="Other (please specify)" autofocus>
+            <input class="grid-block input-other pristine" pattern=".*\S+.*" name="why-other" placeholder="Other (please specify)" autofocus>
           </label>
         </div>
       </div>
@@ -1224,7 +688,7 @@ window.addEventListener('load', function(){
         <button data-href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
           <div class="grid-block justify-center align-center noscroll">
             <svg class="icons hidden-xxs">
-              <use xlink:href="#icons-github">
+              <use xlink:href="#icons-github"/>
             </svg>
             <span>Sign Up With GitHub</span>
           </div>
@@ -1254,7 +718,7 @@ window.addEventListener('load', function(){
           </div>
           <div class="grid-content input-group-vertical input-group-org">
             <label class="label" for="input-email">Work Email</label>
-            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
+            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with." type="email" required>
           </div>
         </div>
       </div>
@@ -1262,7 +726,7 @@ window.addEventListener('load', function(){
         <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
           <div class="grid-block justify-center align-center">
             <svg class="icons hidden-xxxs">
-              <use xlink:href="#icons-bitbucket">
+              <use xlink:href="#icons-bitbucket"/>
             </svg>
             <span class="grid-content shrink">Notify Me</span>
           </div>
@@ -1348,3 +812,4 @@ window.addEventListener('load', function(){
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 
+</body></html>
