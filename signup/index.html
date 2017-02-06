@@ -2,11 +2,8 @@
 <html lang="en">
 
   <head>
-    <style>.async-hide {opacity: 0 !important}</style>
-<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
-s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
-setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
-'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
+    <!-- optimizely must be the first tag in the head -->
+<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
 
 
 <base href="/runnable.com/">
@@ -17,7 +14,7 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-19.4.1.css">
+<link rel="stylesheet" href="styles/index.css">
 
 <script>
   (function(self) {
@@ -535,6 +532,7 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 
 </script>
 
+<!-- structured data -->
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
@@ -565,736 +563,134 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 </script>
 
     <title>Sign up for Runnable.</title>
-    <script ugly>
-      // modals
-function openModal(event,dragging) {
-  if (!dragging) {
-    var openModal = document.getElementsByClassName('modal-backdrop in')[0];
-    var modalName = event.target.getAttribute('data-target').substring(1);
-    var modal = document.getElementById(modalName);
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-
-    // close open modal
-    if (openModal) {
-      openModal.classList.remove('in');
-    }
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-
-    if (modalName === 'sign-up') {
-      setupForm('signup');
-    }
-
-    if (modalName === 'video') {
-      addVideo();
-    }
-
-    // mixpanel
-    mixpanel.track('Open Modal: ' + modalName);
-  }
-}
-
-function escModal(event) {
-  if (event.keyCode == 27) {
-    closeModal(event);
-  }
-}
-
-function closeModal(event) {
-  var modal = document.getElementsByClassName('modal-backdrop in')[0];
-  var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-  var iframe;
-
-  event.preventDefault();
-  // hide modal
-  modal.classList.remove('in');
-  // resume scrolling
-  document.body.classList.remove('modal-open');
-  // remove triggers
-  closeTrigger.removeEventListener('click', closeModal);
-  closeTrigger.removeEventListener('touchend', closeModal);
-  document.removeEventListener('keydown', escModal);
-  // delete video if it exists
-  if (modal.getElementsByTagName('iframe').length) {
-    iframe = modal.getElementsByTagName('iframe')[0];
-    iframe.parentNode.removeChild(iframe);
-  }
-}
-
-// add video player
-function addVideo() {
-  var player = document.getElementById('video')
-  var iframe = document.createElement('iframe');
-  iframe.setAttribute('frameborder','0');
-  iframe.setAttribute('allowfullscreen','');
-  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
-  iframe.classList.add('video-player');
-  player.appendChild(iframe);
-}
-
-// show bitbucket form
-function openBitbucketForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  bitbucketTrigger.classList.add('hide');
-  bitbucketForm.classList.remove('out');
-  bitbucketForm.classList.add('in');
-  gitHubTrigger.classList.remove('hide');
-  gitHubForm.classList.remove('in');
-  gitHubForm.classList.add('out');
-  // mixpanel
-  mixpanel.track('Open Bitbucket form');
-}
-
-// show github form
-function openGitHubForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  gitHubTrigger.classList.add('hide');
-  gitHubForm.classList.remove('out');
-  gitHubForm.classList.add('in');
-  bitbucketTrigger.classList.remove('hide');
-  bitbucketForm.classList.remove('in');
-  // mixpanel
-  mixpanel.track('Open GitHub form');
-}
-
-// set up forms
-function setupForm(formName) {
-  var formEl;
-  var formInputs;
-  if (formName === 'signup') {
-    var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
-    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
-
-    openGitHubFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openGitHubFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openBitbucketFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-
-    // mixpanel
-    linkGitHub.addEventListener('click', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-    linkGitHub.addEventListener('touchend', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-  }
-
-  formEl = document.getElementsByClassName('js-form');
-
-  for (i = 0; i < formEl.length; i++) {
-    formEl[i].addEventListener('change', makeDirty);
-    formEl[i].addEventListener('submit', submitForm);
-    formInputs = formEl[i].getElementsByTagName('input');
-
-    for (y = 0; y < formInputs.length; y++) {
-      if (formInputs[y].type !== 'checkbox') {
-        formInputs[y].addEventListener('invalid', formInvalid);
-      }
-      if (formInputs[y].type === 'checkbox') {
-        formInputs[y].addEventListener('change', validateCheckGroup);
-      }
-    }
-  }
-}
-
-function markInvalid(e) {
-  var thisTarget = e.target;
-  var theseInputs;
-  var i;
-
-  if (thisTarget.tagName == 'INPUT') {
-    thisTarget.classList.add('invalid');
-  } else {
-    // for change event
-    theseInputs = thisTarget.getElementsByTagName('input');
-    for (i = 0; i < theseInputs.length; i++) {
-      if (!theseInputs[i].validity.valid) {
-        theseInputs[i].classList.add('invalid');
-      }
-    }
-  }
-  validateCheckGroup(e);
-}
-
-function shakeForm(e) {
-  var thisForm = e.target;
-
-  // get shake element
-  if (!thisForm.classList.contains('shake-me')) {
-    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
-  }
-  thisForm.classList.add('shake');
-  thisForm.addEventListener('animationend', function(){
-    thisForm.classList.remove('shake');
-    thisForm.removeEventListener('animationend', function(){});
-  });
-}
-
-function makeDirty(e) {
-  var thisTarget = e.target;
-  var checkGroup;
-
-  // checkbox logic
-  if (thisTarget.type === 'checkbox') {
-    // get parent
-    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
-    checkGroup = thisTarget
-    checkGroup.classList.remove('pristine');
-  } else {
-    thisTarget.classList.remove('pristine', 'invalid');
-  }
-}
-
-function validateCheckGroup(e) {
-  var thisTarget;
-  var checkGroup;
-  var theseInputs;
-  var itemChecked = false;
-  var otherInput;
-  var otherListened = false;
-
-  if (e.target.type !== 'checkbox') {
-    thisTarget = false;
-    checkGroup = document.getElementsByClassName('checkbox-group')[0];
-  } else {
-    thisTarget = e.target;
-    checkGroup = e.target;
-    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
-  }
-
-  // get all checkboxes
-  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
-
-  // toggle required state
-  if (thisTarget.checked) {
-    // if an "other" option
-    if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
-      otherInput.setAttribute('required','required');
-
-      if (!otherListened) {
-        otherInput.addEventListener('click',function(e){
-          e.preventDefault();
-          otherListened = true;
-        })
-      }
-    }
-    // remaining options
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].removeAttribute('required');
-    }
-    checkGroup.classList.remove('invalid');
-    itemChecked = true;
-  } else if (!thisTarget.checked || !thisTarget) {
-    for (i = 0; i < theseInputs.length; i++) {
-      if (theseInputs[i].checked) {
-        itemChecked = true;
-      }
-    }
-  }
-
-  if (!itemChecked) {
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].setAttribute('required','required');
-    }
-    // mark invalid
-    checkGroup.classList.add('invalid');
-  }
-}
-
-function formInvalid(e) {
-  markInvalid(e);
-  shakeForm(e);
-}
-
-function toggleEditing(form, state) {
-  var i;
-  var theseInputs = form.getElementsByTagName('input');
-  var theseTextareas = form.getElementsByTagName('textarea')[0];
-  var submitButton = form.getElementsByTagName('button')[0];
-  var spinner = document.getElementsByClassName('spinner-wrapper');
-
-  if (state === 'disable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = true;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = true;
-    }
-    submitButton.disabled = true;
-    if (submitButton.classList.contains('green')) {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    } else {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    }
-  }
-  if (state === 'enable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = false;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = false;
-    }
-    submitButton.disabled = false;
-    spinner[0].parentNode.removeChild(spinner[0]);
-  }
-}
-
-function xhrSubmit(e, form, formData, formName) {
-  var xhr = new XMLHttpRequest();
-  var xhrUrl;
-  var supportEmail;
-
-  if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2087/sign_up';
-    supportEmail = 'support@runnable.com';
-  } else if (formName === 'bitbucket') {
-    xhrUrl = 'https://codenow.com:8443/bitbucket';
-    supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
-  }
-
-  // send form
-  xhr.open('POST', xhrUrl, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(formData);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 0) {
-      shakeForm(e);
-      sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
-      toggleEditing(form, 'enable'); // re-enables form
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': 'xhr.readyState === 4 && xhr.status === 0'
-      });
-    }
-  };
-
-  xhr.onload = function() {
-    var response = JSON.parse(xhr.responseText);
-    var resultCode = response.result_code;
-    var resultMessage = response.result_message;
-    var successMsg = form.parentNode.getElementsByClassName('hide')[0];
-    var href;
-
-    // result_codes:
-    // -1 = error from sundip
-    // 0 = error from active campaign
-    // 1 = success from active campaign
-    if (resultCode === -1 || resultCode === 0) {
-      shakeForm(e);
-      sundipValidation(resultMessage, form, formName);
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
-      });
-    }
-
-    if (resultCode === 1) {
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'pass'
-      });
-
-      // tell the user something nice
-      form.classList.add('hide');
-      form.classList.remove('show');
-      successMsg.classList.add('show');
-      successMsg.classList.remove('hide');
-
-      // if github form, redirect to log in
-      if (formName === 'github') {
-        href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
-        setTimeout(function(){window.location.href = href;},2500);
-      }
-    }
-    toggleEditing(form, 'enable'); // re-enables form
-  };
-}
-
-function submitForm(e) {
-  var form = e.target;
-  var formName;
-
-  if (form.classList.contains('form-github')) {
-    formName = 'github';
-  } else if (form.classList.contains('form-bitbucket')) {
-    formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
-  }
-
-  e.preventDefault();
-
-  if (form.checkValidity()) {
-    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
-    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var formData;
-    var name = 'name';
-
-    // special github form data
-    if (formName === 'github') {
-      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
-      var whyValue = [];
-      var otherValue;
-      var whySegment = [];
-
-      // change name to be labelled company
-      name = 'company';
-
-      for (i = 0; i < whyInputs.length; i++) {
-        var obj = {
-          name: whyInputs[i].value,
-          checkbox: whyInputs[i].checked
-        }
-
-        if (whyInputs[i].value === 'Other') {
-          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
-        }
-
-        // for segment, we only want to send the data if it's checked
-        if (whyInputs[i].checked) {
-          if (whyInputs[i].value === 'Other') {
-            whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
-          } else {
-            whySegment.push(whyInputs[i].value, "; ");
-          }
-        }
-
-        whyValue.push(obj);
-      }
-    }
-
-    toggleEditing(form, 'disable'); // disables inputs
-
-    // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      intent: whySegment.join('').trim(),
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
-
-    // add name
-    formData[name] = nameValue;
-    xhrSubmit(e, form, JSON.stringify(formData), formName);
-
-    // segment
-    delete formData['why'];
-    analytics.ready(function() {
-      analytics.track(formName + ' sign up', formData);
-    });
-
-    // mixpanel
-    mixpanel.track('FE Submit: ' + formName, {
-      'front-end validation': 'pass'
-    });
-  }
-}
-
-function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('js-error')[0];
-  var error;
-  var submitButton;
-
-  if (prevError) {
-    prevError.parentNode.removeChild(prevError);
-  }
-
-  if (formName === 'github' || formName === 'bitbucket') {
-    error = document.createElement('div');
-    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
-    error.innerHTML = resultMessage;
-    form.children[0].appendChild(error);
-  } else {
-    submitButton = form.getElementsByTagName('button')[0];
-    error = document.createElement('small');
-    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-    error.innerHTML = resultMessage;
-    submitButton.appendChild(error);
-  }
-
-  analytics.ready(function() {
-    analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
-  });
-}
-
-// events
-window.addEventListener('DOMContentLoaded', function(){
-  var modalTriggers = document.getElementsByClassName('js-modal');
-  var dBody = document.body;
-  var dragging = false;
-  var i;
-
-  // prevent drag touch
-  dBody.addEventListener('touchmove',function(){dragging = true;});
-  dBody.addEventListener('touchstart',function(){dragging = false;});
-
-  // modals
-  if (modalTriggers) {
-    for (i = 0; i < modalTriggers.length; i++) {
-      /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(event){
-        openModal(event,dragging);
-      });
-      modalTriggers[i].addEventListener('touchend', function(event){
-        openModal(event,dragging);
-      });
-    }
-  }
-
-  // if sign up form exists
-  if (document.getElementsByClassName('form-github')) {
-    setupForm('signup');
-  }
-  // if pricing page
-  if (document.getElementsByClassName('form-enterprise')) {
-    setupForm('enterprise');
-  }
-});
-
-window.addEventListener('load', function(){
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
-});
-
-      // polyfill for svgs with base element
-(function(document, window) {
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function() {
-    // Current URL, without the hash
-    var baseUrl = window.location.href.replace(window.location.hash, '');
-      [].slice.call(document.querySelectorAll("use[*|href]"))
-        .filter(function(element) {
-          return (element.getAttribute('xlink:href').indexOf('#') === 0);
-        })
-        .forEach(function(element) {
-          element.setAttribute('xlink:href', baseUrl + element.getAttribute('xlink:href'));
-        });
-  }, false);
-}(document, window));
-
-    </script>
+    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),i=document.getElementById(a),s=i.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),i.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("bitbucket")}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t=document.getElementsByClassName("modal-backdrop in")[0],n=t.getElementsByClassName("js-modal-close")[0];e.preventDefault(),t.classList.remove("in"),document.body.classList.remove("modal-open"),n.removeEventListener("click",closeModal),n.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal)}function setupForm(e){var t;for("bitbucket"===e?t=document.getElementsByClassName("form-bitbucket"):"enterprise"===e&&(t=document.getElementsByClassName("form-enterprise")),i=0;i<t.length;i++)t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),t[i].getElementsByTagName("input")[0].addEventListener("invalid",formInvalid),t[i].getElementsByTagName("input")[1].addEventListener("invalid",formInvalid)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid")}function shakeForm(e){for(var t=e.target;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){e.target.classList.remove("pristine","invalid")}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var i,s,o=new XMLHttpRequest;"bitbucket"===a?(i="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"):"enterprise"===a&&(i="https://codenow.com:2096/notify/enterprise",s="preview@runnable.com"),o.open("POST",i,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,a),toggleEditing(t,"enable"))},o.onload=function(){var n=JSON.parse(o.responseText),i=n.result_code,s=n.result_message,l=t.parentNode.getElementsByClassName("hide")[0];-1!==i&&0!==i||(shakeForm(e),sundipValidation(s,t,a)),1===i&&(t.classList.add("hide"),t.classList.remove("show"),l.classList.add("show"),l.classList.remove("hide")),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,i=n.querySelectorAll('[name="email"]')[0].value,s=n.querySelectorAll('[name="name"]')[0].value;toggleEditing(n,"disable"),a={email:i,name:s},analytics.ready(function(){analytics.track(t+"-list sign up",{email:i,name:s,clientId:ga.getAll()[0].get("clientId")})}),a=JSON.stringify(a),xhrSubmit(e,n,a,t)}}function sundipValidation(e,t,n){var a=t.getElementsByClassName("red")[0],i=document.createElement("small"),s=t.getElementsByTagName("button")[0];a&&a.parentNode.removeChild(a),i.classList.add("popover","bottom","in","small","red","text-center"),i.innerHTML=e,s.appendChild(i),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("load",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),window.fbq||(window.fbq=function(){}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});"/signup/"===window.location.pathname&&setupForm("bitbucket"),"/private/preview-pricing/"!==window.location.pathname&&"/pricing/"!==window.location.pathname||setupForm("enterprise")}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
-      Commit Hash: 
-      Commit Time: 
+      Commit Hash: 7f4429bab7342b7795be374660723a9142d2d852
+      Commit Time: Mon Sep 12 18:48:24 2016 -0700
     -->
 
-  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  </head><body class="page-landing page-video" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
-  <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
-    <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z", transform="translate(-2.122)"</<path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" transform="translate(-2.122)"/>
+  <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
+    <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" ,="" transform="translate(-2.122)" <="" <path=""/>
   </symbol>
-  <symbol id="icons-check" viewBox="0 0 14.5 10">
+  <symbol id="icons-check" viewbox="0 0 14.5 10">
     <path d="M7.25,14a1,1,0,0,1-.707-0.293l-4.5-4.5A1,1,0,0,1,3.457,7.793L7.25,11.586l7.293-7.293a1,1,0,0,1,1.414,1.414l-8,8A1,1,0,0,1,7.25,14Z" transform="translate(-1.75 -4)"/>
   </symbol>
-  <symbol id="icons-chevron-right" viewBox="0 0 11 18">
+  <symbol id="icons-chevron-right" viewbox="0 0 11 18">
     <polyline points="1 1 10 9 1 17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
-  <symbol id="icons-chevron-down" viewBox="0 0 18 11">
-    <polyline points="17 1 9 10 1 1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
+  <symbol id="icons-chevron-down" viewbox="0 0 18 11">
+    <polyline points="17 1 9 10 1 1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </symbol>
-  <symbol id="icons-close" viewBox="0 0 30 30">
+  <symbol id="icons-close" viewbox="0 0 30 30">
     <path d="M21,22.2c-0.3,0-0.5-0.1-0.7-0.3L15,16.6l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l5.3-5.3L8.3,9.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l5.3,5.3l5.3-5.3c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-5.3,5.3l5.3,5.3c0.4,0.4,0.4,1,0,1.4C21.5,22.1,21.3,22.2,21,22.2z"/>
   </symbol>
-  <symbol id="icons-external" viewBox="0 0 18 18">
-    <path d="M15.462,3.306A0.5,0.5,0,0,0,15,3H4.084a0.5,0.5,0,0,0,0,1h9.709L2.646,15.144a0.5,0.5,0,1,0,.707.707L14.5,4.7v9.708a0.5,0.5,0,0,0,1,0V3.5A0.5,0.5,0,0,0,15.462,3.306Z" transform="translate(0)"/>
-    <rect width="18" height="18" fill="none"/>
+  <symbol id="icons-external" viewbox="0 0 15 15">
+    <path fill="currentColor" d="M9.5,9a0.5,0.5,0,0,1-.354-0.854L14.293,3H11a0.5,0.5,0,0,1,0-1h4.506a0.5,0.5,0,0,1,.32.121h0a0.56,0.56,0,0,1,.07.074,0.5,0.5,0,0,1,.1.269c0,0.013,0,.026,0,0.039V7a0.5,0.5,0,0,1-1,0V3.707L9.854,8.854A0.5,0.5,0,0,1,9.5,9Z" transform="translate(-1 -2)"/><path d="M13.317,8.218L13,8.535V14a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V7A2,2,0,0,1,4,5H9.465l0.317-.317A2.5,2.5,0,0,1,9.027,4H4A3,3,0,0,0,1,7v7a3,3,0,0,0,3,3h7a3,3,0,0,0,3-3V8.973A2.5,2.5,0,0,1,13.317,8.218Z" transform="translate(-1 -2)"/>
   </symbol>
-  <symbol id="icons-github" viewBox="0 0 24 23.41">
+  <symbol id="icons-github" viewbox="0 0 24 23.41">
     <path d="M24.336,7.791A12.011,12.011,0,0,1,25.52,23.366a12.083,12.083,0,0,1-5.883,4.313A0.686,0.686,0,0,1,19,27.549a0.648,0.648,0,0,1-.187-0.457l0.023-3.281a3.861,3.861,0,0,0-.258-1.395,2.219,2.219,0,0,0-.562-0.832,7.008,7.008,0,0,0,3.738-1.348Q23.41,19.03,23.5,15.655a5.127,5.127,0,0,0-.34-1.782,4.569,4.569,0,0,0-.9-1.43,3.254,3.254,0,0,0,.234-1.078,4.936,4.936,0,0,0-.352-2.109,1.719,1.719,0,0,0-.8.035A7.4,7.4,0,0,0,18.84,10.5a11.493,11.493,0,0,0-6,0,7.4,7.4,0,0,0-2.508-1.207,1.719,1.719,0,0,0-.8-0.035,4.936,4.936,0,0,0-.352,2.109,3.254,3.254,0,0,0,.234,1.078,4.569,4.569,0,0,0-.9,1.43,5.127,5.127,0,0,0-.34,1.782Q8.27,19.03,9.91,20.237a6.976,6.976,0,0,0,3.75,1.348,1.934,1.934,0,0,0-.48.633,3.414,3.414,0,0,0-.293.984,3.316,3.316,0,0,1-1.594.293,2.42,2.42,0,0,1-1.9-1.3,3.234,3.234,0,0,0-.645-0.75,1.767,1.767,0,0,0-1.184-.469q-0.7.023-.527,0.3a1.324,1.324,0,0,0,.551.469,2.583,2.583,0,0,1,.75.82,5.653,5.653,0,0,1,.469.867,2.2,2.2,0,0,0,.984,1.172,4.5,4.5,0,0,0,3.047.258l0.023,2.227a0.648,0.648,0,0,1-.187.457,0.686,0.686,0,0,1-.633.129A12.083,12.083,0,0,1,6.16,23.366,12,12,0,0,1,24.336,7.791Z" transform="translate(-3.84 -4.287)"/>
   </symbol>
-  <symbol id="icons-overflow" viewBox="0 0 18 4.688">
+  <symbol id="icons-overflow" viewbox="0 0 18 4.688">
     <path fill="currentColor" d="M2.344,7.656A1.344,1.344,0,1,1,1,9,1.345,1.345,0,0,1,2.344,7.656m0-1A2.344,2.344,0,1,0,4.688,9,2.344,2.344,0,0,0,2.344,6.656h0Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M9,7.656A1.344,1.344,0,1,1,7.656,9,1.345,1.345,0,0,1,9,7.656m0-1A2.344,2.344,0,1,0,11.344,9,2.344,2.344,0,0,0,9,6.656H9Z" transform="translate(0 -6.656)"/><path fill="currentColor" d="M15.656,7.656A1.344,1.344,0,1,1,14.313,9a1.345,1.345,0,0,1,1.344-1.344m0-1A2.344,2.344,0,1,0,18,9a2.344,2.344,0,0,0-2.344-2.344h0Z" transform="translate(0 -6.656)"/>
-  </symbol>
-  <symbol id="icons-play" viewBox="0 0 30 30">
-    <path d="M25.615,13.268a2,2,0,0,1,0,3.464l-7.5,4.33-7.5,4.33a2,2,0,0,1-3-1.732V6.34a2,2,0,0,1,3-1.732l7.5,4.33Z" transform="translate(0 0)"/>
-    <rect width="30" height="30" fill="none"/>
-  </symbol>
-  <symbol id="icons-select" viewBox="0 0 18 18">
-    <path d="M6.161,7.01L8.608,3.123a0.5,0.5,0,0,1,.846,0L11.9,7.01a0.5,0.5,0,0,1-.423.766h-4.9A0.5,0.5,0,0,1,6.161,7.01Z"/>
-    <path d="M11.9,10.99L9.455,14.877a0.5,0.5,0,0,1-.846,0L6.161,10.99a0.5,0.5,0,0,1,.423-0.766h4.9A0.5,0.5,0,0,1,11.9,10.99Z"/>
-    <rect width="18" height="18" fill="none"/>
   </symbol>
 </svg>
 
 
-    <main class="grid-block col main">
+    <main class="grid-block vertical main">
       <div class="modal-backdrop in" id="sign-up">
-        <header class="grid-block shrink header">
-  <div class="grid-block grid-container align-center justify-justified">
-    
-    
-    
-    <a href="/" class="grid-content shrink logo hidden-sm">
-      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
-    </a>
-    
-    <div class="grid-block shrink align-center">
-      
-      <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
-        <svg class="icons icons-bitbucket">
-          <use xlink:href="#icons-bitbucket">
-        </svg>
-        <span>Sign Up with Bitbucket</span>
-      </a>
-      <a class="grid-block align-center justify-center btn btn-sm btn-white js-open-github hide">
-        <svg class="icons icons-github">
-          <use xlink:href="#icons-github">
-        </svg>
-        <span>Sign Up with GitHub</span>
-      </a>
-      
-      
-    </div>
-  </div>
-</header>
-
         <div class="modal">
-          <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
-  <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
-  <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
-  <div class="grid-block col card shake-me">
+          <article class="grid-block vertical article article-form article-sign-up">
+  <h1 class="h1 text-center weight-strong padding-sm">Sign up with GitHub.</h1>
+  <div class="grid-block vertical card">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <form class="grid-block col form form-github js-form show">
-      <div class="grid-block col form-wrapper">
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-email">Work Email</label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email."  type="email" required>
+    <p class="p text-center" title="But first, let me take a selfie.">But first, we’ll need some permissions.</p>
+    <ul class="list list-bordered">
+      <li class="grid-block list-item list-item-write">
+        <svg class="grid-block shrink icons" viewbox="0 0 13.5 18"><path d="M13.5,1.125v13.5c-0.012,0.316-0.123,0.58-0.334,0.791s-0.475,0.322-0.791,0.334H6.75V18l-1.688-1.688L3.375,18v-2.25h-2.25c-0.316-0.012-0.58-0.123-0.791-0.334S0.012,14.941,0,14.625v-13.5c0.012-0.316,0.123-0.58,0.334-0.791S0.809,0.012,1.125,0h11.25c0.316,0.012,0.58,0.123,0.791,0.334S13.488,0.809,13.5,1.125z M12.375,12.375H1.125v2.25h2.25V13.5H6.75v1.125h5.625V12.375zM12.375,1.125H2.25V11.25h10.125V1.125z M4.5,2.25H3.375v1.125H4.5V2.25z M4.5,4.5H3.375v1.125H4.5V4.5z M4.5,6.75H3.375v1.125H4.5V6.75z M4.5,10.125H3.375V9H4.5V10.125z"/></svg>
+        <div class="grid-block vertical align-start">
+          <p class="p">We request read & write access to your repositories, but we’ll never modify your code.</p>
+          <small class="small underline popover-trigger hover">Why do we need this?
+            <div class="popover top text-left">
+              <p class="popover-p">GitHub’s permission model requires us to ask for more permissions than we use.</p>
+              <p class="popover-p">We will only use write access to add webhook integrations and deploy keys.</p>
+            </div>
+          </small>
         </div>
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-name">Company Name</label>
-          <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnable" title="Enter the name of the company you work for." required>
+    </li></ul>
+    <ul class="list list-bordered">
+      <li class="grid-block align-center list-item padding-xs">
+        <img class="img" src="images/runnabear-avatar.png" height="24" width="24">
+        <div class="grid-block vertical">
+          <p class="p weight-strong">Your Organization</p>
         </div>
-        <p class="text-center margin-top-md margin-bottom-xs">I want Runnable to help <br class="visible-xs hidden-xxxs">my team with:</p>
-        <div class="grid-block col checkbox-group pristine">
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            End-to-End Testing
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            CI / CD
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            <span class="hidden-xs">Persistent&nbsp;</span>Staging Environments
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            <span class="span-other">Other</span>
-            <input class="grid-block input-other pristine" pattern=".*\S+.*" name="why-other" placeholder="Other (please specify)" autofocus>
-          </label>
-        </div>
-      </div>
-      <footer class="grid-block col justify-center card-footer">
-        <button data-href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
-          <div class="grid-block justify-center align-center noscroll">
-            <svg class="icons hidden-xxs">
-              <use xlink:href="#icons-github">
-            </svg>
-            <span>Sign Up With GitHub</span>
-          </div>
-        </button>
-        <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-      </footer>
-    </form>
-    <div class="grid-block col justify-center padding-lg hide">
-      <p class="p text-center">Thanks! We’re redirecting you to GitHub…</p>
+        <button class="btn btn-xs gray no-touching hidden-xxs">Grant access<span class="hidden-xs"> on GitHub</span></button>
+    </li></ul>
+  </div>
+  <p class="grid-content shrink p text-center">By continuing, you are agreeing to our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
+  <a href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="grid-block align-center btn btn-lg green wrap-xxxs track-grant-access-github">
+    <svg class="icons hidden-xs">
+      <use xlink:href="#icons-github"/>
+    </svg>
+    <span>Grant permissions on GitHub</span>
+  </a>
+  <hr class="hr">
+  <div class="grid-content text-center">
+    <a data-target="#sign-in" href="undefined/auth/github?redirect&#x3D;undefined/?auth" class="link track-sign-in">Sign in</a> if your team is already using Runnable.
+  </div>
+  <aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket"/>
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
     </div>
+    <button class="grid-block shrink btn btn-sm gray">
+      <div class="grid-block justify-center align-center">
+        <span class="grid-content shrink">Notify Me</span>
+      </div>
+    </button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
   </div>
-  <div class="grid-content text-center text-white">
-    <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
-  </div>
-</article>
+</aside>
 
-          <article class="grid-block col align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <div class="grid-block col card shake-me">
-    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <form class="grid-block col form form-bitbucket show js-form">
-      <div class="grid-block col form-wrapper">
-        <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-        <div class="grid-block col show">
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-name">Your Name</label>
-            <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
-          </div>
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-email">Work Email</label>
-            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
-          </div>
-        </div>
-      </div>
-      <footer class="card-footer">
-        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
-          <div class="grid-block justify-center align-center">
-            <svg class="icons hidden-xxxs">
-              <use xlink:href="#icons-bitbucket">
-            </svg>
-            <span class="grid-content shrink">Notify Me</span>
-          </div>
-        </button>
-      </footer>
-    </form>
-    <div class="grid-block col justify-center padding-lg hide">
-      <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
-    </div>
-  </div>
 </article>
 
         </div>
       </div>
+      <aside class="grid-block bitbucket-box padding-sm shake-me">
+  <div class="grid-block shrink align-center">
+    <svg class="icons">
+      <use xlink:href="#icons-bitbucket"/>
+    </svg>
+  </div>
+  <form class="grid-block vertical form form-bitbucket show">
+    <label class="small text-gray label text-center" for="input-email">Get notified when we roll out Bitbucket support.</label>
+    <div class="grid-block">
+      <input class="grid-block input input-sm input-validate pristine" id="input-name" placeholder="Name" name="name" required>
+      <input class="grid-block input input-sm input-validate pristine" id="input-email" placeholder="Work email" name="email" type="email" pattern="\S+@\S+\.\S+" title="Enter a valid email for us to follow up with." required>
+    </div>
+    <button class="grid-block shrink btn btn-sm gray">
+      <div class="grid-block justify-center align-center">
+        <span class="grid-content shrink">Notify Me</span>
+      </div>
+    </button>
+  </form>
+  <div class="grid-block vertical hide">
+    <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
+  </div>
+</aside>
+
     </main>
     <!-- segment.io-->
 <script>
@@ -1308,9 +704,9 @@ window.addEventListener('load', function(){
     urlParams[decode(match[1])] = decode(match[2]);
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
+    analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
-    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -1319,13 +715,9 @@ window.addEventListener('load', function(){
     });
     var signUp = document.getElementsByClassName('track-sign-up');
     var signIn = document.getElementsByClassName('track-sign-in');
-    var github = document.getElementsByClassName('track-github');
-    var bitbucket = document.getElementsByClassName('track-bitbucket');
     var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
-    analytics.trackLink(github, 'Clicked GitHub');
-    analytics.trackLink(bitbucket, 'Clicked Bitbucket');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
 
     // Attach anonymous_id to links
@@ -1337,32 +729,12 @@ window.addEventListener('load', function(){
       append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
     function append_id(link, id, event) {
-      ga(function(tracker) {
-        link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event+'%26'+tracker.get('linkerParam'));
-      });
+      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
     }
   });
 </script>
-<script>
-  analytics.ready(function(){
-    ga('require', 'Clearbit', {
-      mapping: {
-        companyName:           'dimension3',
-        companyEmployeesRange: 'dimension4',
-        companyTags:           'dimension5',
-        companyTech:           'dimension6',
-        companySubIndustry:    'dimension7',
-        companyIndustry:       'dimension8',
-        companyIndustryGroup:  'dimension9',
-        companySector:         'dimension10',
-        companyType:           'dimension11',
-        companyDomain:         'dimension12'
-      }
-    });
-  });
-</script>
 
-<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>
 
+</body></html>
