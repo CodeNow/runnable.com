@@ -1,10 +1,6 @@
 .home-hero {
   background: linear-gradient($purple-light, $purple-blue);
 
-  &::after {
-    opacity: .5;
-  }
-
   .h1 {
     margin: 0 auto;
     max-width: 600px;
@@ -21,7 +17,9 @@
   .btn-lg {
     background: $white;
     box-shadow: 0 2px 4px rgba($black,.15);
+    display: block;
     font-weight: $weight-bold;
+    line-height: $input-lg;
     margin-top: $sm; // + 15 from the h3 for $md total
     transition: transform .2s ease-in-out;
 
