@@ -47,11 +47,16 @@
     }
   }
 
+  .small,
+  .list-item-a {
+    padding-left: 15px;
+  }
+
   .list-item-a {
     cursor: pointer;
     height: $input-sm;
     line-height: $input-sm;
-    padding: 0 15px 0 6px;
+    padding-right: 6px;
 
     @include media(sm) {
       height: $input-md;
@@ -80,6 +85,15 @@
       margin-left: 3px;
       opacity: .5;
       width: 12px;
+    }
+  }
+
+  // feature item
+  .list-item-feature {
+    padding-left: 9px;
+
+    .img {
+      margin-right: $xs;
     }
   }
 }
