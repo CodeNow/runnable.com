@@ -10,9 +10,9 @@
     urlParams[decode(match[1])] = decode(match[2]);
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
     analytics.load("m1OwMrg9ytNWONfJ0J1ig8GOH91MkWNT");
-    analytics.page('init'); // fire this just to initialize integrations
   }}();
   analytics.ready( function() {
+    ga('require', 'GTM-5T3HJWM');
     ga('require', 'linker');
     ga('linker:autoLink', ['runnable.io', 'runnable.com']);
     analytics.page({
@@ -21,9 +21,13 @@
     });
     var signUp = document.getElementsByClassName('track-sign-up');
     var signIn = document.getElementsByClassName('track-sign-in');
+    var github = document.getElementsByClassName('track-github');
+    var bitbucket = document.getElementsByClassName('track-bitbucket');
     var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
     analytics.trackLink(signIn, 'Clicked Sign In');
+    analytics.trackLink(github, 'Clicked GitHub');
+    analytics.trackLink(bitbucket, 'Clicked Bitbucket');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
 
     // Attach anonymous_id to links
@@ -35,10 +39,31 @@
       append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
     function append_id(link, id, event) {
-      link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event);
+      ga(function(tracker) {
+        link.addEventListener('click', link.href=link.href+'%26ajs_aid='+id+'%26ajs_event='+event+'%26'+tracker.get('linkerParam'));
+      });
     }
   });
 </script>
+<script>
+  analytics.ready(function(){
+    ga('require', 'Clearbit', {
+      mapping: {
+        companyName:           'dimension3',
+        companyEmployeesRange: 'dimension4',
+        companyTags:           'dimension5',
+        companyTech:           'dimension6',
+        companySubIndustry:    'dimension7',
+        companyIndustry:       'dimension8',
+        companyIndustryGroup:  'dimension9',
+        companySector:         'dimension10',
+        companyType:           'dimension11',
+        companyDomain:         'dimension12'
+      }
+    });
+  });
+</script>
 
+<script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
 <!-- statuspage.io -->
 <script async src="https://cdn.statuspage.io/se-v2.js"></script>

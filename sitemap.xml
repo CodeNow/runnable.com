@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://runnable.com/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <lastmod>2016-12-21T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/use-cases/</loc>
+    <lastmod>2016-12-13T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
@@ -37,28 +43,40 @@
     <priority>0.83</priority>
   </url>
   <url>
-    <loc>https://runnable.com/product/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <loc>https://runnable.com/for/</loc>
+    <lastmod>2016-11-01T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.50</priority>
+  </url>
+    <url>
+    <loc>https://runnable.com/for/test-automation/</loc>
+    <lastmod>2016-11-01T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.50</priority>
   </url>
   <url>
-    <loc>https://runnable.com/product/development/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <loc>https://runnable.com/for/ci-cd/</loc>
+    <lastmod>2016-11-01T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.50</priority>
   </url>
   <url>
-    <loc>https://runnable.com/product/integration-testing/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <loc>https://runnable.com/for/docker/</loc>
+    <lastmod>2016-11-01T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.49</priority>
+    <priority>0.50</priority>
   </url>
   <url>
-    <loc>https://runnable.com/product/production/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <loc>https://runnable.com/how-it-works/</loc>
+    <lastmod>2016-09-17T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.49</priority>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/pricing/</loc>
+    <lastmod>2016-09-17T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.50</priority>
   </url>
   <url>
     <loc>https://runnable.com/demo/</loc>
@@ -68,9 +86,27 @@
   </url>
   <url>
     <loc>https://runnable.com/about/</loc>
-    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <lastmod>2016-09-17T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.48</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/use-cases/spend-less-time-working-on-code-reviews</loc>
+    <lastmod>2016-12-13T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/use-cases/finish-your-code-reviews-in-5-minutes</loc>
+    <lastmod>2016-12-13T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/use-cases/peer-review-changes-in-your-application-stack-quickly/</loc>
+    <lastmod>2016-12-13T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
   </url>
   <url>
     <loc>https://runnable.com/docker/getting-started/</loc>
@@ -122,6 +158,24 @@
   </url>
   <url>
     <loc>https://runnable.com/docker/securing-your-docker-system</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/introduction-to-docker-compose</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/advanced-docker-compose-configuration</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.36</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/docker-compose-networking</loc>
     <lastmod>2016-07-25T23:56:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.36</priority>
@@ -200,6 +254,18 @@
   </url>
   <url>
     <loc>https://runnable.com/docker/python/dockerize-your-pyramid-application</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.29</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/python/docker-compose-with-django-apps</loc>
+    <lastmod>2016-07-25T23:56:40+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.29</priority>
+  </url>
+  <url>
+    <loc>https://runnable.com/docker/python/docker-compose-with-flask-apps</loc>
     <lastmod>2016-07-25T23:56:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.29</priority>

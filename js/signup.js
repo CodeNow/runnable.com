@@ -19,10 +19,17 @@ function openModal(event,dragging) {
     closeTrigger.addEventListener('touchend', closeModal);
     // trigger for esc key
     document.addEventListener('keydown', escModal);
-    // bind sign up events
+
     if (modalName === 'sign-up') {
-      setupForm('bitbucket');
+      setupForm('signup');
     }
+
+    if (modalName === 'video') {
+      addVideo();
+    }
+
+    // mixpanel
+    mixpanel.track('Open Modal: ' + modalName);
   }
 }
 
@@ -35,6 +42,7 @@ function escModal(event) {
 function closeModal(event) {
   var modal = document.getElementsByClassName('modal-backdrop in')[0];
   var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
+  var iframe;
 
   event.preventDefault();
   // hide modal
@@ -45,21 +53,113 @@ function closeModal(event) {
   closeTrigger.removeEventListener('click', closeModal);
   closeTrigger.removeEventListener('touchend', closeModal);
   document.removeEventListener('keydown', escModal);
+  // delete video if it exists
+  if (modal.getElementsByTagName('iframe').length) {
+    iframe = modal.getElementsByTagName('iframe')[0];
+    iframe.parentNode.removeChild(iframe);
+  }
+}
+
+// add video player
+function addVideo() {
+  var player = document.getElementById('video')
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('frameborder','0');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
+  iframe.classList.add('video-player');
+  player.appendChild(iframe);
+}
+
+// show bitbucket form
+function openBitbucketForm() {
+  var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
+  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+
+  bitbucketTrigger.classList.add('hide');
+  bitbucketForm.classList.remove('out');
+  bitbucketForm.classList.add('in');
+  gitHubTrigger.classList.remove('hide');
+  gitHubForm.classList.remove('in');
+  gitHubForm.classList.add('out');
+  // mixpanel
+  mixpanel.track('Open Bitbucket form');
+}
+
+// show github form
+function openGitHubForm() {
+  var gitHubForm = document.getElementsByClassName('article-github')[0];
+  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
+  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+
+  gitHubTrigger.classList.add('hide');
+  gitHubForm.classList.remove('out');
+  gitHubForm.classList.add('in');
+  bitbucketTrigger.classList.remove('hide');
+  bitbucketForm.classList.remove('in');
+  // mixpanel
+  mixpanel.track('Open GitHub form');
 }
 
 // set up forms
 function setupForm(formName) {
   var formEl;
-  if (formName === 'bitbucket') {
-    formEl = document.getElementsByClassName('form-bitbucket');
-  } else if (formName === 'enterprise') {
-    formEl = document.getElementsByClassName('form-enterprise');
+  var formInputs;
+  if (formName === 'signup') {
+    var gitHubForm = document.getElementsByClassName('article-github')[0];
+    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
+    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
+
+    openGitHubFormTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openGitHubForm();
+    });
+    openGitHubFormTrigger.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openGitHubForm();
+    });
+    openBitbucketFormTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openBitbucketForm();
+    });
+    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      openBitbucketForm();
+    });
+
+    // mixpanel
+    linkGitHub.addEventListener('click', function(){
+      mixpanel.track('Open URL: GitHub Auth');
+    });
+    linkGitHub.addEventListener('touchend', function(){
+      mixpanel.track('Open URL: GitHub Auth');
+    });
   }
+
+  formEl = document.getElementsByClassName('js-form');
+
   for (i = 0; i < formEl.length; i++) {
     formEl[i].addEventListener('change', makeDirty);
     formEl[i].addEventListener('submit', submitForm);
-    formEl[i].getElementsByTagName('input')[0].addEventListener('invalid', formInvalid);
-    formEl[i].getElementsByTagName('input')[1].addEventListener('invalid', formInvalid);
+    formInputs = formEl[i].getElementsByTagName('input');
+
+    for (y = 0; y < formInputs.length; y++) {
+      if (formInputs[y].type !== 'checkbox') {
+        formInputs[y].addEventListener('invalid', formInvalid);
+      }
+      if (formInputs[y].type === 'checkbox') {
+        formInputs[y].addEventListener('change', validateCheckGroup);
+      }
+    }
   }
 }
 
@@ -69,7 +169,6 @@ function markInvalid(e) {
   var i;
 
   if (thisTarget.tagName == 'INPUT') {
-    // for invalid event
     thisTarget.classList.add('invalid');
   } else {
     // for change event
@@ -80,13 +179,16 @@ function markInvalid(e) {
       }
     }
   }
+  validateCheckGroup(e);
 }
 
 function shakeForm(e) {
   var thisForm = e.target;
 
   // get shake element
-  while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  if (!thisForm.classList.contains('shake-me')) {
+    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
+  }
   thisForm.classList.add('shake');
   thisForm.addEventListener('animationend', function(){
     thisForm.classList.remove('shake');
@@ -95,7 +197,75 @@ function shakeForm(e) {
 }
 
 function makeDirty(e) {
-  e.target.classList.remove('pristine', 'invalid');
+  var thisTarget = e.target;
+  var checkGroup;
+
+  // checkbox logic
+  if (thisTarget.type === 'checkbox') {
+    // get parent
+    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
+    checkGroup = thisTarget
+    checkGroup.classList.remove('pristine');
+  } else {
+    thisTarget.classList.remove('pristine', 'invalid');
+  }
+}
+
+function validateCheckGroup(e) {
+  var thisTarget;
+  var checkGroup;
+  var theseInputs;
+  var itemChecked = false;
+  var otherInput;
+  var otherListened = false;
+
+  if (e.target.type !== 'checkbox') {
+    thisTarget = false;
+    checkGroup = document.getElementsByClassName('checkbox-group')[0];
+  } else {
+    thisTarget = e.target;
+    checkGroup = e.target;
+    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
+  }
+
+  // get all checkboxes
+  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+
+  // toggle required state
+  if (thisTarget.checked) {
+    // if an "other" option
+    if (thisTarget.value === 'Other') {
+      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
+      otherInput.setAttribute('required','required');
+
+      if (!otherListened) {
+        otherInput.addEventListener('click',function(e){
+          e.preventDefault();
+          otherListened = true;
+        })
+      }
+    }
+    // remaining options
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].removeAttribute('required');
+    }
+    checkGroup.classList.remove('invalid');
+    itemChecked = true;
+  } else if (!thisTarget.checked || !thisTarget) {
+    for (i = 0; i < theseInputs.length; i++) {
+      if (theseInputs[i].checked) {
+        itemChecked = true;
+      }
+    }
+  }
+
+  if (!itemChecked) {
+    for (i = 0; i < theseInputs.length; i++) {
+      theseInputs[i].setAttribute('required','required');
+    }
+    // mark invalid
+    checkGroup.classList.add('invalid');
+  }
 }
 
 function formInvalid(e) {
@@ -120,7 +290,11 @@ function toggleEditing(form, state) {
       theseTextareas.disabled = true;
     }
     submitButton.disabled = true;
-    submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    if (submitButton.classList.contains('green')) {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    } else {
+      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
+    }
   }
   if (state === 'enable') {
     if (theseInputs) {
@@ -141,7 +315,10 @@ function xhrSubmit(e, form, formData, formName) {
   var xhrUrl;
   var supportEmail;
 
-  if (formName === 'bitbucket') {
+  if (formName === 'github') {
+    xhrUrl = 'https://codenow.com:2087/sign_up';
+    supportEmail = 'support@runnable.com';
+  } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
   } else if (formName === 'enterprise') {
@@ -154,17 +331,24 @@ function xhrSubmit(e, form, formData, formName) {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(formData);
   xhr.onreadystatechange = function() {
-    if ( xhr.readyState === 4 && xhr.status === 0) {
+    if (xhr.readyState === 4 && xhr.status === 0) {
       shakeForm(e);
       sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
       toggleEditing(form, 'enable'); // re-enables form
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'fail',
+        'error': 'xhr.readyState === 4 && xhr.status === 0'
+      });
     }
   };
+
   xhr.onload = function() {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
     var successMsg = form.parentNode.getElementsByClassName('hide')[0];
+    var href;
 
     // result_codes:
     // -1 = error from sundip
@@ -173,13 +357,30 @@ function xhrSubmit(e, form, formData, formName) {
     if (resultCode === -1 || resultCode === 0) {
       shakeForm(e);
       sundipValidation(resultMessage, form, formName);
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'fail',
+        'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
+      });
     }
+
     if (resultCode === 1) {
+      // mixpanel
+      mixpanel.track('XHR Submit: ' + formName, {
+        'server-side validation': 'pass'
+      });
+
       // tell the user something nice
       form.classList.add('hide');
       form.classList.remove('show');
       successMsg.classList.add('show');
       successMsg.classList.remove('hide');
+
+      // if github form, redirect to log in
+      if (formName === 'github') {
+        href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
+        setTimeout(function(){window.location.href = href;},2500);
+      }
     }
     toggleEditing(form, 'enable'); // re-enables form
   };
@@ -189,45 +390,104 @@ function submitForm(e) {
   var form = e.target;
   var formName;
 
-  if (form.classList.contains('form-bitbucket')) {
+  if (form.classList.contains('form-github')) {
+    formName = 'github';
+  } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
     formName = 'enterprise';
   }
 
   e.preventDefault();
+
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
     var formData;
+    var name = 'name';
+
+    // special github form data
+    if (formName === 'github') {
+      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
+      var whyValue = [];
+      var otherValue;
+      var whySegment = [];
+
+      // change name to be labelled company
+      name = 'company';
+
+      for (i = 0; i < whyInputs.length; i++) {
+        var obj = {
+          name: whyInputs[i].value,
+          checkbox: whyInputs[i].checked
+        }
+
+        if (whyInputs[i].value === 'Other') {
+          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
+        }
+
+        // for segment, we only want to send the data if it's checked
+        if (whyInputs[i].checked) {
+          if (whyInputs[i].value === 'Other') {
+            whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
+          } else {
+            whySegment.push(whyInputs[i].value, "; ");
+          }
+        }
+
+        whyValue.push(obj);
+      }
+    }
 
     toggleEditing(form, 'disable'); // disables inputs
+
     // jsonify form data
     formData = {
       email: emailValue,
-      name: nameValue
+      why: whyValue,
+      intent: whySegment.join('').trim(),
+      id: analytics.user().anonymousId(),
+      client_id: ga.getAll()[0].get('clientId')
     };
 
+    // add name
+    formData[name] = nameValue;
+    xhrSubmit(e, form, JSON.stringify(formData), formName);
+
+    // segment
+    delete formData['why'];
     analytics.ready(function() {
-      analytics.track(formName + '-list sign up', {email: emailValue, name: nameValue, clientId: ga.getAll()[0].get('clientId')});
+      analytics.track(formName + ' sign up', formData);
     });
-    formData = JSON.stringify(formData); // convert to JSON
-    xhrSubmit(e, form, formData, formName);
+
+    // mixpanel
+    mixpanel.track('FE Submit: ' + formName, {
+      'front-end validation': 'pass'
+    });
   }
 }
 
 function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('red')[0];
-  var error = document.createElement('small');
-  var submitButton = form.getElementsByTagName('button')[0];
+  var prevError = form.getElementsByClassName('js-error')[0];
+  var error;
+  var submitButton;
 
   if (prevError) {
     prevError.parentNode.removeChild(prevError);
   }
 
-  error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-  error.innerHTML = resultMessage;
-  submitButton.appendChild(error);
+  if (formName === 'github' || formName === 'bitbucket') {
+    error = document.createElement('div');
+    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
+    error.innerHTML = resultMessage;
+    form.children[0].appendChild(error);
+  } else {
+    submitButton = form.getElementsByTagName('button')[0];
+    error = document.createElement('small');
+    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
+    error.innerHTML = resultMessage;
+    submitButton.appendChild(error);
+  }
 
   analytics.ready(function() {
     analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
@@ -235,7 +495,7 @@ function sundipValidation(resultMessage, form, formName) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var modalTriggers = document.getElementsByClassName('js-modal');
   var dBody = document.body;
   var dragging = false;
@@ -244,10 +504,7 @@ window.addEventListener('load', function(){
   // prevent drag touch
   dBody.addEventListener('touchmove',function(){dragging = true;});
   dBody.addEventListener('touchstart',function(){dragging = false;});
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
+
   // modals
   if (modalTriggers) {
     for (i = 0; i < modalTriggers.length; i++) {
@@ -260,12 +517,20 @@ window.addEventListener('load', function(){
       });
     }
   }
-  // if sign up page
-  if (window.location.pathname === '/signup/') {
-    setupForm('bitbucket');
+
+  // if sign up form exists
+  if (document.getElementsByClassName('form-github')) {
+    setupForm('signup');
   }
   // if pricing page
-  if (window.location.pathname === '/private/preview-pricing/' || window.location.pathname === '/pricing/') {
+  if (document.getElementsByClassName('form-enterprise')) {
     setupForm('enterprise');
+  }
+});
+
+window.addEventListener('load', function(){
+  // stub fbq
+  if (!window.fbq) {
+    window.fbq = function () {};
   }
 });

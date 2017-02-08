@@ -1,5 +1,8 @@
-<!-- optimizely must be the first tag in the head -->
-<script src="https://cdn.optimizely.com/js/7411942724.js"></script>
+<style>.async-hide {opacity: 0 !important}</style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.end=i=function(){
+s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;
+setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
+'async-hide','dataLayer',2000,{'GTM-5T3HJWM':true,});</script>
 
 
 <base href="/runnable.com/">
@@ -10,7 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index.css">
+<!-- inject:css -->
+<!-- endinject -->
 
 <script>
   (function(self) {
@@ -528,7 +532,7 @@
 
 </script>
 
-<!-- structured data -->
+{{!-- structured data --}}
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",

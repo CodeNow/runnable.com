@@ -26,7 +26,7 @@ function flipCard(e) {
 }
 
 // events
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
   var i;
   var flipper = document.getElementsByClassName('js-flipper');
 
