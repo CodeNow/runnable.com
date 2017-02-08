@@ -1,0 +1,30 @@
+.popover-feature {
+  line-height: 1.4;
+  margin-left: 76px;
+  top: 0;
+  white-space: normal;
+  width: 315px;
+
+  .a {
+    border-radius: $input-border-radius;
+    color: $gray-dark;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: $purple-light;
+    }
+  }
+
+  .img {
+    margin-right: $sm;
+  }
+
+  .p.p {
+    margin-bottom: 0;
+  }
+
+  .small {
+    opacity: .75;
+  }
+}
