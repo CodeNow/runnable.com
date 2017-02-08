@@ -47,25 +47,22 @@
     }
   }
 
-  .small,
-  .list-item-a {
-    padding-left: 15px;
-  }
-
   .list-item-a {
     cursor: pointer;
     height: $input-sm;
     line-height: $input-sm;
+    padding-left: 15px;
     padding-right: 6px;
 
     @include media(sm) {
       height: $input-md;
       line-height: $input-md;
-      padding: 0 60px 0 15px;
+      padding-left: 15px;
+      padding-right: 6px;
     }
 
     @media (max-width: 510px) {
-      padding: 0 15px;
+      padding-right: 15px;
     }
 
     &:hover {
