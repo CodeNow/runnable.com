@@ -1,0 +1,19 @@
+.article-collaboration {
+
+  > .img {
+    display: block;
+    margin: -90px auto 0;
+  }
+
+  > .section {
+    padding-top: 0;
+  }
+
+  .ul {
+    flex-wrap: wrap;
+  }
+
+  .li {
+    flex: 0 0 50%;
+  }
+}

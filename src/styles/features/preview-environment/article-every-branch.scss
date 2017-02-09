@@ -1,6 +1,7 @@
 .article-every-branch {
   background: linear-gradient($purple-blue, $purple-light);
   border-color: transparent;
+  padding-bottom: 180px;
 
   &::after {
     background: url(../images/confetti.png);
