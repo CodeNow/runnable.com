@@ -1,0 +1,64 @@
+.article-every-branch {
+  background: linear-gradient($purple-blue, $purple-light);
+  border-color: transparent;
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .3;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  // layout
+  .grid-container {
+    margin-top: 0;
+    padding-top: $xl;
+
+    .h1 {
+      flex: 0 0 auto;
+    }
+
+    .card {
+      flex: 1 1 auto;
+    }
+  }
+
+  // styles
+  .h1 {
+    color: $white;
+    font-weight: $weight-bold;
+    padding-left: 150px;
+    padding-right: 90px;
+  }
+
+  .card {
+    margin-top: 0;
+
+    &::after {
+      background-image: url(../images/features/dot.svg);
+      content: '';
+      display: block;
+      height: calc(100% - #{$lg * 3});
+      left: 72px;
+      position: absolute;
+      top: $lg + ($lg / 2);
+      width: 5px;
+    }
+  }
+
+  .li {
+    font-size: 16px;
+    z-index: 1;
+
+    + .li {
+      margin-top: $md;
+    }
+  }
+}
