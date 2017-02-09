@@ -1,6 +1,7 @@
 .article-every-branch {
   background: linear-gradient($purple-blue, $purple-light);
   border-color: transparent;
+  overflow: hidden;
   padding-bottom: 180px;
 
   &::after {
@@ -58,6 +59,10 @@
       margin-right: auto;
       margin-top: 30px;
       max-width: 570px;
+    }
+
+    @include media(xxxs) {
+      padding: $lg $md;
     }
 
     &::after {
