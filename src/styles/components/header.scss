@@ -69,6 +69,12 @@
     }
   }
 
+  // feature button
+  .icons-chevron-down {
+    height: 9px;
+    width: 12px;
+  }
+
   // popover specific
   .grid-block {
     overflow: visible;
@@ -84,6 +90,11 @@
     &:hover .icons-overflow,
     &:focus .icons-overflow {
       color: $white;
+    }
+
+    .div {
+      position: relative;
+      z-index: 1;
     }
 
     .icons-overflow {

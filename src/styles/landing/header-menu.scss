@@ -51,16 +51,18 @@
     cursor: pointer;
     height: $input-sm;
     line-height: $input-sm;
-    padding: 0 15px 0 6px;
+    padding-left: 15px;
+    padding-right: 6px;
 
     @include media(sm) {
       height: $input-md;
       line-height: $input-md;
-      padding: 0 60px 0 15px;
+      padding-left: 15px;
+      padding-right: 6px;
     }
 
     @media (max-width: 510px) {
-      padding: 0 15px;
+      padding-right: 15px;
     }
 
     &:hover {
@@ -80,6 +82,15 @@
       margin-left: 3px;
       opacity: .5;
       width: 12px;
+    }
+  }
+
+  // feature item
+  .list-item-feature {
+    padding-left: 9px;
+
+    .img {
+      margin-right: $xs;
     }
   }
 }
