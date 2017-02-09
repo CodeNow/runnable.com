@@ -39,10 +39,21 @@
     line-height: 1.3;
     padding-left: 120px;
     padding-right: 90px;
+
+    @include media(md) {
+      justify-content: center;
+    }
   }
 
   .card {
     margin-top: 0;
+
+    @include media(md) {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      max-width: 570px;
+    }
 
     &::after {
       background-image: url(../images/features/dot.svg);

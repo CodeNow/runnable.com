@@ -1,13 +1,14 @@
 .article-stack {
 
   .ul {
-    @include media(sm) {
+    @include media(md) {
       flex-wrap: wrap;
+      justify-content: center;
     }
   }
 
   .li {
-    @include media(sm) {
+    @include media(md) {
       flex: 0 0 50%;
     }
   }
