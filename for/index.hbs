@@ -1268,7 +1268,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
-      <div class="grid-content btn btn-sm text-white weight-strong hidden-sm a popover-trigger hover has-links" tabindex="1">
+      <div class="grid-content btn btn-sm text-white weight-strong hidden-xs a popover-trigger hover has-links" tabindex="1">
         <div class="div">Features
           <svg class="icons icons-chevron-down">
             <use xlink:href="#icons-chevron-down">
@@ -1301,7 +1301,7 @@ window.addEventListener('DOMContentLoaded', function(){
 </div>
 
       </div>
-      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-xs a">Docs</a>
+      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Docs</a>
       <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
       <a href="signin/" class="grid-content btn btn-sm text-white weight-strong hidden-md js-hide-if-signed-in">Sign In</a>
       <a href="signup/" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
@@ -1312,12 +1312,25 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block col list text-left">
+      <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
+      <a href="" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-staging.svg" height="30" width="30" class="img">
+        Preview Environments
+      </a>
+      <a href="" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-testing.svg" height="30" width="30" class="img">
+        End-to-end Testing
+      </a>
+      <a href="" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-deploy.svg" height="30" width="30" class="img">
+        Deploy to Production
+      </a>
+      <div class="list-item divider visible-xs"></div>
       <a href="signup/" class="list-item-a visible-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
       <a href="signin/" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-xs">Docs</a>
-      <a href="for/" class="list-item-a visible-sm">Product</a>
-      <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
+      <a href="docs/" class="list-item-a visible-sm">Docs</a>
+      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
       <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
