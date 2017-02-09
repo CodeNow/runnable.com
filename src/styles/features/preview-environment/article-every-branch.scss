@@ -34,14 +34,19 @@
   // styles
   .h1 {
     color: $white;
-    font-size: 54px;
     font-weight: $weight-bold;
     line-height: 1.3;
     padding-left: 120px;
     padding-right: 90px;
 
+    @media (min-width: $screen-md) {
+      font-size: 54px;
+    }
+
     @include media(md) {
       justify-content: center;
+      padding: 0;
+      text-align: center;
     }
   }
 
@@ -64,6 +69,10 @@
       position: absolute;
       top: $lg + ($lg / 2);
       width: 5px;
+
+      @include media(xxs) {
+        display: none;
+      }
     }
   }
 
@@ -73,6 +82,12 @@
 
     + .li {
       margin-top: $md;
+    }
+  }
+
+  .img {
+    @include media(xxs) {
+      margin-bottom: $xs;
     }
   }
 }

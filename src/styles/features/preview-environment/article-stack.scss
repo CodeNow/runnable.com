@@ -11,5 +11,10 @@
     @include media(md) {
       flex: 0 0 50%;
     }
+
+    @include media(xs) {
+      flex: 0 0 100%;
+      max-width: 300px;
+    }
   }
 }
