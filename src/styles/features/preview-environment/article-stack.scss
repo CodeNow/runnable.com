@@ -1,0 +1,14 @@
+.article-stack {
+
+  .ul {
+    @include media(sm) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .li {
+    @include media(sm) {
+      flex: 0 0 50%;
+    }
+  }
+}
