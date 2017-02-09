@@ -1,0 +1,19 @@
+.article-unlimited {
+  background-color: $purple-light;
+
+  .card {
+    background-color: $white;
+    border-radius: 9px;
+    box-shadow: 0 2px 6px 0 rgba($black,.05);
+    max-width: 570px;
+    padding: 45px 60px;
+  }
+
+  .img {
+    display: block;
+    height: 45px;
+    position: relative;
+    top: 6px;
+    width: 45px;
+  }
+}
