@@ -40,6 +40,7 @@
 // component specific
 @import "components/specific/buttons-sandbox";
 @import "components/specific/form-github";
+@import "components/specific/popover-feature";
 
 // landing specific
 @import "landing/landing";
@@ -58,14 +59,22 @@
 @import "modals/signup";
 
 @import "home/home";
-@import "home/home-hero";
+@import "home/hero";
+@import "home/article-runnable-works";
+@import "home/article-features";
 @import "home/article-home-cta";
 @import "home/article-graph";
-@import "home/article-merge";
-@import "home/article-more";
-@import "home/article-testing";
-@import "home/article-review";
-@import "home/article-validate";
+
+@import "features/end-to-end-testing/hero";
+@import "features/end-to-end-testing/article-environments";
+@import "features/end-to-end-testing/article-testing";
+@import "features/end-to-end-testing/article-review";
+@import "features/end-to-end-testing/article-unlimited";
+@import "features/preview-environment/hero";
+@import "features/preview-environment/article-stack";
+@import "features/preview-environment/article-every-branch";
+@import "features/preview-environment/article-collaboration";
+@import "features/article-quote";
 
 @import "product/product-hero";
 @import "product/article-easy-setup";
@@ -88,6 +97,10 @@
 @import "how-it-works/article-setup";
 @import "how-it-works/article-branches-urls";
 @import "how-it-works/article-behind-the-scenes";
+
+@import "production/production-hero";
+@import "production/article-production";
+@import "production/article-docker";
 
 @import "demo/demo-hero";
 @import "demo/calendar";
