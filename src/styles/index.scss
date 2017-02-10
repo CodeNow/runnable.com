@@ -40,6 +40,7 @@
 // component specific
 @import "components/specific/buttons-sandbox";
 @import "components/specific/form-github";
+@import "components/specific/popover-feature";
 
 // landing specific
 @import "landing/landing";
@@ -58,14 +59,17 @@
 @import "modals/signup";
 
 @import "home/home";
-@import "home/home-hero";
+@import "home/hero";
+@import "home/article-runnable-works";
+@import "home/article-features";
 @import "home/article-home-cta";
 @import "home/article-graph";
-@import "home/article-merge";
-@import "home/article-more";
-@import "home/article-testing";
-@import "home/article-review";
-@import "home/article-validate";
+
+@import "features/preview-environment/hero";
+@import "features/preview-environment/article-stack";
+@import "features/preview-environment/article-every-branch";
+@import "features/preview-environment/article-collaboration";
+@import "features/article-quote";
 
 @import "product/product-hero";
 @import "product/article-easy-setup";

@@ -1,0 +1,14 @@
+.hero-preview {
+
+  .h1 {
+    margin: 0 auto;
+  }
+
+  .h3 {
+    margin-top: 0;
+
+    @include media(xs) {
+      max-width: 480px;
+    }
+  }
+}
