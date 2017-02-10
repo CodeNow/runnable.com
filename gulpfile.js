@@ -36,6 +36,7 @@ var imgDir = src + 'images/**/*.+(png|jpg|gif|svg)';
 var favIconSrc = src + 'html/favicon.png';
 var robotsSrc = src + 'html/robots.txt';
 var sitemapSrc = src + 'html/sitemap.xml';
+var sitemapMarketingSrc = src + 'html/sitemap-marketing.xml';
 
 var hbsDist = dist + '**/*.hbs';
 var htmlDist = dist;
@@ -200,7 +201,7 @@ gulp.task('images', function () {
 
 // robots, sitemap, and favicon
 gulp.task('moveMisc', function () {
-  return gulp.src([robotsSrc, sitemapSrc, favIconSrc])
+  return gulp.src([robotsSrc, sitemapSrc, sitemapMarketingSrc, favIconSrc])
     .pipe(debug({
       title: 'moveMisc'
     }))
