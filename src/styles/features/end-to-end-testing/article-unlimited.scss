@@ -4,6 +4,7 @@
   // scss-lint:enable ColorVariable
   border-color: transparent;
   margin-top: 0;
+  overflow: hidden;
   padding-top: $xl;
 
   @include media(sm) {
