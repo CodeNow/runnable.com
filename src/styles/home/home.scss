@@ -3,16 +3,16 @@
   margin: 0 auto;
   max-width: 345px;
   min-width: 0;
-  padding: 15px 30px 15px 15px;
+  padding: $sm $md $sm $sm;
 
   @include media(xxs) {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: $sm;
+    margin-right: $sm;
     max-width: none;
   }
 
   .img {
-    margin-right: 15px;
+    margin-right: $sm;
     opacity: .75;
 
     @include media(xs) {
