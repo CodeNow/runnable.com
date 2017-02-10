@@ -1,0 +1,10 @@
+.production-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #43738f);
+  // scss-lint:enable ColorVariable
+  padding-bottom: 120px;
+
+  .h1 {
+    margin-bottom: 0;
+  }
+}
