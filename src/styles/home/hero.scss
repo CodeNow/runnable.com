@@ -13,6 +13,12 @@
     }
   }
 
+  .h3 {
+    @include media(xs) {
+      max-width: 450px;
+    }
+  }
+
   .btn-lg {
     background: $white;
     box-shadow: 0 2px 4px rgba($black,.15);
