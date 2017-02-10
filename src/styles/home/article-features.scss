@@ -3,6 +3,12 @@
   .section {
     max-width: 615px;
 
+    @include media(sm) {
+      align-items: center;
+      max-width: 600px; // matches how runnable works article
+      text-align: center;
+    }
+
     + .section {
       padding-top: 0;
     }
