@@ -1,0 +1,33 @@
+.article-features {
+
+  .section {
+    max-width: 615px;
+
+    + .section {
+      padding-top: 0;
+    }
+  }
+
+  .p.weight-strong {
+    margin-bottom: $xxs;
+  }
+
+  .link {
+    color: $purple-light;
+    font-size: 16px;
+    font-weight: $weight-normal;
+    margin-top: $xxs;
+    text-decoration: none;
+
+    &:hover .icons,
+    &:active .icons {
+      transform: translate3d(3px,0,0);
+    }
+
+    .icons {
+      height: 10px;
+      transition: .3s transform ease-in-out;
+      width: 10px;
+    }
+  }
+}
