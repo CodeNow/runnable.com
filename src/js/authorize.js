@@ -56,15 +56,15 @@
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
-      var menuBtnSandbox = document.createElement('a');
-      var menuDivider = document.getElementsByClassName('divider')[0];
-      menuBtnSandbox.href = newURL;
-      menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
-      menuDivider.classList.add('visible-xs');
-      menuDivider.classList.remove('visible-md');
-      menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
-      menuBtnSandbox.appendChild(userOrg.cloneNode(true));
-      document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
+      // var menuBtnSandbox = document.createElement('a');
+      // var menuDivider = document.getElementsByClassName('divider')[0];
+      // menuBtnSandbox.href = newURL;
+      // menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
+      // menuDivider.classList.add('visible-xs');
+      // menuDivider.classList.remove('visible-md');
+      // menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      // menuBtnSandbox.appendChild(userOrg.cloneNode(true));
+      // document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
       var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
