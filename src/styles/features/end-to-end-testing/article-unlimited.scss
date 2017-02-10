@@ -33,6 +33,17 @@
     @include media(xs) {
       padding: 30px;
     }
+
+    @include media(xxs) {
+      text-align: center;
+    }
+  }
+
+  .img {
+    @include media(xxs) {
+      align-self: center;
+      margin-right: 0;
+    }
   }
 
   .h3 {
