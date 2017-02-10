@@ -28,10 +28,10 @@
   .card {
     margin-top: 0;
     max-width: 570px;
-    padding: 45px;
+    padding: $lg;
 
     @include media(xs) {
-      padding: 30px;
+      padding: $md;
     }
 
     @include media(xxs) {

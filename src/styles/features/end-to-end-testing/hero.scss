@@ -10,5 +10,9 @@
   .h3 {
     margin-top: 0;
     max-width: 540px;
+
+    @include media(sm) {
+      max-width: 480px;
+    }
   }
 }

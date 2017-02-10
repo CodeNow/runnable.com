@@ -5,6 +5,14 @@
     text-align: center;
   }
 
+  .h3 {
+    margin: 0;
+
+    + .h3 {
+      margin-top: 6px;
+    }
+  }
+
   .lists-wrapper {
     flex-wrap: wrap;
     padding: $sm 0 0;
