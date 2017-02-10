@@ -1,0 +1,18 @@
+.hero-testing {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #8e489d);
+  // scss-lint:enable ColorVariable
+
+  .h1 {
+    margin: 0 auto;
+  }
+
+  .h3 {
+    margin-top: 0;
+    max-width: 540px;
+
+    @include media(sm) {
+      max-width: 480px;
+    }
+  }
+}

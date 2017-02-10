@@ -1,5 +1,5 @@
 .article-behind-the-scenes {
-  background: linear-gradient($purple-dark, $purple, $purple-light);
+  background: linear-gradient($purple-blue, $purple-light);
   color: $white;
 
   &::after {
@@ -8,7 +8,7 @@
     content: '';
     display: block;
     height: 100%;
-    opacity: .6;
+    opacity: .3;
     pointer-events: none;
     position: absolute;
     top: 0;
