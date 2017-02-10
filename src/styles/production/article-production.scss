@@ -7,13 +7,6 @@
     overflow: visible;
   }
 
-  .section {
-    @include media(xxs) {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-
   .img-box-wrapper {
     height: 150px;
     margin: 0 auto 15px;
@@ -24,7 +17,7 @@
     @include media(xxs) {
       margin-left: -15px;
       margin-right: -15px;
-      width: auto;
+      width: calc(100vw - 30px);
     }
   }
 
