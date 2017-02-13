@@ -519,11 +519,11 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 
   // if sign up form exists
-  if (document.getElementsByClassName('form-github')) {
+  if (document.getElementsByClassName('form-github').length > 0) {
     setupForm('signup');
   }
   // if pricing page
-  if (document.getElementsByClassName('form-enterprise')) {
+  if (document.getElementsByClassName('form-enterprise').length > 0) {
     setupForm('enterprise');
   }
 });
