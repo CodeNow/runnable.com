@@ -564,15 +564,15 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 }
 </script>
 
-    <title>Acceptable Use Policy — Runnable</title>
-    <script ugly="">function openModal(e,t){if(!t){var n=document.getElementsByClassName("modal-backdrop in")[0],a=e.target.getAttribute("data-target").substring(1),i=document.getElementById(a),s=i.getElementsByClassName("js-modal-close")[0];n&&n.classList.remove("in"),i.classList.add("in"),document.body.classList.add("modal-open"),s.addEventListener("click",closeModal),s.addEventListener("touchend",closeModal),document.addEventListener("keydown",escModal),"sign-up"===a&&setupForm("signup"),"video"===a&&addVideo(),mixpanel.track("Open Modal: "+a)}}function escModal(e){27==e.keyCode&&closeModal(e)}function closeModal(e){var t,n=document.getElementsByClassName("modal-backdrop in")[0],a=n.getElementsByClassName("js-modal-close")[0];e.preventDefault(),n.classList.remove("in"),document.body.classList.remove("modal-open"),a.removeEventListener("click",closeModal),a.removeEventListener("touchend",closeModal),document.removeEventListener("keydown",escModal),n.getElementsByTagName("iframe").length&&(t=n.getElementsByTagName("iframe")[0],t.parentNode.removeChild(t))}function addVideo(){var e=document.getElementById("video"),t=document.createElement("iframe");t.setAttribute("frameborder","0"),t.setAttribute("allowfullscreen",""),t.setAttribute("src","https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0"),t.classList.add("video-player"),e.appendChild(t)}function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];a.classList.add("hide"),n.classList.remove("out"),n.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],n=document.getElementsByClassName("article-bitbucket")[0],a=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),a.classList.remove("hide"),n.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e){var t,n;if("signup"===e){var a=(document.getElementsByClassName("article-github")[0],document.getElementsByClassName("article-bitbucket")[0],document.getElementsByClassName("js-open-bitbucket")[0]),s=document.getElementsByClassName("js-open-github")[0],o=document.getElementsByClassName("track-grant-access-github")[0];s.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),s.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),a.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),a.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),o.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),o.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}for(t=document.getElementsByClassName("js-form"),i=0;i<t.length;i++)for(t[i].addEventListener("change",makeDirty),t[i].addEventListener("submit",submitForm),n=t[i].getElementsByTagName("input"),y=0;y<n.length;y++)"checkbox"!==n[y].type&&n[y].addEventListener("invalid",formInvalid),"checkbox"===n[y].type&&n[y].addEventListener("change",validateCheckGroup)}function markInvalid(e){var t,n,a=e.target;if("INPUT"==a.tagName)a.classList.add("invalid");else for(t=a.getElementsByTagName("input"),n=0;n<t.length;n++)t[n].validity.valid||t[n].classList.add("invalid");validateCheckGroup(e)}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){var t,n=e.target;if("checkbox"===n.type){for(;(n=n.parentNode)&&!n.classList.contains("checkbox-group"););t=n,t.classList.remove("pristine")}else n.classList.remove("pristine","invalid")}function validateCheckGroup(e){var t,n,a,s,o=!1,r=!1;if("checkbox"!==e.target.type)t=!1,n=document.getElementsByClassName("checkbox-group")[0];else for(t=e.target,n=e.target;(n=n.parentNode)&&!n.classList.contains("checkbox-group"););if(a=n.querySelectorAll('[type="checkbox"]'),t.checked){for("Other"===t.value&&(s=t.parentNode.querySelectorAll('[name="why-other"]')[0],s.setAttribute("required","required"),r||s.addEventListener("click",function(e){e.preventDefault(),r=!0})),i=0;i<a.length;i++)a[i].removeAttribute("required");n.classList.remove("invalid"),o=!0}else if(!t.checked||!t)for(i=0;i<a.length;i++)a[i].checked&&(o=!0);if(!o){for(i=0;i<a.length;i++)a[i].setAttribute("required","required");n.classList.add("invalid")}}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var n,a=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],o=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.classList.contains("green")?s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(a)for(n=0;n<a.length;n++)a[n].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,o[0].parentNode.removeChild(o[0])}}function xhrSubmit(e,t,n,a){var i,s,o=new XMLHttpRequest;"github"===a?(i="https://codenow.com:2087/sign_up",s="support@runnable.com"):"bitbucket"===a?(i="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"):"enterprise"===a&&(i="https://codenow.com:2096/notify/enterprise",s="preview@runnable.com"),o.open("POST",i,!0),o.setRequestHeader("Content-Type","application/json"),o.send(n),o.onreadystatechange=function(){4===o.readyState&&0===o.status&&(shakeForm(e),sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,a),toggleEditing(t,"enable"),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"}))},o.onload=function(){var n,i=JSON.parse(o.responseText),s=i.result_code,r=i.result_message,l=t.parentNode.getElementsByClassName("hide")[0];-1!==s&&0!==s||(shakeForm(e),sundipValidation(r,t,a),mixpanel.track("XHR Submit: "+a,{"server-side validation":"fail",error:-1===s?"From Sundip’s script":"From Active Campaign"})),1===s&&(mixpanel.track("XHR Submit: "+a,{"server-side validation":"pass"}),t.classList.add("hide"),t.classList.remove("show"),l.classList.add("show"),l.classList.remove("hide"),"github"===a&&(n=t.querySelectorAll("[data-href]")[0].getAttribute("data-href"),setTimeout(function(){window.location.href=n},2500))),toggleEditing(t,"enable")}}function submitForm(e){var t,n=e.target;if(n.classList.contains("form-github")?t="github":n.classList.contains("form-bitbucket")?t="bitbucket":n.classList.contains("form-enterprise")&&(t="enterprise"),e.preventDefault(),n.checkValidity()){var a,s=n.querySelectorAll('[name="email"]')[0].value,o=n.querySelectorAll('[name="name"]')[0].value,r="name";if("github"===t){var l=n.querySelectorAll('[name="checkbox-why"]'),c=[],d=[];for(r="company",i=0;i<l.length;i++){var u={name:l[i].value,checkbox:l[i].checked};"Other"===l[i].value&&(u.otherValue=n.querySelectorAll('[name="why-other"]')[0].value),l[i].checked&&("Other"===l[i].value?d.push("Other: ",n.querySelectorAll('[name="why-other"]')[0].value,"; "):d.push(l[i].value,"; ")),c.push(u)}}toggleEditing(n,"disable"),a={email:s,why:c,intent:d.join("").trim(),id:analytics.user().anonymousId(),client_id:ga.getAll()[0].get("clientId")},a[r]=o,xhrSubmit(e,n,JSON.stringify(a),t),delete a.why,analytics.ready(function(){analytics.track(t+" sign up",a)}),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,n){var a,i,s=t.getElementsByClassName("js-error")[0];s&&s.parentNode.removeChild(s),"github"===n||"bitbucket"===n?(a=document.createElement("div"),a.classList.add("well","well-red","text-center","small","padding-xxs","margin-top-md","js-error"),a.innerHTML=e,t.children[0].appendChild(a)):(i=t.getElementsByTagName("button")[0],a=document.createElement("small"),a.classList.add("popover","bottom","in","small","red","text-center"),a.innerHTML=e,i.appendChild(a)),analytics.ready(function(){analytics.track("Error "+n+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-modal"),n=document.body,a=!1;if(n.addEventListener("touchmove",function(){a=!0}),n.addEventListener("touchstart",function(){a=!1}),t)for(e=0;e<t.length;e++)t[e].addEventListener("click",function(e){openModal(e,a)}),t[e].addEventListener("touchend",function(e){openModal(e,a)});document.getElementsByClassName("form-github").length>0&&setupForm("signup"),document.getElementsByClassName("form-enterprise").length>0&&setupForm("enterprise")}),window.addEventListener("load",function(){window.fbq||(window.fbq=function(){})}),function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window),window.addEventListener("load",function(){var e,t,n=new StatusPage.page({page:"ngvk75ydhg3t"}),a=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),n.components({success:function(n){switch(a.appendChild(i),n.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
+    <title>Sign up for Runnable.</title>
+    <script ugly="">!function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
     <!--
       Commit Hash: 5e309dd807f57f08dd289d96b3ebd121a0d177b9
       Commit Time: Wed Feb 15 15:56:42 2017 -0800
     -->
 
-  </head><body class="page-landing" ontouchstart="">
+  </head><body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart="">
 
     <svg xmlns="http://www.w3.org/2000/svg" class="icon-defintions">
   <symbol id="icons-bitbucket" viewbox="0 0 27.438 31.681">
@@ -611,238 +611,42 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
   </symbol>
 </svg>
 
-    <header class="grid-block shrink header">
-  <div class="grid-block grid-container justify-justified">
-    <a href="/" class="grid-block align-center shrink logo">
+
+    <main class="grid-block col main">
+      <div class="modal-backdrop in" id="sign-in">
+        <header class="grid-block shrink header">
+  <div class="grid-block grid-container align-center justify-justified">
+    
+    
+    <a href="/" class="grid-block justify-center logo">
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
-    <nav class="nav grid-block shrink">
-      <div class="grid-content btn btn-sm text-white weight-strong hidden-xs a popover-trigger hover has-links" tabindex="1">
-        <div class="div">Features
-          <svg class="icons icons-chevron-down">
-            <use xlink:href="#icons-chevron-down"/>
-          </svg>
-        </div>
-        <div class="popover-hover-wrapper popover-feature">
-  <div class="grid-block col list text-left popover popover-header-menu bottom">
-    <a href="preview-environments/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-staging.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">Preview Environments</p>
-        <p class="small">Isolated, full-stack environments for every branch.</p>
-      </div>
-    </a>
-    <a href="end-to-end-testing/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-testing.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">End-to-end Testing</p>
-        <p class="small">Test every code change on its own preview environment.</p>
-      </div>
-    </a>
-    <a href="deploy-to-production/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-deploy.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">Deploy to Production</p>
-        <p class="small">Deploy fully-tested builds to any environment.</p>
-      </div>
-    </a>
-  </div>
-</div>
-
-      </div>
-      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Docs</a>
-      <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
-      <a href="signin/" class="grid-content btn btn-sm text-white weight-strong hidden-md js-hide-if-signed-in">Sign In</a>
-      <a href="signup/" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
-      <div class="grid-content btn btn-sm btn-overflow popover-trigger hover has-links" tabindex="1">
-        <svg class="icons icons-overflow">
-          <use xlink:href="#icons-overflow"/>
-        </svg>
-        <div class="popover-hover-wrapper right-align-sm">
-  <div class="grid-block popover popover-header-menu bottom">
-    <div class="grid-block col list text-left">
-      <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
-      <a href="preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-staging.svg" height="30" width="30" class="img">
-        Preview Environments
-      </a>
-      <a href="end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-testing.svg" height="30" width="30" class="img">
-        End-to-end Testing
-      </a>
-      <a href="deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-deploy.svg" height="30" width="30" class="img">
-        Deploy to Production
-      </a>
-      <div class="list-item divider visible-xs"></div>
-      <a href="signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
-      <a href="signin/" class="list-item-a visible-md">Sign In</a>
-      <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-sm">Docs</a>
-      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
-      <a href="how-it-works/" class="list-item-a">How It Works</a>
-      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
-      <a href="demo/" class="list-item-a">Request Demo</a>
-      <a href="blog/" class="list-item-a">Blog</a>
-      <a href="about/" class="list-item-a">About</a>
+    
+    
+    <div class="grid-block shrink align-center">
+      
+      
     </div>
   </div>
-</div>
-
-      </div>
-    </nav></div>
-  
 </header>
 
-
-    <main class="grid-block col main hero-only">
-      <article class="hero">
-  <h1 class="h1 text-center">Acceptable Use Policy</h1>
-  <p class="p text-center">Updated August 12<sup class="sup">th</sup>, 2016</p>
-</article>
-
-      <article class="grid-block col article article-legal section">
-  <div class="grid-content">
-    <p class="p">This Acceptable Use Policy governs your use of the runnable.com website, the Runnable service network, the servers operated by Runnable, and any Runnable software you use (collectively the “<strong class="weight-strong">Runnable Resources</strong>”).  If you do not accept this policy, you may not access or use any of the Runnable Resources.  We may modify this policy at any time by posting the modified policy on our website.
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><strong class="weight-strong">Prohibited Activities</strong>
-      <br>You may not engage in any of the following prohibited activities while using the Runnable Resources. The descriptions are guidelines and not meant to be exhaustive.
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><span class="underline">Illegal/Criminal Activity</span>
-    <ol class="ol">
-      <li class="li">Make available files that contain music, film, video, images, photographs, software or any other material protected by intellectual property laws, including but not limited to copyright and trade secret law, unless you own or control the rights or are authorized to make such material available;
-      </li><li class="li">Make available files that contain music, film, video, images, photographs, software or any other material that violates the rights of publicity or privacy of any third party;
-      </li><li class="li">Download any file made available by another user that you know, or reasonably should know, cannot be legally copied, displayed, performed, or distributed in this manner;
-      </li><li class="li">Use the Runnable Resources for any illegal purpose, or in violation of any local, state, national, or international law, including, without limitation, laws governing data protection and privacy, and import or export control.
-    </li></ol>
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><span class="underline">Security and Integrity Violations</span>
-    <ol class="ol">
-      <li class="li">Impersonate any person or entity, falsely claim an affiliation with any person or entity, or access the Runnable accounts of others without permission;
-      </li><li class="li">Share Runnable-issued passwords with any third party;
-      </li><li class="li">Misrepresent the source, identity or content of information transmitted via the Runnable Resources;
-      </li><li class="li">interfere with security-related features of the Runnable Resources, including by: (a) disabling or circumventing features that prevent or limit use or copying of any content; or (b) reverse engineering or otherwise attempting to discover the source code of any portion of the Runnable Resources except to the extent that the activity is expressly permitted by applicable law;
-      </li><li class="li">Intentionally interfere with or damage operation of the Runnable Resources or any user's enjoyment of them, by any means, including uploading or otherwise disseminating viruses, worms, or other malicious code;
-      </li><li class="li">Access any end user’s personal data or content without obtaining prior consent from such end user, including any Testers (as defined in the Terms of Service);
-      </li><li class="li">Access the Runnable Resources through any method other than the Command Line Interface or through your online account.
-    </li></ol>
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><span class="underline">Spamming and Inappropriate Behavior Violations</span>
-    <ol class="ol">
-      <li class="li">Make unsolicited offers, advertisements, proposals, or send junk mail, to other users of the Runnable Resources;
-      </li><li class="li">Post, upload, or distribute any Application Content or other content that is unlawful, defamatory, libelous, inaccurate, or that a reasonable person could deem to be objectionable, profane, indecent, pornographic, harassing, threatening, embarrassing, hateful, or otherwise inappropriate.
-    </li></ol>
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><span class="underline">Non-Testing Activity</span>
-    </p><p class="p">The Runnable Resources are only for use in specific testing activities. The following testing activities are acceptable:
-    <ul class="ul">
-      <li class="li">Development environments
-      </li><li class="li">Staging environments
-      </li><li class="li">Unit testing
-      </li><li class="li">Functional testing
-      </li><li class="li">Integration testing
-      </li><li class="li">Exploratory testing
-      </li><li class="li">User acceptance testing
-      </li><li class="li">End-to-end testing
-    </li></ul>
-    </p><p class="p">However, the following testing activities are prohibited:
-    <ul class="ul">
-      <li class="li">Production a/b testing
-      </li><li class="li">Application beta testing
-      </li><li class="li">Performance testing
-      </li><li class="li">Scalability/load testing
-    </li></ul>
-    </p><p class="p">It is not acceptable to use Environment Links (as defined in the Terms of Service) to host applications for any non-testing use, including, but not limited to, any production, commercial, or professional (i.e. internal use in support of production) use. Prohibited production use includes, but is not limited to:
-    <ul class="ul">
-      <li class="li">Hosting advertisement platforms
-      </li><li class="li">Performing data processing functions that involve intensive use of computational resources, network bandwidth, or memory usage
-      </li><li class="li">Performing data mining
-      </li><li class="li">Running proxy services
-      </li><li class="li">Running TOR/Hidden Service Protocol services
-      </li><li class="li">Running malicious code
-      </li><li class="li">Mining Bitcoin or any other cryptocurrency
-    </li></ul>
-  </p></div>
-  <div class="grid-content">
-    <p class="p"><strong class="weight-strong">Violations of Acceptable Use</strong>
-    </p><p class="p"><span class="underline">Non-Copyright Related</span>
-    </p><p class="p">Runnable reserves the right to take any action it deems appropriate if it learns that you have engaged in any activity that it believes violates this policy.  Such action may include terminating your account, among other things.  Runnable does not assume any responsibility to take such action.  Runnable expressly disclaims liability for failure to take such action, or for delay in taking action it chooses to act.  If you believe that there has been a non-copyright related violation of this Acceptable Use Policy, please contact Runnable at <a href="mailto:accounts@runnable.com" class="link">accounts@runnable.com</a>.
-    </p><p class="p"><span class="underline">Copyright Related</span>
-    </p><p class="p">Runnable respects the rights of copyright owners to control commercial uses of their material, and expects our users to do the same.  You are responsible for complying with all federal and state laws applicable to the content available through the Runnable Resources, including copyright laws.
-    </p><p class="p">RUNNABLE WILL TERMINATE THE SERVICE ACCOUNT OF ANYONE WHO IT LEARNS IS REPEATEDLY USING THE RUNNABLE RESOURCES IN VIOLATION OF COPYRIGHT LAW.
-    </p><p class="p"><span class="underline">Reporting Claims of Copyright Infringement</span>
-    </p><p class="p">If you believe that a user has copied your work via the Runnable Resources in a way that constitutes copyright infringement, you may submit a notification using the procedure detailed in the Runnable Terms of Service, available at <a href="https://runnable.com/legal/terms-of-service" class="link">https://runnable.com/legal/terms-of-service</a>.
-  </p></div>
-</article>
-
+        <div class="modal">
+          <article class="grid-block noscroll col article article-form article-sign-in">
+            <h1 class="grid-content shrink h2 text-white weight-strong text-center padding-bottom-lg">Woah there.</h1>
+            <div class="grid-block col card padding-top-sm">
+              <img class="img" src="images/runnabear-error.svg" height="130" width="230">
+              <div class="grid-block col padding-lg form-wrapper">
+                <p class="grid-content shrink p padding-bottom-sm text-center">You’ve reached a page that requires you to be signed in. Sign up or sign in to continue.</p>
+                <a href="signup/" class="grid-block justify-center align-center btn btn-lg green">Continue to Sign Up</a>
+              </div>
+            </div>
+            <div class="grid-content text-center text-white">
+              <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
+            </div>
+          </article>
+        </div>
+      </div>
     </main>
-
-    <footer class="grid-block col footer justify-spaced">
-  <a href="signup/" class="sign-up-box grid-block col well well-anchor track-sign-up">
-  <img class="img no-touching" src="images/runnabear-hello.png">
-  <p class="p js-modal">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
-  <div href="signup/" class="btn btn-sm green track-sign-up">Sign Up</div>
-</p></a>
-
-  <aside class="grid-block aside-support">
-  <div class="grid-block col justify-center support-text">
-    <p class="p weight-strong">Our engineers are here for you.</p>
-    <p class="p">We can answer questions about Docker <br class="br">and help you set up your stack.</p>
-  </div>
-  <figure class="grid-block col figure shrink">
-    <div class="grid-block shrink bubble">
-      <img class="img float-left" src="images/logos/logo-slack.svg" height="18" width="18" alt="Slack">
-      <div class="grid-block col">
-        <div class="user">
-          <strong class="strong user-name">Jorge</strong>
-          <span class="user-time"> 4:19 PM</span>
-        </div>
-        <p class="p user-text">Can I run multiple commands?</p>
-      </div>
-    </div>
-    <div class="grid-block shrink bubble">
-      <img class="img float-left" src="images/runnabot-head.png" height="18" width="18" alt="Slack">
-      <div class="grid-block col">
-        <div class="user">
-          <strong class="strong user-name">Taylor</strong>
-          <span class="user-time"> 4:20 PM</span>
-        </div>
-        <p class="p user-text">Hi <span class="link-blue">@jorge</span>!
-          <br>Yes you can. Here’s how: …
-        </p>
-      </div>
-    </div>
-  </figure>
-</aside>
-
-  <div class="grid-block link-wrapper">
-    <div class="grid-block col align-start">
-      <a href="preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
-      <a href="end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
-      <a href="deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
-      <a href="docs/" class="btn btn-xs link weight-strong">Docs</a>
-      <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
-      <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
-      <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
-    </div>
-    <div class="grid-block col align-start">
-      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
-      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
-      <a href="blog/" class="btn btn-xs link weight-strong">Blog</a>
-      <a href="about/" class="btn btn-xs link weight-strong">About</a>
-      <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
-      <a href="legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
-      <a href="legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
-    </div>
-  </div>
-</footer>
-
-
     <!-- segment.io-->
 <script>
   var match,
