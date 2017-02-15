@@ -513,15 +513,15 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
       document.getElementsByTagName('nav')[0].insertBefore(headerBtnSandbox,overflowMenu);
 
       // set up btn-sandbox in menus
-      var menuBtnSandbox = document.createElement('a');
-      var menuDivider = document.getElementsByClassName('divider')[0];
-      menuBtnSandbox.href = newURL;
-      menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
-      menuDivider.classList.add('visible-xs');
-      menuDivider.classList.remove('visible-md');
-      menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
-      menuBtnSandbox.appendChild(userOrg.cloneNode(true));
-      document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
+      // var menuBtnSandbox = document.createElement('a');
+      // var menuDivider = document.getElementsByClassName('divider')[0];
+      // menuBtnSandbox.href = newURL;
+      // menuBtnSandbox.classList.add('btn','btn-sm','grid-block','justify-center','align-center','shrink','btn-sandbox','strong','visible-xs');
+      // menuDivider.classList.add('visible-xs');
+      // menuDivider.classList.remove('visible-md');
+      // menuBtnSandbox.appendChild(userAvatar.cloneNode(true));
+      // menuBtnSandbox.appendChild(userOrg.cloneNode(true));
+      // document.getElementsByClassName('list text-left')[0].insertBefore(menuBtnSandbox,menuDivider);
 
       // hide sign in and sign up links
       var hideIfSignedIn = document.getElementsByClassName('js-hide-if-signed-in');
@@ -1089,11 +1089,11 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 
   // if sign up form exists
-  if (document.getElementsByClassName('form-github')) {
+  if (document.getElementsByClassName('form-github').length > 0) {
     setupForm('signup');
   }
   // if pricing page
-  if (document.getElementsByClassName('form-enterprise')) {
+  if (document.getElementsByClassName('form-enterprise').length > 0) {
     setupForm('enterprise');
   }
 });
@@ -1212,8 +1212,40 @@ window.addEventListener('load', function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
-      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-xs a">Docs</a>
-      <a href="for/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
+      <div class="grid-content btn btn-sm text-white weight-strong hidden-xs a popover-trigger hover has-links" tabindex="1">
+        <div class="div">Features
+          <svg class="icons icons-chevron-down">
+            <use xlink:href="#icons-chevron-down">
+          </svg>
+        </div>
+        <div class="popover-hover-wrapper popover-feature">
+  <div class="grid-block col list text-left popover popover-header-menu bottom">
+    <a href="preview-environments/" class="grid-block align-center a padding-sm">
+      <img src="images/icons-staging.svg" height="45" width="45" class="img">
+      <div class="grid-block col">
+        <p class="p weight-strong">Preview Environments</p>
+        <p class="small">Isolated, full-stack environments for every branch.</p>
+      </div>
+    </a>
+    <a href="end-to-end-testing/" class="grid-block align-center a padding-sm">
+      <img src="images/icons-testing.svg" height="45" width="45" class="img">
+      <div class="grid-block col">
+        <p class="p weight-strong">End-to-end Testing</p>
+        <p class="small">Test every code change on its own preview environment.</p>
+      </div>
+    </a>
+    <a href="deploy-to-production/" class="grid-block align-center a padding-sm">
+      <img src="images/icons-deploy.svg" height="45" width="45" class="img">
+      <div class="grid-block col">
+        <p class="p weight-strong">Deploy to Production</p>
+        <p class="small">Deploy fully-tested builds to any environment.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+      </div>
+      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Docs</a>
       <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
       <a href="signin/" class="grid-content btn btn-sm text-white weight-strong hidden-md js-hide-if-signed-in">Sign In</a>
       <a href="signup/" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
@@ -1224,16 +1256,29 @@ window.addEventListener('load', function(){
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block col list text-left">
-      <a href="signup/" class="list-item-a visible-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
-      <a href="signin/" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
+      <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
+      <a href="preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-staging.svg" height="30" width="30" class="img">
+        Preview Environments
+      </a>
+      <a href="end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-testing.svg" height="30" width="30" class="img">
+        End-to-end Testing
+      </a>
+      <a href="deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+        <img src="images/icons-deploy.svg" height="30" width="30" class="img">
+        Deploy to Production
+      </a>
+      <div class="list-item divider visible-xs"></div>
+      <a href="signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
+      <a href="signin/" class="list-item-a visible-md">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-xs">Docs</a>
-      <a href="for/" class="list-item-a visible-sm">Product</a>
-      <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
+      <a href="docs/" class="list-item-a visible-sm">Docs</a>
+      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
       <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
-      <a href="http://blog.runnable.com" class="list-item-a">Blog</a>
+      <a href="blog/" class="list-item-a">Blog</a>
       <a href="about/" class="list-item-a">About</a>
     </div>
   </div>
@@ -1293,16 +1338,18 @@ window.addEventListener('load', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block col align-start">
+      <a href="preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
+      <a href="end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
+      <a href="deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
       <a href="docs/" class="btn btn-xs link weight-strong">Docs</a>
-      <a href="for/" class="btn btn-xs link weight-strong">Product</a>
       <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
       <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
       <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
-      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
+      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
       <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
-      <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
+      <a href="blog/" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
       <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
       <a href="legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
@@ -1310,189 +1357,6 @@ window.addEventListener('load', function(){
     </div>
   </div>
 </footer>
-
-    <div class="modal-backdrop" id="sign-up">
-  <header class="grid-block shrink header">
-  <div class="grid-block grid-container align-center justify-justified">
-    
-    <a class="grid-content shrink logo hidden-sm">
-      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
-    </a>
-    
-    
-    
-    <div class="grid-block shrink align-center">
-      
-      <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
-        <svg class="icons icons-bitbucket">
-          <use xlink:href="#icons-bitbucket">
-        </svg>
-        <span>Sign Up with Bitbucket</span>
-      </a>
-      <a class="grid-block align-center justify-center btn btn-sm btn-white js-open-github hide">
-        <svg class="icons icons-github">
-          <use xlink:href="#icons-github">
-        </svg>
-        <span>Sign Up with GitHub</span>
-      </a>
-      
-      
-      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
-        <svg class="icons icons-close">
-          <use xlink:href="#icons-close">
-        </svg>
-        <span>Close</span>
-      </a>
-      
-    </div>
-  </div>
-</header>
-
-  <div class="modal">
-    <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
-  <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
-  <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
-  <div class="grid-block col card shake-me">
-    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <form class="grid-block col form form-github js-form show">
-      <div class="grid-block col form-wrapper">
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-email">Work Email</label>
-          <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email."  type="email" required>
-        </div>
-        <div class="grid-content input-group-vertical">
-          <label class="label" for="input-name">Company Name</label>
-          <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnable" title="Enter the name of the company you work for." required>
-        </div>
-        <p class="text-center margin-top-md margin-bottom-xs">I want Runnable to help <br class="visible-xs hidden-xxxs">my team with:</p>
-        <div class="grid-block col checkbox-group pristine">
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="Staging Environments" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            <span class="hidden-xs">Persistent&nbsp;</span>Staging Environments
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="E2E Testing" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            End-to-End Testing
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input" name="checkbox-why" type="checkbox" value="CI/CD" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            CI / CD
-          </label>
-          <label class="grid-block align-center checkbox-label">
-            <input class="checkbox-input checkbox-other" name="checkbox-why" type="checkbox" value="Other" required>
-            <div class="grid-block shrink margin-right-xs checkbox"></div>
-            <span class="span-other">Other</span>
-            <input class="grid-block input-other pristine" pattern=".*\S+.*" name="why-other" placeholder="Other (please specify)" autofocus>
-          </label>
-        </div>
-      </div>
-      <footer class="grid-block col justify-center card-footer">
-        <button data-href="{{loginUrl}}" class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
-          <div class="grid-block justify-center align-center noscroll">
-            <svg class="icons hidden-xxs">
-              <use xlink:href="#icons-github">
-            </svg>
-            <span>Sign Up With GitHub</span>
-          </div>
-        </button>
-        <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-      </footer>
-    </form>
-    <div class="grid-block col justify-center padding-lg hide">
-      <p class="p text-center">Thanks! We’re redirecting you to GitHub…</p>
-    </div>
-  </div>
-  <div class="grid-content text-center text-white">
-    <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
-  </div>
-</article>
-
-<article class="grid-block col align-center noscroll article article-form article-sign-up article-bitbucket slide">
-  <div class="grid-block col card shake-me">
-    <img class="img" src="images/runnabear-pop.png" height="130" width="230">
-    <form class="grid-block col form form-bitbucket show js-form">
-      <div class="grid-block col form-wrapper">
-        <label class="p text-center padding-sm" for="input-name">We’ll let you know when we roll out Bitbucket support.</label>
-        <div class="grid-block col show">
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-name">Your Name</label>
-            <input class="input input-md input-validate pristine" id="input-name" name="name" placeholder="Runnabear" title="Enter your name, so we can be bffs." required>
-          </div>
-          <div class="grid-content input-group-vertical input-group-org">
-            <label class="label" for="input-email">Work Email</label>
-            <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email for us to follow up with."  type="email" required>
-          </div>
-        </div>
-      </div>
-      <footer class="card-footer">
-        <button class="grid-block justify-center align-center btn btn-lg green wrap-xxxs">
-          <div class="grid-block justify-center align-center">
-            <svg class="icons hidden-xxxs">
-              <use xlink:href="#icons-bitbucket">
-            </svg>
-            <span class="grid-content shrink">Notify Me</span>
-          </div>
-        </button>
-      </footer>
-    </form>
-    <div class="grid-block col justify-center padding-lg hide">
-      <p class="p text-center">Thanks, we’ll be in touch! 🙌</p>
-    </div>
-  </div>
-</article>
-
-
-  </div>
-</div>
-
-<div class="modal-backdrop" id="sign-in">
-  <header class="grid-block shrink header">
-  <div class="grid-block grid-container align-center justify-justified">
-    
-    <a class="grid-content shrink logo hidden-sm">
-      <img class="img" src="images/runnable-logo.svg" height="36" width="192">
-    </a>
-    
-    
-    
-    <div class="grid-block shrink align-center">
-      
-      
-      <a class="grid-block align-center btn btn-sm btn-white js-modal-close">
-        <svg class="icons icons-close">
-          <use xlink:href="#icons-close">
-        </svg>
-        <span>Close</span>
-      </a>
-      
-    </div>
-  </div>
-</header>
-
-  <div class="modal">
-    <article class="grid-block noscroll col article article-form article-sign-in">
-  <div class="grid-block col card padding-top-sm">
-    <img class="img" src="images/runnabear-peek.png" height="130" width="230">
-    <div class="grid-block col padding-lg form-wrapper">
-      <a href="{{loginUrl}}" class="grid-block justify-center align-center btn btn-lg green track-sign-in">
-        <svg class="icons hidden-xs">
-          <use xlink:href="#icons-github">
-        </svg>
-        <span>Sign In With GitHub</span>
-      </a>
-      <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
-    </div>
-  </div>
-  <div class="grid-content text-center text-white">
-    <a href="signup/" class="link">Sign up</a> if your team isn’t using Runnable yet.
-  </div>
-</article>
-
-  </div>
-</div>
 
 
     <!-- segment.io-->
