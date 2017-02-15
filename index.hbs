@@ -1212,40 +1212,8 @@ window.addEventListener('load', function(){
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     <nav class="nav grid-block shrink">
-      <div class="grid-content btn btn-sm text-white weight-strong hidden-xs a popover-trigger hover has-links" tabindex="1">
-        <div class="div">Features
-          <svg class="icons icons-chevron-down">
-            <use xlink:href="#icons-chevron-down">
-          </svg>
-        </div>
-        <div class="popover-hover-wrapper popover-feature">
-  <div class="grid-block col list text-left popover popover-header-menu bottom">
-    <a href="preview-environments/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-staging.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">Preview Environments</p>
-        <p class="small">Isolated, full-stack environments for every branch.</p>
-      </div>
-    </a>
-    <a href="end-to-end-testing/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-testing.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">End-to-end Testing</p>
-        <p class="small">Test every code change on its own preview environment.</p>
-      </div>
-    </a>
-    <a href="deploy-to-production/" class="grid-block align-center a padding-sm">
-      <img src="images/icons-deploy.svg" height="45" width="45" class="img">
-      <div class="grid-block col">
-        <p class="p weight-strong">Deploy to Production</p>
-        <p class="small">Deploy fully-tested builds to any environment.</p>
-      </div>
-    </a>
-  </div>
-</div>
-
-      </div>
-      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Docs</a>
+      <a href="docs/" class="grid-content btn btn-sm text-white weight-strong hidden-xs a">Docs</a>
+      <a href="for/" class="grid-content btn btn-sm text-white weight-strong hidden-sm a">Product</a>
       <a href="pricing/" class="grid-content btn btn-sm text-white weight-strong hidden-md">Pricing</a>
       <a href="signin/" class="grid-content btn btn-sm text-white weight-strong hidden-md js-hide-if-signed-in">Sign In</a>
       <a href="signup/" class="grid-content btn btn-sm btn-white text-white weight-strong hidden-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
@@ -1256,25 +1224,12 @@ window.addEventListener('load', function(){
         <div class="popover-hover-wrapper right-align-sm">
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block col list text-left">
-      <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
-      <a href="preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-staging.svg" height="30" width="30" class="img">
-        Preview Environments
-      </a>
-      <a href="end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-testing.svg" height="30" width="30" class="img">
-        End-to-end Testing
-      </a>
-      <a href="deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
-        <img src="images/icons-deploy.svg" height="30" width="30" class="img">
-        Deploy to Production
-      </a>
-      <div class="list-item divider visible-xs"></div>
       <a href="signup/" class="list-item-a visible-xs js-hide-if-signed-in track-sign-up">Sign Up</a>
       <a href="signin/" class="list-item-a visible-md js-hide-if-signed-in">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-sm">Docs</a>
-      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
+      <a href="docs/" class="list-item-a visible-xs">Docs</a>
+      <a href="for/" class="list-item-a visible-sm">Product</a>
+      <a href="pricing/" class="list-item-a visible-md"><span class="text-request">Pricing</a>
       <a href="how-it-works/" class="list-item-a">How It Works</a>
       <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="demo/" class="list-item-a">Request Demo</a>
@@ -1291,10 +1246,14 @@ window.addEventListener('load', function(){
 
 
     <main class="grid-block col main">
+      <div class="grid-block align-center justify-center modal-backdrop transparent video" id="video">
+  <div class="close-bg js-modal-close"></div>
+</div>
+
       <article class="hero home-hero">
   <div class="grid-block col grid-container noscroll">
     <h1 class="h1 text-center">Catch bugs earlier.</h1>
-    <p class="h3 text-center">Runnable creates preview and test<br class="hidden-xs"> environments for every code branch.</p>
+    <p class="h3 text-center">With Runnable, your team can <span class="weight-normal">test</span> and<br class="hidden-xs"> <span class="weight-normal">review</span> every code change end-to-end.</p>
     <div class="grid-block justify-center noscroll">
       <a href="signup/" class="btn btn-lg track-sign-up">
         <span class="span no-touching">Start Your Free Trial</span>
@@ -1303,51 +1262,147 @@ window.addEventListener('load', function(){
   </div>
 </article>
 
-      <article class="grid-block justify-center article article-runnable-works">
-  <section class="grid-block align-center col section">
-    <img class="img margin-bottom-sm" src="images/home/runnable-works.svg" width="150" height="111">
-    <h2 class="h3 weight-strong text-center">How Runnable works.</h2>
-    <p class="p weight-light text-center">Runnable builds your code branches on every change you push to your git repositories. All builds run concurrently via the auto-scaling infrastructure included in our pricing plans.</p>
-  </section>
+      <article class="grid-block align-center justify-center noscroll section article article-more">
+  <div data-target="#video" class="grid-block shrink align-center video-cta noscroll js-modal">
+    <img src="images/home/video-still.jpg" class="grid-block shrink img no-touching">
+    <img src="images/home/play.svg" class="icon-play no-touching" height="120" width="120">
+  </div>
+  <div class="grid-block shrink col">
+    <h2 class="h2">For every branch, Runnable builds, tests, and runs full-stack environments including all the services, databases, and data you need to test and review end‑to‑end.</h2>
+  </div>
 </article>
 
-      <article class="grid-block col align-center article article-features">
-  <section class="grid-block col-sm section">
-    <img src="images/icons-staging.svg" height="75" width="75" class="img margin-right-md">
-    <div class="grid-block col">
-      <h2 class="p weight-strong">Solve your team’s staging problem.</h2>
-      <p class="p weight-light">Runnable creates a full-stack preview environment for every code branch. Environments continue to run until its branch is deleted.</p>
-      <a href="preview-environments/" class="link">More on Preview Environments
-        <svg class="icons">
-          <use xlink:href="#icons-chevron-right">
-        </svg>
-      </a>
+      <article class="grid-block col align-center section article article-validate">
+  <img class="img margin-bottom-md" src="images/home/validate.svg" width="150" height="111">
+  <h2 class="h3 weight-strong text-center">See it to believe it.</h2>
+  <h3 class="h3 weight-light text-center">Validate your code with persistent environments rebuilt on every commit.</h3>
+</article>
+
+      <article class="grid-block section article article-testing">
+  <div class="grid-block grid-container-lg noscroll col-sm">
+    <div class="grid-block col copy-wrapper left">
+      <h3 class="h3 weight-strong"><span class="underline">End-to-end</span> test every branch.</h3>
+      <h4 class="h3">Run tests from any framework and view results on pull requests.</h4>
+      <div class="grid-block lists-wrapper">
+        <ul class="grid-block col ul">
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Selenium
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Webdriver
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Cucumber
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Protractor
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            PHPUnit
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            JUnit
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            RSpec
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Capybara
+        </ul>
+        <ul class="grid-block col ul">
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            RainforestQA
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Test.io
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Sauce Labs
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            Xamarin Test Cloud
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            New Relic Synthetics
+          <li class="li">
+            <svg class="icons icons-check text-green">
+              <use xlink:href="#icons-check">
+            </svg>
+            BrowserStack
+        </ul>
+      </div>
     </div>
-  </section>
-  <section class="grid-block col-sm section">
-    <img src="images/icons-testing.svg" height="75" width="75" class="img margin-right-md">
-    <div class="grid-block col">
-      <h2 class="p weight-strong">Test every change end-to-end.</h2>
-      <p class="p weight-light">Run all your tests on your branch’s preview environment. Tests run end-to-end and can be triggered automatically or manually.</p>
-      <a href="end-to-end-testing/" class="link">More on End-to-End Testing
-        <svg class="icons">
-          <use xlink:href="#icons-chevron-right">
-        </svg>
-      </a>
+    <div class="grid-block img-wrapper col">
+      <img class="img" src="images/home/pr-page.png" width="800" height="647">
     </div>
-  </section>
-  <section class="grid-block col-sm section">
-    <img src="images/icons-deploy.svg" height="75" width="75" class="img margin-right-md">
-    <div class="grid-block col">
-      <h2 class="p weight-strong">Deploy tested builds to production.</h2>
-      <p class="p weight-light">Deploy the same builds used during preview and end-to-end testing to any cloud service or private infrastructure. Runnable is container-native with support for Kubernetes and Docker Compose.</p>
-      <a href="deploy-to-production/" class="link">More on Deploying to Production
-        <svg class="icons">
-          <use xlink:href="#icons-chevron-right">
-        </svg>
-      </a>
+  </div>
+</article>
+
+      <article class="grid-block grid-container align-center section article article-review">
+  <img src="images/home/review.png" class="grid-block shrink img img-wrapper" height="242" width="437">
+  <div class="grid-block col copy-wrapper right">
+    <h2 class="h3 weight-strong">Review & sign-off.</h2>
+    <h3 class="h3 weight-light">Share links to persistent environments to keep all stakeholders in sync.</h3>
+    <div class="grid-block lists-wrapper">
+      <ul class="grid-block col ul">
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-developer.svg" class="icons">
+          Developers
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-designer.svg" class="icons">
+          Designers
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-management.svg" class="icons">
+          Management
+      </ul>
+      <ul class="grid-block col ul">
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-product-manager.svg" class="icons">
+          Product Managers
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-quality-assurance.svg" class="icons">
+          Quality Assurance
+        <li class="grid-block align-center li">
+          <img src="images/home/icons-product-owner.svg" class="icons">
+          Product Owner
+      </ul>
     </div>
-  </section>
+  </div>
+</article>
+
+      <article class="grid-block col align-center noscroll section article article-merge">
+  <img class="img margin-bottom-md" src="images/home/check.svg" width="90" height="90">
+  <h2 class="h3 weight-strong text-center">Merge with confidence.</h2>
+  <h3 class="h3 weight-light text-center">Fully tested and reviewed, merge your changes with your mainline branch.</h3>
+  <button href="signup/" class="btn btn-lg green margin-top-md track-sign-up">Start Your Free Trial</button>
 </article>
 
       <article class="grid-block col align-center article article-graph">
@@ -1505,16 +1560,14 @@ window.addEventListener('load', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block col align-start">
-      <a href="preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
-      <a href="end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
-      <a href="deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
       <a href="docs/" class="btn btn-xs link weight-strong">Docs</a>
+      <a href="for/" class="btn btn-xs link weight-strong">Product</a>
       <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
       <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
       <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
+      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
-      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
       <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
       <a href="http://blog.runnable.com" class="btn btn-xs link weight-strong">Blog</a>
       <a href="about/" class="btn btn-xs link weight-strong">About</a>
