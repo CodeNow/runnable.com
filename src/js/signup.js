@@ -403,7 +403,7 @@ function submitForm(e) {
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var formData;
+    var formData = {};
     var name = 'name';
 
     // special github form data
@@ -437,6 +437,7 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
+      formData.intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
@@ -445,7 +446,6 @@ function submitForm(e) {
     formData = {
       email: emailValue,
       why: whyValue,
-      intent: whySegment.join('').trim(),
       id: analytics.user().anonymousId(),
       client_id: ga.getAll()[0].get('clientId')
     };
