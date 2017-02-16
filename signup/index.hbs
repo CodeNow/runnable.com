@@ -973,7 +973,7 @@ function submitForm(e) {
   if (form.checkValidity()) {
     var emailValue = form.querySelectorAll('[name="email"]')[0].value;
     var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var formData;
+    var formData = {};
     var name = 'name';
 
     // special github form data
@@ -1007,6 +1007,7 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
+      formData.intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
@@ -1015,7 +1016,6 @@ function submitForm(e) {
     formData = {
       email: emailValue,
       why: whyValue,
-      intent: whySegment.join('').trim(),
       id: analytics.user().anonymousId(),
       client_id: ga.getAll()[0].get('clientId')
     };
@@ -1256,8 +1256,10 @@ window.addEventListener('load', function(){
       <p class="p text-center">Thanks! We’re redirecting you to GitHub…</p>
     </div>
   </div>
-  <div class="grid-content text-center text-white">
-    <a href="signin/" class="link">Sign in</a> if your team is already using Runnable.
+  <div class="grid-block col justify-center margin-top-lg">
+    <p class="p text-white text-center">Customers that 💖 us:</p>
+    <img class="img margin-top-sm img-customers" src="images/customers.png" width="386" height="82">
+    <p class="text-center text-white margin-top-lg"><a href="signin/" class="link">Sign in</a> if your team is already using Runnable.</p>
   </div>
 </article>
 
