@@ -464,9 +464,9 @@ function submitForm(e) {
     formData.client_id = client_id;
 
     // add name
-    formData[name] = nameValue;  
+    formData[name] = nameValue;
     xhrSubmit(e, form, JSON.stringify(formData), formName);
-    
+
     // segment
     delete formData['why'];
     analytics.ready(function() {
