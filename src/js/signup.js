@@ -252,6 +252,10 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
+    // clear 'required' from 'why-other' when 'other' is unchecked
+    if (thisTarget.value === 'Other') {
+      thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0].removeAttribute('required');
+    }
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
@@ -395,9 +399,9 @@ function submitForm(e) {
   try {
     // Get anonymousId
     segment_id = analytics.user().anonymousId();
-    client_id = ga.getAll()[0].get('clientId')
-  // pass through with errors
+    client_id = ga.getAll()[0].get('clientId');
   } catch (err) {
+    // pass through with errors
     console.log("Error obtaining IDs: "+ err);
   }
 
