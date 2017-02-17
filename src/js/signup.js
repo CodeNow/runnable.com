@@ -225,6 +225,7 @@ function validateCheckGroup(e) {
   } else {
     thisTarget = e.target;
     checkGroup = e.target;
+    otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
     while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
   }
 
@@ -235,7 +236,6 @@ function validateCheckGroup(e) {
   if (thisTarget.checked) {
     // if an "other" option
     if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
       otherInput.setAttribute('required','required');
 
       if (!otherListened) {
@@ -252,10 +252,10 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
-    // clear 'required' from 'why-other' when 'other' is unchecked
     if (thisTarget.value === 'Other') {
-      thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0].removeAttribute('required');
+      otherInput.removeAttribute('required');
     }
+
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
