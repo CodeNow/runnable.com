@@ -395,6 +395,7 @@ function submitForm(e) {
   var formName;
   var segment_id;
   var client_id;
+  var intent;
 
   try {
     // Get anonymousId
@@ -452,7 +453,7 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      formData.intent = whySegment.join('').trim();
+      intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
@@ -460,6 +461,7 @@ function submitForm(e) {
     // jsonify form data
     formData.email = emailValue;
     formData.why = whyValue;
+    formData.intent = intent;
     formData.id = segment_id;
     formData.client_id = client_id;
 
