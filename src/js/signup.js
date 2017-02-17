@@ -393,6 +393,18 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var segment_id;
+  var client_id;
+  var intent;
+
+  try {
+    // Get anonymousId
+    segment_id = analytics.user().anonymousId();
+    client_id = ga.getAll()[0].get('clientId');
+  } catch (err) {
+    // pass through with errors
+    console.log("Error obtaining IDs: "+ err);
+  }
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
@@ -441,18 +453,17 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      formData.intent = whySegment.join('').trim();
+      intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
+    formData.email = emailValue;
+    formData.why = whyValue;
+    formData.intent = intent;
+    formData.id = segment_id;
+    formData.client_id = client_id;
 
     // add name
     formData[name] = nameValue;
