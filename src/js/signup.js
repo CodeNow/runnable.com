@@ -389,6 +389,17 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var segment_id;
+  var client_id;
+
+  try {
+    // Get anonymousId
+    segment_id = analytics.user().anonymousId();
+    client_id = ga.getAll()[0].get('clientId')
+  // pass through with errors
+  } catch (err) {
+    console.log("Error obtaining IDs: "+ err);
+  }
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
@@ -443,17 +454,15 @@ function submitForm(e) {
     toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
+    formData.email = emailValue;
+    formData.why = whyValue;
+    formData.id = segment_id;
+    formData.client_id = client_id;
 
     // add name
-    formData[name] = nameValue;
+    formData[name] = nameValue;  
     xhrSubmit(e, form, JSON.stringify(formData), formName);
-
+    
     // segment
     delete formData['why'];
     analytics.ready(function() {
