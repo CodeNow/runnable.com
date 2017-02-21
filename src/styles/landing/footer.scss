@@ -18,6 +18,37 @@
     }
   }
 
+
+  .subtitle {
+    color: $gray-light;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 15px 0 15px 33px;
+
+    @include media(xs) {
+      align-content: center;
+      margin-left: 0;
+    }
+
+  }
+
+  .link {
+    color: $gray;
+    font-size: 19px;
+    line-height: 21px;
+    margin: 0 0 24px 27px;
+    text-decoration: none;
+
+    @include media(xs) {
+      margin-left: 0;
+    }
+
+    &:hover,
+    &:active {
+      color: $gray-dark;
+    }
+  }
+
   .align-start {
 
     @include media(xs) {
@@ -30,19 +61,6 @@
       @include media(xs) {
         margin-left: 0;
       }
-    }
-  }
-
-  .link {
-    color: $gray-light;
-    font-size: 19px;
-    line-height: 24px;
-    margin: 15px 27px;
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      color: $gray;
     }
   }
 
