@@ -25,6 +25,11 @@
     font-size: 16px;
     line-height: 20px;
 
+    @include media(xs) {
+      align-content: center;
+      margin: 15px 0 15px 27px;
+    }
+
   }
 
   .link {
