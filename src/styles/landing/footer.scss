@@ -27,7 +27,7 @@
 
     @include media(xs) {
       align-content: center;
-      margin: 15px 0 15px 27px;
+      margin-left: 0;
     }
 
   }
@@ -38,6 +38,10 @@
     line-height: 21px;
     margin: 0 0 24px 27px;
     text-decoration: none;
+
+    @include media(xs) {
+      margin-left: 0;
+    }
 
     &:hover,
     &:active {
