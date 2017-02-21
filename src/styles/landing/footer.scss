@@ -21,9 +21,9 @@
 
   .subtitle {
     color: $gray-light;
-    margin: 15px 0 15px 33px;
     font-size: 16px;
     line-height: 20px;
+    margin: 15px 0 15px 33px;
 
     @include media(xs) {
       align-content: center;
