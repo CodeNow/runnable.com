@@ -46,6 +46,10 @@
 
     .p {
       max-width: 345px;
+
+      &.weight-light {
+        font-size: 16px;
+      }
     }
   }
 
