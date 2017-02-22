@@ -89,24 +89,7 @@
     }
   }
 
-  .figure {
-    position: relative;
-
-    &::after {
-      animation: cursor-blink 1s infinite;
-      background: $gray-lighterest;
-      border-radius: 1px;
-      bottom: 21px;
-      content: '';
-      display: block;
-      height: 17px;
-      left: 15px;
-      position: absolute;
-      width: 9px;
-    }
-
-    .img {
-      border-radius: $input-border-radius;
-    }
+  .img {
+    border-radius: $input-border-radius-lg;
   }
 }
