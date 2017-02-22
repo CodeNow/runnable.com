@@ -795,6 +795,7 @@ function validateCheckGroup(e) {
   } else {
     thisTarget = e.target;
     checkGroup = e.target;
+    otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
     while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
   }
 
@@ -805,7 +806,6 @@ function validateCheckGroup(e) {
   if (thisTarget.checked) {
     // if an "other" option
     if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
       otherInput.setAttribute('required','required');
 
       if (!otherListened) {
@@ -822,6 +822,10 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
+    if (thisTarget.value === 'Other') {
+      otherInput.removeAttribute('required');
+    }
+
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
@@ -959,6 +963,18 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var segment_id;
+  var client_id;
+  var intent;
+
+  try {
+    // Get anonymousId
+    segment_id = analytics.user().anonymousId();
+    client_id = ga.getAll()[0].get('clientId');
+  } catch (err) {
+    // pass through with errors
+    console.log("Error obtaining IDs: "+ err);
+  }
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
@@ -1007,18 +1023,17 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      formData.intent = whySegment.join('').trim();
+      intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
+    formData.email = emailValue;
+    formData.why = whyValue;
+    formData.intent = intent;
+    formData.id = segment_id;
+    formData.client_id = client_id;
 
     // add name
     formData[name] = nameValue;

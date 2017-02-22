@@ -252,10 +252,17 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
+<<<<<<< HEAD
+    // clear 'required' from 'why-other' when 'other' is unchecked
+    if (thisTarget.value === 'Other') {
+      thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0].removeAttribute('required');
+    }
+=======
     if (thisTarget.value === 'Other') {
       otherInput.removeAttribute('required');
     }
 
+>>>>>>> 70fcaba6ef85d9bda8972662b82ebe21f6e0881e
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
@@ -395,7 +402,6 @@ function submitForm(e) {
   var formName;
   var segment_id;
   var client_id;
-  var intent;
 
   try {
     // Get anonymousId
@@ -453,7 +459,7 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      intent = whySegment.join('').trim();
+      formData.intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
@@ -461,7 +467,6 @@ function submitForm(e) {
     // jsonify form data
     formData.email = emailValue;
     formData.why = whyValue;
-    formData.intent = intent;
     formData.id = segment_id;
     formData.client_id = client_id;
 

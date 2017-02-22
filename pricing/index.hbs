@@ -795,6 +795,7 @@ function validateCheckGroup(e) {
   } else {
     thisTarget = e.target;
     checkGroup = e.target;
+    otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
     while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
   }
 
@@ -805,7 +806,6 @@ function validateCheckGroup(e) {
   if (thisTarget.checked) {
     // if an "other" option
     if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
       otherInput.setAttribute('required','required');
 
       if (!otherListened) {
@@ -822,6 +822,10 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
+    if (thisTarget.value === 'Other') {
+      otherInput.removeAttribute('required');
+    }
+
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
@@ -959,6 +963,18 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var segment_id;
+  var client_id;
+  var intent;
+
+  try {
+    // Get anonymousId
+    segment_id = analytics.user().anonymousId();
+    client_id = ga.getAll()[0].get('clientId');
+  } catch (err) {
+    // pass through with errors
+    console.log("Error obtaining IDs: "+ err);
+  }
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
@@ -1007,18 +1023,17 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      formData.intent = whySegment.join('').trim();
+      intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
+    formData.email = emailValue;
+    formData.why = whyValue;
+    formData.intent = intent;
+    formData.id = segment_id;
+    formData.client_id = client_id;
 
     // add name
     formData[name] = nameValue;
@@ -1298,29 +1313,29 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block col list text-left">
       <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
-      <a href="preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-staging.svg" height="30" width="30" class="img">
         Preview Environments
       </a>
-      <a href="end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-testing.svg" height="30" width="30" class="img">
         End-to-end Testing
       </a>
-      <a href="deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-deploy.svg" height="30" width="30" class="img">
         Deploy to Production
       </a>
       <div class="list-item divider visible-xs"></div>
-      <a href="signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
-      <a href="signin/" class="list-item-a visible-md">Sign In</a>
+      <a href="/signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
+      <a href="/signin/" class="list-item-a visible-md">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-sm">Docs</a>
-      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
-      <a href="how-it-works/" class="list-item-a">How It Works</a>
-      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
-      <a href="demo/" class="list-item-a">Request Demo</a>
-      <a href="blog/" class="list-item-a">Blog</a>
-      <a href="about/" class="list-item-a">About</a>
+      <a href="/docs/" class="list-item-a visible-sm">Docs</a>
+      <a href="/pricing/" class="list-item-a visible-md">Pricing</a>
+      <a href="/how-it-works/" class="list-item-a">How It Works</a>
+      <a href="//runnable.com/use-cases/" class="list-item-a">Use Cases</a>
+      <a href="/demo/" class="list-item-a">Request Demo</a>
+      <a href="/blog/" class="list-item-a">Blog</a>
+      <a href="/about/" class="list-item-a">About</a>
     </div>
   </div>
 </div>
@@ -1531,22 +1546,29 @@ window.addEventListener('DOMContentLoaded', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block col align-start">
-      <a href="preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
-      <a href="end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
-      <a href="deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
-      <a href="docs/" class="btn btn-xs link weight-strong">Docs</a>
-      <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
-      <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
-      <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
+      <p class="subtitle weight-strong">Product</p>
+      <a href="/preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
+      <a href="/end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
+      <a href="/deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
+      <a href="/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
+      <a href="/how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
+      <a href="/pricing/" class="btn btn-xs link weight-strong">Pricing</a>
+      <p class="subtitle weight-strong">Help</p>
+      <a href="/docs/" class="btn btn-xs link weight-strong">Docs</a>
+      <a href="/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
+      <a href="/demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
-      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
-      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
-      <a href="blog/" class="btn btn-xs link weight-strong">Blog</a>
-      <a href="about/" class="btn btn-xs link weight-strong">About</a>
-      <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
-      <a href="legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
-      <a href="legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
+      <p class="subtitle weight-strong">Company</p>
+      <a href="/about/" class="btn btn-xs link weight-strong">About</a>
+      <a href="/blog/" class="btn btn-xs link weight-strong">Blog</a>
+      <a href="https://www.facebook.com/runnable/" class="btn btn-xs link weight-strong">Facebook</a>
+      <a href="https://twitter.com/GetRunnable" class="btn btn-xs link weight-strong">Twitter</a>
+      <a href="https://www.linkedin.com/company/runnable" class="btn btn-xs link weight-strong">Linkedin</a>
+      <p class="subtitle weight-strong">Legal</p>
+      <a href="/legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
+      <a href="/legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
+      <a href="/legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
     </div>
   </div>
 </footer>

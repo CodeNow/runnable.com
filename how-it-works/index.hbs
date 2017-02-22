@@ -795,6 +795,7 @@ function validateCheckGroup(e) {
   } else {
     thisTarget = e.target;
     checkGroup = e.target;
+    otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
     while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
   }
 
@@ -805,7 +806,6 @@ function validateCheckGroup(e) {
   if (thisTarget.checked) {
     // if an "other" option
     if (thisTarget.value === 'Other') {
-      otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
       otherInput.setAttribute('required','required');
 
       if (!otherListened) {
@@ -822,6 +822,10 @@ function validateCheckGroup(e) {
     checkGroup.classList.remove('invalid');
     itemChecked = true;
   } else if (!thisTarget.checked || !thisTarget) {
+    if (thisTarget.value === 'Other') {
+      otherInput.removeAttribute('required');
+    }
+
     for (i = 0; i < theseInputs.length; i++) {
       if (theseInputs[i].checked) {
         itemChecked = true;
@@ -959,6 +963,18 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var segment_id;
+  var client_id;
+  var intent;
+
+  try {
+    // Get anonymousId
+    segment_id = analytics.user().anonymousId();
+    client_id = ga.getAll()[0].get('clientId');
+  } catch (err) {
+    // pass through with errors
+    console.log("Error obtaining IDs: "+ err);
+  }
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
@@ -1007,18 +1023,17 @@ function submitForm(e) {
 
         whyValue.push(obj);
       }
-      formData.intent = whySegment.join('').trim();
+      intent = whySegment.join('').trim();
     }
 
     toggleEditing(form, 'disable'); // disables inputs
 
     // jsonify form data
-    formData = {
-      email: emailValue,
-      why: whyValue,
-      id: analytics.user().anonymousId(),
-      client_id: ga.getAll()[0].get('clientId')
-    };
+    formData.email = emailValue;
+    formData.why = whyValue;
+    formData.intent = intent;
+    formData.id = segment_id;
+    formData.client_id = client_id;
 
     // add name
     formData[name] = nameValue;
@@ -1313,29 +1328,29 @@ window.addEventListener('DOMContentLoaded', function(){
   <div class="grid-block popover popover-header-menu bottom">
     <div class="grid-block col list text-left">
       <small class="small visible-xs text-gray-light margin-left-sm">Features</small>
-      <a href="preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/preview-environments/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-staging.svg" height="30" width="30" class="img">
         Preview Environments
       </a>
-      <a href="end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/end-to-end-testing/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-testing.svg" height="30" width="30" class="img">
         End-to-end Testing
       </a>
-      <a href="deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
+      <a href="/deploy-to-production/" class="grid-block align-center list-item-a list-item-feature visible-xs">
         <img src="images/icons-deploy.svg" height="30" width="30" class="img">
         Deploy to Production
       </a>
       <div class="list-item divider visible-xs"></div>
-      <a href="signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
-      <a href="signin/" class="list-item-a visible-md">Sign In</a>
+      <a href="/signup/" class="list-item-a visible-xs track-sign-up">Sign Up</a>
+      <a href="/signin/" class="list-item-a visible-md">Sign In</a>
       <div class="list-item divider visible-md"></div>
-      <a href="docs/" class="list-item-a visible-sm">Docs</a>
-      <a href="pricing/" class="list-item-a visible-md">Pricing</a>
-      <a href="how-it-works/" class="list-item-a">How It Works</a>
-      <a href="https://runnable.com/use-cases/" class="list-item-a">Use Cases</a>
-      <a href="demo/" class="list-item-a">Request Demo</a>
-      <a href="blog/" class="list-item-a">Blog</a>
-      <a href="about/" class="list-item-a">About</a>
+      <a href="/docs/" class="list-item-a visible-sm">Docs</a>
+      <a href="/pricing/" class="list-item-a visible-md">Pricing</a>
+      <a href="/how-it-works/" class="list-item-a">How It Works</a>
+      <a href="//runnable.com/use-cases/" class="list-item-a">Use Cases</a>
+      <a href="/demo/" class="list-item-a">Request Demo</a>
+      <a href="/blog/" class="list-item-a">Blog</a>
+      <a href="/about/" class="list-item-a">About</a>
     </div>
   </div>
 </div>
@@ -1352,7 +1367,7 @@ window.addEventListener('DOMContentLoaded', function(){
   <p class="h3 text-center">Runnable is built on Docker, and provides all the benefits without the setup.</p>
 </article>
 
-      <article class="grid-block col align-center noscroll article article-setup">
+      <article class="grid-block col align-center noscroll article article-setup" id="developers">
   <section class="section">
     <h2 class="h1 weight-strong text-center">Creating environments is simple.</h2>
     <h3 class="h3 text-center">Start by adding the services that make up your environment.</h3>
@@ -1385,13 +1400,13 @@ window.addEventListener('DOMContentLoaded', function(){
 </article>
 
 <article class="grid-block col align-center section article article-branches-urls article-urls">
-  <div class="grid-block justify-center figure-wrapper">
-    <figure class="figure">
-      <img class="img" src="images/how-it-works/setup-urls.svg" height="165" width="330">
+  <div class="grid-block justify-center figure-wrapper noscroll">
+    <figure class="figure noscroll">
+      <img class="img" src="images/how-it-works/setup-mix.png" height="160" width="330">
     </figure>
     <div class="grid-block col text-wrapper">
-      <h3 class="h3 weight-strong">That’s it.</h3>
-      <p class="p">Every branch has a unique URL where everything is running.</p>
+      <h3 class="h3 weight-strong">Mix and match.</h3>
+      <p class="p">Toggle between service versions and branches on-the-fly.</p>
     </div>
   </div>
 
@@ -1413,23 +1428,15 @@ window.addEventListener('DOMContentLoaded', function(){
         <a class="a" href="https://runnable.zendesk.com/hc/en-us/articles/208384523-Python">
           <img class="img" src="images/how-it-works/guide-python.svg" height="45" width="45" alt="Python">
         </a>
-      {{!-- <li class="grid-content shrink">
-        <a class="a" href="https://support.runnable.com">
-          <img class="img" src="images/how-it-works/guide-mongo.png" height="45" width="28" alt="MongoDB">
-        </a> --}}
-      {{!-- <li class="grid-content shrink">
-        <a class="a" href="https://support.runnable.com">
-          <img class="img" src="images/how-it-works/guide-mysql.svg" height="45" width="28" alt="MySQL">
-        </a> --}}
     </ul>
     <p class="p small text-center">We made some sweet guides to get you started.
       <br>
-      <a class="link small" href="https://support.runnable.com/hc/en-us/categories/201194573-Quickstarts">See even more guides.</a>
+      <a class="link small" href="https://runnable.com/docs">See even more guides.</a>
     </p>
   </aside>
 </article>
 
-      <article class="grid-block col align-center section article article-behind-the-scenes" id="behind-the-scenes">
+      <article class="grid-block col align-center section article article-behind-the-scenes" id="devops">
   <h2 class="h1 weight-strong text-center">Behind the scenes.</h2>
   <h3 class="h3 text-center">See how we’ve created a powerful experience around building full-stack environments:</h3>
 
@@ -1477,12 +1484,12 @@ window.addEventListener('DOMContentLoaded', function(){
       </div>
     </div>
     <div class="grid-content padding-lg card-footer">
-      <p class="p text-center text-gray">Read our <a class="link" href="http://blog.runnable.com/">engineering blog</a> for specific details on Runnable’s infrastructure. Articles are published weekly.</p>
+      <p class="p text-center text-gray">Read our <a class="link" href="/blog/">engineering blog</a> for specific details on Runnable’s infrastructure. Articles are published weekly.</p>
     </div>
   </section>
   <div class="grid-block col align-center">
     <p class="grid-content text-white p text-center">Environments for your entire team at a low, fixed cost.</p>
-    <a class="grid-content btn btn-lg btn-white" href="pricing/">View Pricing Plans</a>
+    <a class="grid-content btn btn-lg btn-white" href="/pricing/">View Pricing Plans</a>
   </div>
 </article>
 
@@ -1528,22 +1535,29 @@ window.addEventListener('DOMContentLoaded', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block col align-start">
-      <a href="preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
-      <a href="end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
-      <a href="deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
-      <a href="docs/" class="btn btn-xs link weight-strong">Docs</a>
-      <a href="pricing/" class="btn btn-xs link weight-strong">Pricing</a>
-      <a href="how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
-      <a href="https://runnable.com/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
+      <p class="subtitle weight-strong">Product</p>
+      <a href="/preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
+      <a href="/end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
+      <a href="/deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
+      <a href="/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
+      <a href="/how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
+      <a href="/pricing/" class="btn btn-xs link weight-strong">Pricing</a>
+      <p class="subtitle weight-strong">Help</p>
+      <a href="/docs/" class="btn btn-xs link weight-strong">Docs</a>
+      <a href="/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
+      <a href="/demo/" class="btn btn-xs link weight-strong">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
-      <a href="demo/" class="btn btn-xs link weight-strong">Request Demo</a>
-      <a href="https://runnable.com/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
-      <a href="blog/" class="btn btn-xs link weight-strong">Blog</a>
-      <a href="about/" class="btn btn-xs link weight-strong">About</a>
-      <a href="legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
-      <a href="legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
-      <a href="legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
+      <p class="subtitle weight-strong">Company</p>
+      <a href="/about/" class="btn btn-xs link weight-strong">About</a>
+      <a href="/blog/" class="btn btn-xs link weight-strong">Blog</a>
+      <a href="https://www.facebook.com/runnable/" class="btn btn-xs link weight-strong">Facebook</a>
+      <a href="https://twitter.com/GetRunnable" class="btn btn-xs link weight-strong">Twitter</a>
+      <a href="https://www.linkedin.com/company/runnable" class="btn btn-xs link weight-strong">Linkedin</a>
+      <p class="subtitle weight-strong">Legal</p>
+      <a href="/legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
+      <a href="/legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
+      <a href="/legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
     </div>
   </div>
 </footer>
