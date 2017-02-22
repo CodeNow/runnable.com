@@ -36,11 +36,8 @@
     }
   }
 
-  .p {
-
-    &.weight-strong {
-      margin-bottom: $xxs;
-    }
+  .p.weight-strong {
+    margin-bottom: $xxs;
   }
 
   .link {
