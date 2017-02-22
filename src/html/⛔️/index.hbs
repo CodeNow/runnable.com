@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Sign up for Runnable.</title>
+    <script ugly>
+      @@include('js/svgs.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('images/icons.svg')
+
+    <main class="grid-block col main">
+      <div class="modal-backdrop in" id="sign-in">
+        @@include('html/components/modal-header.hbs', {
+          "signup": false,
+          "standalone": true
+        })
+        <div class="modal">
+          <article class="grid-block noscroll col article article-form article-sign-in">
+            <h1 class="grid-content shrink h2 text-white weight-strong text-center padding-bottom-lg">Woah there.</h1>
+            <div class="grid-block col card padding-top-sm">
+              <img class="img" src="images/runnabear-error.svg" height="130" width="230">
+              <div class="grid-block col padding-lg form-wrapper">
+                <p class="grid-content shrink p padding-bottom-sm text-center">You don’t have access to that page.</p>
+                <a href="/" class="grid-block justify-center align-center btn btn-lg green">Continue to Runnable</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+    @@include('js/external/external.html')
