@@ -15,15 +15,14 @@
     width: 100%;
     z-index: 0;
   }
-  .article-form {
-    .card {
-      margin-top: 150px;
-    }
+
+  .article-form .card {
+    margin-top: 150px;
   }
 
   .content {
+    margin: 0 auto;
     max-width: 800px;
     padding: 150px 0 90px;
-    margin: 0 auto;
   }
 }
