@@ -18,31 +18,25 @@
     }
   }
 
-
-  .subtitle {
+  .h4 {
     color: $gray-light;
     font-size: 16px;
-    margin: 15px 0 24px 33px;
+    font-weight: $weight-normal;
+    padding: $xxs;
 
     @include media(xs) {
       align-content: center;
-      margin-left: 0;
     }
   }
 
-  .link {
-    color: $gray;
+  .a {
     font-size: 19px;
-    margin: 0 0 24px 27px;
+    padding: $xxs;
     text-decoration: none;
-
-    @include media(xs) {
-      margin-left: 0;
-    }
 
     &:hover,
     &:active {
-      color: $gray-dark;
+      color: $purple-light;
     }
   }
 
@@ -170,7 +164,7 @@
 
   &:hover,
   &:active {
-    color: $gray;
+    color: $purple-light;
   }
 
   &.status-green::before {
