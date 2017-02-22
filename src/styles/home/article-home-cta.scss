@@ -46,11 +46,13 @@
 
     .p {
       max-width: 345px;
-
-      &.weight-light {
-        font-size: 16px;
-      }
     }
+  }
+
+  .p-customers {
+    font-size: 16px;
+    margin-bottom: 6px;
+    margin-top: 54px;
   }
 
   + .section {
