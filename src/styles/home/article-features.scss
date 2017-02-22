@@ -1,6 +1,8 @@
 .article-features {
 
   .section {
+    border-top: 1px solid $gray-lightest;
+
     @include media(md) {
       flex-direction: column;
       max-width: 510px;
