@@ -55,8 +55,9 @@
 
   .figure {
     border-bottom: 1px solid $gray-lighter;
-    position: relative;
+    overflow: hidden;
     padding-bottom: 0;
+    position: relative;
 
     .img {
       border-radius: $input-border-radius-lg $input-border-radius-lg 0 0;
@@ -74,8 +75,8 @@
 
       @media (max-width: 540px) {
         margin: 0 0 0 -270px;
-        width: calc(100vw + 210px);
         max-width: none;
+        width: calc(100vw + 210px);
       }
     }
 
@@ -89,7 +90,18 @@
       z-index: 1;
 
       &:last-child {
+        max-width: calc(100% - #{$xl * 2});
         position: absolute;
+
+        @include media(sm) {
+          max-width: calc(100% - #{$lg * 2});
+        }
+
+        @media (max-width: 540px) {
+          left: auto;
+          max-width: none;
+          right: 30px;
+        }
       }
 
       &.in {
