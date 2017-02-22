@@ -14,6 +14,12 @@
     }
   }
 
+  .img {
+    @include media(sm) {
+      margin-right: 0;
+    }
+  }
+
   .p.weight-strong {
     margin-bottom: $xxs;
   }
