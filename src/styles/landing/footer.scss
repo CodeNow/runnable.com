@@ -4,17 +4,45 @@
   border-top: 1px solid $gray-lightest;
   margin: 0 auto;
   overflow: visible;
-  padding-top: 30px;
+  padding-top: $md;
   position: relative;
   width: 100%;
 
   .link-wrapper {
-    padding: 60px 30px 60px 0;
+    padding: $xl $md $xl 0;
 
     @include media(xs) {
       flex-flow: column wrap;
       justify-content: center;
-      padding: 60px 30px;
+      padding: $xl $md;
+    }
+  }
+
+
+  .subtitle {
+    color: $gray-light;
+    font-size: 16px;
+    margin: 15px 0 24px 33px;
+
+    @include media(xs) {
+      align-content: center;
+      margin-left: 0;
+    }
+  }
+
+  .link {
+    color: $gray;
+    font-size: 19px;
+    margin: 0 0 24px 27px;
+    text-decoration: none;
+
+    @include media(xs) {
+      margin-left: 0;
+    }
+
+    &:hover,
+    &:active {
+      color: $gray-dark;
     }
   }
 
@@ -30,19 +58,6 @@
       @include media(xs) {
         margin-left: 0;
       }
-    }
-  }
-
-  .link {
-    color: $gray-light;
-    font-size: 19px;
-    line-height: 24px;
-    margin: 15px 27px;
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      color: $gray;
     }
   }
 
