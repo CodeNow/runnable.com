@@ -15,6 +15,8 @@
       <img class="img" src="images/runnable-logo.svg" height="36" width="192">
     </a>
     }
+    @@if (context.standalone && context.notfound) {
+    }
     <div class="grid-block shrink align-center">
       @@if (context.signup) {
       <a class="grid-block align-center shrink btn btn-sm btn-white js-open-bitbucket track-bitbucket">
@@ -29,6 +31,9 @@
         </svg>
         <span>Sign Up with GitHub</span>
       </a>
+      }
+      @@if (context.notfound) {
+      
       }
       @@if (!context.standalone) {
       <a class="grid-block align-center btn btn-sm btn-white js-modal-close">

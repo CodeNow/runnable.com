@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Runnable: Page Not Found</title>
+    <script ugly>
+      @@include('js/svgs.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('images/icons.svg')
+
+    <main class="grid-block col main notfound">
+      <div class="modal-backdrop in" id="notfound">
+        @@include('html/components/modal-header.hbs', {
+          "notfound": true,
+          "standalone": true
+        })
+        <div class="modal">
+          <article class="grid-block col align-center noscroll article article-form">
+            <h1 class="grid-content shrink h2 text-white weight-strong text-center">Page Not Found</h1>
+            <p class="grid-content shrink p text-center text-white">Are you lost? We can help you find your way.</p>
+            <div class="grid-block col card shake-me">
+              <img class="grid-content img no-touching align-center" src="/images/notfound/errorbear-peeking.png" height="130" width="230"/>
+              <div class="grid-block col form-wrapper">
+                <p class="p text-center">We're sorry, but the page you're looking for cannot be found.</p>
+                <button data-href="#" class="btn btn-lg white margin-top-md">Back to Runnable</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+    @@include('js/external/external.html')
