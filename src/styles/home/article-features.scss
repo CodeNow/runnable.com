@@ -13,12 +13,12 @@
     flex: 1 1 33.33%;
     font-size: 16px;
     margin-bottom: $md;
+    align-items: center;
+    text-align: center;
 
     @include media(md) {
-      align-items: center;
       flex: 0 0 auto;
       font-size: 19px;
-      text-align: center;
     }
 
     + .li {
