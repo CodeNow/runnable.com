@@ -1,0 +1,20 @@
+.contact-map {
+  background: $purple;
+  padding: $md 0;
+  margin-bottom: $sm;
+
+  .grid-container {
+    width: 660px;
+  }
+  .contact-map-background {
+    margin-right: $sm;
+    background: url('../images/contact/contact-map.png') center center no-repeat;
+    border-radius: 4px;
+  }
+  .map-pin {
+    width: 26px;
+    height: 60px;
+    margin: 0 auto;
+    background: url('../images/contact/contact-pin.svg') center center no-repeat;
+  }
+}
