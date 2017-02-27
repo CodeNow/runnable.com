@@ -1,13 +1,19 @@
 .contact-map {
+  margin : $md auto;
+  max-width: 660px;
   background: $purple;
-  padding: $md 0;
-  margin-bottom: $sm;
+  border-radius: 4px;
+  padding: $md;
+
+  .grid-block {
+    flex: 1 1 50%;
+  }
 
   .grid-container {
     width: 660px;
   }
   .contact-map-background {
-    margin-right: $sm;
+    margin-right: $md;
     background: url('../images/contact/contact-map.png') center center no-repeat;
     border-radius: 4px;
   }
