@@ -1,9 +1,6 @@
 .contact-map {
-  margin : $md auto;
-  max-width: 660px;
   background: $purple;
   border-radius: 4px;
-  padding: $md;
 
   .grid-block {
     flex: 1 1 50%;
@@ -13,14 +10,61 @@
     width: 660px;
   }
   .contact-map-background {
-    margin-right: $md;
     background: url('../images/contact/contact-map.png') center center no-repeat;
+    background-size: cover;
     border-radius: 4px;
+    box-sizing: border-box;
+    margin: $md;
+    margin-left: none;
+    padding: $lg;
   }
+
   .map-pin {
-    width: 26px;
-    height: 60px;
+    height: auto;
     margin: 0 auto;
-    background: url('../images/contact/contact-pin.svg') center center no-repeat;
+    background: $white;
+    border-radius: 3px;
+    box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25);
+    padding: $sm;
+    position: relative;
+    width: 240px;
+
+    .arrow {
+      margin: 0 auto;
+      border-left: 17px solid transparent;
+      border-right: 17px solid transparent;
+      border-top: 17px solid rgba($black,0.12);
+      height: 0;
+      position: absolute;
+      width: 0;
+      bottom: -17px;
+      right: calc(50% - 8px);
+
+      &:before {
+        content: "";
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        border-top: 16px solid $white;
+        bottom: -16px;
+        height: 0;
+        width: 0;
+        right: calc(50% - 16px);
+        position: absolute;
+        top: -18px;
+      }
+    }
+
+    .location {
+      bottom: -36px;
+      right: 50%;
+      position: relative;
+      background: $blue;
+      border: 2px solid $white;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px rgba($black,0.15), 0 1px 3px rgba($black,0.15);
+      position: absolute;
+    }
   }
 }
