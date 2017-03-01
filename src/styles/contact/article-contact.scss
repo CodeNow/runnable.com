@@ -59,9 +59,8 @@
   }
 
   .link {
-    border: 1px solid $gray;
     border-radius: 3px;
-    color: $gray;
+    color: $purple;
     font-size: 16px;
     font-weight: $weight-normal;
     margin-top: $xxs;
@@ -69,8 +68,7 @@
     padding: 3px 6px;
     text-decoration: none;
     &:hover {
-      border-color: $purple;
-      color: $purple;
+      color: $gray;
     }
 
     &:hover .icons,
