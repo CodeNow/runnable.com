@@ -1,4 +1,4 @@
-.contact-map {
+.article-location {
   display: block;
   background: $gray-lighterest;
   border-bottom: 1px solid $gray-lighter;
@@ -12,10 +12,10 @@
     width: 660px;
   }
 
-  .contact-map-background {
+  .article-location-background {
     overflow: hidden;
     box-shadow: inset 0 0 1px 0.5px rgba($black,0.15);
-    background: url('../images/contact/contact-map.png') center center no-repeat;
+    background: url('../images/contact/article-location.png') center center no-repeat;
     background-size: cover;
     border-radius: 4px;
     box-sizing: border-box;
