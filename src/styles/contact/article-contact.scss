@@ -2,7 +2,7 @@
   .section {
     padding: 0px 60px;
     top: 80px;
-    
+
     @include media(md) {
       flex-direction: column;
       max-width: 510px;
@@ -16,16 +16,16 @@
     box-sizing: border-box;
     flex: 1 1 33.33%;
     font-size: 16px;
-    padding: 20px;
     margin-bottom: $md;
+    padding: 20px;
 
     @include media(md) {
-      margin: 0 auto 20px auto;
-      width: 345px;
       align-items: center;
       flex: 1 0 auto;
       font-size: 19px;
+      margin: 0 auto 20px auto;
       text-align: center;
+      width: 345px;
     }
 
     + .li {
@@ -36,8 +36,8 @@
       }
     }
     .p {
-      font-size: 15px;
       color: $gray;
+      font-size: 15px;
       text-shadow: none;
     }
     .h2 {
