@@ -1,7 +1,8 @@
 .article-contact {
   .section {
     padding: 0px 60px;
-
+    top: 80px;
+    
     @include media(md) {
       flex-direction: column;
       max-width: 510px;
