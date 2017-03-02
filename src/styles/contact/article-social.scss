@@ -2,7 +2,7 @@
 
   .section {
     flex: 1 1 50%;
+    padding: $md;
+    padding-bottom: 0;
   }
-  background: $gray-lighterest;
-  border: 1px solid $gray-lighter;
 }
