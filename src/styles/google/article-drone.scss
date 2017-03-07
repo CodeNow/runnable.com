@@ -1,7 +1,6 @@
 .article-drone {
 
   .section {
-    border-top: 1px solid $gray-lightest;
     max-width: 870px;
 
     @include media(xs) {
@@ -11,11 +10,16 @@
   }
 
   .img {
+    border-radius: $input-border-radius;
     margin-right: $lg;
 
     @include media(xs) {
       margin-bottom: $md;
       margin-right: 0;
     }
+  }
+
+  .small {
+    margin-top: 3px;
   }
 }

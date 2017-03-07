@@ -1,4 +1,21 @@
 .article-google-cta {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#396fc6, $purple-light);
+  // scss-lint:enable ColorVariable
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .3;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
 
   .section {
     padding-bottom: 75px;
@@ -23,8 +40,7 @@
   }
 
   .card {
-    background-color: $gray-lighterest;
-    border: 1px solid $gray-lighter;
+    background-color: $white;
     border-radius: 9px;
     padding: $lg $md;
 
@@ -62,6 +78,26 @@
 
     + .input {
       margin-top: -$input-border;
+    }
+  }
+
+  .btn.white {
+    border-color: transparent;
+    box-shadow: 0 2px 4px rgba($black,.15);
+    color: $green-dark;
+    display: block;
+    font-weight: $weight-bold;
+    transition: transform .2s ease-in-out;
+
+    &:hover,
+    &:active {
+      border-color: transparent;
+      transform: scale3d(1.05,1.05,1);
+    }
+
+    &:active {
+      color: $green-dark;
+      transform: scale3d(1,1,1);
     }
   }
 }
