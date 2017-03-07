@@ -1,0 +1,27 @@
+.google-hero {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #43738f);
+  // scss-lint:enable ColorVariable
+  padding-bottom: 0;
+
+  .h3 {
+    margin-bottom: $xl;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-wrapper {
+    margin-bottom: -$xl;
+    overflow: visible;
+  }
+
+  .card {
+    background-color: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: 9px;
+    box-shadow: 0 1px 9px rgba($black,.1);
+    color: $gray-dark;
+    max-width: 360px;
+    padding: $xl $lg;
+  }
+}

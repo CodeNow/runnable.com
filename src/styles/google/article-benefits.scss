@@ -1,0 +1,18 @@
+.article-benefits {
+  background-color: $gray-lighterest;
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+
+  .section {
+    padding-bottom: 90px;
+    padding-top: 90px;
+  }
+
+  .col {
+    max-width: 360px;
+  }
+
+  .img {
+    opacity: .75;
+  }
+}

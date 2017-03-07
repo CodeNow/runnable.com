@@ -1,0 +1,45 @@
+.article-google-cta {
+
+  .section {
+    padding-bottom: 75px;
+    padding-top: 90px;
+  }
+
+  .col {
+    max-width: 360px;
+  }
+
+  .card {
+    background-color: $gray-lighterest;
+    border: 1px solid $gray-lighter;
+    border-radius: 9px;
+    padding: $lg $md;
+
+    .p {
+      margin-bottom: $md;
+    }
+  }
+
+  .input {
+    border-radius: 0;
+    border-width: $input-border-lg;
+
+    &:first-of-type {
+      border-top-left-radius: $input-border-radius-lg;
+      border-top-right-radius: $input-border-radius-lg;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: $input-border-radius-lg;
+      border-bottom-right-radius: $input-border-radius-lg;
+    }
+
+    &:focus {
+      z-index: 1;
+    }
+
+    + .input {
+      margin-top: -$input-border-lg;
+    }
+  }
+}
