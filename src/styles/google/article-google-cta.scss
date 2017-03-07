@@ -26,8 +26,8 @@
     }
 
     > .col {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: $sm;
+      margin-right: $sm;
       max-width: 360px;
 
       @include media(xs) {
@@ -47,7 +47,7 @@
 
   .card {
     background-color: $white;
-    border-radius: 9px;
+    border-radius: $xxs;
     padding: $lg $md;
 
     .margin-bottom-md {
