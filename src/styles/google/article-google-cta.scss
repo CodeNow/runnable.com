@@ -24,17 +24,23 @@
     @include media(xs) {
       flex-direction: column;
     }
-  }
 
-  .col {
-    max-width: 360px;
-
-    + .col {
-      margin-left: $md;
+    > .col {
+      margin-left: 15px;
+      margin-right: 15px;
+      max-width: 360px;
 
       @include media(xs) {
         margin-left: 0;
-        margin-top: $md;
+        margin-right: 0;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
@@ -44,8 +50,16 @@
     border-radius: 9px;
     padding: $lg $md;
 
-    .p {
+    .margin-bottom-md {
       margin-bottom: $md;
+    }
+  }
+
+  .empty {
+    height: 286px;
+
+    .h2 {
+      margin-top: 0;
     }
   }
 
