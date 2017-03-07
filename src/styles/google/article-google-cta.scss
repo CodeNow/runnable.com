@@ -24,21 +24,15 @@
     }
 
     > .col {
-      margin-left: $sm;
-      margin-right: $sm;
       max-width: 360px;
 
-      @include media(xs) {
-        margin-left: 0;
-        margin-right: 0;
-      }
+      + .col {
+        margin-left: $md;
 
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
+        @include media(xs) {
+          margin-left: 0;
+          margin-top: $lg;
+        }
       }
     }
   }

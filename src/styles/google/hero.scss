@@ -33,26 +33,14 @@
     border-radius: 9px;
     box-shadow: 0 1px 9px rgba($black,.1);
     color: $gray-dark;
-    margin-left: $sm;
-    margin-right: $sm;
     max-width: 360px;
     padding: $xl $lg;
 
-    @include media(sm) {
-      margin: 0;
-    }
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &.margin-top-md-sm {
+    + .card {
+      margin-left: $md;
 
       @include media(sm) {
+        margin-left: 0;
         margin-top: $md;
       }
     }
