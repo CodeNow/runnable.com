@@ -4,6 +4,10 @@
   // scss-lint:enable ColorVariable
   padding-bottom: 0;
 
+  .section {
+    padding-bottom: 0;
+  }
+
   .h3 {
     margin-bottom: $xl;
     margin-left: auto;
@@ -12,7 +16,13 @@
 
   .card-wrapper {
     margin-bottom: -$xl;
+    max-width: 750px;
     overflow: visible;
+
+    @include media(sm) {
+      flex-direction: column;
+      max-width: 510px;
+    }
   }
 
   .card {
@@ -21,7 +31,16 @@
     border-radius: 9px;
     box-shadow: 0 1px 9px rgba($black,.1);
     color: $gray-dark;
-    max-width: 360px;
+    // max-width: 360px;
     padding: $xl $lg;
+
+    + .card {
+      margin-left: $md;
+
+      @include media(sm) {
+        margin-left: 0;
+        margin-top: $md;
+      }
+    }
   }
 }

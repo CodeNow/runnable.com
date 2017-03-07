@@ -6,10 +6,27 @@
   .section {
     padding-bottom: 90px;
     padding-top: 90px;
+
+    @include media(xs) {
+      flex-direction: column;
+    }
   }
 
   .col {
     max-width: 360px;
+
+    @include media(xs) {
+      max-width: none;
+    }
+
+    + .col {
+      margin-left: $md;
+
+      @include media(xs) {
+        margin-left: 0;
+        margin-top: $md;
+      }
+    }
   }
 
   .img {
