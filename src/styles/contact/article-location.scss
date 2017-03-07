@@ -25,55 +25,54 @@
   }
 
   .detail {
-    background: $purple-light;
-    border: 1px solid $purple;
+    background: $white;
     border-bottom: none;
     border-radius: 3px;
-    top: 0;
     box-shadow: 0px 2px 5px rgba($black,0.1);
     height: auto;
     left: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: $lg;
-    right: 0;
+    margin: $lg auto;
+    max-width: 270px;
     padding: $sm;
     position: absolute;
-    max-width: 420px;
+    right: 0;
+    top: 0;
   }
 
   .map-pin {
-    background: $white;
+    background: $purple-light;
+    border: 1px solid $purple;
     border-radius: 3px;
-    box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25);
+    box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25), 0 10px 25px rgba($black,0.07);
+    color: $white;
     height: auto;
     margin: 0 auto;
     padding: $sm;
     position: absolute;
     top: calc(50% - 30px);
-    width: 280px;
+    width: 270px;
 
     .arrow {
       border-left: 17px solid transparent;
       border-right: 17px solid transparent;
       bottom: -17px;
-      border-top: 17px solid rgba($black,0.12);
+      border-top: 17px solid $purple;
       height: 0;
       margin: 0 auto;
       position: absolute;
-      width: 0;
       right: calc(50% - 8px);
+      width: 0;
 
       &:before {
         border-left: 16px solid transparent;
         border-right: 16px solid transparent;
-        border-top: 16px solid $white;
+        border-top: 16px solid $purple-light;
         bottom: -16px;
         content: "";
         height: 0;
         width: 0;
-        right: calc(50% - 16px);
         position: absolute;
+        right: calc(50% - 16px);
         top: -18px;
       }
     }
@@ -84,10 +83,10 @@
       box-shadow: 0 0 1px rgba($black,0.15), 0 1px 3px rgba($black,0.15);
       background: $blue;
       border: 2px solid $white;
-      width: 16px;
       height: 16px;
       position: absolute;
       right: 50%;
+      width: 16px;
     }
   }
 }
