@@ -47,12 +47,21 @@
       border-bottom-right-radius: $input-border-radius-lg;
     }
 
+    &:not(:first-of-type) {
+      border-top-width: $input-border;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom-width: $input-border;
+    }
+
     &:focus {
+      border-width: $input-border-lg;
       z-index: 1;
     }
 
     + .input {
-      margin-top: -$input-border-lg;
+      margin-top: -$input-border;
     }
   }
 }
