@@ -2,30 +2,35 @@
   background-color: $gray-lighterest;
   border-bottom: 1px solid $gray-lightest;
   border-top: 1px solid $gray-lightest;
+  font-size: 16px;
 
-  .section {
-    padding-bottom: 90px;
-    padding-top: 90px;
+  .row {
+    max-width: 750px;
+    width: 100%;
 
-    @include media(xs) {
+    @include media(xxs) {
       flex-direction: column;
     }
-  }
 
-  .col {
-    max-width: 360px;
+    > .grid-block {
+      max-width: calc(50% - 15px);
 
-    @include media(xs) {
-      max-width: none;
+      @include media(xxs) {
+        max-width: none;
+      }
+
+      + .grid-block {
+        margin-left: 30px;
+
+        @include media(xxs) {
+          margin-left: 0;
+          margin-top: 30px;
+        }
+      }
     }
 
-    + .col {
-      margin-left: $md;
-
-      @include media(xs) {
-        margin-left: 0;
-        margin-top: $md;
-      }
+    + .row {
+      margin-top: 30px;
     }
   }
 
