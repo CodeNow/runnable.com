@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Google Cloud Next Drone Giveaway — Runnable</title>
+    <script ugly>
+      @@include('js/signup.js')
+      @@include('js/svgs.js')
+      @@include('js/status.js')
+    </script>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ontouchstart>
+
+    @@include('images/icons.svg')
+    @@include('html/components/header.hbs')
+
+    <main class="grid-block col main">
+      @@include('html/google/giveaways/hero-giveaways.hbs')
+      @@include('html/google/giveaways/article-giveaways-badge.hbs')
+      @@include('html/google/giveaways/article-giveaways-tweet.hbs')
+    </main>
+
+    @@include('html/components/footer.hbs')
+
+    @@include('js/external/external.html')
