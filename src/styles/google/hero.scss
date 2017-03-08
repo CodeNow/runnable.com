@@ -19,10 +19,11 @@
 
   .card-wrapper {
     margin-bottom: -$xl;
-    max-width: 750px;
+    max-width: 870px;
     overflow: visible;
 
     @include media(sm) {
+      align-items: center;
       flex-direction: column;
       max-width: 510px;
     }
