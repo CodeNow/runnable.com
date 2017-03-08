@@ -55,9 +55,11 @@
   }
 
   .input {
+    border-bottom-width: $input-border-lg;
+    border-left-width: $input-border-lg;
     border-radius: 0;
+    border-right-width: $input-border-lg;
     border-top-width: 0;
-    border-width: $input-border-lg;
 
     &:first-of-type {
       border-top-left-radius: $input-border-radius-lg;
