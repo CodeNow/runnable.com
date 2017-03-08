@@ -3,10 +3,6 @@
   background: $white;
   height: auto;
 
-  .grid-block {
-    flex: 1 1 50%;
-  }
-
   .grid-container {
     width: 100%;
   }
@@ -25,32 +21,22 @@
   }
 
   .detail {
-    background: $white;
-    border-bottom: none;
-    border-radius: 3px;
-    box-shadow: 0px 2px 5px rgba($black,0.1);
-    height: auto;
-    left: 0;
-    margin: $lg auto;
-    max-width: 270px;
+    background: $purple-light;
+    margin-top: $sm;
     padding: $sm;
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 
   .map-pin {
-    background: $purple-light;
+    background: $purple;
     border: 1px solid $purple;
     border-radius: 3px;
     box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25), 0 10px 25px rgba($black,0.07);
-    color: $white;
     height: auto;
     margin: 0 auto;
-    padding: $sm;
     position: absolute;
-    top: calc(50% - 30px);
-    width: 270px;
+    top: calc(50% - 120px);
+    width: 380px;
+
 
     .arrow {
       border-left: 17px solid transparent;
@@ -78,15 +64,12 @@
     }
 
     .location {
-      border-radius: 50%;
-      bottom: -36px;
-      box-shadow: 0 0 1px rgba($black,0.15), 0 1px 3px rgba($black,0.15);
-      background: $blue;
+      margin: $sm;
+      background: url('../images/runnabear-avatar.png') center no-repeat;
+      background-size: cover;
       border: 2px solid $white;
-      height: 16px;
-      position: absolute;
-      right: 50%;
-      width: 16px;
+      height: 48px;
+      width: 48px;
     }
   }
 }

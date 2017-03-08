@@ -1,11 +1,13 @@
 .article-contact {
   .section {
-    padding: 0px 60px;
+    padding: 20px 60px;
     top: 80px;
 
     @include media(md) {
+      box-sizing: border-box;
+      padding: 0 20px;
       flex-direction: column;
-      max-width: 510px;
+      width: 100%;
     }
   }
 
@@ -23,13 +25,14 @@
       flex: 1 0 auto;
       margin: 0 auto 20px auto;
       text-align: center;
-      width: 345px;
+      max-width: 345px;
     }
     @include media(sm) {
       align-items: center;
       margin: 0 auto 20px auto;
       text-align: center;
-      width: 280px;
+      max-width: 280px;
+      width: 100%;
     }
 
     + .li {
