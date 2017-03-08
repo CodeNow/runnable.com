@@ -21,6 +21,7 @@
   }
 
   .detail {
+    box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
     background: $purple-light;
     margin-top: $sm;
     padding: $sm;
