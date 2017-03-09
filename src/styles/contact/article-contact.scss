@@ -75,6 +75,8 @@
     opacity: 0.75;
     padding: 3px 6px;
     text-decoration: none;
+    transition: 0.125s linear opacity;
+    
     &:hover {
       color: $gray;
     }
