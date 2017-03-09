@@ -1,4 +1,4 @@
-.article-location {
+.article-map {
   display: block;
   background: $white;
   height: auto;
@@ -7,8 +7,8 @@
     width: 100%;
   }
 
-  .article-location-background {
-    background: url('../images/contact/article-location.png') center center no-repeat;
+  .article-map-background {
+    background: url('../images/contact/article-map.png') center center no-repeat;
     background-size: cover;
     box-sizing: border-box;
     min-height: 420px;
