@@ -8,7 +8,7 @@
   }
 
   .article-map-background {
-    background: url('../images/contact/article-map.png') center center no-repeat;
+    background: url('/images/contact/article-map.png') center center no-repeat;
     background-size: cover;
     box-sizing: border-box;
     min-height: 420px;
@@ -67,7 +67,7 @@
 
     .location {
       margin: $sm;
-      background: url('../images/runnabear-avatar.png') center no-repeat;
+      background: url('/images/runnabear-avatar.png') center no-repeat;
       background-size: cover;
       border: 2px solid $white;
       border-radius: 2px;
