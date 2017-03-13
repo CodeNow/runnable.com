@@ -22,17 +22,14 @@
 
   .detail {
     box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
-    background: $purple-light;
-    margin-top: $sm;
-    padding: $sm;
+    background: $gray-lighterest;
+    border-radius: 0 0 3px 3px;
   }
 
   .map-pin {
-    background: $purple;
-    border: 1px solid $purple;
+    background: $white;
     border-radius: 3px;
     box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25), 0 10px 25px rgba($black,0.07);
-    color: $white;
     height: auto;
     margin: 0 auto;
     position: absolute;
@@ -44,7 +41,7 @@
       border-left: 17px solid transparent;
       border-right: 17px solid transparent;
       bottom: -17px;
-      border-top: 17px solid $purple;
+      border-top: 17px solid rgba($black, 0.125);
       height: 0;
       margin: 0 auto;
       position: absolute;
@@ -54,7 +51,7 @@
       &:before {
         border-left: 16px solid transparent;
         border-right: 16px solid transparent;
-        border-top: 16px solid $purple-light;
+        border-top: 16px solid $gray-lighterest;
         bottom: -16px;
         content: "";
         height: 0;
