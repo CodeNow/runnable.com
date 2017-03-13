@@ -23,12 +23,12 @@
   .detail {
     box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
     background: $gray-lighterest;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 $input-border-radius-lg;
   }
 
   .map-pin {
     background: $white;
-    border-radius: 3px;
+    border-radius: $input-border-radius-lg;
     box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25), 0 10px 25px rgba($black,0.07);
     height: auto;
     margin: 0 auto;
