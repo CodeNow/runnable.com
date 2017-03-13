@@ -23,7 +23,7 @@
   .detail {
     box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
     background: $gray-lighterest;
-    border-radius: 0 0 $input-border-radius-lg;
+    border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
   }
 
   .map-pin {
