@@ -9,7 +9,7 @@
 
   .li {
     filter: grayscale(0%);
-    transition: 0.125s filter linear;
+    transition: .125s filter linear;
 
     &:hover {
       -webkit-filter: grayscale(100%);

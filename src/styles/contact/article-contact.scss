@@ -75,7 +75,7 @@
     font-size: 16px;
     font-weight: $weight-normal;
     margin-top: $xxs;
-    opacity: 0.75;
+    opacity: .75;
     padding: 3px 6px;
     text-decoration: none;
     transition: 0.125s linear color;
@@ -83,7 +83,7 @@
     &:hover {
       color: $gray;
     }
-    
+
     &:active {
       color: $purple-dark;
     }
