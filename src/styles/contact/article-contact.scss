@@ -6,8 +6,8 @@
 
     @include media(md) {
       box-sizing: border-box;
-      padding: 0 20px;
       flex-direction: column;
+      padding: 0 20px;
       width: 100%;
     }
   }
@@ -25,15 +25,15 @@
       align-items: center;
       flex: 1 0 auto;
       margin: 0 auto 20px auto;
-      text-align: center;
       max-width: 345px;
+      text-align: center;
     }
 
     @include media(sm) {
       align-items: center;
       margin: 0 auto 20px auto;
-      text-align: center;
       max-width: 280px;
+      text-align: center;
       width: 100%;
     }
 
@@ -78,7 +78,7 @@
     opacity: .75;
     padding: 3px 6px;
     text-decoration: none;
-    transition: 0.125s linear color;
+    transition: .125s linear color;
 
     &:hover {
       color: $gray;

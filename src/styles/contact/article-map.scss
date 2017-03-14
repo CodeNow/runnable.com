@@ -1,6 +1,6 @@
 .article-map {
-  display: block;
   background: $white;
+  display: block;
   height: auto;
 
   .grid-container {
@@ -8,12 +8,12 @@
   }
 
   .article-map-background {
-    background: url('/images/contact/article-map.png') center center no-repeat;
     background-size: cover;
+    background: url('/images/contact/article-map.png') center center no-repeat;
     box-sizing: border-box;
-    min-height: 420px;
-    margin: 0;
     margin-left: none;
+    margin: 0;
+    min-height: 420px;
     overflow: hidden;
     padding: $lg;
     position: relative;
@@ -21,9 +21,9 @@
   }
 
   .detail {
-    box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
     background: $gray-lighterest;
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
+    box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
   }
 
   .map-pin {
@@ -31,22 +31,23 @@
     border-radius: $input-border-radius-lg;
     box-shadow: 0px 4px 15px rgba($black,0.15), 0px 1px 3px rgba($black,0.25), 0 10px 25px rgba($black,0.07);
     height: auto;
+    left: calc(50% - 120px);
     margin: 0 auto;
     position: absolute;
     top: calc(50% - 150px);
-    left: calc(50% - 120px);
     width: 240px;
 
     .arrow {
       border-left: 17px solid transparent;
       border-right: 17px solid transparent;
-      bottom: -17px;
       border-top: 17px solid rgba($black, 0.125);
+      bottom: -17px;
       height: 0;
       margin: 0 auto;
       position: absolute;
       right: calc(50% - 8px);
       width: 0;
+
 
       &:before {
         border-left: 16px solid transparent;
@@ -63,13 +64,13 @@
     }
 
     .location {
-      margin: $sm;
-      background: url('/images/runnabear-avatar.png') center no-repeat;
       background-size: cover;
-      border: 2px solid $white;
+      background: url('/images/runnabear-avatar.png') center no-repeat;
       border-radius: 2px;
+      border: 2px solid $white;
       box-shadow: 0px 1px 2px rgba($black, 0.1);
       height: 48px;
+      margin: $sm;
       width: 48px;
     }
   }
