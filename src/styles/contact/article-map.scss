@@ -1,23 +1,23 @@
 .article-map {
   background: $white;
   display: block;
-  height: auto;
+  height: 520px;
 
   .grid-container {
     width: 100%;
   }
 
   .article-map-background {
-    background-size: 100% auto;
+
     background: url('/images/contact/article-map.png') center center no-repeat;
     box-sizing: border-box;
     margin-left: none;
     margin: 0;
-    min-height: 520px;
     overflow: hidden;
-    padding: $lg;
     position: relative;
-    width: auto;
+    height: 640px;
+    width: 100%;
+    max-height: 800px;
   }
 
   .detail {
