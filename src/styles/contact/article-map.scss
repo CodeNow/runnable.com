@@ -19,7 +19,7 @@
 
   .detail {
     border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
-    box-shadow: 0 -1px rgba($black, 0.08), inset 0 1px rgba($white, 0.025);
+    border-top: 1px rgba($black, 0.08);
   }
 
   .map-overlay {
