@@ -1,31 +1,19 @@
 .article-map {
-  background: $white;
-  display: block;
-
-  .grid-container {
-    width: 100%;
-  }
 
   .article-map-background {
-    align-items: center;
-    background: url('/images/contact/article-map.png') center center no-repeat;
-    display: flex;
-    height: 520px;
-    justify-content: center;
-    margin: 0;
-    overflow: hidden;
+    background: url('/images/contact/article-map.png') center / cover no-repeat;
+    height: 510px;
     width: 100%;
-  }
-
-  .detail {
-    border-radius: 0 0 $input-border-radius-lg $input-border-radius-lg;
-    border-top: 1px solid $gray-lighter;
   }
 
   .map-overlay {
     background: $white;
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
-    width: 280px;
+    width: 300px;
+  }
+
+  .detail {
+    border-top: 1px solid $gray-lighter;
   }
 }
