@@ -1,0 +1,47 @@
+.article-benefits {
+  background-color: $gray-lighterest;
+  border-bottom: 1px solid $gray-lightest;
+  border-top: 1px solid $gray-lightest;
+  font-size: 16px;
+
+  .ul {
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: 750px;
+
+    @include media(xs) {
+      flex-direction: column;
+    }
+  }
+
+  .li {
+    flex: 0 0 calc(50% - 30px);
+
+    @include media(xs) {
+      flex: 0 0 auto;
+    }
+
+    &:nth-child(n+3) {
+      margin-top: 30px;
+    }
+
+    &:nth-child(2n+2) {
+      margin-left: 30px;
+
+      @include media(xs) {
+        margin-left: 0;
+      }
+    }
+
+    + .li {
+      @include media(xs) {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .img {
+    margin-right: $sm;
+    opacity: .75;
+  }
+}

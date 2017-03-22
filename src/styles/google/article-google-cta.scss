@@ -1,0 +1,105 @@
+.article-google-cta {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient(#396fc6, $purple-light);
+  // scss-lint:enable ColorVariable
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .3;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .section {
+    max-width: 870px;
+    width: 100%;
+
+    @include media(sm) {
+      flex-direction: column;
+    }
+
+    > .col {
+      max-width: 360px;
+
+      + .col {
+        margin-left: $xl;
+        padding-right: $lg;
+
+        @include media(sm) {
+          align-items: center;
+          margin-left: 0;
+          margin-top: $lg;
+          padding-right: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .card {
+    background-color: $white;
+    border-radius: $xxs;
+    box-shadow: 0 2px 6px 0 rgba($black,.05);
+    padding: $lg $md;
+  }
+
+  .p + .input {
+    margin-top: $md;
+  }
+
+  .input {
+    border-bottom-width: $input-border-lg;
+    border-left-width: $input-border-lg;
+    border-radius: 0;
+    border-right-width: $input-border-lg;
+    border-top-width: 0;
+
+    &:first-of-type {
+      border-top-left-radius: $input-border-radius-lg;
+      border-top-right-radius: $input-border-radius-lg;
+      border-top-width: $input-border-lg;
+    }
+
+    &:last-of-type {
+      border-bottom-left-radius: $input-border-radius-lg;
+      border-bottom-right-radius: $input-border-radius-lg;
+    }
+
+    &:focus {
+      z-index: 1;
+
+      &:not(:first-of-type) {
+        box-shadow: 0 -2px 0 $purple-light;
+      }
+    }
+
+    + .input {
+      margin-top: -$input-border;
+    }
+  }
+
+  .h3 {
+    margin-top: 0;
+  }
+
+  .btn-white {
+    background: rgba($white,.1);
+    border: $input-border solid rgba($white,.75);
+    color: $white;
+
+    &:hover {
+      background: rgba($white,.2);
+    }
+
+    &:active {
+      background: rgba($white,.3);
+    }
+  }
+}
