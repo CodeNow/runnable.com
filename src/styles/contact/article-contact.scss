@@ -53,7 +53,7 @@
     color: $purple;
     margin-top: $xxs;
     text-decoration: none;
-    transition: .125s linear color;
+    transition: .125s color ease-in-out;
 
     &:hover {
       color: $gray;
