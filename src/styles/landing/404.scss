@@ -1,0 +1,28 @@
+.notfound {
+  background: linear-gradient(rgba($purple-light,.2), $purple,.15);
+  height: auto;
+
+  &::after {
+    background: url(../images/confetti.png);
+    background-size: 864px 324px;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: .3;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .article-form .card {
+    margin-top: 150px;
+  }
+
+  .content {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 150px 0 90px;
+  }
+}
