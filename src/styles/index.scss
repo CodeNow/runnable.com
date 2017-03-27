@@ -42,6 +42,11 @@
 @import "components/specific/form-github";
 @import "components/specific/popover-feature";
 
+// contact page specific
+@import "contact/article-social";
+@import "contact/article-map";
+@import "contact/contact-hero";
+
 // landing specific
 @import "landing/landing";
 @import "landing/hero";

@@ -1,0 +1,19 @@
+.article-map {
+
+  .article-map-background {
+    background: url('/images/contact/article-map.png') center / cover no-repeat;
+    height: 510px;
+    width: 100%;
+  }
+
+  .map-overlay {
+    background: $white;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 2px 9px rgba($black,.15);
+    width: 300px;
+  }
+
+  .detail {
+    border-top: 1px solid $gray-lighter;
+  }
+}
