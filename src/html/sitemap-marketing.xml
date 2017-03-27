@@ -78,4 +78,10 @@
     <changefreq>daily</changefreq>
     <priority>0.48</priority>
   </url>
+  <url>
+    <loc>https://runnable.com/contact/</loc>
+    <lastmod>2017-03-27T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.48</priority>
+  </url>
 </urlset>
