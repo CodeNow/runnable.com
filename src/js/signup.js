@@ -402,7 +402,7 @@ function submitForm(e) {
     // Get anonymousId
     segment_id = analytics.user().anonymousId();
     client_id = ga.getAll()[0].get('clientId');
-    
+
     // Get Woopra's cookie to bind session on the server-side
     woopraCookie = window.woopra.cookie;
   } catch (err) {
@@ -478,8 +478,8 @@ function submitForm(e) {
     delete formData['why'];
     analytics.ready(function() {
       var segmentTraits = {
-          email: emailValue,
-          Intent: intent
+        email: emailValue,
+        Intent: intent
       };
       segmentTraits[name] = nameValue;
 
