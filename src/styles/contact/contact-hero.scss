@@ -55,7 +55,7 @@
   }
 
   .p {
-    color: $gray;
+    color: $gray-dark;
     font-size: 19px;
     margin: 0; // reset
     padding: 0; // reset
@@ -67,25 +67,13 @@
   }
 
   .link {
-    color: $purple;
+    color: $purple-light;
     margin-top: $xxs;
     text-decoration: none;
-    transition: .125s color ease-in-out;
 
-    &:hover {
-      color: $gray;
-    }
-
-    &:active {
-      color: $purple-dark;
-    }
-
-    &:hover,
-    &:active {
-
-      .icons {
-        transform: translate3d(3px,0,0);
-      }
+    &:hover .icons,
+    &:active .icons {
+      transform: translate3d(3px,0,0);
     }
 
     .icons {
