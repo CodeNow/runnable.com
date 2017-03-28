@@ -477,21 +477,15 @@ function submitForm(e) {
     // segment
     delete formData['why'];
     analytics.ready(function() {
-      analytics.track(formName + ' sign up', formData);
-      
-      var traits = {
-          email: emailValue
+      var segmentTraits = {
+          email: emailValue,
+          Intent: intent
       };
-
-      if (name === 'company') {
-        traits.Intent = intent;
-        traits.company = nameValue;
-      } else {
-        traits.name = nameValue;
-      }
+      segmentTraits[name] = nameValue;
 
       analytics.identify({
-        traits,
+        anonymousId: segment_id,
+        traits: segmentTraits,
         integrations: {
           Intercom: false,
           Woopra: {
@@ -499,6 +493,7 @@ function submitForm(e) {
           }
         }
       });
+      analytics.track(formName + ' sign up', formData);
     });
 
     // mixpanel
