@@ -396,11 +396,15 @@ function submitForm(e) {
   var segment_id;
   var client_id;
   var intent;
+  var woopraCookie;
 
   try {
     // Get anonymousId
     segment_id = analytics.user().anonymousId();
     client_id = ga.getAll()[0].get('clientId');
+
+    // Get Woopra's cookie to bind session on the server-side
+    woopraCookie = window.woopra.cookie;
   } catch (err) {
     // pass through with errors
     console.log("Error obtaining IDs: "+ err);
@@ -464,6 +468,7 @@ function submitForm(e) {
     formData.intent = intent;
     formData.id = segment_id;
     formData.client_id = client_id;
+    formData.woopraCookie = woopraCookie;
 
     // add name
     formData[name] = nameValue;
@@ -472,6 +477,22 @@ function submitForm(e) {
     // segment
     delete formData['why'];
     analytics.ready(function() {
+      var segmentTraits = {
+        email: emailValue,
+        Intent: intent
+      };
+      segmentTraits[name] = nameValue;
+
+      analytics.identify({
+        anonymousId: segment_id,
+        traits: segmentTraits,
+        integrations: {
+          Intercom: false,
+          Woopra: {
+            cookie: woopraCookie
+          }
+        }
+      });
       analytics.track(formName + ' sign up', formData);
     });
 

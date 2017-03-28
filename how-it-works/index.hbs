@@ -966,11 +966,15 @@ function submitForm(e) {
   var segment_id;
   var client_id;
   var intent;
+  var woopraCookie;
 
   try {
     // Get anonymousId
     segment_id = analytics.user().anonymousId();
     client_id = ga.getAll()[0].get('clientId');
+
+    // Get Woopra's cookie to bind session on the server-side
+    woopraCookie = window.woopra.cookie;
   } catch (err) {
     // pass through with errors
     console.log("Error obtaining IDs: "+ err);
@@ -1034,6 +1038,7 @@ function submitForm(e) {
     formData.intent = intent;
     formData.id = segment_id;
     formData.client_id = client_id;
+    formData.woopraCookie = woopraCookie;
 
     // add name
     formData[name] = nameValue;
@@ -1042,6 +1047,22 @@ function submitForm(e) {
     // segment
     delete formData['why'];
     analytics.ready(function() {
+      var segmentTraits = {
+        email: emailValue,
+        Intent: intent
+      };
+      segmentTraits[name] = nameValue;
+
+      analytics.identify({
+        anonymousId: segment_id,
+        traits: segmentTraits,
+        integrations: {
+          Intercom: false,
+          Woopra: {
+            cookie: woopraCookie
+          }
+        }
+      });
       analytics.track(formName + ' sign up', formData);
     });
 
@@ -1350,6 +1371,7 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="//runnable.com/use-cases/" class="list-item-a">Use Cases</a>
       <a href="/demo/" class="list-item-a">Request Demo</a>
       <a href="/blog/" class="list-item-a">Blog</a>
+      <a href="/contact/" class="list-item-a">Contact</a>
       <a href="/about/" class="list-item-a">About</a>
     </div>
   </div>
@@ -1417,15 +1439,15 @@ window.addEventListener('DOMContentLoaded', function(){
   <aside class="grid-block col align-center aside">
     <ul class="grid-block justify-center">
       <li class="grid-content shrink">
-        <a class="a" href="https://runnable.zendesk.com/hc/en-us/articles/208383313-Node-js-">
+        <a class="a" href="https://runnable.com/docs/repositories/quickstarts/nodejs-quickstart">
           <img class="img" src="images/how-it-works/guide-nodejs.svg" height="45" width="45" alt="Node.js">
         </a>
       <li class="grid-content shrink">
-        <a class="a" href="https://runnable.zendesk.com/hc/en-us/articles/208032596-Rails">
+        <a class="a" href="https://runnable.com/docs/repositories/quickstarts/ruby-on-rails-quickstart">
           <img class="img" src="images/how-it-works/guide-rails.svg" height="45" width="45" alt="Ruby on Rails">
         </a>
       <li class="grid-content shrink">
-        <a class="a" href="https://runnable.zendesk.com/hc/en-us/articles/208384523-Python">
+        <a class="a" href="https://runnable.com/docs/repositories/quickstarts/python-quickstart">
           <img class="img" src="images/how-it-works/guide-python.svg" height="45" width="45" alt="Python">
         </a>
     </ul>
@@ -1437,55 +1459,24 @@ window.addEventListener('DOMContentLoaded', function(){
 </article>
 
       <article class="grid-block col align-center section article article-behind-the-scenes" id="devops">
-  <h2 class="h1 weight-strong text-center">Behind the scenes.</h2>
-  <h3 class="h3 text-center">See how we’ve created a powerful experience around building full-stack environments:</h3>
-
+  <h2 class="h1 weight-strong text-center">DevOps love Runnable.</h2>
+  <h3 class="h3 text-center">Runnable is a service creating customizable, containerized environments for your development teams.</h3>
   <section class="grid-block col card padding-lg">
-    <h4 class="grid-content p weight-strong">When a Team Joins Runnable</h4>
-    <p class="grid-content p">We create dedicated instances behind a new&#32;
+    <h4 class="p weight-strong">Designed to Fit Your Dev Workflow</h4>
+    <p class="p margin-top-xs">
+      Once connected to your git repository,  Runnable creates dedicated, single-tenant instances behind a new
       <span class="underline popover-trigger hover">VPC
-        <span class="popover top weight-light">Virtual Private Cloud</span>
-      </span>. VPCs help ensure privacy and security for the team’s code. It also enables us to scale instances based on their usage. Custom&#32;
-      <span class="underline popover-trigger hover">AMI
-        <span class="popover top weight-light">Amazon Machine Images</span>
-      </span>
-      &#32;are created for large databases to expedite provisioning.
+        <span class="popover top weight-light">Virtual Private Cluster</span>
+      </span>. This helps maintain privacy and security for your team’s code. Runnable optimizes your builds around your development workflow by auto-scaling your infrastructure based on team-size and usage patterns.
     </p>
-    <div class="grid-block align-center well padding-md">
-      <img class="grid-content shrink img" src="images/how-it-works/icons-docker.svg" height="33" width="33" alt="Docker Logo">
-      <p class="grid-content p">Runnable runs on Docker. Every VPC has a dedicated set of Docker machines, Swarm, and Registry.</p>
-    </div>
-    <p class="grid-content p">If the team is already dockerized, setup is a breeze. If not, we construct a Dockerfile for each repository service based on configuration details a teammate enters via our simple interface.</p>
-    <div class="grid-block align-center well padding-md">
-      <img class="grid-content shrink img faded" src="images/logos/social/logo-github.svg" height="33" width="33" alt="GitHub Logo">
-      <p class="grid-content p">When a teammate creates a new branch, we receive a webhook from GitHub. We then schedule a set of containers to create your new environment.</p>
-    </div>
-    <h4 class="grid-content p weight-strong">Build Optimization</h4>
-    <p class="grid-content p">When we receive branch updates, we begin building a new image for the container running that service.</p>
-    <ol class="grid-block col ol list padding-md">
-      <li class="li">Builds are distributed evenly across the Docker hosts available on the team’s VPC, and every build always has at least one dedicated CPU.
-      <li class="li">If the other containers’ dependencies haven’t changed, we use the previous cached images to improve start-up time.
-    </ol>
-    <p class="grid-content p">Once the containers are started in the necessary order, they’re attached to our Swarm-based network and are configured to communicate with each other.</p>
-    <div class="grid-block align-center well padding-md">
-      <img class="grid-content shrink img" src="images/logos/logo-slack.svg" height="33" width="33" alt="Slack Logo">
-      <p class="grid-content p">We receive a webhook when a teammate opens a pull request, and we publish the environment URLs to the page for easier reviews—Slack too.</p>
-    </div>
-    <h4 class="grid-content p weight-strong">Automatic Infrastructure Scaling</h4>
-    <p class="grid-content p">Our infrastructure management uses machine learning to automatically scale up and down instances based on a predictive scaling model built from analyzing the team’s patterns in commit history.</p>
-    <div class="grid-block grid-2">
-      <div class="grid-block col align-center">
-        <img class="grid-content shrink img" src="images/how-it-works/icons-performance.svg" height="60" width="60" alt="Performance">
-        <p class="grid-content p text-center">During cases where instances perform less than expected, we automatically create a new host and perform a migration of all containers and services.</p>
-      </div>
-      <div class="grid-block col align-center">
-        <img class="grid-content shrink img" src="images/how-it-works/icons-recycle.svg" height="60" width="60" alt="Recycle">
-        <p class="grid-content p text-center">When a teammate deletes their branch, we receive a webhook, and clean up the associated environment.</p>
-      </div>
-    </div>
-    <div class="grid-content padding-lg card-footer">
-      <p class="p text-center text-gray">Read our <a class="link" href="/blog/">engineering blog</a> for specific details on Runnable’s infrastructure. Articles are published weekly.</p>
-    </div>
+    <h4 class="p weight-strong margin-top-md">Environments Build Quickly</h4>
+    <p class="p margin-top-xs">Runnable’s build caching speeds up environment creation by scheduling builds on the same instances. Large databases are baked into your infrastructure via custom
+      <span class="underline popover-trigger hover">AMIs
+        <span class="popover top weight-light">Amazon Machine Images</span>
+      </span> to maintain performance. Using Copy-on-Write on the file-system enables quick database replication when creating multiple environments.
+    </p>
+    <h4 class="p weight-strong margin-top-md">Isolated Environments Enhance Testing</h4>
+    <p class="p margin-top-xs">Every code branch automatically has its own custom, isolated environment with Runnable. Developers can mix-and-match any combination of service versions or branches on-the-fly to create their environment, without reconfiguring the application. This is achieved via at the networking/DNS-layer, by connecting different services together so teams can co-develop applications. For external requests, API brokering prevents you from having to reconfigure APIs for each environment.</p>
   </section>
   <div class="grid-block col align-center">
     <p class="grid-content text-white p text-center">Environments for your entire team at a low, fixed cost.</p>
@@ -1535,29 +1526,30 @@ window.addEventListener('DOMContentLoaded', function(){
 
   <div class="grid-block link-wrapper">
     <div class="grid-block col align-start">
-      <p class="subtitle weight-strong">Product</p>
-      <a href="/preview-environments/" class="btn btn-xs link weight-strong">Preview Environments</a>
-      <a href="/end-to-end-testing/" class="btn btn-xs link weight-strong">End-to-End Testing</a>
-      <a href="/deploy-to-production/" class="btn btn-xs link weight-strong">Deploy to Production</a>
-      <a href="/use-cases/" class="btn btn-xs link weight-strong">Use Cases</a>
-      <a href="/how-it-works/" class="btn btn-xs link weight-strong">How It Works</a>
-      <a href="/pricing/" class="btn btn-xs link weight-strong">Pricing</a>
-      <p class="subtitle weight-strong">Help</p>
-      <a href="/docs/" class="btn btn-xs link weight-strong">Docs</a>
-      <a href="/docker/" class="btn btn-xs link weight-strong">Docker Guides</a>
-      <a href="/demo/" class="btn btn-xs link weight-strong">Request Demo</a>
+      <h4 class="h4">Product</h4>
+      <a href="/preview-environments/" class="a">Preview Environments</a>
+      <a href="/end-to-end-testing/" class="a">End-to-End Testing</a>
+      <a href="/deploy-to-production/" class="a">Deploy to Production</a>
+      <a href="/use-cases/" class="a">Use Cases</a>
+      <a href="/how-it-works/" class="a">How It Works</a>
+      <a href="/pricing/" class="a">Pricing</a>
+      <h4 class="h4 margin-top-sm">Help</h4>
+      <a href="/docs/" class="a">Docs</a>
+      <a href="/docker/" class="a">Docker Guides</a>
+      <a href="/demo/" class="a">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
-      <p class="subtitle weight-strong">Company</p>
-      <a href="/about/" class="btn btn-xs link weight-strong">About</a>
-      <a href="/blog/" class="btn btn-xs link weight-strong">Blog</a>
-      <a href="https://www.facebook.com/runnable/" class="btn btn-xs link weight-strong">Facebook</a>
-      <a href="https://twitter.com/GetRunnable" class="btn btn-xs link weight-strong">Twitter</a>
-      <a href="https://www.linkedin.com/company/runnable" class="btn btn-xs link weight-strong">Linkedin</a>
-      <p class="subtitle weight-strong">Legal</p>
-      <a href="/legal/privacy-policy/" class="btn btn-xs link weight-strong">Privacy</a>
-      <a href="/legal/terms-of-service/" class="btn btn-xs link weight-strong">Terms</a>
-      <a href="/legal/acceptable-use-policy/" class="btn btn-xs link weight-strong">Acceptable Use</a>
+      <h4 class="h4">Company</h4>
+      <a href="/about/" class="a">About</a>
+      <a href="/blog/" class="a">Blog</a>
+      <a href="/contact/" class="a">Contact</a>
+      <a href="https://www.facebook.com/runnable/" class="a">Facebook</a>
+      <a href="https://twitter.com/GetRunnable" class="a">Twitter</a>
+      <a href="https://www.linkedin.com/company/runnable" class="a">Linkedin</a>
+      <h4 class="h4 margin-top-sm">Legal</h4>
+      <a href="/legal/privacy-policy/" class="a">Privacy</a>
+      <a href="/legal/terms-of-service/" class="a">Terms</a>
+      <a href="/legal/acceptable-use-policy/" class="a">Acceptable Use</a>
     </div>
   </div>
 </footer>

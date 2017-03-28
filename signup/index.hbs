@@ -966,11 +966,15 @@ function submitForm(e) {
   var segment_id;
   var client_id;
   var intent;
+  var woopraCookie;
 
   try {
     // Get anonymousId
     segment_id = analytics.user().anonymousId();
     client_id = ga.getAll()[0].get('clientId');
+
+    // Get Woopra's cookie to bind session on the server-side
+    woopraCookie = window.woopra.cookie;
   } catch (err) {
     // pass through with errors
     console.log("Error obtaining IDs: "+ err);
@@ -1034,6 +1038,7 @@ function submitForm(e) {
     formData.intent = intent;
     formData.id = segment_id;
     formData.client_id = client_id;
+    formData.woopraCookie = woopraCookie;
 
     // add name
     formData[name] = nameValue;
@@ -1042,6 +1047,22 @@ function submitForm(e) {
     // segment
     delete formData['why'];
     analytics.ready(function() {
+      var segmentTraits = {
+        email: emailValue,
+        Intent: intent
+      };
+      segmentTraits[name] = nameValue;
+
+      analytics.identify({
+        anonymousId: segment_id,
+        traits: segmentTraits,
+        integrations: {
+          Intercom: false,
+          Woopra: {
+            cookie: woopraCookie
+          }
+        }
+      });
       analytics.track(formName + ' sign up', formData);
     });
 
@@ -1209,6 +1230,7 @@ window.addEventListener('load', function(){
         <span>Sign Up with GitHub</span>
       </a>
       
+
       
     </div>
   </div>
@@ -1271,9 +1293,9 @@ window.addEventListener('load', function(){
       <p class="p text-center">Thanks! We’re redirecting you to GitHub…</p>
     </div>
   </div>
-  <div class="grid-block col justify-center margin-top-lg">
-    <p class="p text-white text-center">Customers that 💖 us:</p>
-    <img class="img margin-top-sm img-customers" src="images/customers.png" width="386" height="82">
+  <div class="grid-block col align-center margin-top-lg">
+    <p class="p text-white text-center">Customers who 💖 us:</p>
+    <img class="img margin-top-sm img-customers" src="images/customers-white.png" width="345" height="83">
     <p class="text-center text-white margin-top-lg"><a href="signin/" class="link">Sign in</a> if your team is already using Runnable.</p>
   </div>
 </article>
