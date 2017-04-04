@@ -335,15 +335,24 @@ function xhrSubmit(e, form, formData, formName) {
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(formData);
   xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 0) {
-      shakeForm(e);
-      sundipValidation('An error occured. Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
-      toggleEditing(form, 'enable'); // re-enables form
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': 'xhr.readyState === 4 && xhr.status === 0'
-      });
+    if (xhr.readyState === 4) {
+      if (xhr.status !== 200) {
+        shakeForm(e);
+        sundipValidation('An error occured ('+xhr.status+'). Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
+        toggleEditing(form, 'enable'); // re-enables form
+        // segment 
+        analytics.track('Error', {
+          form: formName,
+          xhrStatusCode: xhr.status,
+          xhrStatusText: xhr.statusText,
+          email: formData.email
+        });
+        // mixpanel
+        mixpanel.track('XHR Submit: ' + formName, {
+          'server-side validation': 'fail',
+          'error': 'xhr.readyState === 4 && xhr.status === 0'
+        });
+      }
     }
   };
 
