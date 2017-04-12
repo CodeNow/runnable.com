@@ -901,7 +901,7 @@ function xhrSubmit(e, form, formData, formName) {
   }
 
   // fires when payload sent successfully
-  xhr.addEventListener("load", function(evt) {
+  xhr.addEventListener('load', function(evt) {
     var response = JSON.parse(xhr.responseText);
     var resultCode = response.result_code;
     var resultMessage = response.result_message;
@@ -944,12 +944,12 @@ function xhrSubmit(e, form, formData, formName) {
   });
 
   // fires when error occured while sending payload
-  xhr.addEventListener("error", function(evt) {
+  xhr.addEventListener('error', function(evt) {
     shakeForm(e);
     sundipValidation('An error occured ('+xhr.status+'). Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
     toggleEditing(form, 'enable'); // re-enables form
 
-    // segment 
+    // segment
     analytics.track('Error', {
       form: formName,
       xhrStatusCode: xhr.status,
@@ -964,10 +964,10 @@ function xhrSubmit(e, form, formData, formName) {
   });
 
   // fires when user stops request while being submitted
-  xhr.addEventListener("abort", function(evt) {
+  xhr.addEventListener('abort', function(evt) {
     toggleEditing(form, 'enable'); // re-enables form
-    
-    // segment 
+
+    // segment
     analytics.track('Abort', {
       form: formName,
       xhrStatusCode: xhr.status,
@@ -999,7 +999,7 @@ function submitForm(e) {
     woopraCookie = window.woopra.cookie;
   } catch (err) {
     // pass through with errors
-    console.log("Error obtaining IDs: "+ err);
+    console.log('Error obtaining IDs: '+ err);
   }
 
   if (form.classList.contains('form-github')) {
@@ -1041,9 +1041,9 @@ function submitForm(e) {
         // for segment, we only want to send the data if it's checked
         if (whyInputs[i].checked) {
           if (whyInputs[i].value === 'Other') {
-            whySegment.push("Other: ", form.querySelectorAll('[name="why-other"]')[0].value, "; ");
+            whySegment.push('Other: ', form.querySelectorAll('[name="why-other"]')[0].value, '; ');
           } else {
-            whySegment.push(whyInputs[i].value, "; ");
+            whySegment.push(whyInputs[i].value, '; ');
           }
         }
 
@@ -1262,10 +1262,14 @@ window.addEventListener('load', function(){
           <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
+  
+  
   <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+  
     <form class="grid-block col form form-github js-form show">
       <div class="grid-block col form-wrapper">
+        
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
           <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email."  type="email" required>
