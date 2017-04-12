@@ -1,20 +1,28 @@
-.pricing-hero {
+.article-pricing-cloud {
+
+  .h3 {
+    line-height: 1.4;
+    margin: 0 0 $md;
+  }
 
   .card {
-    background-color: $white;
+    border: 1px solid $gray-lighter;
     border-radius: 6px;
-    color: $gray-dark;
     display: flex;
     flex-direction: column;
     line-height: 1.5;
-    padding: $md;
+    padding: 15px;
     text-align: center;
-    width: 300px;
+    width: 210px;
+
+    + .card {
+      margin-left: $sm;
+    }
   }
 
   .card-header {
     border-bottom: 1px solid $gray-lighter;
-    margin-top: -$md;
+    margin-top: -$sm;
     padding: $sm 0;
   }
 
@@ -24,8 +32,8 @@
   }
 
   .card-price {
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: $weight-bold;
     line-height: 1.2;
   }
 }
