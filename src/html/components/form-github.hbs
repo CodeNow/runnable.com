@@ -1,10 +1,19 @@
 <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
+  @@if (context.dockercon) {
+  <div class="grid-block col card card-docker shake-me">
+    <img class="img" src="images/runnabear-docker.png" height="160" width="230">
+  }
+  @@if (!context.dockercon) {
   <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+  }
     <form class="grid-block col form form-github js-form show">
       <div class="grid-block col form-wrapper">
+        @@if (context.dockercon) {
+          <div class="well well-green small padding-xxs text-center">Welcome friends from Dockercon! To claim your 25% discount for your first 3 months, sign up and then mention this discount to us via chat.</div>
+        }
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
           <input class="input input-md input-validate pristine" id="input-email" name="email" pattern="\S+@\S+\.\S+" placeholder="runnabear@runnable.com" title="Enter a valid email."  type="email" required>

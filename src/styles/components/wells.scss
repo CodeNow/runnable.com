@@ -12,6 +12,12 @@
   }
 }
 
+.well-green {
+  background-color: rgba($green,.05);
+  border-color: $green;
+  color: $green;
+}
+
 .well-red {
   background-color: rgba($red,.05);
   border-color: $red;
