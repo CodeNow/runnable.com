@@ -22,9 +22,8 @@
   .card {
     background-color: $white;
     border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgba($black,.05);
     color: $gray-dark;
-    display: flex;
-    flex-direction: column;
     line-height: 1.5;
     padding: $md;
     text-align: center;
@@ -37,8 +36,7 @@
   }
 
   .card-body {
-    margin-top: $sm;
-    padding: $sm 0;
+    padding: $md 0;
   }
 
   .card-price {
