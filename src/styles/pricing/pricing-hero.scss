@@ -10,7 +10,7 @@
     }
 
     + .grid-block {
-      margin-left: $md;
+      margin-left: $lg;
 
       @include media(sm) {
         margin-left: 0;
@@ -51,10 +51,6 @@
 
   .per-month {
     font-size: .8em;
-  }
-
-  .benefits {
-    padding: 0 $md;
   }
 
   .li {
