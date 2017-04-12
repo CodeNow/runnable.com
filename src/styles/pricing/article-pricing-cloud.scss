@@ -1,22 +1,26 @@
 .article-pricing-cloud {
 
-  .h3 {
-    line-height: 1.4;
-    margin: 0 0 $md;
-  }
-
   .card {
     border: 1px solid $gray-lighter;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 1px 3px 0 rgba($black,.05);
+    font-size: 16px;
     line-height: 1.5;
-    padding: 15px;
+    padding: $sm;
     text-align: center;
-    width: 210px;
+
+    @include media(sm) {
+      max-width: 100%;
+      width: 300px;
+    }
 
     + .card {
-      margin-left: $sm;
+      margin-left: $md;
+
+      @include media(sm) {
+        margin-left: 0;
+        margin-top: $md;
+      }
     }
   }
 
@@ -32,8 +36,12 @@
   }
 
   .card-price {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: $weight-bold;
     line-height: 1.2;
+  }
+
+  .per-month {
+    font-size: .8em;
   }
 }
