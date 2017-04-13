@@ -225,30 +225,26 @@
   }
 
   .section-success {
-    background: $gray-lightest;
-    border-top: 1px solid $gray-lighter;
-    padding: $lg;
 
     .p {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 300px;
-    }
-
-    .emoji {
-      font-size: 24px;
+      max-width: 360px;
     }
 
     .btn {
-      margin: $xxs auto 0;
-      width: 240px;
+      margin-left: auto;
+      margin-right: auto;
 
-      &.white .icons {
-        opacity: .3;
-      }
+      &:not(.green) {
+        color: $gray;
 
-      + .p {
-        margin-top: $md;
+        &:hover,
+        &:active {
+          color: $purple-light;
+        }
+
+        .icons {
+          opacity: .3;
+        }
       }
 
       .icons {

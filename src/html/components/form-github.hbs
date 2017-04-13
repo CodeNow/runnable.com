@@ -76,34 +76,35 @@
     </div>
     }
     @@if (context.selfHosted) {
-    <div class="grid-block col justify-center padding-lg hide">
-      <p class="h3 weight-strong text-center">Thank you.</p>
-      <p class="p text-center">We’ll reach out to you by email ASAP, and get you running!</p>
-    </div>
-    <section class="grid-block col section-success hide">
-      <p class="p text-center"><span class="emoji">💁</span><br>Don’t like waiting? We don’t either, get in touch now:</p>
-      <div class="grid-block col">
-        <a href="tel:18447866225" class="grid-block justify-center shrink btn btn-md white">
-          <svg class="icons">
-            <use xlink:href="#icons-phone">
-          </svg>
-          <span>1 (844) 786-6225</span>
-        </a>
-        <a class="grid-block justify-center shrink btn btn-md white js-intercom-open">
-          <svg class="icons">
-            <use xlink:href="#icons-chat">
-          </svg>
-          <span>Chat Now</span>
-        </a>
-        <p class="p text-center">Or try a demo.</p>
-        <button class="grid-block justify-center shrink btn btn-md green">
+    <div class="grid-block col section-success hide">
+      <div class="grid-block col justify-center padding-lg">
+        <p class="h3 weight-strong text-center">Thanks!</p>
+        <p class="p text-center">We’ll reach out to you by email ASAP, and get you running! If you’d prefer to chat on the phone or online:</p>
+        <div class="grid-block justify-justified margin-top-md">
+          <a href="tel:18447866225" class="grid-block shrink btn btn-md">
+            <svg class="icons">
+              <use xlink:href="#icons-phone">
+            </svg>
+            <span>1 (844) 786-6225</span>
+          </a>
+          <a class="grid-block shrink btn btn-md js-intercom-open">
+            <svg class="icons">
+              <use xlink:href="#icons-chat">
+            </svg>
+            <span>Chat Now</span>
+          </a>
+        </div>
+      </div>
+      <footer class="grid-block col align-center justify-center card-footer">
+        <p class="p text-center padding-bottom-sm">Or try a demo:</p>
+        <button class="grid-block justify-center shrink btn btn-lg green">
           <svg class="icons">
             <use xlink:href="#icons-github">
           </svg>
           <span>Sign In With GitHub</span>
         </button>
-      </div>
-    </section>
+      </footer>
+    </div>
     }
   </div>
   <div class="grid-block col align-center margin-top-lg">
