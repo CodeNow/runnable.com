@@ -25,7 +25,9 @@
           "standalone": true
         })
         <div class="modal">
-          @@include('html/components/form-github.hbs')
+          @@include('html/components/form-github.hbs', {
+            "selfHosted": true
+          })
           @@include('html/components/form-bitbucket.hbs')
         </div>
       </div>

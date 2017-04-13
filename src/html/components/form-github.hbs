@@ -1,9 +1,20 @@
 <article class="grid-block col align-center noscroll article article-form article-github article-sign-up slide in">
+  @@if (!context.selfHosted) {
   <h1 class="grid-content shrink h2 text-white weight-strong text-center">Add your code to speed up your development.</h1>
   <p class="grid-content shrink p text-center text-white">Free for 14 days.<br class="visible-xxxs"> No card required.</p>
+  }
+  @@if (context.selfHosted) {
+  <h1 class="grid-content shrink h2 text-white weight-strong text-center">You’re signing up for the self-hosted plan.</h1>
+  <p class="grid-content shrink p text-center text-white">This includes unlimited containers and support for AWS, Google Cloud (beta), and Azure (soon)!</p>
+  }
   <div class="grid-block col card shake-me">
     <img class="img" src="images/runnabear-peek.png" height="130" width="230">
+    @@if (!context.selfHosted) {
     <form class="grid-block col form form-github js-form show">
+    }
+    @@if (context.selfHosted) {
+    <form class="grid-block col form form-self-hosted js-form show">
+    }
       <div class="grid-block col form-wrapper">
         <div class="grid-content input-group-vertical">
           <label class="label" for="input-email">Work Email</label>
@@ -39,6 +50,7 @@
         </div>
       </div>
       <footer class="grid-block col justify-center card-footer">
+        @@if (!context.selfHosted) {
         <button data-href="{{loginUrl}}" class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit track-grant-access-github">
           <div class="grid-block justify-center align-center noscroll">
             <svg class="icons hidden-xxs">
@@ -47,6 +59,14 @@
             <span>Sign Up With GitHub</span>
           </div>
         </button>
+        }
+        @@if (context.selfHosted) {
+        <button class="grid-block noscroll justify-center align-center btn btn-lg green wrap-xxxs js-submit">
+          <div class="grid-block justify-center align-center noscroll">
+            <span>Sign Up for Self-Hosted</span>
+          </div>
+        </button>
+        }
         <p class="grid-content shrink p padding-top-sm text-center">By continuing, you are agreeing to<br class="br hidden-xs"> our <a href="legal/terms-of-service/" class="link">terms of service</a>.</p>
       </footer>
     </form>
