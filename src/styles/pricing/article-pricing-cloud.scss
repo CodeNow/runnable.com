@@ -9,11 +9,10 @@
   .card {
     background-color: $white;
     border: 1px solid $gray-lighter;
-    border-radius: 6px;
+    border-radius: $input-border-radius-lg;
     box-shadow: 0 1px 3px 0 rgba($black,.05);
     font-size: 16px;
-    line-height: 1.5;
-    padding: $sm;
+    padding: 0 $sm;
     text-align: center;
 
     @include media(sm) {
@@ -33,12 +32,10 @@
 
   .card-header {
     border-bottom: 1px solid $gray-lighter;
-    margin-top: -$sm;
     padding: $sm 0;
   }
 
   .card-body {
-    margin-bottom: -$sm;
     padding: $md 0;
   }
 
