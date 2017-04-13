@@ -22,7 +22,7 @@
       }
 
       + .grid-block {
-        margin-left: $lg;
+        margin-left: $md;
 
         @include media(sm) {
           margin-left: 0;
@@ -99,7 +99,7 @@
     .icons-check {
       color: $purple-logo;
       height: 12px;
-      left: -21px;
+      left: 0;
       position: absolute;
       top: 9px;
       width: 12px;
@@ -108,6 +108,7 @@
 
   .li {
     position: relative;
+    padding-left: 21px;
 
     + .li {
       margin-top: $sm;
