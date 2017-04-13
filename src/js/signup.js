@@ -347,6 +347,7 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var planType;
   var segment_id;
   var client_id;
   var intent;
@@ -366,6 +367,11 @@ function submitForm(e) {
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
+    if (form.classList.contains('form-self-hosted')) {
+      planType = 'self-hosted'
+    } else {
+      planType = 'cloud-hosted'
+    }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
@@ -423,6 +429,7 @@ function submitForm(e) {
     formData.id = segment_id;
     formData.client_id = client_id;
     formData.woopraCookie = woopraCookie;
+    formData.planType = planType;
 
     // add name
     formData[name] = nameValue;
