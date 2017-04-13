@@ -66,20 +66,20 @@
   }
 
   .card-hosts {
-    padding: 15px 0;
+    padding: $sm 0;
 
     .grid-block {
       flex: 0 0 auto;
 
       + .grid-block {
-        margin-left: 12px;
+        margin-left: $sm;
       }
     }
 
     .icons-check {
       color: $green;
-      height: 19px;
-      width: 12px;
+      height: 18px; // match line-height of other hosts
+      width: $xs;
     }
   }
 
