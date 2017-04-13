@@ -32,36 +32,39 @@ function openGitHubForm() {
 }
 
 // set up forms
-function setupForm(formName) {
+function setupForm(formName, allowBitbucket) {
   var formEl;
   var formInputs;
   if (formName === 'signup') {
     var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
 
-    openGitHubFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openGitHubFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openBitbucketFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
+    if (allowBitbucket) {
+      var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+      var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+      var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
+
+      openGitHubFormTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openGitHubForm();
+      });
+      openGitHubFormTrigger.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openGitHubForm();
+      });
+      openBitbucketFormTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openBitbucketForm();
+      });
+      openBitbucketFormTrigger.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openBitbucketForm();
+      });
+    }
 
     // mixpanel
     linkGitHub.addEventListener('click', function(){
@@ -157,7 +160,9 @@ function validateCheckGroup(e) {
   }
 
   // get all checkboxes
-  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+  if (checkGroup) {
+    theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+  }
 
   // toggle required state
   if (thisTarget.checked) {
@@ -481,12 +486,22 @@ function sundipValidation(resultMessage, form, formName) {
 
 // events
 window.addEventListener('DOMContentLoaded', function(){
-  // if sign up form exists
+  var allowBitbucket = true;
+  var formType;
+
+  // if github form exists
   if (document.getElementsByClassName('form-github').length > 0) {
-    setupForm('signup');
+    formType = 'signup';
+    if (document.getElementsByClassName('form-self-hosted').length > 0) {
+      allowBitbucket = false;
+    }
   }
-  // if pricing page
+  // if enterprise form exists
   if (document.getElementsByClassName('form-enterprise').length > 0) {
-    setupForm('enterprise');
+    formType = 'enterprise';
+  }
+  // setup if form found
+  if (formType) {
+    setupForm(formType, allowBitbucket);
   }
 });
