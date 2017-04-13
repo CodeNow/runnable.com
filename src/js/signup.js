@@ -490,10 +490,3 @@ window.addEventListener('DOMContentLoaded', function(){
     setupForm('enterprise');
   }
 });
-
-window.addEventListener('load', function(){
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
-  }
-});
