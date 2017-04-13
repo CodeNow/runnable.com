@@ -53,7 +53,7 @@
 
   .card-price {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: $weight-bold;
     line-height: 1.2;
 
     @include media(sm) {
