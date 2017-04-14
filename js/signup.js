@@ -1,76 +1,3 @@
-// modals
-function openModal(event,dragging) {
-  if (!dragging) {
-    var openModal = document.getElementsByClassName('modal-backdrop in')[0];
-    var modalName = event.target.getAttribute('data-target').substring(1);
-    var modal = document.getElementById(modalName);
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-
-    // close open modal
-    if (openModal) {
-      openModal.classList.remove('in');
-    }
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-
-    if (modalName === 'sign-up') {
-      setupForm('signup');
-    }
-
-    if (modalName === 'video') {
-      addVideo();
-    }
-
-    // mixpanel
-    mixpanel.track('Open Modal: ' + modalName);
-  }
-}
-
-function escModal(event) {
-  if (event.keyCode == 27) {
-    closeModal(event);
-  }
-}
-
-function closeModal(event) {
-  var modal = document.getElementsByClassName('modal-backdrop in')[0];
-  var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-  var iframe;
-
-  event.preventDefault();
-  // hide modal
-  modal.classList.remove('in');
-  // resume scrolling
-  document.body.classList.remove('modal-open');
-  // remove triggers
-  closeTrigger.removeEventListener('click', closeModal);
-  closeTrigger.removeEventListener('touchend', closeModal);
-  document.removeEventListener('keydown', escModal);
-  // delete video if it exists
-  if (modal.getElementsByTagName('iframe').length) {
-    iframe = modal.getElementsByTagName('iframe')[0];
-    iframe.parentNode.removeChild(iframe);
-  }
-}
-
-// add video player
-function addVideo() {
-  var player = document.getElementById('video')
-  var iframe = document.createElement('iframe');
-  iframe.setAttribute('frameborder','0');
-  iframe.setAttribute('allowfullscreen','');
-  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
-  iframe.classList.add('video-player');
-  player.appendChild(iframe);
-}
-
 // show bitbucket form
 function openBitbucketForm() {
   var gitHubForm = document.getElementsByClassName('article-github')[0];
@@ -105,36 +32,39 @@ function openGitHubForm() {
 }
 
 // set up forms
-function setupForm(formName) {
+function setupForm(formName, allowBitbucket) {
   var formEl;
   var formInputs;
   if (formName === 'signup') {
     var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
     var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
 
-    openGitHubFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openGitHubFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openBitbucketFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
+    if (allowBitbucket) {
+      var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
+      var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
+      var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
+
+      openGitHubFormTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openGitHubForm();
+      });
+      openGitHubFormTrigger.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openGitHubForm();
+      });
+      openBitbucketFormTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openBitbucketForm();
+      });
+      openBitbucketFormTrigger.addEventListener('touchend', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        openBitbucketForm();
+      });
+    }
 
     // mixpanel
     linkGitHub.addEventListener('click', function(){
@@ -230,7 +160,9 @@ function validateCheckGroup(e) {
   }
 
   // get all checkboxes
-  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+  if (checkGroup) {
+    theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
+  }
 
   // toggle required state
   if (thisTarget.checked) {
@@ -415,6 +347,7 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
+  var planType;
   var segment_id;
   var client_id;
   var intent;
@@ -434,6 +367,11 @@ function submitForm(e) {
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
+    if (form.classList.contains('form-self-hosted')) {
+      planType = 'self-hosted'
+    } else {
+      planType = 'cloud-hosted'
+    }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   } else if (form.classList.contains('form-enterprise')) {
@@ -491,6 +429,7 @@ function submitForm(e) {
     formData.id = segment_id;
     formData.client_id = client_id;
     formData.woopraCookie = woopraCookie;
+    formData.planType = planType;
 
     // add name
     formData[name] = nameValue;
@@ -554,41 +493,22 @@ function sundipValidation(resultMessage, form, formName) {
 
 // events
 window.addEventListener('DOMContentLoaded', function(){
-  var modalTriggers = document.getElementsByClassName('js-modal');
-  var dBody = document.body;
-  var dragging = false;
-  var i;
+  var allowBitbucket = true;
+  var formType;
 
-  // prevent drag touch
-  dBody.addEventListener('touchmove',function(){dragging = true;});
-  dBody.addEventListener('touchstart',function(){dragging = false;});
-
-  // modals
-  if (modalTriggers) {
-    for (i = 0; i < modalTriggers.length; i++) {
-      /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(event){
-        openModal(event,dragging);
-      });
-      modalTriggers[i].addEventListener('touchend', function(event){
-        openModal(event,dragging);
-      });
+  // if github form exists
+  if (document.getElementsByClassName('form-github').length > 0) {
+    formType = 'signup';
+    if (document.getElementsByClassName('form-self-hosted').length > 0) {
+      allowBitbucket = false;
     }
   }
-
-  // if sign up form exists
-  if (document.getElementsByClassName('form-github').length > 0) {
-    setupForm('signup');
-  }
-  // if pricing page
+  // if enterprise form exists
   if (document.getElementsByClassName('form-enterprise').length > 0) {
-    setupForm('enterprise');
+    formType = 'enterprise';
   }
-});
-
-window.addEventListener('load', function(){
-  // stub fbq
-  if (!window.fbq) {
-    window.fbq = function () {};
+  // setup if form found
+  if (formType) {
+    setupForm(formType, allowBitbucket);
   }
 });

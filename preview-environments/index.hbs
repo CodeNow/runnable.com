@@ -15,11 +15,11 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="icon" type="image/png" href="favicon.png">
 <!-- inject:css -->
 <!-- endinject -->
 
+{{!-- sign in urls --}}
 <script>
   (function(self) {
   'use strict';
@@ -566,604 +566,19 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 }
 </script>
 
-    <title>Preview Environments — Runnable</title>
-    <script ugly>
-      // modals
-function openModal(event,dragging) {
-  if (!dragging) {
-    var openModal = document.getElementsByClassName('modal-backdrop in')[0];
-    var modalName = event.target.getAttribute('data-target').substring(1);
-    var modal = document.getElementById(modalName);
-    var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-
-    // close open modal
-    if (openModal) {
-      openModal.classList.remove('in');
-    }
-    // show modal
-    modal.classList.add('in');
-    // stop scrolling
-    document.body.classList.add('modal-open');
-    // triggers for close button
-    closeTrigger.addEventListener('click', closeModal);
-    closeTrigger.addEventListener('touchend', closeModal);
-    // trigger for esc key
-    document.addEventListener('keydown', escModal);
-
-    if (modalName === 'sign-up') {
-      setupForm('signup');
-    }
-
-    if (modalName === 'video') {
-      addVideo();
-    }
-
-    // mixpanel
-    mixpanel.track('Open Modal: ' + modalName);
-  }
-}
-
-function escModal(event) {
-  if (event.keyCode == 27) {
-    closeModal(event);
-  }
-}
-
-function closeModal(event) {
-  var modal = document.getElementsByClassName('modal-backdrop in')[0];
-  var closeTrigger = modal.getElementsByClassName('js-modal-close')[0];
-  var iframe;
-
-  event.preventDefault();
-  // hide modal
-  modal.classList.remove('in');
-  // resume scrolling
-  document.body.classList.remove('modal-open');
-  // remove triggers
-  closeTrigger.removeEventListener('click', closeModal);
-  closeTrigger.removeEventListener('touchend', closeModal);
-  document.removeEventListener('keydown', escModal);
-  // delete video if it exists
-  if (modal.getElementsByTagName('iframe').length) {
-    iframe = modal.getElementsByTagName('iframe')[0];
-    iframe.parentNode.removeChild(iframe);
-  }
-}
-
-// add video player
-function addVideo() {
-  var player = document.getElementById('video')
-  var iframe = document.createElement('iframe');
-  iframe.setAttribute('frameborder','0');
-  iframe.setAttribute('allowfullscreen','');
-  iframe.setAttribute('src', 'https://www.youtube.com/embed/BX5iPEWSrnY?showinfo=0&autoplay=1&rel=0');
-  iframe.classList.add('video-player');
-  player.appendChild(iframe);
-}
-
-// show bitbucket form
-function openBitbucketForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  bitbucketTrigger.classList.add('hide');
-  bitbucketForm.classList.remove('out');
-  bitbucketForm.classList.add('in');
-  gitHubTrigger.classList.remove('hide');
-  gitHubForm.classList.remove('in');
-  gitHubForm.classList.add('out');
-  // mixpanel
-  mixpanel.track('Open Bitbucket form');
-}
-
-// show github form
-function openGitHubForm() {
-  var gitHubForm = document.getElementsByClassName('article-github')[0];
-  var gitHubTrigger = document.getElementsByClassName('js-open-github')[0];
-  var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-  var bitbucketTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-
-  gitHubTrigger.classList.add('hide');
-  gitHubForm.classList.remove('out');
-  gitHubForm.classList.add('in');
-  bitbucketTrigger.classList.remove('hide');
-  bitbucketForm.classList.remove('in');
-  // mixpanel
-  mixpanel.track('Open GitHub form');
-}
-
-// set up forms
-function setupForm(formName) {
-  var formEl;
-  var formInputs;
-  if (formName === 'signup') {
-    var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
-    var openBitbucketFormTrigger = document.getElementsByClassName('js-open-bitbucket')[0];
-    var openGitHubFormTrigger = document.getElementsByClassName('js-open-github')[0];
-    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
-
-    openGitHubFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openGitHubFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openGitHubForm();
-    });
-    openBitbucketFormTrigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-    openBitbucketFormTrigger.addEventListener('touchend', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      openBitbucketForm();
-    });
-
-    // mixpanel
-    linkGitHub.addEventListener('click', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-    linkGitHub.addEventListener('touchend', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-  }
-
-  formEl = document.getElementsByClassName('js-form');
-
-  for (i = 0; i < formEl.length; i++) {
-    formEl[i].addEventListener('change', makeDirty);
-    formEl[i].addEventListener('submit', submitForm);
-    formInputs = formEl[i].getElementsByTagName('input');
-
-    for (y = 0; y < formInputs.length; y++) {
-      if (formInputs[y].type !== 'checkbox') {
-        formInputs[y].addEventListener('invalid', formInvalid);
-      }
-      if (formInputs[y].type === 'checkbox') {
-        formInputs[y].addEventListener('change', validateCheckGroup);
-      }
-    }
-  }
-}
-
-function markInvalid(e) {
-  var thisTarget = e.target;
-  var theseInputs;
-  var i;
-
-  if (thisTarget.tagName == 'INPUT') {
-    thisTarget.classList.add('invalid');
-  } else {
-    // for change event
-    theseInputs = thisTarget.getElementsByTagName('input');
-    for (i = 0; i < theseInputs.length; i++) {
-      if (!theseInputs[i].validity.valid) {
-        theseInputs[i].classList.add('invalid');
-      }
-    }
-  }
-  validateCheckGroup(e);
-}
-
-function shakeForm(e) {
-  var thisForm = e.target;
-
-  // get shake element
-  if (!thisForm.classList.contains('shake-me')) {
-    while ((thisForm = thisForm.parentNode) && !thisForm.classList.contains('shake-me'));
-  }
-  thisForm.classList.add('shake');
-  thisForm.addEventListener('animationend', function(){
-    thisForm.classList.remove('shake');
-    thisForm.removeEventListener('animationend', function(){});
-  });
-}
-
-function makeDirty(e) {
-  var thisTarget = e.target;
-  var checkGroup;
-
-  // checkbox logic
-  if (thisTarget.type === 'checkbox') {
-    // get parent
-    while ((thisTarget = thisTarget.parentNode) && !thisTarget.classList.contains('checkbox-group'));
-    checkGroup = thisTarget
-    checkGroup.classList.remove('pristine');
-  } else {
-    thisTarget.classList.remove('pristine', 'invalid');
-  }
-}
-
-function validateCheckGroup(e) {
-  var thisTarget;
-  var checkGroup;
-  var theseInputs;
-  var itemChecked = false;
-  var otherInput;
-  var otherListened = false;
-
-  if (e.target.type !== 'checkbox') {
-    thisTarget = false;
-    checkGroup = document.getElementsByClassName('checkbox-group')[0];
-  } else {
-    thisTarget = e.target;
-    checkGroup = e.target;
-    otherInput = thisTarget.parentNode.querySelectorAll('[name="why-other"]')[0];
-    while ((checkGroup = checkGroup.parentNode) && !checkGroup.classList.contains('checkbox-group'));
-  }
-
-  // get all checkboxes
-  theseInputs = checkGroup.querySelectorAll('[type="checkbox"]');
-
-  // toggle required state
-  if (thisTarget.checked) {
-    // if an "other" option
-    if (thisTarget.value === 'Other') {
-      otherInput.setAttribute('required','required');
-
-      if (!otherListened) {
-        otherInput.addEventListener('click',function(e){
-          e.preventDefault();
-          otherListened = true;
-        })
-      }
-    }
-    // remaining options
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].removeAttribute('required');
-    }
-    checkGroup.classList.remove('invalid');
-    itemChecked = true;
-  } else if (!thisTarget.checked || !thisTarget) {
-    if (thisTarget.value === 'Other') {
-      otherInput.removeAttribute('required');
-    }
-
-    for (i = 0; i < theseInputs.length; i++) {
-      if (theseInputs[i].checked) {
-        itemChecked = true;
-      }
-    }
-  }
-
-  if (!itemChecked) {
-    for (i = 0; i < theseInputs.length; i++) {
-      theseInputs[i].setAttribute('required','required');
-    }
-    // mark invalid
-    checkGroup.classList.add('invalid');
-  }
-}
-
-function formInvalid(e) {
-  markInvalid(e);
-  shakeForm(e);
-}
-
-function toggleEditing(form, state) {
-  var i;
-  var theseInputs = form.getElementsByTagName('input');
-  var theseTextareas = form.getElementsByTagName('textarea')[0];
-  var submitButton = form.getElementsByTagName('button')[0];
-  var spinner = document.getElementsByClassName('spinner-wrapper');
-
-  if (state === 'disable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = true;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = true;
-    }
-    submitButton.disabled = true;
-    if (submitButton.classList.contains('green')) {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    } else {
-      submitButton.children[0].innerHTML += '<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>';
-    }
-  }
-  if (state === 'enable') {
-    if (theseInputs) {
-      for (i = 0; i < theseInputs.length; i++) {
-        theseInputs[i].disabled = false;
-      }
-    }
-    if (theseTextareas) {
-      theseTextareas.disabled = false;
-    }
-    submitButton.disabled = false;
-    spinner[0].parentNode.removeChild(spinner[0]);
-  }
-}
-
-function xhrSubmit(e, form, formData, formName) {
-  var xhr = new XMLHttpRequest();
-  var xhrUrl;
-  var supportEmail;
-
-  if (formName === 'github') {
-    xhrUrl = 'https://codenow.com:2087/sign_up';
-    supportEmail = 'support@runnable.com';
-  } else if (formName === 'bitbucket') {
-    xhrUrl = 'https://codenow.com:8443/bitbucket';
-    supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
-  }
-
-  // fires when payload sent successfully
-  xhr.addEventListener('load', function(evt) {
-    var response = JSON.parse(xhr.responseText);
-    var resultCode = response.result_code;
-    var resultMessage = response.result_message;
-    var successMsg = form.parentNode.getElementsByClassName('hide')[0];
-    var href;
-
-    // result_codes:
-    // -1 = error from sundip
-    // 0 = error from active campaign
-    // 1 = success from active campaign
-    if (resultCode === -1 || resultCode === 0) {
-      shakeForm(e);
-      sundipValidation(resultMessage, form, formName);
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'fail',
-        'error': (resultCode === -1 ? 'From Sundip’s script' : 'From Active Campaign')
-      });
-    }
-
-    if (resultCode === 1) {
-      // mixpanel
-      mixpanel.track('XHR Submit: ' + formName, {
-        'server-side validation': 'pass'
-      });
-
-      // tell the user something nice
-      form.classList.add('hide');
-      form.classList.remove('show');
-      successMsg.classList.add('show');
-      successMsg.classList.remove('hide');
-
-      // if github form, redirect to log in
-      if (formName === 'github') {
-        href = form.querySelectorAll('[data-href]')[0].getAttribute('data-href');
-        setTimeout(function(){window.location.href = href;},2500);
-      }
-    }
-    toggleEditing(form, 'enable'); // re-enables form
-  });
-
-  // fires when error occured while sending payload
-  xhr.addEventListener('error', function(evt) {
-    shakeForm(e);
-    sundipValidation('An error occured ('+xhr.status+'). Send us an email at <a class="link" href="mailto:' + supportEmail + '">' + supportEmail + '</a> for help.', form, formName);
-    toggleEditing(form, 'enable'); // re-enables form
-
-    // segment
-    analytics.track('Error', {
-      form: formName,
-      xhrStatusCode: xhr.status,
-      xhrStatusText: xhr.statusText,
-      email: formData.email
-    });
-    // mixpanel
-    mixpanel.track('XHR Submit: ' + formName, {
-      'server-side validation': 'fail',
-      'error': 'xhr.readyState === 4 && xhr.status === 0'
-    });
-  });
-
-  // fires when user stops request while being submitted
-  xhr.addEventListener('abort', function(evt) {
-    toggleEditing(form, 'enable'); // re-enables form
-
-    // segment
-    analytics.track('Abort', {
-      form: formName,
-      xhrStatusCode: xhr.status,
-      xhrStatusText: xhr.statusText,
-      email: formData.email
-    });
-  });
-
-  // send form
-  xhr.open('POST', xhrUrl, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(formData);
-}
-
-function submitForm(e) {
-  var form = e.target;
-  var formName;
-  var segment_id;
-  var client_id;
-  var intent;
-  var woopraCookie;
-
-  try {
-    // Get anonymousId
-    segment_id = analytics.user().anonymousId();
-    client_id = ga.getAll()[0].get('clientId');
-
-    // Get Woopra's cookie to bind session on the server-side
-    woopraCookie = window.woopra.cookie;
-  } catch (err) {
-    // pass through with errors
-    console.log('Error obtaining IDs: '+ err);
-  }
-
-  if (form.classList.contains('form-github')) {
-    formName = 'github';
-  } else if (form.classList.contains('form-bitbucket')) {
-    formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
-  }
-
-  e.preventDefault();
-
-  if (form.checkValidity()) {
-    var emailValue = form.querySelectorAll('[name="email"]')[0].value;
-    var nameValue = form.querySelectorAll('[name="name"]')[0].value;
-    var formData = {};
-    var name = 'name';
-
-    // special github form data
-    if (formName === 'github') {
-      var whyInputs = form.querySelectorAll('[name="checkbox-why"]');
-      var whyValue = [];
-      var otherValue;
-      var whySegment = [];
-
-      // change name to be labelled company
-      name = 'company';
-
-      for (i = 0; i < whyInputs.length; i++) {
-        var obj = {
-          name: whyInputs[i].value,
-          checkbox: whyInputs[i].checked
-        }
-
-        if (whyInputs[i].value === 'Other') {
-          obj.otherValue = form.querySelectorAll('[name="why-other"]')[0].value;
-        }
-
-        // for segment, we only want to send the data if it's checked
-        if (whyInputs[i].checked) {
-          if (whyInputs[i].value === 'Other') {
-            whySegment.push('Other: ', form.querySelectorAll('[name="why-other"]')[0].value, '; ');
-          } else {
-            whySegment.push(whyInputs[i].value, '; ');
-          }
-        }
-
-        whyValue.push(obj);
-      }
-      intent = whySegment.join('').trim();
-    }
-
-    toggleEditing(form, 'disable'); // disables inputs
-
-    // jsonify form data
-    formData.email = emailValue;
-    formData.why = whyValue;
-    formData.intent = intent;
-    formData.id = segment_id;
-    formData.client_id = client_id;
-    formData.woopraCookie = woopraCookie;
-
-    // add name
-    formData[name] = nameValue;
-    xhrSubmit(e, form, JSON.stringify(formData), formName);
-
-    // segment
-    delete formData['why'];
-    analytics.ready(function() {
-      var segmentTraits = {
-        email: emailValue,
-        Intent: intent
-      };
-      segmentTraits[name] = nameValue;
-
-      analytics.identify({
-        anonymousId: segment_id,
-        traits: segmentTraits,
-        integrations: {
-          Intercom: false,
-          Woopra: {
-            cookie: woopraCookie
-          }
-        }
-      });
-      analytics.track(formName + ' sign up', formData);
-    });
-
-    // mixpanel
-    mixpanel.track('FE Submit: ' + formName, {
-      'front-end validation': 'pass'
-    });
-  }
-}
-
-function sundipValidation(resultMessage, form, formName) {
-  var prevError = form.getElementsByClassName('js-error')[0];
-  var error;
-  var submitButton;
-
-  if (prevError) {
-    prevError.parentNode.removeChild(prevError);
-  }
-
-  if (formName === 'github' || formName === 'bitbucket') {
-    error = document.createElement('div');
-    error.classList.add('well', 'well-red', 'text-center', 'small','padding-xxs','margin-top-md','js-error');
-    error.innerHTML = resultMessage;
-    form.children[0].appendChild(error);
-  } else {
-    submitButton = form.getElementsByTagName('button')[0];
-    error = document.createElement('small');
-    error.classList.add('popover', 'bottom', 'in', 'small','red','text-center');
-    error.innerHTML = resultMessage;
-    submitButton.appendChild(error);
-  }
-
-  analytics.ready(function() {
-    analytics.track('Error ' + formName + '-list form', {error: resultMessage, clientId: ga.getAll()[0].get('clientId')});
-  });
-}
-
-// events
-window.addEventListener('DOMContentLoaded', function(){
-  var modalTriggers = document.getElementsByClassName('js-modal');
-  var dBody = document.body;
-  var dragging = false;
-  var i;
-
-  // prevent drag touch
-  dBody.addEventListener('touchmove',function(){dragging = true;});
-  dBody.addEventListener('touchstart',function(){dragging = false;});
-
-  // modals
-  if (modalTriggers) {
-    for (i = 0; i < modalTriggers.length; i++) {
-      /* jshint loopfunc: true */
-      modalTriggers[i].addEventListener('click', function(event){
-        openModal(event,dragging);
-      });
-      modalTriggers[i].addEventListener('touchend', function(event){
-        openModal(event,dragging);
-      });
-    }
-  }
-
-  // if sign up form exists
-  if (document.getElementsByClassName('form-github').length > 0) {
-    setupForm('signup');
-  }
-  // if pricing page
-  if (document.getElementsByClassName('form-enterprise').length > 0) {
-    setupForm('enterprise');
-  }
-});
-
+{{!-- facebook --}}
+<script ugly>
 window.addEventListener('load', function(){
   // stub fbq
   if (!window.fbq) {
     window.fbq = function () {};
   }
 });
+</script>
 
-      // polyfill for svgs with base element
+{{!-- svgs --}}
+<script ugly>
+// polyfill for svgs with base element
 (function(document, window) {
   'use strict';
   document.addEventListener('DOMContentLoaded', function() {
@@ -1179,6 +594,10 @@ window.addEventListener('load', function(){
   }, false);
 }(document, window));
 
+</script>
+
+    <title>Preview Environments — Runnable</title>
+    <script ugly>
       // toggles
 function toggle(e) {
   var i;
@@ -1287,6 +706,10 @@ window.addEventListener('DOMContentLoaded', function(){
   <symbol id="icons-bitbucket" viewBox="0 0 27.438 31.681">
     <path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z", transform="translate(-2.122)"</<path d="M29.208,3.519a3.47,3.47,0,0,0-.729-0.738,8.244,8.244,0,0,0-2.01-1.1A21.7,21.7,0,0,0,21.768.45,39.134,39.134,0,0,0,10.037.434,24.268,24.268,0,0,0,6,1.385,10.419,10.419,0,0,0,3.525,2.549a4.165,4.165,0,0,0-.976.869,1.832,1.832,0,0,0-.4,1.479C2.32,5.989,2.48,7.082,2.66,8.169q0.4,2.417.811,4.828c0.306,1.787.62,3.573,0.918,5.36a2.026,2.026,0,0,0,.526,1.07,5.663,5.663,0,0,0,.574.543,9.178,9.178,0,0,0,2.432,1.354,20.379,20.379,0,0,0,6.485,1.328,25.257,25.257,0,0,0,4.838-.187,19.46,19.46,0,0,0,4.011-.948,10.809,10.809,0,0,0,2.725-1.382,4.323,4.323,0,0,0,.945-0.9,1.791,1.791,0,0,0,.354-0.805c0.4-2.341.809-4.679,1.2-7.021,0.362-2.172.7-4.346,1.058-6.518A1.78,1.78,0,0,0,29.208,3.519ZM15.82,19.64a4.361,4.361,0,1,1,4.386-4.334A4.359,4.359,0,0,1,15.82,19.64Zm8.7-15.246a1.832,1.832,0,0,1-.436.357,5.524,5.524,0,0,1-1.454.541,20.191,20.191,0,0,1-2.9.485,37.5,37.5,0,0,1-3.791.188,37.891,37.891,0,0,1-4.332-.238,15.852,15.852,0,0,1-3.146-.633,6.893,6.893,0,0,1-.883-0.381,1.385,1.385,0,0,1-.386-0.3A0.443,0.443,0,0,1,7.2,3.746,1.752,1.752,0,0,1,7.61,3.43a5.392,5.392,0,0,1,1.359-.512,20.355,20.355,0,0,1,2.994-.509,37.618,37.618,0,0,1,4.967-.172,30.478,30.478,0,0,1,4.55.431,10.33,10.33,0,0,1,2.075.545,5.336,5.336,0,0,1,.683.346,1.085,1.085,0,0,1,.288.266A0.422,0.422,0,0,1,24.522,4.394Zm1.664,18.367a0.955,0.955,0,0,1-.021.271c-0.305,1.6-.614,3.2-0.911,4.811a2.6,2.6,0,0,1-.724,1.377,5.442,5.442,0,0,1-1.448,1.023A12.151,12.151,0,0,1,20,31.274a18.806,18.806,0,0,1-3.563.407,20.746,20.746,0,0,1-5.917-.7,9.9,9.9,0,0,1-2.3-.953,5.078,5.078,0,0,1-1.042-.789,2.6,2.6,0,0,1-.741-1.4c-0.3-1.6-.609-3.207-0.915-4.81A1.12,1.12,0,0,1,5.5,22.79a0.479,0.479,0,0,1,.724-0.423c0.036,0.021.072,0.041,0.105,0.063a13.221,13.221,0,0,0,3.858,1.856,18.062,18.062,0,0,0,3.873.758,19.587,19.587,0,0,0,4.54-.11,16.41,16.41,0,0,0,5.687-1.827c0.354-.194.686-0.43,1.025-0.646a1.715,1.715,0,0,1,.167-0.1A0.48,0.48,0,0,1,26.186,22.761Zm-8.159-7.477a2.185,2.185,0,1,1-2.177-2.193A2.192,2.192,0,0,1,18.027,15.284Z" transform="translate(-2.122)"/>
   </symbol>
+  <symbol id="icons-chat" viewBox="0 0 18 18">
+    <rect y="0.727" width="18" height="13.413" rx="3" ry="3"/>
+    <path d="M14.5,16.972V13.8H10.6l3.387,3.387A.3.3,0,0,0,14.5,16.972Z"/>
+  </symbol>
   <symbol id="icons-check" viewBox="0 0 14.5 10">
     <path d="M7.25,14a1,1,0,0,1-.707-0.293l-4.5-4.5A1,1,0,0,1,3.457,7.793L7.25,11.586l7.293-7.293a1,1,0,0,1,1.414,1.414l-8,8A1,1,0,0,1,7.25,14Z" transform="translate(-1.75 -4)"/>
   </symbol>
@@ -1312,6 +735,9 @@ window.addEventListener('DOMContentLoaded', function(){
   <symbol id="icons-play" viewBox="0 0 30 30">
     <path d="M25.615,13.268a2,2,0,0,1,0,3.464l-7.5,4.33-7.5,4.33a2,2,0,0,1-3-1.732V6.34a2,2,0,0,1,3-1.732l7.5,4.33Z" transform="translate(0 0)"/>
     <rect width="30" height="30" fill="none"/>
+  </symbol>
+  <symbol id="icons-phone" viewBox="0 0 18 18">
+    <path d="M11.281,13.384A12.213,12.213,0,0,1,4.508,7.429L6.1,5.172,4.2.794H2.112C.411,1.781-.182,4.255.047,5.716c2.033,6.093,7.567,10.665,13,11.448A4.855,4.855,0,0,0,17.725,15.1L18,13.031l-4.268-2.094Z"/>
   </symbol>
   <symbol id="icons-select" viewBox="0 0 18 18">
     <path d="M6.161,7.01L8.608,3.123a0.5,0.5,0,0,1,.846,0L11.9,7.01a0.5,0.5,0,0,1-.423.766h-4.9A0.5,0.5,0,0,1,6.161,7.01Z"/>
@@ -1488,7 +914,7 @@ window.addEventListener('DOMContentLoaded', function(){
     <footer class="grid-block col footer justify-spaced">
   <a href="signup/" class="sign-up-box grid-block col well well-anchor track-sign-up">
   <img class="img no-touching" src="images/runnabear-hello.png">
-  <p class="p js-modal">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
+  <p class="p">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
   <div href="signup/" class="btn btn-sm green track-sign-up">Sign Up</div>
 </a>
 
