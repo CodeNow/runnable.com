@@ -498,10 +498,6 @@ window.addEventListener('DOMContentLoaded', function(){
       allowBitbucket = false;
     }
   }
-  // if enterprise form exists
-  if (document.getElementsByClassName('form-enterprise').length > 0) {
-    formType = 'enterprise';
-  }
   // setup if form found
   if (formType) {
     setupForm(formType, allowBitbucket);
