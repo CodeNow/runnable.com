@@ -257,9 +257,6 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
   }
 
   // fires when payload sent successfully
@@ -374,8 +371,6 @@ function submitForm(e) {
     }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
   }
 
   e.preventDefault();

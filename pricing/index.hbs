@@ -857,9 +857,6 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
   }
 
   // fires when payload sent successfully
@@ -974,8 +971,6 @@ function submitForm(e) {
     }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
   }
 
   e.preventDefault();
@@ -1332,97 +1327,111 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
     <main class="grid-block col main">
-      <article class="hero pricing-hero">
-  <h1 class="h1 text-center">Pricing Plans</h1>
-  <section class="grid-block align-center justify-center section section-plans">
-
-    <div class="grid-block plan-wrapper">
-      <div class="grid-block col text-center plan padding-sm">
-        <h2 class="weight-strong">Starter</h2>
-        <div class="grid-block col align-center justify-center price-wrapper">
-          <p class="grid-content shrink price weight-strong">$9<span class="per-month"> ⁄ mo</span></p>
-          <p class="weight-light">per user</p>
+      <article class="grid-block col align-center hero pricing-hero">
+  <h1 class="h1 text-center weight-strong">Pricing Plans</h1>
+  <p class="h3 text-center">We offer self-hosted and cloud-hosted pricing.
+  <section class="section">
+    <div class="grid-block col-sm grid-container-sm ">
+      <section class="grid-block col card">
+        <h3 class="card-header">Self-Hosted</h3>
+        <div class="card-body">
+          <p class="card-price">$35<span class="per-month">/mo</span></p>
+          <p class="weight-strong">per user</p>
+          <p class="text-gray margin-top-sm">Unlimited Containers</p>
         </div>
-        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">2</span> services</p>
-        <small class="weight-light text-gray small padding-xxs">For basic<br>two-tier apps</small>
-      </div>
-      <div class="grid-block col text-center plan padding-sm">
-        <h2 class="weight-strong">Standard</h2>
-        <div class="grid-block col align-center justify-center price-wrapper">
-          <p class="grid-content shrink price weight-strong">$29<span class="per-month"> ⁄ mo</span></p>
-          <p class="weight-light">per user</p>
-        </div>
-        <p class="padding-xxs no-wrap">Up to <span class="weight-strong">7</span> services</p>
-        <small class="weight-light text-gray small padding-xxs">For most<br>multi-tier apps</small>
-      </div>
-    </div>
-
-    <div class="grid-block plan-wrapper">
-      <div class="grid-block col text-center plan padding-sm">
-        <h2 class="weight-strong">Plus</h2>
-        <div class="grid-block col align-center justify-center price-wrapper">
-          <p class="grid-content shrink price weight-strong">$49<span class="per-month"> ⁄ mo</span></p>
-          <p class="weight-light">per user</p>
-        </div>
-        <p class="padding-xxs no-wrap"><span class="weight-strong">8+</span> services</p>
-        <small class="weight-light text-gray small padding-xxs">For larger apps<br>or multiple apps</small>
-      </div>
-      <div class="grid-block card-flipper shake-me">
-        <div class="grid-block col text-center card-a plan padding-sm">
-          <h2 class="weight-strong">Enterprise</h2>
-          <div class="grid-block col align-center justify-center price-wrapper">
-            <p class="small weight-light text-gray">Schedule a demo</p>
-            <button class="btn gray btn-sm js-flipper">Contact Us</button>
+        <button href="signup/" class="btn btn-md green track-sign-up">Sign Up<span class="hidden-xxs"> for Self-Hosted</span></button>
+        <div class="grid-block justify-center card-hosts">
+          <div class="grid-block col align-center">
+            <img class="img" src="/images/pricing/aws.svg" title="Amazon Web Services">
+            <svg class="icons icons-check">
+              <use xlink:href="#icons-check">
+            </svg>
           </div>
-          <p class="padding-xxs no-wrap">Private cloud support</p>
-          <small class="weight-light text-gray small padding-xxs">For large<br>enterprise teams</small>
+          <div class="grid-block col align-center">
+            <img class="img" src="/images/pricing/gcp.svg" title="Google Cloud Platform">
+            <p class="small text-gray weight-light">Beta</p>
+          </div>
+          <div class="grid-block col align-center">
+            <img class="img" src="/images/pricing/azure.svg" title="Microsoft Azure">
+            <p class="small text-gray weight-light">Soon</p>
+          </div>
+          <div class="grid-block col align-center">
+            <img class="img" src="/images/pricing/private-cloud.svg" title="Private Cloud">
+            <p class="small text-gray weight-light">Soon</p>
+          </div>
         </div>
-        <form class="grid-block col text-center card-b plan padding-sm form form-enterprise js-form show">
-          <svg class="icons icons-chevron-right js-flipper">
-            <use xlink:href="#icons-chevron-right">
+      </section>
+      <ul class="grid-block col justify-center noscroll pricing-benefits">
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
           </svg>
-          <h2 class="weight-strong shrink">Enterprise</h2>
-          <div class="grid-block col justify-center price-wrapper">
-            <input class="grid-content shrink text-center input input-sm input-validate pristine" placeholder="Name" name="name" required>
-            <input class="grid-content shrink text-center input input-sm input-validate pristine" placeholder="Work email" name="email" type="email" required>
-          </div>
-          <button class="grid-block justify-center align-center shrink btn btn-sm gray">
-            <div class="grid-block justify-center align-center">
-              <span class="grid-content shrink">Submit</span>
-            </div>
-          </button>
-          <p class="grid-content small text-gray text-center weight-light">No spam — we promise!</p>
-        </form>
-        <div class="grid-block align-center plan hide">
-          <p class="p text-center">🙌<br>Thanks, we’ll be in touch!</p>
-        </div>
-      </div>
+          Unlimited builds, tests and running environments.
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Deploy anywhere from your private Docker registry.
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Support for AWS, GCP (beta), and Azure (soon).
+      </ul>
     </div>
   </section>
 </article>
 
-      <article class="grid-block col align-center article article-pricing-cta">
-  <p class="grid-content small text-gray weight-light">All plans require at least 3 users.</p>
-  <button href="signup/" class="grid-content btn btn-lg green track-sign-up">Start Your 14-Day Free Trial</button>
-  <p class="grid-content small text-gray weight-light">No Card Required</p>
+      <article class="article-pricing-cloud section">
+  <h2 class="text-center margin-bottom-md">Cloud-Hosted Plans</h2>
+  <div class="grid-block justify-center align-center col-sm noscroll grid-container-sm">
+    <section class="grid-block col card">
+      <h3 class="card-header">Starter</h3>
+      <div class="card-body">
+        <p class="card-price">$9<span class="per-month">/mo</span></p>
+        <p class="weight-strong">per user</p>
+        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">2</span> containers<br>per branch</p>
+      </div>
+    </section>
+    <section class="grid-block col card">
+      <h3 class="card-header">Standard</h3>
+      <div class="card-body">
+        <p class="card-price">$29<span class="per-month">/mo</span></p>
+        <p class="weight-strong">per user</p>
+        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">7</span> containers<br>per branch</p>
+      </div>
+    </section>
+    <section class="grid-block col card">
+      <h3 class="card-header">Plus</h3>
+      <div class="card-body">
+        <p class="card-price">$49<span class="per-month">/mo</span></p>
+        <p class="weight-strong">per user</p>
+        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">15</span> containers<br>per branch</p>
+      </div>
+    </section>
+  </div>
+  <div class="grid-block col align-center margin-top-lg">
+    <button href="signup/" class="btn btn-md green track-sign-up">Start Your 14-Day Free Trial</button>
+    <p class="small text-gray weight-light margin-top-xxs">All plans require at least 3 users.</p>
+  </div>
 </article>
 
-      <article class="grid-block justify-center align-center article article-explanation">
+      <article class="grid-block justify-center align-center section article article-explanation">
   <div class="grid-block align-center justify-center shrink">
     <img src="images/pricing/bear-dollar.svg" class="grid-block img">
   </div>
   <div class="grid-block shrink col">
     <h2 class="h3 weight-strong">How our pricing works.</h2>
-    <p class="p">We charge based on the number of services you use. A <span class="weight-strong">service</span> is a running process, like an API server or a database.</p>
-    <p class="p">The number of services your team needs is equal to the number of Docker images that make up your application.</p>
+    <p class="p">We charge based on the number of containers used to define your application. A container is a running process, like an API server or a database.</p>
+    <p class="p margin-top-xxs">With this model, your team can use as many environments as needed without affecting your rate.</p>
   </div>
 </article>
 
-      <article class="grid-block justify-center align-center article article-included">
+      <article class="grid-block justify-center align-center section article article-included">
   <div class="grid-block col shrink">
     <div class="grid-block col shrink">
-      <h2 class="h3 weight-strong">Unlimited containers<br class="hidden-sm"> with every plan.</h2>
-      <p class="p">Create as many environments as you need, without worrying about infrastructure costs — we cover all that stuff.</p>
+      <h2 class="h3 weight-strong">Unlimited environments<br class="hidden-sm"> with every plan.</h2>
+      <p class="p">Create as many environments as you need, without worrying about scaling infrastructure.</p>
     </div>
     <div class="grid-block col">
       <p class="p weight-strong">Also included in every plan:</p>
@@ -1432,7 +1441,7 @@ window.addEventListener('DOMContentLoaded', function(){
             <svg class="icons icons-check text-green">
               <use xlink:href="#icons-check">
             </svg>
-            Single-tenant infrastructure
+            Dedicated infrastructure
           <li class="li">
             <svg class="icons icons-check text-green">
               <use xlink:href="#icons-check">
@@ -1466,7 +1475,7 @@ window.addEventListener('DOMContentLoaded', function(){
   </div>
 </article>
 
-      <article class="grid-block article article-faq">
+      <article class="grid-block section article article-faq">
   <div class="grid-block col question">
     <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> What is a user?</h3>
     <p class="grid-content shrink p justify-center">A user is anyone who is able to make changes to your account, and have their branches deployed and kept up-to-date on Runnable.</p>
