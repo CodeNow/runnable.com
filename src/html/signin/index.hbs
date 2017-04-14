@@ -4,9 +4,6 @@
   <head>
     @@include('html/components/head.hbs')
     <title>Sign up for Runnable.</title>
-    <script ugly>
-      @@include('js/svgs.js')
-    </script>
 
     <!--
       Commit Hash: {{{commitHash}}}
@@ -20,7 +17,7 @@
     <main class="grid-block col main">
       <div class="modal-backdrop in" id="sign-in">
         @@include('html/components/modal-header.hbs', {
-          "signup": false,
+          "allowBitBucket": false,
           "standalone": true
         })
         <div class="modal">

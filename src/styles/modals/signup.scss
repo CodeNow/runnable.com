@@ -223,4 +223,35 @@
     height: auto;
     max-width: 100%;
   }
+
+  .section-success {
+
+    .p {
+      max-width: 360px;
+    }
+
+    .btn {
+      margin-left: auto;
+      margin-right: auto;
+
+      &:not(.green) {
+        color: $gray;
+
+        &:hover,
+        &:active {
+          color: $purple-light;
+        }
+
+        .icons {
+          opacity: .3;
+        }
+      }
+
+      .icons {
+        height: 100%;
+        margin-right: 6px;
+        width: 18px;
+      }
+    }
+  }
 }
