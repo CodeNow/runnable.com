@@ -6,6 +6,7 @@
     <title>Sign up for Runnable.</title>
     <script ugly>
       @@include('js/signup.js')
+      @@include('js/chat.js')
     </script>
 
     <!--
@@ -20,11 +21,13 @@
     <main class="grid-block col main">
       <div class="modal-backdrop in" id="sign-up">
         @@include('html/components/modal-header.hbs', {
-          "allowBitbucket": true,
+          "allowBitbucket": false,
           "standalone": true
         })
         <div class="modal">
-          @@include('html/components/form-github.hbs')
+          @@include('html/components/form-github.hbs', {
+            "selfHosted": true
+          })
           @@include('html/components/form-bitbucket.hbs')
         </div>
       </div>
