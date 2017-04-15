@@ -107,8 +107,8 @@
   }
 
   .li {
-    position: relative;
     padding-left: 21px;
+    position: relative;
 
     + .li {
       margin-top: $sm;
