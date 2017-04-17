@@ -1,25 +1,14 @@
 .article-included {
   align-self: center;
   border-bottom: 1px solid $gray-lighter;
-  margin: 0 60px;
-  max-width: 960px;
+  max-width: 100%;
   overflow: visible;
-  padding: 90px 0;
-
-  @include media(md) {
-    padding: 75px 0;
-  }
-
-  @include media(sm) {
-    padding: 60px 0;
-  }
+  padding-bottom: 90px;
+  padding-top: 90px;
+  width: 1080px;
 
   @include media(xs) {
     flex-direction: column-reverse;
-  }
-
-  @include media(xxs) {
-    margin: 0 30px;
   }
 
   > .grid-block {

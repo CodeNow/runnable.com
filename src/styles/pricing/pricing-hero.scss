@@ -1,173 +1,119 @@
 .pricing-hero {
   padding-bottom: 0;
 
-  .grid-block {
-    overflow: visible;
+  .h1,
+  .h3 {
+    margin-bottom: 0;
+    margin-top: 0;
   }
 
-  .plan,
-  .card-flipper {
-    flex: 1 1 50%;
-
-    @media (max-width: 530px) {
-      flex: 0 0 auto;
-      max-width: 100%;
-      width: 360px;
-    }
-
-    &.show {
-      z-index: 1; // fix confirmation state in safari
-    }
-
-    + .plan,
-    + .card-flipper {
-      margin-left: 20px;
-
-      @media (max-width: 530px) {
-        margin-left: 0;
-        margin-top: 20px;
-      }
-    }
-
-    // override text shadow for .p in cards
-    .p {
-      text-shadow: none;
-    }
-  }
-
-  .card-flipper {
-
-    @media (max-width: 530px) {
-      height: 372px;
-    }
-
-    .plan {
-      background: $white;
-      margin-left: 0; // override .plan + .plan margin
-      margin-top: 0;
-    }
-  }
-
-  .card-a .btn-sm {
-    margin-top: 9px;
-  }
-
-  .card-b {
-
-    .btn-sm {
-      margin: 9px 0;
-
-      &[disabled] .red {
-        display: none;
-      }
-    }
-
-    // err text
-    .red {
-      font-weight: $weight-light;
-    }
-  }
-}
-
-.section-plans {
-  margin: 60px auto -127px;
-  padding: 0 60px;
-
-  @media (max-width: 960px) {
-    align-items: center;
-    flex-direction: column;
-  }
-
-  @include media(xxs) {
-    padding: 0 30px;
-  }
-}
-
-.plan-wrapper {
-  flex: 0 1 auto;
-  width: 480px;
-
-  @media (max-width: 960px) {
+  .section {
     max-width: 100%;
-    width: 600px;
   }
 
-  @media (max-width: 530px) {
-    align-items: center;
-    flex-direction: column;
-  }
+  .grid-container-sm {
+    max-width: 100%;
+    width: 660px;
 
-  + .plan-wrapper {
-    margin-left: 20px;
-
-    @media (max-width: 960px) {
-      margin-left: 0;
-      margin-top: 20px;
-    }
-  }
-}
-
-.plan {
-  background: $white;
-  border: 1px solid $gray-lighter;
-  border-radius: 9px;
-  box-shadow: 0 2px 6px 0 rgba($black,.05);
-  color: $gray-dark;
-  font-size: 16px;
-  line-height: 1.4;
-
-  &.form {
-
-    .icons-chevron-right {
-      color: $gray-light;
-      cursor: pointer;
-      height: 30px;
-      left: 9px;
-      padding: 9px;
-      position: absolute;
-      top: 9px;
-      transform: rotate(180deg);
-      width: 30px;
-
-      &:hover {
-        color: $gray;
-      }
-
-      &:active {
-        color: $purple-light;
-      }
-    }
-
-    .popover {
-      line-height: 1.4;
-      white-space: normal;
+    > .grid-block {
       width: 100%;
-      word-wrap: break-word;
+
+      @include media(sm) {
+        max-width: 300px;
+      }
+
+      + .grid-block {
+        margin-left: $md;
+
+        @include media(sm) {
+          margin-left: 0;
+          margin-top: $md;
+        }
+      }
     }
   }
 
-  > .no-wrap {
-    white-space: nowrap;
+  .card {
+    background-color: $white;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 1px 3px 0 rgba($black,.05);
+    color: $gray-dark;
+    padding: 0 $md;
+    text-align: center;
   }
 
-  .small {
-    font-size: 14px;
+  .card-header {
+    border-bottom: 1px solid $gray-lighter;
+    padding: $sm 0;
+    width: 100%;
   }
-}
 
-.price-wrapper {
-  border-bottom: 1px solid $gray-lighter;
-  border-top: 1px solid $gray-lightest;
-  flex: 0 0 150px;
-  margin: 15px 0;
-  padding-bottom: 15px;
+  .card-body {
+    padding: $md 0;
+  }
 
-  .price {
-    font-size: 48px;
+  .card-price {
+    font-size: 36px;
+    font-weight: $weight-bold;
     line-height: 1.2;
+
+    @include media(sm) {
+      font-size: 30px;
+    }
   }
 
   .per-month {
-    font-size: 30px;
+    font-size: .8em;
+  }
+
+  .card-hosts {
+    padding: $md 0 $sm;
+
+    .grid-block {
+      flex: 0 0 auto;
+
+      + .grid-block {
+        margin-left: $sm;
+      }
+    }
+
+    .icons-check {
+      color: $green;
+      height: 18px; // match line-height of other hosts
+      width: $xs;
+    }
+  }
+
+  .img {
+    height: 20px;
+    margin-bottom: 3px;
+    width: 20px;
+  }
+
+  .small {
+    font-size: 12px;
+  }
+
+  .pricing-benefits {
+    padding: 0 $md;
+
+    .li {
+      max-width: 240px;
+      padding-left: 21px;
+      position: relative;
+
+      + .li {
+        margin-top: $sm;
+      }
+    }
+
+    .icons-check {
+      color: $purple-logo;
+      height: 12px;
+      left: 0;
+      position: absolute;
+      top: 9px;
+      width: 12px;
+    }
   }
 }

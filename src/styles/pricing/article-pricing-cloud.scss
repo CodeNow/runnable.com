@@ -1,0 +1,52 @@
+.article-pricing-cloud {
+  background: $gray-lighterest;
+  border-bottom: 1px solid rgba($gray-lighter,.5);
+
+  .grid-container-sm {
+    max-width: 100%;
+    width: 660px;
+  }
+
+  .card {
+    background-color: $white;
+    border: 1px solid $gray-lighter;
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 1px 3px 0 rgba($black,.05);
+    font-size: 16px;
+    padding: 0 $sm;
+    text-align: center;
+
+    @include media(sm) {
+      max-width: 100%;
+      width: 300px;
+    }
+
+    + .card {
+      margin-left: $md;
+
+      @include media(sm) {
+        margin-left: 0;
+        margin-top: $md;
+      }
+    }
+  }
+
+  .card-header {
+    border-bottom: 1px solid $gray-lighter;
+    padding: $sm 0;
+  }
+
+  .card-body {
+    padding: $md 0;
+  }
+
+  .card-price {
+    font-size: 30px;
+    font-weight: $weight-bold;
+    line-height: 1.2;
+  }
+
+  .per-month {
+    font-size: .8em;
+  }
+}

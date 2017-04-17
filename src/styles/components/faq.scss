@@ -1,31 +1,28 @@
 .article.article-faq {
   align-self: center;
   flex-wrap: wrap;
-  margin: 0 30px;
-  max-width: 1020px;
-
-  @include media(md) {
-    margin: 0;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
+  max-width: 1080px;
 
   .question {
     flex: 0 1 50%;
-    padding: 30px;
 
     @include media(sm) {
       flex: 0 0 100%;
+
+      + .question {
+        padding-top: 45px;
+      }
     }
 
-    @include media(xxs) {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
+    @media (min-width: $screen-sm) {
 
-    @include media(xxs) {
-      padding-left: 0;
-      padding-right: 0;
+      &:nth-child(n+3) {
+        padding-top: 60px;
+      }
+
+      &:nth-child(2n) {
+        padding-left: 60px;
+      }
     }
   }
 

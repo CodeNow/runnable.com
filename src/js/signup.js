@@ -257,9 +257,6 @@ function xhrSubmit(e, form, formData, formName) {
   } else if (formName === 'bitbucket') {
     xhrUrl = 'https://codenow.com:8443/bitbucket';
     supportEmail = 'bitbucket@runnable.com';
-  } else if (formName === 'enterprise') {
-    xhrUrl = 'https://codenow.com:2096/notify/enterprise';
-    supportEmail = 'preview@runnable.com';
   }
 
   // fires when payload sent successfully
@@ -374,8 +371,6 @@ function submitForm(e) {
     }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
-  } else if (form.classList.contains('form-enterprise')) {
-    formName = 'enterprise';
   }
 
   e.preventDefault();
@@ -502,10 +497,6 @@ window.addEventListener('DOMContentLoaded', function(){
     if (document.getElementsByClassName('form-self-hosted').length > 0) {
       allowBitbucket = false;
     }
-  }
-  // if enterprise form exists
-  if (document.getElementsByClassName('form-enterprise').length > 0) {
-    formType = 'enterprise';
   }
   // setup if form found
   if (formType) {
