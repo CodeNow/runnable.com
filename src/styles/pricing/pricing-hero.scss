@@ -45,6 +45,7 @@
   .card-header {
     border-bottom: 1px solid $gray-lighter;
     padding: $sm 0;
+    width: 100%;
   }
 
   .card-body {
@@ -66,7 +67,7 @@
   }
 
   .card-hosts {
-    padding: $sm 0;
+    padding: $md 0 $sm;
 
     .grid-block {
       flex: 0 0 auto;
@@ -96,6 +97,16 @@
   .pricing-benefits {
     padding: 0 $md;
 
+    .li {
+      max-width: 240px;
+      padding-left: 21px;
+      position: relative;
+
+      + .li {
+        margin-top: $sm;
+      }
+    }
+
     .icons-check {
       color: $purple-logo;
       height: 12px;
@@ -103,15 +114,6 @@
       position: absolute;
       top: 9px;
       width: 12px;
-    }
-  }
-
-  .li {
-    padding-left: 21px;
-    position: relative;
-
-    + .li {
-      margin-top: $sm;
     }
   }
 }
