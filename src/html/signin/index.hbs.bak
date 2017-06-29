@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    @@include('html/components/head.hbs')
+    <title>Sign up for Runnable.</title>
+
+    <!--
+      Commit Hash: {{{commitHash}}}
+      Commit Time: {{{commitTime}}}
+    -->
+
+  <body class="page-landing" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+
+    @@include('images/icons.svg')
+
+    <main class="grid-block col main">
+      <div class="modal-backdrop in" id="sign-in">
+        @@include('html/components/modal-header.hbs', {
+          "allowBitBucket": false,
+          "standalone": true
+        })
+        <div class="modal">
+          @@include('html/components/sign-in-modal.hbs')
+        </div>
+      </div>
+    </main>
+    @@include('js/external/external.html')
