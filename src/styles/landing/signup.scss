@@ -23,6 +23,11 @@
     right: 30px;
     width: 210px;
 
+    @include media(sm) {
+      bottom: -9px;
+      width: 180px;
+    }
+
     @include media(xs) {
       bottom: -8px;
       left: 0;
