@@ -344,7 +344,6 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
-  var planType;
   var segment_id;
   var client_id;
   var intent;
@@ -364,11 +363,6 @@ function submitForm(e) {
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
-    if (form.classList.contains('form-self-hosted')) {
-      planType = 'self-hosted'
-    } else {
-      planType = 'cloud-hosted'
-    }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   }
@@ -424,7 +418,7 @@ function submitForm(e) {
     formData.id = segment_id;
     formData.client_id = client_id;
     formData.woopraCookie = woopraCookie;
-    formData.planType = planType;
+    formData.planType = 'self-hosted';
 
     // add name
     formData[name] = nameValue;
@@ -488,18 +482,16 @@ function sundipValidation(resultMessage, form, formName) {
 
 // events
 window.addEventListener('DOMContentLoaded', function(){
-  var allowBitbucket = true;
+  var allowBitbucket;
   var formType;
 
   // if github form exists
   if (document.getElementsByClassName('form-github').length > 0) {
     formType = 'signup';
-    if (document.getElementsByClassName('form-self-hosted').length > 0) {
-      allowBitbucket = false;
-    }
   }
   // setup if form found
   if (formType) {
+    allowBitbucket = true;
     setupForm(formType, allowBitbucket);
   }
 });
