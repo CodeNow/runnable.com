@@ -37,7 +37,6 @@ function setupForm(formName, allowBitbucket) {
   var formInputs;
   if (formName === 'signup') {
     var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
 
     if (allowBitbucket) {
       var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
@@ -65,14 +64,6 @@ function setupForm(formName, allowBitbucket) {
         openBitbucketForm();
       });
     }
-
-    // mixpanel
-    linkGitHub.addEventListener('click', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-    linkGitHub.addEventListener('touchend', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
   }
 
   formEl = document.getElementsByClassName('js-form');
