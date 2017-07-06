@@ -596,7 +596,7 @@ window.addEventListener('load', function(){
 
 </script>
 
-    <title>Pricing Plans — Runnable</title>
+    <title>Self-Hosted Pricing — Runnable</title>
     <script ugly>
       // show bitbucket form
 function openBitbucketForm() {
@@ -637,7 +637,6 @@ function setupForm(formName, allowBitbucket) {
   var formInputs;
   if (formName === 'signup') {
     var gitHubForm = document.getElementsByClassName('article-github')[0];
-    var linkGitHub = document.getElementsByClassName('track-grant-access-github')[0];
 
     if (allowBitbucket) {
       var bitbucketForm = document.getElementsByClassName('article-bitbucket')[0];
@@ -665,14 +664,6 @@ function setupForm(formName, allowBitbucket) {
         openBitbucketForm();
       });
     }
-
-    // mixpanel
-    linkGitHub.addEventListener('click', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
-    linkGitHub.addEventListener('touchend', function(){
-      mixpanel.track('Open URL: GitHub Auth');
-    });
   }
 
   formEl = document.getElementsByClassName('js-form');
@@ -944,7 +935,6 @@ function xhrSubmit(e, form, formData, formName) {
 function submitForm(e) {
   var form = e.target;
   var formName;
-  var planType;
   var segment_id;
   var client_id;
   var intent;
@@ -964,11 +954,6 @@ function submitForm(e) {
 
   if (form.classList.contains('form-github')) {
     formName = 'github';
-    if (form.classList.contains('form-self-hosted')) {
-      planType = 'self-hosted'
-    } else {
-      planType = 'cloud-hosted'
-    }
   } else if (form.classList.contains('form-bitbucket')) {
     formName = 'bitbucket';
   }
@@ -1024,7 +1009,7 @@ function submitForm(e) {
     formData.id = segment_id;
     formData.client_id = client_id;
     formData.woopraCookie = woopraCookie;
-    formData.planType = planType;
+    formData.planType = 'self-hosted';
 
     // add name
     formData[name] = nameValue;
@@ -1088,18 +1073,16 @@ function sundipValidation(resultMessage, form, formName) {
 
 // events
 window.addEventListener('DOMContentLoaded', function(){
-  var allowBitbucket = true;
+  var allowBitbucket;
   var formType;
 
   // if github form exists
   if (document.getElementsByClassName('form-github').length > 0) {
     formType = 'signup';
-    if (document.getElementsByClassName('form-self-hosted').length > 0) {
-      allowBitbucket = false;
-    }
   }
   // setup if form found
   if (formType) {
+    allowBitbucket = true;
     setupForm(formType, allowBitbucket);
   }
 });
@@ -1308,7 +1291,6 @@ window.addEventListener('DOMContentLoaded', function(){
       <a href="/pricing/" class="list-item-a visible-md">Pricing</a>
       <a href="/how-it-works/" class="list-item-a">How It Works</a>
       <a href="//runnable.com/use-cases/" class="list-item-a">Use Cases</a>
-      <a href="/demo/" class="list-item-a">Request Demo</a>
       <a href="/blog/" class="list-item-a">Blog</a>
       <a href="/contact/" class="list-item-a">Contact</a>
       <a href="/about/" class="list-item-a">About</a>
@@ -1324,113 +1306,67 @@ window.addEventListener('DOMContentLoaded', function(){
 
     <main class="grid-block col main">
       <article class="grid-block col align-center hero pricing-hero">
-  <h1 class="h1 text-center weight-strong">Pricing Plans</h1>
-  <p class="h3 text-center">We offer self-hosted and cloud-hosted pricing.
+  <h1 class="h1 text-center weight-strong">Simple Pricing</h1>
+  <p class="h3 text-center">We offer a self-hosted plan for maximum control.
   <section class="section">
-    <div class="grid-block col-sm grid-container-sm ">
-      <section class="grid-block col card">
-        <h3 class="card-header">Self-Hosted</h3>
+    <div class="grid-block align-center col-sm grid-container-sm ">
+      <section class="grid-block col align-center card">
         <div class="card-body">
           <p class="card-price">$35<span class="per-month">/mo</span></p>
           <p class="weight-strong">per user</p>
-          <p class="text-gray margin-top-sm">Unlimited Containers</p>
         </div>
-        <button href="signup/" class="btn btn-md green track-sign-up">Sign Up<span class="hidden-xxs"> for Self-Hosted</span></button>
-        <div class="grid-block justify-center card-hosts">
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/aws.svg" title="Amazon Web Services">
+        <a href="signup/" class="btn btn-md green track-sign-up">Sign Up</a>
+        <ol class="grid-block justify-center card-hosts">
+          <li class="grid-block col align-center">
+            <img class="img" src="images/pricing/aws.svg" title="Amazon Web Services">
             <svg class="icons icons-check">
               <use xlink:href="#icons-check">
             </svg>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/gcp.svg" title="Google Cloud Platform">
+          <li class="grid-block col align-center">
+            <img class="img" src="images/pricing/gcp.svg" title="Google Cloud Platform">
             <p class="small text-gray weight-light">Beta</p>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/azure.svg" title="Microsoft Azure">
+          <li class="grid-block col align-center">
+            <img class="img" src="images/pricing/azure.svg" title="Microsoft Azure">
             <p class="small text-gray weight-light">Soon</p>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/private-cloud.svg" title="Private Cloud">
+          <li class="grid-block col align-center">
+            <img class="img" src="images/pricing/private-cloud.svg" title="Private Cloud">
             <p class="small text-gray weight-light">Soon</p>
-          </div>
-        </div>
+        </ol>
       </section>
       <ul class="grid-block col justify-center noscroll pricing-benefits">
         <li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check">
           </svg>
-          Unlimited builds, tests and running environments.
+          Unlimited concurrent builds and tests
         <li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check">
           </svg>
-          Deploy anywhere from your private Docker registry.
+          Unlimited staging environments
         <li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check">
           </svg>
-          Support for AWS, GCP (beta), and Azure (soon).
+          Deploy from your private Docker registry
+        <li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check">
+          </svg>
+          Support for GitHub Enterprise
       </ul>
     </div>
   </section>
 </article>
 
-      <article class="article-pricing-cloud section">
-  <h2 class="text-center margin-bottom-md">Cloud-Hosted Plans</h2>
-  <div class="grid-block justify-center align-center col-sm noscroll grid-container-sm">
-    <section class="grid-block col card">
-      <h3 class="card-header">Starter</h3>
-      <div class="card-body">
-        <p class="card-price">$9<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">2</span> containers<br>per branch</p>
-      </div>
-    </section>
-    <section class="grid-block col card">
-      <h3 class="card-header">Standard</h3>
-      <div class="card-body">
-        <p class="card-price">$29<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">7</span> containers<br>per branch</p>
-      </div>
-    </section>
-    <section class="grid-block col card">
-      <h3 class="card-header">Plus</h3>
-      <div class="card-body">
-        <p class="card-price">$49<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">15</span> containers<br>per branch</p>
-      </div>
-    </section>
-  </div>
-  <div class="grid-block col align-center margin-top-lg">
-    <button href="signup/" class="btn btn-md green track-sign-up">Start Your 14-Day Free Trial</button>
-    <p class="small text-gray weight-light margin-top-xxs">All plans require at least 3 users.</p>
-  </div>
-</article>
-
-      <article class="grid-block justify-center align-center section article article-explanation">
-  <div class="grid-block align-center justify-center shrink">
-    <img src="images/pricing/bear-dollar.svg" class="grid-block img">
-  </div>
-  <div class="grid-block shrink col">
-    <h2 class="h3 weight-strong">How our pricing works.</h2>
-    <p class="p">We charge based on the number of containers used to define your application. A container is a running process, like an API server or a database.</p>
-    <p class="p margin-top-xxs">With this model, your team can use as many environments as needed without affecting your rate.</p>
-  </div>
-</article>
-
       <article class="grid-block justify-center align-center section article article-included">
   <div class="grid-block col shrink">
     <div class="grid-block col shrink">
-      <h2 class="h3 weight-strong">Unlimited environments<br class="hidden-sm"> with every plan.</h2>
+      <h2 class="h3 weight-strong">Unlimited environments.</h2>
       <p class="p">Create as many environments as you need, without worrying about scaling infrastructure.</p>
     </div>
     <div class="grid-block col">
-      <p class="p weight-strong">Also included in every plan:</p>
+      <p class="p weight-strong">Also included:</p>
       <div class="grid-block list-included">
         <ul class="ul grid-block col">
           <li class="li">
@@ -1481,28 +1417,14 @@ window.addEventListener('DOMContentLoaded', function(){
     <p class="grid-content shrink p justify-center">We'll prorate the cost of users daily, so you'll only pay for the time your users are active.</p>
   </div>
   <div class="grid-block col question">
-    <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Which plan should I pick?</h3>
-    <p class="grid-content shrink p justify-center">We automatically determine your plan based on the number of services your team adds.</p>
-  </div>
-  <div class="grid-block col question">
-    <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Why isn’t there a free plan?</h3>
-    <p class="grid-content shrink p justify-center">Runnable will remain free for your team's first 14 days. If your development team believes our pricing plans are not well-suited for your needs, please get in touch with us.</p>
-  </div>
-  <div class="grid-block col question">
     <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> What if I have more questions?</h3>
-    <p class="grid-content shrink p justify-center">No problem! Visit our <a href="https://support.runnable.com/hc/en-us/articles/212037226-Pricing-FAQ" class="link">Pricing FAQ</a>, or <a href="mailto:support@runnable.com" class="link">email us</a>.</p>
+    <p class="grid-content shrink p justify-center">No problem! Visit our <a href="//runnable.com/docs/pricing/frequently-asked-questions" class="link">Pricing FAQ</a>, or <a href="mailto:support@runnable.com" class="link">email us</a>.</p>
   </div>
 </article>
 
     </main>
 
     <footer class="grid-block col footer justify-spaced">
-  <a href="signup/" class="sign-up-box grid-block col well well-anchor track-sign-up">
-  <img class="img no-touching" src="images/runnabear-hello.png">
-  <p class="p">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
-  <div href="signup/" class="btn btn-sm green track-sign-up">Sign Up</div>
-</a>
-
   <aside class="grid-block aside-support">
   <div class="grid-block col justify-center support-text">
     <p class="p weight-strong">Our engineers are here for you.</p>
@@ -1546,7 +1468,6 @@ window.addEventListener('DOMContentLoaded', function(){
       <h4 class="h4 margin-top-sm">Help</h4>
       <a href="/docs/" class="a">Docs</a>
       <a href="/docker/" class="a">Docker Guides</a>
-      <a href="/demo/" class="a">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
       <h4 class="h4">Company</h4>

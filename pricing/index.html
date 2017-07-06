@@ -16,7 +16,7 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="stylesheet" href="styles/index-20.5.2.css">
+<link rel="stylesheet" href="styles/index-20.7.1.css">
 
 <script>
   (function(self) {
@@ -567,12 +567,12 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 
 <script ugly="">!function(e,t){"use strict";e.addEventListener("DOMContentLoaded",function(){var n=t.location.href.replace(t.location.hash,"");[].slice.call(e.querySelectorAll("use[*|href]")).filter(function(e){return 0===e.getAttribute("xlink:href").indexOf("#")}).forEach(function(e){e.setAttribute("xlink:href",n+e.getAttribute("xlink:href"))})},!1)}(document,window);</script>
 
-    <title>Pricing Plans — Runnable</title>
-    <script ugly="">function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],a=document.getElementsByClassName("article-bitbucket")[0],n=document.getElementsByClassName("js-open-bitbucket")[0];n.classList.add("hide"),a.classList.remove("out"),a.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],a=document.getElementsByClassName("article-bitbucket")[0],n=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),n.classList.remove("hide"),a.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e,t){var a,n;if("signup"===e){var s=(document.getElementsByClassName("article-github")[0],document.getElementsByClassName("track-grant-access-github")[0]);if(t){var r=(document.getElementsByClassName("article-bitbucket")[0],document.getElementsByClassName("js-open-bitbucket")[0]),o=document.getElementsByClassName("js-open-github")[0];o.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),o.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),r.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),r.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()})}s.addEventListener("click",function(){mixpanel.track("Open URL: GitHub Auth")}),s.addEventListener("touchend",function(){mixpanel.track("Open URL: GitHub Auth")})}for(a=document.getElementsByClassName("js-form"),i=0;i<a.length;i++)for(a[i].addEventListener("change",makeDirty),a[i].addEventListener("submit",submitForm),n=a[i].getElementsByTagName("input"),y=0;y<n.length;y++)"checkbox"!==n[y].type&&n[y].addEventListener("invalid",formInvalid),"checkbox"===n[y].type&&n[y].addEventListener("change",validateCheckGroup)}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid");validateCheckGroup(e)}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){var t,a=e.target;if("checkbox"===a.type){for(;(a=a.parentNode)&&!a.classList.contains("checkbox-group"););t=a,t.classList.remove("pristine")}else a.classList.remove("pristine","invalid")}function validateCheckGroup(e){var t,a,n,s,r=!1,o=!1;if("checkbox"!==e.target.type)t=!1,a=document.getElementsByClassName("checkbox-group")[0];else for(t=e.target,a=e.target,s=t.parentNode.querySelectorAll('[name="why-other"]')[0];(a=a.parentNode)&&!a.classList.contains("checkbox-group"););if(a&&(n=a.querySelectorAll('[type="checkbox"]')),t.checked){for("Other"===t.value&&(s.setAttribute("required","required"),o||s.addEventListener("click",function(e){e.preventDefault(),o=!0})),i=0;i<n.length;i++)n[i].removeAttribute("required");a.classList.remove("invalid"),r=!0}else if(!t.checked||!t)for("Other"===t.value&&s.removeAttribute("required"),i=0;i<n.length;i++)n[i].checked&&(r=!0);if(!r){for(i=0;i<n.length;i++)n[i].setAttribute("required","required");a.classList.add("invalid")}}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.classList.contains("green")?s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentNode.removeChild(r[0])}}function xhrSubmit(e,t,a,n){var i,s,r=new XMLHttpRequest;"github"===n?(i="https://codenow.com:2087/sign_up",s="support@runnable.com"):"bitbucket"===n&&(i="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"),r.addEventListener("load",function(a){var i,s=JSON.parse(r.responseText),o=s.result_code,l=s.result_message,c=t.parentNode.getElementsByClassName("hide")[0];-1!==o&&0!==o||(shakeForm(e),sundipValidation(l,t,n),mixpanel.track("XHR Submit: "+n,{"server-side validation":"fail",error:-1===o?"From Sundip’s script":"From Active Campaign"})),1===o&&(mixpanel.track("XHR Submit: "+n,{"server-side validation":"pass"}),t.classList.add("hide"),t.classList.remove("show"),c.classList.add("show"),c.classList.remove("hide"),"github"===n&&(i=t.querySelectorAll("[data-href]")[0].getAttribute("data-href"),setTimeout(function(){window.location.href=i},2500))),toggleEditing(t,"enable")}),r.addEventListener("error",function(i){shakeForm(e),sundipValidation("An error occured ("+r.status+'). Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,n),toggleEditing(t,"enable"),analytics.track("Error",{form:n,xhrStatusCode:r.status,xhrStatusText:r.statusText,email:a.email}),mixpanel.track("XHR Submit: "+n,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"})}),r.addEventListener("abort",function(e){toggleEditing(t,"enable"),analytics.track("Abort",{form:n,xhrStatusCode:r.status,xhrStatusText:r.statusText,email:a.email})}),r.open("POST",i,!0),r.setRequestHeader("Content-Type","application/json"),r.send(a)}function submitForm(e){var t,a,n,s,r,o,l=e.target;try{n=analytics.user().anonymousId(),s=ga.getAll()[0].get("clientId"),o=window.woopra.cookie}catch(c){console.log("Error obtaining IDs: "+c)}if(l.classList.contains("form-github")?(t="github",a=l.classList.contains("form-self-hosted")?"self-hosted":"cloud-hosted"):l.classList.contains("form-bitbucket")&&(t="bitbucket"),e.preventDefault(),l.checkValidity()){var d=l.querySelectorAll('[name="email"]')[0].value,u=l.querySelectorAll('[name="name"]')[0].value,m={},p="name";if("github"===t){var g=l.querySelectorAll('[name="checkbox-why"]'),h=[],v=[];for(p="company",i=0;i<g.length;i++){var f={name:g[i].value,checkbox:g[i].checked};"Other"===g[i].value&&(f.otherValue=l.querySelectorAll('[name="why-other"]')[0].value),g[i].checked&&("Other"===g[i].value?v.push("Other: ",l.querySelectorAll('[name="why-other"]')[0].value,"; "):v.push(g[i].value,"; ")),h.push(f)}r=v.join("").trim()}toggleEditing(l,"disable"),m.email=d,m.why=h,m.intent=r,m.id=n,m.client_id=s,m.woopraCookie=o,m.planType=a,m[p]=u,xhrSubmit(e,l,JSON.stringify(m),t),delete m.why,analytics.ready(function(){var e={email:d,Intent:r};e[p]=u,analytics.identify({anonymousId:n,traits:e,integrations:{Intercom:!1,Woopra:{cookie:o}}}),analytics.track(t+" sign up",m)}),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,a){var n,i,s=t.getElementsByClassName("js-error")[0];s&&s.parentNode.removeChild(s),"github"===a||"bitbucket"===a?(n=document.createElement("div"),n.classList.add("well","well-red","text-center","small","padding-xxs","margin-top-md","js-error"),n.innerHTML=e,t.children[0].appendChild(n)):(i=t.getElementsByTagName("button")[0],n=document.createElement("small"),n.classList.add("popover","bottom","in","small","red","text-center"),n.innerHTML=e,i.appendChild(n)),analytics.ready(function(){analytics.track("Error "+a+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function flipCard(e){for(var t,a,n=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("card-flipper"););if(a=i.getElementsByClassName("js-flipper"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("DOMContentLoaded",function(){var e,t=!0;document.getElementsByClassName("form-github").length>0&&(e="signup",document.getElementsByClassName("form-self-hosted").length>0&&(t=!1)),e&&setupForm(e,t)}),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-flipper");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)}),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
+    <title>Self-Hosted Pricing — Runnable</title>
+    <script ugly="">function openBitbucketForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],a=document.getElementsByClassName("article-bitbucket")[0],n=document.getElementsByClassName("js-open-bitbucket")[0];n.classList.add("hide"),a.classList.remove("out"),a.classList.add("in"),t.classList.remove("hide"),e.classList.remove("in"),e.classList.add("out"),mixpanel.track("Open Bitbucket form")}function openGitHubForm(){var e=document.getElementsByClassName("article-github")[0],t=document.getElementsByClassName("js-open-github")[0],a=document.getElementsByClassName("article-bitbucket")[0],n=document.getElementsByClassName("js-open-bitbucket")[0];t.classList.add("hide"),e.classList.remove("out"),e.classList.add("in"),n.classList.remove("hide"),a.classList.remove("in"),mixpanel.track("Open GitHub form")}function setupForm(e,t){var a,n;if("signup"===e){document.getElementsByClassName("article-github")[0];if(t){var s=(document.getElementsByClassName("article-bitbucket")[0],document.getElementsByClassName("js-open-bitbucket")[0]),r=document.getElementsByClassName("js-open-github")[0];r.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),r.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openGitHubForm()}),s.addEventListener("click",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()}),s.addEventListener("touchend",function(e){e.stopPropagation(),e.preventDefault(),openBitbucketForm()})}}for(a=document.getElementsByClassName("js-form"),i=0;i<a.length;i++)for(a[i].addEventListener("change",makeDirty),a[i].addEventListener("submit",submitForm),n=a[i].getElementsByTagName("input"),y=0;y<n.length;y++)"checkbox"!==n[y].type&&n[y].addEventListener("invalid",formInvalid),"checkbox"===n[y].type&&n[y].addEventListener("change",validateCheckGroup)}function markInvalid(e){var t,a,n=e.target;if("INPUT"==n.tagName)n.classList.add("invalid");else for(t=n.getElementsByTagName("input"),a=0;a<t.length;a++)t[a].validity.valid||t[a].classList.add("invalid");validateCheckGroup(e)}function shakeForm(e){var t=e.target;if(!t.classList.contains("shake-me"))for(;(t=t.parentNode)&&!t.classList.contains("shake-me"););t.classList.add("shake"),t.addEventListener("animationend",function(){t.classList.remove("shake"),t.removeEventListener("animationend",function(){})})}function makeDirty(e){var t,a=e.target;if("checkbox"===a.type){for(;(a=a.parentNode)&&!a.classList.contains("checkbox-group"););t=a,t.classList.remove("pristine")}else a.classList.remove("pristine","invalid")}function validateCheckGroup(e){var t,a,n,s,r=!1,o=!1;if("checkbox"!==e.target.type)t=!1,a=document.getElementsByClassName("checkbox-group")[0];else for(t=e.target,a=e.target,s=t.parentNode.querySelectorAll('[name="why-other"]')[0];(a=a.parentNode)&&!a.classList.contains("checkbox-group"););if(a&&(n=a.querySelectorAll('[type="checkbox"]')),t.checked){for("Other"===t.value&&(s.setAttribute("required","required"),o||s.addEventListener("click",function(e){e.preventDefault(),o=!0})),i=0;i<n.length;i++)n[i].removeAttribute("required");a.classList.remove("invalid"),r=!0}else if(!t.checked||!t)for("Other"===t.value&&s.removeAttribute("required"),i=0;i<n.length;i++)n[i].checked&&(r=!0);if(!r){for(i=0;i<n.length;i++)n[i].setAttribute("required","required");a.classList.add("invalid")}}function formInvalid(e){markInvalid(e),shakeForm(e)}function toggleEditing(e,t){var a,n=e.getElementsByTagName("input"),i=e.getElementsByTagName("textarea")[0],s=e.getElementsByTagName("button")[0],r=document.getElementsByClassName("spinner-wrapper");if("disable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!0;i&&(i.disabled=!0),s.disabled=!0,s.classList.contains("green")?s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-white"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>':s.children[0].innerHTML+='<div class="grid-content shrink spinner-wrapper spinner-sm spinner-gray"><svg viewbox="0 0 16 16" class="spinner"><circle cx="8" cy="8" r="7" stroke-linecap="round" class="path"></circle></svg></div>'}if("enable"===t){if(n)for(a=0;a<n.length;a++)n[a].disabled=!1;i&&(i.disabled=!1),s.disabled=!1,r[0].parentNode.removeChild(r[0])}}function xhrSubmit(e,t,a,n){var i,s,r=new XMLHttpRequest;"github"===n?(i="https://codenow.com:2087/sign_up",s="support@runnable.com"):"bitbucket"===n&&(i="https://codenow.com:8443/bitbucket",s="bitbucket@runnable.com"),r.addEventListener("load",function(a){var i,s=JSON.parse(r.responseText),o=s.result_code,l=s.result_message,c=t.parentNode.getElementsByClassName("hide")[0];-1!==o&&0!==o||(shakeForm(e),sundipValidation(l,t,n),mixpanel.track("XHR Submit: "+n,{"server-side validation":"fail",error:-1===o?"From Sundip’s script":"From Active Campaign"})),1===o&&(mixpanel.track("XHR Submit: "+n,{"server-side validation":"pass"}),t.classList.add("hide"),t.classList.remove("show"),c.classList.add("show"),c.classList.remove("hide"),"github"===n&&(i=t.querySelectorAll("[data-href]")[0].getAttribute("data-href"),setTimeout(function(){window.location.href=i},2500))),toggleEditing(t,"enable")}),r.addEventListener("error",function(i){shakeForm(e),sundipValidation("An error occured ("+r.status+'). Send us an email at <a class="link" href="mailto:'+s+'">'+s+"</a> for help.",t,n),toggleEditing(t,"enable"),analytics.track("Error",{form:n,xhrStatusCode:r.status,xhrStatusText:r.statusText,email:a.email}),mixpanel.track("XHR Submit: "+n,{"server-side validation":"fail",error:"xhr.readyState === 4 && xhr.status === 0"})}),r.addEventListener("abort",function(e){toggleEditing(t,"enable"),analytics.track("Abort",{form:n,xhrStatusCode:r.status,xhrStatusText:r.statusText,email:a.email})}),r.open("POST",i,!0),r.setRequestHeader("Content-Type","application/json"),r.send(a)}function submitForm(e){var t,a,n,s,r,o=e.target;try{a=analytics.user().anonymousId(),n=ga.getAll()[0].get("clientId"),r=window.woopra.cookie}catch(l){console.log("Error obtaining IDs: "+l)}if(o.classList.contains("form-github")?t="github":o.classList.contains("form-bitbucket")&&(t="bitbucket"),e.preventDefault(),o.checkValidity()){var c=o.querySelectorAll('[name="email"]')[0].value,d=o.querySelectorAll('[name="name"]')[0].value,u={},m="name";if("github"===t){var p=o.querySelectorAll('[name="checkbox-why"]'),g=[],h=[];for(m="company",i=0;i<p.length;i++){var v={name:p[i].value,checkbox:p[i].checked};"Other"===p[i].value&&(v.otherValue=o.querySelectorAll('[name="why-other"]')[0].value),p[i].checked&&("Other"===p[i].value?h.push("Other: ",o.querySelectorAll('[name="why-other"]')[0].value,"; "):h.push(p[i].value,"; ")),g.push(v)}s=h.join("").trim()}toggleEditing(o,"disable"),u.email=c,u.why=g,u.intent=s,u.id=a,u.client_id=n,u.woopraCookie=r,u.planType="self-hosted",u[m]=d,xhrSubmit(e,o,JSON.stringify(u),t),delete u.why,analytics.ready(function(){var e={email:c,Intent:s};e[m]=d,analytics.identify({anonymousId:a,traits:e,integrations:{Intercom:!1,Woopra:{cookie:r}}}),analytics.track(t+" sign up",u)}),mixpanel.track("FE Submit: "+t,{"front-end validation":"pass"})}}function sundipValidation(e,t,a){var n,i,s=t.getElementsByClassName("js-error")[0];s&&s.parentNode.removeChild(s),"github"===a||"bitbucket"===a?(n=document.createElement("div"),n.classList.add("well","well-red","text-center","small","padding-xxs","margin-top-md","js-error"),n.innerHTML=e,t.children[0].appendChild(n)):(i=t.getElementsByTagName("button")[0],n=document.createElement("small"),n.classList.add("popover","bottom","in","small","red","text-center"),n.innerHTML=e,i.appendChild(n)),analytics.ready(function(){analytics.track("Error "+a+"-list form",{error:e,clientId:ga.getAll()[0].get("clientId")})})}function flipCard(e){for(var t,a,n=e.type,i=e.target;(i=i.parentElement)&&!i.classList.contains("card-flipper"););if(a=i.getElementsByClassName("js-flipper"),"touchend"===n)for(t=0;t<a.length;t++)a[t].removeEventListener("touchend",flipCard);if(i.classList.toggle("flip"),"touchend"===n)for(t=0;t<a.length;t++)a[t].addEventListener("touchend",flipCard)}window.addEventListener("DOMContentLoaded",function(){var e,t;document.getElementsByClassName("form-github").length>0&&(t="signup"),t&&(e=!0,setupForm(t,e))}),window.addEventListener("DOMContentLoaded",function(){var e,t=document.getElementsByClassName("js-flipper");if(t)for(e=0;e<t.length;e++)t[e].addEventListener("click",flipCard),t[e].addEventListener("touchend",flipCard)}),window.addEventListener("load",function(){var e,t,a=new StatusPage.page({page:"ngvk75ydhg3t"}),n=document.getElementsByClassName("footer")[0],i=document.createElement("a");i.href="//status.runnable.com",i.classList.add("btn","btn-xs","link","strong","status"),a.components({success:function(a){switch(n.appendChild(i),a.components[0].status){case"operational":e="Status: Beary good!",t="status-green";break;case"degraded_performance":case"partial_outage":e="Partial Outage",t="status-orange";break;case"major_outage":e="Major Outage",t="status-red"}i.textContent=e,i.classList.add(t)}})});</script>
 
     <!--
-      Commit Hash: 78dcc86b8cc88a122b2a4aa8e93c03ad2712020e
-      Commit Time: Fri Apr 14 14:34:49 2017 -0700
+      Commit Hash: f44c015bbdc49fec9b292d1fc9f96dbff857651e
+      Commit Time: Wed Jul 5 17:27:29 2017 -0700
     -->
 
   </head><body class="page-landing" ontouchstart="">
@@ -692,7 +692,6 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
       <a href="/pricing/" class="list-item-a visible-md">Pricing</a>
       <a href="/how-it-works/" class="list-item-a">How It Works</a>
       <a href="//runnable.com/use-cases/" class="list-item-a">Use Cases</a>
-      <a href="/demo/" class="list-item-a">Request Demo</a>
       <a href="/blog/" class="list-item-a">Blog</a>
       <a href="/contact/" class="list-item-a">Contact</a>
       <a href="/about/" class="list-item-a">About</a>
@@ -708,113 +707,67 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
 
     <main class="grid-block col main">
       <article class="grid-block col align-center hero pricing-hero">
-  <h1 class="h1 text-center weight-strong">Pricing Plans</h1>
-  <p class="h3 text-center">We offer self-hosted and cloud-hosted pricing.
+  <h1 class="h1 text-center weight-strong">Simple Pricing</h1>
+  <p class="h3 text-center">We offer a self-hosted plan for maximum control.
   <section class="section">
-    <div class="grid-block col-sm grid-container-sm ">
-      <section class="grid-block col card">
-        <h3 class="card-header">Self-Hosted</h3>
+    <div class="grid-block align-center col-sm grid-container-sm ">
+      <section class="grid-block col align-center card">
         <div class="card-body">
           <p class="card-price">$35<span class="per-month">/mo</span></p>
           <p class="weight-strong">per user</p>
-          <p class="text-gray margin-top-sm">Unlimited Containers</p>
         </div>
-        <button href="signup/" class="btn btn-md green track-sign-up">Sign Up<span class="hidden-xxs"> for Self-Hosted</span></button>
-        <div class="grid-block justify-center card-hosts">
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/aws.svg" title="Amazon Web Services">
+        <a href="signup/" class="btn btn-md green track-sign-up">Sign Up</a>
+        <ol class="grid-block justify-center card-hosts">
+          <li class="grid-block col align-center">
+            <img class="img" src="images/pricing/aws.svg" title="Amazon Web Services">
             <svg class="icons icons-check">
               <use xlink:href="#icons-check"/>
             </svg>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/gcp.svg" title="Google Cloud Platform">
+          </li><li class="grid-block col align-center">
+            <img class="img" src="images/pricing/gcp.svg" title="Google Cloud Platform">
             <p class="small text-gray weight-light">Beta</p>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/azure.svg" title="Microsoft Azure">
+          </li><li class="grid-block col align-center">
+            <img class="img" src="images/pricing/azure.svg" title="Microsoft Azure">
             <p class="small text-gray weight-light">Soon</p>
-          </div>
-          <div class="grid-block col align-center">
-            <img class="img" src="/images/pricing/private-cloud.svg" title="Private Cloud">
+          </li><li class="grid-block col align-center">
+            <img class="img" src="images/pricing/private-cloud.svg" title="Private Cloud">
             <p class="small text-gray weight-light">Soon</p>
-          </div>
-        </div>
+        </li></ol>
       </section>
       <ul class="grid-block col justify-center noscroll pricing-benefits">
         <li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check"/>
           </svg>
-          Unlimited builds, tests and running environments.
+          Unlimited concurrent builds and tests
         </li><li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check"/>
           </svg>
-          Deploy anywhere from your private Docker registry.
+          Unlimited staging environments
         </li><li class="li">
           <svg class="icons icons-check">
             <use xlink:href="#icons-check"/>
           </svg>
-          Support for AWS, GCP (beta), and Azure (soon).
+          Deploy from your private Docker registry
+        </li><li class="li">
+          <svg class="icons icons-check">
+            <use xlink:href="#icons-check"/>
+          </svg>
+          Support for GitHub Enterprise
       </li></ul>
     </div>
   </section>
 </p></article>
 
-      <article class="article-pricing-cloud section">
-  <h2 class="text-center margin-bottom-md">Cloud-Hosted Plans</h2>
-  <div class="grid-block justify-center align-center col-sm noscroll grid-container-sm">
-    <section class="grid-block col card">
-      <h3 class="card-header">Starter</h3>
-      <div class="card-body">
-        <p class="card-price">$9<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">2</span> containers<br>per branch</p>
-      </div>
-    </section>
-    <section class="grid-block col card">
-      <h3 class="card-header">Standard</h3>
-      <div class="card-body">
-        <p class="card-price">$29<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">7</span> containers<br>per branch</p>
-      </div>
-    </section>
-    <section class="grid-block col card">
-      <h3 class="card-header">Plus</h3>
-      <div class="card-body">
-        <p class="card-price">$49<span class="per-month">/mo</span></p>
-        <p class="weight-strong">per user</p>
-        <p class="text-gray margin-top-sm">Up to <span class="weight-strong">15</span> containers<br>per branch</p>
-      </div>
-    </section>
-  </div>
-  <div class="grid-block col align-center margin-top-lg">
-    <button href="signup/" class="btn btn-md green track-sign-up">Start Your 14-Day Free Trial</button>
-    <p class="small text-gray weight-light margin-top-xxs">All plans require at least 3 users.</p>
-  </div>
-</article>
-
-      <article class="grid-block justify-center align-center section article article-explanation">
-  <div class="grid-block align-center justify-center shrink">
-    <img src="images/pricing/bear-dollar.svg" class="grid-block img">
-  </div>
-  <div class="grid-block shrink col">
-    <h2 class="h3 weight-strong">How our pricing works.</h2>
-    <p class="p">We charge based on the number of containers used to define your application. A container is a running process, like an API server or a database.</p>
-    <p class="p margin-top-xxs">With this model, your team can use as many environments as needed without affecting your rate.</p>
-  </div>
-</article>
-
       <article class="grid-block justify-center align-center section article article-included">
   <div class="grid-block col shrink">
     <div class="grid-block col shrink">
-      <h2 class="h3 weight-strong">Unlimited environments<br class="hidden-sm"> with every plan.</h2>
+      <h2 class="h3 weight-strong">Unlimited environments.</h2>
       <p class="p">Create as many environments as you need, without worrying about scaling infrastructure.</p>
     </div>
     <div class="grid-block col">
-      <p class="p weight-strong">Also included in every plan:</p>
+      <p class="p weight-strong">Also included:</p>
       <div class="grid-block list-included">
         <ul class="ul grid-block col">
           <li class="li">
@@ -865,28 +818,14 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
     <p class="grid-content shrink p justify-center">We'll prorate the cost of users daily, so you'll only pay for the time your users are active.</p>
   </div>
   <div class="grid-block col question">
-    <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Which plan should I pick?</h3>
-    <p class="grid-content shrink p justify-center">We automatically determine your plan based on the number of services your team adds.</p>
-  </div>
-  <div class="grid-block col question">
-    <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> Why isn’t there a free plan?</h3>
-    <p class="grid-content shrink p justify-center">Runnable will remain free for your team's first 14 days. If your development team believes our pricing plans are not well-suited for your needs, please get in touch with us.</p>
-  </div>
-  <div class="grid-block col question">
     <h3 class="grid-content shrink h3 justify-center weight-strong"><span class="text-gray-light">Q:</span> What if I have more questions?</h3>
-    <p class="grid-content shrink p justify-center">No problem! Visit our <a href="https://support.runnable.com/hc/en-us/articles/212037226-Pricing-FAQ" class="link">Pricing FAQ</a>, or <a href="mailto:support@runnable.com" class="link">email us</a>.</p>
+    <p class="grid-content shrink p justify-center">No problem! Visit our <a href="//runnable.com/docs/pricing/frequently-asked-questions" class="link">Pricing FAQ</a>, or <a href="mailto:support@runnable.com" class="link">email us</a>.</p>
   </div>
 </article>
 
     </main>
 
     <footer class="grid-block col footer justify-spaced">
-  <a href="signup/" class="sign-up-box grid-block col well well-anchor track-sign-up">
-  <img class="img no-touching" src="images/runnabear-hello.png">
-  <p class="p">Try Runnable! It’s <strong class="weight-strong">free</strong> for 14 days.
-  <div href="signup/" class="btn btn-sm green track-sign-up">Sign Up</div>
-</p></a>
-
   <aside class="grid-block aside-support">
   <div class="grid-block col justify-center support-text">
     <p class="p weight-strong">Our engineers are here for you.</p>
@@ -930,7 +869,6 @@ setTimeout(function(){i();h.end=null},c);})(window,document.documentElement,
       <h4 class="h4 margin-top-sm">Help</h4>
       <a href="/docs/" class="a">Docs</a>
       <a href="/docker/" class="a">Docker Guides</a>
-      <a href="/demo/" class="a">Request Demo</a>
     </div>
     <div class="grid-block col align-start">
       <h4 class="h4">Company</h4>
