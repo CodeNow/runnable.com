@@ -3,21 +3,19 @@
 
   <head>
     @@include('html/components/head.hbs')
-    <title>Our Privacy Policy — Runnable</title>
+    <title>Runnable Joins the Family</title>
     <script ugly>
       @@include('js/status.js')
     </script>
 
-  <body class="page-landing" ontouchstart>
+  <body class="page-landing page-join" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('images/icons.svg')
     @@include('html/components/header.hbs')
 
     <main class="grid-block col main">
-      @@include('html/legal/privacy-policy/privacy-hero.hbs')
-      @@include('html/legal/privacy-policy/article-privacy.hbs')
+      @@include('html/joins/hero.hbs')
+      @@include('html/components/footer.hbs')
     </main>
-
-    @@include('html/components/footer.hbs')
 
     @@include('js/external/external.html')
