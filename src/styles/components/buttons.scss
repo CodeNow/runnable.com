@@ -118,89 +118,6 @@
   padding: 0 5px;
 }
 
-// .btn-icon
-.btn-icon {
-  line-height: $input-md;
-  padding: 0;
-  width: $input-md;
-
-  &.btn-sm {
-    width: $input-sm;
-  }
-
-  &.btn-icon-sm {
-    line-height: $input-sm;
-    min-width: $input-sm;
-    width: auto;
-  }
-
-  &.btn-icon-xs {
-    line-height: $input-xs;
-    min-width: $input-xs;
-    width: auto;
-  }
-
-  &.btn-icon-xxs {
-    height: $input-xxs;
-    line-height: $input-xxs;
-    width: $input-xxs;
-  }
-
-  .iconnables {
-    height: 100%;
-    width: 100%;
-  }
-
-  // if .arrow-down
-  > .icons-arrow-down {
-    width: 24px;
-  }
-}
-
-.btn-close {
-  border-radius: 50%;
-
-  .icons-close {
-    color: currentColor;
-  }
-
-  &.btn-xs .icons-close {
-    top: 0;
-  }
-}
-
-.btn-check {
-
-  &.active {
-    background: $green;
-    border-color: $green;
-
-    .icons-add {
-      transform: scale3d(0,0,0);
-    }
-
-    .icons-check {
-      transform: scale3d(1,1,1);
-    }
-  }
-
-  .iconnables {
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: scale3d(0,0,0);
-    transition: transform .3s ease-in;
-    width: 100%;
-  }
-
-  .icons-add {
-    color: $gray-lighter;
-    transform: scale3d(1,1,1);
-    transition: none;
-  }
-}
-
 .blue,
 .gray,
 .gray-dark,
@@ -221,10 +138,6 @@
   color: $white;
   font-weight: $weight-bold;
   text-decoration: none;
-
-  &:not([disabled]).btn-hint {
-    @extend %btn-hint;
-  }
 
   &:active {
     transition: none;
@@ -442,55 +355,9 @@
           background: $purple-light;
         }
       }
-
-      &.btn-hint {
-
-        .card-body & {
-          border-top-width: $input-border;
-          z-index: 2;
-        }
-      }
     }
   }
 }
-
-// transparent to white
-.btn-cancel {
-  background: transparent;
-  border: $input-border solid transparent;
-  color: $gray;
-
-  &:hover,
-  &:active {
-    background: $white;
-  }
-}
-
-// hint glow
-%btn-hint,
-.btn-hint {
-  border-color: rgba($blue,.45);
-  box-shadow: 0 0 6px rgba($blue,.35);
-
-  &:hover {
-    border-color: rgba($blue,.6);
-    box-shadow: none;
-  }
-
-  &:active {
-    border-color: currentColor;
-    box-shadow: none;
-  }
-}
-
-// .btn-label
-.btn-label {
-  font-size: 12px;
-  height: 22px;
-  line-height: 22px;
-  padding: 0 6px;
-  pointer-events: none;
- }
 
 .btn-radio {
   border: $input-border solid transparent;
@@ -523,30 +390,5 @@
 
   &:focus {
     outline: 0;
-  }
-}
-
-// add button
-.btn-add {
-  background: $white;
-  border: 1px solid $gray-lighter;
-  color: $gray-light;
-  line-height: initial;
-  overflow: hidden;
-  padding: 3px;
-  transition: none;
-
-  &.btn-sm {
-    width: $input-sm;
-  }
-
-  &.btn-xs {
-    width: $input-xs;
-  }
-
-  &.active {
-    background: $green;
-    border-color: $green;
-    color: $white;
   }
 }
