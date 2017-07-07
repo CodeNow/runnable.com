@@ -1,0 +1,35 @@
+.article-photos {
+
+  .ul {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1110px;
+    overflow: hidden;
+  }
+
+  .li {
+
+    &.active {
+      transform: scale3d(1,1,1);
+    }
+
+    + .li {
+      margin-left: $md;
+    }
+  }
+
+  .img {
+    border-radius: $input-border-radius-lg;
+    box-shadow: 0 3px 9px rgba($black,.1);
+    cursor: pointer;
+    height: 350px;
+    transform: scale3d(.9,.9,1);
+    transition: transform .3s ease-in-out;
+    width: 350px;
+
+    &:hover,
+    &:active {
+      transform: scale3d(.95,.95,1);
+    }
+  }
+}
