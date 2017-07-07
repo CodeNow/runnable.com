@@ -14,8 +14,8 @@
     background-image: linear-gradient(45deg, #08c, #6bd8ff);
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
-    margin-top: 60px;
-    padding: 45px 60px;
+    margin-top: $xl;
+    padding: $lg $xl;
     position: relative;
 
     @include media(xxs) {
