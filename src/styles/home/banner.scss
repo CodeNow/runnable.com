@@ -2,23 +2,27 @@
   // scss-lint:disable ColorVariable
   background-color: #51aeec;
   // scss-lint:enable ColorVariable
-  bottom: 0;
   color: $white;
   cursor: pointer;
   font-size: 16px;
   font-weight: $weight-normal;
   height: $xl;
-  line-height: $xl;
-  text-align: center;
+
+  .emoji {
+    font-size: 27px;
+    margin-right: 4px;
+  }
+
+  .span {
+    margin: 0 4px;
+  }
 
   .arrow {
-    display: inline-block;
-    transform: translateX(0);
-    transition: transform .3s ease-out;
+    transition: transform .3s ease-in-out;
   }
 
   &:hover .arrow {
-    transform: translateX(6px);
+    transform: translateX(4px);
   }
 
   &:active {
