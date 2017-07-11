@@ -1,0 +1,34 @@
+.banner-mulesoft {
+  // scss-lint:disable ColorVariable
+  background-color: #51aeec;
+  // scss-lint:enable ColorVariable
+  color: $white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: $weight-normal;
+  height: $xl;
+
+  .emoji {
+    font-size: 27px;
+    margin-right: 4px;
+  }
+
+  .span {
+    margin-left: 4px;
+  }
+
+  .arrow {
+    margin-left: 4px;
+    transition: transform .3s ease-in-out;
+  }
+
+  &:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  &:active {
+    // scss-lint:disable ColorVariable
+    background-color: #3aa3e9;
+    // scss-lint:enable ColorVariable
+  }
+}
