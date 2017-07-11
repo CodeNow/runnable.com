@@ -1,4 +1,7 @@
 .hero-joins {
+  // scss-lint:disable ColorVariable
+  background: linear-gradient($purple-light, #406fbe);
+  // scss-lint:enable ColorVariable
   margin-bottom: -$lg;
   padding-bottom: 0;
 
