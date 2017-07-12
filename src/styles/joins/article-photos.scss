@@ -26,6 +26,10 @@
     @media (max-width: 568px) {
       max-width: calc(100% - #{$xs * 2});
       object-fit: cover;
+
+      .video {
+        object-fit: cover;
+      }
     }
 
     &.img-lg {
