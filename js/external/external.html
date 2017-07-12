@@ -20,21 +20,16 @@
       querystrings: urlParams
     });
     var signUp = document.getElementsByClassName('track-sign-up');
-    var signIn = document.getElementsByClassName('track-sign-in');
     var github = document.getElementsByClassName('track-github');
     var bitbucket = document.getElementsByClassName('track-bitbucket');
     var grantGitHubPerms = document.getElementsByClassName('track-grant-access-github');
     analytics.trackLink(signUp, 'Clicked Sign Up');
-    analytics.trackLink(signIn, 'Clicked Sign In');
     analytics.trackLink(github, 'Clicked GitHub');
     analytics.trackLink(bitbucket, 'Clicked Bitbucket');
     analytics.trackLink(grantGitHubPerms, 'Clicked Grant GitHub Permissions');
 
     // Attach anonymous_id to links
     var aid = analytics.user().anonymousId();
-    for (var j=0; j<signIn.length; j++) {
-      append_id(signIn[j], aid, 'Signed%20In');
-    }
     for (var k=0; k<grantGitHubPerms.length; k++) {
       append_id(grantGitHubPerms[k], aid, 'Signed%20Up');
     }
@@ -65,5 +60,3 @@
 </script>
 
 <script async src="https://ga.clearbit.com/v1/ga.js?authorization=pk_1bc83be89f2224b36e22e6fc5d1013ea"></script>
-<!-- statuspage.io -->
-<script async src="https://cdn.statuspage.io/se-v2.js"></script>
