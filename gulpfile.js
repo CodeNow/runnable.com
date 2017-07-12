@@ -18,10 +18,6 @@ var sass = require('gulp-sass');
 var vfs = require('fs');
 var webserver = require('gulp-webserver');
 
-// urls
-var apiUrl = process.env.API_URL;
-var angularUrl = process.env.ANGULAR_URL;
-
 // file locations
 var json = JSON.parse(vfs.readFileSync('./package.json'));
 var currentVersion = json.version;
@@ -97,12 +93,9 @@ gulp.task('hbs', function() {
   return gulp.src(hbsDist)
     .pipe(handlebars({
       // We include this for when we use this in Runnable Angular
-      apiUrl: apiUrl,
       env: process.env.NODE_ENV,
       commitHash: commitHash,
-      commitTime: commitTime,
-      angularUrl: angularUrl,
-      loginUrl: apiUrl + '/auth/github?redirect=' + angularUrl + '/?auth'
+      commitTime: commitTime
     }, {
       helpers: {
         if_eq: function(a, b, opts) {
