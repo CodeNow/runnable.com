@@ -16,6 +16,9 @@ window.addEventListener('DOMContentLoaded', function(){
     livePhotoBadges[i].addEventListener('mouseover', function(e) {
       playPhoto(e,this);
     });
+    livePhotoBadges[i].addEventListener('touchend', function(e) {
+      playPhoto(e,this);
+    });
     livePhotoBadges[i].addEventListener('mouseout', function(e) {
       pausePhoto(e,this);
     });
