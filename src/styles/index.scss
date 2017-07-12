@@ -63,10 +63,15 @@
 
 @import "home/home";
 @import "home/hero";
+@import "home/banner";
 @import "home/article-runnable-works";
 @import "home/article-features";
 @import "home/article-home-cta";
 @import "home/article-graph";
+
+@import "joins/hero";
+@import "joins/article-letter";
+@import "joins/article-photos";
 
 @import "features/end-to-end-testing/hero";
 @import "features/end-to-end-testing/article-environments";
