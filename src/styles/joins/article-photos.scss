@@ -66,4 +66,25 @@
       }
     }
   }
+
+  .live-photo {
+    position: relative;
+
+    .video {
+      border-radius: $input-border-radius-lg;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    .live-photos-badge {
+      height: 25px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 58px;
+    }
+  }
 }
