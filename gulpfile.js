@@ -303,7 +303,7 @@ gulp.task('deploy:gh:dev', function(cb) {
 
 // build and deploy to amazon s3
 gulp.task('deploy:s3', function(cb) {
-  runSequence('build', 's3', 's3-html', cb);
+  runSequence('clean', 'build', 's3', 's3-html', cb);
 });
 
 // local webserver
