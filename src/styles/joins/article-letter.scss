@@ -7,6 +7,10 @@
     margin-top: $lg;
     max-width: 660px;
     padding: $xl $md 0;
+
+    @include media(xs) {
+      margin-top: 0;
+    }
   }
 
   .p + .p {
