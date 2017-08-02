@@ -21,6 +21,24 @@
     max-width: 600px;
     position: relative;
     z-index: 1;
+
+    &::before {
+      background: rgba($black,.1);
+      content: '';
+      display: block;
+      height: 1px;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100px;
+
+      @include media(xxs) {
+        width: 86px;
+      }
+    }
   }
 
   .img-runnabear {
