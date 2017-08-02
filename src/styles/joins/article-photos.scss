@@ -1,11 +1,5 @@
 .article-photos {
 
-  $photo-base: 300px;
-  $photo-container: ($photo-base * 3) + ($sm * 6);
-  $photo-lg: ($photo-base * 3) + ($sm * 4);
-  $photo-md: ($photo-base * 2) + ($sm * 2);
-  $photo-sm: $photo-base;
-
   .section {
     flex-wrap: wrap;
     margin: 0 auto;

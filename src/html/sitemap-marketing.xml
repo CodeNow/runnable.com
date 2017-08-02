@@ -13,6 +13,12 @@
     <priority>0.91</priority>
   </url>
   <url>
+    <loc>https://runnable.com/landing/</loc>
+    <lastmod>2017-07-31T23:56:40+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.91</priority>
+  </url>
+  <url>
     <loc>https://runnable.com/legal/privacy-policy/</loc>
     <lastmod>2016-08-12T23:56:40+00:00</lastmod>
     <changefreq>daily</changefreq>

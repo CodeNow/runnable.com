@@ -3,31 +3,21 @@
 
   <head>
     @@include('html/components/head.hbs')
-    <title>Runnable: Catch bugs earlier.</title>
+    <title>Runnable Joins the MuleSoft Family</title>
+    <script ugly>
+      @@include('js/livephoto.js')
+    </script>
 
-  <body class="page-landing page-home" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
+  <body class="page-landing page-join" ng-app="homeApp" ng-controller="MainCtrl" ontouchstart>
 
     @@include('images/icons.svg')
     @@include('html/components/header.hbs')
 
     <main class="grid-block col main">
-      @@include('html/home/hero.hbs')
-      @@include('html/home/article-runnable-works.hbs')
-      @@include('html/home/article-features.hbs')
-      @@include('html/home/article-graph.hbs')
-      @@include('html/home/article-home-cta.hbs')
+      @@include('html/mulesoft/hero.hbs')
+      @@include('html/mulesoft/article-letter.hbs')
+      @@include('html/mulesoft/article-photos.hbs')
       @@include('html/components/footer.hbs')
-      <a href="http://code.runnable.com" class="grid-block well well-anchor well-code">
-        <img class="grid-block shrink img" src="images/home/codesnippets.png" height="45" width="45">
-        <div class="grid-block col justify-center">
-          <p class="p">Check out our other project:
-          <div class="a weight-strong">Runnable CodeSnippets
-            <svg class="icons icons-chevron-right">
-              <use xlink:href="#icons-chevron-right">
-            </svg>
-          </div>
-        </div>
-      </a>
     </main>
 
     @@include('js/external/external.html')
