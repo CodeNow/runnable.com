@@ -2,7 +2,7 @@
   // scss-lint:disable ColorVariable
   background: linear-gradient($purple-light, #406fbe);
   // scss-lint:enable ColorVariable
-  margin-bottom: -$lg;
+  margin-bottom: -$md;
   padding-bottom: 0;
 
   .h1 {
@@ -15,19 +15,12 @@
   }
 
   .card-mulesoft {
-    // scss-lint:disable ColorVariable
-    background-image: linear-gradient(45deg, #08c, #6bd8ff);
-    // scss-lint:enable ColorVariable
     border-radius: $input-border-radius-lg;
     box-shadow: 0 2px 9px rgba($black,.15);
     margin-top: $xl;
-    padding: $lg $xl;
+    max-width: 600px;
     position: relative;
     z-index: 1;
-
-    @include media(xxs) {
-      max-width: 270px;
-    }
   }
 
   .img-runnabear {
@@ -43,5 +36,11 @@
       top: -100px;
       width: 195px;
     }
+  }
+
+  .img-mulesoft {
+    border-radius: $input-border-radius-lg;
+    height: 100%;
+    width: 100%;
   }
 }
